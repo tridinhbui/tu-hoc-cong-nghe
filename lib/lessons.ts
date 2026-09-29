@@ -40399,6 +40399,26 @@ export const lessons: Lesson[] = [
         "text": "Đặt mặc định bằng toán tử hoặc thì số 0 và chuỗi rỗng bị thay bằng mặc định, dù chúng là giá trị hợp lệ người dùng cố ý nhập. Toán tử hợp nhất rỗng chỉ thay khi giá trị là rỗng hoặc chưa định nghĩa, nên nó gần như luôn là lựa chọn đúng."
       },
       {
+        "type": "code",
+        "language": "javascript",
+        "runnable": true,
+        "caption": "Hai dấu bằng, ba dấu bằng, và giá trị mặc định",
+        "code": "console.log(0 == \"\");        // true  - chuỗi rỗng bị ép thành 0\nconsole.log(0 === \"\");       // false - khác kiểu là khác\nconsole.log(\"5\" == 5);       // true\nconsole.log(\"5\" === 5);      // false\n\nconst soLuong = 0;\nconsole.log(soLuong || 10);  // 10 - số 0 bị coi là sai, mất giá trị thật\nconsole.log(soLuong ?? 10);  // 0  - chỉ thay khi rỗng hoặc chưa định nghĩa\n\nconst gio = [];\ngio.push(\"sách\");            // hằng khoá cái tên, không khoá dữ liệu\nconsole.log(gio);"
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Giữ lại số 0 người dùng đã nhập",
+        "task": "Hàm docCauHinh đặt giá trị mặc định cho từng trường nhưng đang làm mất các giá trị người dùng cố ý nhập (0, chuỗi rỗng, false). Sửa hàm để chỉ dùng mặc định khi trường thật sự không có (rỗng hoặc chưa định nghĩa), rồi chạy lại cả ba cấu hình.",
+        "starter": "function docCauHinh(c) {\n  const soLuong = c.soLuong || 10;\n  const ghiChu = c.ghiChu || \"(không có)\";\n  const thongBao = c.thongBao || true;\n  return soLuong + \" | \" + ghiChu + \" | \" + thongBao;\n}\n\nconsole.log(docCauHinh({ soLuong: 0, ghiChu: \"\", thongBao: false }));\nconsole.log(docCauHinh({}));\nconsole.log(docCauHinh({ soLuong: 3, ghiChu: \"giao gấp\", thongBao: null }));",
+        "solution": "function docCauHinh(c) {\n  const soLuong = c.soLuong ?? 10;\n  const ghiChu = c.ghiChu ?? \"(không có)\";\n  const thongBao = c.thongBao ?? true;\n  return soLuong + \" | \" + ghiChu + \" | \" + thongBao;\n}\n\nconsole.log(docCauHinh({ soLuong: 0, ghiChu: \"\", thongBao: false }));\nconsole.log(docCauHinh({}));\nconsole.log(docCauHinh({ soLuong: 3, ghiChu: \"giao gấp\", thongBao: null }));",
+        "hints": [
+          "Toán tử hoặc thay mọi giá trị bị coi là sai, kể cả 0, chuỗi rỗng và false.",
+          "Toán tử hợp nhất rỗng (??) chỉ thay khi vế trái là null hoặc undefined."
+        ],
+        "expectedOutput": "0 |  | false\n10 | (không có) | true\n3 | giao gấp | true"
+      },
+      {
         "type": "closing",
         "lines": [
           "Vài quy tắc ngắn - ba dấu bằng, mặc định dùng hằng, hợp nhất rỗng - tránh được phần lớn tiếng xấu của ngôn ngữ này.",
@@ -40594,6 +40614,26 @@ export const lessons: Lesson[] = [
       {
         "type": "paragraph",
         "text": "Một hàm nhớ được các biến ở nơi nó được tạo ra, kể cả khi nơi đó đã chạy xong từ lâu. Nghe trừu tượng, nhưng bạn dùng nó liên tục: mọi hàm xử lý sự kiện có nhắc tới biến bên ngoài đều là closure. Nó cũng là cách tạo dữ liệu riêng tư - biến trong hàm bao ngoài không ai với tới được, chỉ hàm bên trong đọc được."
+      },
+      {
+        "type": "code",
+        "language": "javascript",
+        "runnable": true,
+        "caption": "Hàm là giá trị: gán, truyền đi, trả về",
+        "code": "const chao = (ten) => \"Xin chào \" + ten;\nconst lamHaiLan = (f, x) => f(f(x));     // nhận một hàm làm tham số\nconst nhanVoi = (k) => (x) => x * k;      // trả về một hàm\n\nconsole.log(chao(\"An\"));\nconsole.log(lamHaiLan(nhanVoi(3), 2));    // (2 * 3) * 3 = 18\n\n// Lỗi phổ biến nhất: có dấu ngoặc là GỌI ngay, không phải trao hàm đi\nconst goiSau = (f) => \"sẽ gọi: \" + typeof f;\nconsole.log(goiSau(chao));      // trao chính hàm\nconsole.log(goiSau(chao(\"B\"))); // trao KẾT QUẢ - một chuỗi"
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Viết hàm tạo bộ đếm",
+        "task": "Viết taoBoDem(batDau) trả về một hàm; mỗi lần gọi hàm đó thì tăng số đếm lên 1 và trả về giá trị mới. Hai bộ đếm tạo riêng phải đếm độc lập với nhau. Đoạn in bên dưới giữ nguyên.",
+        "starter": "let dem = 0;\nfunction taoBoDem(batDau) {\n  dem = batDau;\n  return () => {\n    dem = dem + 1;\n    return dem;\n  };\n}\n\nconst a = taoBoDem(0);\nconst b = taoBoDem(100);\nconsole.log(a(), a(), a());\nconsole.log(b(), b());\nconsole.log(a());",
+        "solution": "function taoBoDem(batDau) {\n  let dem = batDau;\n  return () => {\n    dem = dem + 1;\n    return dem;\n  };\n}\n\nconst a = taoBoDem(0);\nconst b = taoBoDem(100);\nconsole.log(a(), a(), a());\nconsole.log(b(), b());\nconsole.log(a());",
+        "hints": [
+          "Bộ đếm hiện dùng chung một biến bên ngoài, nên tạo b là ghi đè số của a.",
+          "Khai báo biến đếm BÊN TRONG taoBoDem: mỗi lần gọi taoBoDem có một biến riêng, và hàm trả về nhớ đúng biến đó (closure)."
+        ],
+        "expectedOutput": "1 2 3\n101 102\n4"
       },
       {
         "type": "closing",
@@ -40803,6 +40843,26 @@ export const lessons: Lesson[] = [
         ]
       },
       {
+        "type": "code",
+        "language": "javascript",
+        "runnable": true,
+        "caption": "Lọc, ánh xạ, gom - và sắp xếp sửa mảng gốc",
+        "code": "const donHang = [\n  { ma: \"D1\", trangThai: \"da-giao\", tien: 120 },\n  { ma: \"D2\", trangThai: \"huy\", tien: 300 },\n  { ma: \"D3\", trangThai: \"da-giao\", tien: 80 },\n];\n\nconst doanhThu = donHang\n  .filter((d) => d.trangThai === \"da-giao\")\n  .map((d) => d.tien)\n  .reduce((tong, t) => tong + t, 0);\nconsole.log(doanhThu); // 200\n\nconst so = [3, 1, 2];\nconst daXep = [...so].sort((x, y) => x - y); // sao chép rồi mới sắp xếp\nconsole.log(so, daXep);                       // [3,1,2] [1,2,3]"
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Báo cáo đơn hàng mà không làm hỏng dữ liệu gốc",
+        "task": "In tổng tiền các đơn đã giao, rồi danh sách mã đơn đã giao xếp theo tiền giảm dần. Đoạn mã hiện có hai lỗi: mảng gốc bị đổi thứ tự sau khi sắp xếp, và sắp xếp số theo kiểu chuỗi. Dòng cuối phải in đúng thứ tự gốc D1,D2,D3,D4.",
+        "starter": "const donHang = [\n  { ma: \"D1\", trangThai: \"da-giao\", tien: 90 },\n  { ma: \"D2\", trangThai: \"huy\", tien: 500 },\n  { ma: \"D3\", trangThai: \"da-giao\", tien: 1200 },\n  { ma: \"D4\", trangThai: \"da-giao\", tien: 300 },\n];\n\nconst daGiao = donHang.filter((d) => d.trangThai === \"da-giao\");\nconst tong = daGiao.reduce((s, d) => s + d.tien, 0);\nconsole.log(\"Tổng: \" + tong);\n\nconst xep = donHang.sort((a, b) => String(b.tien).localeCompare(String(a.tien)));\nconsole.log(\"Theo tiền: \" + xep.filter((d) => d.trangThai === \"da-giao\").map((d) => d.ma).join(\",\"));\nconsole.log(\"Gốc: \" + donHang.map((d) => d.ma).join(\",\"));",
+        "solution": "const donHang = [\n  { ma: \"D1\", trangThai: \"da-giao\", tien: 90 },\n  { ma: \"D2\", trangThai: \"huy\", tien: 500 },\n  { ma: \"D3\", trangThai: \"da-giao\", tien: 1200 },\n  { ma: \"D4\", trangThai: \"da-giao\", tien: 300 },\n];\n\nconst daGiao = donHang.filter((d) => d.trangThai === \"da-giao\");\nconst tong = daGiao.reduce((s, d) => s + d.tien, 0);\nconsole.log(\"Tổng: \" + tong);\n\nconst xep = [...daGiao].sort((a, b) => b.tien - a.tien);\nconsole.log(\"Theo tiền: \" + xep.map((d) => d.ma).join(\",\"));\nconsole.log(\"Gốc: \" + donHang.map((d) => d.ma).join(\",\"));",
+        "hints": [
+          "sort sửa thẳng vào mảng nó được gọi trên. Sao chép bằng [...mang] trước.",
+          "So sánh chuỗi thì \"90\" đứng sau \"1200\". Hàm so sánh số là (a, b) => b.tien - a.tien."
+        ],
+        "expectedOutput": "Tổng: 1590\nTheo tiền: D3,D4,D1\nGốc: D1,D2,D3,D4"
+      },
+      {
         "type": "closing",
         "lines": [
           "Quen với ba phương thức này thì phần lớn mã xử lý dữ liệu trở nên dễ đọc hơn hẳn vòng lặp.",
@@ -41006,6 +41066,26 @@ export const lessons: Lesson[] = [
         "text": "Một lưu ý cuối về sao chép: cú pháp trải chỉ sao chép nông. Sửa một thuộc tính ở tầng ngoài thì an toàn, nhưng sửa vào một đối tượng lồng bên trong thì bản gốc cũng đổi theo. Đây lại là chuyện sao chép nông và sâu từ chặng lập trình, và nó gây bất ngờ y hệt."
       },
       {
+        "type": "code",
+        "language": "javascript",
+        "runnable": true,
+        "caption": "Truy cập an toàn, JSON là chuỗi, và sao chép nông",
+        "code": "const phanHoi = '{\"nguoiDung\":{\"ten\":\"An\",\"diaChi\":null}}';\nconst dl = JSON.parse(phanHoi);          // chuỗi -> đối tượng\n\nconsole.log(dl.nguoiDung.ten);                        // An\nconsole.log(dl.nguoiDung.diaChi?.thanhPho ?? \"chưa có\"); // không đổ vỡ\n\nconst banSao = { ...dl.nguoiDung, ten: \"Bình\" };\nconsole.log(dl.nguoiDung.ten, banSao.ten); // An Bình - tầng ngoài độc lập\n\nconst goc = { the: [\"a\"] };\nconst nong = { ...goc };\nnong.the.push(\"b\");\nconsole.log(goc.the); // [\"a\",\"b\"] - tầng lồng vẫn dùng chung"
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Đọc dữ liệu thiếu tầng từ một phản hồi mạng",
+        "task": "Phản hồi là một CHUỖI JSON gồm ba người dùng; có người thiếu hồ sơ, có người hồ sơ thiếu thành phố. In mỗi người một dòng dạng \"Tên - Thành phố\", thay thành phố thiếu bằng \"?\". Đoạn mã hiện đổ vỡ ngay dòng đầu.",
+        "starter": "const phanHoi = '[{\"ten\":\"An\",\"hoSo\":{\"thanhPho\":\"Huế\"}},{\"ten\":\"Bình\"},{\"ten\":\"Chi\",\"hoSo\":{}}]';\n\nfor (const u of phanHoi) {\n  console.log(u.ten + \" - \" + u.hoSo.thanhPho);\n}",
+        "solution": "const phanHoi = '[{\"ten\":\"An\",\"hoSo\":{\"thanhPho\":\"Huế\"}},{\"ten\":\"Bình\"},{\"ten\":\"Chi\",\"hoSo\":{}}]';\n\nfor (const u of JSON.parse(phanHoi)) {\n  console.log(u.ten + \" - \" + (u.hoSo?.thanhPho ?? \"?\"));\n}",
+        "hints": [
+          "Thứ nhận từ mạng là chuỗi: duyệt chuỗi là duyệt từng ký tự. Phân tích bằng JSON.parse trước.",
+          "?. dừng lại khi một tầng không tồn tại; ?? đặt giá trị thay thế."
+        ],
+        "expectedOutput": "An - Huế\nBình - ?\nChi - ?"
+      },
+      {
         "type": "closing",
         "lines": [
           "Đối tượng và JSON là hai mặt của cùng một dữ liệu: một để làm việc, một để truyền đi.",
@@ -41197,6 +41277,26 @@ export const lessons: Lesson[] = [
           "Phương thức của đối tượng: dùng hàm thông thường, khi cần ngữ cảnh trỏ tới đối tượng đó.",
           "Khai báo biến: mặc định dùng hằng, chuyển sang biến gán lại được khi cần, và không bao giờ dùng cách cũ."
         ]
+      },
+      {
+        "type": "code",
+        "language": "javascript",
+        "runnable": true,
+        "caption": "var và let trong vòng lặp; ngữ cảnh đổi theo cách gọi",
+        "code": "const cuVar = [];\nfor (var i = 0; i < 3; i++) cuVar.push(() => i);\nconsole.log(cuVar.map((f) => f())); // [3,3,3] - cả ba nhìn cùng một biến\n\nconst moiLet = [];\nfor (let j = 0; j < 3; j++) moiLet.push(() => j);\nconsole.log(moiLet.map((f) => f())); // [0,1,2] - mỗi vòng một biến\n\nconst nguoi = {\n  ten: \"An\",\n  chao() { return \"Tôi là \" + this.ten; },\n};\nconst chaoRoi = nguoi.chao;\nconsole.log(nguoi.chao());                   // Tôi là An\nconsole.log(chaoRoi.call({ ten: \"Bình\" }));  // Tôi là Bình - cùng hàm, khác cách gọi"
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Hẹn giờ in đúng số thứ tự",
+        "task": "Ba hàm được lên lịch trong vòng lặp; mỗi hàm phải in số thứ tự của chính nó (Nút 1, Nút 2, Nút 3). Hiện cả ba in cùng một số. Sửa cách khai báo biến vòng lặp, không đổi phần chạy lịch ở cuối.",
+        "starter": "const lich = [];\nfor (var i = 1; i <= 3; i++) {\n  lich.push(() => console.log(\"Nút \" + i));\n}\n\nfor (const f of lich) f();",
+        "solution": "const lich = [];\nfor (let i = 1; i <= 3; i++) {\n  lich.push(() => console.log(\"Nút \" + i));\n}\n\nfor (const f of lich) f();",
+        "hints": [
+          "var có phạm vi theo hàm: cả ba closure nhìn vào đúng MỘT biến i, lúc chạy nó đã là 4.",
+          "let tạo một biến mới cho mỗi vòng lặp."
+        ],
+        "expectedOutput": "Nút 1\nNút 2\nNút 3"
       },
       {
         "type": "closing",
@@ -41409,6 +41509,26 @@ export const lessons: Lesson[] = [
         "text": "Điểm cuối đáng nhấn mạnh. Công cụ kiểm tra mã tĩnh đọc mã của bạn và cảnh báo những lối viết dễ gây lỗi - dùng hai dấu bằng, khai báo biến kiểu cũ, biến khai báo mà không dùng. Nó chạy trong vài giây và bắt được nhiều hơn bạn tưởng, nên hãy bật nó từ dự án đầu tiên."
       },
       {
+        "type": "code",
+        "language": "javascript",
+        "runnable": true,
+        "caption": "Bốn cái bẫy trong sáu dòng",
+        "code": "console.log([10, 9, 1, 100].sort());           // [1,10,100,9] - sắp theo chuỗi\nconsole.log([10, 9, 1, 100].sort((a, b) => a - b)); // [1,9,10,100]\nconsole.log(0.1 + 0.2 === 0.3, (0.1 + 0.2).toFixed(2)); // false \"0.30\"\nconsole.log(typeof null, Array.isArray([]));    // \"object\" true\nconsole.log(parseInt(\"08abc\") + \" \" + Number(\"08abc\")); // \"8 NaN\"\nconsole.log(NaN === NaN, Number.isNaN(NaN));     // false true"
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Bảng xếp hạng điểm",
+        "task": "In ba điểm cao nhất theo thứ tự giảm dần, rồi tổng điểm làm tròn tới 1 chữ số thập phân. Mã hiện sắp xếp như chuỗi và in tổng với đuôi thập phân dài.",
+        "starter": "const diem = [9.5, 10, 8.1, 100, 7.3, 0.1, 0.2];\nconst top3 = diem.slice().sort().reverse().slice(0, 3);\nconsole.log(\"Top 3: \" + top3.join(\", \"));\nconst tong = diem.reduce((s, x) => s + x, 0);\nconsole.log(\"Tổng: \" + tong);",
+        "solution": "const diem = [9.5, 10, 8.1, 100, 7.3, 0.1, 0.2];\nconst top3 = diem.slice().sort((a, b) => b - a).slice(0, 3);\nconsole.log(\"Top 3: \" + top3.join(\", \"));\nconst tong = diem.reduce((s, x) => s + x, 0);\nconsole.log(\"Tổng: \" + tong.toFixed(1));",
+        "hints": [
+          "sort() không có hàm so sánh sắp theo chuỗi: \"9.5\" đứng sau \"100\".",
+          "Số thực dấu phẩy động cộng dồn ra đuôi lạ; làm tròn lúc HIỂN THỊ bằng toFixed."
+        ],
+        "expectedOutput": "Top 3: 100, 10, 9.5\nTổng: 135.2"
+      },
+      {
         "type": "closing",
         "lines": [
           "Mục tiêu của bài không phải học thuộc, mà là nhận ra triệu chứng khi gặp lại.",
@@ -41596,6 +41716,26 @@ export const lessons: Lesson[] = [
       {
         "type": "paragraph",
         "text": "Đây là bất ngờ lớn nhất với người mới, và nó là lý do người ta chuyển sang cú pháp bất đồng bộ hiện đại ở bài sau - cú pháp đó cho phép dùng khối bắt lỗi bình thường và nó hoạt động đúng như trực giác."
+      },
+      {
+        "type": "code",
+        "language": "javascript",
+        "runnable": true,
+        "caption": "Ném, bắt, và dọn dẹp",
+        "code": "function chia(a, b) {\n  if (b === 0) throw new RangeError(\"Không chia được cho 0\");\n  return a / b;\n}\n\ntry {\n  console.log(chia(10, 2));\n  console.log(chia(1, 0));\n  console.log(\"dòng này không chạy\");\n} catch (e) {\n  console.log(e.name + \": \" + e.message);\n} finally {\n  console.log(\"finally luôn chạy\");\n}"
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Một dòng hỏng không được làm hỏng cả lô",
+        "task": "Nhập một lô dòng dữ liệu JSON. Dòng hỏng phải được bỏ qua và ghi lại số dòng (đếm từ 1), còn các dòng tốt vẫn được cộng. In tổng tiền của các dòng tốt và danh sách dòng lỗi.",
+        "starter": "const lo = ['{\"tien\":100}', '{\"tien\":250', '{\"tien\":50}', 'không phải json', '{\"tien\":25}'];\n\nlet tong = 0;\nconst loi = [];\ntry {\n  lo.forEach((dong) => {\n    tong += JSON.parse(dong).tien;\n  });\n} catch (e) {\n  loi.push(\"?\");\n}\nconsole.log(\"Tổng: \" + tong);\nconsole.log(\"Dòng lỗi: \" + loi.join(\",\"));",
+        "solution": "const lo = ['{\"tien\":100}', '{\"tien\":250', '{\"tien\":50}', 'không phải json', '{\"tien\":25}'];\n\nlet tong = 0;\nconst loi = [];\nlo.forEach((dong, i) => {\n  try {\n    tong += JSON.parse(dong).tien;\n  } catch (e) {\n    loi.push(i + 1);\n  }\n});\nconsole.log(\"Tổng: \" + tong);\nconsole.log(\"Dòng lỗi: \" + loi.join(\",\"));",
+        "hints": [
+          "try bọc ngoài vòng lặp thì lỗi đầu tiên dừng luôn cả vòng lặp.",
+          "Đưa try/catch vào TRONG hàm xử lý từng dòng, và dùng tham số chỉ số thứ hai của forEach."
+        ],
+        "expectedOutput": "Tổng: 175\nDòng lỗi: 2,4"
       },
       {
         "type": "closing",
@@ -41805,6 +41945,26 @@ export const lessons: Lesson[] = [
         "text": "Bọc một vòng lặp nặng trong hàm bất đồng bộ không làm nó thôi chặn luồng chính - nó vẫn chạy trên đúng luồng đó. Nhầm lẫn này rất phổ biến, và nó dẫn tới việc người ta thêm cú pháp bất đồng bộ khắp nơi rồi ngạc nhiên vì trang vẫn đơ."
       },
       {
+        "type": "code",
+        "language": "javascript",
+        "runnable": true,
+        "caption": "Thứ tự chạy: mã đồng bộ trước, hàng đợi sau",
+        "code": "console.log(\"1. bắt đầu\");\nPromise.resolve().then(() => console.log(\"3. việc trong hàng đợi\"));\nconsole.log(\"2. mã đồng bộ chạy nốt trước\");\nawait Promise.resolve();\nconsole.log(\"4. sau khi hàng đợi trống\");"
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Đoán thứ tự rồi sửa cho đúng",
+        "task": "Hàm taiDuLieu trả về một promise. Mã hiện in \"Có 0 sản phẩm\" vì nó đọc kết quả trước khi promise kịp trả về. Sửa để dòng tổng được in SAU khi dữ liệu đã về, và in đúng 3 sản phẩm.",
+        "starter": "function taiDuLieu() {\n  return Promise.resolve([\"Bút\", \"Vở\", \"Thước\"]);\n}\n\nlet sanPham = [];\ntaiDuLieu().then((ds) => { sanPham = ds; });\nconsole.log(\"Có \" + sanPham.length + \" sản phẩm\");",
+        "solution": "function taiDuLieu() {\n  return Promise.resolve([\"Bút\", \"Vở\", \"Thước\"]);\n}\n\nlet sanPham = [];\nawait taiDuLieu().then((ds) => { sanPham = ds; });\nconsole.log(\"Có \" + sanPham.length + \" sản phẩm\");",
+        "hints": [
+          "Hàm trong then chạy SAU khi mã đồng bộ hiện tại chạy xong - kể cả khi promise đã có kết quả sẵn.",
+          "Chờ promise bằng await trước khi đọc biến."
+        ],
+        "expectedOutput": "Có 3 sản phẩm"
+      },
+      {
         "type": "closing",
         "lines": [
           "Cơ chế thì đơn giản: giao việc ra ngoài, và lấy lại kết quả qua một hàng đợi.",
@@ -41992,6 +42152,26 @@ export const lessons: Lesson[] = [
       {
         "type": "paragraph",
         "text": "Bài trước nêu một vấn đề: khối bắt lỗi thông thường không bắt được lỗi trong hàm gọi lại bất đồng bộ, vì nó đã kết thúc trước khi hàm chạy. Với cú pháp chờ, bộ máy nối lại đúng ngữ cảnh, nên một khối bắt lỗi bao quanh hoạt động y hệt như với mã đồng bộ. Đây là lý do thực dụng nhất để dùng nó."
+      },
+      {
+        "type": "code",
+        "language": "javascript",
+        "runnable": true,
+        "caption": "Chờ tuần tự và chờ song song",
+        "code": "const layGia = async (ma) => ({ ma, gia: ma.length * 1000 });\n\n// Tuần tự: mỗi lần chờ xong mới gọi cái sau\nconst a = await layGia(\"but\");\nconst b = await layGia(\"thuoc\");\nconsole.log(a.gia + b.gia);\n\n// Song song: gọi cùng lúc, chờ chung một lần\nconst ds = await Promise.all([\"but\", \"vo\", \"thuoc\"].map(layGia));\nconsole.log(ds.map((x) => x.ma + \"=\" + x.gia).join(\" \"));"
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Không để một lỗi nuốt mất cả trang",
+        "task": "Tải ba mục; mục \"hong\" luôn lỗi. Promise.all đổ vỡ cả ba khi một cái hỏng. Dùng Promise.allSettled để in từng mục: \"OK tên\" hoặc \"LỖI tên: thông báo\".",
+        "starter": "async function taiMuc(ten) {\n  if (ten === \"hong\") throw new Error(\"hết thời gian chờ\");\n  return ten.toUpperCase();\n}\n\nconst ten = [\"tin-tuc\", \"hong\", \"thoi-tiet\"];\ntry {\n  const kq = await Promise.all(ten.map(taiMuc));\n  kq.forEach((k, i) => console.log(\"OK \" + ten[i]));\n} catch (e) {\n  console.log(\"Trang trắng: \" + e.message);\n}",
+        "solution": "async function taiMuc(ten) {\n  if (ten === \"hong\") throw new Error(\"hết thời gian chờ\");\n  return ten.toUpperCase();\n}\n\nconst ten = [\"tin-tuc\", \"hong\", \"thoi-tiet\"];\nconst kq = await Promise.allSettled(ten.map(taiMuc));\nkq.forEach((k, i) => {\n  if (k.status === \"fulfilled\") console.log(\"OK \" + ten[i]);\n  else console.log(\"LỖI \" + ten[i] + \": \" + k.reason.message);\n});",
+        "hints": [
+          "Promise.allSettled không bao giờ bị từ chối; mỗi phần tử có status là \"fulfilled\" hoặc \"rejected\".",
+          "Lỗi nằm ở k.reason, giá trị nằm ở k.value."
+        ],
+        "expectedOutput": "OK tin-tuc\nLỖI hong: hết thời gian chờ\nOK thoi-tiet"
       },
       {
         "type": "closing",
@@ -42182,6 +42362,25 @@ export const lessons: Lesson[] = [
           "Đổi lớp thay vì đặt kiểu trực tiếp: mã lệnh nói trạng thái, còn CSS quyết định nó trông thế nào.",
           "Kiểu đặt trực tiếp có độ cụ thể rất cao nên rất khó ghi đè - tránh khi có thể."
         ]
+      },
+      {
+        "type": "code",
+        "language": "javascript",
+        "caption": "Tìm, đọc và sửa phần tử (chạy trong bảng điều khiển của trình duyệt)",
+        "code": "// Đặt <script defer> hoặc ở cuối <body>, nếu không phần tử chưa tồn tại\nconst tieuDe = document.querySelector(\"h1\");\nconst cacNut = document.querySelectorAll(\".san-pham button\");\n\nconsole.log(tieuDe.textContent);\nconsole.log(cacNut.length);\n\ntieuDe.textContent = \"Giỏ hàng\";           // chữ thuần - an toàn\ncacNut.forEach((n) => n.classList.add(\"nho\"));\ndocument.querySelector(\"#khong-co\")?.remove(); // null thì bỏ qua"
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Duyệt một cây như trình duyệt vẫn làm",
+        "task": "Cây tài liệu là các nút lồng nhau, mỗi nút có tag, class và danh sách con. Viết timTheoClass(nut, ten) trả về mọi nút có class đó ở MỌI tầng, theo thứ tự xuất hiện. Mã hiện chỉ xét con trực tiếp.",
+        "starter": "const trang = { tag: \"body\", cls: [], con: [\n  { tag: \"h1\", cls: [\"tieu-de\"], con: [] },\n  { tag: \"ul\", cls: [\"ds\"], con: [\n    { tag: \"li\", cls: [\"muc\"], text: \"Bút\", con: [] },\n    { tag: \"li\", cls: [\"muc\", \"het-hang\"], text: \"Vở\", con: [] },\n  ] },\n  { tag: \"div\", cls: [\"muc\"], text: \"Thước\", con: [] },\n] };\n\nfunction timTheoClass(nut, ten) {\n  return nut.con.filter((c) => c.cls.includes(ten));\n}\n\nconsole.log(timTheoClass(trang, \"muc\").map((n) => n.text).join(\",\"));\nconsole.log(timTheoClass(trang, \"het-hang\").length);",
+        "solution": "const trang = { tag: \"body\", cls: [], con: [\n  { tag: \"h1\", cls: [\"tieu-de\"], con: [] },\n  { tag: \"ul\", cls: [\"ds\"], con: [\n    { tag: \"li\", cls: [\"muc\"], text: \"Bút\", con: [] },\n    { tag: \"li\", cls: [\"muc\", \"het-hang\"], text: \"Vở\", con: [] },\n  ] },\n  { tag: \"div\", cls: [\"muc\"], text: \"Thước\", con: [] },\n] };\n\nfunction timTheoClass(nut, ten) {\n  const kq = [];\n  for (const c of nut.con) {\n    if (c.cls.includes(ten)) kq.push(c);\n    kq.push(...timTheoClass(c, ten));\n  }\n  return kq;\n}\n\nconsole.log(timTheoClass(trang, \"muc\").map((n) => n.text).join(\",\"));\nconsole.log(timTheoClass(trang, \"het-hang\").length);",
+        "hints": [
+          "Mỗi nút con lại là một cây nhỏ: gọi đệ quy timTheoClass trên chính nó.",
+          "Xét nút con trước rồi mới đi sâu vào con của nó thì giữ đúng thứ tự xuất hiện."
+        ],
+        "expectedOutput": "Bút,Vở,Thước\n1"
       },
       {
         "type": "closing",
@@ -42387,6 +42586,25 @@ export const lessons: Lesson[] = [
         "text": "Một lưu ý cuối về bộ nhớ: hàm xử lý gắn lên một phần tử giữ tham chiếu tới phần tử đó. Xoá phần tử khỏi trang mà không gỡ hàm thì bộ dọn rác không thu hồi được - đúng dạng rò rỉ đã nói ở chặng lập trình. Uỷ quyền sự kiện tránh hẳn vấn đề này."
       },
       {
+        "type": "code",
+        "language": "javascript",
+        "caption": "Một hàm xử lý ở phần tử cha cho cả danh sách",
+        "code": "document.querySelector(\"#ds\").addEventListener(\"click\", (e) => {\n  const dong = e.target.closest(\"li\");   // phần tử thật sự được bấm, đi ngược lên\n  if (!dong) return;                     // bấm vào khoảng trống giữa các dòng\n  console.log(\"Chọn:\", dong.dataset.id);\n});\n\ndocument.querySelector(\"form\").addEventListener(\"submit\", (e) => {\n  e.preventDefault();    // chặn hành vi mặc định: tải lại trang\n  // e.stopPropagation() thì khác: chặn sự kiện lan lên cha\n});"
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Sự kiện nổi lên từ nút được bấm",
+        "task": "Mỗi nút có cha. Khi bấm vào một nút, sự kiện đi từ nút đó lên tới gốc và gọi hàm xử lý của từng tầng. Hàm phat(nut) phải in tên từng tầng theo đường đi lên, và dừng lại nếu một hàm xử lý trả về \"dung\". Mã hiện đi theo chiều ngược lại và không biết dừng.",
+        "starter": "const body = { ten: \"body\", cha: null, xuLy: () => {} };\nconst ds = { ten: \"ul#ds\", cha: body, xuLy: () => {} };\nconst dong = { ten: \"li#d2\", cha: ds, xuLy: () => {} };\nconst nutXoa = { ten: \"button.xoa\", cha: dong, xuLy: () => \"dung\" };\n\nfunction phat(nut) {\n  const duong = [];\n  for (let n = nut; n; n = n.cha) duong.unshift(n);\n  for (const n of duong) {\n    console.log(n.ten);\n    n.xuLy();\n  }\n}\n\nphat(dong);\nconsole.log(\"---\");\nphat(nutXoa);",
+        "solution": "const body = { ten: \"body\", cha: null, xuLy: () => {} };\nconst ds = { ten: \"ul#ds\", cha: body, xuLy: () => {} };\nconst dong = { ten: \"li#d2\", cha: ds, xuLy: () => {} };\nconst nutXoa = { ten: \"button.xoa\", cha: dong, xuLy: () => \"dung\" };\n\nfunction phat(nut) {\n  for (let n = nut; n; n = n.cha) {\n    console.log(n.ten);\n    if (n.xuLy() === \"dung\") return;\n  }\n}\n\nphat(dong);\nconsole.log(\"---\");\nphat(nutXoa);",
+        "hints": [
+          "Nổi bọt đi từ phần tử được bấm LÊN, không phải từ gốc xuống.",
+          "Đi thẳng theo n.cha, gọi xuLy và thoát khi nó trả về \"dung\" - đó là stopPropagation."
+        ],
+        "expectedOutput": "li#d2\nul#ds\nbody\n---\nbutton.xoa"
+      },
+      {
         "type": "closing",
         "lines": [
           "Hiểu nổi bọt là hiểu vì sao một cú bấm lại kích hoạt ba việc bạn không định.",
@@ -42577,6 +42795,25 @@ export const lessons: Lesson[] = [
         "text": "Phản xạ đầu tiên của nhiều người là chặn người dùng nhập ký tự đặc biệt. Cách đó vừa dễ vượt qua vừa làm phiền người có tên chứa ký tự đó. Chỗ đúng để xử lý là nơi HIỂN THỊ: dùng thuộc tính coi mọi thứ là chữ thuần, và mọi ký tự đặc biệt hiện ra thành chữ chứ không thành mã."
       },
       {
+        "type": "code",
+        "language": "javascript",
+        "caption": "Đọc biểu mẫu và hiển thị dữ liệu người dùng an toàn",
+        "code": "form.addEventListener(\"submit\", (e) => {\n  e.preventDefault();\n  const dl = Object.fromEntries(new FormData(form)); // mọi giá trị đều là CHUỖI\n  const soLuong = Number(dl.soLuong);\n\n  binhLuan.textContent = dl.noiDung;   // an toàn: hiển thị như chữ\n  // binhLuan.innerHTML = dl.noiDung;  // nguy hiểm: <img onerror=...> sẽ chạy\n});"
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Kiểm tra dữ liệu như máy chủ phải làm",
+        "task": "Viết kiemTra(dl) trả về danh sách lỗi cho một biểu mẫu đặt hàng (giá trị luôn là chuỗi): email phải có dạng a@b.c, số lượng phải là số nguyên từ 1 tới 99, và ghi chú hiển thị ra phải được thoát ký tự < và >. Mã hiện chấp nhận \"0\", \"2.5\" và \"abc\", và in ghi chú nguyên dạng.",
+        "starter": "function kiemTra(dl) {\n  const loi = [];\n  if (!dl.email.includes(\"@\")) loi.push(\"email\");\n  if (!dl.soLuong) loi.push(\"soLuong\");\n  return loi;\n}\nconst hienThi = (s) => s;\n\nconst mau = [\n  { email: \"an@vd.vn\", soLuong: \"3\", ghiChu: \"giao sáng\" },\n  { email: \"an@\", soLuong: \"0\", ghiChu: \"\" },\n  { email: \"b@x.io\", soLuong: \"2.5\", ghiChu: \"<img src=x onerror=alert(1)>\" },\n  { email: \"c@y.com\", soLuong: \"abc\", ghiChu: \"ok\" },\n];\nfor (const dl of mau) {\n  const loi = kiemTra(dl);\n  console.log((loi.length ? \"LỖI \" + loi.join(\",\") : \"HỢP LỆ\") + \" | \" + hienThi(dl.ghiChu));\n}",
+        "solution": "function kiemTra(dl) {\n  const loi = [];\n  if (!/^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$/.test(dl.email)) loi.push(\"email\");\n  const n = Number(dl.soLuong);\n  if (!Number.isInteger(n) || n < 1 || n > 99) loi.push(\"soLuong\");\n  return loi;\n}\nconst hienThi = (s) => s.replace(/</g, \"&lt;\").replace(/>/g, \"&gt;\");\n\nconst mau = [\n  { email: \"an@vd.vn\", soLuong: \"3\", ghiChu: \"giao sáng\" },\n  { email: \"an@\", soLuong: \"0\", ghiChu: \"\" },\n  { email: \"b@x.io\", soLuong: \"2.5\", ghiChu: \"<img src=x onerror=alert(1)>\" },\n  { email: \"c@y.com\", soLuong: \"abc\", ghiChu: \"ok\" },\n];\nfor (const dl of mau) {\n  const loi = kiemTra(dl);\n  console.log((loi.length ? \"LỖI \" + loi.join(\",\") : \"HỢP LỆ\") + \" | \" + hienThi(dl.ghiChu));\n}",
+        "hints": [
+          "Chuỗi \"0\" là truthy - kiểm tra trần không bắt được. Đổi sang số rồi dùng Number.isInteger và so khoảng.",
+          "Thoát < và > thành &lt; và &gt; trước khi đưa vào HTML."
+        ],
+        "expectedOutput": "HỢP LỆ | giao sáng\nLỖI email,soLuong | \nLỖI soLuong | &lt;img src=x onerror=alert(1)&gt;\nLỖI soLuong | ok"
+      },
+      {
         "type": "closing",
         "lines": [
           "Dữ liệu từ trình duyệt là yêu cầu của người dùng, không phải sự thật cần tin.",
@@ -42765,6 +43002,26 @@ export const lessons: Lesson[] = [
       {
         "type": "paragraph",
         "text": "Về thử lại tự động: nó hợp với lỗi thoáng qua như mất sóng một giây hay máy chủ quá tải tạm thời, và vô nghĩa với lỗi nhóm 4 vì gửi lại cùng một yêu cầu sai thì vẫn sai. Quan trọng là phải có khoảng chờ tăng dần giữa các lần - không thì hàng nghìn máy khách cùng thử lại sẽ làm một máy chủ đang yếu sập hẳn."
+      },
+      {
+        "type": "code",
+        "language": "javascript",
+        "runnable": true,
+        "caption": "Hai lần chờ, và 404 không phải là lỗi",
+        "code": "// Giả lập mạng: fetch thật không có trong bộ chạy bài tập.\nconst MAY_CHU = {\n  \"/api/sp/1\": { status: 200, body: '{\"ten\":\"Bút\",\"gia\":12000}' },\n  \"/api/sp/2\": { status: 404, body: \"<h1>Không tìm thấy</h1>\" },\n  \"/api/sp/3\": { status: 500, body: \"<h1>Lỗi máy chủ</h1>\" },\n};\nasync function fetch(url) {\n  const r = MAY_CHU[url];\n  if (!r) throw new TypeError(\"Failed to fetch\");\n  return { ok: r.status >= 200 && r.status < 300, status: r.status, json: async () => JSON.parse(r.body) };\n}\n\nconst r = await fetch(\"/api/sp/2\");\nconsole.log(r.ok, r.status);   // false 404 - nhưng KHÔNG ném lỗi\nconst r1 = await fetch(\"/api/sp/1\");\nconst sp = await r1.json();    // lần chờ thứ hai: đọc thân phản hồi\nconsole.log(sp.ten, sp.gia);"
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Hàm tải sản phẩm biết phân biệt ba loại thất bại",
+        "task": "Viết taiSanPham(id) trả về chuỗi hiển thị: tên và giá khi thành công, \"Không tìm thấy\" khi 404, \"Máy chủ lỗi (500)\" với mã lỗi khác, và \"Mất kết nối\" khi fetch ném lỗi. Mã hiện coi mọi phản hồi là thành công và đổ vỡ khi đọc HTML như JSON.",
+        "starter": "// Giả lập mạng: fetch thật không có trong bộ chạy bài tập.\nconst MAY_CHU = {\n  \"/api/sp/1\": { status: 200, body: '{\"ten\":\"Bút\",\"gia\":12000}' },\n  \"/api/sp/2\": { status: 404, body: \"<h1>Không tìm thấy</h1>\" },\n  \"/api/sp/3\": { status: 500, body: \"<h1>Lỗi máy chủ</h1>\" },\n};\nasync function fetch(url) {\n  const r = MAY_CHU[url];\n  if (!r) throw new TypeError(\"Failed to fetch\");\n  return { ok: r.status >= 200 && r.status < 300, status: r.status, json: async () => JSON.parse(r.body) };\n}\n\nasync function taiSanPham(id) {\n  try {\n    const r = await fetch(\"/api/sp/\" + id);\n    const sp = await r.json();\n    return sp.ten + \" - \" + sp.gia;\n  } catch (e) {\n    return \"Mất kết nối\";\n  }\n}\n\nfor (const id of [1, 2, 3, 9]) console.log(id + \": \" + (await taiSanPham(id)));",
+        "solution": "// Giả lập mạng: fetch thật không có trong bộ chạy bài tập.\nconst MAY_CHU = {\n  \"/api/sp/1\": { status: 200, body: '{\"ten\":\"Bút\",\"gia\":12000}' },\n  \"/api/sp/2\": { status: 404, body: \"<h1>Không tìm thấy</h1>\" },\n  \"/api/sp/3\": { status: 500, body: \"<h1>Lỗi máy chủ</h1>\" },\n};\nasync function fetch(url) {\n  const r = MAY_CHU[url];\n  if (!r) throw new TypeError(\"Failed to fetch\");\n  return { ok: r.status >= 200 && r.status < 300, status: r.status, json: async () => JSON.parse(r.body) };\n}\n\nasync function taiSanPham(id) {\n  let r;\n  try {\n    r = await fetch(\"/api/sp/\" + id);\n  } catch (e) {\n    return \"Mất kết nối\";\n  }\n  if (r.status === 404) return \"Không tìm thấy\";\n  if (!r.ok) return \"Máy chủ lỗi (\" + r.status + \")\";\n  const sp = await r.json();\n  return sp.ten + \" - \" + sp.gia;\n}\n\nfor (const id of [1, 2, 3, 9]) console.log(id + \": \" + (await taiSanPham(id)));",
+        "hints": [
+          "fetch chỉ ném lỗi khi yêu cầu không đi được. Kiểm tra r.ok và r.status TRƯỚC khi gọi json().",
+          "Đừng bọc mọi thứ trong một try: lỗi phân tích JSON khác với mất mạng."
+        ],
+        "expectedOutput": "1: Bút - 12000\n2: Không tìm thấy\n3: Máy chủ lỗi (500)\n9: Mất kết nối"
       },
       {
         "type": "closing",
@@ -42968,6 +43225,26 @@ export const lessons: Lesson[] = [
         ]
       },
       {
+        "type": "code",
+        "language": "javascript",
+        "runnable": true,
+        "caption": "Bộ nhớ cục bộ chỉ cất chuỗi",
+        "code": "// Giả lập localStorage: bản thật cũng ép mọi giá trị thành chuỗi.\nconst kho = {};\nconst localStorage = { setItem: (k, v) => { kho[k] = String(v); }, getItem: (k) => kho[k] ?? null };\n\nlocalStorage.setItem(\"gio\", { sp: \"Bút\" });\nconsole.log(localStorage.getItem(\"gio\"));        // \"[object Object]\" - mất dữ liệu\n\nlocalStorage.setItem(\"gio\", JSON.stringify({ sp: \"Bút\" }));\nconsole.log(JSON.parse(localStorage.getItem(\"gio\")).sp); // Bút"
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Lưu giỏ hàng và đọc lại an toàn",
+        "task": "Viết luuGio và docGio. Giỏ là mảng đối tượng; đọc lại phải ra đúng số lượng dạng SỐ. Khi chưa có gì hoặc dữ liệu cũ bị hỏng thì docGio trả về mảng rỗng thay vì đổ vỡ. Mã hiện lưu thẳng đối tượng và cộng số lượng thành chuỗi.",
+        "starter": "const kho = { \"gio-cu\": \"{hỏng\" };\nconst localStorage = { setItem: (k, v) => { kho[k] = String(v); }, getItem: (k) => kho[k] ?? null };\n\nfunction luuGio(ten, gio) { localStorage.setItem(ten, gio); }\nfunction docGio(ten) { return localStorage.getItem(ten) || []; }\n\nluuGio(\"gio\", [{ sp: \"Bút\", sl: 2 }, { sp: \"Vở\", sl: 3 }]);\nconst gio = docGio(\"gio\");\nconsole.log(\"Số món: \" + gio.length);\nconsole.log(\"Tổng số lượng: \" + (Array.isArray(gio) ? gio.reduce((s, m) => s + m.sl, 0) : \"?\"));\nconsole.log(\"Giỏ mới: \" + docGio(\"chua-co\").length);\nconsole.log(\"Giỏ hỏng: \" + docGio(\"gio-cu\").length);",
+        "solution": "const kho = { \"gio-cu\": \"{hỏng\" };\nconst localStorage = { setItem: (k, v) => { kho[k] = String(v); }, getItem: (k) => kho[k] ?? null };\n\nfunction luuGio(ten, gio) { localStorage.setItem(ten, JSON.stringify(gio)); }\nfunction docGio(ten) {\n  try {\n    const v = JSON.parse(localStorage.getItem(ten));\n    return Array.isArray(v) ? v : [];\n  } catch (e) {\n    return [];\n  }\n}\n\nluuGio(\"gio\", [{ sp: \"Bút\", sl: 2 }, { sp: \"Vở\", sl: 3 }]);\nconst gio = docGio(\"gio\");\nconsole.log(\"Số món: \" + gio.length);\nconsole.log(\"Tổng số lượng: \" + (Array.isArray(gio) ? gio.reduce((s, m) => s + m.sl, 0) : \"?\"));\nconsole.log(\"Giỏ mới: \" + docGio(\"chua-co\").length);\nconsole.log(\"Giỏ hỏng: \" + docGio(\"gio-cu\").length);",
+        "hints": [
+          "JSON.stringify khi ghi, JSON.parse khi đọc.",
+          "Dữ liệu cũ có thể do phiên bản trước ghi và không còn đúng dạng: bọc JSON.parse trong try và kiểm tra kiểu."
+        ],
+        "expectedOutput": "Số món: 2\nTổng số lượng: 5\nGiỏ mới: 0\nGiỏ hỏng: 0"
+      },
+      {
         "type": "closing",
         "lines": [
           "Lưu dữ liệu ở trình duyệt là để tiện cho người dùng, không phải để giữ sự thật.",
@@ -43155,6 +43432,25 @@ export const lessons: Lesson[] = [
       {
         "type": "paragraph",
         "text": "Cuối cùng là chính sách bảo mật nội dung: bạn khai báo những nguồn nào được phép chạy mã trên trang. Kể cả khi có lỗ hổng chèn mã, mã chèn vào cũng không chạy được vì nguồn của nó không nằm trong danh sách. Đó là phòng thủ theo chiều sâu - không thay thế việc xử lý dữ liệu đúng cách, mà là lưới an toàn khi việc đó có sai sót."
+      },
+      {
+        "type": "code",
+        "language": "javascript",
+        "caption": "Đọc hết trước, ghi hết sau",
+        "code": "// Chậm: mỗi lần đọc offsetHeight ngay sau khi ghi buộc trình duyệt tính lại bố cục\nfor (const o of cacO) {\n  o.style.height = o.offsetHeight + 10 + \"px\";\n}\n\n// Nhanh: một lượt đọc, một lượt ghi\nconst caoCu = [...cacO].map((o) => o.offsetHeight);\ncacO.forEach((o, i) => { o.style.height = caoCu[i] + 10 + \"px\"; });"
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Đếm số lần tính lại bố cục",
+        "task": "Mô hình đơn giản: mỗi lần ĐỌC chiều cao mà trước đó đã có lần GHI chưa được tính, trình duyệt phải tính lại bố cục một lần. Hàm tangChieuCao đang xen kẽ đọc và ghi nên tính lại 5 lần cho 5 ô. Viết lại để tính lại đúng 1 lần mà kết quả chiều cao không đổi.",
+        "starter": "let tinhLai = 0;\nlet canTinh = false;\nconst o = [10, 20, 30, 40, 50].map((h) => ({\n  _h: h,\n  get cao() { if (canTinh) { tinhLai++; canTinh = false; } return this._h; },\n  set cao(v) { this._h = v; canTinh = true; },\n}));\ncanTinh = true;\n\nfunction tangChieuCao(cacO) {\n  for (const x of cacO) x.cao = x.cao + 10;\n}\n\ntangChieuCao(o);\nconsole.log(\"Chiều cao: \" + o.map((x) => x._h).join(\",\"));\nconsole.log(\"Số lần tính lại: \" + tinhLai);",
+        "solution": "let tinhLai = 0;\nlet canTinh = false;\nconst o = [10, 20, 30, 40, 50].map((h) => ({\n  _h: h,\n  get cao() { if (canTinh) { tinhLai++; canTinh = false; } return this._h; },\n  set cao(v) { this._h = v; canTinh = true; },\n}));\ncanTinh = true;\n\nfunction tangChieuCao(cacO) {\n  const caoCu = cacO.map((x) => x.cao);\n  cacO.forEach((x, i) => { x.cao = caoCu[i] + 10; });\n}\n\ntangChieuCao(o);\nconsole.log(\"Chiều cao: \" + o.map((x) => x._h).join(\",\"));\nconsole.log(\"Số lần tính lại: \" + tinhLai);",
+        "hints": [
+          "Đọc toàn bộ chiều cao vào một mảng trước.",
+          "Sau đó mới ghi - không có lần đọc nào xen giữa các lần ghi."
+        ],
+        "expectedOutput": "Chiều cao: 20,30,40,50,60\nSố lần tính lại: 1"
       },
       {
         "type": "closing",
@@ -43345,6 +43641,25 @@ export const lessons: Lesson[] = [
       {
         "type": "paragraph",
         "text": "Số dòng không phải tiêu chí - có tệp ba trăm dòng rất mạch lạc và tệp tám mươi dòng trộn ba trách nhiệm. Và một tệp được nhiều tệp khác nhập vào thì ngược lại là dấu hiệu tốt: nó đang được dùng lại đúng mục đích."
+      },
+      {
+        "type": "code",
+        "language": "javascript",
+        "caption": "Tách phần tính khỏi phần hiển thị bằng mô-đun",
+        "code": "// gio-hang.js - thuần khiết, không chạm DOM, kiểm thử được\nexport function tinhTong(gio, maGiam) { /* ... */ }\n\n// giao-dien.js - chỉ vẽ\nimport { tinhTong } from \"./gio-hang.js\";\ntongEl.textContent = tinhTong(gio, oMa.value).toLocaleString(\"vi-VN\");"
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Kiểm thử một hàm thuần khiết không cần trình duyệt",
+        "task": "tinhTong(gio, maGiam) trả tổng tiền: \"GIAM10\" giảm 10%, \"FREESHIP\" bỏ phí giao 30000, đơn từ 500000 trở lên được miễn phí giao sẵn. Hàm hiện có lỗi. Sửa nó cho tới khi cả năm ca kiểm thử bên dưới in ĐẠT; không sửa bảng ca kiểm thử.",
+        "starter": "function tinhTong(gio, maGiam) {\n  const tamTinh = gio.reduce((s, m) => s + m.gia, 0);\n  let phiGiao = tamTinh > 500000 ? 0 : 30000;\n  let tong = tamTinh + phiGiao;\n  if (maGiam === \"GIAM10\") tong = tong * 0.9;\n  if (maGiam === \"FREESHIP\") tong = tong - 30000;\n  return tong;\n}\n\nconst ca = [\n  [[{ gia: 100000 }], \"\", 130000],\n  [[{ gia: 100000 }], \"GIAM10\", 120000],\n  [[{ gia: 100000 }], \"FREESHIP\", 100000],\n  [[{ gia: 500000 }], \"\", 500000],\n  [[{ gia: 600000 }], \"FREESHIP\", 600000],\n];\nfor (const [gio, ma, mongDoi] of ca) {\n  const kq = tinhTong(gio, ma);\n  console.log((kq === mongDoi ? \"ĐẠT\" : \"TRƯỢT\") + \" \" + (ma || \"-\") + \" \" + kq);\n}",
+        "solution": "function tinhTong(gio, maGiam) {\n  const tamTinh = gio.reduce((s, m) => s + m.gia, 0);\n  let phiGiao = tamTinh >= 500000 ? 0 : 30000;\n  if (maGiam === \"FREESHIP\") phiGiao = 0;\n  const giam = maGiam === \"GIAM10\" ? tamTinh * 0.1 : 0;\n  return tamTinh - giam + phiGiao;\n}\n\nconst ca = [\n  [[{ gia: 100000 }], \"\", 130000],\n  [[{ gia: 100000 }], \"GIAM10\", 120000],\n  [[{ gia: 100000 }], \"FREESHIP\", 100000],\n  [[{ gia: 500000 }], \"\", 500000],\n  [[{ gia: 600000 }], \"FREESHIP\", 600000],\n];\nfor (const [gio, ma, mongDoi] of ca) {\n  const kq = tinhTong(gio, ma);\n  console.log((kq === mongDoi ? \"ĐẠT\" : \"TRƯỢT\") + \" \" + (ma || \"-\") + \" \" + kq);\n}",
+        "hints": [
+          "\"Từ 500000 trở lên\" là >=, không phải >.",
+          "Giảm 10% áp vào tiền hàng, không áp vào phí giao; FREESHIP đưa phí giao về 0 chứ không trừ vào đơn đã miễn phí."
+        ],
+        "expectedOutput": "ĐẠT - 130000\nĐẠT GIAM10 120000\nĐẠT FREESHIP 100000\nĐẠT - 500000\nĐẠT FREESHIP 600000"
       },
       {
         "type": "closing",
@@ -43539,6 +43854,26 @@ export const lessons: Lesson[] = [
         "type": "callout",
         "label": "Đó chính là lý do khung làm việc tồn tại",
         "text": "Chúng dựng quanh cùng ý tưởng bạn vừa làm - giao diện là hàm của trạng thái - nhưng thay vì vẽ lại tất cả, chúng so sánh và chỉ cập nhật phần thật sự đổi. Tự dựng một lần rồi mới học khung làm việc là thứ tự tốt nhất, vì bạn đã gặp vấn đề nên lời giải mới có nghĩa."
+      },
+      {
+        "type": "code",
+        "language": "javascript",
+        "runnable": true,
+        "caption": "Giao diện là hàm của trạng thái",
+        "code": "let trangThai = { viec: [{ ten: \"Học JS\", xong: false }], loc: \"tat-ca\" };\n\nfunction ve(tt) {\n  return tt.viec.map((v) => (v.xong ? \"[x] \" : \"[ ] \") + v.ten).join(\"\\n\");\n}\nfunction capNhat(thayDoi) {\n  trangThai = { ...trangThai, ...thayDoi(trangThai) };\n  console.log(ve(trangThai));           // luôn vẽ lại từ trạng thái\n}\n\ncapNhat((tt) => ({ viec: [...tt.viec, { ten: \"Tập thể dục\", xong: false }] }));"
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Danh sách việc: thêm, đánh dấu, lọc",
+        "task": "Hoàn thành hàm xuLy(tt, hanhDong) trả về trạng thái MỚI, không sửa trạng thái cũ, cho ba hành động: them, doi (đảo trạng thái xong theo chỉ số), loc (\"tat-ca\" | \"chua-xong\"). Hàm ve đã đúng. Dòng cuối phải chứng minh trạng thái ban đầu không bị sửa.",
+        "starter": "function xuLy(tt, hd) {\n  if (hd.loai === \"them\") { tt.viec.push({ ten: hd.ten, xong: false }); return tt; }\n  if (hd.loai === \"doi\") { tt.viec[hd.i].xong = true; return tt; }\n  return tt;\n}\n\nfunction ve(tt) {\n  const hien = tt.loc === \"chua-xong\" ? tt.viec.filter((v) => !v.xong) : tt.viec;\n  return hien.map((v) => (v.xong ? \"[x] \" : \"[ ] \") + v.ten).join(\" | \");\n}\n\nconst dau = { viec: [{ ten: \"Học JS\", xong: false }], loc: \"tat-ca\" };\nlet tt = dau;\nfor (const hd of [\n  { loai: \"them\", ten: \"Đọc sách\" },\n  { loai: \"doi\", i: 0 },\n  { loai: \"them\", ten: \"Chạy bộ\" },\n  { loai: \"doi\", i: 1 },\n  { loai: \"doi\", i: 1 },\n  { loai: \"loc\", loc: \"chua-xong\" },\n]) {\n  tt = xuLy(tt, hd);\n  console.log(ve(tt));\n}\nconsole.log(\"Ban đầu: \" + ve(dau));",
+        "solution": "function xuLy(tt, hd) {\n  if (hd.loai === \"them\") return { ...tt, viec: [...tt.viec, { ten: hd.ten, xong: false }] };\n  if (hd.loai === \"doi\")\n    return { ...tt, viec: tt.viec.map((v, i) => (i === hd.i ? { ...v, xong: !v.xong } : v)) };\n  if (hd.loai === \"loc\") return { ...tt, loc: hd.loc };\n  return tt;\n}\n\nfunction ve(tt) {\n  const hien = tt.loc === \"chua-xong\" ? tt.viec.filter((v) => !v.xong) : tt.viec;\n  return hien.map((v) => (v.xong ? \"[x] \" : \"[ ] \") + v.ten).join(\" | \");\n}\n\nconst dau = { viec: [{ ten: \"Học JS\", xong: false }], loc: \"tat-ca\" };\nlet tt = dau;\nfor (const hd of [\n  { loai: \"them\", ten: \"Đọc sách\" },\n  { loai: \"doi\", i: 0 },\n  { loai: \"them\", ten: \"Chạy bộ\" },\n  { loai: \"doi\", i: 1 },\n  { loai: \"doi\", i: 1 },\n  { loai: \"loc\", loc: \"chua-xong\" },\n]) {\n  tt = xuLy(tt, hd);\n  console.log(ve(tt));\n}\nconsole.log(\"Ban đầu: \" + ve(dau));",
+        "hints": [
+          "push và gán thẳng vào tt.viec[i] sửa trạng thái cũ. Tạo mảng và đối tượng mới bằng cú pháp trải và map.",
+          "\"doi\" là đảo: xong: !v.xong. Và hành động loc chưa được xử lý."
+        ],
+        "expectedOutput": "[ ] Học JS | [ ] Đọc sách\n[x] Học JS | [ ] Đọc sách\n[x] Học JS | [ ] Đọc sách | [ ] Chạy bộ\n[x] Học JS | [x] Đọc sách | [ ] Chạy bộ\n[x] Học JS | [ ] Đọc sách | [ ] Chạy bộ\n[ ] Đọc sách | [ ] Chạy bộ\nBan đầu: [ ] Học JS"
       },
       {
         "type": "closing",
@@ -43747,6 +44082,25 @@ export const lessons: Lesson[] = [
       {
         "type": "paragraph",
         "text": "Điểm đầu tiên đáng nhấn mạnh vì nhiều người mới coi thư viện là hộp đen không mở được. Thực tế mã của chúng đọc được, và với một hành vi khó hiểu thì mười phút đọc mã nguồn thường nhanh hơn hai giờ thử các cấu hình khác nhau."
+      },
+      {
+        "type": "code",
+        "language": "javascript",
+        "caption": "Điểm dừng thay cho mười dòng console.log",
+        "code": "function tinhDiemTrungBinh(ds) {\n  debugger;              // công cụ nhà phát triển mở sẵn thì dừng ở đây\n  let tong = 0;\n  for (let i = 0; i <= ds.length; i++) tong += ds[i]; // bước từng dòng, xem i và tong\n  return tong / ds.length;\n}"
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Gỡ lỗi bằng cách in đúng chỗ",
+        "task": "diemTrungBinh trả về NaN. Thêm MỘT dòng console.log trong vòng lặp in i và ds[i] để thấy lỗi, rồi sửa lỗi. Đầu ra mong đợi là dấu vết của ba lần lặp đúng, sau đó là điểm trung bình.",
+        "starter": "function diemTrungBinh(ds) {\n  let tong = 0;\n  for (let i = 0; i <= ds.length; i++) {\n    tong += ds[i];\n  }\n  return tong / ds.length;\n}\n\nconsole.log(\"TB: \" + diemTrungBinh([8, 6, 10]));",
+        "solution": "function diemTrungBinh(ds) {\n  let tong = 0;\n  for (let i = 0; i < ds.length; i++) {\n    console.log(\"i=\" + i + \" ds[i]=\" + ds[i]);\n    tong += ds[i];\n  }\n  return tong / ds.length;\n}\n\nconsole.log(\"TB: \" + diemTrungBinh([8, 6, 10]));",
+        "hints": [
+          "In ra bạn sẽ thấy một lần lặp với ds[i] là undefined - và số cộng undefined là NaN.",
+          "Chỉ số cuối của mảng là length - 1."
+        ],
+        "expectedOutput": "i=0 ds[i]=8\ni=1 ds[i]=6\ni=2 ds[i]=10\nTB: 8"
       },
       {
         "type": "closing",
@@ -43958,6 +44312,19 @@ export const lessons: Lesson[] = [
       {
         "type": "paragraph",
         "text": "Với ba chặng vừa qua - web, và giờ là JavaScript - bạn dựng được một ứng dụng web hoàn chỉnh chạy trên mọi thiết bị. Đó là phạm vi công việc của một vị trí lập trình viên giao diện mức đầu vào, và nó không còn là bài tập nữa."
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Bài tổng hợp: báo cáo từ dữ liệu mạng",
+        "task": "Dùng mọi thứ của chặng. Tải danh sách đơn từ fetch giả (có lúc lỗi 500), bỏ qua dòng có trạng thái \"huy\", cộng tiền theo từng khách (tiền là chuỗi, có thể thiếu), rồi in khách theo tổng giảm dần. Nếu máy chủ lỗi thì in \"Không tải được (500)\".",
+        "starter": "const DU_LIEU = '[{\"khach\":\"An\",\"tien\":\"120000\",\"tt\":\"xong\"},{\"khach\":\"Bình\",\"tien\":\"90000\",\"tt\":\"xong\"},{\"khach\":\"An\",\"tien\":\"30000\",\"tt\":\"huy\"},{\"khach\":\"Chi\",\"tt\":\"xong\"},{\"khach\":\"Bình\",\"tien\":\"250000\",\"tt\":\"xong\"},{\"khach\":\"An\",\"tien\":\"5000\",\"tt\":\"xong\"}]';\nasync function fetch(url) {\n  if (url === \"/api/don?loi=1\") return { ok: false, status: 500, json: async () => { throw new SyntaxError(\"HTML\"); } };\n  return { ok: true, status: 200, json: async () => JSON.parse(DU_LIEU) };\n}\n\nasync function baoCao(url) {\n  const r = await fetch(url);\n  const don = await r.json();\n  const tong = {};\n  don.forEach((d) => { tong[d.khach] = tong[d.khach] + d.tien; });\n  return Object.entries(tong).sort().map(([k, t]) => k + \": \" + t).join(\"\\n\");\n}\n\nconsole.log(await baoCao(\"/api/don\"));\nconsole.log(await baoCao(\"/api/don?loi=1\"));",
+        "solution": "const DU_LIEU = '[{\"khach\":\"An\",\"tien\":\"120000\",\"tt\":\"xong\"},{\"khach\":\"Bình\",\"tien\":\"90000\",\"tt\":\"xong\"},{\"khach\":\"An\",\"tien\":\"30000\",\"tt\":\"huy\"},{\"khach\":\"Chi\",\"tt\":\"xong\"},{\"khach\":\"Bình\",\"tien\":\"250000\",\"tt\":\"xong\"},{\"khach\":\"An\",\"tien\":\"5000\",\"tt\":\"xong\"}]';\nasync function fetch(url) {\n  if (url === \"/api/don?loi=1\") return { ok: false, status: 500, json: async () => { throw new SyntaxError(\"HTML\"); } };\n  return { ok: true, status: 200, json: async () => JSON.parse(DU_LIEU) };\n}\n\nasync function baoCao(url) {\n  const r = await fetch(url);\n  if (!r.ok) return \"Không tải được (\" + r.status + \")\";\n  const don = await r.json();\n  const tong = {};\n  don\n    .filter((d) => d.tt !== \"huy\")\n    .forEach((d) => { tong[d.khach] = (tong[d.khach] ?? 0) + Number(d.tien ?? 0); });\n  return Object.entries(tong)\n    .sort((a, b) => b[1] - a[1])\n    .map(([k, t]) => k + \": \" + t)\n    .join(\"\\n\");\n}\n\nconsole.log(await baoCao(\"/api/don\"));\nconsole.log(await baoCao(\"/api/don?loi=1\"));",
+        "hints": [
+          "Kiểm tra r.ok trước khi đọc json (Bài 234).",
+          "tong[k] ban đầu là undefined, tiền là chuỗi: dùng ?? 0 và Number (Bài 222). Sắp xếp số cần hàm so sánh (Bài 227)."
+        ],
+        "expectedOutput": "Bình: 340000\nAn: 125000\nChi: 0\nKhông tải được (500)"
       },
       {
         "type": "closing",
@@ -44182,6 +44549,26 @@ export const lessons: Lesson[] = [
         "text": "Một lưu ý cuối: cùng một tên gọi có thể là hai cách cài đặt khác nhau giữa hai ngôn ngữ. Một danh sách ở ngôn ngữ này là mảng động, ở ngôn ngữ kia là danh sách liên kết - hai bảng giá hoàn toàn khác. Đọc tài liệu của chính ngôn ngữ bạn dùng thay vì suy từ tên."
       },
       {
+        "type": "code",
+        "language": "javascript",
+        "runnable": true,
+        "caption": "Cùng một câu hỏi, hai cấu trúc, hai cái giá",
+        "code": "const ma = Array.from({ length: 100000 }, (_, i) => \"SP\" + i);\nconst tapMa = new Set(ma);\n\nlet buoc = 0;\nconst coTrongMang = (x) => { for (const m of ma) { buoc++; if (m === x) return true; } return false; };\ncoTrongMang(\"SP99999\");\nconsole.log(\"Mảng: \" + buoc + \" bước\");\nconsole.log(\"Set: \" + (tapMa.has(\"SP99999\") ? \"tìm thấy\" : \"không\") + \" sau 1 lần tính băm\");"
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Lọc đơn của khách VIP",
+        "task": "Có 2000 đơn và 500 khách VIP. Hàm locVip đúng kết quả nhưng mỗi đơn lại quét cả danh sách VIP. Đổi cấu trúc chứa danh sách VIP để số phép so sánh (biến buoc) giảm xuống đúng bằng số đơn, kết quả không đổi.",
+        "starter": "const vip = Array.from({ length: 500 }, (_, i) => \"K\" + i * 3);\nconst don = Array.from({ length: 2000 }, (_, i) => ({ ma: i, khach: \"K\" + i }));\nlet buoc = 0;\n\nfunction locVip(don, vip) {\n  return don.filter((d) => vip.some((v) => { buoc++; return v === d.khach; }));\n}\n\nconsole.log(\"Đơn VIP: \" + locVip(don, vip).length);\nconsole.log(\"Số bước: \" + buoc);",
+        "solution": "const vip = Array.from({ length: 500 }, (_, i) => \"K\" + i * 3);\nconst don = Array.from({ length: 2000 }, (_, i) => ({ ma: i, khach: \"K\" + i }));\nlet buoc = 0;\n\nfunction locVip(don, vip) {\n  const tap = new Set(vip);\n  return don.filter((d) => { buoc++; return tap.has(d.khach); });\n}\n\nconsole.log(\"Đơn VIP: \" + locVip(don, vip).length);\nconsole.log(\"Số bước: \" + buoc);",
+        "hints": [
+          "Câu hỏi lặp lại cho mỗi đơn là \"có nằm trong nhóm này không?\" - đó là việc của Set.",
+          "Tạo Set một lần bên ngoài filter, rồi đếm một bước cho mỗi lần has."
+        ],
+        "expectedOutput": "Đơn VIP: 500\nSố bước: 2000"
+      },
+      {
         "type": "closing",
         "lines": [
           "Cấu trúc dữ liệu không phải kiến thức phỏng vấn. Nó là lý do một tính năng còn dùng được sau khi dữ liệu lớn gấp nghìn lần.",
@@ -44365,6 +44752,26 @@ export const lessons: Lesson[] = [
       {
         "type": "paragraph",
         "text": "Tổng số phần tử phải chép qua mọi lần mở rộng chỉ khoảng gấp đôi số phần tử cuối cùng. Chia đều cho số lần thêm thì mỗi lần vẫn là chi phí không đổi. Đó là ý nghĩa của cụm chi phí trung bình khấu hao, và bạn sẽ gặp lại nó ở bảng băm."
+      },
+      {
+        "type": "code",
+        "language": "javascript",
+        "runnable": true,
+        "caption": "Thêm cuối rẻ, chèn đầu phải dời cả mảng",
+        "code": "function doiCho(n, chenDau) {\n  const a = [];\n  let dich = 0;\n  for (let i = 0; i < n; i++) {\n    if (chenDau) { dich += a.length; a.unshift(i); } else a.push(i);\n  }\n  return dich;\n}\nconsole.log(\"push 10000 lần: dời \" + doiCho(10000, false) + \" phần tử\");\nconsole.log(\"unshift 10000 lần: dời \" + doiCho(10000, true) + \" phần tử\");"
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Mảng động tự viết: nhân đôi hay cộng thêm",
+        "task": "MangDong giữ một bộ nhớ cố định và phải cấp lại (chép toàn bộ phần tử) khi đầy. Mã hiện mỗi lần đầy chỉ cộng thêm 1 ô, nên chép rất nhiều lần. Đổi chiến lược mở rộng thành nhân đôi dung lượng và in lại số lần cấp lại và tổng số phần tử phải chép sau 1000 lần thêm.",
+        "starter": "class MangDong {\n  constructor() { this.dungLuong = 1; this.dai = 0; this.o = new Array(1); this.capLai = 0; this.daChep = 0; }\n  them(x) {\n    if (this.dai === this.dungLuong) {\n      const moi = new Array(this.dungLuong + 1);\n      for (let i = 0; i < this.dai; i++) moi[i] = this.o[i];\n      this.daChep += this.dai; this.capLai++;\n      this.o = moi; this.dungLuong = moi.length;\n    }\n    this.o[this.dai++] = x;\n  }\n}\n\nconst m = new MangDong();\nfor (let i = 0; i < 1000; i++) m.them(i);\nconsole.log(\"Cấp lại: \" + m.capLai + \" lần\");\nconsole.log(\"Đã chép: \" + m.daChep + \" phần tử\");\nconsole.log(\"Dung lượng: \" + m.dungLuong);",
+        "solution": "class MangDong {\n  constructor() { this.dungLuong = 1; this.dai = 0; this.o = new Array(1); this.capLai = 0; this.daChep = 0; }\n  them(x) {\n    if (this.dai === this.dungLuong) {\n      const moi = new Array(this.dungLuong * 2);\n      for (let i = 0; i < this.dai; i++) moi[i] = this.o[i];\n      this.daChep += this.dai; this.capLai++;\n      this.o = moi; this.dungLuong = moi.length;\n    }\n    this.o[this.dai++] = x;\n  }\n}\n\nconst m = new MangDong();\nfor (let i = 0; i < 1000; i++) m.them(i);\nconsole.log(\"Cấp lại: \" + m.capLai + \" lần\");\nconsole.log(\"Đã chép: \" + m.daChep + \" phần tử\");\nconsole.log(\"Dung lượng: \" + m.dungLuong);",
+        "hints": [
+          "Cộng thêm 1 ô thì lần thêm thứ n chép n phần tử: tổng cỡ n²/2.",
+          "Nhân đôi thì tổng số lần chép dưới 2n - đó là chi phí khấu hao hằng số."
+        ],
+        "expectedOutput": "Cấp lại: 10 lần\nĐã chép: 1023 phần tử\nDung lượng: 1024"
       },
       {
         "type": "closing",
@@ -44554,6 +44961,26 @@ export const lessons: Lesson[] = [
       {
         "type": "paragraph",
         "text": "Một lưu ý ngược trực giác: danh sách liên kết tốn NHIỀU bộ nhớ hơn mảng. Mỗi nút mang thêm một con trỏ, và mỗi lần cấp phát rời còn có chi phí đi kèm. Với một danh sách số nguyên nhỏ, tổng bộ nhớ thường gấp đôi mảng tương đương."
+      },
+      {
+        "type": "code",
+        "language": "javascript",
+        "runnable": true,
+        "caption": "Nút trỏ tới nút: chèn đầu không phải dời gì",
+        "code": "let dau = null;\nconst chenDau = (gt) => { dau = { gt, tiep: dau }; };\nchenDau(3); chenDau(2); chenDau(1);\n\nconst ra = [];\nfor (let n = dau; n; n = n.tiep) ra.push(n.gt);\nconsole.log(ra.join(\" -> \"));"
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Đảo ngược một danh sách liên kết",
+        "task": "Viết daoNguoc(dau) trả về đầu mới của danh sách đã đảo, chỉ đổi con trỏ tiep, không tạo nút mới và không dùng mảng. Mã hiện mất nút vì ghi đè tiep trước khi kịp lưu.",
+        "starter": "function tao(ds) { let d = null; for (let i = ds.length - 1; i >= 0; i--) d = { gt: ds[i], tiep: d }; return d; }\nfunction inRa(d) { const r = []; for (let n = d; n; n = n.tiep) r.push(n.gt); return r.join(\" -> \") || \"(rỗng)\"; }\n\nfunction daoNguoc(dau) {\n  let truoc = null;\n  let hienTai = dau;\n  while (hienTai) {\n    hienTai.tiep = truoc;\n    truoc = hienTai;\n    hienTai = hienTai.tiep;\n  }\n  return truoc;\n}\n\nconsole.log(inRa(daoNguoc(tao([1, 2, 3, 4]))));\nconsole.log(inRa(daoNguoc(tao([7]))));\nconsole.log(inRa(daoNguoc(tao([]))));",
+        "solution": "function tao(ds) { let d = null; for (let i = ds.length - 1; i >= 0; i--) d = { gt: ds[i], tiep: d }; return d; }\nfunction inRa(d) { const r = []; for (let n = d; n; n = n.tiep) r.push(n.gt); return r.join(\" -> \") || \"(rỗng)\"; }\n\nfunction daoNguoc(dau) {\n  let truoc = null;\n  let hienTai = dau;\n  while (hienTai) {\n    const sau = hienTai.tiep;\n    hienTai.tiep = truoc;\n    truoc = hienTai;\n    hienTai = sau;\n  }\n  return truoc;\n}\n\nconsole.log(inRa(daoNguoc(tao([1, 2, 3, 4]))));\nconsole.log(inRa(daoNguoc(tao([7]))));\nconsole.log(inRa(daoNguoc(tao([]))));",
+        "hints": [
+          "Sau dòng hienTai.tiep = truoc, đường tới phần còn lại của danh sách đã mất.",
+          "Lưu hienTai.tiep vào một biến tạm TRƯỚC khi đổi hướng con trỏ."
+        ],
+        "expectedOutput": "4 -> 3 -> 2 -> 1\n7\n(rỗng)"
       },
       {
         "type": "closing",
@@ -44746,6 +45173,26 @@ export const lessons: Lesson[] = [
         "text": "Còn hàng đợi ưu tiên thì không thật sự là hàng đợi: nó luôn trả về phần tử có độ ưu tiên cao nhất chứ không phải phần tử vào trước nhất. Cài đặt phổ biến nhất của nó là đống, và đó là chủ đề của một bài sau trong chặng này."
       },
       {
+        "type": "code",
+        "language": "javascript",
+        "runnable": true,
+        "caption": "Ngăn xếp: vào sau ra trước. Hàng đợi: vào trước ra trước",
+        "code": "const nganXep = [];\nnganXep.push(\"a\"); nganXep.push(\"b\"); nganXep.push(\"c\");\nconsole.log(nganXep.pop(), nganXep.pop()); // c b\n\nconst hangDoi = [];\nhangDoi.push(\"a\"); hangDoi.push(\"b\"); hangDoi.push(\"c\");\nconsole.log(hangDoi.shift(), hangDoi.shift()); // a b"
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Kiểm tra dấu ngoặc cân bằng",
+        "task": "Viết canBang(s) trả về true khi mọi ngoặc (), [], {} đóng đúng loại và đúng thứ tự. Mã hiện chỉ đếm số ngoặc mở và đóng, nên \"([)]\" và \"}{\" bị coi là cân bằng.",
+        "starter": "function canBang(s) {\n  let dem = 0;\n  for (const c of s) {\n    if (\"([{\".includes(c)) dem++;\n    if (\")]}\".includes(c)) dem--;\n  }\n  return dem === 0;\n}\n\nfor (const s of [\"(a[b]{c})\", \"([)]\", \"}{\", \"((\", \"f(x[0])\", \"\"]) {\n  console.log(JSON.stringify(s) + \" \" + canBang(s));\n}",
+        "solution": "function canBang(s) {\n  const cap = { \")\": \"(\", \"]\": \"[\", \"}\": \"{\" };\n  const nx = [];\n  for (const c of s) {\n    if (\"([{\".includes(c)) nx.push(c);\n    else if (c in cap) {\n      if (nx.pop() !== cap[c]) return false;\n    }\n  }\n  return nx.length === 0;\n}\n\nfor (const s of [\"(a[b]{c})\", \"([)]\", \"}{\", \"((\", \"f(x[0])\", \"\"]) {\n  console.log(JSON.stringify(s) + \" \" + canBang(s));\n}",
+        "hints": [
+          "Ngoặc đóng phải khớp với ngoặc mở GẦN NHẤT chưa được đóng - đó là đỉnh ngăn xếp.",
+          "Cuối chuỗi, ngăn xếp phải rỗng."
+        ],
+        "expectedOutput": "\"(a[b]{c})\" true\n\"([)]\" false\n\"}{\" false\n\"((\" false\n\"f(x[0])\" true\n\"\" true"
+      },
+      {
         "type": "closing",
         "lines": [
           "Hai cấu trúc này đơn giản, nhưng nhận ra chúng trong một bài toán là bước đầu tiên để giải bài toán đó gọn gàng.",
@@ -44935,6 +45382,26 @@ export const lessons: Lesson[] = [
         "text": "Cuối cùng là một chuyện đáng biết về bảo mật: kẻ tấn công có thể gửi hàng loạt khoá cùng băm ra một vị trí, làm bảng suy biến thành một danh sách và mỗi lần tra phải duyệt hết. Cách phòng là trộn một giá trị ngẫu nhiên riêng cho mỗi tiến trình vào hàm băm, để không ai tính trước được vị trí."
       },
       {
+        "type": "code",
+        "language": "javascript",
+        "runnable": true,
+        "caption": "Băm: tính vị trí từ khoá, không đi tìm",
+        "code": "const soO = 8;\nfunction bam(khoa) {\n  let h = 0;\n  for (const c of khoa) h = (h * 31 + c.charCodeAt(0)) % soO;\n  return h;\n}\nfor (const k of [\"an\", \"binh\", \"chi\", \"dung\"]) console.log(k + \" -> ô \" + bam(k));"
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Bảng băm tự viết với xử lý va chạm",
+        "task": "BangBam dùng các ô chứa danh sách cặp [khoá, giá trị]. Hàm dat hiện ghi đè cả ô, nên hai khoá cùng rơi vào một ô thì khoá trước biến mất, và đặt lại một khoá thì bị nhân đôi. Sửa dat để: cập nhật nếu khoá đã có, thêm vào cuối ô nếu chưa.",
+        "starter": "class BangBam {\n  constructor(soO) { this.o = Array.from({ length: soO }, () => []); }\n  bam(k) { let h = 0; for (const c of k) h = (h + c.charCodeAt(0)) % this.o.length; return h; }\n  dat(k, v) { this.o[this.bam(k)] = [[k, v]]; }\n  lay(k) { const cap = this.o[this.bam(k)].find(([kk]) => kk === k); return cap ? cap[1] : undefined; }\n}\n\nconst b = new BangBam(4);\nb.dat(\"ab\", 1);\nb.dat(\"ba\", 2);      // cùng tổng mã ký tự với \"ab\" -> cùng ô\nb.dat(\"ab\", 10);\nconsole.log(b.lay(\"ab\"), b.lay(\"ba\"), b.lay(\"zz\"));\nconsole.log(\"Ô chứa ab: \" + JSON.stringify(b.o[b.bam(\"ab\")]));",
+        "solution": "class BangBam {\n  constructor(soO) { this.o = Array.from({ length: soO }, () => []); }\n  bam(k) { let h = 0; for (const c of k) h = (h + c.charCodeAt(0)) % this.o.length; return h; }\n  dat(k, v) {\n    const o = this.o[this.bam(k)];\n    const cap = o.find(([kk]) => kk === k);\n    if (cap) cap[1] = v;\n    else o.push([k, v]);\n  }\n  lay(k) { const cap = this.o[this.bam(k)].find(([kk]) => kk === k); return cap ? cap[1] : undefined; }\n}\n\nconst b = new BangBam(4);\nb.dat(\"ab\", 1);\nb.dat(\"ba\", 2);      // cùng tổng mã ký tự với \"ab\" -> cùng ô\nb.dat(\"ab\", 10);\nconsole.log(b.lay(\"ab\"), b.lay(\"ba\"), b.lay(\"zz\"));\nconsole.log(\"Ô chứa ab: \" + JSON.stringify(b.o[b.bam(\"ab\")]));",
+        "hints": [
+          "Một ô có thể chứa nhiều khoá. Tìm khoá trong ô trước khi quyết định.",
+          "Có rồi thì sửa giá trị; chưa có thì push cặp mới."
+        ],
+        "expectedOutput": "10 2 undefined\nÔ chứa ab: [[\"ab\",10],[\"ba\",2]]"
+      },
+      {
         "type": "closing",
         "lines": [
           "Bảng băm nhanh vì nó tính chứ không tìm - và mọi nhược điểm của nó đều là hệ quả trực tiếp của điều đó.",
@@ -45120,6 +45587,26 @@ export const lessons: Lesson[] = [
         "text": "Chỉ mục cơ sở dữ liệu dùng cây có hàng trăm nhánh mỗi nút chứ không phải hai. Lý do nằm ở phần cứng: một lần đọc đĩa lấy về cả một khối, nên nhét được nhiều khoá vào một nút thì chiều cao cây giảm mạnh và số lần chạm đĩa cũng vậy. Đây là ví dụ rõ về việc cấu trúc được thiết kế theo đặc điểm của tầng bên dưới."
       },
       {
+        "type": "code",
+        "language": "javascript",
+        "runnable": true,
+        "caption": "Chèn theo bất biến trái nhỏ - phải lớn, duyệt giữa ra thứ tự tăng",
+        "code": "function chen(nut, x) {\n  if (!nut) return { x, trai: null, phai: null };\n  if (x < nut.x) nut.trai = chen(nut.trai, x);\n  else nut.phai = chen(nut.phai, x);\n  return nut;\n}\nconst giua = (n, ra = []) => { if (n) { giua(n.trai, ra); ra.push(n.x); giua(n.phai, ra); } return ra; };\n\nlet goc = null;\nfor (const x of [50, 30, 70, 20, 40, 60]) goc = chen(goc, x);\nconsole.log(giua(goc).join(\" \"));"
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Kiểm tra một cây có đúng là cây tìm kiếm không",
+        "task": "laBST(nut) phải trả về false khi bất cứ nút nào vi phạm bất biến, kể cả khi nó chỉ vi phạm với một tổ tiên xa. Mã hiện chỉ so mỗi nút với hai con trực tiếp, nên cây thứ hai (có 55 nằm bên trái của 50) lọt qua.",
+        "starter": "const n = (x, trai = null, phai = null) => ({ x, trai, phai });\n\nfunction laBST(nut) {\n  if (!nut) return true;\n  if (nut.trai && nut.trai.x >= nut.x) return false;\n  if (nut.phai && nut.phai.x <= nut.x) return false;\n  return laBST(nut.trai) && laBST(nut.phai);\n}\n\nconsole.log(laBST(n(50, n(30, n(20), n(40)), n(70, n(60)))));\nconsole.log(laBST(n(50, n(30, n(20), n(55)), n(70))));\nconsole.log(laBST(n(50, n(30), n(70, n(45)))));\nconsole.log(laBST(null));",
+        "solution": "const n = (x, trai = null, phai = null) => ({ x, trai, phai });\n\nfunction laBST(nut, min = -Infinity, max = Infinity) {\n  if (!nut) return true;\n  if (nut.x <= min || nut.x >= max) return false;\n  return laBST(nut.trai, min, nut.x) && laBST(nut.phai, nut.x, max);\n}\n\nconsole.log(laBST(n(50, n(30, n(20), n(40)), n(70, n(60)))));\nconsole.log(laBST(n(50, n(30, n(20), n(55)), n(70))));\nconsole.log(laBST(n(50, n(30), n(70, n(45)))));\nconsole.log(laBST(null));",
+        "hints": [
+          "Mỗi nút không chỉ phải hợp với cha, mà phải nằm trong một KHOẢNG do mọi tổ tiên quy định.",
+          "Truyền (min, max) xuống: đi sang trái thì max thành giá trị nút hiện tại, sang phải thì min thành nó."
+        ],
+        "expectedOutput": "true\nfalse\nfalse\ntrue"
+      },
+      {
         "type": "closing",
         "lines": [
           "Cây là cấu trúc duy nhất rẻ ở cả ba việc: tra theo khoá, chèn, và liệt kê theo thứ tự.",
@@ -45299,6 +45786,26 @@ export const lessons: Lesson[] = [
       {
         "type": "paragraph",
         "text": "Một kết quả hơi phản trực giác đáng biết: dựng đống từ một mảng có sẵn chỉ tốn tuyến tính, rẻ hơn chèn từng phần tử một. Lý do là một nửa số nút là lá và không phải chìm bước nào, một phần tư chìm nhiều nhất một bước, và tổng lại thành tuyến tính chứ không phải n nhân logarit n."
+      },
+      {
+        "type": "code",
+        "language": "javascript",
+        "runnable": true,
+        "caption": "Đống nhỏ nhất trong một mảng: con của i ở 2i+1 và 2i+2",
+        "code": "const d = [];\nfunction them(x) {\n  d.push(x);\n  let i = d.length - 1;\n  while (i > 0) {\n    const cha = (i - 1) >> 1;\n    if (d[cha] <= d[i]) break;\n    [d[cha], d[i]] = [d[i], d[cha]];\n    i = cha;\n  }\n}\nfor (const x of [5, 3, 8, 1, 9, 2]) them(x);\nconsole.log(d.join(\" \"), \"- nhỏ nhất luôn ở d[0]:\", d[0]);"
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "k phần tử lớn nhất mà không sắp xếp cả mảng",
+        "task": "Hoàn thành layRa() của đống nhỏ nhất (lấy gốc, đưa phần tử cuối lên, rồi đẩy xuống). Hàm kLonNhat giữ một đống cỡ k: đống đầy thì bỏ phần tử nhỏ nhất. Hiện layRa chưa đẩy xuống nên đống mất tính chất và kết quả sai.",
+        "starter": "class DongNho {\n  constructor() { this.a = []; }\n  get co() { return this.a.length; }\n  dinh() { return this.a[0]; }\n  them(x) {\n    const a = this.a; a.push(x);\n    let i = a.length - 1;\n    while (i > 0 && a[(i - 1) >> 1] > a[i]) { const c = (i - 1) >> 1; [a[c], a[i]] = [a[i], a[c]]; i = c; }\n  }\n  layRa() {\n    const a = this.a; const goc = a[0]; const cuoi = a.pop();\n    if (a.length) a[0] = cuoi;\n    return goc;\n  }\n}\n\nfunction kLonNhat(ds, k) {\n  const d = new DongNho();\n  for (const x of ds) { d.them(x); if (d.co > k) d.layRa(); }\n  return d.a.slice().sort((x, y) => y - x);\n}\n\nconsole.log(kLonNhat([4, 1, 9, 7, 3, 8, 2, 6], 3).join(\" \"));\nconsole.log(kLonNhat([5, 5, 1, 10, 0, 7], 2).join(\" \"));",
+        "solution": "class DongNho {\n  constructor() { this.a = []; }\n  get co() { return this.a.length; }\n  dinh() { return this.a[0]; }\n  them(x) {\n    const a = this.a; a.push(x);\n    let i = a.length - 1;\n    while (i > 0 && a[(i - 1) >> 1] > a[i]) { const c = (i - 1) >> 1; [a[c], a[i]] = [a[i], a[c]]; i = c; }\n  }\n  layRa() {\n    const a = this.a; const goc = a[0]; const cuoi = a.pop();\n    if (a.length) {\n      a[0] = cuoi;\n      let i = 0;\n      while (true) {\n        const l = 2 * i + 1, r = 2 * i + 2;\n        let nho = i;\n        if (l < a.length && a[l] < a[nho]) nho = l;\n        if (r < a.length && a[r] < a[nho]) nho = r;\n        if (nho === i) break;\n        [a[i], a[nho]] = [a[nho], a[i]];\n        i = nho;\n      }\n    }\n    return goc;\n  }\n}\n\nfunction kLonNhat(ds, k) {\n  const d = new DongNho();\n  for (const x of ds) { d.them(x); if (d.co > k) d.layRa(); }\n  return d.a.slice().sort((x, y) => y - x);\n}\n\nconsole.log(kLonNhat([4, 1, 9, 7, 3, 8, 2, 6], 3).join(\" \"));\nconsole.log(kLonNhat([5, 5, 1, 10, 0, 7], 2).join(\" \"));",
+        "hints": [
+          "Sau khi đưa phần tử cuối lên gốc, nó thường lớn hơn con của nó.",
+          "Đẩy xuống: đổi chỗ với con NHỎ HƠN trong hai con, lặp tới khi không con nào nhỏ hơn."
+        ],
+        "expectedOutput": "9 8 7\n10 7"
       },
       {
         "type": "closing",
@@ -45489,6 +45996,26 @@ export const lessons: Lesson[] = [
       {
         "type": "paragraph",
         "text": "Thứ hai là sắp xếp tôpô: tìm một thứ tự sao cho mọi việc đều nằm sau các việc nó phụ thuộc vào. Đây là thuật toán đằng sau thứ tự cài thư viện và thứ tự chạy các bước dựng. Nó chỉ tồn tại khi đồ thị không có chu trình - và việc nó không tìm được thứ tự nào chính là cách phát hiện chu trình."
+      },
+      {
+        "type": "code",
+        "language": "javascript",
+        "runnable": true,
+        "caption": "Danh sách kề: mỗi đỉnh giữ danh sách hàng xóm",
+        "code": "const canh = [[\"A\", \"B\"], [\"A\", \"C\"], [\"B\", \"D\"], [\"C\", \"D\"], [\"D\", \"E\"]];\nconst ke = {};\nfor (const [u, v] of canh) {\n  (ke[u] ??= []).push(v);\n  (ke[v] ??= []).push(u);   // vô hướng: thêm cả hai chiều\n}\nfor (const [dinh, hx] of Object.entries(ke)) console.log(dinh + \": \" + hx.join(\",\"));"
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Bạn chung và gợi ý kết bạn",
+        "task": "Từ danh sách cạnh kết bạn (vô hướng), dựng danh sách kề rồi in gợi ý cho \"An\": những người chưa là bạn, không phải chính An, có ít nhất một bạn chung - kèm số bạn chung, xếp giảm dần theo số đó rồi theo tên. Mã hiện dựng đồ thị một chiều nên thiếu cạnh.",
+        "starter": "const canh = [[\"An\", \"Bình\"], [\"An\", \"Chi\"], [\"Bình\", \"Dũng\"], [\"Chi\", \"Dũng\"], [\"Chi\", \"Em\"], [\"Dũng\", \"Giang\"], [\"Hà\", \"Bình\"]];\nconst ke = {};\nfor (const [u, v] of canh) (ke[u] ??= new Set()).add(v);\n\nfunction goiY(ai) {\n  const dem = {};\n  for (const ban of ke[ai] ?? []) {\n    for (const bb of ke[ban] ?? []) {\n      if (bb === ai || ke[ai].has(bb)) continue;\n      dem[bb] = (dem[bb] ?? 0) + 1;\n    }\n  }\n  return Object.entries(dem).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));\n}\n\nfor (const [ten, n] of goiY(\"An\")) console.log(ten + \" (\" + n + \" bạn chung)\");",
+        "solution": "const canh = [[\"An\", \"Bình\"], [\"An\", \"Chi\"], [\"Bình\", \"Dũng\"], [\"Chi\", \"Dũng\"], [\"Chi\", \"Em\"], [\"Dũng\", \"Giang\"], [\"Hà\", \"Bình\"]];\nconst ke = {};\nfor (const [u, v] of canh) {\n  (ke[u] ??= new Set()).add(v);\n  (ke[v] ??= new Set()).add(u);\n}\n\nfunction goiY(ai) {\n  const dem = {};\n  for (const ban of ke[ai] ?? []) {\n    for (const bb of ke[ban] ?? []) {\n      if (bb === ai || ke[ai].has(bb)) continue;\n      dem[bb] = (dem[bb] ?? 0) + 1;\n    }\n  }\n  return Object.entries(dem).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));\n}\n\nfor (const [ten, n] of goiY(\"An\")) console.log(ten + \" (\" + n + \" bạn chung)\");",
+        "hints": [
+          "Kết bạn là quan hệ hai chiều: mỗi cạnh phải được thêm vào danh sách kề của cả hai đỉnh.",
+          "Hà là bạn của Bình nhưng chỉ xuất hiện ở vế phải - với đồ thị một chiều, Bình không biết Hà."
+        ],
+        "expectedOutput": "Dũng (2 bạn chung)\nEm (1 bạn chung)\nHà (1 bạn chung)"
       },
       {
         "type": "closing",
@@ -45696,6 +46223,26 @@ export const lessons: Lesson[] = [
       {
         "type": "paragraph",
         "text": "Một lưu ý cuối: tập hợp vứt bỏ cả thứ tự lẫn số lần xuất hiện. Cần đếm số lần thì dùng từ điển với giá trị là bộ đếm; cần giữ thứ tự khi loại trùng thì duyệt danh sách và dùng một tập hợp phụ để nhớ những gì đã gặp."
+      },
+      {
+        "type": "code",
+        "language": "javascript",
+        "runnable": true,
+        "caption": "Hợp, giao, hiệu bằng Set",
+        "code": "const tuanNay = new Set([\"an\", \"binh\", \"chi\", \"dung\"]);\nconst tuanTruoc = new Set([\"binh\", \"dung\", \"em\"]);\n\nconst quayLai = [...tuanNay].filter((x) => tuanTruoc.has(x));\nconst moi = [...tuanNay].filter((x) => !tuanTruoc.has(x));\nconst roiDi = [...tuanTruoc].filter((x) => !tuanNay.has(x));\nconsole.log(\"Quay lại:\", quayLai.join(\",\"));\nconsole.log(\"Mới:\", moi.join(\",\"));\nconsole.log(\"Rời đi:\", roiDi.join(\",\"));"
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Đồng bộ hai danh sách mà không lồng vòng lặp",
+        "task": "So danh sách tài khoản trong hệ thống cũ và mới (mỗi bên 3000 mã, trùng một phần). In số tài khoản cần thêm, cần xoá, giữ nguyên, và số phép so sánh. Mã hiện dùng includes trong filter - đúng kết quả nhưng hàng triệu bước. Viết lại để số bước bằng tổng độ dài hai danh sách.",
+        "starter": "const cu = Array.from({ length: 3000 }, (_, i) => \"U\" + i);\nconst moi = Array.from({ length: 3000 }, (_, i) => \"U\" + (i + 1000));\nlet buoc = 0;\nconst co = (ds, x) => ds.some((y) => { buoc++; return y === x; });\n\nconst canThem = moi.filter((x) => !co(cu, x));\nconst canXoa = cu.filter((x) => !co(moi, x));\nconsole.log(\"Thêm: \" + canThem.length + \", xoá: \" + canXoa.length + \", giữ: \" + (moi.length - canThem.length));\nconsole.log(\"Số bước: \" + buoc);",
+        "solution": "const cu = Array.from({ length: 3000 }, (_, i) => \"U\" + i);\nconst moi = Array.from({ length: 3000 }, (_, i) => \"U\" + (i + 1000));\nlet buoc = 0;\nconst tapCu = new Set(cu);\nconst tapMoi = new Set(moi);\nconst co = (tap, x) => { buoc++; return tap.has(x); };\n\nconst canThem = moi.filter((x) => !co(tapCu, x));\nconst canXoa = cu.filter((x) => !co(tapMoi, x));\nconsole.log(\"Thêm: \" + canThem.length + \", xoá: \" + canXoa.length + \", giữ: \" + (moi.length - canThem.length));\nconsole.log(\"Số bước: \" + buoc);",
+        "hints": [
+          "includes/some bên trong filter là O(n × m): đây là đoạn mã chậm phổ biến nhất.",
+          "Đổi mỗi danh sách thành Set một lần; mỗi lần hỏi has là một bước."
+        ],
+        "expectedOutput": "Thêm: 1000, xoá: 1000, giữ: 2000\nSố bước: 6000"
       },
       {
         "type": "closing",
@@ -45915,6 +46462,19 @@ export const lessons: Lesson[] = [
         "text": "Dấu hiệu rõ nhất của việc chọn sai: bạn phải duyệt toàn bộ dữ liệu chỉ để trả lời một câu hỏi rất đơn giản. Duyệt hết để hỏi giá trị này có tồn tại không nghĩa là bạn cần tập hợp. Duyệt hết để tìm giá trị lớn nhất liên tục nghĩa là bạn cần đống. Mã tự nói cho bạn biết nó thiếu gì."
       },
       {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Bộ nhớ đệm gần đây nhất (LRU)",
+        "task": "Bộ đệm giữ tối đa 3 mục; khi đầy thì bỏ mục LÂU NHẤT CHƯA ĐƯỢC DÙNG. Đọc một mục cũng tính là dùng. Mã hiện bỏ mục được THÊM đầu tiên, bất kể vừa đọc. Sửa bằng cách tận dụng việc Map giữ thứ tự chèn: mỗi lần dùng thì xoá rồi đặt lại khoá.",
+        "starter": "class BoDem {\n  constructor(max) { this.max = max; this.m = new Map(); }\n  lay(k) { return this.m.get(k); }\n  dat(k, v) {\n    this.m.set(k, v);\n    if (this.m.size > this.max) this.m.delete(this.m.keys().next().value);\n  }\n}\n\nconst b = new BoDem(3);\nb.dat(\"a\", 1); b.dat(\"b\", 2); b.dat(\"c\", 3);\nb.lay(\"a\");\nb.dat(\"d\", 4);\nb.lay(\"c\");\nb.dat(\"e\", 5);\nconsole.log(\"Còn: \" + [...b.m.keys()].join(\",\"));",
+        "solution": "class BoDem {\n  constructor(max) { this.max = max; this.m = new Map(); }\n  lay(k) {\n    if (!this.m.has(k)) return undefined;\n    const v = this.m.get(k);\n    this.m.delete(k);\n    this.m.set(k, v);\n    return v;\n  }\n  dat(k, v) {\n    this.m.delete(k);\n    this.m.set(k, v);\n    if (this.m.size > this.max) this.m.delete(this.m.keys().next().value);\n  }\n}\n\nconst b = new BoDem(3);\nb.dat(\"a\", 1); b.dat(\"b\", 2); b.dat(\"c\", 3);\nb.lay(\"a\");\nb.dat(\"d\", 4);\nb.lay(\"c\");\nb.dat(\"e\", 5);\nconsole.log(\"Còn: \" + [...b.m.keys()].join(\",\"));",
+        "hints": [
+          "Map lặp theo thứ tự chèn: khoá đầu tiên là khoá lâu nhất chưa được đặt lại.",
+          "Để \"làm mới\" một khoá: delete rồi set lại, nó chuyển xuống cuối."
+        ],
+        "expectedOutput": "Còn: d,c,e"
+      },
+      {
         "type": "closing",
         "lines": [
           "Và điều cuối: chi phí lý thuyết cho bạn hình dạng đường cong, còn con số thật thì chỉ phép đo mới cho được - đúng như danh sách liên kết đã dạy.",
@@ -46132,6 +46692,26 @@ export const lessons: Lesson[] = [
         "text": "Cuối cùng, đừng quên độ phức tạp không gian: lượng bộ nhớ THÊM mà thuật toán cần, ngoài phần chứa dữ liệu vào. Đây là chỗ phân biệt sắp xếp tại chỗ với sắp xếp cần mảng phụ - một khác biệt rất thật khi dữ liệu chiếm gần hết bộ nhớ."
       },
       {
+        "type": "code",
+        "language": "javascript",
+        "runnable": true,
+        "caption": "Đếm bước khi n gấp đôi: bậc lộ ra trong tỷ lệ",
+        "code": "function dem(n) {\n  let tuyenTinh = 0, binhPhuong = 0, logn = 0;\n  for (let i = 0; i < n; i++) tuyenTinh++;\n  for (let i = 0; i < n; i++) for (let j = 0; j < n; j++) binhPhuong++;\n  for (let i = n; i > 1; i = Math.floor(i / 2)) logn++;\n  return [tuyenTinh, binhPhuong, logn];\n}\nfor (const n of [100, 200, 400]) console.log(\"n=\" + n, dem(n).join(\" | \"));"
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Tìm cặp có tổng bằng mục tiêu",
+        "task": "coCap(ds, muc) cho biết có hai phần tử KHÁC VỊ TRÍ có tổng bằng muc. Bản hiện tại hai vòng lặp lồng là O(n²). Viết lại O(n) bằng một Set các số đã thấy; in kết quả và số bước (một bước cho mỗi phần tử đã xét).",
+        "starter": "const ds = Array.from({ length: 2000 }, (_, i) => i * 3);\nlet buoc = 0;\n\nfunction coCap(ds, muc) {\n  for (let i = 0; i < ds.length; i++)\n    for (let j = i + 1; j < ds.length; j++) {\n      buoc++;\n      if (ds[i] + ds[j] === muc) return true;\n    }\n  return false;\n}\n\nfor (const muc of [5997 + 5994, 7, 6]) {\n  buoc = 0;\n  console.log(muc + \": \" + coCap(ds, muc) + \" sau \" + buoc + \" bước\");\n}",
+        "solution": "const ds = Array.from({ length: 2000 }, (_, i) => i * 3);\nlet buoc = 0;\n\nfunction coCap(ds, muc) {\n  const daThay = new Set();\n  for (const x of ds) {\n    buoc++;\n    if (daThay.has(muc - x)) return true;\n    daThay.add(x);\n  }\n  return false;\n}\n\nfor (const muc of [5997 + 5994, 7, 6]) {\n  buoc = 0;\n  console.log(muc + \": \" + coCap(ds, muc) + \" sau \" + buoc + \" bước\");\n}",
+        "hints": [
+          "Với mỗi x, câu hỏi là \"muc - x đã xuất hiện trước đó chưa?\"",
+          "Kiểm tra TRƯỚC khi thêm x vào Set, nếu không x có thể tự ghép với chính nó (muc = 6, x = 3)."
+        ],
+        "expectedOutput": "11991: true sau 2000 bước\n7: false sau 2000 bước\n6: true sau 3 bước"
+      },
+      {
         "type": "closing",
         "lines": [
           "Độ phức tạp cho bạn hình dạng; phép đo cho bạn con số. Bạn cần cả hai, và dùng nhầm cái nào cũng dẫn tới quyết định sai.",
@@ -46322,6 +46902,26 @@ export const lessons: Lesson[] = [
         "text": "Lỗi tràn số đáng kể riêng: nó tồn tại nhiều năm trong thư viện chuẩn của một ngôn ngữ lớn trước khi có người phát hiện. Cách viết an toàn là lấy biên trái cộng nửa khoảng cách giữa hai biên, thay vì cộng hai chỉ số rồi chia."
       },
       {
+        "type": "code",
+        "language": "javascript",
+        "runnable": true,
+        "caption": "Mỗi bước loại một nửa: 1 triệu phần tử, 20 bước",
+        "code": "const ds = Array.from({ length: 1000000 }, (_, i) => i * 2);\nlet buoc = 0;\nlet lo = 0, hi = ds.length - 1;\nconst can = 777776;\nwhile (lo <= hi) {\n  buoc++;\n  const giua = lo + ((hi - lo) >> 1);\n  if (ds[giua] === can) { console.log(\"thấy ở\", giua); break; }\n  if (ds[giua] < can) lo = giua + 1; else hi = giua - 1;\n}\nconsole.log(buoc + \" bước\");"
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Tìm vị trí ĐẦU TIÊN của một giá trị",
+        "task": "Mảng đã sắp xếp có giá trị lặp. viTriDau(ds, x) trả về chỉ số nhỏ nhất có ds[i] === x, hoặc -1. Mã hiện dừng ở lần thấy đầu tiên (không nhất thiết là vị trí đầu) và lặp vô hạn với một số đầu vào vì cập nhật biên sai. Sửa để vẫn là tìm kiếm nhị phân.",
+        "starter": "function viTriDau(ds, x) {\n  let lo = 0, hi = ds.length - 1, vong = 0;\n  while (lo <= hi) {\n    if (++vong > 100) return \"lặp vô hạn\";\n    const giua = Math.floor((lo + hi) / 2);\n    if (ds[giua] === x) return giua;\n    if (ds[giua] < x) lo = giua;\n    else hi = giua - 1;\n  }\n  return -1;\n}\n\nconst ds = [1, 2, 2, 2, 2, 3, 5, 5, 8];\nfor (const x of [2, 5, 1, 8, 4, 9]) console.log(x + \" -> \" + viTriDau(ds, x));",
+        "solution": "function viTriDau(ds, x) {\n  let lo = 0, hi = ds.length - 1, vong = 0, kq = -1;\n  while (lo <= hi) {\n    if (++vong > 100) return \"lặp vô hạn\";\n    const giua = Math.floor((lo + hi) / 2);\n    if (ds[giua] === x) { kq = giua; hi = giua - 1; }\n    else if (ds[giua] < x) lo = giua + 1;\n    else hi = giua - 1;\n  }\n  return kq;\n}\n\nconst ds = [1, 2, 2, 2, 2, 3, 5, 5, 8];\nfor (const x of [2, 5, 1, 8, 4, 9]) console.log(x + \" -> \" + viTriDau(ds, x));",
+        "hints": [
+          "lo = giua không loại được phần tử giữa, nên khoảng có thể không bao giờ co lại.",
+          "Thấy x thì ghi nhận nhưng tiếp tục tìm ở nửa TRÁI (hi = giua - 1)."
+        ],
+        "expectedOutput": "2 -> 1\n5 -> 6\n1 -> 0\n8 -> 8\n4 -> -1\n9 -> -1"
+      },
+      {
         "type": "closing",
         "lines": [
           "Một biến thể đáng học: tìm phần tử ĐẦU TIÊN thoả một điều kiện. Nó trả lời được những câu như bản ghi đầu tiên sau mốc thời gian này, và dùng được cả khi giá trị không có trong mảng.",
@@ -46509,6 +47109,26 @@ export const lessons: Lesson[] = [
       {
         "type": "paragraph",
         "text": "Cuối cùng là con số đáng nhớ. Ở một triệu phần tử, bậc hai cần khoảng một nghìn tỷ thao tác còn n nhân logarit n cần khoảng hai mươi triệu - chênh nhau năm mươi nghìn lần. Không phần cứng nào bù được khoảng đó, và đó là lý do chọn đúng thuật toán quan trọng hơn mua máy nhanh hơn."
+      },
+      {
+        "type": "code",
+        "language": "javascript",
+        "runnable": true,
+        "caption": "Sắp xếp chèn: gần như đã xếp thì gần như không tốn gì",
+        "code": "function chen(a) {\n  let dich = 0;\n  for (let i = 1; i < a.length; i++) {\n    const x = a[i];\n    let j = i - 1;\n    while (j >= 0 && a[j] > x) { a[j + 1] = a[j]; j--; dich++; }\n    a[j + 1] = x;\n  }\n  return dich;\n}\nconst n = 1000;\nconsole.log(\"Đã xếp:\", chen(Array.from({ length: n }, (_, i) => i)));\nconsole.log(\"Lệch 1 chỗ:\", chen(Array.from({ length: n }, (_, i) => (i === 500 ? -1 : i))));\nconsole.log(\"Ngược:\", chen(Array.from({ length: n }, (_, i) => n - i)));"
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Sắp xếp ổn định theo hai tiêu chí",
+        "task": "Viết sapXepChen(ds, soSanh) ổn định: hai phần tử bằng nhau theo soSanh giữ nguyên thứ tự ban đầu. Mã hiện dời cả phần tử BẰNG NHAU nên mất tính ổn định. Sau khi sửa, xếp theo tên rồi xếp theo phòng phải cho kết quả theo phòng, trong mỗi phòng theo tên.",
+        "starter": "function sapXepChen(ds, soSanh) {\n  const a = ds.slice();\n  for (let i = 1; i < a.length; i++) {\n    const x = a[i];\n    let j = i - 1;\n    while (j >= 0 && soSanh(a[j], x) >= 0) { a[j + 1] = a[j]; j--; }\n    a[j + 1] = x;\n  }\n  return a;\n}\n\nconst nv = [\n  { ten: \"Dũng\", phong: \"KT\" }, { ten: \"An\", phong: \"SP\" }, { ten: \"Chi\", phong: \"KT\" },\n  { ten: \"Bình\", phong: \"SP\" }, { ten: \"Em\", phong: \"KT\" },\n];\nconst theoTen = sapXepChen(nv, (a, b) => a.ten.localeCompare(b.ten));\nconst theoPhong = sapXepChen(theoTen, (a, b) => a.phong.localeCompare(b.phong));\nconsole.log(theoPhong.map((x) => x.phong + \"/\" + x.ten).join(\" \"));",
+        "solution": "function sapXepChen(ds, soSanh) {\n  const a = ds.slice();\n  for (let i = 1; i < a.length; i++) {\n    const x = a[i];\n    let j = i - 1;\n    while (j >= 0 && soSanh(a[j], x) > 0) { a[j + 1] = a[j]; j--; }\n    a[j + 1] = x;\n  }\n  return a;\n}\n\nconst nv = [\n  { ten: \"Dũng\", phong: \"KT\" }, { ten: \"An\", phong: \"SP\" }, { ten: \"Chi\", phong: \"KT\" },\n  { ten: \"Bình\", phong: \"SP\" }, { ten: \"Em\", phong: \"KT\" },\n];\nconst theoTen = sapXepChen(nv, (a, b) => a.ten.localeCompare(b.ten));\nconst theoPhong = sapXepChen(theoTen, (a, b) => a.phong.localeCompare(b.phong));\nconsole.log(theoPhong.map((x) => x.phong + \"/\" + x.ten).join(\" \"));",
+        "hints": [
+          "Chỉ dời phần tử LỚN HƠN hẳn x. Phần tử bằng x phải đứng yên phía trước.",
+          "Đổi >= 0 thành > 0."
+        ],
+        "expectedOutput": "KT/Chi KT/Dũng KT/Em SP/An SP/Bình"
       },
       {
         "type": "closing",
@@ -46701,6 +47321,26 @@ export const lessons: Lesson[] = [
         "text": "Cách chặn là chọn mốc ngẫu nhiên. Ngoài việc làm trường hợp xấu khó xảy ra, nó còn ngăn kẻ tấn công dựng sẵn bộ dữ liệu gây bậc hai - cùng ý tưởng với việc trộn giá trị ngẫu nhiên vào hàm băm ở bài 245."
       },
       {
+        "type": "code",
+        "language": "javascript",
+        "runnable": true,
+        "caption": "Sắp xếp trộn: chia đôi, xếp từng nửa, trộn lại",
+        "code": "function tron(a, b) {\n  const r = [];\n  let i = 0, j = 0;\n  while (i < a.length && j < b.length) r.push(a[i] <= b[j] ? a[i++] : b[j++]);\n  return r.concat(a.slice(i), b.slice(j));\n}\nfunction sapXepTron(ds) {\n  if (ds.length <= 1) return ds;\n  const g = ds.length >> 1;\n  return tron(sapXepTron(ds.slice(0, g)), sapXepTron(ds.slice(g)));\n}\nconsole.log(sapXepTron([38, 27, 43, 3, 9, 82, 10]).join(\" \"));"
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Sắp xếp nhanh và cái giá của chốt tồi",
+        "task": "sapXepNhanh đếm số phép so sánh. Với mảng ĐÃ SẮP XẾP, chọn phần tử đầu làm chốt khiến mỗi lần chia chỉ bớt đi một phần tử (O(n²)). Đổi sang chốt là phần tử ở GIỮA đoạn và in lại số phép so sánh; kết quả sắp xếp phải giữ nguyên.",
+        "starter": "let soSanh = 0;\nfunction sapXepNhanh(a) {\n  if (a.length <= 1) return a;\n  const chot = a[0];\n  const nho = [], bang = [], lon = [];\n  for (const x of a) {\n    soSanh++;\n    if (x < chot) nho.push(x); else if (x > chot) lon.push(x); else bang.push(x);\n  }\n  return [...sapXepNhanh(nho), ...bang, ...sapXepNhanh(lon)];\n}\n\nconst daXep = Array.from({ length: 500 }, (_, i) => i);\nconst kq = sapXepNhanh(daXep);\nconsole.log(\"Đúng thứ tự: \" + kq.every((x, i) => x === i));\nconsole.log(\"So sánh: \" + soSanh);\nsoSanh = 0;\nconsole.log(sapXepNhanh([5, 3, 8, 1, 9, 3, 2]).join(\" \"));",
+        "solution": "let soSanh = 0;\nfunction sapXepNhanh(a) {\n  if (a.length <= 1) return a;\n  const chot = a[a.length >> 1];\n  const nho = [], bang = [], lon = [];\n  for (const x of a) {\n    soSanh++;\n    if (x < chot) nho.push(x); else if (x > chot) lon.push(x); else bang.push(x);\n  }\n  return [...sapXepNhanh(nho), ...bang, ...sapXepNhanh(lon)];\n}\n\nconst daXep = Array.from({ length: 500 }, (_, i) => i);\nconst kq = sapXepNhanh(daXep);\nconsole.log(\"Đúng thứ tự: \" + kq.every((x, i) => x === i));\nconsole.log(\"So sánh: \" + soSanh);\nsoSanh = 0;\nconsole.log(sapXepNhanh([5, 3, 8, 1, 9, 3, 2]).join(\" \"));",
+        "hints": [
+          "Mảng đã xếp + chốt đầu: nhánh \"nhỏ\" luôn rỗng, nhánh \"lớn\" chỉ bớt một phần tử.",
+          "Chốt ở giữa (a[a.length >> 1]) chia mảng đã xếp thành hai nửa đều."
+        ],
+        "expectedOutput": "Đúng thứ tự: true\nSo sánh: 3753\n1 2 3 3 5 8 9"
+      },
+      {
         "type": "closing",
         "lines": [
           "Thư viện chuẩn hiện đại là bản lai của cả ba: sắp xếp nhanh cho phần lớn việc, sắp xếp chèn cho mảng con nhỏ, và một thuật toán có bảo đảm khi phát hiện phân hoạch lệch.",
@@ -46884,6 +47524,26 @@ export const lessons: Lesson[] = [
       {
         "type": "paragraph",
         "text": "Cuối cùng, một điểm tinh tế khi phát hiện chu trình: phải phân biệt đỉnh ĐÃ THĂM XONG với đỉnh ĐANG nằm trên đường đi hiện tại. Gặp lại một đỉnh đã thăm xong chỉ nghĩa là hai đường cùng dẫn tới một chỗ; chỉ khi gặp lại đỉnh đang trên đường đi thì mới là chu trình."
+      },
+      {
+        "type": "code",
+        "language": "javascript",
+        "runnable": true,
+        "caption": "Đổi một dòng: hàng đợi là rộng trước, ngăn xếp là sâu trước",
+        "code": "const ke = { A: [\"B\", \"C\"], B: [\"D\"], C: [\"E\"], D: [], E: [] };\nfunction duyet(bd, rongTruoc) {\n  const cho = [bd], da = new Set([bd]), thu = [];\n  while (cho.length) {\n    const u = rongTruoc ? cho.shift() : cho.pop();\n    thu.push(u);\n    for (const v of ke[u]) if (!da.has(v)) { da.add(v); cho.push(v); }\n  }\n  return thu.join(\" \");\n}\nconsole.log(\"Rộng trước:\", duyet(\"A\", true));\nconsole.log(\"Sâu trước:\", duyet(\"A\", false));"
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Số bước ít nhất trong mê cung",
+        "task": "Mê cung dạng lưới: # là tường. In số bước ít nhất từ S tới E (đi 4 hướng), hoặc -1 nếu không tới được. Mã hiện dùng ngăn xếp (sâu trước) và đánh dấu đã thăm lúc LẤY RA, nên ra một đường đi được nhưng không phải ngắn nhất, và một ô bị đưa vào nhiều lần.",
+        "starter": "function ngan(me) {\n  const g = me.map((d) => d.split(\"\"));\n  let bd;\n  g.forEach((d, r) => d.forEach((c, k) => { if (c === \"S\") bd = [r, k]; }));\n  const cho = [[...bd, 0]];\n  const da = new Set();\n  while (cho.length) {\n    const [r, k, d] = cho.pop();\n    if (da.has(r + \",\" + k)) continue;\n    da.add(r + \",\" + k);\n    if (g[r][k] === \"E\") return d;\n    for (const [dr, dk] of [[0, 1], [1, 0], [0, -1], [-1, 0]]) {\n      const nr = r + dr, nk = k + dk;\n      if (g[nr]?.[nk] && g[nr][nk] !== \"#\") cho.push([nr, nk, d + 1]);\n    }\n  }\n  return -1;\n}\n\nconsole.log(ngan([\"S....\", \".##..\", \"....E\"]));\nconsole.log(ngan([\"S.#\", \"..#\", \"##E\"]));\nconsole.log(ngan([\"S...\", \"....\", \"....\", \"...E\"]));",
+        "solution": "function ngan(me) {\n  const g = me.map((d) => d.split(\"\"));\n  let bd;\n  g.forEach((d, r) => d.forEach((c, k) => { if (c === \"S\") bd = [r, k]; }));\n  const cho = [[...bd, 0]];\n  const da = new Set([bd.join(\",\")]);\n  while (cho.length) {\n    const [r, k, d] = cho.shift();\n    if (g[r][k] === \"E\") return d;\n    for (const [dr, dk] of [[0, 1], [1, 0], [0, -1], [-1, 0]]) {\n      const nr = r + dr, nk = k + dk;\n      if (g[nr]?.[nk] && g[nr][nk] !== \"#\" && !da.has(nr + \",\" + nk)) {\n        da.add(nr + \",\" + nk);\n        cho.push([nr, nk, d + 1]);\n      }\n    }\n  }\n  return -1;\n}\n\nconsole.log(ngan([\"S....\", \".##..\", \"....E\"]));\nconsole.log(ngan([\"S.#\", \"..#\", \"##E\"]));\nconsole.log(ngan([\"S...\", \"....\", \"....\", \"...E\"]));",
+        "hints": [
+          "Chỉ duyệt rộng trước mới gặp E theo thứ tự khoảng cách tăng dần: dùng shift thay pop.",
+          "Đánh dấu đã thăm lúc ĐƯA VÀO hàng đợi - đó là dòng hay bị quên nhất."
+        ],
+        "expectedOutput": "6\n-1\n6"
       },
       {
         "type": "closing",
@@ -47079,6 +47739,26 @@ export const lessons: Lesson[] = [
         "text": "Một lưu ý về đệ quy đuôi: khi lời gọi đệ quy là việc CUỐI CÙNG của hàm, về nguyên tắc không cần giữ khung lời gọi và trình dịch có thể biến nó thành vòng lặp. Nhưng nhiều ngôn ngữ phổ biến không làm việc tối ưu đó, nên đừng dựa vào nó nếu chưa kiểm tra ngôn ngữ của mình."
       },
       {
+        "type": "code",
+        "language": "javascript",
+        "runnable": true,
+        "caption": "Ba phần: điểm dừng, thu nhỏ bài toán, tin vào lời gọi đệ quy",
+        "code": "function tong(ds) {\n  if (ds.length === 0) return 0;          // điểm dừng\n  return ds[0] + tong(ds.slice(1));       // phần còn lại nhỏ hơn đúng một phần tử\n}\nconsole.log(tong([3, 1, 4, 1, 5]));\n\nconst cay = { ten: \"src\", con: [{ ten: \"a.js\", con: [] }, { ten: \"lib\", con: [{ ten: \"b.js\", con: [] }] }] };\nconst demTep = (n) => (n.con.length === 0 ? 1 : n.con.reduce((s, c) => s + demTep(c), 0));\nconsole.log(demTep(cay));"
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Làm phẳng mảng lồng nhiều tầng",
+        "task": "phang(ds) trả về mảng một tầng chứa mọi số, giữ thứ tự, với độ lồng bất kỳ. Mã hiện chỉ gỡ được một tầng.",
+        "starter": "function phang(ds) {\n  const kq = [];\n  for (const x of ds) {\n    if (Array.isArray(x)) kq.push(...x);\n    else kq.push(x);\n  }\n  return kq;\n}\n\nconsole.log(JSON.stringify(phang([1, [2, 3], 4])));\nconsole.log(JSON.stringify(phang([1, [2, [3, [4, [5]]]], 6])));\nconsole.log(JSON.stringify(phang([[], [[]], 7])));",
+        "solution": "function phang(ds) {\n  const kq = [];\n  for (const x of ds) {\n    if (Array.isArray(x)) kq.push(...phang(x));\n    else kq.push(x);\n  }\n  return kq;\n}\n\nconsole.log(JSON.stringify(phang([1, [2, 3], 4])));\nconsole.log(JSON.stringify(phang([1, [2, [3, [4, [5]]]], 6])));\nconsole.log(JSON.stringify(phang([[], [[]], 7])));",
+        "hints": [
+          "Một phần tử là mảng thì chính nó là một bài toán nhỏ hơn cùng dạng.",
+          "Gọi phang(x) và trải kết quả vào kq. Điểm dừng là phần tử không phải mảng."
+        ],
+        "expectedOutput": "[1,2,3,4]\n[1,2,3,4,5,6]\n[7]"
+      },
+      {
         "type": "closing",
         "lines": [
           "Tin vào lời gọi con là kỹ năng cần luyện, và nó chuyển từ khó sang tự nhiên nhanh hơn bạn nghĩ.",
@@ -47271,6 +47951,26 @@ export const lessons: Lesson[] = [
         "text": "Lệnh so sánh khác biệt giữa hai tệp trong Git chính là quy hoạch động - nó tìm dãy con chung dài nhất giữa hai danh sách dòng. Khoảng cách chỉnh sửa dùng cho gợi ý sửa chính tả cũng vậy. Bài toán cái túi trong tối ưu tài nguyên cũng vậy."
       },
       {
+        "type": "code",
+        "language": "javascript",
+        "runnable": true,
+        "caption": "Ghi nhớ: cùng một hàm, từ hàng tỷ lời gọi xuống vài chục",
+        "code": "let goi = 0;\nfunction fib(n) { goi++; return n < 2 ? n : fib(n - 1) + fib(n - 2); }\nfib(25);\nconsole.log(\"Không nhớ: \" + goi + \" lời gọi\");\n\ngoi = 0;\nconst nho = new Map();\nfunction fibNho(n) {\n  goi++;\n  if (n < 2) return n;\n  if (!nho.has(n)) nho.set(n, fibNho(n - 1) + fibNho(n - 2));\n  return nho.get(n);\n}\nconsole.log(fibNho(80), \"- có nhớ: \" + goi + \" lời gọi\");"
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Đổi tiền với số tờ ít nhất",
+        "task": "soToItNhat(menhGia, tien) trả về số tờ ít nhất để ghép đúng số tiền, hoặc -1. Mã hiện là đệ quy thử mọi cách: đúng, nhưng với 45 đã tốn hơn một triệu lời gọi. Chuyển sang quy hoạch động từ dưới lên (bảng dp[0..tien]) và in cả số ô đã tính.",
+        "starter": "let buoc = 0;\nfunction soToItNhat(menhGia, tien) {\n  buoc++;\n  if (tien === 0) return 0;\n  let tot = Infinity;\n  for (const m of menhGia) {\n    if (m > tien) continue;\n    const con = soToItNhat(menhGia, tien - m);\n    if (con >= 0) tot = Math.min(tot, con + 1);\n  }\n  return tot === Infinity ? -1 : tot;\n}\n\nfor (const [mg, t] of [[[1, 5, 10, 25], 45], [[1, 3, 4], 6], [[5, 10], 3]]) {\n  buoc = 0;\n  console.log(t + \": \" + soToItNhat(mg, t) + \" tờ, \" + buoc + \" bước\");\n}",
+        "solution": "let buoc = 0;\nfunction soToItNhat(menhGia, tien) {\n  const dp = new Array(tien + 1).fill(Infinity);\n  dp[0] = 0;\n  for (let t = 1; t <= tien; t++) {\n    buoc++;\n    for (const m of menhGia) if (m <= t && dp[t - m] + 1 < dp[t]) dp[t] = dp[t - m] + 1;\n  }\n  return dp[tien] === Infinity ? -1 : dp[tien];\n}\n\nfor (const [mg, t] of [[[1, 5, 10, 25], 45], [[1, 3, 4], 6], [[5, 10], 3]]) {\n  buoc = 0;\n  console.log(t + \": \" + soToItNhat(mg, t) + \" tờ, \" + buoc + \" bước\");\n}",
+        "hints": [
+          "dp[t] = số tờ ít nhất cho số tiền t. dp[0] = 0.",
+          "dp[t] = min(dp[t - m] + 1) trên mọi mệnh giá m ≤ t; đếm một bước cho mỗi ô t."
+        ],
+        "expectedOutput": "45: 3 tờ, 45 bước\n6: 2 tờ, 6 bước\n3: -1 tờ, 3 bước"
+      },
+      {
         "type": "closing",
         "lines": [
           "Kỹ năng đáng luyện không phải thuộc mười bài mẫu, mà là phản xạ hỏi: bài toán này có bài con lặp lại không? Nếu có, phần cài đặt thường chỉ vài dòng.",
@@ -47458,6 +48158,26 @@ export const lessons: Lesson[] = [
       {
         "type": "paragraph",
         "text": "Cả ba đều có chứng minh, và chứng minh thường có cùng hình dạng: chỉ ra rằng bạn luôn đổi được lựa chọn đầu tiên của một lời giải tối ưu bất kỳ thành lựa chọn tham lam mà không làm nó tệ đi. Nếu đổi được thì lựa chọn tham lam nằm trong ít nhất một lời giải tối ưu, và quy nạp lo phần còn lại."
+      },
+      {
+        "type": "code",
+        "language": "javascript",
+        "runnable": true,
+        "caption": "Tham lam đổi tiền: đúng với 1-5-10-25, sai với 1-3-4",
+        "code": "function thamLam(menhGia, tien) {\n  const to = [];\n  for (const m of [...menhGia].sort((a, b) => b - a)) while (tien >= m) { to.push(m); tien -= m; }\n  return to;\n}\nconsole.log(thamLam([1, 5, 10, 25], 63).join(\"+\"));\nconsole.log(thamLam([1, 3, 4], 6).join(\"+\"), \"- tối ưu là 3+3\");"
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Xếp được nhiều cuộc họp nhất vào một phòng",
+        "task": "Mỗi cuộc họp có giờ bắt đầu và kết thúc; một cuộc kết thúc lúc 10 thì cuộc bắt đầu lúc 10 vẫn xếp được. Mã hiện tham lam theo cuộc NGẮN NHẤT, nghe hợp lý nhưng sai. Đổi tiêu chí sang cuộc KẾT THÚC SỚM NHẤT và in các cuộc được chọn.",
+        "starter": "function xepLich(hop) {\n  const ds = [...hop].sort((a, b) => (a.kt - a.bd) - (b.kt - b.bd));\n  const chon = [];\n  for (const h of ds) {\n    if (chon.every((c) => h.kt <= c.bd || h.bd >= c.kt)) chon.push(h);\n  }\n  return chon.sort((a, b) => a.bd - b.bd).map((h) => h.ten).join(\",\");\n}\n\nconsole.log(xepLich([\n  { ten: \"A\", bd: 9, kt: 12 }, { ten: \"B\", bd: 11, kt: 13 }, { ten: \"C\", bd: 12, kt: 15 },\n  { ten: \"D\", bd: 13, kt: 14 }, { ten: \"E\", bd: 14, kt: 16 },\n]));\nconsole.log(xepLich([\n  { ten: \"P\", bd: 8, kt: 11 }, { ten: \"Q\", bd: 10, kt: 12 }, { ten: \"R\", bd: 11, kt: 14 },\n]));",
+        "solution": "function xepLich(hop) {\n  const ds = [...hop].sort((a, b) => a.kt - b.kt);\n  const chon = [];\n  let ketThuc = -Infinity;\n  for (const h of ds) {\n    if (h.bd >= ketThuc) { chon.push(h); ketThuc = h.kt; }\n  }\n  return chon.sort((a, b) => a.bd - b.bd).map((h) => h.ten).join(\",\");\n}\n\nconsole.log(xepLich([\n  { ten: \"A\", bd: 9, kt: 12 }, { ten: \"B\", bd: 11, kt: 13 }, { ten: \"C\", bd: 12, kt: 15 },\n  { ten: \"D\", bd: 13, kt: 14 }, { ten: \"E\", bd: 14, kt: 16 },\n]));\nconsole.log(xepLich([\n  { ten: \"P\", bd: 8, kt: 11 }, { ten: \"Q\", bd: 10, kt: 12 }, { ten: \"R\", bd: 11, kt: 14 },\n]));",
+        "hints": [
+          "Cuộc ngắn nhất có thể nằm chắn ngang giữa hai cuộc dài không chồng nhau.",
+          "Chọn cuộc kết thúc sớm nhất để lại nhiều thời gian nhất cho phần còn lại - đó là lựa chọn tham lam chứng minh được."
+        ],
+        "expectedOutput": "A,D,E\nP,R"
       },
       {
         "type": "closing",
@@ -47654,6 +48374,26 @@ export const lessons: Lesson[] = [
         }
       },
       {
+        "type": "code",
+        "language": "javascript",
+        "runnable": true,
+        "caption": "Rộng trước đếm số cạnh, không đếm trọng số",
+        "code": "const ke = { A: [[\"B\", 10], [\"C\", 1]], B: [[\"D\", 1]], C: [[\"E\", 1]], E: [[\"B\", 1]], D: [] };\n// Rộng trước đi A -> B -> D (2 cạnh, tổng 11)\n// Đường rẻ nhất là A -> C -> E -> B -> D (4 cạnh, tổng 4)\nconsole.log(Object.keys(ke).length + \" đỉnh; hai đường tới D: 11 và 4\");"
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Dijkstra: đường rẻ nhất giữa các kho",
+        "task": "Hoàn thành dijkstra(ke, bd): mỗi vòng lấy đỉnh CHƯA CHỐT có khoảng cách nhỏ nhất, chốt nó, rồi nới lỏng các cạnh ra khỏi nó. Mã hiện lấy đỉnh theo thứ tự thêm vào (như rộng trước) nên chốt sai khoảng cách. In khoảng cách tới từng đỉnh và đường đi tới D.",
+        "starter": "const ke = {\n  A: [[\"B\", 10], [\"C\", 1]],\n  B: [[\"D\", 1]],\n  C: [[\"E\", 1], [\"B\", 7]],\n  E: [[\"B\", 1], [\"D\", 9]],\n  D: [],\n};\n\nfunction dijkstra(ke, bd) {\n  const kc = {}, truoc = {}, chot = new Set();\n  for (const u in ke) kc[u] = Infinity;\n  kc[bd] = 0;\n  const cho = [bd];\n  while (cho.length) {\n    const u = cho.shift();\n    if (chot.has(u)) continue;\n    chot.add(u);\n    for (const [v, w] of ke[u]) {\n      if (!chot.has(v) && kc[u] + w < kc[v]) { kc[v] = kc[u] + w; truoc[v] = u; cho.push(v); }\n    }\n  }\n  return { kc, truoc };\n}\n\nconst { kc, truoc } = dijkstra(ke, \"A\");\nconsole.log(Object.entries(kc).map(([u, d]) => u + \"=\" + d).join(\" \"));\nconst duong = [];\nfor (let u = \"D\"; u; u = truoc[u]) duong.unshift(u);\nconsole.log(duong.join(\" -> \"));",
+        "solution": "const ke = {\n  A: [[\"B\", 10], [\"C\", 1]],\n  B: [[\"D\", 1]],\n  C: [[\"E\", 1], [\"B\", 7]],\n  E: [[\"B\", 1], [\"D\", 9]],\n  D: [],\n};\n\nfunction dijkstra(ke, bd) {\n  const kc = {}, truoc = {}, chot = new Set();\n  for (const u in ke) kc[u] = Infinity;\n  kc[bd] = 0;\n  while (chot.size < Object.keys(ke).length) {\n    let u = null;\n    for (const x in ke) if (!chot.has(x) && (u === null || kc[x] < kc[u])) u = x;\n    if (kc[u] === Infinity) break;\n    chot.add(u);\n    for (const [v, w] of ke[u]) {\n      if (!chot.has(v) && kc[u] + w < kc[v]) { kc[v] = kc[u] + w; truoc[v] = u; }\n    }\n  }\n  return { kc, truoc };\n}\n\nconst { kc, truoc } = dijkstra(ke, \"A\");\nconsole.log(Object.entries(kc).map(([u, d]) => u + \"=\" + d).join(\" \"));\nconst duong = [];\nfor (let u = \"D\"; u; u = truoc[u]) duong.unshift(u);\nconsole.log(duong.join(\" -> \"));",
+        "hints": [
+          "Chốt một đỉnh chỉ an toàn khi nó là đỉnh gần nhất trong những đỉnh chưa chốt.",
+          "Mỗi vòng quét tìm đỉnh chưa chốt có kc nhỏ nhất (bản thật dùng đống ở Bài 247 để làm nhanh bước này)."
+        ],
+        "expectedOutput": "A=0 B=3 C=1 E=2 D=4\nA -> C -> E -> B -> D"
+      },
+      {
         "type": "closing",
         "lines": [
           "Cùng một thuật toán chạy cho định tuyến gói tin, cho tìm chuỗi thao tác rẻ nhất, cho gợi ý lộ trình - chỉ khác nhau ở việc đỉnh và trọng số đại diện cho cái gì.",
@@ -47838,6 +48578,19 @@ export const lessons: Lesson[] = [
       {
         "type": "paragraph",
         "text": "Cảm giác về độ phức tạp dùng để TRÁNH viết ra thứ tệ ngay từ đầu, chứ không phải để đi tối ưu mọi chỗ. Câu hỏi cần thành phản xạ là n ở đây lớn cỡ nào - nó mất năm giây và ngăn được phần lớn sự cố hiệu năng bạn sẽ gặp."
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Bài phỏng vấn kinh điển, giải như trong công việc",
+        "task": "Cho danh sách lượt xem trang (mã người dùng), in 3 người xem nhiều nhất dạng \"mã:số\", hoà thì mã nhỏ hơn đứng trước. Mã hiện đúng ý nhưng đếm bằng filter cho mỗi người (O(n²)) và sắp xếp không xử lý hoà. Đếm bằng một Map trong một lượt duyệt, và in thêm số bước duyệt.",
+        "starter": "const luot = [];\nfor (let i = 0; i < 3000; i++) luot.push(\"u\" + ((i * 7) % 11));\nlet buoc = 0;\n\nconst nguoi = [...new Set(luot)];\nconst dem = nguoi.map((u) => [u, luot.filter((x) => { buoc++; return x === u; }).length]);\ndem.sort((a, b) => b[1] - a[1]);\nconsole.log(dem.slice(0, 3).map(([u, n]) => u + \":\" + n).join(\" \"));\nconsole.log(\"Bước: \" + buoc);",
+        "solution": "const luot = [];\nfor (let i = 0; i < 3000; i++) luot.push(\"u\" + ((i * 7) % 11));\nlet buoc = 0;\n\nconst demMap = new Map();\nfor (const u of luot) { buoc++; demMap.set(u, (demMap.get(u) ?? 0) + 1); }\nconst dem = [...demMap].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));\nconsole.log(dem.slice(0, 3).map(([u, n]) => u + \":\" + n).join(\" \"));\nconsole.log(\"Bước: \" + buoc);",
+        "hints": [
+          "Một lần duyệt, mỗi lượt cộng 1 vào Map.",
+          "Sắp xếp theo số giảm dần, rồi hoà thì so mã: b[1] - a[1] || a[0].localeCompare(b[0])."
+        ],
+        "expectedOutput": "u0:273 u10:273 u2:273\nBước: 3000"
       },
       {
         "type": "closing",
@@ -48058,6 +48811,19 @@ export const lessons: Lesson[] = [
         "text": "Một câu hỏi công bằng: nếu câu trả lời thường là mảng động hoặc bảng băm, sao phải biết mười cấu trúc? Vì bạn không chọn được thứ mình không biết là có tồn tại. Người chỉ biết hai cái sẽ giải bài toán hàng đợi ưu tiên bằng cách sắp xếp lại mảng mỗi lần - vẫn chạy, chậm hơn nhiều, và họ không biết là có cách khác."
       },
       {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Phát hiện đăng nhập bất thường",
+        "task": "Mỗi sự kiện là [giây, người dùng]. Đánh dấu người dùng có từ 3 lần đăng nhập trở lên trong cửa sổ bất kỳ dài 60 giây (tính cả hai đầu). Sự kiện đã theo thứ tự thời gian. Mã hiện chỉ đếm tổng số lần của mỗi người, nên người đăng nhập rải rác cả ngày cũng bị đánh dấu.",
+        "starter": "const sk = [[0, \"an\"], [10, \"binh\"], [30, \"an\"], [100, \"binh\"], [200, \"binh\"], [55, \"an\"],\n  [300, \"chi\"], [320, \"chi\"], [365, \"chi\"], [400, \"chi\"]].sort((a, b) => a[0] - b[0]);\n\nfunction batThuong(sk) {\n  const dem = new Map();\n  for (const [, u] of sk) dem.set(u, (dem.get(u) ?? 0) + 1);\n  return [...dem].filter(([, n]) => n >= 3).map(([u]) => u).sort();\n}\n\nconsole.log(batThuong(sk).join(\",\") || \"(không ai)\");",
+        "solution": "const sk = [[0, \"an\"], [10, \"binh\"], [30, \"an\"], [100, \"binh\"], [200, \"binh\"], [55, \"an\"],\n  [300, \"chi\"], [320, \"chi\"], [365, \"chi\"], [400, \"chi\"]].sort((a, b) => a[0] - b[0]);\n\nfunction batThuong(sk) {\n  const cuaSo = new Map();\n  const kq = new Set();\n  for (const [t, u] of sk) {\n    const q = cuaSo.get(u) ?? [];\n    q.push(t);\n    while (q[0] < t - 60) q.shift();\n    cuaSo.set(u, q);\n    if (q.length >= 3) kq.add(u);\n  }\n  return [...kq].sort();\n}\n\nconsole.log(batThuong(sk).join(\",\") || \"(không ai)\");",
+        "hints": [
+          "Mỗi người một hàng đợi các mốc thời gian gần đây (Map từ người dùng tới hàng đợi).",
+          "Thêm mốc mới vào cuối, bỏ các mốc cũ hơn t - 60 ở đầu, rồi đếm độ dài hàng đợi."
+        ],
+        "expectedOutput": "an"
+      },
+      {
         "type": "closing",
         "lines": [
           "Bốn câu hỏi này vẫn dùng được sau khi bạn quên hết tên thuật toán, vì chúng không dựa vào việc nhớ mà dựa vào việc mô tả đúng bài toán của mình.",
@@ -48250,6 +49016,19 @@ export const lessons: Lesson[] = [
           "label": "Thứ nên giữ",
           "text": "Phản xạ dừng lại trước một vòng lặp lồng nhau và hỏi n ở đây lớn cỡ nào. Nó mất năm giây và nó tác động vào lúc bạn còn đang viết, chứ không phải lúc đã hỏng."
         }
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Bài tổng hợp: thứ tự cài đặt các gói",
+        "task": "Mỗi gói phụ thuộc vào vài gói khác. In một thứ tự cài đặt hợp lệ (gói được cài sau mọi thứ nó phụ thuộc), hoà thì theo tên, hoặc \"Vòng lặp phụ thuộc\" nếu không có thứ tự nào. Mã hiện chỉ sắp xếp theo số phụ thuộc - đúng với ví dụ nhỏ, sai với chuỗi phụ thuộc dài, và không phát hiện vòng lặp.",
+        "starter": "function thuTu(pt) {\n  return Object.keys(pt).sort((a, b) => pt[a].length - pt[b].length || a.localeCompare(b)).join(\" \");\n}\n\nconsole.log(thuTu({ app: [\"ui\", \"api\"], ui: [\"core\"], api: [\"core\", \"db\"], core: [], db: [] }));\nconsole.log(thuTu({ a: [\"b\"], b: [\"c\"], c: [\"d\"], d: [], z: [\"x\", \"y\", \"w\"], x: [], y: [], w: [] }));\nconsole.log(thuTu({ a: [\"b\"], b: [\"a\"], c: [] }));",
+        "solution": "function thuTu(pt) {\n  const conLai = {};\n  const phuc = {};\n  for (const g in pt) { conLai[g] = pt[g].length; phuc[g] = []; }\n  for (const g in pt) for (const d of pt[g]) phuc[d].push(g);\n  const san = Object.keys(pt).filter((g) => conLai[g] === 0).sort();\n  const kq = [];\n  while (san.length) {\n    const g = san.shift();\n    kq.push(g);\n    for (const s of phuc[g]) if (--conLai[s] === 0) { san.push(s); san.sort(); }\n  }\n  return kq.length === Object.keys(pt).length ? kq.join(\" \") : \"Vòng lặp phụ thuộc\";\n}\n\nconsole.log(thuTu({ app: [\"ui\", \"api\"], ui: [\"core\"], api: [\"core\", \"db\"], core: [], db: [] }));\nconsole.log(thuTu({ a: [\"b\"], b: [\"c\"], c: [\"d\"], d: [], z: [\"x\", \"y\", \"w\"], x: [], y: [], w: [] }));\nconsole.log(thuTu({ a: [\"b\"], b: [\"a\"], c: [] }));",
+        "hints": [
+          "Đây là đồ thị có hướng (Bài 248). Đếm cho mỗi gói số phụ thuộc chưa được cài.",
+          "Hàng đợi các gói đã sẵn sàng (đếm = 0); cài một gói thì giảm đếm của những gói cần nó. Còn gói chưa cài được khi hàng đợi rỗng là có vòng lặp."
+        ],
+        "expectedOutput": "core db api ui app\nd c b a w x y z\nVòng lặp phụ thuộc"
       },
       {
         "type": "closing",
@@ -48473,6 +49252,12 @@ export const lessons: Lesson[] = [
         "text": "Bạn chưa viết dòng mã nào, nhưng ba khái niệm trên đã đủ để đọc hiểu phần lớn sự cố của người mới. Chương trình \"đứng im\" thường là đang chờ ổ đĩa hoặc mạng chứ không phải đang tính toán. Máy chậm khi mở nhiều tab thường là hết RAM chứ không phải yếu CPU. Và \"máy tôi chạy được\" gần như luôn là câu chuyện về môi trường - phiên bản công cụ, biến môi trường, thư viện hệ thống - chứ không phải về mã nguồn."
       },
       {
+        "type": "code",
+        "language": "bash",
+        "caption": "Nhìn thấy hệ điều hành đang làm gì",
+        "code": "$ uname -a                 # nhân hệ điều hành và kiến trúc máy\nLinux may-hoc 6.8.0 x86_64 GNU/Linux\n$ uptime                   # đã chạy bao lâu, tải trung bình 1/5/15 phút\n 09:12:03 up 3 days,  2:41,  1 user,  load average: 0.42, 0.31, 0.28\n$ free -h                  # bộ nhớ: phần \"available\" mới là phần còn dùng được\n              total   used   free   shared  buff/cache   available\nMem:           15Gi   5.1Gi  1.2Gi   312Mi       9.2Gi       9.8Gi"
+      },
+      {
         "type": "closing",
         "lines": [
           "Hệ điều hành không phải thứ bạn sẽ viết. Nó là thứ bạn sẽ liên tục nhờ vả, và mọi thông báo lỗi khó hiểu đều là nó đang trả lời bạn.",
@@ -48689,6 +49474,25 @@ export const lessons: Lesson[] = [
         "text": "Cái bẫy thứ nhất là chữ hoa chữ thường. macOS và Windows mặc định coi Anh.png và anh.png là một; Linux thì không. Mã chạy êm trên máy bạn và sập khi triển khai lên máy chủ, mà thông báo lỗi chỉ nói thiếu tệp. Cái bẫy thứ hai là PATH: bạn cài xong một công cụ, gõ tên nó và nhận về command not found. Công cụ có trên máy thật, chỉ là thư mục chứa nó chưa nằm trong danh sách hệ điều hành lục tìm."
       },
       {
+        "type": "code",
+        "language": "bash",
+        "caption": "Đường dẫn tuyệt đối, tương đối, . và ..",
+        "code": "$ pwd\n/home/an/du-an/web\n$ ls ../tai-lieu            # tương đối: đi lên một tầng rồi vào tai-lieu\nghi-chu.md\n$ ls /home/an/du-an/tai-lieu   # tuyệt đối: bắt đầu từ gốc /, đúng ở mọi nơi\nghi-chu.md\n$ cd ~                      # ~ là thư mục nhà của bạn\n$ pwd\n/home/an"
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Tự viết bộ phân giải đường dẫn",
+        "task": "giaiDuongDan(hienTai, dich) trả về đường dẫn tuyệt đối đã rút gọn, như lệnh cd sẽ tới. Hỗ trợ: đường dẫn bắt đầu bằng / (tuyệt đối), ~ (thư mục nhà /home/an), . (ở yên), .. (lên một tầng, ở gốc thì vẫn là gốc), và dấu / thừa. Mã hiện chỉ nối chuỗi.",
+        "starter": "function giaiDuongDan(hienTai, dich) {\n  return hienTai + \"/\" + dich;\n}\n\nfor (const [ht, d] of [\n  [\"/home/an/du-an\", \"web\"],\n  [\"/home/an/du-an\", \"../tai-lieu\"],\n  [\"/home/an/du-an\", \"/etc/nginx/\"],\n  [\"/home/an\", \"~/du-an/./web//css\"],\n  [\"/\", \"../../var\"],\n  [\"/home/an/du-an/web\", \"../..\"],\n]) console.log(ht + \" + \" + d + \" -> \" + giaiDuongDan(ht, d));",
+        "solution": "function giaiDuongDan(hienTai, dich) {\n  let goc = hienTai;\n  if (dich.startsWith(\"/\")) goc = \"/\";\n  else if (dich === \"~\" || dich.startsWith(\"~/\")) { goc = \"/home/an\"; dich = dich.slice(1); }\n  const phan = goc.split(\"/\").filter(Boolean);\n  for (const p of dich.split(\"/\")) {\n    if (p === \"\" || p === \".\") continue;\n    if (p === \"..\") phan.pop();\n    else phan.push(p);\n  }\n  return \"/\" + phan.join(\"/\");\n}\n\nfor (const [ht, d] of [\n  [\"/home/an/du-an\", \"web\"],\n  [\"/home/an/du-an\", \"../tai-lieu\"],\n  [\"/home/an/du-an\", \"/etc/nginx/\"],\n  [\"/home/an\", \"~/du-an/./web//css\"],\n  [\"/\", \"../../var\"],\n  [\"/home/an/du-an/web\", \"../..\"],\n]) console.log(ht + \" + \" + d + \" -> \" + giaiDuongDan(ht, d));",
+        "hints": [
+          "Tách thành từng phần theo dấu /, rồi xử lý như một ngăn xếp: tên thì push, .. thì pop.",
+          "Phần rỗng (từ // hay / ở cuối) và . thì bỏ qua. pop trên mảng rỗng không làm gì - đúng hành vi ở gốc."
+        ],
+        "expectedOutput": "/home/an/du-an + web -> /home/an/du-an/web\n/home/an/du-an + ../tai-lieu -> /home/an/tai-lieu\n/home/an/du-an + /etc/nginx/ -> /etc/nginx\n/home/an + ~/du-an/./web//css -> /home/an/du-an/web/css\n/ + ../../var -> /var\n/home/an/du-an/web + ../.. -> /home/an"
+      },
+      {
         "type": "closing",
         "lines": [
           "Đường dẫn không phải chi tiết vụn vặt. Nó là cách bạn và chương trình thoả thuận với nhau về việc một tệp đang ở đâu.",
@@ -48899,6 +49703,12 @@ export const lessons: Lesson[] = [
           "label": "Phím mũi tên lên",
           "text": "Gọi lại lệnh vừa gõ. Ghép với Tab, hai phím này chiếm phần lớn thao tác thật của một người dùng dòng lệnh thành thạo."
         }
+      },
+      {
+        "type": "code",
+        "language": "bash",
+        "caption": "pwd, ls, cd, và cách đọc hướng dẫn",
+        "code": "$ pwd                       # tôi đang ở đâu\n/home/an\n$ ls -la                    # liệt kê cả tệp ẩn (bắt đầu bằng .), kèm quyền và kích thước\ndrwxr-xr-x  5 an an 4096 Sep 28 09:10 .\n-rw-r--r--  1 an an  220 Sep 20 08:00 .bashrc\ndrwxr-xr-x  3 an an 4096 Sep 28 09:10 du-an\n$ cd du-an && ls\nweb  tai-lieu\n$ man ls                    # hướng dẫn đầy đủ; q để thoát, /từ-khoá để tìm\n$ ls --help | head -5       # bản ngắn"
       },
       {
         "type": "closing",
@@ -49115,6 +49925,25 @@ export const lessons: Lesson[] = [
             "def": "Không qua thùng rác. Thêm -r cho thư mục, -i để được hỏi lại từng tệp."
           }
         ]
+      },
+      {
+        "type": "code",
+        "language": "bash",
+        "caption": "Tạo, chép, đổi tên, xoá - và thói quen xem trước khi xoá",
+        "code": "$ mkdir -p du-an/anh/2026       # -p: tạo luôn các tầng cha còn thiếu\n$ touch ghi-chu.md\n$ cp ghi-chu.md ghi-chu.bak     # chép\n$ mv ghi-chu.bak cu/            # di chuyển (và đổi tên, nếu đích là một tên mới)\n$ ls *.log                      # XEM trước những gì mẫu này khớp\napp.log  loi.log\n$ rm *.log                      # rồi mới xoá; không có thùng rác\n$ rm -ri thu-muc-cu             # -i hỏi từng tệp khi chưa chắc"
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Mẫu ký tự đại diện khớp những tệp nào",
+        "task": "Viết khop(mau, ten) như shell: * khớp chuỗi bất kỳ (kể cả rỗng), ? khớp đúng một ký tự, các ký tự khác phải khớp chính xác, và * không khớp tệp ẩn bắt đầu bằng dấu chấm. Rồi in những tệp mà rm sẽ xoá. Mã hiện dùng includes nên \"*.log\" khớp cả \"log-cu.txt\" và \"app.log.gz\".",
+        "starter": "const tep = [\"app.log\", \"loi.log\", \"app.log.gz\", \"log-cu.txt\", \".an.log\", \"a1.txt\", \"a22.txt\", \"b1.txt\"];\n\nfunction khop(mau, ten) {\n  return ten.includes(mau.replaceAll(\"*\", \"\").replaceAll(\"?\", \"\"));\n}\n\nfor (const mau of [\"*.log\", \"a?.txt\", \"*\", \"*.*.gz\"]) {\n  console.log(\"rm \" + mau + \" -> \" + tep.filter((t) => khop(mau, t)).join(\" \"));\n}",
+        "solution": "const tep = [\"app.log\", \"loi.log\", \"app.log.gz\", \"log-cu.txt\", \".an.log\", \"a1.txt\", \"a22.txt\", \"b1.txt\"];\n\nfunction khop(mau, ten) {\n  if (ten.startsWith(\".\") && !mau.startsWith(\".\")) return false;\n  const re = \"^\" + [...mau].map((c) => (c === \"*\" ? \".*\" : c === \"?\" ? \".\" : c.replace(/[.+^$()|[\\]{}\\\\]/g, \"\\\\$&\"))).join(\"\") + \"$\";\n  return new RegExp(re).test(ten);\n}\n\nfor (const mau of [\"*.log\", \"a?.txt\", \"*\", \"*.*.gz\"]) {\n  console.log(\"rm \" + mau + \" -> \" + tep.filter((t) => khop(mau, t)).join(\" \"));\n}",
+        "hints": [
+          "Khớp phải trọn cả tên, từ đầu tới cuối - không phải \"có chứa\".",
+          "Đổi mẫu thành biểu thức chính quy: * thành .*, ? thành ., dấu chấm phải thoát; bọc trong ^ và $."
+        ],
+        "expectedOutput": "rm *.log -> app.log loi.log\nrm a?.txt -> a1.txt\nrm * -> app.log loi.log app.log.gz log-cu.txt a1.txt a22.txt b1.txt\nrm *.*.gz -> app.log.gz"
       },
       {
         "type": "closing",
@@ -49336,6 +50165,25 @@ export const lessons: Lesson[] = [
       {
         "type": "paragraph",
         "text": "Nói cách khác, permission denied là một câu hỏi chứ không phải một chướng ngại: tệp này thuộc về ai, và tôi đang chạy dưới danh nghĩa ai? Chạy ls -l để xem chủ sở hữu, rồi mới quyết định là thêm quyền bằng chmod, đổi chủ bằng chown, hay đơn giản là làm việc ở một thư mục thuộc về mình."
+      },
+      {
+        "type": "code",
+        "language": "bash",
+        "caption": "Đọc cột quyền và đổi quyền",
+        "code": "$ ls -l\n-rw-r--r-- 1 an an   812 Sep 28 ghi-chu.md     # chủ: đọc+ghi; nhóm và người khác: chỉ đọc\n-rwxr-x--- 1 an dev 2048 Sep 28 trien-khai.sh  # chủ chạy được; nhóm dev đọc và chạy\n$ chmod 600 khoa-bi-mat.txt      # chỉ chủ đọc ghi: 6 = 4 (đọc) + 2 (ghi)\n$ chmod u+x trien-khai.sh        # thêm quyền chạy cho chủ, giữ nguyên phần còn lại\n$ sudo chown www-data:www-data /var/www/app"
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Đổi qua lại giữa rwx và số bát phân",
+        "task": "Viết sangSo(\"rwxr-x---\") trả \"750\" và sangChu(\"644\") trả \"rw-r--r--\". Mỗi nhóm 3 ký tự là một chữ số: r=4, w=2, x=1. Phần in cảnh báo bên dưới đã đúng và dựa vào sangSo. Mã hiện đếm số chữ cái thay vì cộng trọng số, và sangChu chưa được viết.",
+        "starter": "function sangSo(chu) {\n  let so = \"\";\n  for (let i = 0; i < 9; i += 3) so += chu.slice(i, i + 3).replaceAll(\"-\", \"\").length;\n  return so;\n}\nfunction sangChu(so) {\n  return so;\n}\n\nfor (const [ten, q, biMat] of [[\"ghi-chu.md\", \"rw-r--r--\", false], [\"trien-khai.sh\", \"rwxr-x---\", false],\n  [\"id_ed25519\", \"rw-r--r--\", true], [\"tai-len/\", \"rwxrwxrwx\", false]]) {\n  const so = sangSo(q);\n  const canh = [];\n  if (Number(so[2]) & 2) canh.push(\"ai cũng ghi được\");\n  if (biMat && (so[1] !== \"0\" || so[2] !== \"0\")) canh.push(\"bí mật bị lộ\");\n  console.log(ten + \" \" + q + \" = \" + so + \" -> \" + sangChu(so) + (canh.length ? \"  CẢNH BÁO: \" + canh.join(\", \") : \"\"));\n}",
+        "solution": "function sangSo(chu) {\n  let so = \"\";\n  for (let i = 0; i < 9; i += 3) {\n    const [r, w, x] = chu.slice(i, i + 3);\n    so += (r === \"r\" ? 4 : 0) + (w === \"w\" ? 2 : 0) + (x === \"x\" ? 1 : 0);\n  }\n  return so;\n}\nfunction sangChu(so) {\n  return [...so].map((d) => (d & 4 ? \"r\" : \"-\") + (d & 2 ? \"w\" : \"-\") + (d & 1 ? \"x\" : \"-\")).join(\"\");\n}\n\nfor (const [ten, q, biMat] of [[\"ghi-chu.md\", \"rw-r--r--\", false], [\"trien-khai.sh\", \"rwxr-x---\", false],\n  [\"id_ed25519\", \"rw-r--r--\", true], [\"tai-len/\", \"rwxrwxrwx\", false]]) {\n  const so = sangSo(q);\n  const canh = [];\n  if (Number(so[2]) & 2) canh.push(\"ai cũng ghi được\");\n  if (biMat && (so[1] !== \"0\" || so[2] !== \"0\")) canh.push(\"bí mật bị lộ\");\n  console.log(ten + \" \" + q + \" = \" + so + \" -> \" + sangChu(so) + (canh.length ? \"  CẢNH BÁO: \" + canh.join(\", \") : \"\"));\n}",
+        "hints": [
+          "\"r-x\" có hai chữ cái nhưng giá trị là 4 + 1 = 5, không phải 2.",
+          "Chiều ngược lại: với mỗi chữ số d, kiểm d & 4, d & 2, d & 1."
+        ],
+        "expectedOutput": "ghi-chu.md rw-r--r-- = 644 -> rw-r--r--\ntrien-khai.sh rwxr-x--- = 750 -> rwxr-x---\nid_ed25519 rw-r--r-- = 644 -> rw-r--r--  CẢNH BÁO: bí mật bị lộ\ntai-len/ rwxrwxrwx = 777 -> rwxrwxrwx  CẢNH BÁO: ai cũng ghi được"
       },
       {
         "type": "closing",
@@ -49754,6 +50602,19 @@ export const lessons: Lesson[] = [
         "text": "Mục đầu quan trọng nhất. Một API cho một trăm lượt gọi mỗi phút thì bạn không thể gọi nó cho từng người dùng khi có lưu lượng - phải đặt bộ nhớ đệm hoặc gom lượt gọi. Phát hiện điều đó sau khi đã viết xong nghĩa là viết lại."
       },
       {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Kiểm một phản hồi có đúng hợp đồng không",
+        "task": "Hợp đồng nói mỗi sản phẩm có id (số), ten (chuỗi), gia (số, không âm) và con_hang (true/false). Viết kiemHopDong(sp) trả về danh sách trường vi phạm. Mã hiện chỉ kiểm trường có tồn tại hay không, nên giá dạng chuỗi hay giá âm vẫn lọt.",
+        "starter": "function kiemHopDong(sp) {\n  const loi = [];\n  for (const truong of [\"id\", \"ten\", \"gia\", \"con_hang\"]) {\n    if (!(truong in sp)) loi.push(truong);\n  }\n  return loi;\n}\n\nconst phanHoi = [\n  { id: 1, ten: \"Bút\", gia: 12000, con_hang: true },\n  { id: 2, ten: \"Vở\", gia: \"15000\", con_hang: true },\n  { id: \"3\", ten: \"Thước\", gia: -5, con_hang: \"có\" },\n  { id: 4, ten: \"Tẩy\", gia: 3000 },\n];\nfor (const sp of phanHoi) {\n  const loi = kiemHopDong(sp);\n  console.log(sp.ten + \": \" + (loi.length ? \"vi phạm \" + loi.join(\",\") : \"đúng hợp đồng\"));\n}",
+        "solution": "function kiemHopDong(sp) {\n  const loi = [];\n  if (typeof sp.id !== \"number\") loi.push(\"id\");\n  if (typeof sp.ten !== \"string\") loi.push(\"ten\");\n  if (typeof sp.gia !== \"number\" || sp.gia < 0) loi.push(\"gia\");\n  if (typeof sp.con_hang !== \"boolean\") loi.push(\"con_hang\");\n  return loi;\n}\n\nconst phanHoi = [\n  { id: 1, ten: \"Bút\", gia: 12000, con_hang: true },\n  { id: 2, ten: \"Vở\", gia: \"15000\", con_hang: true },\n  { id: \"3\", ten: \"Thước\", gia: -5, con_hang: \"có\" },\n  { id: 4, ten: \"Tẩy\", gia: 3000 },\n];\nfor (const sp of phanHoi) {\n  const loi = kiemHopDong(sp);\n  console.log(sp.ten + \": \" + (loi.length ? \"vi phạm \" + loi.join(\",\") : \"đúng hợp đồng\"));\n}",
+        "hints": [
+          "Hợp đồng quy định cả KIỂU, không chỉ tên trường: dùng typeof.",
+          "Trường thiếu thì typeof là \"undefined\" - một phép kiểm kiểu bắt được cả trường hợp thiếu."
+        ],
+        "expectedOutput": "Bút: đúng hợp đồng\nVở: vi phạm gia\nThước: vi phạm id,gia,con_hang\nTẩy: vi phạm con_hang"
+      },
+      {
         "type": "closing",
         "lines": [
           "Điều này đúng cả với API nội bộ giữa hai đội cùng công ty: trao đổi trực tiếp không chịu được quy mô, còn hợp đồng viết ra thì không phụ thuộc vào việc ai nhớ nói với ai.",
@@ -49962,6 +50823,26 @@ export const lessons: Lesson[] = [
         "text": "Cuối cùng là phần đầu: chỗ đặt thông tin VỀ yêu cầu chứ không phải nội dung của nó - định dạng dữ liệu, thông tin xác thực, ngôn ngữ mong muốn. Và ở chiều ngược lại, đó là chỗ dịch vụ trả về hạn ngạch còn lại và thời gian bạn nên chờ."
       },
       {
+        "type": "code",
+        "language": "javascript",
+        "runnable": true,
+        "caption": "Mã trạng thái nói lỗi thuộc về ai",
+        "code": "const nhom = (ma) =>\n  ma < 300 ? \"thành công\" : ma < 400 ? \"chuyển hướng\" : ma < 500 ? \"lỗi phía gọi - sửa yêu cầu\" : \"lỗi phía dịch vụ - có thể thử lại\";\nfor (const ma of [200, 201, 304, 400, 401, 404, 429, 500, 503]) console.log(ma, nhom(ma));"
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Viết bộ định tuyến trả đúng mã trạng thái",
+        "task": "xuLy(phuongThuc, duongDan, than) cho một kho sản phẩm trong bộ nhớ. Yêu cầu: GET /sp/:id → 200 hoặc 404; POST /sp thiếu tên → 400, hợp lệ → 201; DELETE lặp lại vẫn 204 (bất biến khi lặp); phương thức khác → 405. Mã hiện trả 200 cho mọi thứ.",
+        "starter": "const kho = { 1: { ten: \"Bút\" } };\nlet idMoi = 2;\n\nfunction xuLy(pt, duong, than) {\n  const m = duong.match(/^\\/sp(?:\\/(\\d+))?$/);\n  const id = m && m[1];\n  if (pt === \"GET\") return [200, kho[id]];\n  if (pt === \"POST\") { kho[idMoi] = than; return [200, { id: idMoi++ }]; }\n  if (pt === \"DELETE\") { delete kho[id]; return [200]; }\n  return [200];\n}\n\nfor (const [pt, d, t] of [[\"GET\", \"/sp/1\"], [\"GET\", \"/sp/9\"], [\"POST\", \"/sp\", {}], [\"POST\", \"/sp\", { ten: \"Vở\" }],\n  [\"DELETE\", \"/sp/1\"], [\"DELETE\", \"/sp/1\"], [\"PUT\", \"/sp/2\"]]) {\n  const [ma, body] = xuLy(pt, d, t);\n  console.log(pt + \" \" + d + \" -> \" + ma + (body ? \" \" + JSON.stringify(body) : \"\"));\n}",
+        "solution": "const kho = { 1: { ten: \"Bút\" } };\nlet idMoi = 2;\n\nfunction xuLy(pt, duong, than) {\n  const m = duong.match(/^\\/sp(?:\\/(\\d+))?$/);\n  const id = m && m[1];\n  if (pt === \"GET\") return kho[id] ? [200, kho[id]] : [404];\n  if (pt === \"POST\") {\n    if (!than || !than.ten) return [400, { loi: \"thiếu ten\" }];\n    kho[idMoi] = than;\n    return [201, { id: idMoi++ }];\n  }\n  if (pt === \"DELETE\") { delete kho[id]; return [204]; }\n  return [405];\n}\n\nfor (const [pt, d, t] of [[\"GET\", \"/sp/1\"], [\"GET\", \"/sp/9\"], [\"POST\", \"/sp\", {}], [\"POST\", \"/sp\", { ten: \"Vở\" }],\n  [\"DELETE\", \"/sp/1\"], [\"DELETE\", \"/sp/1\"], [\"PUT\", \"/sp/2\"]]) {\n  const [ma, body] = xuLy(pt, d, t);\n  console.log(pt + \" \" + d + \" -> \" + ma + (body ? \" \" + JSON.stringify(body) : \"\"));\n}",
+        "hints": [
+          "Trả 200 kèm dữ liệu rỗng buộc bên gọi đoán - 404 nói rõ \"không có\".",
+          "DELETE lần hai vẫn 204: trạng thái cuối cùng giống nhau, nên thử lại an toàn."
+        ],
+        "expectedOutput": "GET /sp/1 -> 200 {\"ten\":\"Bút\"}\nGET /sp/9 -> 404\nPOST /sp -> 400 {\"loi\":\"thiếu ten\"}\nPOST /sp -> 201 {\"id\":2}\nDELETE /sp/1 -> 204\nDELETE /sp/1 -> 204\nPUT /sp/2 -> 405"
+      },
+      {
         "type": "closing",
         "lines": [
           "Khi bị chặn vì gọi quá nhanh, dịch vụ nói rõ nên chờ bao nhiêu giây. Bên kia biết trạng thái hệ thống của họ còn bạn thì không, nên con số đó luôn tốt hơn con số bạn đoán.",
@@ -50150,6 +51031,26 @@ export const lessons: Lesson[] = [
       {
         "type": "paragraph",
         "text": "Từ đó rút ra thói quen cuối: kiểm tra khuôn dữ liệu ngay khi nhận, tại biên của hệ thống. Một trường vắng mặt thường không gây lỗi tại chỗ nhận - nó thành giá trị rỗng rồi đi sâu vào trong và gây lỗi ở một chỗ hoàn toàn khác, nơi bạn mất hàng giờ để truy ngược."
+      },
+      {
+        "type": "code",
+        "language": "javascript",
+        "runnable": true,
+        "caption": "Sáu kiểu của JSON, và thứ JSON không có",
+        "code": "const goc = { ngay: new Date(0), ham: () => 1, khong: undefined, so: NaN, mang: [1, \"a\", null, true] };\nconsole.log(JSON.stringify(goc));\n// Date thành chuỗi, hàm và undefined biến mất, NaN thành null"
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Đọc số tiền và ngày từ một API thật",
+        "task": "API trả tiền dạng chuỗi (để không mất độ chính xác) và thời gian dạng chuỗi ISO. Trường ghi_chu có thể là null hoặc vắng hẳn. In mỗi giao dịch dạng \"ngày/tháng/năm | số tiền có dấu chấm ngăn cách | ghi chú hoặc -\". Tính theo giờ UTC. Mã hiện cộng chuỗi và in ngày nguyên dạng.",
+        "starter": "const phanHoi = '{\"du_lieu\":[{\"tien\":\"1500000\",\"luc\":\"2026-03-04T10:00:00Z\",\"ghi_chu\":\"Học phí\"},{\"tien\":\"250000\",\"luc\":\"2026-03-15T23:30:00Z\",\"ghi_chu\":null},{\"tien\":\"99000\",\"luc\":\"2026-04-01T00:05:00Z\"}]}';\n\nconst ds = JSON.parse(phanHoi).du_lieu;\nlet tong = 0;\nfor (const g of ds) {\n  tong += g.tien;\n  console.log(g.luc + \" | \" + g.tien + \" | \" + g.ghi_chu);\n}\nconsole.log(\"Tổng: \" + tong);",
+        "solution": "const phanHoi = '{\"du_lieu\":[{\"tien\":\"1500000\",\"luc\":\"2026-03-04T10:00:00Z\",\"ghi_chu\":\"Học phí\"},{\"tien\":\"250000\",\"luc\":\"2026-03-15T23:30:00Z\",\"ghi_chu\":null},{\"tien\":\"99000\",\"luc\":\"2026-04-01T00:05:00Z\"}]}';\n\nconst chamNgan = (n) => String(n).replace(/\\B(?=(\\d{3})+(?!\\d))/g, \".\");\nconst ngay = (iso) => { const d = new Date(iso); return d.getUTCDate() + \"/\" + (d.getUTCMonth() + 1) + \"/\" + d.getUTCFullYear(); };\n\nconst ds = JSON.parse(phanHoi).du_lieu;\nlet tong = 0;\nfor (const g of ds) {\n  tong += Number(g.tien);\n  console.log(ngay(g.luc) + \" | \" + chamNgan(g.tien) + \" | \" + (g.ghi_chu ?? \"-\"));\n}\nconsole.log(\"Tổng: \" + chamNgan(tong));",
+        "hints": [
+          "\"1500000\" + \"250000\" là nối chuỗi. Đổi bằng Number trước khi cộng.",
+          "null và trường vắng đều xử lý được bằng ?? \"-\". Ngày: new Date(iso) rồi dùng getUTCDate, getUTCMonth (đếm từ 0), getUTCFullYear."
+        ],
+        "expectedOutput": "4/3/2026 | 1.500.000 | Học phí\n15/3/2026 | 250.000 | -\n1/4/2026 | 99.000 | -\nTổng: 1.849.000"
       },
       {
         "type": "closing",
@@ -50342,6 +51243,25 @@ export const lessons: Lesson[] = [
         "text": "Khi chuyển từ dòng lệnh sang mã, giữ nguyên đúng tham số vừa chạy được. Đổi cả cách gọi lẫn tham số cùng lúc thì bạn lại có nhiều nghi phạm như cũ, và mất luôn lợi ích của việc đã làm bước đầu."
       },
       {
+        "type": "code",
+        "language": "bash",
+        "caption": "Cùng một lượt gọi, từ dòng lệnh tới mã",
+        "code": "# Thử bằng dòng lệnh trước: thấy nguyên phản hồi, không có mã của bạn xen vào\ncurl -i -H \"Authorization: Bearer $API_KEY\" \"https://api.vi-du.vn/v1/sp?gioi_han=2\"\n\n# -i in cả dòng trạng thái và phần đầu: HTTP/2 200, content-type, x-ratelimit-remaining"
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Dựng yêu cầu đúng cách: khoá, thời gian chờ, mã theo dõi",
+        "task": "Viết taoYeuCau(duong, thamSo, env) trả về đối tượng yêu cầu. Khoá API lấy từ env (không viết cứng trong mã), đi trong phần đầu Authorization chứ không nằm trong URL; tham số được mã hoá URL; có timeoutMs 10000 và x-request-id. In yêu cầu đã che khoá. Mã hiện nhét khoá vào URL và không mã hoá tham số.",
+        "starter": "const env = { API_KEY: \"sk_test_ABCD1234\" };\nlet dem = 0;\nconst idMoi = () => \"req-\" + ++dem;\n\nfunction taoYeuCau(duong, thamSo, env) {\n  const qs = Object.entries(thamSo).map(([k, v]) => k + \"=\" + v).join(\"&\");\n  return { url: \"https://api.vi-du.vn\" + duong + \"?\" + qs + \"&key=sk_test_ABCD1234\", headers: {} };\n}\n\nconst che = (s) => String(s).replace(/sk_[a-z]+_\\w+/g, \"sk_***\");\nconst yc = taoYeuCau(\"/v1/sp\", { tim: \"bút bi & vở\", gioi_han: 2 }, env);\nconsole.log(che(yc.url));\nconsole.log(che(JSON.stringify(yc.headers)));\nconsole.log(\"timeout: \" + yc.timeoutMs);",
+        "solution": "const env = { API_KEY: \"sk_test_ABCD1234\" };\nlet dem = 0;\nconst idMoi = () => \"req-\" + ++dem;\n\nfunction taoYeuCau(duong, thamSo, env) {\n  const qs = Object.entries(thamSo).map(([k, v]) => encodeURIComponent(k) + \"=\" + encodeURIComponent(v)).join(\"&\");\n  return {\n    url: \"https://api.vi-du.vn\" + duong + \"?\" + qs,\n    headers: { Authorization: \"Bearer \" + env.API_KEY, \"x-request-id\": idMoi() },\n    timeoutMs: 10000,\n  };\n}\n\nconst che = (s) => String(s).replace(/sk_[a-z]+_\\w+/g, \"sk_***\");\nconst yc = taoYeuCau(\"/v1/sp\", { tim: \"bút bi & vở\", gioi_han: 2 }, env);\nconsole.log(che(yc.url));\nconsole.log(che(JSON.stringify(yc.headers)));\nconsole.log(\"timeout: \" + yc.timeoutMs);",
+        "hints": [
+          "URL bị ghi vào nhật ký máy chủ, lịch sử trình duyệt, proxy - khoá không được nằm ở đó.",
+          "encodeURIComponent mã hoá dấu cách, dấu & và chữ có dấu, để \"bút bi & vở\" không bị cắt làm hai tham số."
+        ],
+        "expectedOutput": "https://api.vi-du.vn/v1/sp?tim=b%C3%BAt%20bi%20%26%20v%E1%BB%9F&gioi_han=2\n{\"Authorization\":\"Bearer sk_***\",\"x-request-id\":\"req-1\"}\ntimeout: 10000"
+      },
+      {
         "type": "closing",
         "lines": [
           "Nguyên tắc chung của cả bài: đi từng bước để mỗi lần lỗi chỉ có một nguyên nhân khả dĩ.",
@@ -50525,6 +51445,19 @@ export const lessons: Lesson[] = [
       {
         "type": "paragraph",
         "text": "Nếu bạn đồng bộ định kỳ, đừng lấy lại toàn bộ mỗi lần. Dùng trường thời điểm sửa đổi hoặc con trỏ thay đổi để chỉ lấy phần đã đổi kể từ lần trước. Nó biến một công việc tăng theo TỔNG dữ liệu thành công việc tăng theo LƯỢNG THAY ĐỔI."
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Phân trang bằng con trỏ khi dữ liệu thay đổi giữa hai trang",
+        "task": "Máy chủ giả trả dữ liệu mới nhất trước. Giữa lúc đọc trang 1 và trang 2 có một bản ghi MỚI chèn vào đầu. Phân trang bằng offset thì trang 2 lặp lại một bản ghi. Viết lại layTrang dùng con trỏ \"sau_id\" (lấy các bản ghi có id nhỏ hơn id cuối của trang trước) để không lặp, không sót.",
+        "starter": "let ban = [9, 8, 7, 6, 5, 4, 3, 2, 1].map((id) => ({ id }));\n\nfunction layTrangOffset(offset, co) { return ban.slice(offset, offset + co); }\nfunction layTrang(sauId, co) { return layTrangOffset(0, co); }\n\nconst daDoc = [];\nconst t1 = layTrangOffset(0, 3);\ndaDoc.push(...t1);\nban = [{ id: 10 }, ...ban];           // bản ghi mới chèn vào giữa hai lần đọc\nconst t2 = layTrangOffset(3, 3);\ndaDoc.push(...t2);\nconsole.log(\"Offset: \" + daDoc.map((x) => x.id).join(\",\"));\n\nban = ban.filter((x) => x.id !== 10);\nconst doc2 = [];\nlet trang = layTrang(null, 3);\ndoc2.push(...trang);\nban = [{ id: 10 }, ...ban];\ntrang = layTrang(trang[trang.length - 1].id, 3);\ndoc2.push(...trang);\nconsole.log(\"Con trỏ: \" + doc2.map((x) => x.id).join(\",\"));",
+        "solution": "let ban = [9, 8, 7, 6, 5, 4, 3, 2, 1].map((id) => ({ id }));\n\nfunction layTrangOffset(offset, co) { return ban.slice(offset, offset + co); }\nfunction layTrang(sauId, co) {\n  return ban.filter((x) => sauId === null || x.id < sauId).slice(0, co);\n}\n\nconst daDoc = [];\nconst t1 = layTrangOffset(0, 3);\ndaDoc.push(...t1);\nban = [{ id: 10 }, ...ban];           // bản ghi mới chèn vào giữa hai lần đọc\nconst t2 = layTrangOffset(3, 3);\ndaDoc.push(...t2);\nconsole.log(\"Offset: \" + daDoc.map((x) => x.id).join(\",\"));\n\nban = ban.filter((x) => x.id !== 10);\nconst doc2 = [];\nlet trang = layTrang(null, 3);\ndoc2.push(...trang);\nban = [{ id: 10 }, ...ban];\ntrang = layTrang(trang[trang.length - 1].id, 3);\ndoc2.push(...trang);\nconsole.log(\"Con trỏ: \" + doc2.map((x) => x.id).join(\",\"));",
+        "hints": [
+          "Offset đếm vị trí, và vị trí thay đổi khi có bản ghi chèn vào trước.",
+          "Con trỏ neo vào dữ liệu: \"những bản ghi có id nhỏ hơn 7\" không đổi khi có id 10 mới xuất hiện."
+        ],
+        "expectedOutput": "Offset: 9,8,7,7,6,5\nCon trỏ: 9,8,7,6,5,4"
       },
       {
         "type": "closing",
@@ -50729,6 +51662,19 @@ export const lessons: Lesson[] = [
         }
       },
       {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Kiểm mã thông báo: hết hạn và phạm vi quyền",
+        "task": "Mỗi mã thông báo có sub (ai), exp (hết hạn, giây) và scope (danh sách quyền). choPhep(ma, quyenCan, bayGio) trả về \"401\" khi thiếu hoặc hết hạn, \"403\" khi hợp lệ mà thiếu quyền, \"OK\" khi đủ. Mã hiện chỉ kiểm có mã hay không.",
+        "starter": "function choPhep(ma, quyenCan, bayGio) {\n  if (!ma) return \"401\";\n  return \"OK\";\n}\n\nconst bayGio = 1000;\nconst ca = [\n  [null, \"don:doc\"],\n  [{ sub: \"an\", exp: 900, scope: [\"don:doc\"] }, \"don:doc\"],\n  [{ sub: \"an\", exp: 2000, scope: [\"don:doc\"] }, \"don:ghi\"],\n  [{ sub: \"an\", exp: 2000, scope: [\"don:doc\", \"don:ghi\"] }, \"don:ghi\"],\n  [{ sub: \"an\", exp: 1000, scope: [\"don:doc\"] }, \"don:doc\"],\n];\nfor (const [ma, q] of ca) console.log((ma ? ma.exp + \"/\" + ma.scope.join(\"+\") : \"không mã\") + \" cần \" + q + \" -> \" + choPhep(ma, q, bayGio));",
+        "solution": "function choPhep(ma, quyenCan, bayGio) {\n  if (!ma || ma.exp <= bayGio) return \"401\";\n  if (!ma.scope.includes(quyenCan)) return \"403\";\n  return \"OK\";\n}\n\nconst bayGio = 1000;\nconst ca = [\n  [null, \"don:doc\"],\n  [{ sub: \"an\", exp: 900, scope: [\"don:doc\"] }, \"don:doc\"],\n  [{ sub: \"an\", exp: 2000, scope: [\"don:doc\"] }, \"don:ghi\"],\n  [{ sub: \"an\", exp: 2000, scope: [\"don:doc\", \"don:ghi\"] }, \"don:ghi\"],\n  [{ sub: \"an\", exp: 1000, scope: [\"don:doc\"] }, \"don:doc\"],\n];\nfor (const [ma, q] of ca) console.log((ma ? ma.exp + \"/\" + ma.scope.join(\"+\") : \"không mã\") + \" cần \" + q + \" -> \" + choPhep(ma, q, bayGio));",
+        "hints": [
+          "401 là \"tôi không biết bạn là ai\" (xác thực); 403 là \"tôi biết, nhưng bạn không được làm việc này\" (uỷ quyền).",
+          "Hết hạn đúng tại thời điểm exp: dùng <=."
+        ],
+        "expectedOutput": "không mã cần don:doc -> 401\n900/don:doc cần don:doc -> 401\n2000/don:doc cần don:ghi -> 403\n2000/don:doc+don:ghi cần don:ghi -> OK\n1000/don:doc cần don:doc -> 401"
+      },
+      {
         "type": "closing",
         "lines": [
           "Chọn cơ chế theo câu hỏi mở đầu: cần dữ liệu của chính bạn thì khoá API là đủ; cần dữ liệu riêng của người dùng thì bắt buộc phải có sự cho phép của họ.",
@@ -50923,6 +51869,26 @@ export const lessons: Lesson[] = [
         "text": "Cầu dao ngắt mạch: sau nhiều lỗi liên tiếp thì ngừng gọi hẳn một khoảng, rồi thử một lượt dò xem đã khỏi chưa. Nó vừa cho bên kia thời gian hồi phục, vừa cứu hệ thống của bạn khỏi việc treo hàng loạt luồng để chờ một thứ đằng nào cũng lỗi."
       },
       {
+        "type": "code",
+        "language": "javascript",
+        "runnable": true,
+        "caption": "Lùi theo cấp số nhân, có nhiễu",
+        "code": "let hat = 7;\nconst ngauNhien = () => ((hat = (hat * 9301 + 49297) % 233280) / 233280); // giả ngẫu nhiên, lặp lại được\nfor (let lan = 0; lan < 5; lan++) {\n  const tran = Math.min(30000, 500 * 2 ** lan);\n  console.log(\"Lần \" + (lan + 1) + \": chờ tối đa \" + tran + \"ms, thực tế \" + Math.round(ngauNhien() * tran) + \"ms\");\n}"
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Thử lại đúng lỗi, đúng số lần",
+        "task": "goiCoThuLai(goi, toiDa) gọi lại khi lỗi là 429 hoặc 5xx, tối đa toiDa lần thử tổng cộng, với thời gian chờ 200, 400, 800... (ghi vào mảng cho thay vì chờ thật). Với 429 có retryAfter thì chờ đúng retryAfter. Lỗi 4xx khác trả về ngay, không thử lại. Mã hiện thử lại mọi lỗi, không giới hạn và không chờ.",
+        "starter": "async function goiCoThuLai(goi, toiDa) {\n  const cho = [];\n  while (true) {\n    const r = await goi();\n    if (r.status < 400) return { ...r, cho };\n    if (cho.length > 20) return { status: \"treo\", cho };\n    cho.push(0);\n  }\n}\n\nconst kichBan = (ds) => { let i = 0; return async () => ds[Math.min(i++, ds.length - 1)]; };\nfor (const [ten, ds] of [\n  [\"503 rồi ổn\", [{ status: 503 }, { status: 503 }, { status: 200 }]],\n  [\"429 có Retry-After\", [{ status: 429, retryAfter: 1500 }, { status: 200 }]],\n  [\"400 sai yêu cầu\", [{ status: 400 }, { status: 200 }]],\n  [\"500 mãi\", [{ status: 500 }]],\n]) {\n  const kq = await goiCoThuLai(kichBan(ds), 4);\n  console.log(ten + \": \" + kq.status + \" sau chờ [\" + kq.cho.join(\",\") + \"]\");\n}",
+        "solution": "async function goiCoThuLai(goi, toiDa) {\n  const cho = [];\n  for (let lan = 1; ; lan++) {\n    const r = await goi();\n    if (r.status < 400) return { ...r, cho };\n    const thuLaiDuoc = r.status === 429 || r.status >= 500;\n    if (!thuLaiDuoc || lan >= toiDa) return { ...r, cho };\n    cho.push(r.status === 429 && r.retryAfter ? r.retryAfter : 200 * 2 ** (lan - 1));\n  }\n}\n\nconst kichBan = (ds) => { let i = 0; return async () => ds[Math.min(i++, ds.length - 1)]; };\nfor (const [ten, ds] of [\n  [\"503 rồi ổn\", [{ status: 503 }, { status: 503 }, { status: 200 }]],\n  [\"429 có Retry-After\", [{ status: 429, retryAfter: 1500 }, { status: 200 }]],\n  [\"400 sai yêu cầu\", [{ status: 400 }, { status: 200 }]],\n  [\"500 mãi\", [{ status: 500 }]],\n]) {\n  const kq = await goiCoThuLai(kichBan(ds), 4);\n  console.log(ten + \": \" + kq.status + \" sau chờ [\" + kq.cho.join(\",\") + \"]\");\n}",
+        "hints": [
+          "400 nghĩa là yêu cầu sai - gửi lại y hệt thì vẫn sai.",
+          "Đếm lần thử; lần thứ n chờ 200 × 2^(n-1). Hết lượt thì trả về lỗi cuối cùng."
+        ],
+        "expectedOutput": "503 rồi ổn: 200 sau chờ [200,400]\n429 có Retry-After: 200 sau chờ [1500]\n400 sai yêu cầu: 400 sau chờ []\n500 mãi: 500 sau chờ [200,400,800]"
+      },
+      {
         "type": "closing",
         "lines": [
           "Và cách giảm tải rẻ nhất vẫn là bộ nhớ đệm: lượt gọi không thực hiện là lượt gọi rẻ nhất. Với dữ liệu như tỷ giá hay danh mục, mức cắt thường trên chín mươi phần trăm.",
@@ -51111,6 +52077,19 @@ export const lessons: Lesson[] = [
       {
         "type": "paragraph",
         "text": "Nói rõ chuyện gì xảy ra và họ nên làm gì tiếp, nhưng không hiện chi tiết kỹ thuật ra ngoài. Đơn đã lưu hay chưa, có nên thử lại không - đó là những câu họ cần trả lời để quyết định, và một thông báo chung chung không giúp gì."
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Cầu dao ngắt mạch cho một dịch vụ hay chết",
+        "task": "CauDao đếm lỗi liên tiếp; từ 3 lỗi liên tiếp thì chuyển sang \"mở\" và trả ngay \"dùng dự phòng\" mà không gọi dịch vụ, trong 5 nhịp. Hết 5 nhịp thì cho thử một lần (\"nửa mở\"): thành công thì đóng lại, lỗi thì mở tiếp. Mã hiện gọi dịch vụ mọi lần. In kết quả và tổng số lần thật sự gọi dịch vụ.",
+        "starter": "class CauDao {\n  constructor() { this.loiLienTiep = 0; this.moDen = -1; this.soLanGoi = 0; }\n  async goi(nhip, dichVu) {\n    this.soLanGoi++;\n    const ok = await dichVu(nhip);\n    if (ok) { this.loiLienTiep = 0; return \"ok\"; }\n    this.loiLienTiep++;\n    return \"lỗi\";\n  }\n}\n\nconst hongTu = 2, songLaiTu = 10;\nconst dichVu = async (n) => n < hongTu || n >= songLaiTu;\nconst cd = new CauDao();\nconst kq = [];\nfor (let n = 0; n < 14; n++) kq.push(await cd.goi(n, dichVu));\nconsole.log(kq.join(\" \"));\nconsole.log(\"Số lần gọi thật: \" + cd.soLanGoi);",
+        "solution": "class CauDao {\n  constructor() { this.loiLienTiep = 0; this.moDen = -1; this.soLanGoi = 0; }\n  async goi(nhip, dichVu) {\n    if (nhip < this.moDen) return \"dự-phòng\";\n    this.soLanGoi++;\n    const ok = await dichVu(nhip);\n    if (ok) { this.loiLienTiep = 0; return \"ok\"; }\n    this.loiLienTiep++;\n    if (this.loiLienTiep >= 3) this.moDen = nhip + 1 + 5;\n    return \"lỗi\";\n  }\n}\n\nconst hongTu = 2, songLaiTu = 10;\nconst dichVu = async (n) => n < hongTu || n >= songLaiTu;\nconst cd = new CauDao();\nconst kq = [];\nfor (let n = 0; n < 14; n++) kq.push(await cd.goi(n, dichVu));\nconsole.log(kq.join(\" \"));\nconsole.log(\"Số lần gọi thật: \" + cd.soLanGoi);",
+        "hints": [
+          "Khi cầu dao mở, trả ngay kết quả dự phòng và KHÔNG tăng soLanGoi.",
+          "Lỗi thứ 3 liên tiếp đặt moDen = nhịp hiện tại + 1 + 5. Lần thử sau đó lỗi tiếp thì loiLienTiep vẫn ≥ 3, nên mở lại luôn."
+        ],
+        "expectedOutput": "ok ok lỗi lỗi lỗi dự-phòng dự-phòng dự-phòng dự-phòng dự-phòng ok ok ok ok\nSố lần gọi thật: 9"
       },
       {
         "type": "closing",
@@ -51302,6 +52281,19 @@ export const lessons: Lesson[] = [
         "text": "Máy của bạn không có địa chỉ công khai nên nhà cung cấp không gọi tới được. Công cụ tạo đường hầm mở một địa chỉ công khai trỏ về máy bạn, và nhiều nhà cung cấp còn có nút gửi thử một sự kiện."
       },
       {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Nhận webhook: xác minh chữ ký và bỏ qua bản trùng",
+        "task": "Dịch vụ thanh toán gửi sự kiện kèm chữ ky = kyTen(than, BI_MAT). Viết nhan(suKien) trả về: \"401\" nếu chữ ký sai, \"200 trùng\" nếu id sự kiện đã xử lý (dịch vụ gửi lại khi chưa nhận được 200), \"200 xử lý\" nếu mới - và chỉ cộng tiền vào đơn đúng một lần. Mã hiện tin mọi sự kiện và cộng tiền mỗi lần nhận.",
+        "starter": "const BI_MAT = \"whsec_demo\";\nfunction kyTen(than, bm) { let h = 0; for (const c of bm + than) h = (h * 31 + c.charCodeAt(0)) >>> 0; return h.toString(16); }\n\nconst daThu = { \"DH-1\": 0 };\nfunction nhan(sk) {\n  const dl = JSON.parse(sk.than);\n  daThu[dl.don] += dl.tien;\n  return \"200 xử lý\";\n}\n\nconst hopLe = (id, don, tien) => { const than = JSON.stringify({ id, don, tien }); return { than, chuKy: kyTen(than, BI_MAT) }; };\nconst gia = { than: JSON.stringify({ id: \"ev_x\", don: \"DH-1\", tien: 999999 }), chuKy: \"deadbeef\" };\nfor (const sk of [hopLe(\"ev_1\", \"DH-1\", 150000), hopLe(\"ev_1\", \"DH-1\", 150000), gia, hopLe(\"ev_2\", \"DH-1\", 50000)]) {\n  console.log(nhan(sk));\n}\nconsole.log(\"Đã thu DH-1: \" + daThu[\"DH-1\"]);",
+        "solution": "const BI_MAT = \"whsec_demo\";\nfunction kyTen(than, bm) { let h = 0; for (const c of bm + than) h = (h * 31 + c.charCodeAt(0)) >>> 0; return h.toString(16); }\n\nconst daThu = { \"DH-1\": 0 };\nconst daXuLy = new Set();\nfunction nhan(sk) {\n  if (kyTen(sk.than, BI_MAT) !== sk.chuKy) return \"401\";\n  const dl = JSON.parse(sk.than);\n  if (daXuLy.has(dl.id)) return \"200 trùng\";\n  daXuLy.add(dl.id);\n  daThu[dl.don] += dl.tien;\n  return \"200 xử lý\";\n}\n\nconst hopLe = (id, don, tien) => { const than = JSON.stringify({ id, don, tien }); return { than, chuKy: kyTen(than, BI_MAT) }; };\nconst gia = { than: JSON.stringify({ id: \"ev_x\", don: \"DH-1\", tien: 999999 }), chuKy: \"deadbeef\" };\nfor (const sk of [hopLe(\"ev_1\", \"DH-1\", 150000), hopLe(\"ev_1\", \"DH-1\", 150000), gia, hopLe(\"ev_2\", \"DH-1\", 50000)]) {\n  console.log(nhan(sk));\n}\nconsole.log(\"Đã thu DH-1: \" + daThu[\"DH-1\"]);",
+        "hints": [
+          "Địa chỉ webhook là công khai: ai cũng gửi được. Tự tính chữ ký trên thân nhận được và so sánh TRƯỚC khi tin nội dung.",
+          "Trùng vẫn trả 200 - nếu trả lỗi, dịch vụ sẽ gửi lại mãi."
+        ],
+        "expectedOutput": "200 xử lý\n200 trùng\n401\n200 xử lý\nĐã thu DH-1: 200000"
+      },
+      {
         "type": "closing",
         "lines": [
           "Cả luồng chạy được trong khoảng mười lăm phút, và đó là mười lăm phút đáng bỏ ra trước khi có giao dịch thật đi qua.",
@@ -51491,6 +52483,19 @@ export const lessons: Lesson[] = [
       {
         "type": "paragraph",
         "text": "Sau khi đã tích hợp, theo dõi ba con số cho mỗi dịch vụ: tỷ lệ lỗi, thời gian phản hồi và hạn ngạch đã dùng. Thời gian phản hồi tăng dần thường là dấu hiệu sớm nhất cho thấy có chuyện sắp xảy ra."
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Bọc một dịch vụ ngoài sau một lớp của riêng bạn",
+        "task": "Mã sản phẩm gọi thẳng hai nhà cung cấp gửi tin với hai hình dạng phản hồi khác nhau, nên đổi nhà cung cấp là sửa khắp nơi. Viết guiTin(nhaCC, sdt, noiDung) trả về cùng một dạng { ok, maTin } cho cả hai, và { ok: false, lyDo } khi lỗi. Phần còn lại của mã chỉ được đọc dạng chung đó.",
+        "starter": "const nhaCungCap = {\n  A: async (sdt, nd) => (sdt.startsWith(\"09\") ? { status: \"SENT\", message_id: \"A-\" + sdt.slice(-3) } : { status: \"REJECTED\", error: \"số không hợp lệ\" }),\n  B: async (sdt, nd) => (sdt.length === 10 ? { success: true, data: { id: 7001 } } : { success: false, errors: [{ msg: \"sai độ dài\" }] }),\n};\n\nasync function guiTin(nhaCC, sdt, noiDung) {\n  return nhaCungCap[nhaCC](sdt, noiDung);\n}\n\nfor (const [ncc, sdt] of [[\"A\", \"0912345678\"], [\"A\", \"0312345678\"], [\"B\", \"0912345678\"], [\"B\", \"091234\"]]) {\n  const kq = await guiTin(ncc, sdt, \"Mã OTP: 1234\");\n  console.log(ncc + \" \" + sdt + \": \" + (kq.ok ? \"gửi \" + kq.maTin : \"lỗi - \" + kq.lyDo));\n}",
+        "solution": "const nhaCungCap = {\n  A: async (sdt, nd) => (sdt.startsWith(\"09\") ? { status: \"SENT\", message_id: \"A-\" + sdt.slice(-3) } : { status: \"REJECTED\", error: \"số không hợp lệ\" }),\n  B: async (sdt, nd) => (sdt.length === 10 ? { success: true, data: { id: 7001 } } : { success: false, errors: [{ msg: \"sai độ dài\" }] }),\n};\n\nconst chuanHoa = {\n  A: (r) => (r.status === \"SENT\" ? { ok: true, maTin: r.message_id } : { ok: false, lyDo: r.error }),\n  B: (r) => (r.success ? { ok: true, maTin: \"B-\" + r.data.id } : { ok: false, lyDo: r.errors.map((e) => e.msg).join(\"; \") }),\n};\n\nasync function guiTin(nhaCC, sdt, noiDung) {\n  return chuanHoa[nhaCC](await nhaCungCap[nhaCC](sdt, noiDung));\n}\n\nfor (const [ncc, sdt] of [[\"A\", \"0912345678\"], [\"A\", \"0312345678\"], [\"B\", \"0912345678\"], [\"B\", \"091234\"]]) {\n  const kq = await guiTin(ncc, sdt, \"Mã OTP: 1234\");\n  console.log(ncc + \" \" + sdt + \": \" + (kq.ok ? \"gửi \" + kq.maTin : \"lỗi - \" + kq.lyDo));\n}",
+        "hints": [
+          "Mỗi nhà cung cấp cần một hàm nhỏ đổi phản hồi của họ sang dạng chung.",
+          "Mã của nhà cung cấp B là số: tự thêm tiền tố \"B-\" để hai bên không trùng mã."
+        ],
+        "expectedOutput": "A 0912345678: gửi A-678\nA 0312345678: lỗi - số không hợp lệ\nB 0912345678: gửi B-7001\nB 091234: lỗi - sai độ dài"
       },
       {
         "type": "closing",
@@ -51713,6 +52718,19 @@ export const lessons: Lesson[] = [
         "text": "Một hiểu lầm phổ biến: cơ sở dữ liệu không nhất thiết là một máy chủ riêng phải cài đặt và cấu hình. SQLite là một thư viện chạy trong chính chương trình của bạn và ghi vào đúng một tệp - nó có mặt trong hầu hết ứng dụng di động và trình duyệt trên máy bạn ngay lúc này."
       },
       {
+        "type": "exercise",
+        "language": "python",
+        "title": "Hai người cùng ghi một tệp",
+        "task": "Hai tiến trình cùng đọc số dư từ \"tệp\", cộng tiền rồi ghi lại - xen kẽ nhau nên mất một lần nạp. Viết lại bằng sqlite3 với một câu UPDATE cộng thẳng trong cơ sở dữ liệu, để hai lần nạp 100 và 50 cho ra đúng 1150.",
+        "starter": "tep = {\"so_du\": 1000}\n\n# Tiến trình 1 và 2 cùng đọc trước khi bên kia kịp ghi\ndoc_1 = tep[\"so_du\"]\ndoc_2 = tep[\"so_du\"]\ntep[\"so_du\"] = doc_1 + 100\ntep[\"so_du\"] = doc_2 + 50\n\nprint(\"Số dư:\", tep[\"so_du\"])",
+        "solution": "import sqlite3\ndb = sqlite3.connect(\":memory:\")\ndb.execute(\"CREATE TABLE tk (id INTEGER PRIMARY KEY, so_du INTEGER)\")\ndb.execute(\"INSERT INTO tk VALUES (1, 1000)\")\n\n# Đọc-sửa-ghi nằm trong MỘT câu lệnh: cơ sở dữ liệu tự tuần tự hoá\ndb.execute(\"UPDATE tk SET so_du = so_du + 100 WHERE id = 1\")\ndb.execute(\"UPDATE tk SET so_du = so_du + 50 WHERE id = 1\")\n\nprint(\"Số dư:\", db.execute(\"SELECT so_du FROM tk WHERE id = 1\").fetchone()[0])",
+        "hints": [
+          "Lỗi nằm ở chỗ đọc ra ngoài, tính, rồi ghi đè: bên ghi sau xoá mất việc của bên trước.",
+          "UPDATE tk SET so_du = so_du + 100 để cơ sở dữ liệu tự đọc và ghi trong một bước."
+        ],
+        "expectedOutput": "Số dư: 1150"
+      },
+      {
         "type": "closing",
         "lines": [
           "Tệp vẫn là lựa chọn đúng khi chỉ một tiến trình ghi, dữ liệu vừa bộ nhớ, và không cần lọc phức tạp - tệp cấu hình và bộ nhớ đệm nhỏ nằm hết ở đây.",
@@ -51913,6 +52931,26 @@ export const lessons: Lesson[] = [
       {
         "type": "paragraph",
         "text": "Một lưu ý về CHECK: điều kiện nên là thứ đúng theo BẢN CHẤT dữ liệu, không phải theo quy tắc nghiệp vụ hiện tại. Số lượng không âm thì luôn đúng; giảm giá tối đa ba mươi phần trăm thì tháng sau có thể đổi, và sửa ràng buộc trên bảng lớn là việc tốn kém."
+      },
+      {
+        "type": "code",
+        "language": "python",
+        "runnable": true,
+        "caption": "Ràng buộc chặn dữ liệu sai ngay ở cửa",
+        "code": "import sqlite3\ndb = sqlite3.connect(\":memory:\")\ndb.execute(\"\"\"CREATE TABLE sp (\n  id INTEGER PRIMARY KEY,\n  ma TEXT NOT NULL UNIQUE,\n  gia INTEGER NOT NULL CHECK (gia >= 0)\n)\"\"\")\nfor dong in [(\"B01\", 12000), (\"B01\", 9000), (\"V01\", -5), (None, 1)]:\n    try:\n        db.execute(\"INSERT INTO sp (ma, gia) VALUES (?, ?)\", dong)\n        print(dong, \"-> nhận\")\n    except sqlite3.IntegrityError as e:\n        print(dong, \"-> chặn:\", e)"
+      },
+      {
+        "type": "exercise",
+        "language": "python",
+        "title": "Thêm ràng buộc cho bảng người dùng",
+        "task": "Bảng nguoi_dung hiện nhận mọi thứ. Sửa câu CREATE TABLE để: email bắt buộc và không trùng, tuổi nếu có thì từ 13 tới 120, vai_tro chỉ là 'hoc_vien' hoặc 'quan_tri' và mặc định 'hoc_vien'. Phần chèn thử bên dưới giữ nguyên.",
+        "starter": "import sqlite3\ndb = sqlite3.connect(\":memory:\")\ndb.execute(\"\"\"CREATE TABLE nguoi_dung (\n  id INTEGER PRIMARY KEY,\n  email TEXT,\n  tuoi INTEGER,\n  vai_tro TEXT\n)\"\"\")\n\nthu = [\n    (\"an@vd.vn\", 20, \"hoc_vien\"),\n    (\"an@vd.vn\", 30, \"hoc_vien\"),\n    (None, 25, \"hoc_vien\"),\n    (\"binh@vd.vn\", 8, \"hoc_vien\"),\n    (\"chi@vd.vn\", None, \"sieu_nhan\"),\n    (\"dung@vd.vn\", None, None),\n]\nfor email, tuoi, vt in thu:\n    try:\n        if vt is None:\n            db.execute(\"INSERT INTO nguoi_dung (email, tuoi) VALUES (?, ?)\", (email, tuoi))\n        else:\n            db.execute(\"INSERT INTO nguoi_dung (email, tuoi, vai_tro) VALUES (?, ?, ?)\", (email, tuoi, vt))\n        print(\"nhận\", email)\n    except sqlite3.IntegrityError:\n        print(\"chặn\", email)\nprint(db.execute(\"SELECT email, vai_tro FROM nguoi_dung\").fetchall())",
+        "solution": "import sqlite3\ndb = sqlite3.connect(\":memory:\")\ndb.execute(\"\"\"CREATE TABLE nguoi_dung (\n  id INTEGER PRIMARY KEY,\n  email TEXT NOT NULL UNIQUE,\n  tuoi INTEGER CHECK (tuoi IS NULL OR tuoi BETWEEN 13 AND 120),\n  vai_tro TEXT NOT NULL DEFAULT 'hoc_vien' CHECK (vai_tro IN ('hoc_vien', 'quan_tri'))\n)\"\"\")\n\nthu = [\n    (\"an@vd.vn\", 20, \"hoc_vien\"),\n    (\"an@vd.vn\", 30, \"hoc_vien\"),\n    (None, 25, \"hoc_vien\"),\n    (\"binh@vd.vn\", 8, \"hoc_vien\"),\n    (\"chi@vd.vn\", None, \"sieu_nhan\"),\n    (\"dung@vd.vn\", None, None),\n]\nfor email, tuoi, vt in thu:\n    try:\n        if vt is None:\n            db.execute(\"INSERT INTO nguoi_dung (email, tuoi) VALUES (?, ?)\", (email, tuoi))\n        else:\n            db.execute(\"INSERT INTO nguoi_dung (email, tuoi, vai_tro) VALUES (?, ?, ?)\", (email, tuoi, vt))\n        print(\"nhận\", email)\n    except sqlite3.IntegrityError:\n        print(\"chặn\", email)\nprint(db.execute(\"SELECT email, vai_tro FROM nguoi_dung\").fetchall())",
+        "hints": [
+          "NOT NULL UNIQUE cho email; CHECK (... IN (...)) cho danh sách giá trị cho phép.",
+          "Tuổi được phép trống: CHECK (tuoi IS NULL OR tuoi BETWEEN 13 AND 120)."
+        ],
+        "expectedOutput": "nhận an@vd.vn\nchặn an@vd.vn\nchặn None\nchặn binh@vd.vn\nchặn chi@vd.vn\nnhận dung@vd.vn\n[('an@vd.vn', 'hoc_vien'), ('dung@vd.vn', 'hoc_vien')]"
       },
       {
         "type": "closing",
@@ -52120,6 +53158,19 @@ export const lessons: Lesson[] = [
         "text": "Về bảng nối, điểm hay bị bỏ sót nhất là nó cần thuộc tính của chính mối quan hệ. Không lưu giá tại thời điểm mua thì khi cửa hàng đổi giá, mọi đơn hàng cũ cũng đổi theo, và báo cáo doanh thu tháng trước khác đi mỗi lần có người sửa bảng giá."
       },
       {
+        "type": "exercise",
+        "language": "python",
+        "title": "Khoá ngoại chặn đơn hàng mồ côi",
+        "task": "Bảng don tham chiếu khach. Hiện có thể tạo đơn cho khách không tồn tại, và xoá khách để lại đơn mồ côi. Khai báo khoá ngoại (và BẬT kiểm tra khoá ngoại - SQLite tắt mặc định) sao cho: đơn cho khách 99 bị chặn, còn xoá khách 1 thì xoá luôn các đơn của khách đó.",
+        "starter": "import sqlite3\ndb = sqlite3.connect(\":memory:\")\ndb.executescript(\"\"\"\nCREATE TABLE khach (id INTEGER PRIMARY KEY, ten TEXT);\nCREATE TABLE don (id INTEGER PRIMARY KEY, khach_id INTEGER, tien INTEGER);\nINSERT INTO khach VALUES (1, 'An'), (2, 'Bình');\nINSERT INTO don VALUES (1, 1, 100), (2, 1, 50), (3, 2, 70);\n\"\"\")\ntry:\n    db.execute(\"INSERT INTO don VALUES (4, 99, 10)\")\n    print(\"đơn cho khách 99: nhận\")\nexcept sqlite3.IntegrityError:\n    print(\"đơn cho khách 99: chặn\")\ndb.execute(\"DELETE FROM khach WHERE id = 1\")\nprint(\"Đơn còn lại:\", db.execute(\"SELECT id, khach_id FROM don ORDER BY id\").fetchall())",
+        "solution": "import sqlite3\ndb = sqlite3.connect(\":memory:\")\ndb.execute(\"PRAGMA foreign_keys = ON\")\ndb.executescript(\"\"\"\nCREATE TABLE khach (id INTEGER PRIMARY KEY, ten TEXT);\nCREATE TABLE don (id INTEGER PRIMARY KEY, khach_id INTEGER NOT NULL REFERENCES khach(id) ON DELETE CASCADE, tien INTEGER);\nINSERT INTO khach VALUES (1, 'An'), (2, 'Bình');\nINSERT INTO don VALUES (1, 1, 100), (2, 1, 50), (3, 2, 70);\n\"\"\")\ntry:\n    db.execute(\"INSERT INTO don VALUES (4, 99, 10)\")\n    print(\"đơn cho khách 99: nhận\")\nexcept sqlite3.IntegrityError:\n    print(\"đơn cho khách 99: chặn\")\ndb.execute(\"DELETE FROM khach WHERE id = 1\")\nprint(\"Đơn còn lại:\", db.execute(\"SELECT id, khach_id FROM don ORDER BY id\").fetchall())",
+        "hints": [
+          "khach_id INTEGER REFERENCES khach(id) ON DELETE CASCADE.",
+          "Với SQLite phải chạy PRAGMA foreign_keys = ON trên mỗi kết nối, nếu không khoá ngoại chỉ là trang trí."
+        ],
+        "expectedOutput": "đơn cho khách 99: chặn\nĐơn còn lại: [(3, 2)]"
+      },
+      {
         "type": "closing",
         "lines": [
           "Nguyên tắc chung: mỗi sự thật chỉ nên nằm ở đúng một chỗ. Tên phòng ban chép vào từng hàng nhân viên là cùng một sự thật nằm ở nghìn chỗ, và đó là nguồn gốc của cả gõ sai lẫn sửa sót.",
@@ -52318,6 +53369,26 @@ export const lessons: Lesson[] = [
         "text": "Một lưu ý cuối về so khớp chuỗi: chỉ mục sắp theo thứ tự chuỗi, nên điều kiện dạng BẮT ĐẦU BẰNG dùng được chỉ mục, còn dạng CHỨA thì không. Giống tra từ điển - biết chữ cái đầu thì mở đúng trang, biết chữ ở giữa thì phải lật hết."
       },
       {
+        "type": "code",
+        "language": "python",
+        "runnable": true,
+        "caption": "NULL không bằng, cũng không khác",
+        "code": "import sqlite3\ndb = sqlite3.connect(\":memory:\")\ndb.executescript(\"\"\"\nCREATE TABLE khach (id INTEGER PRIMARY KEY, ten TEXT NOT NULL, thanh_pho TEXT);\nCREATE TABLE don (id INTEGER PRIMARY KEY, khach_id INTEGER REFERENCES khach(id), tien INTEGER, trang_thai TEXT);\nINSERT INTO khach VALUES (1,'An','Hà Nội'),(2,'Bình','Huế'),(3,'Chi',NULL),(4,'Dũng','Hà Nội');\nINSERT INTO don VALUES (1,1,120,'xong'),(2,1,80,'xong'),(3,2,300,'huy'),(4,2,50,'xong'),(5,4,200,'xong'),(6,1,40,'huy');\n\"\"\")\nprint(db.execute(\"SELECT COUNT(*) FROM khach WHERE thanh_pho = 'Hà Nội'\").fetchone()[0])\nprint(db.execute(\"SELECT COUNT(*) FROM khach WHERE thanh_pho != 'Hà Nội'\").fetchone()[0], \"- Chi (NULL) không nằm ở vế nào\")\nprint(db.execute(\"SELECT COUNT(*) FROM khach WHERE thanh_pho IS NULL\").fetchone()[0])"
+      },
+      {
+        "type": "exercise",
+        "language": "python",
+        "title": "Ba đơn lớn nhất không phải của Hà Nội",
+        "task": "In ba đơn 'xong' có tiền lớn nhất của khách KHÔNG ở Hà Nội (tính cả khách chưa có thành phố), dạng (id đơn, tiền), tiền giảm dần, hoà thì id tăng dần. Truy vấn hiện bỏ sót khách có thành phố NULL, lọc thiếu trạng thái và không sắp xếp nên LIMIT lấy bừa.",
+        "starter": "import sqlite3\ndb = sqlite3.connect(\":memory:\")\ndb.executescript(\"\"\"\nCREATE TABLE khach (id INTEGER PRIMARY KEY, ten TEXT NOT NULL, thanh_pho TEXT);\nCREATE TABLE don (id INTEGER PRIMARY KEY, khach_id INTEGER REFERENCES khach(id), tien INTEGER, trang_thai TEXT);\nINSERT INTO khach VALUES (1,'An','Hà Nội'),(2,'Bình','Huế'),(3,'Chi',NULL),(4,'Dũng','Hà Nội');\nINSERT INTO don VALUES (1,1,120,'xong'),(2,1,80,'xong'),(3,2,300,'huy'),(4,2,50,'xong'),(5,4,200,'xong'),(6,1,40,'huy');\n\"\"\")\ndb.executescript(\"INSERT INTO don VALUES (7,3,90,'xong'),(8,3,300,'xong'),(9,2,300,'xong');\")\n\nsql = \"\"\"\nSELECT don.id, don.tien FROM don JOIN khach ON khach.id = don.khach_id\nWHERE khach.thanh_pho != 'Hà Nội'\nLIMIT 3\n\"\"\"\nprint(db.execute(sql).fetchall())",
+        "solution": "import sqlite3\ndb = sqlite3.connect(\":memory:\")\ndb.executescript(\"\"\"\nCREATE TABLE khach (id INTEGER PRIMARY KEY, ten TEXT NOT NULL, thanh_pho TEXT);\nCREATE TABLE don (id INTEGER PRIMARY KEY, khach_id INTEGER REFERENCES khach(id), tien INTEGER, trang_thai TEXT);\nINSERT INTO khach VALUES (1,'An','Hà Nội'),(2,'Bình','Huế'),(3,'Chi',NULL),(4,'Dũng','Hà Nội');\nINSERT INTO don VALUES (1,1,120,'xong'),(2,1,80,'xong'),(3,2,300,'huy'),(4,2,50,'xong'),(5,4,200,'xong'),(6,1,40,'huy');\n\"\"\")\ndb.executescript(\"INSERT INTO don VALUES (7,3,90,'xong'),(8,3,300,'xong'),(9,2,300,'xong');\")\n\nsql = \"\"\"\nSELECT don.id, don.tien FROM don JOIN khach ON khach.id = don.khach_id\nWHERE (khach.thanh_pho IS NULL OR khach.thanh_pho != 'Hà Nội')\n  AND don.trang_thai = 'xong'\nORDER BY don.tien DESC, don.id ASC\nLIMIT 3\n\"\"\"\nprint(db.execute(sql).fetchall())",
+        "hints": [
+          "thanh_pho != 'Hà Nội' là NULL (không phải đúng) với khách chưa có thành phố - phải thêm OR ... IS NULL.",
+          "LIMIT không có ORDER BY thì \"ba dòng đầu\" là ba dòng bất kỳ."
+        ],
+        "expectedOutput": "[(8, 300), (9, 300), (7, 90)]"
+      },
+      {
         "type": "closing",
         "lines": [
           "Ba cái bẫy trên đều thuộc loại không báo lỗi. Đó là điểm chung đáng nhớ nhất của bài này.",
@@ -52505,6 +53576,19 @@ export const lessons: Lesson[] = [
           "label": "Cách chọn đúng",
           "text": "Đo trước: lấy các truy vấn chậm nhất, đọc kế hoạch thực thi của chúng, và chỉ tạo chỉ mục cho những chỗ đang quét toàn bảng trên bảng lớn."
         }
+      },
+      {
+        "type": "exercise",
+        "language": "python",
+        "title": "Đọc kế hoạch thực thi trước và sau khi thêm chỉ mục",
+        "task": "Truy vấn tìm đơn theo khach_id đang quét cả bảng (kế hoạch bắt đầu bằng SCAN). Thêm một chỉ mục phù hợp để kế hoạch chuyển sang SEARCH ... USING INDEX (hàm ke_hoach tóm tắt lại thành \"dùng chỉ mục\"), và để truy vấn thứ hai lọc theo khach_id VÀ sắp xếp theo ngay mà không cần bước sắp xếp tạm (USE TEMP B-TREE biến mất). Làm được cả hai bằng một chỉ mục duy nhất.",
+        "starter": "import sqlite3\ndb = sqlite3.connect(\":memory:\")\ndb.execute(\"CREATE TABLE don (id INTEGER PRIMARY KEY, khach_id INTEGER, ngay TEXT, tien INTEGER)\")\ndb.executemany(\"INSERT INTO don (khach_id, ngay, tien) VALUES (?, ?, ?)\",\n               [(i % 500, \"2026-01-%02d\" % (i % 28 + 1), i) for i in range(20000)])\n\ndef ke_hoach(sql):\n    kh = \" | \".join(r[3] for r in db.execute(\"EXPLAIN QUERY PLAN \" + sql))\n    cach = \"quét cả bảng\" if kh.startswith(\"SCAN\") else \"dùng chỉ mục\"\n    return cach + (\", cần sắp xếp tạm\" if \"TEMP B-TREE\" in kh else \"\")\n\nq1 = \"SELECT * FROM don WHERE khach_id = 42\"\nq2 = \"SELECT * FROM don WHERE khach_id = 42 ORDER BY ngay DESC\"\nprint(ke_hoach(q1))\nprint(ke_hoach(q2))",
+        "solution": "import sqlite3\ndb = sqlite3.connect(\":memory:\")\ndb.execute(\"CREATE TABLE don (id INTEGER PRIMARY KEY, khach_id INTEGER, ngay TEXT, tien INTEGER)\")\ndb.executemany(\"INSERT INTO don (khach_id, ngay, tien) VALUES (?, ?, ?)\",\n               [(i % 500, \"2026-01-%02d\" % (i % 28 + 1), i) for i in range(20000)])\ndb.execute(\"CREATE INDEX idx_don_khach_ngay ON don (khach_id, ngay)\")\n\ndef ke_hoach(sql):\n    kh = \" | \".join(r[3] for r in db.execute(\"EXPLAIN QUERY PLAN \" + sql))\n    cach = \"quét cả bảng\" if kh.startswith(\"SCAN\") else \"dùng chỉ mục\"\n    return cach + (\", cần sắp xếp tạm\" if \"TEMP B-TREE\" in kh else \"\")\n\nq1 = \"SELECT * FROM don WHERE khach_id = 42\"\nq2 = \"SELECT * FROM don WHERE khach_id = 42 ORDER BY ngay DESC\"\nprint(ke_hoach(q1))\nprint(ke_hoach(q2))",
+        "hints": [
+          "CREATE INDEX ten ON bang (cot).",
+          "Một chỉ mục ghép (khach_id, ngay) phục vụ được cả hai: lọc theo cột đầu, và trong mỗi khach_id các dòng đã sẵn theo ngay. Một chỉ mục là đủ cho cả hai dòng."
+        ],
+        "expectedOutput": "dùng chỉ mục\ndùng chỉ mục"
       },
       {
         "type": "closing",
@@ -52710,6 +53794,26 @@ export const lessons: Lesson[] = [
         "text": "Cách chữa cho vế phải thường là gộp nhóm trước rồi mới ghép, chứ không phải thêm câu lệnh loại trùng. Loại trùng chỉ giấu triệu chứng đi và nó còn xoá nhầm những hàng vốn dĩ giống nhau một cách hợp lệ."
       },
       {
+        "type": "code",
+        "language": "python",
+        "runnable": true,
+        "caption": "INNER bỏ khách không có đơn, LEFT giữ lại",
+        "code": "import sqlite3\ndb = sqlite3.connect(\":memory:\")\ndb.executescript(\"\"\"\nCREATE TABLE khach (id INTEGER PRIMARY KEY, ten TEXT NOT NULL, thanh_pho TEXT);\nCREATE TABLE don (id INTEGER PRIMARY KEY, khach_id INTEGER REFERENCES khach(id), tien INTEGER, trang_thai TEXT);\nINSERT INTO khach VALUES (1,'An','Hà Nội'),(2,'Bình','Huế'),(3,'Chi',NULL),(4,'Dũng','Hà Nội');\nINSERT INTO don VALUES (1,1,120,'xong'),(2,1,80,'xong'),(3,2,300,'huy'),(4,2,50,'xong'),(5,4,200,'xong'),(6,1,40,'huy');\n\"\"\")\nprint(db.execute(\"SELECT DISTINCT khach.ten FROM khach JOIN don ON don.khach_id = khach.id ORDER BY 1\").fetchall())\nprint(db.execute(\"SELECT khach.ten, COUNT(don.id) FROM khach LEFT JOIN don ON don.khach_id = khach.id GROUP BY khach.id ORDER BY 1\").fetchall())"
+      },
+      {
+        "type": "exercise",
+        "language": "python",
+        "title": "Doanh thu theo khách, kể cả khách chưa mua",
+        "task": "In mỗi khách một dòng (tên, doanh thu), chỉ tính đơn 'xong', khách chưa có đơn 'xong' hiện 0, sắp theo tên. Truy vấn hiện dùng JOIN thường và lọc trạng thái ở WHERE nên Chi và các khách chỉ có đơn huỷ biến mất.",
+        "starter": "import sqlite3\ndb = sqlite3.connect(\":memory:\")\ndb.executescript(\"\"\"\nCREATE TABLE khach (id INTEGER PRIMARY KEY, ten TEXT NOT NULL, thanh_pho TEXT);\nCREATE TABLE don (id INTEGER PRIMARY KEY, khach_id INTEGER REFERENCES khach(id), tien INTEGER, trang_thai TEXT);\nINSERT INTO khach VALUES (1,'An','Hà Nội'),(2,'Bình','Huế'),(3,'Chi',NULL),(4,'Dũng','Hà Nội');\nINSERT INTO don VALUES (1,1,120,'xong'),(2,1,80,'xong'),(3,2,300,'huy'),(4,2,50,'xong'),(5,4,200,'xong'),(6,1,40,'huy');\n\"\"\")\ndb.execute(\"INSERT INTO khach VALUES (5, 'Em', 'Huế')\")\ndb.execute(\"INSERT INTO don VALUES (7, 5, 60, 'huy')\")\n\nsql = \"\"\"\nSELECT khach.ten, SUM(don.tien) FROM khach\nJOIN don ON don.khach_id = khach.id\nWHERE don.trang_thai = 'xong'\nGROUP BY khach.id ORDER BY khach.ten\n\"\"\"\nfor dong in db.execute(sql): print(dong)",
+        "solution": "import sqlite3\ndb = sqlite3.connect(\":memory:\")\ndb.executescript(\"\"\"\nCREATE TABLE khach (id INTEGER PRIMARY KEY, ten TEXT NOT NULL, thanh_pho TEXT);\nCREATE TABLE don (id INTEGER PRIMARY KEY, khach_id INTEGER REFERENCES khach(id), tien INTEGER, trang_thai TEXT);\nINSERT INTO khach VALUES (1,'An','Hà Nội'),(2,'Bình','Huế'),(3,'Chi',NULL),(4,'Dũng','Hà Nội');\nINSERT INTO don VALUES (1,1,120,'xong'),(2,1,80,'xong'),(3,2,300,'huy'),(4,2,50,'xong'),(5,4,200,'xong'),(6,1,40,'huy');\n\"\"\")\ndb.execute(\"INSERT INTO khach VALUES (5, 'Em', 'Huế')\")\ndb.execute(\"INSERT INTO don VALUES (7, 5, 60, 'huy')\")\n\nsql = \"\"\"\nSELECT khach.ten, COALESCE(SUM(don.tien), 0) FROM khach\nLEFT JOIN don ON don.khach_id = khach.id AND don.trang_thai = 'xong'\nGROUP BY khach.id ORDER BY khach.ten\n\"\"\"\nfor dong in db.execute(sql): print(dong)",
+        "hints": [
+          "Cái bẫy tinh vi nhất: điều kiện trên bảng bên phải đặt ở WHERE biến LEFT JOIN thành INNER JOIN. Chuyển nó vào ON.",
+          "SUM trên toàn NULL là NULL: bọc COALESCE(..., 0)."
+        ],
+        "expectedOutput": "('An', 200)\n('Bình', 50)\n('Chi', 0)\n('Dũng', 200)\n('Em', 0)"
+      },
+      {
         "type": "closing",
         "lines": [
           "Điểm chung của mọi lỗi trong bài này: truy vấn chạy bình thường và trả về một con số, chỉ là con số đó sai. Không có ngoại lệ nào được ném ra.",
@@ -52894,6 +53998,19 @@ export const lessons: Lesson[] = [
       {
         "type": "paragraph",
         "text": "Và cái bẫy nặng nhất, nối tiếp bài trước: gộp nhóm ngay sau khi ghép nhiều bảng. Một đơn hàng ghép với ba sản phẩm cho ba hàng, nên tổng tiền của đơn đó bị cộng ba lần. Cách chữa là gộp ở bảng con trước rồi mới ghép kết quả đã gộp."
+      },
+      {
+        "type": "exercise",
+        "language": "python",
+        "title": "Báo cáo theo thành phố",
+        "task": "Mỗi thành phố một dòng: (thành phố, số khách có ít nhất một đơn 'xong', tổng tiền 'xong', trung bình mỗi đơn 'xong' làm tròn), khách không có thành phố gộp vào '(chưa rõ)', chỉ giữ thành phố có tổng từ 100 trở lên, tổng giảm dần. Truy vấn hiện đếm trùng khách, tính cả đơn huỷ và lọc tổng ở WHERE (báo lỗi).",
+        "starter": "import sqlite3\ndb = sqlite3.connect(\":memory:\")\ndb.executescript(\"\"\"\nCREATE TABLE khach (id INTEGER PRIMARY KEY, ten TEXT NOT NULL, thanh_pho TEXT);\nCREATE TABLE don (id INTEGER PRIMARY KEY, khach_id INTEGER REFERENCES khach(id), tien INTEGER, trang_thai TEXT);\nINSERT INTO khach VALUES (1,'An','Hà Nội'),(2,'Bình','Huế'),(3,'Chi',NULL),(4,'Dũng','Hà Nội');\nINSERT INTO don VALUES (1,1,120,'xong'),(2,1,80,'xong'),(3,2,300,'huy'),(4,2,50,'xong'),(5,4,200,'xong'),(6,1,40,'huy');\n\"\"\")\ndb.execute(\"INSERT INTO don VALUES (7, 3, 150, 'xong')\")\n\nsql = \"\"\"\nSELECT khach.thanh_pho, COUNT(khach.id), SUM(don.tien), ROUND(AVG(don.tien))\nFROM khach JOIN don ON don.khach_id = khach.id\nWHERE SUM(don.tien) >= 100\nGROUP BY khach.thanh_pho\nORDER BY 3 DESC\n\"\"\"\ntry:\n    for dong in db.execute(sql): print(dong)\nexcept sqlite3.OperationalError as e:\n    print(\"Lỗi:\", e)",
+        "solution": "import sqlite3\ndb = sqlite3.connect(\":memory:\")\ndb.executescript(\"\"\"\nCREATE TABLE khach (id INTEGER PRIMARY KEY, ten TEXT NOT NULL, thanh_pho TEXT);\nCREATE TABLE don (id INTEGER PRIMARY KEY, khach_id INTEGER REFERENCES khach(id), tien INTEGER, trang_thai TEXT);\nINSERT INTO khach VALUES (1,'An','Hà Nội'),(2,'Bình','Huế'),(3,'Chi',NULL),(4,'Dũng','Hà Nội');\nINSERT INTO don VALUES (1,1,120,'xong'),(2,1,80,'xong'),(3,2,300,'huy'),(4,2,50,'xong'),(5,4,200,'xong'),(6,1,40,'huy');\n\"\"\")\ndb.execute(\"INSERT INTO don VALUES (7, 3, 150, 'xong')\")\n\nsql = \"\"\"\nSELECT COALESCE(khach.thanh_pho, '(chưa rõ)'), COUNT(DISTINCT khach.id), SUM(don.tien), ROUND(AVG(don.tien))\nFROM khach JOIN don ON don.khach_id = khach.id\nWHERE don.trang_thai = 'xong'\nGROUP BY 1\nHAVING SUM(don.tien) >= 100\nORDER BY 3 DESC\n\"\"\"\ntry:\n    for dong in db.execute(sql): print(dong)\nexcept sqlite3.OperationalError as e:\n    print(\"Lỗi:\", e)",
+        "hints": [
+          "WHERE chạy trước khi gộp nhóm nên không biết SUM. Điều kiện trên kết quả gộp đặt ở HAVING.",
+          "Một khách có nhiều đơn thì COUNT(khach.id) đếm mỗi đơn một lần: dùng COUNT(DISTINCT khach.id)."
+        ],
+        "expectedOutput": "('Hà Nội', 2, 400, 133.0)\n('(chưa rõ)', 1, 150, 150.0)"
       },
       {
         "type": "closing",
@@ -53098,6 +54215,19 @@ export const lessons: Lesson[] = [
         "text": "Thứ hai, bế tắc: mỗi bên giữ khoá mà bên kia đang chờ. Cơ sở dữ liệu phát hiện được và huỷ một bên, nên ứng dụng phải sẵn sàng thử lại. Cách phòng hiệu quả nhất là luôn khoá các bảng theo cùng MỘT thứ tự ở mọi nơi trong mã."
       },
       {
+        "type": "exercise",
+        "language": "python",
+        "title": "Chuyển tiền: hoặc đủ hai bước, hoặc không bước nào",
+        "task": "chuyen(tu, den, tien) trừ tài khoản nguồn rồi cộng tài khoản đích. Tài khoản có ràng buộc so_du >= 0, và tài khoản đích 99 không tồn tại. Mã hiện ghi từng bước ngay, nên khi bước hai hỏng thì tiền đã bị trừ mà không đến đâu. Bọc hai bước trong một giao dịch và hoàn tác khi có lỗi hoặc khi đích không tồn tại.",
+        "starter": "import sqlite3\ndb = sqlite3.connect(\":memory:\", isolation_level=None)\ndb.execute(\"CREATE TABLE tk (id INTEGER PRIMARY KEY, so_du INTEGER CHECK (so_du >= 0))\")\ndb.execute(\"INSERT INTO tk VALUES (1, 500), (2, 100)\")\n\ndef chuyen(tu, den, tien):\n    try:\n        db.execute(\"UPDATE tk SET so_du = so_du - ? WHERE id = ?\", (tien, tu))\n        n = db.execute(\"UPDATE tk SET so_du = so_du + ? WHERE id = ?\", (tien, den)).rowcount\n        if n == 0:\n            raise ValueError(\"không có tài khoản đích\")\n        return \"ok\"\n    except (sqlite3.IntegrityError, ValueError) as e:\n        return \"hủy: \" + str(e)\n\nprint(chuyen(1, 2, 200))\nprint(chuyen(1, 99, 100))\nprint(chuyen(2, 1, 1000))\nprint(db.execute(\"SELECT id, so_du FROM tk ORDER BY id\").fetchall())",
+        "solution": "import sqlite3\ndb = sqlite3.connect(\":memory:\", isolation_level=None)\ndb.execute(\"CREATE TABLE tk (id INTEGER PRIMARY KEY, so_du INTEGER CHECK (so_du >= 0))\")\ndb.execute(\"INSERT INTO tk VALUES (1, 500), (2, 100)\")\n\ndef chuyen(tu, den, tien):\n    db.execute(\"BEGIN\")\n    try:\n        db.execute(\"UPDATE tk SET so_du = so_du - ? WHERE id = ?\", (tien, tu))\n        n = db.execute(\"UPDATE tk SET so_du = so_du + ? WHERE id = ?\", (tien, den)).rowcount\n        if n == 0:\n            raise ValueError(\"không có tài khoản đích\")\n        db.execute(\"COMMIT\")\n        return \"ok\"\n    except (sqlite3.IntegrityError, ValueError) as e:\n        db.execute(\"ROLLBACK\")\n        return \"hủy: \" + str(e)\n\nprint(chuyen(1, 2, 200))\nprint(chuyen(1, 99, 100))\nprint(chuyen(2, 1, 1000))\nprint(db.execute(\"SELECT id, so_du FROM tk ORDER BY id\").fetchall())",
+        "hints": [
+          "isolation_level=None nghĩa là mỗi câu tự ghi ngay - bạn phải tự mở giao dịch bằng BEGIN.",
+          "COMMIT khi cả hai bước xong; ROLLBACK trong except để bước một cũng biến mất."
+        ],
+        "expectedOutput": "ok\nhủy: không có tài khoản đích\nhủy: CHECK constraint failed: so_du >= 0\n[(1, 300), (2, 300)]"
+      },
+      {
         "type": "closing",
         "lines": [
           "Nguyên tắc gọn nhất của cả bài: chuẩn bị dữ liệu bên ngoài, mở giao dịch, ghi, đóng ngay.",
@@ -53277,6 +54407,19 @@ export const lessons: Lesson[] = [
       {
         "type": "paragraph",
         "text": "Một điều cần tránh hiểu lầm: quét toàn bảng không phải lúc nào cũng xấu. Đọc tuần tự trên đĩa nhanh hơn nhiều so với nhảy lung tung theo chỉ mục, nên với bảng vài trăm hàng hoặc khi truy vấn cần phần lớn số hàng thì quét chính là lựa chọn đúng."
+      },
+      {
+        "type": "exercise",
+        "language": "python",
+        "title": "Truy vấn N+1: một trang, 101 câu lệnh",
+        "task": "Trang danh sách in 100 đơn kèm tên khách. Mã hiện chạy một câu lấy đơn rồi một câu cho MỖI đơn để lấy tên khách. Viết lại bằng một câu JOIN duy nhất; kết quả in giống hệt, và số câu lệnh (đếm qua set_trace_callback) còn 1.",
+        "starter": "import sqlite3\ndb = sqlite3.connect(\":memory:\")\ndb.execute(\"CREATE TABLE khach (id INTEGER PRIMARY KEY, ten TEXT)\")\ndb.execute(\"CREATE TABLE don (id INTEGER PRIMARY KEY, khach_id INTEGER, tien INTEGER)\")\ndb.executemany(\"INSERT INTO khach VALUES (?, ?)\", [(i, \"K%d\" % i) for i in range(1, 21)])\ndb.executemany(\"INSERT INTO don VALUES (?, ?, ?)\", [(i, i % 20 + 1, i * 10) for i in range(1, 101)])\n\nso_cau = 0\ndef dem(_):\n    global so_cau\n    so_cau += 1\ndb.set_trace_callback(dem)\n\ndong = []\nfor don_id, khach_id, tien in db.execute(\"SELECT id, khach_id, tien FROM don ORDER BY id\").fetchall():\n    ten = db.execute(\"SELECT ten FROM khach WHERE id = ?\", (khach_id,)).fetchone()[0]\n    dong.append((don_id, ten, tien))\n\ndb.set_trace_callback(None)\nprint(dong[:3], dong[-1])\nprint(\"Số câu lệnh:\", so_cau)",
+        "solution": "import sqlite3\ndb = sqlite3.connect(\":memory:\")\ndb.execute(\"CREATE TABLE khach (id INTEGER PRIMARY KEY, ten TEXT)\")\ndb.execute(\"CREATE TABLE don (id INTEGER PRIMARY KEY, khach_id INTEGER, tien INTEGER)\")\ndb.executemany(\"INSERT INTO khach VALUES (?, ?)\", [(i, \"K%d\" % i) for i in range(1, 21)])\ndb.executemany(\"INSERT INTO don VALUES (?, ?, ?)\", [(i, i % 20 + 1, i * 10) for i in range(1, 101)])\n\nso_cau = 0\ndef dem(_):\n    global so_cau\n    so_cau += 1\ndb.set_trace_callback(dem)\n\ndong = db.execute(\"\"\"\nSELECT don.id, khach.ten, don.tien FROM don JOIN khach ON khach.id = don.khach_id ORDER BY don.id\n\"\"\").fetchall()\n\ndb.set_trace_callback(None)\nprint(dong[:3], dong[-1])\nprint(\"Số câu lệnh:\", so_cau)",
+        "hints": [
+          "Mỗi câu truy vấn nhanh, nhưng 101 lượt khứ hồi thì không - đây là nguyên nhân phổ biến nhất của trang chậm.",
+          "Ghép bằng JOIN và lấy cả ba cột trong một câu."
+        ],
+        "expectedOutput": "[(1, 'K2', 10), (2, 'K3', 20), (3, 'K4', 30)] (100, 'K1', 1000)\nSố câu lệnh: 1"
       },
       {
         "type": "closing",
@@ -53471,6 +54614,19 @@ export const lessons: Lesson[] = [
           "LIMIT không có ORDER BY trả về mười hàng bất kỳ chứ không phải mười hàng mới nhất.",
           "Gộp nhóm sau khi ghép nhiều bảng làm mọi tổng bị đội lên."
         ]
+      },
+      {
+        "type": "exercise",
+        "language": "python",
+        "title": "Bài tổng hợp: thiết kế và truy vấn một kho khoá học",
+        "task": "Viết lược đồ ba bảng: khoa_hoc(id, ten UNIQUE NOT NULL), hoc_vien(id, email UNIQUE NOT NULL), dang_ky(hoc_vien_id, khoa_hoc_id, diem CHECK 0-100 hoặc NULL) với khoá chính ghép (không đăng ký trùng) và khoá ngoại. Rồi in mỗi khoá học: (tên, số người đăng ký, điểm trung bình của người đã có điểm làm tròn 1 chữ số hoặc None), theo tên. Mã khởi đầu có lược đồ lỏng nên đăng ký trùng lọt vào và làm sai số liệu.",
+        "starter": "import sqlite3\ndb = sqlite3.connect(\":memory:\")\ndb.execute(\"PRAGMA foreign_keys = ON\")\ndb.executescript(\"\"\"\nCREATE TABLE khoa_hoc (id INTEGER PRIMARY KEY, ten TEXT);\nCREATE TABLE hoc_vien (id INTEGER PRIMARY KEY, email TEXT);\nCREATE TABLE dang_ky (hoc_vien_id INTEGER, khoa_hoc_id INTEGER, diem INTEGER);\n\"\"\")\ndb.executescript(\"\"\"\nINSERT INTO khoa_hoc VALUES (1, 'SQL'), (2, 'Python'), (3, 'Git');\nINSERT INTO hoc_vien VALUES (1, 'a@x'), (2, 'b@x'), (3, 'c@x');\n\"\"\")\nfor hv, kh, d in [(1, 1, 80), (2, 1, 95), (1, 1, 10), (3, 2, None), (2, 2, 70), (9, 1, 50), (3, 1, 150)]:\n    try:\n        db.execute(\"INSERT INTO dang_ky VALUES (?, ?, ?)\", (hv, kh, d))\n    except sqlite3.IntegrityError:\n        print(\"chặn\", (hv, kh, d))\n\nsql = \"\"\"\nSELECT k.ten, COUNT(d.hoc_vien_id), ROUND(AVG(d.diem), 1)\nFROM khoa_hoc k LEFT JOIN dang_ky d ON d.khoa_hoc_id = k.id\nGROUP BY k.id ORDER BY k.ten\n\"\"\"\nfor dong in db.execute(sql): print(dong)",
+        "solution": "import sqlite3\ndb = sqlite3.connect(\":memory:\")\ndb.execute(\"PRAGMA foreign_keys = ON\")\ndb.executescript(\"\"\"\nCREATE TABLE khoa_hoc (id INTEGER PRIMARY KEY, ten TEXT NOT NULL UNIQUE);\nCREATE TABLE hoc_vien (id INTEGER PRIMARY KEY, email TEXT NOT NULL UNIQUE);\nCREATE TABLE dang_ky (\n  hoc_vien_id INTEGER NOT NULL REFERENCES hoc_vien(id),\n  khoa_hoc_id INTEGER NOT NULL REFERENCES khoa_hoc(id),\n  diem INTEGER CHECK (diem IS NULL OR diem BETWEEN 0 AND 100),\n  PRIMARY KEY (hoc_vien_id, khoa_hoc_id)\n);\n\"\"\")\ndb.executescript(\"\"\"\nINSERT INTO khoa_hoc VALUES (1, 'SQL'), (2, 'Python'), (3, 'Git');\nINSERT INTO hoc_vien VALUES (1, 'a@x'), (2, 'b@x'), (3, 'c@x');\n\"\"\")\nfor hv, kh, d in [(1, 1, 80), (2, 1, 95), (1, 1, 10), (3, 2, None), (2, 2, 70), (9, 1, 50), (3, 1, 150)]:\n    try:\n        db.execute(\"INSERT INTO dang_ky VALUES (?, ?, ?)\", (hv, kh, d))\n    except sqlite3.IntegrityError:\n        print(\"chặn\", (hv, kh, d))\n\nsql = \"\"\"\nSELECT k.ten, COUNT(d.hoc_vien_id), ROUND(AVG(d.diem), 1)\nFROM khoa_hoc k LEFT JOIN dang_ky d ON d.khoa_hoc_id = k.id\nGROUP BY k.id ORDER BY k.ten\n\"\"\"\nfor dong in db.execute(sql): print(dong)",
+        "hints": [
+          "PRIMARY KEY (hoc_vien_id, khoa_hoc_id) chặn đăng ký trùng; REFERENCES chặn học viên 9 không tồn tại.",
+          "CHECK (diem IS NULL OR diem BETWEEN 0 AND 100). AVG tự bỏ qua NULL, nên người chưa có điểm không kéo trung bình xuống."
+        ],
+        "expectedOutput": "chặn (1, 1, 10)\nchặn (9, 1, 50)\nchặn (3, 1, 150)\n('Git', 0, None)\n('Python', 2, 70.0)\n('SQL', 2, 87.5)"
       },
       {
         "type": "closing",
@@ -53692,6 +54848,19 @@ export const lessons: Lesson[] = [
         }
       },
       {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Điểm kiểm tra sức khoẻ nói thật",
+        "task": "/health đang luôn trả 200 \"ok\" kể cả khi cơ sở dữ liệu chết, nên bộ cân bằng tải vẫn gửi người dùng vào máy hỏng. Viết suc_khoe(phuThuoc) trả [mã, thân]: 200 khi mọi phụ thuộc BẮT BUỘC sống, 503 khi có cái bắt buộc chết; phụ thuộc không bắt buộc chết thì vẫn 200 nhưng ghi \"suy giảm\". Thân liệt kê trạng thái từng cái.",
+        "starter": "function sucKhoe(phuThuoc) {\n  return [200, \"ok\"];\n}\n\nconst kichBan = {\n  \"mọi thứ ổn\": [{ ten: \"db\", batBuoc: true, song: true }, { ten: \"cache\", batBuoc: false, song: true }],\n  \"cache chết\": [{ ten: \"db\", batBuoc: true, song: true }, { ten: \"cache\", batBuoc: false, song: false }],\n  \"db chết\": [{ ten: \"db\", batBuoc: true, song: false }, { ten: \"cache\", batBuoc: false, song: true }],\n};\nfor (const [ten, pt] of Object.entries(kichBan)) {\n  const [ma, than] = sucKhoe(pt);\n  console.log(ten + \" -> \" + ma + \" \" + JSON.stringify(than));\n}",
+        "solution": "function sucKhoe(phuThuoc) {\n  const chiTiet = Object.fromEntries(phuThuoc.map((p) => [p.ten, p.song ? \"sống\" : \"chết\"]));\n  if (phuThuoc.some((p) => p.batBuoc && !p.song)) return [503, { trangThai: \"hỏng\", ...chiTiet }];\n  if (phuThuoc.some((p) => !p.song)) return [200, { trangThai: \"suy giảm\", ...chiTiet }];\n  return [200, { trangThai: \"ok\", ...chiTiet }];\n}\n\nconst kichBan = {\n  \"mọi thứ ổn\": [{ ten: \"db\", batBuoc: true, song: true }, { ten: \"cache\", batBuoc: false, song: true }],\n  \"cache chết\": [{ ten: \"db\", batBuoc: true, song: true }, { ten: \"cache\", batBuoc: false, song: false }],\n  \"db chết\": [{ ten: \"db\", batBuoc: true, song: false }, { ten: \"cache\", batBuoc: false, song: true }],\n};\nfor (const [ten, pt] of Object.entries(kichBan)) {\n  const [ma, than] = sucKhoe(pt);\n  console.log(ten + \" -> \" + ma + \" \" + JSON.stringify(than));\n}",
+        "hints": [
+          "503 bảo bộ cân bằng tải \"đừng gửi người dùng vào đây\".",
+          "Cache chết thì chậm hơn nhưng vẫn phục vụ được - rút máy khỏi vòng quay vì nó là tự làm sập mình."
+        ],
+        "expectedOutput": "mọi thứ ổn -> 200 {\"trangThai\":\"ok\",\"db\":\"sống\",\"cache\":\"sống\"}\ncache chết -> 200 {\"trangThai\":\"suy giảm\",\"db\":\"sống\",\"cache\":\"chết\"}\ndb chết -> 503 {\"trangThai\":\"hỏng\",\"db\":\"chết\",\"cache\":\"sống\"}"
+      },
+      {
         "type": "closing",
         "lines": [
           "Cách rẻ nhất để tìm ra thứ bạn còn đang giả định: chạy ứng dụng trong một môi trường sạch và ghi lại từng lỗi. Nó tìm hộ bạn cả những thứ bạn không biết là mình đang dựa vào.",
@@ -53890,6 +55059,19 @@ export const lessons: Lesson[] = [
         "text": "Tính năng riêng của nhà cung cấp: không phải là đừng bao giờ dùng, nhiều cái rất tốt. Nguyên tắc là biết mình đang đổi gì lấy gì, và cẩn thận nhất ở phần cốt lõi như cơ sở dữ liệu, nơi giá chuyển đổi về sau cao nhất."
       },
       {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "So chi phí theo lưu lượng: máy thuê cố định hay trả theo lượt",
+        "task": "Máy chủ thuê: 600.000đ/tháng, chịu được 3 triệu lượt/tháng, vượt thì thuê thêm máy. Không máy chủ: 0,4đ mỗi lượt, miễn phí 1 triệu lượt đầu. Viết chiPhi(luot) in cả hai phương án và phương án rẻ hơn cho từng mức lưu lượng. Mã hiện quên phần miễn phí và quên rằng máy thuê tăng theo bậc.",
+        "starter": "const chamNgan = (n) => Math.round(n).toString().replace(/\\B(?=(\\d{3})+(?!\\d))/g, \".\");\n\nfunction chiPhi(luot) {\n  const may = 600000;\n  const khongMayChu = luot * 0.4;\n  return { may, khongMayChu };\n}\n\nfor (const luot of [200000, 1500000, 5000000, 10000000]) {\n  const c = chiPhi(luot);\n  console.log(chamNgan(luot) + \" lượt: máy \" + chamNgan(c.may) + \" | không máy chủ \" + chamNgan(c.khongMayChu) + \" -> \" + (c.may < c.khongMayChu ? \"máy thuê\" : \"không máy chủ\"));\n}",
+        "solution": "const chamNgan = (n) => Math.round(n).toString().replace(/\\B(?=(\\d{3})+(?!\\d))/g, \".\");\n\nfunction chiPhi(luot) {\n  const may = Math.max(1, Math.ceil(luot / 3000000)) * 600000;\n  const khongMayChu = Math.max(0, luot - 1000000) * 0.4;\n  return { may, khongMayChu };\n}\n\nfor (const luot of [200000, 1500000, 5000000, 10000000]) {\n  const c = chiPhi(luot);\n  console.log(chamNgan(luot) + \" lượt: máy \" + chamNgan(c.may) + \" | không máy chủ \" + chamNgan(c.khongMayChu) + \" -> \" + (c.may < c.khongMayChu ? \"máy thuê\" : \"không máy chủ\"));\n}",
+        "hints": [
+          "Số máy = làm tròn LÊN (lượt / 3 triệu), ít nhất 1.",
+          "Phần tính tiền không máy chủ là lượt vượt 1 triệu, không âm."
+        ],
+        "expectedOutput": "200.000 lượt: máy 600.000 | không máy chủ 0 -> không máy chủ\n1.500.000 lượt: máy 600.000 | không máy chủ 200.000 -> không máy chủ\n5.000.000 lượt: máy 1.200.000 | không máy chủ 1.600.000 -> máy thuê\n10.000.000 lượt: máy 2.400.000 | không máy chủ 3.600.000 -> máy thuê"
+      },
+      {
         "type": "closing",
         "lines": [
           "Có một lý do nghe hợp lý mà thật ra không phải: tự quản để học về vận hành. Đó là lý do tốt cho dự án cá nhân và là lý do tệ cho sản phẩm có người dùng thật.",
@@ -54080,6 +55262,25 @@ export const lessons: Lesson[] = [
         "text": "Bật khoá chuyển nhượng, để không ai chuyển tên miền đi nếu chiếm được tài khoản của bạn. Và bật gia hạn tự động, kèm kiểm tra thư điện tử liên hệ có phải địa chỉ bạn còn dùng không."
       },
       {
+        "type": "code",
+        "language": "bash",
+        "caption": "Hỏi DNS trực tiếp thay vì đoán",
+        "code": "dig +short vi-du.vn A           # địa chỉ IPv4\ndig +short www.vi-du.vn CNAME   # bí danh trỏ sang tên khác\ndig vi-du.vn MX +noall +answer  # máy nhận thư, kèm TTL còn lại (giây)\ndig @1.1.1.1 vi-du.vn A         # hỏi một máy chủ cụ thể để so với máy của bạn"
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Phân giải một tên qua chuỗi CNAME, có bộ nhớ đệm TTL",
+        "task": "phanGiai(ten, luc) đi theo CNAME cho tới bản ghi A, và nhớ kết quả tới hết TTL (giây). Sau khi đổi IP ở máy chủ DNS, người dùng vẫn thấy IP cũ tới khi TTL hết - đó là điều bài muốn bạn thấy. Mã hiện không đi theo CNAME và không bao giờ hết hạn bộ đệm.",
+        "starter": "const vung = {\n  \"www.vi-du.vn\": { loai: \"CNAME\", gt: \"vi-du.vn\", ttl: 3600 },\n  \"vi-du.vn\": { loai: \"A\", gt: \"203.0.113.10\", ttl: 300 },\n};\nconst dem = {};\n\nfunction phanGiai(ten, luc) {\n  if (dem[ten]) return dem[ten].gt + \" (đệm)\";\n  const bg = vung[ten];\n  dem[ten] = { gt: bg.gt };\n  return bg.gt;\n}\n\nconsole.log(\"t=0   \" + phanGiai(\"www.vi-du.vn\", 0));\nvung[\"vi-du.vn\"].gt = \"203.0.113.99\";   // chuyển máy chủ\nconsole.log(\"t=100 \" + phanGiai(\"www.vi-du.vn\", 100));\nconsole.log(\"t=400 \" + phanGiai(\"www.vi-du.vn\", 400));",
+        "solution": "const vung = {\n  \"www.vi-du.vn\": { loai: \"CNAME\", gt: \"vi-du.vn\", ttl: 3600 },\n  \"vi-du.vn\": { loai: \"A\", gt: \"203.0.113.10\", ttl: 300 },\n};\nconst dem = {};\n\nfunction phanGiai(ten, luc) {\n  const d = dem[ten];\n  if (d && luc < d.hetHan) return d.gt + \" (đệm)\";\n  const bg = vung[ten];\n  if (bg.loai === \"CNAME\") return phanGiai(bg.gt, luc);\n  dem[ten] = { gt: bg.gt, hetHan: luc + bg.ttl };\n  return bg.gt;\n}\n\nconsole.log(\"t=0   \" + phanGiai(\"www.vi-du.vn\", 0));\nvung[\"vi-du.vn\"].gt = \"203.0.113.99\";   // chuyển máy chủ\nconsole.log(\"t=100 \" + phanGiai(\"www.vi-du.vn\", 100));\nconsole.log(\"t=400 \" + phanGiai(\"www.vi-du.vn\", 400));",
+        "hints": [
+          "CNAME không phải địa chỉ: phân giải tiếp tên mà nó trỏ tới.",
+          "Lưu hetHan = lúc + ttl, và chỉ dùng bản đệm khi chưa tới hetHan. Hạ TTL xuống thấp TRƯỚC khi chuyển máy chủ là vì thế."
+        ],
+        "expectedOutput": "t=0   203.0.113.10\nt=100 203.0.113.10 (đệm)\nt=400 203.0.113.99"
+      },
+      {
         "type": "closing",
         "lines": [
           "Mất tên miền là loại sự cố khó cứu nhất trong cả chặng, vì lấy lại phụ thuộc vào thủ tục của bên thứ ba chứ không phải vào mã của bạn.",
@@ -54266,6 +55467,19 @@ export const lessons: Lesson[] = [
       {
         "type": "paragraph",
         "text": "Mục thứ hai là cùng một nguyên tắc với việc kiểm tra dữ liệu tại biên ở chặng API: làm cho lỗi hiện ra ở đúng chỗ nó phát sinh. Còn tệp mẫu thì đừng để giá trị mặc định chạy được, vì như vậy bạn tạo ra một cấu hình ẩn mà không ai biết mình đang dùng."
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Đọc cấu hình: thiếu thì dừng ngay, lộ thì che",
+        "task": "docCauHinh(env) trả cấu hình đã kiểm: DATABASE_URL và SECRET_KEY bắt buộc, PORT là số (mặc định 8080), DEBUG chỉ bật khi là chuỗi \"true\". Thiếu biến bắt buộc thì ném lỗi liệt kê TẤT CẢ biến thiếu. inCauHinh không được in bí mật. Mã hiện dùng giá trị mặc định cho bí mật và in nguyên văn.",
+        "starter": "function docCauHinh(env) {\n  return {\n    DATABASE_URL: env.DATABASE_URL || \"sqlite://dev.db\",\n    SECRET_KEY: env.SECRET_KEY || \"doi-toi-di\",\n    PORT: env.PORT || 8080,\n    DEBUG: Boolean(env.DEBUG),\n  };\n}\nconst inCauHinh = (c) => JSON.stringify(c);\n\nfor (const env of [\n  { DATABASE_URL: \"postgres://u:p@db/app\", SECRET_KEY: \"s3cr3t\", PORT: \"3000\", DEBUG: \"false\" },\n  { PORT: \"abc\" },\n]) {\n  try {\n    console.log(inCauHinh(docCauHinh(env)));\n  } catch (e) {\n    console.log(\"Không khởi động: \" + e.message);\n  }\n}",
+        "solution": "function docCauHinh(env) {\n  const thieu = [\"DATABASE_URL\", \"SECRET_KEY\"].filter((k) => !env[k]);\n  if (thieu.length) throw new Error(\"thiếu \" + thieu.join(\", \"));\n  const port = Number(env.PORT ?? 8080);\n  if (!Number.isInteger(port)) throw new Error(\"PORT không phải số\");\n  return { DATABASE_URL: env.DATABASE_URL, SECRET_KEY: env.SECRET_KEY, PORT: port, DEBUG: env.DEBUG === \"true\" };\n}\nconst inCauHinh = (c) => JSON.stringify({ ...c, DATABASE_URL: \"***\", SECRET_KEY: \"***\" });\n\nfor (const env of [\n  { DATABASE_URL: \"postgres://u:p@db/app\", SECRET_KEY: \"s3cr3t\", PORT: \"3000\", DEBUG: \"false\" },\n  { PORT: \"abc\" },\n]) {\n  try {\n    console.log(inCauHinh(docCauHinh(env)));\n  } catch (e) {\n    console.log(\"Không khởi động: \" + e.message);\n  }\n}",
+        "hints": [
+          "Bí mật có giá trị mặc định nghĩa là máy thật có thể chạy với bí mật ai cũng biết. Thiếu thì dừng.",
+          "Boolean(\"false\") là true. So sánh với chuỗi \"true\"."
+        ],
+        "expectedOutput": "{\"DATABASE_URL\":\"***\",\"SECRET_KEY\":\"***\",\"PORT\":3000,\"DEBUG\":false}\nKhông khởi động: thiếu DATABASE_URL, SECRET_KEY"
       },
       {
         "type": "closing",
@@ -54458,6 +55672,19 @@ export const lessons: Lesson[] = [
         "text": "Cuối cùng là hai thói quen nhỏ. Phát hành sớm trong ngày và sớm trong tuần: thời điểm ít người dùng nghe có vẻ an toàn nhưng nó cũng là thời điểm ít người sửa được, và vế thứ hai mới quyết định."
       },
       {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Phát hành dần có cờ tính năng",
+        "task": "batTinhNang(nguoiDung, phanTram) phải cho cùng một người dùng CÙNG kết quả mỗi lần (không nhấp nháy giữa hai giao diện), và tăng phần trăm thì những người đã được bật vẫn được bật. Mã hiện dùng số ngẫu nhiên mỗi lần gọi. Dùng hàm băm có sẵn của tên người dùng đưa về 0-99.",
+        "starter": "let hat = 1;\nconst ngauNhien = () => ((hat = (hat * 16807) % 2147483647) / 2147483647);\nconst bam = (s) => { let h = 0; for (const c of s) h = (h * 31 + c.charCodeAt(0)) >>> 0; return h; };\n\nfunction batTinhNang(nd, phanTram) {\n  return ngauNhien() * 100 < phanTram;\n}\n\nconst nd = Array.from({ length: 1000 }, (_, i) => \"user\" + i);\nconst bat10 = nd.filter((u) => batTinhNang(u, 10));\nconst lai10 = nd.filter((u) => batTinhNang(u, 10));\nconst bat50 = nd.filter((u) => batTinhNang(u, 50));\nconsole.log(\"10%: \" + bat10.length + \" người\");\nconsole.log(\"Gọi lại cho cùng kết quả: \" + (bat10.join() === lai10.join()));\nconsole.log(\"Ai có ở 10% vẫn có ở 50%: \" + bat10.every((u) => bat50.includes(u)));",
+        "solution": "let hat = 1;\nconst ngauNhien = () => ((hat = (hat * 16807) % 2147483647) / 2147483647);\nconst bam = (s) => { let h = 0; for (const c of s) h = (h * 31 + c.charCodeAt(0)) >>> 0; return h; };\n\nfunction batTinhNang(nd, phanTram) {\n  return bam(nd) % 100 < phanTram;\n}\n\nconst nd = Array.from({ length: 1000 }, (_, i) => \"user\" + i);\nconst bat10 = nd.filter((u) => batTinhNang(u, 10));\nconst lai10 = nd.filter((u) => batTinhNang(u, 10));\nconst bat50 = nd.filter((u) => batTinhNang(u, 50));\nconsole.log(\"10%: \" + bat10.length + \" người\");\nconsole.log(\"Gọi lại cho cùng kết quả: \" + (bat10.join() === lai10.join()));\nconsole.log(\"Ai có ở 10% vẫn có ở 50%: \" + bat10.every((u) => bat50.includes(u)));",
+        "hints": [
+          "Kết quả phải là hàm của người dùng, không phải của lần gọi.",
+          "bam(nd) % 100 cho mỗi người một số cố định 0-99; so với phanTram."
+        ],
+        "expectedOutput": "10%: 95 người\nGọi lại cho cùng kết quả: true\nAi có ở 10% vẫn có ở 50%: true"
+      },
+      {
         "type": "closing",
         "lines": [
           "Và ở lại theo dõi tỷ lệ lỗi cùng thời gian phản hồi ít nhất vài phút sau khi phát hành. Phần lớn sự cố lộ ra trong khoảng đó, và đó là lúc quay lại còn rẻ nhất.",
@@ -54640,6 +55867,19 @@ export const lessons: Lesson[] = [
       {
         "type": "paragraph",
         "text": "Và theo dõi ngày hết hạn. Chứng chỉ miễn phí hiện nay thường có hạn ba tháng với gia hạn tự động, nhưng CÓ gia hạn tự động không có nghĩa là nó ĐANG chạy. Công việc đó hỏng lặng lẽ, và không ai biết cho tới đúng ngày hết hạn."
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Kiểm chứng chỉ trước khi nó hết hạn",
+        "task": "Viết kiemChungChi(c, homNay) cho một chứng chỉ { ten, sans, hetHan (yyyy-mm-dd) } trả về một trong: \"sai tên\" nếu tên miền không nằm trong sans (hỗ trợ ký tự đại diện *.vi-du.vn, chỉ khớp ĐÚNG MỘT nhãn), \"hết hạn\", \"cảnh báo: còn N ngày\" nếu còn dưới 21 ngày, hoặc \"ổn: còn N ngày\". Mã hiện chỉ so tên chính xác và không nhìn ngày.",
+        "starter": "function khopTen(ten, san) {\n  return ten === san;\n}\nfunction kiemChungChi(c, homNay) {\n  if (!c.sans.some((s) => khopTen(c.ten, s))) return \"sai tên\";\n  return \"ổn\";\n}\n\nconst homNay = \"2026-09-28\";\nfor (const c of [\n  { ten: \"vi-du.vn\", sans: [\"vi-du.vn\", \"*.vi-du.vn\"], hetHan: \"2026-12-01\" },\n  { ten: \"api.vi-du.vn\", sans: [\"vi-du.vn\", \"*.vi-du.vn\"], hetHan: \"2026-10-10\" },\n  { ten: \"a.b.vi-du.vn\", sans: [\"*.vi-du.vn\"], hetHan: \"2026-12-01\" },\n  { ten: \"shop.vi-du.vn\", sans: [\"*.vi-du.vn\"], hetHan: \"2026-09-01\" },\n]) console.log(c.ten + \": \" + kiemChungChi(c, homNay));",
+        "solution": "function khopTen(ten, san) {\n  if (!san.startsWith(\"*.\")) return ten === san;\n  const duoi = san.slice(1);\n  if (!ten.endsWith(duoi)) return false;\n  const nhan = ten.slice(0, -duoi.length);\n  return nhan.length > 0 && !nhan.includes(\".\");\n}\nfunction kiemChungChi(c, homNay) {\n  if (!c.sans.some((s) => khopTen(c.ten, s))) return \"sai tên\";\n  const ngay = Math.round((Date.parse(c.hetHan) - Date.parse(homNay)) / 86400000);\n  if (ngay < 0) return \"hết hạn\";\n  return (ngay < 21 ? \"cảnh báo: còn \" : \"ổn: còn \") + ngay + \" ngày\";\n}\n\nconst homNay = \"2026-09-28\";\nfor (const c of [\n  { ten: \"vi-du.vn\", sans: [\"vi-du.vn\", \"*.vi-du.vn\"], hetHan: \"2026-12-01\" },\n  { ten: \"api.vi-du.vn\", sans: [\"vi-du.vn\", \"*.vi-du.vn\"], hetHan: \"2026-10-10\" },\n  { ten: \"a.b.vi-du.vn\", sans: [\"*.vi-du.vn\"], hetHan: \"2026-12-01\" },\n  { ten: \"shop.vi-du.vn\", sans: [\"*.vi-du.vn\"], hetHan: \"2026-09-01\" },\n]) console.log(c.ten + \": \" + kiemChungChi(c, homNay));",
+        "hints": [
+          "*.vi-du.vn khớp api.vi-du.vn nhưng KHÔNG khớp a.b.vi-du.vn và cũng không khớp chính vi-du.vn.",
+          "Số ngày = (Date.parse(hetHan) - Date.parse(homNay)) / 86400000."
+        ],
+        "expectedOutput": "vi-du.vn: ổn: còn 64 ngày\napi.vi-du.vn: cảnh báo: còn 12 ngày\na.b.vi-du.vn: sai tên\nshop.vi-du.vn: hết hạn"
       },
       {
         "type": "closing",
@@ -54844,6 +56084,26 @@ export const lessons: Lesson[] = [
         }
       },
       {
+        "type": "code",
+        "language": "python",
+        "runnable": true,
+        "caption": "Băm có muối và làm chậm có chủ đích",
+        "code": "import hashlib\nmk = b\"matkhau123\"\nprint(hashlib.sha256(mk).hexdigest()[:16], \"- ai cũng tra được trong bảng có sẵn\")\nmuoi = bytes(16)  # cố định để ví dụ lặp lại được; thực tế dùng os.urandom(16)\nprint(hashlib.pbkdf2_hmac(\"sha256\", mk, muoi, 20000).hex()[:16], \"- có muối, lặp 20.000 vòng\")"
+      },
+      {
+        "type": "exercise",
+        "language": "python",
+        "title": "Đăng ký và đăng nhập không lưu mật khẩu",
+        "task": "Viết dang_ky lưu (muối, băm) bằng hashlib.pbkdf2_hmac với muối ngẫu nhiên riêng cho mỗi người và 20000 vòng (máy thật dùng nhiều hơn nhiều; ở đây giảm để chạy nhanh trong trình duyệt); dang_nhap tính lại và so bằng hmac.compare_digest. Mã hiện lưu SHA-256 trần, nên hai người cùng mật khẩu có cùng giá trị băm - kẻ lấy được bảng thấy ngay.",
+        "starter": "import hashlib, hmac, os\nkho = {}\n\ndef dang_ky(ten, mk):\n    kho[ten] = hashlib.sha256(mk.encode()).hexdigest()\n\ndef dang_nhap(ten, mk):\n    return ten in kho and kho[ten] == hashlib.sha256(mk.encode()).hexdigest()\n\ndang_ky(\"an\", \"hoa-sen-2026\")\ndang_ky(\"binh\", \"hoa-sen-2026\")\nprint(\"Hai bản lưu giống nhau:\", str(kho[\"an\"]) == str(kho[\"binh\"]))\nprint(\"an đúng mật khẩu:\", dang_nhap(\"an\", \"hoa-sen-2026\"))\nprint(\"an sai mật khẩu:\", dang_nhap(\"an\", \"hoa-sen-2025\"))\nprint(\"chi chưa đăng ký:\", dang_nhap(\"chi\", \"x\"))",
+        "solution": "import hashlib, hmac, os\nkho = {}\n\ndef bam(mk, muoi):\n    return hashlib.pbkdf2_hmac(\"sha256\", mk.encode(), muoi, 20000)\n\ndef dang_ky(ten, mk):\n    muoi = os.urandom(16)\n    kho[ten] = (muoi, bam(mk, muoi))\n\ndef dang_nhap(ten, mk):\n    if ten not in kho:\n        return False\n    muoi, da_luu = kho[ten]\n    return hmac.compare_digest(bam(mk, muoi), da_luu)\n\ndang_ky(\"an\", \"hoa-sen-2026\")\ndang_ky(\"binh\", \"hoa-sen-2026\")\nprint(\"Hai bản lưu giống nhau:\", str(kho[\"an\"]) == str(kho[\"binh\"]))\nprint(\"an đúng mật khẩu:\", dang_nhap(\"an\", \"hoa-sen-2026\"))\nprint(\"an sai mật khẩu:\", dang_nhap(\"an\", \"hoa-sen-2025\"))\nprint(\"chi chưa đăng ký:\", dang_nhap(\"chi\", \"x\"))",
+        "hints": [
+          "Muối riêng (os.urandom(16)) làm hai mật khẩu giống nhau cho ra hai bản lưu khác nhau.",
+          "Lưu cả muối cạnh bản băm - muối không phải bí mật, nó chỉ cần duy nhất."
+        ],
+        "expectedOutput": "Hai bản lưu giống nhau: False\nan đúng mật khẩu: True\nan sai mật khẩu: False\nchi chưa đăng ký: False"
+      },
+      {
         "type": "closing",
         "lines": [
           "Nếu dự án của bạn đang dùng hàm băm sai, cách chuyển an toàn là băm lại bằng hàm đúng vào lần đăng nhập tiếp theo của mỗi người - bạn không có mật khẩu gốc để băm lại hàng loạt.",
@@ -55034,6 +56294,26 @@ export const lessons: Lesson[] = [
         ]
       },
       {
+        "type": "code",
+        "language": "python",
+        "runnable": true,
+        "caption": "Chèn SQL: dữ liệu bị hiểu thành lệnh",
+        "code": "import sqlite3\ndb = sqlite3.connect(\":memory:\")\ndb.executescript(\"\"\"\nCREATE TABLE khach (id INTEGER PRIMARY KEY, ten TEXT NOT NULL, thanh_pho TEXT);\nCREATE TABLE don (id INTEGER PRIMARY KEY, khach_id INTEGER REFERENCES khach(id), tien INTEGER, trang_thai TEXT);\nINSERT INTO khach VALUES (1,'An','Hà Nội'),(2,'Bình','Huế'),(3,'Chi',NULL),(4,'Dũng','Hà Nội');\nINSERT INTO don VALUES (1,1,120,'xong'),(2,1,80,'xong'),(3,2,300,'huy'),(4,2,50,'xong'),(5,4,200,'xong'),(6,1,40,'huy');\n\"\"\")\nten = \"' OR '1'='1\"\nprint(db.execute(\"SELECT COUNT(*) FROM khach WHERE ten = '\" + ten + \"'\").fetchone()[0], \"- ghép chuỗi: lộ cả bảng\")\nprint(db.execute(\"SELECT COUNT(*) FROM khach WHERE ten = ?\", (ten,)).fetchone()[0], \"- tham số hoá: chỉ là một cái tên lạ\")"
+      },
+      {
+        "type": "exercise",
+        "language": "python",
+        "title": "Vá hai lỗ hổng trong một hàm xem đơn",
+        "task": "xem_don(nguoi_dang_nhap, don_id) có hai lỗi: ghép chuỗi vào SQL (chèn được lệnh) và không kiểm đơn có thuộc người đang đăng nhập không (đoán id là xem được đơn người khác). Sửa để dùng tham số và chỉ trả đơn của chính người đó; đơn không thuộc về họ trả \"không tìm thấy\" (đừng tiết lộ là nó tồn tại).",
+        "starter": "import sqlite3\ndb = sqlite3.connect(\":memory:\")\ndb.executescript(\"\"\"\nCREATE TABLE khach (id INTEGER PRIMARY KEY, ten TEXT NOT NULL, thanh_pho TEXT);\nCREATE TABLE don (id INTEGER PRIMARY KEY, khach_id INTEGER REFERENCES khach(id), tien INTEGER, trang_thai TEXT);\nINSERT INTO khach VALUES (1,'An','Hà Nội'),(2,'Bình','Huế'),(3,'Chi',NULL),(4,'Dũng','Hà Nội');\nINSERT INTO don VALUES (1,1,120,'xong'),(2,1,80,'xong'),(3,2,300,'huy'),(4,2,50,'xong'),(5,4,200,'xong'),(6,1,40,'huy');\n\"\"\")\ndef xem_don(nguoi, don_id):\n    dong = db.execute(\"SELECT id, tien FROM don WHERE id = \" + str(don_id)).fetchall()\n    return dong if dong else \"không tìm thấy\"\n\nprint(xem_don(1, 1))\nprint(xem_don(1, 4))\nprint(xem_don(1, \"0 OR 1=1\"))",
+        "solution": "import sqlite3\ndb = sqlite3.connect(\":memory:\")\ndb.executescript(\"\"\"\nCREATE TABLE khach (id INTEGER PRIMARY KEY, ten TEXT NOT NULL, thanh_pho TEXT);\nCREATE TABLE don (id INTEGER PRIMARY KEY, khach_id INTEGER REFERENCES khach(id), tien INTEGER, trang_thai TEXT);\nINSERT INTO khach VALUES (1,'An','Hà Nội'),(2,'Bình','Huế'),(3,'Chi',NULL),(4,'Dũng','Hà Nội');\nINSERT INTO don VALUES (1,1,120,'xong'),(2,1,80,'xong'),(3,2,300,'huy'),(4,2,50,'xong'),(5,4,200,'xong'),(6,1,40,'huy');\n\"\"\")\ndef xem_don(nguoi, don_id):\n    dong = db.execute(\"SELECT id, tien FROM don WHERE id = ? AND khach_id = ?\", (don_id, nguoi)).fetchall()\n    return dong if dong else \"không tìm thấy\"\n\nprint(xem_don(1, 1))\nprint(xem_don(1, 4))\nprint(xem_don(1, \"0 OR 1=1\"))",
+        "hints": [
+          "Truyền giá trị qua dấu ? - cơ sở dữ liệu không bao giờ đọc nó như lệnh.",
+          "Điều kiện sở hữu nằm ngay trong câu truy vấn: AND khach_id = ?. Trả cùng một câu cho \"không có\" và \"không phải của bạn\"."
+        ],
+        "expectedOutput": "[(1, 120)]\nkhông tìm thấy\nkhông tìm thấy"
+      },
+      {
         "type": "closing",
         "lines": [
           "Chèn kịch bản đáng nhắc riêng vì nó hay bị đánh giá thấp: nạn nhân là NGƯỜI DÙNG KHÁC, nên nhìn từ phía máy chủ thì không có gì bất thường xảy ra cả.",
@@ -55222,6 +56502,19 @@ export const lessons: Lesson[] = [
       {
         "type": "paragraph",
         "text": "Nếu bạn không biết dữ liệu của một người nằm ở những bảng nào - và ở những bản sao lưu, nhật ký, hệ thống phân tích nào - thì bạn không thực hiện được yêu cầu đó. Nó biến việc lập danh mục dữ liệu từ chuyện nên làm thành chuyện phải làm."
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Chỉ giữ thứ cần, xoá đúng hạn",
+        "task": "Mỗi bản ghi nhật ký có loại và ngày. Chính sách: \"dang_nhap\" giữ 90 ngày, \"thanh_toan\" giữ 10 năm (3650 ngày) vì nghĩa vụ kế toán, \"xem_trang\" giữ 30 ngày và phải bỏ địa chỉ IP ngay khi lưu. Viết donDep(ds, homNay) trả về danh sách còn giữ. Mã hiện giữ mọi thứ mãi mãi.",
+        "starter": "const ngay = (s) => Date.parse(s) / 86400000;\n\nfunction luu(bg) { return bg; }\nfunction donDep(ds, homNay) { return ds; }\n\nconst ds = [\n  { loai: \"dang_nhap\", ngay: \"2026-05-01\", ip: \"1.2.3.4\" },\n  { loai: \"dang_nhap\", ngay: \"2026-09-01\", ip: \"1.2.3.5\" },\n  { loai: \"thanh_toan\", ngay: \"2020-01-15\", ip: \"1.2.3.6\" },\n  { loai: \"xem_trang\", ngay: \"2026-08-01\", ip: \"1.2.3.7\" },\n  { loai: \"xem_trang\", ngay: \"2026-09-20\", ip: \"1.2.3.8\" },\n].map(luu);\n\nfor (const bg of donDep(ds, \"2026-09-28\")) console.log(bg.loai + \" \" + bg.ngay + \" ip=\" + (bg.ip ?? \"-\"));",
+        "solution": "const ngay = (s) => Date.parse(s) / 86400000;\nconst GIU = { dang_nhap: 90, thanh_toan: 3650, xem_trang: 30 };\n\nfunction luu(bg) {\n  if (bg.loai === \"xem_trang\") { const { ip, ...con } = bg; return con; }\n  return bg;\n}\nfunction donDep(ds, homNay) {\n  return ds.filter((bg) => ngay(homNay) - ngay(bg.ngay) <= GIU[bg.loai]);\n}\n\nconst ds = [\n  { loai: \"dang_nhap\", ngay: \"2026-05-01\", ip: \"1.2.3.4\" },\n  { loai: \"dang_nhap\", ngay: \"2026-09-01\", ip: \"1.2.3.5\" },\n  { loai: \"thanh_toan\", ngay: \"2020-01-15\", ip: \"1.2.3.6\" },\n  { loai: \"xem_trang\", ngay: \"2026-08-01\", ip: \"1.2.3.7\" },\n  { loai: \"xem_trang\", ngay: \"2026-09-20\", ip: \"1.2.3.8\" },\n].map(luu);\n\nfor (const bg of donDep(ds, \"2026-09-28\")) console.log(bg.loai + \" \" + bg.ngay + \" ip=\" + (bg.ip ?? \"-\"));",
+        "hints": [
+          "Thời hạn giữ là dữ liệu: một bảng { loại: số ngày }, không phải một chuỗi if.",
+          "Dữ liệu không cần thì đừng lưu ngay từ đầu - bỏ ip trong luu, không phải lúc dọn dẹp."
+        ],
+        "expectedOutput": "dang_nhap 2026-09-01 ip=1.2.3.5\nthanh_toan 2020-01-15 ip=1.2.3.6\nxem_trang 2026-09-20 ip=-"
       },
       {
         "type": "closing",
@@ -55429,6 +56722,19 @@ export const lessons: Lesson[] = [
           "label": "Ghi lại quyết định",
           "text": "Vì sao chọn vùng này, vì sao đặt giới hạn kia. Đáng làm cả khi bạn một mình, vì bạn của sáu tháng sau là một người khác và người đó không nhớ gì cả."
         }
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Danh sách kiểm trước khi mở cửa, chạy bằng mã",
+        "task": "Mỗi mục kiểm có mức (\"chặn\" hoặc \"nên\") và một hàm kiểm trên cấu hình triển khai. In từng mục ĐẠT/TRƯỢT, rồi kết luận: \"KHÔNG PHÁT HÀNH\" nếu có mục \"chặn\" trượt, ngược lại \"PHÁT HÀNH\" kèm số mục \"nên\" còn nợ. Mã hiện kết luận phát hành khi đa số mục đạt.",
+        "starter": "const trienKhai = {\n  https: true, suaKhoe: \"/health\", saoLuu: { lanCuoiKhoiPhucThu: null }, biMatTrongMa: false,\n  baoLoi: true, gioiHanTanSuat: false, matKhau: \"pbkdf2\",\n};\nconst muc = [\n  [\"chặn\", \"HTTPS bật\", (t) => t.https],\n  [\"chặn\", \"Không có bí mật trong mã nguồn\", (t) => !t.biMatTrongMa],\n  [\"chặn\", \"Mật khẩu băm chậm có muối\", (t) => [\"pbkdf2\", \"scrypt\", \"argon2\", \"bcrypt\"].includes(t.matKhau)],\n  [\"chặn\", \"Sao lưu đã thử khôi phục ít nhất một lần\", (t) => Boolean(t.saoLuu.lanCuoiKhoiPhucThu)],\n  [\"nên\", \"Có điểm kiểm tra sức khoẻ\", (t) => Boolean(t.suaKhoe)],\n  [\"nên\", \"Có báo lỗi tự động\", (t) => t.baoLoi],\n  [\"nên\", \"Có giới hạn tần suất\", (t) => t.gioiHanTanSuat],\n];\n\nlet dat = 0;\nfor (const [muc_, ten, kiem] of muc) {\n  const ok = kiem(trienKhai);\n  if (ok) dat++;\n  console.log((ok ? \"ĐẠT  \" : \"TRƯỢT\") + \" [\" + muc_ + \"] \" + ten);\n}\nconsole.log(dat > muc.length / 2 ? \"PHÁT HÀNH\" : \"KHÔNG PHÁT HÀNH\");",
+        "solution": "const trienKhai = {\n  https: true, suaKhoe: \"/health\", saoLuu: { lanCuoiKhoiPhucThu: null }, biMatTrongMa: false,\n  baoLoi: true, gioiHanTanSuat: false, matKhau: \"pbkdf2\",\n};\nconst muc = [\n  [\"chặn\", \"HTTPS bật\", (t) => t.https],\n  [\"chặn\", \"Không có bí mật trong mã nguồn\", (t) => !t.biMatTrongMa],\n  [\"chặn\", \"Mật khẩu băm chậm có muối\", (t) => [\"pbkdf2\", \"scrypt\", \"argon2\", \"bcrypt\"].includes(t.matKhau)],\n  [\"chặn\", \"Sao lưu đã thử khôi phục ít nhất một lần\", (t) => Boolean(t.saoLuu.lanCuoiKhoiPhucThu)],\n  [\"nên\", \"Có điểm kiểm tra sức khoẻ\", (t) => Boolean(t.suaKhoe)],\n  [\"nên\", \"Có báo lỗi tự động\", (t) => t.baoLoi],\n  [\"nên\", \"Có giới hạn tần suất\", (t) => t.gioiHanTanSuat],\n];\n\nlet chanTruot = 0, nenNo = 0;\nfor (const [muc_, ten, kiem] of muc) {\n  const ok = kiem(trienKhai);\n  if (!ok && muc_ === \"chặn\") chanTruot++;\n  if (!ok && muc_ === \"nên\") nenNo++;\n  console.log((ok ? \"ĐẠT  \" : \"TRƯỢT\") + \" [\" + muc_ + \"] \" + ten);\n}\nconsole.log(chanTruot ? \"KHÔNG PHÁT HÀNH\" : \"PHÁT HÀNH, còn nợ \" + nenNo + \" mục nên\");",
+        "hints": [
+          "Đếm theo đa số là sai loại câu hỏi: một mục \"chặn\" trượt là đủ để dừng.",
+          "Sao lưu chưa từng khôi phục thử thì chưa phải là sao lưu - đó là mục đang trượt."
+        ],
+        "expectedOutput": "ĐẠT   [chặn] HTTPS bật\nĐẠT   [chặn] Không có bí mật trong mã nguồn\nĐẠT   [chặn] Mật khẩu băm chậm có muối\nTRƯỢT [chặn] Sao lưu đã thử khôi phục ít nhất một lần\nĐẠT   [nên] Có điểm kiểm tra sức khoẻ\nĐẠT   [nên] Có báo lỗi tự động\nTRƯỢT [nên] Có giới hạn tần suất\nKHÔNG PHÁT HÀNH"
       },
       {
         "type": "closing",

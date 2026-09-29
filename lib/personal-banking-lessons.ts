@@ -203,6 +203,25 @@ export const PERSONAL_BANKING_LESSONS: Lesson[] = [
         text: "Câu đùa tắt đi bật lại che mất một sự thật kỹ thuật: rất nhiều trạng thái chỉ tồn tại trong bộ nhớ của tiến trình, nên khởi động lại đúng là cách hợp lệ để đưa nó về trạng thái đã biết. Điều đáng tránh không phải là khởi động lại, mà là khởi động lại xong không hỏi vì sao nó cần.",
       },
       {
+        "type": "code",
+        "language": "bash",
+        "caption": "Tìm và dừng một tiến trình",
+        "code": "$ ps aux --sort=-%cpu | head -4\nUSER   PID %CPU %MEM COMMAND\nan    4121 98.0  2.1 node server.js\nan     903  1.2  0.8 /usr/bin/python3 worker.py\n$ kill 4121          # gửi SIGTERM: xin dừng, cho dọn dẹp\n$ kill -9 4121       # SIGKILL: dừng ngay, không dọn dẹp - chỉ khi cách trên không được\n$ systemctl status app.service   # dịch vụ do systemd quản lý: đừng kill, hãy restart"
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Chọn tiến trình cần xử lý từ đầu ra của ps",
+        "task": "Phân tích đầu ra ps (cột căn bằng nhiều khoảng trắng; COMMAND có thể chứa dấu cách) và in các tiến trình dùng trên 50% CPU hoặc trên 20% bộ nhớ, dạng \"PID lệnh-đầy-đủ (lý do)\", CPU giảm dần. Mã hiện tách theo một dấu cách nên cột bị lệch, và cắt mất phần sau của lệnh.",
+        "starter": "const ps = `USER   PID %CPU %MEM COMMAND\nan    4121 98.0  2.1 node server.js --port 3000\nan     903  1.2 24.5 /usr/bin/python3 worker.py\nroot     1  0.0  0.1 /sbin/init\nan    5550 61.3  3.0 ffmpeg -i vao.mp4 ra.webm`;\n\nconst dong = ps.split(\"\\n\").slice(1).map((d) => {\n  const c = d.split(\" \");\n  return { pid: c[1], cpu: Number(c[2]), mem: Number(c[3]), lenh: c[4] };\n});\nfor (const p of dong) {\n  const ly = [];\n  if (p.cpu > 50) ly.push(\"CPU \" + p.cpu + \"%\");\n  if (p.mem > 20) ly.push(\"RAM \" + p.mem + \"%\");\n  if (ly.length) console.log(p.pid + \" \" + p.lenh + \" (\" + ly.join(\", \") + \")\");\n}",
+        "solution": "const ps = `USER   PID %CPU %MEM COMMAND\nan    4121 98.0  2.1 node server.js --port 3000\nan     903  1.2 24.5 /usr/bin/python3 worker.py\nroot     1  0.0  0.1 /sbin/init\nan    5550 61.3  3.0 ffmpeg -i vao.mp4 ra.webm`;\n\nconst dong = ps.split(\"\\n\").slice(1).map((d) => {\n  const c = d.trim().split(/\\s+/);\n  return { pid: c[1], cpu: Number(c[2]), mem: Number(c[3]), lenh: c.slice(4).join(\" \") };\n});\nfor (const p of dong.sort((a, b) => b.cpu - a.cpu)) {\n  const ly = [];\n  if (p.cpu > 50) ly.push(\"CPU \" + p.cpu + \"%\");\n  if (p.mem > 20) ly.push(\"RAM \" + p.mem + \"%\");\n  if (ly.length) console.log(p.pid + \" \" + p.lenh + \" (\" + ly.join(\", \") + \")\");\n}",
+        "hints": [
+          "Tách bằng /\\s+/ sau khi trim, vì cột được căn bằng nhiều dấu cách.",
+          "COMMAND là phần còn lại từ cột thứ 5 trở đi: c.slice(4).join(\" \")."
+        ],
+        "expectedOutput": "4121 node server.js --port 3000 (CPU 98%)\n5550 ffmpeg -i vao.mp4 ra.webm (CPU 61.3%)\n903 /usr/bin/python3 worker.py (RAM 24.5%)"
+      },
+      {
         type: "closing",
         lines: [
           "Phân biệt được thứ nằm im với thứ đang chạy là bước đầu của mọi việc chẩn đoán.",
@@ -372,6 +391,25 @@ export const PERSONAL_BANKING_LESSONS: Lesson[] = [
         type: "callout",
         label: "Quyền ghi trên thư mục mạnh hơn bạn tưởng",
         text: "Xoá một tệp không cần quyền ghi trên chính tệp đó - nó cần quyền ghi trên THƯ MỤC chứa nó, vì xoá là sửa danh sách của thư mục. Đây là lý do một thư mục mở quyền ghi rộng nguy hiểm hơn nhiều so với một tệp mở quyền ghi rộng, và là chi tiết mà rất nhiều người chỉ phát hiện sau khi mất dữ liệu.",
+      },
+      {
+        "type": "code",
+        "language": "bash",
+        "caption": "Tìm tệp rủi ro trên máy chủ",
+        "code": "$ df -h /                         # còn bao nhiêu chỗ\n/dev/sda1   40G   37G  3.0G  93% /\n$ du -sh /var/log/* | sort -h | tail -3   # thư mục nào ăn chỗ\n$ find /var/www -type f -perm -o+w       # tệp mà AI CŨNG ghi được\n$ find /home -name \"*.pem\" -perm /044    # khoá riêng mà nhóm/người khác đọc được\n$ ls -la ~/.ssh\n-rw------- 1 an an  411 id_ed25519       # 600: đúng"
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Rà thư mục tìm quyền nguy hiểm",
+        "task": "Duyệt cây tệp (đệ quy) và in đường dẫn đầy đủ của mọi mục thoả MỘT trong: ai cũng ghi được (chữ số cuối có bit 2), hoặc tên kết thúc bằng .pem/.key hay là id_ed25519 mà nhóm hoặc người khác đọc được (bit 4 ở chữ số thứ 2 hoặc 3). Mã hiện chỉ xét tầng đầu và so quyền bằng chuỗi \"777\".",
+        "starter": "const cay = { ten: \"/srv\", con: [\n  { ten: \"app\", quyen: \"755\", con: [\n    { ten: \"config.yml\", quyen: \"644\" },\n    { ten: \"tai-len\", quyen: \"777\", con: [{ ten: \"anh.png\", quyen: \"666\" }] },\n    { ten: \"tls.key\", quyen: \"640\" },\n  ] },\n  { ten: \"backup.sh\", quyen: \"755\" },\n  { ten: \"id_ed25519\", quyen: \"600\" },\n  { ten: \"cu.pem\", quyen: \"604\" },\n] };\n\nfunction ra(nut, duong) {\n  for (const c of nut.con) {\n    if (c.quyen === \"777\") console.log(duong + \"/\" + c.ten + \" [\" + c.quyen + \"]\");\n  }\n}\nra(cay, cay.ten);",
+        "solution": "const cay = { ten: \"/srv\", con: [\n  { ten: \"app\", quyen: \"755\", con: [\n    { ten: \"config.yml\", quyen: \"644\" },\n    { ten: \"tai-len\", quyen: \"777\", con: [{ ten: \"anh.png\", quyen: \"666\" }] },\n    { ten: \"tls.key\", quyen: \"640\" },\n  ] },\n  { ten: \"backup.sh\", quyen: \"755\" },\n  { ten: \"id_ed25519\", quyen: \"600\" },\n  { ten: \"cu.pem\", quyen: \"604\" },\n] };\n\nconst biMat = (t) => /\\.(pem|key)$|^id_ed25519$/.test(t);\nfunction ra(nut, duong) {\n  for (const c of nut.con) {\n    const p = duong + \"/\" + c.ten;\n    const [, g, o] = [...c.quyen].map(Number);\n    if (o & 2 || (biMat(c.ten) && (g & 4 || o & 4))) console.log(p + \" [\" + c.quyen + \"]\");\n    if (c.con) ra(c, p);\n  }\n}\nra(cay, cay.ten);",
+        "hints": [
+          "\"666\" cũng là ai-cũng-ghi-được: kiểm bit (o & 2), đừng so chuỗi.",
+          "Gọi lại ra() cho mọi nút có con."
+        ],
+        "expectedOutput": "/srv/app/tai-len [777]\n/srv/app/tai-len/anh.png [666]\n/srv/app/tls.key [640]\n/srv/cu.pem [604]"
       },
       {
         type: "closing",
@@ -545,6 +583,25 @@ export const PERSONAL_BANKING_LESSONS: Lesson[] = [
         text: "Rất nhiều sự cố lộ dữ liệu không phải do lỗ hổng phần mềm, mà do một dịch vụ nội bộ được cấu hình nghe trên mọi giao diện. Nó chạy đúng như được bảo, và cái sai nằm ở chỗ nó được bảo sai. Trước khi thêm bất kỳ lớp bảo vệ nào, hãy hỏi dịch vụ này có cần nghe ra ngoài không - câu trả lời thường là không.",
       },
       {
+        "type": "code",
+        "language": "bash",
+        "caption": "Cái gì đang mở cửa trên máy này",
+        "code": "$ sudo ss -tlnp\nState  Local Address:Port  Process\nLISTEN 0.0.0.0:22          sshd\nLISTEN 127.0.0.1:5432      postgres       # chỉ nghe nội bộ: tốt\nLISTEN 0.0.0.0:6379        redis-server   # nghe MỌI địa chỉ: lộ ra Internet\nLISTEN [::]:443            nginx\n$ curl -I http://localhost:3000    # tự gõ cửa từ bên trong"
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Dịch vụ nào đang lộ ra ngoài",
+        "task": "Phân tích đầu ra ss và in những dịch vụ nghe trên mọi địa chỉ (0.0.0.0 hoặc [::]) mà KHÔNG thuộc danh sách được phép công khai (22, 80, 443). Địa chỉ IPv6 có dấu hai chấm bên trong, nên cổng là phần sau dấu hai chấm CUỐI CÙNG. Mã hiện tách ở dấu hai chấm đầu tiên và bỏ sót IPv6.",
+        "starter": "const ss = `LISTEN 0.0.0.0:22 sshd\nLISTEN 127.0.0.1:5432 postgres\nLISTEN 0.0.0.0:6379 redis-server\nLISTEN [::]:443 nginx\nLISTEN [::]:9200 java\nLISTEN [::1]:8080 node`;\nconst congKhai = [22, 80, 443];\n\nfor (const d of ss.split(\"\\n\")) {\n  const [, dc, ten] = d.split(\" \");\n  const [ip, cong] = dc.split(\":\");\n  if (ip === \"0.0.0.0\" && !congKhai.includes(Number(cong))) console.log(\"LỘ \" + ten + \" cổng \" + cong);\n}",
+        "solution": "const ss = `LISTEN 0.0.0.0:22 sshd\nLISTEN 127.0.0.1:5432 postgres\nLISTEN 0.0.0.0:6379 redis-server\nLISTEN [::]:443 nginx\nLISTEN [::]:9200 java\nLISTEN [::1]:8080 node`;\nconst congKhai = [22, 80, 443];\n\nfor (const d of ss.split(\"\\n\")) {\n  const [, dc, ten] = d.split(\" \");\n  const i = dc.lastIndexOf(\":\");\n  const ip = dc.slice(0, i), cong = Number(dc.slice(i + 1));\n  const moiDiaChi = ip === \"0.0.0.0\" || ip === \"[::]\";\n  if (moiDiaChi && !congKhai.includes(cong)) console.log(\"LỘ \" + ten + \" cổng \" + cong);\n}",
+        "hints": [
+          "lastIndexOf(\":\") tách đúng cả \"[::]:9200\".",
+          "[::] là \"mọi địa chỉ IPv6\", còn [::1] là máy nội bộ - giống 127.0.0.1."
+        ],
+        "expectedOutput": "LỘ redis-server cổng 6379\nLỘ java cổng 9200"
+      },
+      {
         type: "closing",
         lines: [
           "Bề mặt tấn công nghe trừu tượng cho tới khi bạn in nó ra thành một danh sách cổng.",
@@ -714,6 +771,25 @@ export const PERSONAL_BANKING_LESSONS: Lesson[] = [
         type: "callout",
         label: "Ba chỗ cùng chặn, một triệu chứng giống nhau",
         text: "Kết nối treo có thể do nhóm bảo mật, do tường lửa trên máy, hoặc do dịch vụ chỉ nghe trong máy. Ba nguyên nhân, cùng một biểu hiện. Thứ tự kiểm rẻ nhất là đi ngược từ trong ra: dịch vụ có nghe đúng địa chỉ không, tường lửa trên máy có mở không, rồi mới tới tầng đám mây.",
+      },
+      {
+        "type": "code",
+        "language": "bash",
+        "caption": "Tường lửa: chặn mặc định, mở từng cửa",
+        "code": "$ sudo ufw default deny incoming\n$ sudo ufw default allow outgoing\n$ sudo ufw allow 22/tcp            # mở SSH TRƯỚC khi bật, nếu không tự khoá mình ở ngoài\n$ sudo ufw allow 80,443/tcp\n$ sudo ufw allow from 10.0.0.0/24 to any port 5432   # cơ sở dữ liệu: chỉ mạng nội bộ\n$ sudo ufw enable\n$ sudo ufw status numbered"
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Luật tường lửa: khớp luật đầu tiên, còn lại thì chặn",
+        "task": "Mỗi luật có hanhDong (cho/chan), cong và tuMang (\"*\" hoặc dạng 10.0.0.0/24 - chỉ cần hỗ trợ /8, /16, /24). Gói tin theo luật ĐẦU TIÊN khớp; không luật nào khớp thì chặn. Mã hiện cho qua khi bất kỳ luật nào cho phép, mặc định cho qua, và so mạng bằng startsWith.",
+        "starter": "const luat = [\n  { hanhDong: \"chan\", cong: 22, tuMang: \"203.0.113.0/24\" },\n  { hanhDong: \"cho\", cong: 22, tuMang: \"*\" },\n  { hanhDong: \"cho\", cong: 443, tuMang: \"*\" },\n  { hanhDong: \"cho\", cong: 5432, tuMang: \"10.0.0.0/24\" },\n];\n\nfunction trongMang(ip, mang) { return mang === \"*\" || ip.startsWith(mang.split(\"/\")[0]); }\nfunction xet(ip, cong) {\n  if (luat.some((l) => l.hanhDong === \"cho\" && l.cong === cong && trongMang(ip, l.tuMang))) return \"cho\";\n  return \"cho\";\n}\n\nfor (const [ip, cong] of [[\"198.51.100.7\", 22], [\"203.0.113.9\", 22], [\"10.0.0.15\", 5432], [\"10.0.1.15\", 5432], [\"198.51.100.7\", 6379]])\n  console.log(ip + \":\" + cong + \" -> \" + xet(ip, cong));",
+        "solution": "const luat = [\n  { hanhDong: \"chan\", cong: 22, tuMang: \"203.0.113.0/24\" },\n  { hanhDong: \"cho\", cong: 22, tuMang: \"*\" },\n  { hanhDong: \"cho\", cong: 443, tuMang: \"*\" },\n  { hanhDong: \"cho\", cong: 5432, tuMang: \"10.0.0.0/24\" },\n];\n\nfunction trongMang(ip, mang) {\n  if (mang === \"*\") return true;\n  const [goc, bit] = mang.split(\"/\");\n  const n = Number(bit) / 8;\n  return ip.split(\".\").slice(0, n).join(\".\") === goc.split(\".\").slice(0, n).join(\".\");\n}\nfunction xet(ip, cong) {\n  const l = luat.find((l) => l.cong === cong && trongMang(ip, l.tuMang));\n  return l ? l.hanhDong : \"chan\";\n}\n\nfor (const [ip, cong] of [[\"198.51.100.7\", 22], [\"203.0.113.9\", 22], [\"10.0.0.15\", 5432], [\"10.0.1.15\", 5432], [\"198.51.100.7\", 6379]])\n  console.log(ip + \":\" + cong + \" -> \" + xet(ip, cong));",
+        "hints": [
+          "find lấy luật khớp ĐẦU TIÊN; thứ tự luật là một phần của cấu hình.",
+          "startsWith(\"10.0.0.0\") không khớp 10.0.0.15. Với /24 so 3 cụm đầu, /16 hai cụm, /8 một cụm."
+        ],
+        "expectedOutput": "198.51.100.7:22 -> cho\n203.0.113.9:22 -> chan\n10.0.0.15:5432 -> cho\n10.0.1.15:5432 -> chan\n198.51.100.7:6379 -> chan"
       },
       {
         type: "closing",
@@ -887,6 +963,12 @@ export const PERSONAL_BANKING_LESSONS: Lesson[] = [
         text: "Câu đùa này phổ biến vì lỗi DNS có triệu chứng giống hệt lỗi máy chủ sập, lỗi tường lửa và lỗi cấu hình - trang không mở được. Phép thử tách nó ra chỉ tốn hai lệnh: tra tên ra IP, rồi gọi thẳng vào IP. Làm hai bước đó trước sẽ tiết kiệm phần lớn thời gian bạn định dành để đoán.",
       },
       {
+        "type": "code",
+        "language": "bash",
+        "caption": "Hỏi DNS từng bước",
+        "code": "$ dig +short vi-du.vn\n203.0.113.10\n$ dig +trace vi-du.vn | grep -E \"NS|A \"   # đi từ gốc . -> .vn -> máy chủ tên của vi-du.vn\n$ dig vi-du.vn +noall +answer\nvi-du.vn.   287   IN   A   203.0.113.10   # 287: số giây còn lại trước khi bản đệm hết hạn\n$ cat /etc/resolv.conf                      # máy này hỏi ai"
+      },
+      {
         type: "closing",
         lines: [
           "Một lớp tra cứu có đệm thì nhanh, và cái giá luôn là bạn không kiểm soát thời điểm thay đổi được nhìn thấy.",
@@ -1056,6 +1138,12 @@ export const PERSONAL_BANKING_LESSONS: Lesson[] = [
         type: "callout",
         label: "Ổ khoá không phải huy hiệu tin cậy",
         text: "Chứng chỉ miễn phí cấp trong vài phút cho bất kỳ ai chứng minh được mình kiểm soát tên miền - kể cả tên miền giả mạo gần giống tên ngân hàng. Vì vậy dạy người dùng rằng có ổ khoá là an toàn là dạy sai, và sai theo hướng nguy hiểm. Câu đúng là: ổ khoá nghĩa là không ai chen giữa được, còn bạn vẫn phải đọc kỹ chính cái tên miền đó.",
+      },
+      {
+        "type": "code",
+        "language": "bash",
+        "caption": "Xem chứng chỉ mà máy chủ đang đưa ra",
+        "code": "$ echo | openssl s_client -connect vi-du.vn:443 -servername vi-du.vn 2>/dev/null \\\n    | openssl x509 -noout -subject -issuer -dates -ext subjectAltName\nsubject=CN = vi-du.vn\nissuer=C = US, O = Let's Encrypt, CN = R11\nnotBefore=Aug 30 00:00:00 2026 GMT\nnotAfter=Nov 28 23:59:59 2026 GMT\nX509v3 Subject Alternative Name:\n    DNS:vi-du.vn, DNS:*.vi-du.vn\n$ sudo certbot renew --dry-run     # thử gia hạn tự động trước khi cần thật"
       },
       {
         type: "closing",
@@ -1229,6 +1317,12 @@ export const PERSONAL_BANKING_LESSONS: Lesson[] = [
         text: "Thứ tự hai bước này quan trọng hơn vẻ ngoài của nó: tắt đăng nhập mật khẩu trước khi chắc chắn khoá dùng được là cách tự khoá mình ra khỏi máy chủ, và nếu đó là máy ở xa thì bạn không còn đường nào vào lại ngoài bảng điều khiển của nhà cung cấp. Mở một phiên thứ hai để làm chỗ lui là thói quen đáng có.",
       },
       {
+        "type": "code",
+        "language": "bash",
+        "caption": "Tạo khoá, đưa khoá công khai lên, tắt mật khẩu",
+        "code": "$ ssh-keygen -t ed25519 -C \"an@laptop\"\n$ ssh-copy-id an@203.0.113.10           # thêm khoá CÔNG KHAI vào ~/.ssh/authorized_keys\n$ ssh an@203.0.113.10                    # vào được bằng khoá\n$ # Trong /etc/ssh/sshd_config trên máy chủ:\nPasswordAuthentication no\nPermitRootLogin no\n$ sudo sshd -t && sudo systemctl reload ssh   # kiểm cú pháp TRƯỚC khi nạp lại\n$ # Giữ phiên cũ đang mở cho tới khi thử đăng nhập được ở một cửa sổ mới"
+      },
+      {
         type: "closing",
         lines: [
           "Lối vào an toàn nhất là lối không có gì để đoán, chứ không phải lối có mật khẩu dài nhất.",
@@ -1398,6 +1492,25 @@ export const PERSONAL_BANKING_LESSONS: Lesson[] = [
         type: "callout",
         label: "Script nguy hiểm nhất là script chạy trên nhầm máy",
         text: "Lỗi cú pháp thì shell báo ngay. Lỗi thật sự đắt là một script hoàn toàn đúng chạy trên môi trường không định chạy - dọn dữ liệu thử trên máy sản xuất. Vì vậy với mọi script có thao tác phá huỷ, hãy in ra tên máy và đường dẫn sắp tác động, rồi chờ xác nhận. Rẻ hơn nhiều so với thứ nó ngăn.",
+      },
+      {
+        "type": "code",
+        "language": "bash",
+        "caption": "Một script sao lưu có ba dòng an toàn ở đầu",
+        "code": "#!/usr/bin/env bash\nset -euo pipefail          # dừng khi có lỗi, khi dùng biến chưa gán, khi lỗi giữa ống\nIFS=$'\\n\\t'\n\nNGUON=\"${1:?Cách dùng: sao-luu.sh <thư mục>}\"\nDICH=\"/backup/$(date +%F)\"\nmkdir -p \"$DICH\"\ntar -czf \"$DICH/$(basename \"$NGUON\").tar.gz\" -C \"$(dirname \"$NGUON\")\" \"$(basename \"$NGUON\")\"\nfind /backup -maxdepth 1 -type d -mtime +14 -exec rm -rf {} +   # giữ 14 ngày\necho \"Xong: $DICH\""
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Vì sao phải đặt biến trong dấu ngoặc kép",
+        "task": "Hàm chay mô phỏng cách shell tách từ: $F không có ngoặc kép bị tách theo dấu cách thành nhiều đối số, \"$F\" thì giữ nguyên. Sửa hai mẫu lệnh (không sửa hàm chay) để rm và cp mỗi lệnh chỉ nhận đúng một tên tệp có dấu cách, rồi xem các đối số mà lệnh thật sự nhận.",
+        "starter": "function chay(mau, bien) {\n  const doiSo = [];\n  for (const phan of mau.split(\" \")) {\n    if (phan === '\"$F\"') doiSo.push(bien.F);\n    else if (phan === \"$F\") doiSo.push(...bien.F.split(\" \"));\n    else doiSo.push(phan);\n  }\n  return doiSo;\n}\n\nconst bien = { F: \"bao cao thang 9.pdf\" };\nfor (const mau of [\"rm $F\", \"cp $F /backup/\"]) {\n  const ds = chay(mau, bien);\n  console.log(ds[0] + \" nhận \" + (ds.length - 1) + \" đối số: \" + ds.slice(1).map((x) => \"[\" + x + \"]\").join(\" \"));\n}",
+        "solution": "function chay(mau, bien) {\n  const doiSo = [];\n  for (const phan of mau.split(\" \")) {\n    if (phan === '\"$F\"') doiSo.push(bien.F);\n    else if (phan === \"$F\") doiSo.push(...bien.F.split(\" \"));\n    else doiSo.push(phan);\n  }\n  return doiSo;\n}\n\nconst bien = { F: \"bao cao thang 9.pdf\" };\nfor (const mau of ['rm \"$F\"', 'cp \"$F\" /backup/']) {\n  const ds = chay(mau, bien);\n  console.log(ds[0] + \" nhận \" + (ds.length - 1) + \" đối số: \" + ds.slice(1).map((x) => \"[\" + x + \"]\").join(\" \"));\n}",
+        "hints": [
+          "Không có ngoặc kép, rm nhận bốn tên tệp: bao, cao, thang, 9.pdf - và sẽ xoá bất kỳ tệp nào trùng những tên đó.",
+          "Đổi $F thành \"$F\" trong cả hai mẫu lệnh."
+        ],
+        "expectedOutput": "rm nhận 1 đối số: [bao cao thang 9.pdf]\ncp nhận 2 đối số: [bao cao thang 9.pdf] [/backup/]"
       },
       {
         type: "closing",
@@ -1571,6 +1684,25 @@ export const PERSONAL_BANKING_LESSONS: Lesson[] = [
         text: "Đây là điểm đảo ngược so với mọi thứ bạn quen: thường thì hệ thống báo khi có lỗi. Nhưng một tác vụ định kỳ chết hẳn thì không sinh ra lỗi nào - nó chỉ đơn giản là im lặng. Cách duy nhất bắt được là đảo chiều phép kiểm: mỗi lần chạy xong thì báo về một nơi, và nơi đó kêu lên khi quá hạn mà chưa thấy gì.",
       },
       {
+        "type": "code",
+        "language": "bash",
+        "caption": "Đặt lịch bằng crontab",
+        "code": "$ crontab -e\n# phút giờ ngày-tháng tháng thứ   lệnh\n30 2 * * *   /home/an/sao-luu.sh /srv/app >> /var/log/sao-luu.log 2>&1\n*/15 * * * * /home/an/kiem-suc-khoe.sh\n0 9 * * 1-5  /home/an/bao-cao.sh\n$ crontab -l\n$ grep CRON /var/log/syslog | tail -3     # cron có chạy thật không"
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Đọc biểu thức cron: khi nào nó chạy",
+        "task": "Viết khopTruong để hỗ trợ đủ cú pháp của mỗi trường cron: *, một số, danh sách 1,3,5, khoảng 1-5 và bước */15 (thứ: 0 là Chủ nhật). Rồi xem mỗi biểu thức chạy ở những mốc nào. Mã hiện chỉ hiểu * và một số, nên */15, 1-5 và 9,18 không bao giờ khớp.",
+        "starter": "function khopTruong(tr, gt) {\n  return tr === \"*\" || Number(tr) === gt;\n}\nfunction khop(bt, t) {\n  const [phut, gio, ngay, thang, thu] = bt.split(\" \");\n  return khopTruong(phut, t.phut) && khopTruong(gio, t.gio) && khopTruong(ngay, t.ngay) && khopTruong(thang, t.thang) && khopTruong(thu, t.thu);\n}\n\nconst moc = [\n  { ten: \"T2 09:00\", phut: 0, gio: 9, ngay: 28, thang: 9, thu: 1 },\n  { ten: \"T2 09:45\", phut: 45, gio: 9, ngay: 28, thang: 9, thu: 1 },\n  { ten: \"CN 18:00\", phut: 0, gio: 18, ngay: 27, thang: 9, thu: 0 },\n  { ten: \"T4 02:30\", phut: 30, gio: 2, ngay: 30, thang: 9, thu: 3 },\n];\nfor (const bt of [\"0 9 * * 1-5\", \"*/15 * * * *\", \"30 2 * * *\", \"0 9,18 * * 0,6\"]) {\n  console.log(bt + \" -> \" + (moc.filter((m) => khop(bt, m)).map((m) => m.ten).join(\", \") || \"(không)\"));\n}",
+        "solution": "function khopTruong(tr, gt) {\n  return tr.split(\",\").some((p) => {\n    if (p === \"*\") return true;\n    if (p.startsWith(\"*/\")) return gt % Number(p.slice(2)) === 0;\n    if (p.includes(\"-\")) { const [a, b] = p.split(\"-\").map(Number); return gt >= a && gt <= b; }\n    return Number(p) === gt;\n  });\n}\nfunction khop(bt, t) {\n  const [phut, gio, ngay, thang, thu] = bt.split(\" \");\n  return khopTruong(phut, t.phut) && khopTruong(gio, t.gio) && khopTruong(ngay, t.ngay) && khopTruong(thang, t.thang) && khopTruong(thu, t.thu);\n}\n\nconst moc = [\n  { ten: \"T2 09:00\", phut: 0, gio: 9, ngay: 28, thang: 9, thu: 1 },\n  { ten: \"T2 09:45\", phut: 45, gio: 9, ngay: 28, thang: 9, thu: 1 },\n  { ten: \"CN 18:00\", phut: 0, gio: 18, ngay: 27, thang: 9, thu: 0 },\n  { ten: \"T4 02:30\", phut: 30, gio: 2, ngay: 30, thang: 9, thu: 3 },\n];\nfor (const bt of [\"0 9 * * 1-5\", \"*/15 * * * *\", \"30 2 * * *\", \"0 9,18 * * 0,6\"]) {\n  console.log(bt + \" -> \" + (moc.filter((m) => khop(bt, m)).map((m) => m.ten).join(\", \") || \"(không)\"));\n}",
+        "hints": [
+          "Tách trường theo dấu phẩy trước; mỗi phần là *, */n, a-b hoặc một số.",
+          "*/15 ở trường phút nghĩa là phút chia hết cho 15: 0, 15, 30, 45."
+        ],
+        "expectedOutput": "0 9 * * 1-5 -> T2 09:00\n*/15 * * * * -> T2 09:00, T2 09:45, CN 18:00, T4 02:30\n30 2 * * * -> T4 02:30\n0 9,18 * * 0,6 -> CN 18:00"
+      },
+      {
         type: "closing",
         lines: [
           "Thứ hỏng đáng sợ nhất không phải thứ kêu to, mà là thứ im lặng đúng lúc bạn cần nó nhất.",
@@ -1740,6 +1872,25 @@ export const PERSONAL_BANKING_LESSONS: Lesson[] = [
         type: "callout",
         label: "Ba thứ luôn tìm thấy ở lần rà soát đầu tiên",
         text: "Một cổng mở không ai nhớ, một tác vụ định kỳ đã chết, và một chứng chỉ sắp hết hạn. Chúng xuất hiện gần như mọi lần, ở mọi đội, vì cả ba đều là thứ trôi dần mà không sinh ra lỗi nào. Đó chính là lý do buổi rà soát tồn tại - nó đi tìm những thứ không tự kêu lên.",
+      },
+      {
+        "type": "code",
+        "language": "bash",
+        "caption": "Nửa giờ rà soát, bằng những lệnh này",
+        "code": "$ sudo apt update && apt list --upgradable     # bản vá còn chờ\n$ df -h / && du -sh /var/log                    # ổ đĩa\n$ sudo ss -tlnp                                  # cửa đang mở\n$ sudo ufw status numbered                       # luật tường lửa còn đúng không\n$ sudo grep \"Failed password\" /var/log/auth.log | tail -5\n$ last -n 5                                      # ai đã đăng nhập\n$ ls -lt /backup | head -3                       # bản sao lưu mới nhất có từ hôm nào"
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Đếm lần đăng nhập SSH thất bại theo địa chỉ",
+        "task": "Đọc một đoạn auth.log, đếm số lần \"Failed password\" theo địa chỉ IP (kể cả dòng \"for invalid user\"), bỏ qua dòng thành công, và in những IP từ 3 lần trở lên - cách fail2ban quyết định chặn - theo số lần giảm dần. Mã hiện lấy từ ở vị trí cố định nên dòng \"invalid user\" bị đọc sai IP, và đếm cả dòng thành công.",
+        "starter": "const log = `Sep 28 03:01:11 may sshd[1]: Failed password for root from 198.51.100.7 port 51234 ssh2\nSep 28 03:01:13 may sshd[1]: Failed password for invalid user admin from 198.51.100.7 port 51240 ssh2\nSep 28 03:01:15 may sshd[1]: Failed password for invalid user test from 198.51.100.7 port 51248 ssh2\nSep 28 03:02:00 may sshd[1]: Accepted publickey for an from 10.0.0.5 port 50000 ssh2\nSep 28 03:05:41 may sshd[1]: Failed password for root from 203.0.113.50 port 40001 ssh2\nSep 28 03:05:44 may sshd[1]: Failed password for invalid user oracle from 203.0.113.50 port 40002 ssh2\nSep 28 03:05:47 may sshd[1]: Failed password for root from 203.0.113.50 port 40003 ssh2\nSep 28 03:05:50 may sshd[1]: Failed password for invalid user git from 203.0.113.50 port 40004 ssh2\nSep 28 04:00:00 may sshd[1]: Failed password for an from 10.0.0.5 port 50100 ssh2`;\n\nconst dem = {};\nfor (const d of log.split(\"\\n\")) {\n  const tu = d.split(\" \");\n  const ip = tu[10];\n  dem[ip] = (dem[ip] ?? 0) + 1;\n}\nfor (const [ip, n] of Object.entries(dem)) if (n >= 3) console.log(ip + \" \" + n + \" lần\");",
+        "solution": "const log = `Sep 28 03:01:11 may sshd[1]: Failed password for root from 198.51.100.7 port 51234 ssh2\nSep 28 03:01:13 may sshd[1]: Failed password for invalid user admin from 198.51.100.7 port 51240 ssh2\nSep 28 03:01:15 may sshd[1]: Failed password for invalid user test from 198.51.100.7 port 51248 ssh2\nSep 28 03:02:00 may sshd[1]: Accepted publickey for an from 10.0.0.5 port 50000 ssh2\nSep 28 03:05:41 may sshd[1]: Failed password for root from 203.0.113.50 port 40001 ssh2\nSep 28 03:05:44 may sshd[1]: Failed password for invalid user oracle from 203.0.113.50 port 40002 ssh2\nSep 28 03:05:47 may sshd[1]: Failed password for root from 203.0.113.50 port 40003 ssh2\nSep 28 03:05:50 may sshd[1]: Failed password for invalid user git from 203.0.113.50 port 40004 ssh2\nSep 28 04:00:00 may sshd[1]: Failed password for an from 10.0.0.5 port 50100 ssh2`;\n\nconst dem = {};\nfor (const d of log.split(\"\\n\")) {\n  const m = d.match(/Failed password for .* from (\\S+) port/);\n  if (!m) continue;\n  dem[m[1]] = (dem[m[1]] ?? 0) + 1;\n}\nfor (const [ip, n] of Object.entries(dem).sort((a, b) => b[1] - a[1])) if (n >= 3) console.log(ip + \" \" + n + \" lần\");",
+        "hints": [
+          "Vị trí của IP đổi theo việc có \"invalid user\" hay không - neo vào chữ \"from\" thay vì đếm từ.",
+          "Một biểu thức chính quy: /Failed password for .* from (\\S+) port/. Dòng không khớp thì bỏ qua."
+        ],
+        "expectedOutput": "203.0.113.50 4 lần\n198.51.100.7 3 lần"
       },
       {
         type: "closing",

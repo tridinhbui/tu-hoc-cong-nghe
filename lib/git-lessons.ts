@@ -240,6 +240,12 @@ export const GIT_LESSONS: Lesson[] = [
         },
       },
       {
+        "type": "code",
+        "language": "bash",
+        "caption": "Ba lệnh đầu tiên trong một thư mục mới",
+        "code": "$ git init\nInitialized empty Git repository in /home/an/du-an/.git/\n$ git status\nOn branch main\nNo commits yet\nUntracked files:\n  (use \"git add <file>...\" to include in what will be committed)\n        index.html\n$ git log --oneline        # lịch sử: mỗi dòng một mốc, mới nhất ở trên\nfatal: your current branch 'main' does not have any commits yet"
+      },
+      {
         type: "closing",
         lines: [
           "Git không phải công cụ dành cho nhóm đông người. Nó có ích ngay từ dự án một người, vì nó trả lời được câu hỏi mà trí nhớ không trả lời nổi.",
@@ -419,6 +425,25 @@ export const GIT_LESSONS: Lesson[] = [
           "Nếu cần giải thích thêm thì để trống một dòng rồi viết đoạn mô tả bên dưới.",
           "Tránh 'update', 'fix bug', 'thay đổi nhỏ' - chúng lặp lại thứ Git đã biết.",
         ],
+      },
+      {
+        "type": "code",
+        "language": "bash",
+        "caption": "Thư mục làm việc → vùng chờ → commit",
+        "code": "$ git add index.html            # đưa bản hiện tại vào vùng chờ\n$ echo \"<p>sửa</p>\" >> index.html\n$ git status --short\nMM index.html                  # M trái: đã chờ; M phải: sửa thêm SAU khi add\n$ git diff                     # khác biệt chưa add\n$ git diff --staged            # thứ sẽ vào commit\n$ git commit -m \"Thêm trang chủ\"\n[main (root-commit) 3f2a1c9] Thêm trang chủ"
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Mô phỏng vùng chờ: commit lấy bản nào",
+        "task": "Kho có ba vùng: lamViec (tệp trên đĩa), cho (vùng chờ) và các commit. add(tep) phải chụp nội dung HIỆN TẠI của tệp vào vùng chờ; commit(tn) lưu ảnh commit trước cộng với vùng chờ, rồi làm rỗng vùng chờ. Mã hiện cho commit đọc thẳng thư mục làm việc, nên phần sửa sau khi add và cả tệp nháp chưa add đều lọt vào commit.",
+        "starter": "const kho = { lamViec: {}, cho: {}, commit: [] };\nconst add = (t) => { kho.cho[t] = true; };\nconst commit = (tn) => { kho.commit.push({ tn, anh: { ...kho.lamViec } }); };\n\nkho.lamViec[\"index.html\"] = \"v1\";\nkho.lamViec[\"nhap.txt\"] = \"nháp\";\nadd(\"index.html\");\nkho.lamViec[\"index.html\"] = \"v2\";\ncommit(\"Thêm trang chủ\");\nconsole.log(\"Commit 1: \" + JSON.stringify(kho.commit[0].anh));\nconsole.log(\"Vùng chờ sau commit: \" + JSON.stringify(kho.cho));\nadd(\"index.html\");\ncommit(\"Sửa trang chủ\");\nconsole.log(\"Commit 2: \" + JSON.stringify(kho.commit[1].anh));",
+        "solution": "const kho = { lamViec: {}, cho: {}, commit: [] };\nconst add = (t) => { kho.cho[t] = kho.lamViec[t]; };\nconst commit = (tn) => {\n  kho.commit.push({ tn, anh: { ...(kho.commit.at(-1)?.anh ?? {}), ...kho.cho } });\n  kho.cho = {};\n};\n\nkho.lamViec[\"index.html\"] = \"v1\";\nkho.lamViec[\"nhap.txt\"] = \"nháp\";\nadd(\"index.html\");\nkho.lamViec[\"index.html\"] = \"v2\";\ncommit(\"Thêm trang chủ\");\nconsole.log(\"Commit 1: \" + JSON.stringify(kho.commit[0].anh));\nconsole.log(\"Vùng chờ sau commit: \" + JSON.stringify(kho.cho));\nadd(\"index.html\");\ncommit(\"Sửa trang chủ\");\nconsole.log(\"Commit 2: \" + JSON.stringify(kho.commit[1].anh));",
+        "hints": [
+          "add phải chụp NỘI DUNG lúc đó (kho.cho[t] = kho.lamViec[t]), không chỉ đánh dấu tên.",
+          "commit = ảnh commit trước + những gì đang chờ, rồi làm rỗng vùng chờ."
+        ],
+        "expectedOutput": "Commit 1: {\"index.html\":\"v1\"}\nVùng chờ sau commit: {}\nCommit 2: {\"index.html\":\"v2\"}"
       },
       {
         type: "closing",
@@ -624,6 +649,25 @@ export const GIT_LESSONS: Lesson[] = [
         text: "Quy tắc rút gọn đáng nhớ: viết lại lịch sử là việc riêng tư. Chừng nào các mốc chưa rời khỏi máy bạn thì bạn muốn sắp xếp thế nào cũng được. Ngay khi chúng đã ra ngoài, mọi thao tác viết lại đều đẩy phần dọn dẹp sang máy của người khác.",
       },
       {
+        "type": "code",
+        "language": "bash",
+        "caption": "Đọc lịch sử và hai cách quay lại",
+        "code": "$ git log --oneline --graph -5\n* 9c1e2d4 (HEAD -> main) Đổi màu nút\n* 7b3a910 Thêm biểu mẫu liên hệ\n* 3f2a1c9 Thêm trang chủ\n$ git show 7b3a910 --stat          # commit đó đổi những tệp nào\n$ git revert 9c1e2d4               # tạo commit MỚI đảo ngược - an toàn với nhánh đã đẩy lên\n$ git restore --source=3f2a1c9 index.html   # lấy lại một tệp từ mốc cũ\n$ git reset --hard 7b3a910         # xoá khỏi lịch sử - chỉ dùng cho việc chưa đẩy lên"
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "revert và reset khác nhau ở đâu",
+        "task": "Lịch sử là mảng commit, mỗi commit ghi thay đổi {tệp: nội dung}. revert(ls, id) phải THÊM một commit mới đưa những tệp mà commit id đã đổi về như trước nó; reset(ls, id) cắt lịch sử về id. Mã hiện cài revert giống reset, nên d4 (commit sau c3) mất theo. In lịch sử và nội dung cuối sau mỗi cách.",
+        "starter": "const ls = [\n  { id: \"a1\", tn: \"Trang chủ\", doi: { \"index.html\": \"v1\", \"style.css\": \"trắng\" } },\n  { id: \"b2\", tn: \"Biểu mẫu\", doi: { \"form.html\": \"v1\" } },\n  { id: \"c3\", tn: \"Đổi màu\", doi: { \"style.css\": \"đỏ\" } },\n  { id: \"d4\", tn: \"Sửa chữ\", doi: { \"index.html\": \"v2\" } },\n];\nconst noiDung = (ls) => ls.reduce((s, c) => ({ ...s, ...c.doi }), {});\n\nfunction reset(ls, id) { return ls.slice(0, ls.findIndex((c) => c.id === id) + 1); }\nfunction revert(ls, id) { return reset(ls, ls[ls.findIndex((c) => c.id === id) - 1].id); }\n\nconst r1 = revert(ls, \"c3\");\nconsole.log(\"revert c3: \" + r1.map((c) => c.id).join(\",\") + \" \" + JSON.stringify(noiDung(r1)));\nconst r2 = reset(ls, \"b2\");\nconsole.log(\"reset b2:  \" + r2.map((c) => c.id).join(\",\") + \" \" + JSON.stringify(noiDung(r2)));",
+        "solution": "const ls = [\n  { id: \"a1\", tn: \"Trang chủ\", doi: { \"index.html\": \"v1\", \"style.css\": \"trắng\" } },\n  { id: \"b2\", tn: \"Biểu mẫu\", doi: { \"form.html\": \"v1\" } },\n  { id: \"c3\", tn: \"Đổi màu\", doi: { \"style.css\": \"đỏ\" } },\n  { id: \"d4\", tn: \"Sửa chữ\", doi: { \"index.html\": \"v2\" } },\n];\nconst noiDung = (ls) => ls.reduce((s, c) => ({ ...s, ...c.doi }), {});\n\nfunction reset(ls, id) { return ls.slice(0, ls.findIndex((c) => c.id === id) + 1); }\nfunction revert(ls, id) {\n  const i = ls.findIndex((c) => c.id === id);\n  const truoc = noiDung(ls.slice(0, i));\n  const doi = {};\n  for (const tep of Object.keys(ls[i].doi)) doi[tep] = truoc[tep];\n  return [...ls, { id: \"r-\" + id, tn: \"Revert \" + ls[i].tn, doi }];\n}\n\nconst r1 = revert(ls, \"c3\");\nconsole.log(\"revert c3: \" + r1.map((c) => c.id).join(\",\") + \" \" + JSON.stringify(noiDung(r1)));\nconst r2 = reset(ls, \"b2\");\nconsole.log(\"reset b2:  \" + r2.map((c) => c.id).join(\",\") + \" \" + JSON.stringify(noiDung(r2)));",
+        "hints": [
+          "revert không xoá gì: nó thêm một commit đảo ngược, nên d4 vẫn còn.",
+          "Với mỗi tệp c3 đã đổi, lấy nội dung của tệp đó ngay trước c3."
+        ],
+        "expectedOutput": "revert c3: a1,b2,c3,d4,r-c3 {\"index.html\":\"v2\",\"style.css\":\"trắng\",\"form.html\":\"v1\"}\nreset b2:  a1,b2 {\"index.html\":\"v1\",\"style.css\":\"trắng\",\"form.html\":\"v1\"}"
+      },
+      {
         type: "closing",
         lines: [
           "Lịch sử không phải kho lưu trữ để đó cho yên tâm. Nó là công cụ chẩn đoán, và nó chỉ tốt bằng chất lượng các commit bạn đã viết.",
@@ -803,6 +847,12 @@ export const GIT_LESSONS: Lesson[] = [
       {
         type: "paragraph",
         text: "Còn khi đang sửa dở mà cần chuyển nhánh gấp, git stash cất tạm phần chưa commit và trả vùng làm việc về sạch, lấy lại bằng git stash pop. Lệnh này tiện nhưng dễ bị quên - một stash để hàng tuần rồi pop ra thường xung đột với mọi thứ đã đổi trong lúc đó.",
+      },
+      {
+        "type": "code",
+        "language": "bash",
+        "caption": "Nhánh chỉ là một cái nhãn trỏ vào commit",
+        "code": "$ git switch -c sua-nut-dang-ky     # tạo nhánh mới và chuyển sang\n$ git commit -am \"Sửa nút đăng ký\"\n$ git branch -v\n  main            9c1e2d4 Đổi màu nút\n* sua-nut-dang-ky 4e8f0a2 Sửa nút đăng ký\n$ git switch main                   # thư mục làm việc đổi theo nhánh\n$ git log --oneline --graph --all"
       },
       {
         type: "closing",
@@ -991,6 +1041,25 @@ export const GIT_LESSONS: Lesson[] = [
       {
         type: "paragraph",
         text: "Cách giảm xung đột tốt nhất lại không nằm ở kỹ thuật Git. Thứ nhất là chia việc sao cho hai người không cùng đụng vào một tệp trong cùng một tuần. Thứ hai là cập nhật nhánh của mình từ main hằng ngày: tổng khác biệt cần hoà giải vẫn thế, nhưng chia nhỏ thì mỗi lần chỉ vài dòng và bạn còn nhớ rõ ngữ cảnh.",
+      },
+      {
+        "type": "code",
+        "language": "bash",
+        "caption": "Xung đột trông như thế này",
+        "code": "$ git merge sua-tieu-de\nAuto-merging index.html\nCONFLICT (content): Merge conflict in index.html\n$ cat index.html\n<<<<<<< HEAD\n<h1>Tự học mỗi ngày</h1>\n=======\n<h1>Học công nghệ mỗi ngày</h1>\n>>>>>>> sua-tieu-de\n$ # sửa tay, xoá ba dòng đánh dấu, rồi:\n$ git add index.html && git commit"
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Gộp ba chiều theo từng dòng",
+        "task": "Gộp hai phiên bản của cùng một tệp từ tổ tiên chung (goc), theo từng dòng (ba bản cùng số dòng): chỉ một bên đổi thì lấy bên đó; hai bên đổi giống nhau thì lấy luôn; hai bên đổi khác nhau thì là xung đột, in khối <<<<<<< HEAD / ======= / >>>>>>> nhanh-kia. Mã hiện luôn lấy bản của nhánh kia, lặng lẽ xoá mất thay đổi của mình.",
+        "starter": "function gop(goc, cuaToi, cuaHo) {\n  return { dong: cuaHo.slice(), xungDot: 0 };\n}\n\nconst goc = [\"<h1>Tự học</h1>\", \"<p>Chào</p>\", \"<a>Đăng ký</a>\", \"<footer>2025</footer>\"];\nconst toi = [\"<h1>Tự học mỗi ngày</h1>\", \"<p>Chào</p>\", \"<a>Đăng nhập</a>\", \"<footer>2026</footer>\"];\nconst ho = [\"<h1>Học công nghệ</h1>\", \"<p>Xin chào</p>\", \"<a>Đăng ký</a>\", \"<footer>2026</footer>\"];\nconst kq = gop(goc, toi, ho);\nconsole.log(kq.dong.join(\"\\n\"));\nconsole.log(\"Xung đột: \" + kq.xungDot);",
+        "solution": "function gop(goc, cuaToi, cuaHo) {\n  const dong = [];\n  let xungDot = 0;\n  for (let i = 0; i < goc.length; i++) {\n    const g = goc[i], t = cuaToi[i], h = cuaHo[i];\n    if (t === h || h === g) dong.push(t);\n    else if (t === g) dong.push(h);\n    else {\n      xungDot++;\n      dong.push(\"<<<<<<< HEAD\", t, \"=======\", h, \">>>>>>> nhanh-kia\");\n    }\n  }\n  return { dong, xungDot };\n}\n\nconst goc = [\"<h1>Tự học</h1>\", \"<p>Chào</p>\", \"<a>Đăng ký</a>\", \"<footer>2025</footer>\"];\nconst toi = [\"<h1>Tự học mỗi ngày</h1>\", \"<p>Chào</p>\", \"<a>Đăng nhập</a>\", \"<footer>2026</footer>\"];\nconst ho = [\"<h1>Học công nghệ</h1>\", \"<p>Xin chào</p>\", \"<a>Đăng ký</a>\", \"<footer>2026</footer>\"];\nconst kq = gop(goc, toi, ho);\nconsole.log(kq.dong.join(\"\\n\"));\nconsole.log(\"Xung đột: \" + kq.xungDot);",
+        "hints": [
+          "Tổ tiên chung cho biết ai đã đổi: bên nào khác goc là bên đã sửa.",
+          "Chỉ xung đột khi CẢ HAI đều khác goc và khác nhau."
+        ],
+        "expectedOutput": "<<<<<<< HEAD\n<h1>Tự học mỗi ngày</h1>\n=======\n<h1>Học công nghệ</h1>\n>>>>>>> nhanh-kia\n<p>Xin chào</p>\n<a>Đăng nhập</a>\n<footer>2026</footer>\nXung đột: 1"
       },
       {
         type: "closing",
@@ -1189,6 +1258,25 @@ export const GIT_LESSONS: Lesson[] = [
         ],
       },
       {
+        "type": "code",
+        "language": "bash",
+        "caption": "Làm việc với kho từ xa",
+        "code": "$ git clone git@github.com:an/du-an.git\n$ git remote -v\norigin  git@github.com:an/du-an.git (fetch)\n$ git fetch                          # tải về, CHƯA gộp - xem trước đã\n$ git status\nYour branch and 'origin/main' have diverged,\nand have 1 and 2 different commits each, respectively.\n$ git pull --rebase                  # đặt commit của mình lên trên phần mới\n$ git push\n! [rejected]  main -> main (fetch first)   # xảy ra khi bạn quên bước trên"
+      },
+      {
+        "type": "exercise",
+        "language": "javascript",
+        "title": "Tính \"ahead / behind\" như git status",
+        "task": "Mỗi commit có danh sách cha. Viết soSanh(tu, xa) trả về số commit chỉ có ở nhánh của bạn (ahead) và chỉ có ở nhánh từ xa (behind), cùng lời khuyên. Mã hiện so số lượng tổ tiên, nên hai nhánh đã rẽ nhau với cùng độ dài bị báo là đồng bộ.",
+        "starter": "const cha = { a: [], b: [\"a\"], c: [\"b\"], d: [\"c\"], e: [\"c\"], f: [\"e\"], g: [\"d\"] };\nfunction toTien(id) { const kq = new Set(); const cho = [id]; while (cho.length) { const x = cho.pop(); if (!kq.has(x)) { kq.add(x); cho.push(...cha[x]); } } return kq; }\n\nfunction soSanh(tu, xa) {\n  const a = toTien(tu).size, b = toTien(xa).size;\n  const ahead = Math.max(0, a - b), behind = Math.max(0, b - a);\n  const loi = ahead && behind ? \"đã rẽ nhánh - pull --rebase\" : ahead ? \"push được\" : behind ? \"pull trước\" : \"đã đồng bộ\";\n  return ahead + \" ahead, \" + behind + \" behind -> \" + loi;\n}\n\nconsole.log(\"d vs c: \" + soSanh(\"d\", \"c\"));\nconsole.log(\"c vs f: \" + soSanh(\"c\", \"f\"));\nconsole.log(\"d vs f: \" + soSanh(\"d\", \"f\"));\nconsole.log(\"g vs f: \" + soSanh(\"g\", \"f\"));\nconsole.log(\"f vs f: \" + soSanh(\"f\", \"f\"));",
+        "solution": "const cha = { a: [], b: [\"a\"], c: [\"b\"], d: [\"c\"], e: [\"c\"], f: [\"e\"], g: [\"d\"] };\nfunction toTien(id) { const kq = new Set(); const cho = [id]; while (cho.length) { const x = cho.pop(); if (!kq.has(x)) { kq.add(x); cho.push(...cha[x]); } } return kq; }\n\nfunction soSanh(tu, xa) {\n  const a = toTien(tu), b = toTien(xa);\n  const ahead = [...a].filter((x) => !b.has(x)).length;\n  const behind = [...b].filter((x) => !a.has(x)).length;\n  const loi = ahead && behind ? \"đã rẽ nhánh - pull --rebase\" : ahead ? \"push được\" : behind ? \"pull trước\" : \"đã đồng bộ\";\n  return ahead + \" ahead, \" + behind + \" behind -> \" + loi;\n}\n\nconsole.log(\"d vs c: \" + soSanh(\"d\", \"c\"));\nconsole.log(\"c vs f: \" + soSanh(\"c\", \"f\"));\nconsole.log(\"d vs f: \" + soSanh(\"d\", \"f\"));\nconsole.log(\"g vs f: \" + soSanh(\"g\", \"f\"));\nconsole.log(\"f vs f: \" + soSanh(\"f\", \"f\"));",
+        "hints": [
+          "Quan trọng không phải số lượng, mà là commit NÀO mỗi bên có mà bên kia không có.",
+          "ahead = tổ tiên của nhánh bạn trừ tổ tiên của nhánh xa - phép hiệu tập hợp."
+        ],
+        "expectedOutput": "d vs c: 1 ahead, 0 behind -> push được\nc vs f: 0 ahead, 2 behind -> pull trước\nd vs f: 1 ahead, 2 behind -> đã rẽ nhánh - pull --rebase\ng vs f: 2 ahead, 2 behind -> đã rẽ nhánh - pull --rebase\nf vs f: 0 ahead, 0 behind -> đã đồng bộ"
+      },
+      {
         type: "closing",
         lines: [
           "Kho từ xa biến việc học của bạn từ thứ riêng tư thành thứ người khác kiểm chứng được.",
@@ -1374,6 +1462,12 @@ export const GIT_LESSONS: Lesson[] = [
       {
         type: "paragraph",
         text: "Phần kiểm tra tự động chạy song song với người đọc, và phân công giữa hai bên rất rõ: máy lo những gì có quy tắc máy móc - bộ kiểm chạy có qua không, định dạng đúng chuẩn chưa, kiểu dữ liệu có khớp. Người lo những gì cần phán đoán - cách tiếp cận có hợp lý không, còn trường hợp nào chưa tính tới, sáu tháng nữa đọc lại có hiểu không.",
+      },
+      {
+        "type": "code",
+        "language": "bash",
+        "caption": "Từ nhánh tới pull request",
+        "code": "$ git switch -c them-trang-lien-he\n$ git commit -am \"Thêm trang liên hệ\"\n$ git push -u origin them-trang-lien-he\n$ gh pr create --title \"Thêm trang liên hệ\" --body \"Vì sao: ... Cách thử: ...\"\n$ gh pr diff 42          # đọc thay đổi của người khác\n$ gh pr checkout 42      # chạy thử trên máy mình trước khi duyệt"
       },
       {
         type: "closing",
@@ -1576,6 +1670,12 @@ export const GIT_LESSONS: Lesson[] = [
       {
         type: "paragraph",
         text: "Từ quy tắc đó suy ra một thói quen đáng giá: commit sớm và commit nhỏ, kể cả khi công việc còn dở. Một mốc lộn xộn vẫn dọn dẹp được sau bằng amend hoặc gộp lại, còn một buổi làm việc chưa commit thì một lệnh gõ nhầm là mất sạch.",
+      },
+      {
+        "type": "code",
+        "language": "bash",
+        "caption": "Một vòng làm việc trọn vẹn",
+        "code": "$ git switch main && git pull --rebase     # bắt đầu từ bản mới nhất\n$ git switch -c sua-loi-dang-nhap\n$ # ... sửa, chạy thử ...\n$ git add -p                                # duyệt từng đoạn trước khi đưa vào commit\n$ git commit -m \"Sửa lỗi đăng nhập khi mật khẩu có dấu cách\"\n$ git push -u origin sua-loi-dang-nhap\n$ gh pr create\n$ # sau khi được duyệt và gộp:\n$ git switch main && git pull --rebase && git branch -d sua-loi-dang-nhap"
       },
       {
         type: "closing",

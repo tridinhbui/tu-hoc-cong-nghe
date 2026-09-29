@@ -12,6 +12,7 @@
 const PYODIDE_URL = "https://cdn.jsdelivr.net/pyodide/v0.29.3/full/";
 
 let booting = null;
+let hashlibReady = false;
 
 function boot() {
   if (!booting) {
@@ -71,6 +72,18 @@ self.onmessage = async (event) => {
 
   const globals = py.globals.get("dict")();
   try {
+    // sqlite3 không nằm sẵn trong bản Pyodide cơ bản mà là gói tách riêng;
+    // tải theo câu import để bài tập SQL (chặng cơ sở dữ liệu) chạy được.
+    // Tắt thông báo "Loading ...": nó sẽ lọt vào đầu ra và làm bài bị chấm sai.
+    await py.loadPackagesFromImports(code, { messageCallback: () => {} });
+    // hashlib là thư viện chuẩn nên loadPackagesFromImports bỏ qua, nhưng bản
+    // cơ bản thiếu phần OpenSSL: không có pbkdf2_hmac, thứ bài lưu mật khẩu
+    // dùng. Nạp gói "hashlib" một lần rồi reload module để nó thấy OpenSSL.
+    if (!hashlibReady && /\bhashlib\b/.test(code)) {
+      await py.loadPackage("hashlib", { messageCallback: () => {} });
+      py.runPython("import importlib, hashlib\nimportlib.reload(hashlib)");
+      hashlibReady = true;
+    }
     await py.runPythonAsync(code, { globals });
     self.postMessage({ id, ok: true, stdout: out.join("\n") });
   } catch (err) {
