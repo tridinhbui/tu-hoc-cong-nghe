@@ -111,7 +111,7 @@ export default function DocumentsList({ documents, currentUserId }: { documents:
         </div>
         <button
           onClick={() => setShowUpload(true)}
-          className="flex flex-shrink-0 items-center gap-1.5 rounded-sm border border-stone-400 px-3 py-1.5 text-xs font-bold text-ink transition-colors hover:border-stone-950 dark:border-stone-600 dark:hover:border-stone-200"
+          className="flex flex-shrink-0 items-center gap-1.5 rounded-sm border border-stone-400 px-3 py-1.5 text-xs font-bold text-ink transition-colors hover:border-stone-400 dark:border-stone-600 dark:hover:border-stone-200"
         >
           <Plus className="w-3.5 h-3.5" />
           {t.documentsList.shareButton}
@@ -136,7 +136,7 @@ export default function DocumentsList({ documents, currentUserId }: { documents:
                   setOpenDoc(doc);
                   trackFeatureClick("document_open", { label: doc.file_name });
                 }}
-                className="group overflow-hidden rounded-md border border-line-strong bg-white text-left transition-colors hover:border-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-300"
+                className="group overflow-hidden rounded-md border border-line-strong bg-white text-left transition-colors hover:border-stone-400 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-600"
               >
                 {/* Cover image or icon */}
                 {doc.image_url ? (

@@ -461,7 +461,7 @@ export default function DailyNewsQuizWidget({ userId, compact = false, variant =
                   ? "border-rose-500 bg-rose-50 dark:bg-rose-950/40 text-rose-950 dark:text-rose-100"
                   : isSelected
                   ? "border-brand-600 bg-brand-50 dark:bg-brand-950/30 text-ink-max font-bold"
-                  : "border-line-strong hover:border-stone-950 dark:hover:border-stone-300 bg-white dark:bg-stone-900 text-ink-heading"
+                  : "border-line-strong hover:border-line-firm bg-white dark:bg-stone-900 text-ink-heading"
               }`}
             >
               <span className="shrink-0">
@@ -724,7 +724,7 @@ export default function DailyNewsQuizWidget({ userId, compact = false, variant =
         <button
           type="button"
           onClick={startPractice}
-          className={`${panel} w-full mt-4 p-3 sm:p-4 flex items-center justify-between gap-3 group cursor-pointer transition-colors hover:border-stone-950 dark:hover:border-stone-300 text-left`}
+          className={`${panel} w-full mt-4 p-3 sm:p-4 flex items-center justify-between gap-3 group cursor-pointer transition-colors hover:border-line-firm text-left`}
         >
           <div className="flex-1 min-w-0">
             <span className="text-xs sm:text-sm font-black text-ink">

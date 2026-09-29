@@ -40,6 +40,12 @@ interface UserStatsProps {
    *  khối "Trung tâm kỹ năng" ngay cạnh đã nói đúng ba thứ đó, to hơn - hai
    *  bản của cùng một danh tính cách nhau một cột chỉ làm mắt phải chọn. */
   hideIdentity?: boolean;
+  /** Dashboard, lượt làm nhẹ: bảng số liệu co thành một dòng chữ nhạt, bỏ
+   *  thanh tiến độ cấp (khối cấp hiện tại ở cột chính đã nói đúng con số đó,
+   *  to hơn), nút thi thăng cấp thành một dòng liên kết không viền. Hai cảnh
+   *  báo (mất chuỗi, sắp phải thi lại) giữ nguyên - chúng là việc cần xử lý.
+   *  Mặc định tắt. */
+  quiet?: boolean;
 }
 
 const LEVEL_EMOJIS: Record<number, string> = {
@@ -74,6 +80,7 @@ export default function UserStats({
   embedded = false,
   compact = false,
   hideIdentity = false,
+  quiet = false,
 }: UserStatsProps) {
   const { t } = useI18n();
   const currentLevel = getLevelByXp(xp);
@@ -322,6 +329,20 @@ export default function UserStats({
 
       {/* Bảng số liệu: nhãn trái, số mono căn phải - cùng khuôn StatTable của
           trang giới thiệu, thay cho hai ô màu xanh da trời / xanh thương hiệu. */}
+      {quiet ? (
+        <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-ink-muted">
+          <span className="inline-flex items-center gap-1.5">
+            <BookOpen className="h-3.5 w-3.5 shrink-0 text-ink-faint" aria-hidden />
+            {t.userStats.lessons}
+            <span className="font-mono tabular-nums text-ink-body">{lessonsCompleted}/{totalLessons}</span>
+          </span>
+          <span className="inline-flex items-center gap-1.5">
+            <Target className="h-3.5 w-3.5 shrink-0 text-ink-faint" aria-hidden />
+            {t.userStats.quizAvg}
+            <span className="font-mono tabular-nums text-ink-body">{Math.round(avgQuizScore)}%</span>
+          </span>
+        </p>
+      ) : (
       <StatTable
         className={`border-y border-line ${sidebar ? "mb-2.5" : "mb-4"}`}
         rows={[
@@ -350,6 +371,7 @@ export default function UserStats({
           },
         ]}
       />
+      )}
 
       {/* Streak restore offer - shown once all 3 free freezes are used up
           and the streak actually reset, letting the user buy it back with
@@ -397,7 +419,7 @@ export default function UserStats({
       )}
 
       {/* Level Progress Bar & Alert Banner */}
-      {nextLevel && (
+      {nextLevel && !quiet && (
         <div className="mt-0.5 pt-2">
           <div className="flex items-center justify-between gap-2 text-[10.5px] mb-1.5 font-semibold text-ink-faint">
             <span>{format(t.userStats.progressLabel, { level: currentLevel.level })} <span className="font-mono font-medium tabular-nums text-ink-muted">({Math.round(progress)}%)</span></span>
@@ -446,7 +468,7 @@ export default function UserStats({
         </div>
       )}
 
-      {!nextLevel && (
+      {!nextLevel && !quiet && (
         <div className="mt-2.5 pt-2.5 border-t border-line">
           <div className="p-3 bg-surface-raised dark:bg-stone-950 rounded-sm flex items-center gap-2 text-xs text-ink-body font-semibold">
             <Crown className="w-4 h-4 shrink-0 text-ink-muted" aria-hidden /><span>{format(t.userStats.maxLevelReached, { name: t.levelTitles[currentLevel.level] ?? currentLevel.name })}</span>
@@ -475,7 +497,21 @@ export default function UserStats({
 
       {/* Level Exam Gatekeeper Banner - nút hành động chính của thẻ, nên đi
           bằng khuôn btnPrimary: nền mực, rê chuột thành xanh thương hiệu. */}
-      {nextLevel && (
+      {nextLevel && quiet && (
+        <button
+          type="button"
+          onClick={() => {
+            setSelectedExamLevel(nextLevel.level);
+            setShowExamModal(true);
+          }}
+          className="group mt-3 inline-flex cursor-pointer items-center gap-1.5 text-xs font-semibold text-ink-muted transition-colors hover:text-accent-strong"
+        >
+          <ShieldCheck className="h-3.5 w-3.5 shrink-0" strokeWidth={1.75} aria-hidden />
+          {format(t.revampDashboard.examLink, { level: String(nextLevel.level).padStart(2, "0") })}
+          <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" aria-hidden />
+        </button>
+      )}
+      {nextLevel && !quiet && (
         <div className="mt-3 pt-3 border-t border-line">
           <button
             onClick={() => {

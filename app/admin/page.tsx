@@ -163,7 +163,7 @@ export default async function AdminOverviewPage() {
             <Link
               key={card.label}
               href={card.href}
-              className={`${panel} p-5 hover:border-stone-950 dark:hover:border-stone-300 transition-colors`}
+              className={`${panel} p-5 hover:border-line-firm transition-colors`}
             >
               <div className="w-9 h-9 rounded-sm border border-line-strong flex items-center justify-center mb-3">
                 <Icon className="w-4.5 h-4.5 text-ink-soft" />

@@ -686,7 +686,7 @@ export default function AppNavbar() {
 
   return (
     <>
-      <aside className="hidden lg:flex fixed inset-y-0 left-0 z-40 w-64 bg-page dark:bg-stone-950 border-r-2 border-line-strong">
+      <aside className="hidden lg:flex fixed inset-y-0 left-0 z-40 w-64 bg-page dark:bg-stone-950 border-r border-line">
         {/* Cột biển chỉ đường vẽ tay từng đứng ở góc trái dưới. Đã gỡ: nó là
             hình trang trí nhiều màu, trái luật 2-3 của hệ thiết kế chung, và
             thanh đầu trang giới thiệu - thứ sidebar này soi theo - chỉ có giấy
@@ -701,7 +701,7 @@ export default function AppNavbar() {
             của flex item là `min-height: auto`, nên không có nó thì `<nav>` nở
             ra bằng nội dung và đẩy cả cột cao hơn viewport thay vì tự cuộn. */}
         <div className="flex h-full w-full min-h-0 flex-col relative z-10 px-3.5 py-4">
-          <Link href="/dashboard" className="flex items-center gap-2.5 border-b-2 border-line-strong px-2 pb-3 pt-1 shrink-0">
+          <Link href="/dashboard" className="flex items-center gap-2.5 border-b border-line px-2 pb-3 pt-1 shrink-0">
             <Logo size={28} />
             <span className="truncate text-[13px] font-black uppercase tracking-[0.1em] text-ink-heading">{t.nav.brand}</span>
           </Link>
@@ -709,7 +709,7 @@ export default function AppNavbar() {
           <button
             type="button"
             onClick={() => setSearchModalOpen(true)}
-            className="mt-3 flex items-center justify-between w-full px-3 py-2 rounded-sm bg-surface border-2 border-line-strong text-xs font-bold text-ink-muted hover:bg-surface-invert hover:text-ink-invert transition-colors cursor-pointer"
+            className="mt-3 flex items-center justify-between w-full px-3 py-2 rounded-sm bg-surface border border-line text-xs font-bold text-ink-muted hover:bg-surface-invert hover:text-ink-invert transition-colors cursor-pointer"
           >
             <span className="flex items-center gap-2">
               <Search className="w-3.5 h-3.5 text-ink-faint" />
@@ -731,7 +731,7 @@ export default function AppNavbar() {
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => setShowQuickShop(true)}
-                  className="flex flex-1 min-w-0 items-center justify-between rounded-sm border border-line-strong bg-white dark:bg-stone-900 px-3 py-2 text-xs font-bold text-ink-heading hover:border-stone-950 dark:hover:border-stone-300 transition-colors cursor-pointer"
+                  className="flex flex-1 min-w-0 items-center justify-between rounded-sm border border-line-strong bg-white dark:bg-stone-900 px-3 py-2 text-xs font-bold text-ink-heading hover:border-line-firm transition-colors cursor-pointer"
                   title={t.nav.coinBalanceTitle}
                 >
                   <span className="flex items-center gap-2">
@@ -753,7 +753,7 @@ export default function AppNavbar() {
                 <button
                   onClick={toggleProfileDropdown}
                   aria-expanded={dropdownOpen}
-                  className="flex w-full items-center gap-2.5 rounded-sm border border-line-strong bg-white px-3 py-2 text-left transition-colors hover:border-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-300 cursor-pointer"
+                  className="flex w-full items-center gap-2.5 rounded-sm border border-line-strong bg-white px-3 py-2 text-left transition-colors hover:border-stone-400 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-600 cursor-pointer"
                 >
                   {isValidAvatar(profile.avatar_url) ? (
                     <Image src={profile.avatar_url} alt={displayName} width={36} height={36} className="w-9 h-9 rounded-full object-cover shrink-0" />
@@ -837,7 +837,7 @@ export default function AppNavbar() {
           themselves to one screen subtract exactly this height on mobile
           (see APP_MOBILE_HEADER_H in app/(app)/kiem-tra/page.tsx). Keep the
           two in step. */}
-      <header className="lg:hidden h-14 shrink-0 border-b-2 border-line-strong sticky top-0 bg-page dark:bg-stone-950 z-50">
+      <header className="lg:hidden h-14 shrink-0 border-b border-line sticky top-0 bg-page dark:bg-stone-950 z-50">
         <div className="max-w-6xl mx-auto h-full px-3 sm:px-6 flex items-center justify-between gap-1.5 sm:gap-4 w-full overflow-hidden">
           <Link href="/dashboard" className="flex items-center gap-2 shrink-0">
             <Logo size={28} />
@@ -850,7 +850,7 @@ export default function AppNavbar() {
               className={`flex items-center gap-1 text-xs font-bold px-2 sm:px-3 py-1.5 sm:py-2 rounded-sm border transition-colors duration-200 whitespace-nowrap ${
                 pathname === "/tai-lieu"
                   ? "bg-surface-raised dark:bg-stone-900 text-accent-strong border-line-strong"
-                  : "bg-white dark:bg-stone-900 text-ink-soft border-line-strong hover:border-stone-950 dark:hover:border-stone-300"
+                  : "bg-white dark:bg-stone-900 text-ink-soft border-line-strong hover:border-line-firm"
               }`}
             >
               <FileText className="w-3.5 h-3.5 shrink-0" />
@@ -861,7 +861,7 @@ export default function AppNavbar() {
             {profile && (
               <button
                 onClick={() => setShowQuickShop(true)}
-                className="flex items-center gap-1 text-xs font-bold px-2 sm:px-2.5 py-1.5 sm:py-2 rounded-sm bg-white dark:bg-stone-900 border border-line-strong hover:border-stone-950 dark:hover:border-stone-300 transition-colors cursor-pointer whitespace-nowrap"
+                className="flex items-center gap-1 text-xs font-bold px-2 sm:px-2.5 py-1.5 sm:py-2 rounded-sm bg-white dark:bg-stone-900 border border-line-strong hover:border-line-firm transition-colors cursor-pointer whitespace-nowrap"
                 title={t.nav.coinBalanceTitle}
               >
                 <GoldCoinIcon className="w-4 h-4" />
@@ -873,7 +873,7 @@ export default function AppNavbar() {
 
             <button
               onClick={toggleMobileMenu}
-              className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-sm border border-line-strong text-ink-soft hover:border-stone-950 dark:hover:border-stone-300 transition-colors shrink-0"
+              className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-sm border border-line-strong text-ink-soft hover:border-line-firm transition-colors shrink-0"
               aria-label={t.nav.openMenu}
               aria-expanded={mobileMenuOpen}
             >

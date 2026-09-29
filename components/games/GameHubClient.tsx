@@ -185,7 +185,7 @@ export default function GameHubClient() {
                     setInnerTab("play");
                     trackFeatureClick("game_open", { label: g.id });
                   }}
-                  className={`${panel} group flex flex-col p-4 text-left transition-colors hover:border-stone-950 dark:hover:border-stone-300`}
+                  className={`${panel} group flex flex-col p-4 text-left transition-colors hover:border-line-firm`}
                 >
                   <div className="flex items-start gap-3.5">
                     <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-sm bg-stone-950 text-white dark:bg-stone-100 dark:text-stone-950">
@@ -263,7 +263,7 @@ export default function GameHubClient() {
                   className={`rounded-sm border px-3 py-1.5 text-xs font-bold transition-colors ${
                     difficulty === d.id
                       ? "border-brand-600 bg-brand-50 text-brand-800 dark:border-brand-400 dark:bg-brand-950 dark:text-brand-200"
-                      : "border-stone-300 text-ink-soft hover:border-stone-950 dark:border-stone-700 dark:hover:border-stone-300"
+                      : "border-stone-300 text-ink-soft hover:border-stone-400 dark:border-stone-700 dark:hover:border-stone-600"
                   }`}
                 >
                   {t.gameDifficulties[d.id]?.label ?? d.label}

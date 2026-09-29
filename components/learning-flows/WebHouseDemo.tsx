@@ -94,7 +94,7 @@ document.getElementById("light").onclick=function(){document.body.classList.togg
     `inline-flex items-center gap-2 rounded-sm border px-3 py-1.5 text-sm font-bold transition-colors ${
       on
         ? "border-brand-600 bg-brand-50 text-brand-800 dark:border-brand-400 dark:bg-brand-950/40 dark:text-brand-200"
-        : "border-stone-300 bg-white text-ink-muted hover:border-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-300"
+        : "border-stone-300 bg-white text-ink-muted hover:border-stone-400 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-600"
     } ${locked ? "cursor-not-allowed" : ""}`;
 
   return (

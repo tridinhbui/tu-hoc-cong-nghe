@@ -186,7 +186,7 @@ export default function TextHighlightMenu({ containerRef, lessonId, lessonSlug, 
         className="w-full flex items-center justify-between px-3 py-2.5 rounded-sm text-xs font-bold text-ink hover:bg-surface-raised disabled:opacity-50 transition-colors cursor-pointer group"
       >
         <div className="flex items-center gap-2">
-          <div className="w-6 h-6 rounded-sm border border-line-strong text-ink-soft flex items-center justify-center group-hover:border-stone-950 dark:group-hover:border-stone-300 transition-colors">
+          <div className="w-6 h-6 rounded-sm border border-line-strong text-ink-soft flex items-center justify-center group-hover:border-stone-400 dark:group-hover:border-stone-300 transition-colors">
             <Highlighter className="w-3.5 h-3.5" />
           </div>
           <span>{t.textHighlight.highlight}</span>

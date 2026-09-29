@@ -89,7 +89,7 @@ export default function InteractiveTailRisk() {
         <Card label={t.tailRisk.esNormalCard} value={numbers.esNorm} tone="warn" suffixTemplate={t.tailRisk.cardValueSuffix} />
       </div>
 
-      <p className="mt-4 border-l-2 border-stone-950 pl-4 text-xs leading-relaxed text-ink-body dark:border-stone-200">
+      <p className="mt-4 border-l-2 border-stone-300 pl-4 text-xs leading-relaxed text-ink-body dark:border-stone-700">
         {df >= 25
           ? t.tailRisk.convergedHint
           : format(t.tailRisk.gapHint, { gap: numbers.gap.toFixed(1) })}

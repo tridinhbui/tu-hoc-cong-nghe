@@ -153,7 +153,7 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
   if (correctRatio >= 0.9) {
     rankGrade = { label: t.caseArena.rankS, color: "text-white border-stone-950 dark:text-stone-950 dark:border-stone-100", badgeBg: "bg-stone-950 dark:bg-stone-100" };
   } else if (correctRatio >= 0.75) {
-    rankGrade = { label: t.caseArena.rankA, color: "text-ink-max border-stone-950 dark:border-stone-300", badgeBg: "" };
+    rankGrade = { label: t.caseArena.rankA, color: "text-ink-max border-line-strong", badgeBg: "" };
   } else if (correctRatio >= 0.6) {
     rankGrade = { label: t.caseArena.rankB, color: "text-ink border-line-firm", badgeBg: "" };
   }

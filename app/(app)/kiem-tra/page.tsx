@@ -198,7 +198,7 @@ export default function KiemTraPage() {
           <div className="flex min-w-0 items-center gap-3">
             <Link
               href="/dashboard"
-              className="flex shrink-0 items-center justify-center w-8 h-8 rounded-sm border border-line-strong text-ink-muted transition-colors hover:border-stone-950 hover:text-ink dark:border-stone-700 dark:hover:border-stone-300"
+              className="flex shrink-0 items-center justify-center w-8 h-8 rounded-sm border border-line-strong text-ink-muted transition-colors hover:border-stone-400 hover:text-ink dark:border-stone-700 dark:hover:border-stone-600"
               aria-label={t.quizPage.backAria}
             >
               <ChevronLeft className="w-4 h-4" />
@@ -349,7 +349,7 @@ export default function KiemTraPage() {
             <div className="lg:col-span-12">
               <Link
                 href="/thi-vuot-chang"
-                className={`${panel} group flex items-center justify-between gap-3 px-4 py-3 text-ink transition-colors hover:border-stone-950 dark:hover:border-stone-300`}
+                className={`${panel} group flex items-center justify-between gap-3 px-4 py-3 text-ink transition-colors hover:border-line-firm`}
               >
                 <span className="flex items-center gap-2.5">
                   <Trophy className="w-4 h-4 text-ink-muted" />
@@ -435,7 +435,7 @@ export default function KiemTraPage() {
               {q.options.map((opt, oi) => {
                 const isSelected = selected === oi;
                 const isCorrectOpt = oi === q.correct;
-                let cls = "border-stone-300 bg-white text-ink hover:border-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-300";
+                let cls = "border-stone-300 bg-white text-ink hover:border-stone-400 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-600";
                 let gutter = "text-ink-faint";
                 if (submitted) {
                   if (isCorrectOpt) {
@@ -578,7 +578,7 @@ export default function KiemTraPage() {
             />
 
             {wrongLessons.length > 0 && (
-              <div className="border-l-2 border-stone-950 pl-4 space-y-1.5 dark:border-stone-200">
+              <div className="border-l-2 border-stone-300 pl-4 space-y-1.5 dark:border-stone-700">
                 <Sys className="block mb-2 text-ink-muted">{t.quizPage.reviewWrongLessons}</Sys>
                 {wrongLessons.map((lq) => (
                   <Link key={lq.lessonId} href={`/bai-hoc/${lq.lessonSlug}`} className={`${textLink} flex`}>

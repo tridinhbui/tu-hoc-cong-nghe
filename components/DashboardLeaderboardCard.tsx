@@ -55,7 +55,9 @@ type Mine = { rank: number; value: number } | null;
  *
  *  Cùng các RPC mà bảng đầy đủ ở /analytics dùng, nên hai nơi không thể nói
  *  hai thứ hạng khác nhau. */
-export default function DashboardLeaderboardCard({ userId }: { userId: string }) {
+/** `bare`: bỏ khung và tiêu đề riêng, để thẻ nằm trong một nhóm thu gọn đã
+ *  mang sẵn tiêu đề (dashboard). Mặc định giữ khung như cũ. */
+export default function DashboardLeaderboardCard({ userId, bare = false }: { userId: string; bare?: boolean }) {
   const { t } = useI18n();
   const [metric, setMetric] = useState<Metric>("composite");
   const [period, setPeriod] = useState<Period>("7d");
@@ -113,14 +115,15 @@ export default function DashboardLeaderboardCard({ userId }: { userId: string })
   const switching = loadedKey !== key;
   const meInTop = !!rows?.some((r) => r.user_id === userId);
 
-  return (
-    <Frame title={SYS_TITLE} bodyClassName="p-4">
+  const body = (
     <section>
-      <header>
-        <h2 className="text-sm font-bold tracking-tight text-ink-body">{t.rankWidget.title}</h2>
-      </header>
+      {!bare && (
+        <header>
+          <h2 className="text-sm font-bold tracking-tight text-ink-body">{t.rankWidget.title}</h2>
+        </header>
+      )}
 
-      <div className="mt-3 flex gap-5 overflow-x-auto border-b border-line scrollbar-none" role="tablist">
+      <div className={`${bare ? "" : "mt-3 "}flex gap-5 overflow-x-auto border-b border-line scrollbar-none`} role="tablist">
         {METRICS.map((m) => (
           <button
             key={m.id}
@@ -196,6 +199,13 @@ export default function DashboardLeaderboardCard({ userId }: { userId: string })
         <ArrowRight className="h-3.5 w-3.5" />
       </Link>
     </section>
+  );
+
+  if (bare) return body;
+
+  return (
+    <Frame title={SYS_TITLE} bodyClassName="p-4">
+      {body}
     </Frame>
   );
 }

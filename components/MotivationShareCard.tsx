@@ -58,7 +58,7 @@ export default function MotivationShareCard({
         className={
           size === "lg"
             ? `${btnSecondary} bg-white dark:bg-stone-900 cursor-pointer`
-            : "inline-flex items-center gap-1.5 rounded-sm border border-line-strong bg-white px-3 py-1.5 text-[11px] font-bold text-ink-body transition-colors hover:border-stone-950 disabled:opacity-60 dark:bg-stone-900 dark:hover:border-stone-200 cursor-pointer"
+            : "inline-flex items-center gap-1.5 rounded-sm border border-line-strong bg-white px-3 py-1.5 text-[11px] font-bold text-ink-body transition-colors hover:border-stone-400 disabled:opacity-60 dark:bg-stone-900 dark:hover:border-stone-200 cursor-pointer"
         }
       >
         <Share2 className={size === "lg" ? "h-4 w-4" : "h-3.5 w-3.5"} />

@@ -108,7 +108,7 @@ export default function FlashcardAlbumsGallery({ userId, onImported }: Flashcard
           <button
             key={album.id}
             onClick={() => setOpenAlbumId(album.id)}
-            className="group overflow-hidden rounded-md border border-line-strong bg-white text-left transition-colors hover:border-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-300"
+            className="group overflow-hidden rounded-md border border-line-strong bg-white text-left transition-colors hover:border-stone-400 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-600"
           >
             <div className="flex h-9 items-center justify-between gap-3 border-b border-stone-300 bg-surface-raised px-3 dark:border-stone-700 dark:bg-stone-950">
               <span className="text-ink-body">

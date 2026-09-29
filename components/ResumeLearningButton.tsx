@@ -33,6 +33,10 @@ interface ResumeLearningButtonProps {
    *  trang với lời riêng của trang đó - hai con linh vật cách nhau một thẻ là
    *  một con thừa. */
   showCoCo?: boolean;
+  /** Bản tập trung của dashboard: Cơ Cơ một dòng, bỏ dòng meta "+XP · chặng"
+   *  và con số phần trăm lặp với thanh tiến độ. Thẻ vẫn là thứ nổi nhất trang -
+   *  viền xanh, tiêu đề to, nút chính giữ nguyên. Mặc định tắt. */
+  quiet?: boolean;
 }
 
 interface Greeting {
@@ -61,7 +65,7 @@ interface Greeting {
   } | null;
 }
 
-export default function ResumeLearningButton({ activeTrack, compact = false, userId, showCoCo = true }: ResumeLearningButtonProps) {
+export default function ResumeLearningButton({ activeTrack, compact = false, userId, showCoCo = true, quiet = false }: ResumeLearningButtonProps) {
   const { t } = useI18n();
   const [greeting, setGreeting] = useState<Greeting | null>(null);
   const [loading, setLoading] = useState(true);
@@ -114,7 +118,7 @@ export default function ResumeLearningButton({ activeTrack, compact = false, use
   if (!nextLesson) {
     return (
       <div className="space-y-3">
-        {showCoCo && <CoCoSays lead={cocoLead} lines={t.coco.dashboardDone} size={compact ? 36 : 40} />}
+        {showCoCo && <CoCoSays lead={cocoLead} lines={t.coco.dashboardDone} size={quiet ? 26 : compact ? 36 : 40} quiet={quiet} />}
         <div className="rounded-sm border border-line bg-white p-4 dark:bg-stone-900">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 shrink-0 rounded-sm bg-surface-raised text-cyan-600 flex items-center justify-center dark:text-cyan-400">
@@ -152,13 +156,14 @@ export default function ResumeLearningButton({ activeTrack, compact = false, use
   const shortTitle = getLessonShortTitle({ title: nextLesson.title });
 
   return (
-    <div className="flex flex-col h-full gap-3 font-sans">
+    <div className={`flex flex-col h-full font-sans ${quiet ? "gap-2.5" : "gap-3"}`}>
       {showCoCo && (
         <CoCoSays
           lead={cocoLead}
           lines={completedCount === 0 ? t.coco.dashboardFirst : t.coco.dashboardNext}
           vars={{ lesson: shortTitle }}
-          size={compact ? 36 : 40}
+          size={quiet ? 26 : compact ? 36 : 40}
+          quiet={quiet}
         />
       )}
 
@@ -168,20 +173,22 @@ export default function ResumeLearningButton({ activeTrack, compact = false, use
       <Link
         href={`/bai-hoc/${nextLesson.slug}`}
         onClick={() => trackFeatureClick("resume_learning_click", { label: nextLesson.slug })}
-        className="group relative block rounded-sm border-2 border-brand-600 bg-white transition-colors hover:border-stone-950 dark:border-brand-500 dark:bg-stone-900 dark:hover:border-stone-300"
+        className="group relative block rounded-sm border-2 border-brand-600 bg-white transition-colors hover:border-stone-400 dark:border-brand-500 dark:bg-stone-900 dark:hover:border-stone-600"
       >
-        <div className={`flex flex-col gap-3 ${compact ? "p-4" : "p-4 sm:p-5"} md:flex-row md:items-center md:gap-6`}>
+        <div className={`flex flex-col gap-3 ${quiet ? "p-5 sm:p-6" : compact ? "p-4" : "p-4 sm:p-5"} md:flex-row md:items-center md:gap-6`}>
           <div className="min-w-0 flex-1">
             <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1">
               <Sys className="inline-flex items-center gap-1.5 text-accent-strong">
                 <StatusDot />
                 {t.revampDashboard.todayLabel}
               </Sys>
-              <span className="font-mono text-[10.5px] font-medium tabular-nums text-ink-faint">
-                {stageTag
-                  ? format(t.revampDashboard.todayMeta, { xp: XP_PER_LESSON, stage: stageTag })
-                  : format(t.resume.resumeXpBadge, { xp: XP_PER_LESSON })}
-              </span>
+              {!quiet && (
+                <span className="font-mono text-[10.5px] font-medium tabular-nums text-ink-faint">
+                  {stageTag
+                    ? format(t.revampDashboard.todayMeta, { xp: XP_PER_LESSON, stage: stageTag })
+                    : format(t.resume.resumeXpBadge, { xp: XP_PER_LESSON })}
+                </span>
+              )}
             </div>
             <span className="mt-2 block text-xs font-semibold text-ink-faint">{lessonLabel}</span>
             <h2 className="mt-0.5 text-lg sm:text-2xl font-black text-ink-max tracking-tight leading-snug">
@@ -212,9 +219,11 @@ export default function ResumeLearningButton({ activeTrack, compact = false, use
                   style={{ width: `${Math.max(2, progressPercent)}%` }}
                 />
               </div>
-              <span className="text-xs font-mono font-medium tabular-nums text-ink-muted">
-                {progressPercent}%
-              </span>
+              {!quiet && (
+                <span className="text-xs font-mono font-medium tabular-nums text-ink-muted">
+                  {progressPercent}%
+                </span>
+              )}
             </div>
           </div>
 

@@ -112,7 +112,7 @@ export default function GoalSelectionBanner({ userId }: GoalSelectionBannerProps
                   e.stopPropagation();
                   setShowSelector(true);
                 }}
-                className="px-3 py-1.5 text-[11px] font-bold border border-line-strong hover:border-stone-950 dark:hover:border-stone-300 text-ink-body rounded-sm transition-colors flex items-center gap-1 cursor-pointer"
+                className="px-3 py-1.5 text-[11px] font-bold border border-line-strong hover:border-line-firm text-ink-body rounded-sm transition-colors flex items-center gap-1 cursor-pointer"
               >
                 <Shuffle className="w-3.5 h-3.5" />
                 <span>{t.dataRest.goalSelectionBanner.changeButton}</span>
@@ -151,7 +151,7 @@ export default function GoalSelectionBanner({ userId }: GoalSelectionBannerProps
                   className={`text-left p-4.5 rounded-sm border transition-colors flex flex-col justify-between space-y-3 cursor-pointer ${
                     isSelected
                       ? "border-brand-600 bg-accent-soft dark:border-brand-400"
-                      : "border-line-strong hover:border-stone-950 dark:hover:border-stone-300 bg-white dark:bg-stone-900"
+                      : "border-line-strong hover:border-line-firm bg-white dark:bg-stone-900"
                   }`}
                 >
                   <div className="flex items-center justify-between w-full">

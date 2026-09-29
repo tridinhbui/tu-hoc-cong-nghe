@@ -341,7 +341,7 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
                     <button
                       onClick={handleOpenChest}
                       disabled={opening}
-                      className={`mx-auto w-14 h-14 rounded-md border border-line-strong bg-surface-raised text-ink-body flex items-center justify-center transition-colors hover:border-stone-950 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-300 ${
+                      className={`mx-auto w-14 h-14 rounded-md border border-line-strong bg-surface-raised text-ink-body flex items-center justify-center transition-colors hover:border-stone-400 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-600 ${
                         shaking ? "chest-shake" : ""
                       }`}
                     >

@@ -36,6 +36,13 @@ export const revampDashboardVi = {
     todayCta: "Làm bài này",
     todayMeta: "+{xp} XP · {stage}",
     secondaryLabel: "XẾP HẠNG & CỘNG ĐỒNG",
+    // Lượt làm nhẹ dashboard: số liệu phụ thu gọn sau một nút, cấp khoá xa gộp
+    // thành "+N cấp".
+    showDetails: "Xem chi tiết",
+    hideDetails: "Thu gọn",
+    moreLevels: "+{count} cấp",
+    examLink: "Thi thăng cấp LV{level}",
+    rankingLabel: "Xếp hạng",
 
     // ── Học bài: cây kỹ năng ──────────────────────────────────────────────
     stageKicker: "{stage} · {tag}",
@@ -150,6 +157,11 @@ export const revampDashboardEn: typeof revampDashboardVi = {
     todayCta: "Do this lesson",
     todayMeta: "+{xp} XP · {stage}",
     secondaryLabel: "RANKING & COMMUNITY",
+    showDetails: "Show details",
+    hideDetails: "Hide",
+    moreLevels: "+{count} levels",
+    examLink: "Level-up exam LV{level}",
+    rankingLabel: "Ranking",
 
     stageKicker: "{stage} · {tag}",
     outcomeLabel: "After this stage you can",

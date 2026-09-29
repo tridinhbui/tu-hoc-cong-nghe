@@ -21,7 +21,10 @@ import { Frame, btnPrimary } from "@/components/ui/system";
 const SYS = { path: "THCN://APP/STREAK" };
 /* i18n-ignore-end */
 
-export default function DashboardStreakWidget({ userId }: { userId: string }) {
+/** `quiet`: chỉ ngọn lửa và số ngày, một dòng, chữ nhạt. Nhãn "Chuỗi ngày",
+ *  dấu ⓘ và số lượt đóng băng lùi vào hộp chi tiết - bấm vẫn mở như cũ. Mặc
+ *  định tắt để hình dạng cũ không đổi ở chỗ nào khác. */
+export default function DashboardStreakWidget({ userId, quiet = false }: { userId: string; quiet?: boolean }) {
   const { t } = useI18n();
   const [streak, setStreak] = useState(0);
   const [freezesLeft, setFreezesLeft] = useState(3);
@@ -197,6 +200,24 @@ export default function DashboardStreakWidget({ userId }: { userId: string }) {
       document.body
     )
   ) : null;
+
+  if (quiet) {
+    return (
+      <>
+        <button
+          type="button"
+          onClick={() => setShowModal(true)}
+          className="inline-flex cursor-pointer items-center gap-1.5 rounded-control px-2 py-1 text-xs font-semibold text-ink-muted transition-colors hover:bg-surface-raised hover:text-ink-body focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
+          title={t.streakWidget.cardTitle}
+          aria-label={`${t.streakWidget.streakLabel}: ${format(t.streakWidget.streakDaysSuffix, { count: streak })}`}
+        >
+          <Flame className={`h-3.5 w-3.5 ${streak > 0 ? "fill-current text-amber-500" : "text-ink-faint"}`} aria-hidden />
+          <span className="tabular-nums">{format(t.streakWidget.streakDaysSuffix, { count: streak })}</span>
+        </button>
+        {modalContent}
+      </>
+    );
+  }
 
   return (
     <>

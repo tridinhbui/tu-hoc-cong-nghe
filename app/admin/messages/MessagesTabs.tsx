@@ -38,7 +38,7 @@ export default function MessagesTabs({
           className={`flex items-center gap-2 px-4 py-2 text-sm font-bold rounded-lg transition-colors ${
             tab === "feedback"
               ? "border border-brand-600 bg-accent-soft text-ink-max dark:border-brand-400"
-              : "border border-line-strong text-ink-soft hover:border-stone-950 dark:hover:border-stone-300"
+              : "border border-line-strong text-ink-soft hover:border-line-firm"
           }`}
         >
           <Mail className="w-4 h-4" />
@@ -50,7 +50,7 @@ export default function MessagesTabs({
           className={`flex items-center gap-2 px-4 py-2 text-sm font-bold rounded-lg transition-colors ${
             tab === "chat"
               ? "border border-brand-600 bg-accent-soft text-ink-max dark:border-brand-400"
-              : "border border-line-strong text-ink-soft hover:border-stone-950 dark:hover:border-stone-300"
+              : "border border-line-strong text-ink-soft hover:border-line-firm"
           }`}
         >
           <MessageCircle className="w-4 h-4" />
@@ -62,7 +62,7 @@ export default function MessagesTabs({
           className={`flex items-center gap-2 px-4 py-2 text-sm font-bold rounded-lg transition-colors ${
             tab === "bugs"
               ? "border border-brand-600 bg-accent-soft text-ink-max dark:border-brand-400"
-              : "border border-line-strong text-ink-soft hover:border-stone-950 dark:hover:border-stone-300"
+              : "border border-line-strong text-ink-soft hover:border-line-firm"
           }`}
         >
           <Bug className="w-4 h-4" />
@@ -74,7 +74,7 @@ export default function MessagesTabs({
           className={`flex items-center gap-2 px-4 py-2 text-sm font-bold rounded-lg transition-colors ${
             tab === "community"
               ? "border border-brand-600 bg-accent-soft text-ink-max dark:border-brand-400"
-              : "border border-line-strong text-ink-soft hover:border-stone-950 dark:hover:border-stone-300"
+              : "border border-line-strong text-ink-soft hover:border-line-firm"
           }`}
         >
           <Users2 className="w-4 h-4" />

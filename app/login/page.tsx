@@ -36,7 +36,7 @@ const SYS = {
 // đặt cứng `background: rgba(255,255,255,.88)` không có bản `.dark` (ô nhập
 // sáng trắng với chữ sáng ở chế độ tối) và `border-radius: 18px`.
 const INPUT_CLASS =
-  "w-full border-2 border-line-strong bg-surface px-3.5 py-2.5 text-[14px] text-ink-max transition-colors placeholder:text-ink-faint focus:border-brand-600 focus:outline-none dark:focus:border-brand-400";
+  "w-full border border-line bg-surface px-3.5 py-2.5 text-[14px] text-ink-max transition-colors placeholder:text-ink-faint focus:border-brand-600 focus:outline-none dark:focus:border-brand-400";
 const LABEL_CLASS = "block font-mono text-[10.5px] font-medium uppercase tracking-[0.08em] text-ink-muted";
 const ERROR_CLASS =
   "border-2 border-danger-line bg-red-50 px-3 py-2 text-[13px] font-semibold text-danger dark:bg-red-950/50";
@@ -305,7 +305,7 @@ function LoginForm() {
        chế độ, terminal khởi động; cột phải là công cụ: form trong một Frame. */
     <div className="relative min-h-screen bg-[#eeebe3] text-ink-max dark:bg-[#0c0d10]">
       {/* Dòng đầu tài liệu. */}
-      <div className="border-b-2 border-line-strong">
+      <div className="border-b border-line">
         <div className="mx-auto flex h-11 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
           <Link href="/" className="inline-flex items-center gap-2 text-[12px] font-black uppercase tracking-wide hover:text-accent-strong">
             <ArrowLeft className="h-3.5 w-3.5" />
@@ -335,7 +335,7 @@ function LoginForm() {
           <p className="mt-3 max-w-lg text-[14px] leading-6 text-ink-soft">{t.login.heroBody}</p>
 
           {/* Terminal khởi động - cùng mô-típ với hero trang chủ. */}
-          <div className="mt-7 hidden max-w-xl border-2 border-line-strong bg-[#0d0e11] font-mono text-[11.5px] text-[#eeebe3] sm:block">
+          <div className="mt-7 hidden max-w-xl border border-line bg-[#0d0e11] font-mono text-[11.5px] text-[#eeebe3] sm:block">
             <div className="flex items-center justify-between border-b border-white/20 px-3 py-1.5">
               <span className="text-brand-300">{SYS.os}</span>
               <span className="thcn-blink h-2 w-2 bg-brand-400" aria-hidden />
@@ -356,7 +356,7 @@ function LoginForm() {
             </ol>
           </div>
 
-          <dl className="mt-7 grid max-w-xl border-2 border-line-strong sm:grid-cols-3">
+          <dl className="mt-7 grid max-w-xl border border-line sm:grid-cols-3">
             {[
               { t: t.login.perk1Title, b: t.login.perk1Body },
               { t: t.login.perk2Title, b: t.login.perk2Body },
@@ -371,7 +371,7 @@ function LoginForm() {
           </dl>
 
           <div className="mt-8 hidden max-w-xl lg:block">
-            <div className="flex items-baseline justify-between gap-4 border-b-2 border-line-strong pb-1.5">
+            <div className="flex items-baseline justify-between gap-4 border-b border-line pb-1.5">
               <Sys className="text-accent-strong">{t.login.trackPickTitle}</Sys>
               <span className="text-[11px] text-ink-muted">{t.login.trackPickBody}</span>
             </div>
@@ -494,7 +494,7 @@ function LoginForm() {
               )}
 
               {/* Ba con số: chỉ số nào ở đây cũng phải đếm được từ dữ liệu thật. */}
-              <dl className="grid grid-cols-3 border-2 border-line-strong">
+              <dl className="grid grid-cols-3 border border-line">
                 {[
                   { k: t.login.statLessons, v: format(t.login.statLessonsValue, { count: lessonCountFloor }) },
                   { k: t.login.statTracks, v: format(t.login.statTracksValue, { count: Object.keys(TRACKS).length }) },

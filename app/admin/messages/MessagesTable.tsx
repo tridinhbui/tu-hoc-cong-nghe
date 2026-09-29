@@ -118,7 +118,7 @@ export default function MessagesTable({
               className={`px-3 py-2 text-xs font-bold rounded-lg transition-colors ${
                 initialFilter === f
                   ? "border border-brand-600 bg-accent-soft text-ink-max dark:border-brand-400"
-                  : "border border-line-strong text-ink-soft hover:border-stone-950 dark:hover:border-stone-300"
+                  : "border border-line-strong text-ink-soft hover:border-line-firm"
               }`}
             >
               {f === "all" ? tm.filterAll : f === "unread" ? tm.filterUnread : tm.filterRead}

@@ -181,7 +181,7 @@ export default function OnTapCauSaiClient() {
         {/* Arriving from the 7:30 push: say why this is a short list, so a
             trimmed session doesn't read as missing mistakes. */}
         {isMorningSession && (
-          <div className="mb-6 border-l-2 border-stone-950 pl-4 dark:border-stone-200">
+          <div className="mb-6 border-l-2 border-stone-300 pl-4 dark:border-stone-700">
             <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">
               {t.mistakeReview.morningSession}
             </p>
@@ -385,7 +385,7 @@ export default function OnTapCauSaiClient() {
                               {currentCardItem.options.map((opt, oi) => {
                                 const isCorrectOpt = oi === currentCardItem.correct;
                                 const chosen = answerState.picked === oi;
-                                let cls = "border-stone-300 bg-white hover:border-stone-950 text-ink-heading dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-300";
+                                let cls = "border-stone-300 bg-white hover:border-stone-400 text-ink-heading dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-600";
                                 let gutter = "text-ink-faint";
                                 if (answered) {
                                   if (isCorrectOpt) {
@@ -584,7 +584,7 @@ export default function OnTapCauSaiClient() {
                       {item.options.map((opt, oi) => {
                         const isCorrectOpt = oi === item.correct;
                         const chosen = state.picked === oi;
-                        let cls = "border-stone-300 bg-white hover:border-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-300";
+                        let cls = "border-stone-300 bg-white hover:border-stone-400 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-600";
                         let gutter = "text-ink-faint";
                         if (answered) {
                           if (isCorrectOpt) {
@@ -621,21 +621,21 @@ export default function OnTapCauSaiClient() {
                           <button
                             type="button"
                             onClick={() => handleRateSRS(item, "forget")}
-                            className="px-2 py-1 rounded-sm border border-line-strong text-[10.5px] font-bold tabular-nums text-ink-body transition-colors hover:border-stone-950 dark:border-stone-700 dark:hover:border-stone-300"
+                            className="px-2 py-1 rounded-sm border border-line-strong text-[10.5px] font-bold tabular-nums text-ink-body transition-colors hover:border-stone-400 dark:border-stone-700 dark:hover:border-stone-600"
                           >
                             {t.mistakeReview.plus1Day}
                           </button>
                           <button
                             type="button"
                             onClick={() => handleRateSRS(item, "good")}
-                            className="px-2 py-1 rounded-sm border border-line-strong text-[10.5px] font-bold tabular-nums text-ink-body transition-colors hover:border-stone-950 dark:border-stone-700 dark:hover:border-stone-300"
+                            className="px-2 py-1 rounded-sm border border-line-strong text-[10.5px] font-bold tabular-nums text-ink-body transition-colors hover:border-stone-400 dark:border-stone-700 dark:hover:border-stone-600"
                           >
                             {t.mistakeReview.plus7Days}
                           </button>
                           <button
                             type="button"
                             onClick={() => handleRateSRS(item, "mastered")}
-                            className="px-2 py-1 rounded-sm border border-line-strong text-[10.5px] font-bold tabular-nums text-ink-body transition-colors hover:border-stone-950 dark:border-stone-700 dark:hover:border-stone-300"
+                            className="px-2 py-1 rounded-sm border border-line-strong text-[10.5px] font-bold tabular-nums text-ink-body transition-colors hover:border-stone-400 dark:border-stone-700 dark:hover:border-stone-600"
                           >
                             {t.mistakeReview.plus30Days}
                           </button>

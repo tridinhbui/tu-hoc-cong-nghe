@@ -109,7 +109,7 @@ export default function LessonSections({
 
       case "callout":
         return (
-          <div key={i} className="my-6 max-w-[68ch] space-y-1.5 border-l-2 border-line-strong py-1 pl-4 sm:pl-5">
+          <div key={i} className="my-6 max-w-[68ch] space-y-1.5 border-l border-line py-1 pl-4 sm:pl-5">
             <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">{block.label}</p>
             <div className="text-base leading-7 text-ink-heading sm:text-[17px] sm:leading-8">{renderFormattedText(block.text, seenTerms)}</div>
           </div>

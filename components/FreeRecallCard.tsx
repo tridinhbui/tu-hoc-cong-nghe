@@ -217,7 +217,7 @@ export default function FreeRecallCard({
                       className={`w-full text-left flex items-start gap-3 px-4 py-3 rounded-sm border transition-colors ${
                         isTicked
                           ? "border-brand-600 bg-brand-50 dark:border-brand-400 dark:bg-brand-950/40"
-                          : "border-stone-300 bg-white hover:border-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-200"
+                          : "border-stone-300 bg-white hover:border-stone-400 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-200"
                       }`}
                     >
                       <span

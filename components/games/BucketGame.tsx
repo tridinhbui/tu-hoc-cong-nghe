@@ -235,7 +235,7 @@ export default function BucketGame({ userId, gameType, difficulty = "trung-binh"
                   ? "border-brand-600 bg-brand-600 text-white"
                   : freezeUsed
                     ? "cursor-not-allowed border-stone-200 text-ink-faint opacity-40 dark:border-stone-800"
-                    : "border-stone-300 text-ink-body hover:border-stone-950 dark:border-stone-700 dark:hover:border-stone-300"
+                    : "border-stone-300 text-ink-body hover:border-stone-400 dark:border-stone-700 dark:hover:border-stone-600"
               }`}
               title={bg.freezeTitle}
             >
@@ -251,7 +251,7 @@ export default function BucketGame({ userId, gameType, difficulty = "trung-binh"
               className={`flex h-9 w-9 cursor-pointer items-center justify-center rounded-sm border transition-colors ${
                 helper5050Used
                   ? "cursor-not-allowed border-stone-200 text-ink-faint opacity-40 dark:border-stone-800"
-                  : "border-stone-300 text-ink-body hover:border-stone-950 dark:border-stone-700 dark:hover:border-stone-300"
+                  : "border-stone-300 text-ink-body hover:border-stone-400 dark:border-stone-700 dark:hover:border-stone-600"
               }`}
               title={bg.helperTitle}
             >
@@ -302,7 +302,7 @@ export default function BucketGame({ userId, gameType, difficulty = "trung-binh"
 
           <button
             onClick={resetRound}
-            className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-sm border border-line-strong text-ink-muted transition-colors hover:border-stone-950 hover:text-ink dark:border-stone-700 dark:hover:border-stone-300"
+            className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-sm border border-line-strong text-ink-muted transition-colors hover:border-stone-400 hover:text-ink dark:border-stone-700 dark:hover:border-stone-600"
             title={bg.restartTitle}
           >
             <RotateCcw className="w-4 h-4" />
@@ -339,7 +339,7 @@ export default function BucketGame({ userId, gameType, difficulty = "trung-binh"
                         ? "bg-shake border-red-500 bg-red-50 text-red-700 dark:bg-red-950/40 dark:text-red-300"
                         : isSelected
                         ? "border-brand-600 bg-brand-50 text-brand-800 dark:border-brand-400 dark:bg-brand-950 dark:text-brand-200"
-                        : "border-stone-300 bg-white text-ink hover:border-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-300"
+                        : "border-stone-300 bg-white text-ink hover:border-stone-400 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-600"
                     }`}
                   >
                     {item.term}

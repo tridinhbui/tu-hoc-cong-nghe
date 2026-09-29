@@ -242,7 +242,7 @@ export default function LessonRecallWidget({ userId }: LessonRecallWidgetProps) 
 
               <div className="space-y-2">
                 {questions[currentQIndex].options.map((opt: string, i: number) => {
-                  let btnCls = "border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900 text-ink-heading hover:border-stone-950 dark:hover:border-stone-300";
+                  let btnCls = "border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900 text-ink-heading hover:border-line-firm";
                   if (answersChecked) {
                     if (i === questions[currentQIndex].correct) {
                       btnCls = "border-brand-600 bg-brand-50 dark:border-brand-500 dark:bg-brand-950/40 text-brand-900 dark:text-brand-200 font-bold";

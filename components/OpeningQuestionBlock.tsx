@@ -35,7 +35,7 @@ export default function OpeningQuestionBlock({
 
       <div className="space-y-2.5">
         {options.map((opt, i) => {
-          let btnCls = "border-line-strong bg-white dark:bg-stone-900 text-ink-heading hover:border-stone-950 dark:hover:border-stone-300 font-medium";
+          let btnCls = "border-line-strong bg-white dark:bg-stone-900 text-ink-heading hover:border-line-firm font-medium";
           if (submitted) {
             if (i === correct) btnCls = "border-brand-600 dark:border-brand-400 bg-accent-soft text-ink-max font-bold";
             else if (i === selected) btnCls = "border-red-600 dark:border-red-400 bg-danger-soft text-ink-max font-bold";

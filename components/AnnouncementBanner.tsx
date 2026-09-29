@@ -67,7 +67,7 @@ export default function AnnouncementBanner({ userId }: { userId: string }) {
         const style = SEVERITY_STYLE[a.severity];
         const Icon = style.icon;
         return (
-          <div key={a.id} className={`rounded-md border border-l-2 border-line-strong bg-white dark:bg-stone-900 px-4 py-3.5 flex items-start gap-3 ${style.wrap}`}>
+          <div key={a.id} className={`rounded-md border border-l border-line bg-white dark:bg-stone-900 px-4 py-3.5 flex items-start gap-3 ${style.wrap}`}>
             <Icon className={`w-5 h-5 flex-shrink-0 mt-0.5 ${style.iconCls}`} />
             <div className="flex-1 min-w-0">
               <p className="font-bold text-sm text-ink-max">{a.title}</p>

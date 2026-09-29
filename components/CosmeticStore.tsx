@@ -388,7 +388,7 @@ export default function CosmeticStore({ userId, onBack }: { userId: string; onBa
                     className={`flex items-center gap-1 text-xs font-bold px-3 py-1.5 rounded-sm border transition-colors cursor-pointer ${
                       isEquipped
                         ? "border-brand-600 bg-brand-600 text-white hover:bg-brand-700 dark:border-brand-500 dark:bg-brand-500"
-                        : "border-stone-400 text-ink hover:border-stone-950 dark:border-stone-600 dark:hover:border-stone-200"
+                        : "border-stone-400 text-ink hover:border-stone-400 dark:border-stone-600 dark:hover:border-stone-200"
                     }`}
                   >
                     {isEquipped ? <Zap className="w-3.5 h-3.5" /> : <Check className="w-3.5 h-3.5" />}

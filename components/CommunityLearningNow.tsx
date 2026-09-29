@@ -150,7 +150,7 @@ export default function CommunityLearningNow({ lessonsMeta }: { lessonsMeta: Les
             <Link
               key={learner.userId}
               href={`/bai-hoc/${lesson.slug}`}
-              className={`${shell} transition-colors hover:border-stone-950 dark:hover:border-stone-300`}
+              className={`${shell} transition-colors hover:border-line-firm`}
             >
               {card}
             </Link>

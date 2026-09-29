@@ -298,7 +298,7 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
                   ? "bg-page dark:bg-stone-950 border-line opacity-60"
                   : isDone
                   ? "bg-white dark:bg-stone-900 border-warn-line-mid"
-                  : "bg-white dark:bg-stone-900 border-line-strong hover:border-stone-950 dark:hover:border-stone-300"
+                  : "bg-white dark:bg-stone-900 border-line-strong hover:border-line-firm"
               }`}
             >
               <div className="flex items-center gap-3 min-w-0 flex-1">

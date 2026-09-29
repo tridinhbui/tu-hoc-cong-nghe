@@ -107,7 +107,7 @@ export default function BuildingScenarioGame({ buildingId, userId }: { buildingI
                 const isPicked = picked === originalIndex;
                 const reveal = picked !== null;
                 const tone = !reveal
-                  ? "border-stone-300 text-ink-body hover:border-stone-950 dark:border-stone-700 dark:hover:border-stone-200"
+                  ? "border-stone-300 text-ink-body hover:border-stone-400 dark:border-stone-700 dark:hover:border-stone-200"
                   : originalIndex === 0
                     ? "border-brand-600 bg-brand-50 text-brand-800 dark:border-brand-400 dark:bg-brand-950/40 dark:text-brand-200"
                     : isPicked

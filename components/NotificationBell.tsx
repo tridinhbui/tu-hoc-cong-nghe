@@ -200,7 +200,7 @@ export default function NotificationBell({ userId }: { userId: string }) {
         onClick={() => void toggleOpen()}
         aria-label={t.notifications.ariaLabel}
         aria-expanded={open}
-        className="relative flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-sm border border-line-strong text-ink-soft hover:border-stone-950 transition-colors shrink-0 dark:border-stone-700 dark:hover:border-stone-200"
+        className="relative flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-sm border border-line-strong text-ink-soft hover:border-stone-400 transition-colors shrink-0 dark:border-stone-700 dark:hover:border-stone-200"
       >
         <Bell className="w-4.5 h-4.5" />
         {unreadCount > 0 && (

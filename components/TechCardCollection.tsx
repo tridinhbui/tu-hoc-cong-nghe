@@ -105,7 +105,7 @@ export default function TechCardCollection({ userId }: { userId: string }) {
           const isUnlocked = unlockedCardKeys.has(card.id);
           
           const borderRarity = 
-            card.rarity === "legendary" ? "border-stone-950 dark:border-stone-300" :
+            card.rarity === "legendary" ? "border-line-strong" :
             card.rarity === "epic" ? "border-stone-500 dark:border-stone-400" :
             card.rarity === "rare" ? "border-brand-400 dark:border-brand-700" :
             "border-line-strong";

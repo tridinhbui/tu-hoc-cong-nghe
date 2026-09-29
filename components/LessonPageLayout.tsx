@@ -1137,7 +1137,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                       const isSelected = qSelected === oi;
                       const isCorrectOpt = oi === q.correct;
                       let cls =
-                        "border-stone-300 bg-white text-ink hover:border-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-300";
+                        "border-stone-300 bg-white text-ink hover:border-stone-400 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-600";
                       let gutter = "text-ink-faint";
                       if (qSubmitted) {
                         if (isCorrectOpt) {
@@ -1245,7 +1245,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                         Chỉ hiện khi chúng khác nhau: người làm đúng hết ngay lần
                         đầu không cần đọc một dòng giải thích về việc thử lại. */}
                     {firstScore !== score && (
-                      <p className="mt-3 border-l-2 border-line-strong pl-3 text-xs leading-6 text-ink-muted">
+                      <p className="mt-3 border-l border-line pl-3 text-xs leading-6 text-ink-muted">
                         <strong className="font-semibold text-ink-body">
                           {format(t.lessonLayout.firstAttemptScore, { score: firstScore, total: quiz.length })}
                         </strong>{" "}
@@ -1349,7 +1349,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                               ? results[i]
                                 ? "border-brand-600 bg-brand-50 text-accent-strong dark:border-brand-400 dark:bg-brand-950/40"
                                 : "border-red-500 bg-red-50 text-red-700 dark:bg-red-950/40 dark:text-red-400"
-                              : "border-stone-200 text-ink-muted hover:border-stone-950 dark:border-stone-800 dark:hover:border-stone-300"
+                              : "border-stone-200 text-ink-muted hover:border-stone-400 dark:border-stone-800 dark:hover:border-stone-600"
                         }`}
                       >
                         {String(i + 1).padStart(2, "0")}

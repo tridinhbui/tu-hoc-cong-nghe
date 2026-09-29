@@ -596,7 +596,7 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
                         : swipeOffset < -40
                         ? "border-red-600 bg-red-50 dark:border-red-400 dark:bg-red-950/40"
                         : isFlipped
-                          ? "border-stone-950 bg-white dark:border-stone-300 dark:bg-stone-900"
+                          ? "border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900"
                           : "border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900"
                     }`}
                   >
@@ -644,7 +644,7 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
                     </button>
                     <button
                       onClick={() => handleSM2Action(3)}
-                      className="flex flex-col items-center gap-1 py-3 text-xs font-bold rounded-sm border border-line-strong bg-white text-ink-body transition-colors hover:border-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-300 cursor-pointer"
+                      className="flex flex-col items-center gap-1 py-3 text-xs font-bold rounded-sm border border-line-strong bg-white text-ink-body transition-colors hover:border-stone-400 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-600 cursor-pointer"
                     >
                       <ThumbsUp aria-hidden className="h-5 w-5" strokeWidth={1.75} /> {t.flashcards.gradeMedium}
                     </button>
@@ -682,7 +682,7 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
                   return (
                     <div
                       key={c.term}
-                      className={`${panel} group p-4 transition-colors hover:border-stone-950 dark:hover:border-stone-300`}
+                      className={`${panel} group p-4 transition-colors hover:border-line-firm`}
                     >
                       <div className="flex justify-between gap-4 items-start">
                         <div className="min-w-0 flex-1">

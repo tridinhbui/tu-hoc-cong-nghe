@@ -188,7 +188,7 @@ export default function PublicLeaderboardPreview() {
                         className={`mt-1 inline-flex items-center gap-1 rounded-xs border px-1.5 py-px text-[10px] font-bold transition-colors ${
                           userCheers > 0
                             ? "border-brand-600 text-accent-strong dark:border-brand-400"
-                            : "border-stone-300 text-ink-muted hover:border-stone-950 hover:text-ink dark:border-stone-700 dark:hover:border-stone-300"
+                            : "border-stone-300 text-ink-muted hover:border-stone-400 hover:text-ink dark:border-stone-700 dark:hover:border-stone-600"
                         }`}
                         title={t.leaderboardPreview.cheerButtonTitle}
                       >
@@ -286,7 +286,7 @@ export default function PublicLeaderboardPreview() {
                     className={`shrink-0 cursor-pointer rounded-sm border p-1.5 transition-colors ${
                       cheered
                         ? "border-brand-600 text-accent-strong dark:border-brand-400"
-                        : "border-stone-300 text-ink-muted hover:border-stone-950 hover:text-ink dark:border-stone-700 dark:hover:border-stone-300"
+                        : "border-stone-300 text-ink-muted hover:border-stone-400 hover:text-ink dark:border-stone-700 dark:hover:border-stone-600"
                     }`}
                     title={t.leaderboardPreview.cheerShortTitle}
                     aria-label={t.leaderboardPreview.cheerShortTitle}

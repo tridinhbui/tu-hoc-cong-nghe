@@ -262,7 +262,7 @@ export default function LearningPathClient({
                 className={`cursor-pointer rounded-sm border p-4 text-left transition-colors ${
                   picked
                     ? "border-brand-600 bg-brand-50 dark:border-brand-400 dark:bg-brand-950/40"
-                    : "border-stone-300 bg-white hover:border-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-300"
+                    : "border-stone-300 bg-white hover:border-stone-400 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-600"
                 }`}
               >
                 <div className="flex items-start justify-between gap-2">
@@ -316,7 +316,7 @@ export default function LearningPathClient({
           })}
         </div>
         {track === "professional" && (
-          <p className="mt-3 max-w-[68ch] border-l-2 border-stone-950 pl-4 text-sm leading-7 text-ink-body dark:border-stone-200">
+          <p className="mt-3 max-w-[68ch] border-l-2 border-stone-300 pl-4 text-sm leading-7 text-ink-body dark:border-stone-700">
             {p.proNote}
           </p>
         )}
@@ -554,7 +554,7 @@ function Pill({ active, onClick, children }: { active: boolean; onClick: () => v
       className={`cursor-pointer rounded-sm border px-3 py-1.5 text-sm font-bold transition-colors ${
         active
           ? "border-brand-600 bg-brand-50 text-brand-800 dark:border-brand-400 dark:bg-brand-950/40 dark:text-brand-200"
-          : "border-stone-300 bg-white text-ink-body hover:border-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-300"
+          : "border-stone-300 bg-white text-ink-body hover:border-stone-400 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-600"
       }`}
     >
       {children}

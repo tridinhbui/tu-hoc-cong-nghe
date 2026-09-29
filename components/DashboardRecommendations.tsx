@@ -87,29 +87,18 @@ export default function DashboardRecommendations() {
     // và đặt nó cạnh ba dòng chữ thì nó phải nhỏ lại vừa chiều cao của chúng.
     // Xếp dọc, nó được cỡ chữ của một tiêu đề, còn nhãn và câu giải thích lùi
     // xuống làm chú thích - đúng thứ tự đọc mà khối này muốn.
-    <section className="w-full border border-line bg-surface p-4">
-      {/* Màu xanh còn đúng một chấm 6px. Huy hiệu "LIVE" trước đây là chữ hoa,
-          giãn chữ, viền, nền và một biểu tượng nhấp nháy - năm thứ trang trí
-          cho một thông tin mà cái chấm nói xong. */}
-      <div className="flex items-center gap-2">
-        <StatusDot />
-        <p className="truncate text-[11px] font-semibold tracking-wide text-ink-muted">
-          {t.recommendations.liveTitle}
-        </p>
-      </div>
-
-      <p className="mt-2.5 flex items-baseline gap-1.5">
-        <span className="font-mono text-2xl font-medium leading-none tracking-tight tabular-nums text-ink-body">
-          {liveCompletedCount.toLocaleString(intlLocale(locale))}
-        </span>
-        <span className="text-xs font-semibold text-ink-faint">
-          {t.recommendations.lessonsUnit}
-        </span>
-      </p>
-
-      <p className="mt-2 text-xs leading-relaxed text-ink-muted">
-        {t.recommendations.liveSubtitle}
-      </p>
+    //
+    // Lượt làm nhẹ dashboard: con số này là thông tin nền, không phải việc cần
+    // làm, nên nó xuống thành một dòng không khung. Câu giải thích lùi vào
+    // `title` - vẫn đọc được khi trỏ vào, không chiếm một đoạn riêng.
+    <section className="flex w-full items-baseline gap-2 px-1 text-ink-faint" title={t.recommendations.liveSubtitle}>
+      <span className="self-center"><StatusDot /></span>
+      <span className="font-mono text-sm font-medium tabular-nums text-ink-muted">
+        {liveCompletedCount.toLocaleString(intlLocale(locale))}
+      </span>
+      <span className="min-w-0 truncate text-xs">
+        {t.recommendations.lessonsUnit} · {t.recommendations.liveTitle}
+      </span>
     </section>
   );
 }

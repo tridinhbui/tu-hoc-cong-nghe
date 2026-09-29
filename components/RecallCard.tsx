@@ -59,7 +59,7 @@ export default function RecallCard({ items, title }: { items: RecallItem[]; titl
             <div className="space-y-2">
               {options.map((opt, optIndex) => {
                 const chosen = picked[i] === optIndex;
-                let stateClass = "border-line-strong hover:border-stone-950 dark:hover:border-stone-300";
+                let stateClass = "border-line-strong hover:border-line-firm";
                 if (answered) {
                   if (isCorrect(optIndex)) {
                     stateClass = "border-brand-600 dark:border-brand-400 bg-accent-soft";

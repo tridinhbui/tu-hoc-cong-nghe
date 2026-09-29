@@ -90,7 +90,7 @@ export default function FormulaBlock({
         <button
           type="button"
           onClick={copyFormulaText}
-          className="flex cursor-pointer items-center gap-1.5 rounded-sm border border-stone-400 px-2.5 py-1 text-xs font-bold text-ink transition-colors hover:border-stone-950 dark:border-stone-600 dark:hover:border-stone-200"
+          className="flex cursor-pointer items-center gap-1.5 rounded-sm border border-stone-400 px-2.5 py-1 text-xs font-bold text-ink transition-colors hover:border-stone-400 dark:border-stone-600 dark:hover:border-stone-200"
           title={t.formulaBlock.copyTooltip}
         >
           {copied ? (
@@ -113,7 +113,7 @@ export default function FormulaBlock({
           <div className="flex items-center justify-center gap-3 text-lg sm:text-xl lg:text-2xl font-serif tracking-wide py-2 flex-wrap">
             {title && <span className="font-sans text-sm font-bold text-ink-muted sm:text-base">{title} =</span>}
             <div className="flex flex-col items-center px-2">
-              <span className="border-b-2 border-stone-950 px-2 pb-1 text-center font-bold text-ink-max dark:border-stone-200">
+              <span className="border-b-2 border-stone-300 px-2 pb-1 text-center font-bold text-ink-max dark:border-stone-700">
                 {numerator}
               </span>
               <span className="px-2 pt-1 text-center font-bold text-ink-max">

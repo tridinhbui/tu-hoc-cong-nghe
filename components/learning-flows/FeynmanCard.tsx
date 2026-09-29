@@ -90,7 +90,7 @@ export default function FeynmanCard({
 
         {children ? <div className="mt-5">{children}</div> : null}
 
-        <blockquote className="mt-5 border-l-2 border-stone-950 pl-4 dark:border-stone-200">
+        <blockquote className="mt-5 border-l-2 border-stone-300 pl-4 dark:border-stone-700">
           <p className="eyebrow mb-1 text-ink-soft">{oneLinerLabel}</p>
           <p className="text-base font-bold leading-7 text-ink-max sm:text-lg">{copy.oneLiner}</p>
         </blockquote>

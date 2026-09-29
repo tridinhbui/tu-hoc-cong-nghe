@@ -94,7 +94,7 @@ export default function ReferralPromptModal({
             onClick={() => setOpen(true)}
             title={t.referralPrompt.floatingButtonTitle}
             aria-label={t.referralPrompt.floatingButtonTitle}
-            className="fixed bottom-37 right-4 sm:bottom-40 sm:right-6 z-50 w-12 h-12 rounded-md border border-line-strong bg-white text-ink transition-colors hover:border-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-200 flex items-center justify-center cursor-pointer select-none group"
+            className="fixed bottom-37 right-4 sm:bottom-40 sm:right-6 z-50 w-12 h-12 rounded-md border border-line-strong bg-white text-ink transition-colors hover:border-stone-400 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-200 flex items-center justify-center cursor-pointer select-none group"
           >
             {/* Không còn chấm đỏ nhấp nháy ở góc: nó sáng với MỌI người học,
                 lúc nào cũng vậy, tức là một thông báo chưa đọc không có thật. */}
@@ -145,7 +145,7 @@ export default function ReferralPromptModal({
               <button
                 onClick={handleCopy}
                 title={t.referralPrompt.copyButtonTitle}
-                className="flex-shrink-0 w-9 h-9 flex items-center justify-center rounded-sm border border-line-strong text-ink-soft hover:border-stone-950 dark:hover:border-stone-300 transition-colors cursor-pointer"
+                className="flex-shrink-0 w-9 h-9 flex items-center justify-center rounded-sm border border-line-strong text-ink-soft hover:border-line-firm transition-colors cursor-pointer"
               >
                 {copied ? <Check className="w-4 h-4 text-accent" /> : <Copy className="w-4 h-4" />}
               </button>

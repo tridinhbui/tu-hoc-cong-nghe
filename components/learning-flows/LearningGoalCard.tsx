@@ -226,7 +226,7 @@ export default function LearningGoalCard({ id, effort, quiet = false }: { id?: s
           <CoCoSays lines={[cap.firstBuild]} size={40} className="mt-2" />
         </div>
       ) : stepCopy ? (
-        <p className="mt-4 flex gap-2 border-l-2 border-line-strong pl-3 text-sm font-semibold leading-6 text-ink-max">
+        <p className="mt-4 flex gap-2 border-l border-line pl-3 text-sm font-semibold leading-6 text-ink-max">
           <Lightbulb className="mt-0.5 h-4 w-4 shrink-0 text-ink-muted" aria-hidden />
           {stepCopy.oneLiner}
         </p>

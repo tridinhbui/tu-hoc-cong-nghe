@@ -441,7 +441,7 @@ export default function FriendsClient() {
                       <button
                         onClick={() => void handleRespond(connection.friendship_id, "rejected")}
                         disabled={busyUserId === String(connection.friendship_id)}
-                        className="flex-1 py-2 rounded-sm border border-stone-400 text-ink text-xs font-bold hover:border-stone-950 dark:border-stone-600 dark:hover:border-stone-200 transition-colors disabled:opacity-60 flex items-center justify-center gap-1.5"
+                        className="flex-1 py-2 rounded-sm border border-stone-400 text-ink text-xs font-bold hover:border-stone-400 dark:border-stone-600 dark:hover:border-stone-200 transition-colors disabled:opacity-60 flex items-center justify-center gap-1.5"
                       >
                         <X className="w-3.5 h-3.5" />
                         {t.friends.decline}
@@ -549,7 +549,7 @@ export default function FriendsClient() {
                 </Link>
                 <Link
                   href={`/nguoi-hoc/${activeConnection.user_id}`}
-                  className="shrink-0 inline-flex items-center gap-1.5 px-3 py-2 rounded-sm border border-stone-400 text-xs font-bold text-ink hover:border-stone-950 dark:border-stone-600 dark:hover:border-stone-200 transition-colors"
+                  className="shrink-0 inline-flex items-center gap-1.5 px-3 py-2 rounded-sm border border-stone-400 text-xs font-bold text-ink hover:border-stone-400 dark:border-stone-600 dark:hover:border-stone-200 transition-colors"
                 >
                   <UserRound className="w-3.5 h-3.5" />
                   {t.friends.profile}

@@ -111,7 +111,7 @@ function CapacityWaterfallAnimation({ c }: { c: ResourceClassLessonCopy }) {
             );
           })}
         </div>
-        <p className="border-l-2 border-stone-950 pl-4 text-sm leading-7 text-ink-body dark:border-stone-200">
+        <p className="border-l-2 border-stone-300 pl-4 text-sm leading-7 text-ink-body dark:border-stone-700">
           {scenario === "normal" ? c.verdictNormal : c.verdictDistress}
         </p>
       </div>
@@ -204,7 +204,7 @@ export default function CacHangUuTienTaiNguyenPage() {
           <p className="max-w-[68ch] text-sm leading-6 text-ink-soft">{c.lboNote}</p>
         </section>
 
-        <div className="border-l-2 border-stone-950 pl-4 dark:border-stone-200 sm:pl-5">
+        <div className="border-l-2 border-stone-300 pl-4 dark:border-stone-700 sm:pl-5">
           <h3 className="mb-3 text-lg font-black tracking-tight text-ink-max">{c.takeawayHeading}</h3>
           <ol className="space-y-2">
             {c.takeaways.map((item, i) => (

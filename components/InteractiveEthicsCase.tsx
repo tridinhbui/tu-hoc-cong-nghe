@@ -192,7 +192,7 @@ export default function InteractiveEthicsCase() {
       )}
 
       {done && (
-        <div className="mt-4 border-l-2 border-stone-950 pl-4 dark:border-stone-200">
+        <div className="mt-4 border-l-2 border-stone-300 pl-4 dark:border-stone-700">
           <p className="text-xs leading-relaxed text-ink-soft">{c.reasoning}</p>
           {index < CASES.length - 1 && (
             <button

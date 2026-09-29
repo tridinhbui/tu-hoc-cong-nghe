@@ -67,7 +67,7 @@ export default function BookmarkButton({ lessonId, lessonSlug, lessonTitle }: Bo
       className={`w-10 h-10 rounded-sm border flex items-center justify-center transition-colors ${
         bookmarked
           ? "border-brand-600 bg-accent-soft text-accent dark:border-brand-400"
-          : "border-line-strong text-ink-muted hover:border-stone-950 hover:text-ink dark:hover:border-stone-200"
+          : "border-line-strong text-ink-muted hover:border-stone-400 hover:text-ink dark:hover:border-stone-200"
       } ${toggling ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}`}
       title={bookmarked ? t.miscUi.bookmarkButton.remove : t.miscUi.bookmarkButton.add}
     >

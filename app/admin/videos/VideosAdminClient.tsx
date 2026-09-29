@@ -186,7 +186,7 @@ export default function VideosAdminClient({ lessonsMeta }: VideosAdminClientProp
                           <>
                             <button
                               onClick={() => handleStartEdit(lesson)}
-                              className="px-2 py-1 rounded text-xs border border-line-strong text-ink-body hover:border-stone-950 dark:hover:border-stone-300"
+                              className="px-2 py-1 rounded text-xs border border-line-strong text-ink-body hover:border-line-firm"
                             >
                               {lesson.videoUrl ? tv.edit : tv.add}
                             </button>

@@ -117,7 +117,7 @@ export default function InteractiveChart() {
         </div>
       </div>
 
-      <div className="border-l-2 border-stone-950 pl-4 dark:border-stone-200">
+      <div className="border-l-2 border-stone-300 pl-4 dark:border-stone-700">
         <p className="text-sm text-ink-body">
           {format(t.chartDemo.summaryPart1, { years })}{" "}
           <b>{format(t.chartDemo.summaryCompound, { compound: (compoundEnd * 100).toFixed(0) })}</b>

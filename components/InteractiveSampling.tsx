@@ -87,7 +87,7 @@ export default function InteractiveSampling() {
         />
       </div>
 
-      <p className="mt-4 border-l-2 border-stone-950 pl-4 text-xs leading-relaxed text-ink-body dark:border-stone-200">
+      <p className="mt-4 border-l-2 border-stone-300 pl-4 text-xs leading-relaxed text-ink-body dark:border-stone-700">
         {format(t.samplingCalc.explainPart1, { sampleSize })}
         <span className="font-bold">{(bound * 100).toFixed(1)}%</span>
         {t.samplingCalc.explainPart2}

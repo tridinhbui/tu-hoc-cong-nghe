@@ -93,7 +93,7 @@ export default function InteractiveMultiples() {
         </div>
       </div>
 
-      <div className="border-l-2 border-stone-950 pl-4 dark:border-stone-200">
+      <div className="border-l-2 border-stone-300 pl-4 dark:border-stone-700">
         <p className="text-sm text-ink-body">
           {t.multiplesCalc.rangePart1} {format(t.multiplesCalc.rangeFactorX, { factor: Math.max(1, factor - 2) })} {t.multiplesCalc.rangePart2}{" "}
           {format(t.multiplesCalc.rangeFactorX, { factor: factor + 2 })}, {t.multiplesCalc.rangePart3}{" "}

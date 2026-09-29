@@ -416,7 +416,7 @@ export default function ChatWithAdminWidget({
             }}
             aria-label={t.adminChat.openAria}
             title={t.adminChat.dragTitle}
-            className="fixed bottom-6 right-4 sm:right-6 z-40 w-14 h-14 rounded-md bg-white dark:bg-stone-100 transition-colors hover:border-stone-950 flex items-center justify-center group overflow-hidden border border-line-strong cursor-grab active:cursor-grabbing select-none touch-none"
+            className="fixed bottom-6 right-4 sm:right-6 z-40 w-14 h-14 rounded-md bg-white dark:bg-stone-100 transition-colors hover:border-stone-400 flex items-center justify-center group overflow-hidden border border-line-strong cursor-grab active:cursor-grabbing select-none touch-none"
           >
             <Logo size={56} className="pointer-events-none" />
             <span className="absolute top-1 right-1 w-2 h-2 rounded-[1px] bg-brand-600 pointer-events-none" aria-hidden />

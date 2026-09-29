@@ -46,7 +46,7 @@ export default function MessagesCombinedWrapper({
           className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-extrabold transition-all cursor-pointer ${
             section === "messages"
               ? "bg-accent-soft text-ink-max border border-brand-600 dark:border-brand-400"
-              : "border border-line-strong text-ink-soft hover:border-stone-950 dark:hover:border-stone-300"
+              : "border border-line-strong text-ink-soft hover:border-line-firm"
           }`}
         >
           <MessageSquare className="w-4 h-4" />
@@ -59,7 +59,7 @@ export default function MessagesCombinedWrapper({
           className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-extrabold transition-all cursor-pointer ${
             section === "announcements"
               ? "bg-accent-soft text-ink-max border border-brand-600 dark:border-brand-400"
-              : "border border-line-strong text-ink-soft hover:border-stone-950 dark:hover:border-stone-300"
+              : "border border-line-strong text-ink-soft hover:border-line-firm"
           }`}
         >
           <Megaphone className="w-4 h-4" />

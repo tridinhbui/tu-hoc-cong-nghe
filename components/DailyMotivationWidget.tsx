@@ -32,7 +32,11 @@ import { useI18n } from "@/lib/i18n/context";
  *  đọc. Nhét nguyên nó vào trong một thẻ khác thì thành thẻ-trong-thẻ, và cái
  *  bên trong lại to giọng hơn cái bên ngoài. Bản compact bỏ viền dày, rút
  *  padding và cỡ chữ, giữ nguyên nội dung và cả hai lối ra. */
-export default function DailyMotivationWidget({ userId, compact = false }: { userId: string; compact?: boolean }) {
+/** `quiet`: một dòng chữ nhạt, không nhãn giọng điệu, không dòng "mở Góc yên
+ *  tĩnh" - cả dòng vẫn là liên kết sang /loi-nhan, và câu đầy đủ nằm trong
+ *  `title`. Dành cho dashboard, nơi lời nhắn là chỗ nghỉ chứ không phải thứ
+ *  cần đọc trước. */
+export default function DailyMotivationWidget({ userId, compact = false, quiet = false }: { userId: string; compact?: boolean; quiet?: boolean }) {
   const { t } = useI18n();
   const [motivation, setMotivation] = useState<DailyMotivation | null>(null);
 
@@ -88,6 +92,19 @@ export default function DailyMotivationWidget({ userId, compact = false }: { use
   // cạnh trái: ngày thường là nét kẻ xám, lúc streak vừa đứt hoặc vắng lâu
   // (warmth cao) nó thành vạch xanh - màu của "dữ liệu sống, nhìn vào đây".
   const hot = warmth >= 0.5;
+
+  if (quiet) {
+    return (
+      <Link
+        href="/loi-nhan"
+        title={lateNight ? `${lateNight} ${line}` : line}
+        className="group flex min-w-0 items-center gap-2 text-xs text-ink-faint transition-colors hover:text-ink-body"
+      >
+        <Flame className={`h-3.5 w-3.5 shrink-0 ${hot ? "text-accent" : "text-ink-faint"}`} aria-hidden />
+        <span className="min-w-0 truncate underline-offset-4 group-hover:underline">{line}</span>
+      </Link>
+    );
+  }
 
   return (
     <div

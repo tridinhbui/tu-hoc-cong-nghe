@@ -128,7 +128,7 @@ function choiceClass(active: boolean) {
   return `rounded-sm border transition-colors cursor-pointer ${
     active
       ? "border-brand-600 bg-accent-soft text-ink-max dark:border-brand-400"
-      : "border-line-strong bg-white text-ink-heading hover:border-stone-950 dark:bg-stone-900 dark:hover:border-stone-200"
+      : "border-line-strong bg-white text-ink-heading hover:border-stone-400 dark:bg-stone-900 dark:hover:border-stone-200"
   }`;
 }
 const PASS_RATIO = 0.6;
@@ -893,7 +893,7 @@ export default function TechnicalInterviewPage() {
                   <button
                     type="button"
                     onClick={() => setRolePickerOpen(true)}
-                    className="p-2.5 rounded-sm border border-dashed border-line-firm text-ink-body transition-colors hover:border-stone-950 dark:hover:border-stone-300 cursor-pointer flex flex-col items-center justify-center min-h-[72px]"
+                    className="p-2.5 rounded-sm border border-dashed border-line-firm text-ink-body transition-colors hover:border-line-firm cursor-pointer flex flex-col items-center justify-center min-h-[72px]"
                   >
                     <span className="text-xs font-black block">{t.interview.seeMore}</span>
                     <span className="text-[10.5px] text-accent-strong font-bold mt-0.5">{t.interview.seeMoreCareers}</span>
@@ -1007,7 +1007,7 @@ export default function TechnicalInterviewPage() {
                       <button
                         type="button"
                         onClick={() => setTopicPickerOpen(true)}
-                        className="p-2.5 rounded-sm border border-dashed border-line-firm text-ink-body transition-colors hover:border-stone-950 dark:hover:border-stone-300 cursor-pointer flex flex-col items-center justify-center min-h-[68px]"
+                        className="p-2.5 rounded-sm border border-dashed border-line-firm text-ink-body transition-colors hover:border-line-firm cursor-pointer flex flex-col items-center justify-center min-h-[68px]"
                       >
                         <span className="text-xs font-black block">{t.interview.seeMore}</span>
                         <span className="text-[10.5px] text-accent-strong font-bold mt-0.5">
@@ -1317,7 +1317,7 @@ export default function TechnicalInterviewPage() {
                 {q.options.map((opt, oi) => {
                   const isSelected = selected === oi;
                   const isCorrectOpt = oi === q.correct;
-                  let cls = "border-line-strong bg-white dark:bg-stone-900 text-ink hover:border-stone-950 dark:hover:border-stone-300";
+                  let cls = "border-line-strong bg-white dark:bg-stone-900 text-ink hover:border-line-firm";
                   let badgeCls = "border-line-strong text-ink-muted";
                   if (submitted) {
                     if (isCorrectOpt) {
@@ -1640,7 +1640,7 @@ export default function TechnicalInterviewPage() {
                       key={label}
                       type="button"
                       onClick={() => void redrillSection(label)}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-sm border border-line-strong text-xs font-bold text-ink-body hover:border-stone-950 dark:hover:border-stone-300 transition-colors cursor-pointer"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-sm border border-line-strong text-xs font-bold text-ink-body hover:border-line-firm transition-colors cursor-pointer"
                     >
                       <span>{label}</span>
                       <span className="text-danger">

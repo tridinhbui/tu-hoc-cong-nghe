@@ -145,7 +145,7 @@ export default function UserProfile() {
                 setShowDropdown(false);
                 setShowCustomizer(true);
               }}
-              className="w-full text-left px-3 py-2 text-sm font-bold text-ink-body rounded-sm transition-colors border border-line-strong hover:border-stone-950 dark:hover:border-stone-300 flex items-center gap-1.5 cursor-pointer"
+              className="w-full text-left px-3 py-2 text-sm font-bold text-ink-body rounded-sm transition-colors border border-line-strong hover:border-line-firm flex items-center gap-1.5 cursor-pointer"
             >
               {t.userProfile.customizeAvatar}
             </button>

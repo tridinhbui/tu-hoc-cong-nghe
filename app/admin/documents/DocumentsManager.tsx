@@ -258,7 +258,7 @@ export default function DocumentsManager({ documents }: { documents: DocumentRow
             <button
               type="button"
               onClick={() => setShowPreview(true)}
-              className="inline-flex items-center gap-2 text-sm font-semibold px-3 py-2 rounded-sm border border-line-strong text-ink-body hover:border-stone-950 dark:hover:border-stone-300 transition-colors"
+              className="inline-flex items-center gap-2 text-sm font-semibold px-3 py-2 rounded-sm border border-line-strong text-ink-body hover:border-line-firm transition-colors"
             >
               <Eye className="w-4 h-4" />
               {format(td.previewButton, { fileName: previewFile.name })}
@@ -337,7 +337,7 @@ export default function DocumentsManager({ documents }: { documents: DocumentRow
               <button
                 type="button"
                 onClick={() => setShowPreview(true)}
-                className="inline-flex items-center gap-2 text-sm font-semibold px-3 py-2 rounded-sm border border-line-strong text-ink-body hover:border-stone-950 dark:hover:border-stone-300 transition-colors"
+                className="inline-flex items-center gap-2 text-sm font-semibold px-3 py-2 rounded-sm border border-line-strong text-ink-body hover:border-line-firm transition-colors"
               >
                 <Eye className="w-4 h-4" />
                 {format(td.previewButton, { fileName: previewFile.name })}

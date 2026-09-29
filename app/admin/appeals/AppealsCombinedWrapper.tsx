@@ -42,7 +42,7 @@ export default function AppealsCombinedWrapper({
           className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-extrabold transition-all cursor-pointer ${
             section === "appeals"
               ? "bg-accent-soft text-ink-max border border-brand-600 dark:border-brand-400"
-              : "border border-line-strong text-ink-soft hover:border-stone-950 dark:hover:border-stone-300"
+              : "border border-line-strong text-ink-soft hover:border-line-firm"
           }`}
         >
           <ShieldQuestion className="w-4 h-4 text-brand-500" />
@@ -55,7 +55,7 @@ export default function AppealsCombinedWrapper({
           className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-extrabold transition-all cursor-pointer ${
             section === "ai-reports"
               ? "bg-accent-soft text-ink-max border border-brand-600 dark:border-brand-400"
-              : "border border-line-strong text-ink-soft hover:border-stone-950 dark:hover:border-stone-300"
+              : "border border-line-strong text-ink-soft hover:border-line-firm"
           }`}
         >
           <AlertTriangle className="w-4 h-4 text-rose-500" />

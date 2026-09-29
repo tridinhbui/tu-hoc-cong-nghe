@@ -92,7 +92,7 @@ export default function InteractiveRisk() {
         />
       </div>
 
-      <div className="border-l-2 border-stone-950 pl-4 dark:border-stone-200">
+      <div className="border-l-2 border-stone-300 pl-4 dark:border-stone-700">
         <p className="text-xs font-bold uppercase tracking-wider text-ink-muted">
           {t.riskCalc.rangeTitle}
         </p>

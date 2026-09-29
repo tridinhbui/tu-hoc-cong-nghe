@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback, useMemo, useRef } from "react";
+import { useState, useEffect, useCallback, useMemo, useRef, useSyncExternalStore } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import CoCoAvatar from "@/components/CoCoAvatar";
@@ -66,7 +66,7 @@ import { isValidAvatar } from "@/lib/avatar-utils";
 // đây: các nhánh render của chúng đã bỏ cùng những giá trị tab không ai chọn
 // được. Ba widget đó sống ở RPG hub.
 import TechCharacterAvatar, { CharacterEquipments } from "@/components/TechCharacterAvatar";
-import { Frame, Sys, StatusDot, panel, btnPrimary, btnSecondary, tabClass } from "@/components/ui/system";
+import { Sys, StatusDot, panel, btnPrimary, btnSecondary, tabClass } from "@/components/ui/system";
 
 /* i18n-ignore-start: định danh hệ thống trong thanh tiêu đề khung, không phải
    chữ hiển thị để dịch - cùng một chuỗi ở mọi ngôn ngữ, như đường dẫn tệp. */
@@ -208,6 +208,37 @@ function isTrackTab(tab: DashboardTab): tab is "personal" | "professional" {
  *  lộ trình Nền tảng: Git, lập trình, web, JavaScript, dữ liệu, API, cơ sở dữ
  *  liệu, triển khai... - để hình gần đúng chủ đề ở những chặng người học gặp
  *  đầu tiên. */
+/** Một cờ mở/đóng của trang tổng quan, nhớ trong localStorage.
+ *
+ *  Đọc qua useSyncExternalStore chứ không đọc lúc dựng state: máy chủ không có
+ *  localStorage, nên snapshot phía máy chủ luôn là "đóng" và trình duyệt đọc
+ *  giá trị thật sau hydrate - không lệch HTML, không cần effect. Mọi lần đọc
+ *  và ghi bọc try/catch: Safari riêng tư ném lỗi, và một tuỳ chọn hiển thị
+ *  không được làm hỏng trang. */
+const subscribeNoop = () => () => {};
+function readStoredFlag(key: string): boolean {
+  try {
+    return window.localStorage.getItem(key) === "1";
+  } catch {
+    return false;
+  }
+}
+function useStoredFlag(key: string): [boolean, () => void] {
+  const stored = useSyncExternalStore(subscribeNoop, () => readStoredFlag(key), () => false);
+  const [override, setOverride] = useState<boolean | null>(null);
+  const value = override ?? stored;
+  const toggle = useCallback(() => {
+    const next = !value;
+    setOverride(next);
+    try {
+      window.localStorage.setItem(key, next ? "1" : "0");
+    } catch {
+      // Không lưu được thì lựa chọn chỉ sống trong phiên này.
+    }
+  }, [key, value]);
+  return [value, toggle];
+}
+
 const STAGE_ICONS: LucideIcon[] = [GitBranch, Code2, Globe, Braces, Layers, Server, Database, Cloud, FileText, Compass, Cpu, Cloud, BookOpen, ShieldCheck, Smartphone, HardHat];
 
 export default function DashboardClient({ lessonsMeta, view = "overview" }: { lessonsMeta: LessonMeta[]; view?: DashboardView }) {
@@ -373,6 +404,9 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
   const [communityUsersByLevel, setCommunityUsersByLevel] = useState<Map<number, { name: string; xp: number; avatarUrl: string | null; userId: string }[]>>(new Map());
   const [activeTooltipLevel, setActiveTooltipLevel] = useState<number | null>(null);
   const levelStripRef = useRef<HTMLDivElement>(null);
+  // Dải cấp gọn (chỉ cấp gần) hay đủ 15 cấp; bảng xếp hạng thu gọn hay mở.
+  const [showAllLevels, toggleAllLevels] = useStoredFlag("thtcdn_dashboard_all_levels");
+  const [rankingOpen, toggleRanking] = useStoredFlag("thtcdn_dashboard_ranking_open");
   const [dbAvatarUrl, setDbAvatarUrl] = useState<string | null>(null);
   const [equippedGear, setEquippedGear] = useState<CharacterEquipments>({});
   const [showBossBattle, setShowBossBattle] = useState(false);
@@ -1114,434 +1148,365 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
           className={`mx-auto w-full space-y-5 min-w-0 xl:flex-1 xl:min-h-0 xl:space-y-0 ${
             isLessonsView
               ? "max-w-[1500px] xl:flex xl:flex-col"
-              : "max-w-[1500px] xl:grid xl:grid-cols-12 xl:grid-rows-[auto_auto_minmax(0,1fr)] xl:gap-3.5"
+              : "max-w-[1500px] xl:grid xl:grid-cols-12 xl:grid-rows-[auto_auto_minmax(0,1fr)] xl:gap-5"
           }`}
         >
 
-          {/* Level map is progress/gamification, so it stays on the overview
-              route and is not repeated above the learning path. */}
+          {/* ── Trang tổng quan: một bàn học, ba tiêu điểm ──
+              Lượt làm nhẹ: chỉ ba thứ giữ màu xanh, cỡ chữ và độ tương phản -
+              bài đang học (thẻ Học tiếp), cấp hiện tại, và mở khoá kế tiếp.
+              Mọi thứ khác lùi xuống: chuỗi ngày thành một dòng, số liệu học
+              thành một dòng, năng lực thực hành thu gọn sau "Xem chi tiết",
+              cấp khoá xa gộp thành "+N cấp", lời nhắn hôm nay một dòng.
+              Không có tính năng nào bị gỡ - mọi thứ lùi đều mở lại được.
+
+              Khung Frame (thanh tiêu đề mono + viền) đã đổi thành một mặt nền
+              trắng không viền trên nền giấy: nhóm bằng sắc độ, không bằng
+              khung. Mã L{n}/{tổng} ở thanh tiêu đề bỏ theo - cấp đã được nói
+              to ngay trong thẻ. */}
           {!isLessonsView && user?.id && (() => {
             const currentUserLevel = getLevelByXp(userXp).level;
             const levelProgress = getLevelProgress(userXp);
             const openLevel = activeTooltipLevel;
+            const nextLvl = LEVELS.find((l) => l.level === currentUserLevel + 1) ?? null;
+            const xpLeft = nextLvl ? Math.max(0, nextLvl.minXp - userXp) : 0;
+            const objStage = currentLessonId !== null
+              ? track.stages.find((s) => (lessonsByStageLabel.get(s.label) ?? []).some((l) => l.id === currentLessonId)) ?? null
+              : null;
+            const objIdx = objStage ? track.stages.indexOf(objStage) : -1;
+            const objLessons = objStage ? lessonsByStageLabel.get(objStage.label) ?? [] : [];
+            const objDone = objLessons.filter((l) => completed.includes(l.id)).length;
+            const objCopy = objIdx >= 0 ? t.revampDashboard.stages[activeTrack]?.[objIdx] : undefined;
+            const anyDone = completed.length > 0;
 
-            // Mảng ACCENTS cầu vồng (xám/xanh trời/lục lam/tím/cam/đỏ/vàng
-            // chuyển sắc - mỗi cấp một màu) đã gỡ. Luật 3 của hệ thiết kế chung:
-            // xanh chỉ đánh dấu CẤP ĐANG ĐỨNG (dữ liệu sống), còn lại trung tính.
+            // Dải cấp: "gần" là cấp đã qua gần nhất, cấp đang đứng và hai cấp
+            // kế tiếp. Phần còn lại gộp thành hai nút "+N cấp" ở hai đầu, bấm
+            // là mở cả dải (lựa chọn được nhớ). Mở ra thì cấp xa vẫn mờ hẳn và
+            // không mang nhãn phụ - nhưng vẫn bấm được để xem thành viên.
+            const isNear = (level: number) => level >= currentUserLevel - 1 && level <= currentUserLevel + 2;
+            const hiddenBefore = LEVELS.filter((l) => l.level < currentUserLevel - 1).length;
+            const hiddenAfter = LEVELS.filter((l) => l.level > currentUserLevel + 2).length;
+            const visibleLevels = showAllLevels ? LEVELS : LEVELS.filter((l) => isNear(l.level));
+            const moreLevelsButton = (count: number) => (
+              <button
+                type="button"
+                onClick={toggleAllLevels}
+                aria-expanded={false}
+                className="mx-1.5 shrink-0 cursor-pointer self-center rounded-control px-2.5 py-1.5 font-mono text-[11px] font-medium tabular-nums text-ink-faint transition-colors hover:bg-surface-raised hover:text-ink-body"
+              >
+                {format(t.revampDashboard.moreLevels, { count })}
+              </button>
+            );
 
             return (
-              <Frame
-                title={SYS.dashboard}
-                meta={`L${currentUserLevel}/${LEVELS.length}`}
-                className="xl:col-span-12 xl:min-h-0"
-                bodyClassName={isCompactCard ? "p-2.5" : "p-3 sm:p-3.5"}
-              >
-                <div className="grid grid-cols-1 gap-5 xl:grid-cols-[minmax(0,1fr)_288px] xl:items-start xl:gap-6">
-                  {/* self-stretch (not the grid's items-start) so this column
-                      fills the row height set by the taller UserStats sidebar -
-                      otherwise the level strip sits at the top and dumps all the
-                      leftover height as dead space under the avatars. */}
-                  <div className="min-w-0 xl:flex xl:flex-col">
-                    {/* ── Trung tâm kỹ năng ──
-                        Bốn câu trả lời ở hàng đầu, đúng thứ tự người học hỏi:
-                        tôi là ai lúc này (hình nhân vật của cấp), tôi ở cấp nào
-                        và còn bao xa (LV + XP), tôi đang làm gì (chặng đang
-                        học), chuỗi ngày còn giữ không. Tiêu đề "Bản đồ cấp độ"
-                        và dòng giải thích cách đọc dải cấp đã nhường chỗ: dải
-                        bên dưới tự đọc được nhờ "BẠN Ở ĐÂY" và "KẾ TIẾP".
+              <section className="rounded-card bg-surface p-5 sm:p-7 xl:col-span-12 xl:min-h-0">
+                <div className="grid grid-cols-1 gap-8 xl:grid-cols-[minmax(0,1fr)_288px] xl:items-start xl:gap-10">
+                  <div className="min-w-0 space-y-8">
+                    {/* ── 1. Bài đang học ──
+                        Hành động nổi nhất trang, và giờ đứng ĐẦU: người mở
+                        dashboard trước hết cần biết học gì tiếp. Cơ Cơ mở lời
+                        bằng một dòng nhạt ngay trên thẻ (xem ResumeLearningButton
+                        `quiet`), không còn bong bóng thoại. Chặng đang làm là
+                        một dòng chú thích dưới thẻ; câu "làm được gì sau chặng"
+                        nằm trong `title` của dòng đó. */}
+                    <div className="min-w-0 space-y-2.5">
+                      <div data-tour="resume-learning">
+                        <ResumeLearningButton activeTrack={activeTrack} userId={user?.id} compact={isCompactCard} quiet />
+                      </div>
+                      <p className="truncate px-1 text-xs text-ink-faint" title={objCopy?.outcome}>
+                        {objStage ? (
+                          <>
+                            {format(t.revampDashboard.objectiveStage, {
+                              stage: stageDisplayLabels.get(objStage.label) ?? objStage.label,
+                              tag: objCopy?.tag ?? "",
+                            })}
+                            {" · "}
+                            <span className="font-mono tabular-nums">
+                              {format(t.revampDashboard.objectiveProgress, { done: objDone, total: objLessons.length })}
+                            </span>
+                            {" · "}
+                            {objCopy?.headline ?? t.trackStages[activeTrack]?.stages[objIdx]?.name ?? objStage.name}
+                          </>
+                        ) : anyDone ? (
+                          t.revampDashboard.objectiveAllDone
+                        ) : (
+                          t.revampDashboard.objectiveNone
+                        )}
+                      </p>
+                    </div>
 
-                        Hình nhân vật là ảnh của CẤP (public/levels/levelN.jpg),
-                        đặt cạnh bóng mờ của cấp kế tiếp: người học thấy chính
-                        mình đổi hình theo cấp, và thấy hình sắp tới trông ra
-                        sao. Màu: xanh cho cấp đang đứng, hổ phách cho XP, cyan
-                        cho tiến độ chặng. */}
-                    {(() => {
-                      const nextLvl = LEVELS.find((l) => l.level === currentUserLevel + 1) ?? null;
-                      const xpLeft = nextLvl ? Math.max(0, nextLvl.minXp - userXp) : 0;
-                      const objStage = currentLessonId !== null
-                        ? track.stages.find((s) => (lessonsByStageLabel.get(s.label) ?? []).some((l) => l.id === currentLessonId)) ?? null
-                        : null;
-                      const objIdx = objStage ? track.stages.indexOf(objStage) : -1;
-                      const objLessons = objStage ? lessonsByStageLabel.get(objStage.label) ?? [] : [];
-                      const objDone = objLessons.filter((l) => completed.includes(l.id)).length;
-                      const objCopy = objIdx >= 0 ? t.revampDashboard.stages[activeTrack]?.[objIdx] : undefined;
-                      const anyDone = completed.length > 0;
-                      return (
-                        <div className="relative z-10 mb-5 grid grid-cols-1 gap-3 lg:grid-cols-[auto_minmax(0,1fr)_auto] lg:items-center lg:gap-5">
-                          <div className="flex items-end gap-2">
-                            <figure className="flex flex-col items-center gap-1">
-                              <div className="relative h-[84px] w-[84px] overflow-hidden rounded-sm border-2 border-brand-600 bg-surface-raised dark:border-brand-400 dark:bg-stone-950">
-                                <Image
-                                  src={`/levels/level${currentUserLevel}.jpg`}
-                                  alt={t.levelTitles[currentUserLevel] ?? ""}
-                                  width={84}
-                                  height={84}
-                                  className="h-full w-full scale-[1.08] object-cover"
-                                />
-                              </div>
-                              <figcaption><Sys className="text-accent-strong">{t.revampDashboard.avatarNow}</Sys></figcaption>
-                            </figure>
+                    {/* ── 2. Cấp hiện tại và 3. mở khoá kế tiếp ──
+                        Một khối, một con số XP. Trước đây cùng một câu "còn
+                        bao nhiêu XP tới cấp sau" được nói ba lần: cạnh thanh
+                        tiến độ, dưới dải cấp, và ở cột phải - giờ chỉ còn dòng
+                        "Mở khoá kế tiếp" ngay dưới thanh. Hình của cấp đang
+                        đứng đặt cạnh bóng mờ của cấp kế tiếp, không còn nhãn
+                        chữ dưới mỗi hình. */}
+                    <div className="min-w-0">
+                      <div className="flex flex-wrap items-start justify-between gap-x-6 gap-y-4">
+                        <div className="flex min-w-0 items-center gap-4">
+                          <div className="flex shrink-0 items-center gap-1.5">
+                            <div className="relative h-16 w-16 overflow-hidden rounded-card border-2 border-brand-600 bg-surface-raised dark:border-brand-400 dark:bg-stone-950">
+                              <Image
+                                src={`/levels/level${currentUserLevel}.jpg`}
+                                alt={t.levelTitles[currentUserLevel] ?? ""}
+                                width={64}
+                                height={64}
+                                className="h-full w-full scale-[1.08] object-cover"
+                              />
+                            </div>
                             {nextLvl && (
                               <>
-                                <ChevronRight className="mb-9 h-4 w-4 shrink-0 text-ink-faint" aria-hidden />
-                                <figure className="flex flex-col items-center gap-1">
-                                  <div className="relative h-[52px] w-[52px] overflow-hidden rounded-sm border border-line bg-surface-raised dark:bg-stone-950">
-                                    <Image
-                                      src={`/levels/level${nextLvl.level}.jpg`}
-                                      alt={t.levelTitles[nextLvl.level] ?? nextLvl.name}
-                                      width={52}
-                                      height={52}
-                                      className="h-full w-full scale-[1.08] object-cover grayscale opacity-50"
-                                    />
-                                    <Lock className="absolute right-1 top-1 h-3 w-3 text-ink-faint" aria-hidden />
-                                  </div>
-                                  <figcaption><Sys className="text-ink-faint">{format(t.revampDashboard.avatarNext, { level: String(nextLvl.level).padStart(2, "0") })}</Sys></figcaption>
-                                </figure>
+                                <ChevronRight className="h-3.5 w-3.5 shrink-0 text-ink-faint" aria-hidden />
+                                <div className="relative h-10 w-10 overflow-hidden rounded-control bg-surface-raised dark:bg-stone-950">
+                                  <Image
+                                    src={`/levels/level${nextLvl.level}.jpg`}
+                                    alt={t.levelTitles[nextLvl.level] ?? nextLvl.name}
+                                    width={40}
+                                    height={40}
+                                    className="h-full w-full scale-[1.08] object-cover opacity-50 grayscale"
+                                  />
+                                  <Lock className="absolute right-0.5 top-0.5 h-2.5 w-2.5 text-ink-faint" aria-hidden />
+                                </div>
                               </>
                             )}
                           </div>
 
                           <div className="min-w-0">
-                            <Sys className="text-ink-faint">{t.revampDashboard.commandEyebrow}</Sys>
-                            <div className="mt-0.5 flex flex-wrap items-baseline gap-x-2.5 gap-y-0.5">
+                            <div className="flex flex-wrap items-baseline gap-x-2.5 gap-y-0.5">
                               <span className="font-mono text-2xl font-black tabular-nums tracking-tight text-accent-strong">
                                 LV{String(currentUserLevel).padStart(2, "0")}
                               </span>
                               <h3 className="text-lg font-black leading-tight tracking-tight text-ink-max">
                                 {t.levelTitles[currentUserLevel] ?? LEVELS[currentUserLevel - 1]?.name}
                               </h3>
-                              <span className="font-mono text-xs font-medium tabular-nums text-ink-muted">
+                              <span className="font-mono text-xs tabular-nums text-ink-faint">
                                 {format(t.revampDashboard.totalXp, { xp: userXp })}
                               </span>
                             </div>
-                            <div className="mt-1.5 flex items-center gap-2.5">
-                              <div className="h-2 w-full max-w-[260px] overflow-hidden rounded-xs bg-surface-sunken">
-                                <div className="h-full bg-brand-600 transition-[width] duration-500 dark:bg-brand-500" style={{ width: `${nextLvl ? levelProgress : 100}%` }} />
-                              </div>
-                              <span className="whitespace-nowrap font-mono text-[11px] font-medium tabular-nums text-ink-muted">
-                                {nextLvl
-                                  ? format(t.revampDashboard.xpToNext, { xp: xpLeft, level: String(nextLvl.level).padStart(2, "0") })
-                                  : t.revampDashboard.xpMax}
-                              </span>
+                            <div className="mt-2 h-2 w-full max-w-[320px] overflow-hidden rounded-xs bg-surface-sunken">
+                              <div className="h-full bg-brand-600 transition-[width] duration-500 dark:bg-brand-500" style={{ width: `${nextLvl ? levelProgress : 100}%` }} />
                             </div>
-                            {/* Mục tiêu đang làm: chặng chứa bài kế tiếp, kèm
-                                việc làm được sau chặng - nói bằng kỹ năng, không
-                                bằng tên môn. */}
-                            <div className="mt-3 border-l-2 border-accent-line-mid pl-2.5">
-                              <div className="flex flex-wrap items-baseline gap-x-2">
-                                <Sys className="text-accent-strong">{t.revampDashboard.objectiveLabel}</Sys>
-                                {objStage && (
-                                  <>
-                                    <Sys className="text-ink-muted">
-                                      {format(t.revampDashboard.objectiveStage, {
-                                        stage: stageDisplayLabels.get(objStage.label) ?? objStage.label,
-                                        tag: objCopy?.tag ?? "",
-                                      })}
-                                    </Sys>
-                                    <span className="font-mono text-[10.5px] font-medium tabular-nums text-ink-faint">
-                                      {format(t.revampDashboard.objectiveProgress, { done: objDone, total: objLessons.length })}
+                          </div>
+                        </div>
+
+                        {/* Chuỗi ngày: một dòng nhạt. Nhãn, số lượt đóng băng
+                            và phần giải thích nằm trong hộp mở ra khi bấm. */}
+                        <DashboardStreakWidget userId={user.id} quiet />
+                      </div>
+
+                      {nextLvl ? (
+                        <div className="mt-4 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                          <Sys className="text-accent-strong">{t.dashboard.nextUnlockLabel}</Sys>
+                          <span className="text-sm font-bold text-ink-body">
+                            {format(t.dashboard.nextUnlockLine, { level: String(nextLvl.level).padStart(2, "0"), name: t.levelTitles[nextLvl.level] ?? nextLvl.name, xp: xpLeft })}
+                          </span>
+                          <span className="text-xs text-ink-faint">
+                            {format(t.dashboard.nextUnlockHint, { lessons: Math.ceil(xpLeft / XP_PER_LESSON) })}
+                          </span>
+                        </div>
+                      ) : (
+                        <p className="mt-4 text-xs font-semibold text-ink-muted">{t.dashboard.maxLevelLine}</p>
+                      )}
+
+                      {/* Dải cấp: gần thì rõ, xa thì gộp. Mũi tên cuộn chỉ cần
+                          khi cả dải đang mở - bản gọn vừa một hàng. */}
+                      <div className="relative group/level-strip mt-6">
+                        {showAllLevels && (
+                          <>
+                            <button
+                              onClick={() => levelStripRef.current?.scrollBy({ left: -220, behavior: "smooth" })}
+                              className="hidden sm:flex absolute -left-3 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-control bg-surface items-center justify-center text-ink-muted hover:text-ink-body transition-all opacity-0 group-hover/level-strip:opacity-100"
+                              aria-label={t.dashboard.scrollLeft}
+                            >
+                              <ChevronLeft className="w-4 h-4" />
+                            </button>
+                            <button
+                              onClick={() => levelStripRef.current?.scrollBy({ left: 220, behavior: "smooth" })}
+                              className="hidden sm:flex absolute -right-3 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-control bg-surface items-center justify-center text-ink-muted hover:text-ink-body transition-all opacity-0 group-hover/level-strip:opacity-100"
+                              aria-label={t.dashboard.scrollRight}
+                            >
+                              <ChevronRight className="w-4 h-4" />
+                            </button>
+                          </>
+                        )}
+
+                        <div
+                          ref={levelStripRef}
+                          className="overflow-x-auto pb-1 -mx-1 px-1 no-scrollbar overscroll-x-contain [contain:paint] xl:min-w-0"
+                          style={{ WebkitOverflowScrolling: "touch" }}
+                        >
+                          <div className="flex min-w-max items-stretch">
+                            {!showAllLevels && hiddenBefore > 0 && moreLevelsButton(hiddenBefore)}
+                            {visibleLevels.map((lvl, idx) => {
+                              const isUserCurrent = currentUserLevel === lvl.level;
+                              const isPassed = currentUserLevel > lvl.level;
+                              const isReached = isPassed || isUserCurrent;
+                              const members = communityUsersByLevel.get(lvl.level) || [];
+                              const isOpen = openLevel === lvl.level;
+                              const isNextLevel = currentUserLevel + 1 === lvl.level;
+                              const near = isNear(lvl.level);
+
+                              return (
+                                <div key={lvl.level} className="flex items-stretch">
+                                  {/* Đoạn nối chỉ ghi giá XP ở đúng một chỗ: bước
+                                      sang cấp kế tiếp. Các đoạn khác là một nét
+                                      mảnh không chữ. */}
+                                  {idx > 0 && (
+                                    <div className="flex w-7 shrink-0 flex-col items-center justify-center gap-0.5 sm:w-9">
+                                      {isNextLevel && (
+                                        <span className="font-mono text-[9px] font-medium tabular-nums text-ink-muted">
+                                          {format(t.dashboard.levelGap, { xp: lvl.minXp - (LEVELS.find((l) => l.level === lvl.level - 1)?.minXp ?? 0) })}
+                                        </span>
+                                      )}
+                                      <div className={`h-px w-full ${isReached ? "bg-line-strong" : isNextLevel ? "bg-accent-line-mid" : "bg-line-soft"}`} />
+                                    </div>
+                                  )}
+                                  <button
+                                    type="button"
+                                    onClick={() => setActiveTooltipLevel((prev) => (prev === lvl.level ? null : lvl.level))}
+                                    aria-expanded={isOpen}
+                                    aria-current={isUserCurrent ? "step" : undefined}
+                                    title={t.levelTitles[lvl.level] ?? lvl.name}
+                                    className={`relative flex min-h-[64px] w-[96px] shrink-0 cursor-pointer flex-col rounded-control px-2 py-1.5 text-left transition-[background-color,opacity] ${
+                                      isUserCurrent
+                                        ? "bg-brand-600 text-white dark:bg-brand-600"
+                                        : isNextLevel
+                                          ? `bg-accent-soft hover:bg-accent-soft ${isOpen ? "ring-1 ring-accent-line-mid" : ""}`
+                                          : near
+                                            ? `hover:bg-surface-raised ${isOpen ? "bg-surface-raised" : ""}`
+                                            : `hover:bg-surface-raised hover:opacity-80 ${isOpen ? "bg-surface-raised opacity-80" : "opacity-40"}`
+                                    }`}
+                                  >
+                                    <span className="flex items-center justify-between gap-1">
+                                      <Sys className={isUserCurrent ? "text-white" : isNextLevel ? "text-accent-strong" : near ? "text-ink-muted" : "text-ink-faint"}>
+                                        LV{String(lvl.level).padStart(2, "0")}
+                                      </Sys>
+                                      {isPassed && near && <CheckCircle2 className="h-3 w-3 text-ink-faint" aria-hidden />}
+                                      {!isReached && <Lock className={`h-2.5 w-2.5 ${isNextLevel ? "text-accent-strong" : "text-ink-faint"}`} aria-hidden />}
                                     </span>
-                                  </>
+                                    {isNextLevel && (
+                                      <span className="mt-0.5 font-mono text-[8px] font-bold tracking-wider text-accent-strong">{t.revampDashboard.nextBadge}</span>
+                                    )}
+                                    <span className={`mt-0.5 line-clamp-2 flex-1 text-[10.5px] font-bold leading-snug ${isUserCurrent ? "text-white" : isNextLevel ? "text-ink-body" : near ? "text-ink-soft" : "text-ink-faint"}`}>
+                                      {t.levelTitles[lvl.level] ?? lvl.name}
+                                    </span>
+                                    {/* Số người ở cấp: gợi ý rằng bấm vào xem được
+                                        ai đang ở đây. Chỉ ở cấp gần. */}
+                                    {near && members.length > 0 && (
+                                      <span className={`mt-1 inline-flex w-fit items-center gap-1 font-mono text-[9px] tabular-nums ${isUserCurrent ? "text-brand-100" : "text-ink-faint"}`}>
+                                        <Users className="h-2.5 w-2.5" aria-hidden /> {members.length}
+                                      </span>
+                                    )}
+                                  </button>
+                                </div>
+                              );
+                            })}
+                            {!showAllLevels && hiddenAfter > 0 && moreLevelsButton(hiddenAfter)}
+                            {showAllLevels && hiddenBefore + hiddenAfter > 0 && (
+                              <button
+                                type="button"
+                                onClick={toggleAllLevels}
+                                aria-expanded
+                                className="mx-1.5 shrink-0 cursor-pointer self-center rounded-control px-2.5 py-1.5 text-[11px] font-semibold text-ink-faint transition-colors hover:bg-surface-raised hover:text-ink-body"
+                              >
+                                {t.revampDashboard.hideDetails}
+                              </button>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+
+                      <AnimatePresence initial={false}>
+                        {openLevel !== null && (() => {
+                          const lvl = LEVELS.find((l) => l.level === openLevel)!;
+                          const members = communityUsersByLevel.get(openLevel) || [];
+                          return (
+                            <motion.div
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: "auto", opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              transition={{ duration: 0.2 }}
+                              className="overflow-hidden"
+                            >
+                              <div className="mt-4 rounded-card bg-surface-raised p-4 dark:bg-stone-950">
+                                <p className="mb-3 text-xs font-semibold text-ink-muted">
+                                  {format(t.dashboard.levelMembers, { level: lvl.level, name: t.levelTitles[lvl.level] ?? lvl.name, count: members.length })}
+                                </p>
+                                {members.length > 0 ? (
+                                  <div className="grid sm:grid-cols-2 gap-2">
+                                    {members.slice(0, 20).map((m, i) => (
+                                      <Link
+                                        key={i}
+                                        href={`/nguoi-hoc/${m.userId}`}
+                                        className="flex items-center gap-2.5 rounded-control bg-surface px-3 py-2.5 transition-colors hover:bg-surface-sunken"
+                                      >
+                                        {isValidAvatar(m.avatarUrl) ? (
+                                          // next/image chứ không phải <img>: đây là ảnh trong
+                                          // storage của hệ cũ (hoặc Google OAuth), và một thẻ <img>
+                                          // trần kéo về BẢN GỐC - tới 2MB - để vẽ ra 32 điểm ảnh,
+                                          // cho từng người xem, mỗi lần cache hết hạn.
+                                          <Image src={m.avatarUrl} alt={m.name} width={32} height={32} className="w-8 h-8 rounded-full object-cover shrink-0" />
+                                        ) : (
+                                          <div className="w-8 h-8 rounded-full bg-surface-raised text-ink-soft flex items-center justify-center text-xs font-black shrink-0 dark:bg-stone-800">
+                                            {m.name.charAt(0).toUpperCase()}
+                                          </div>
+                                        )}
+                                        <span className="flex-1 min-w-0 text-sm font-bold text-ink-heading truncate">
+                                          {m.name}
+                                        </span>
+                                        <span className="font-mono text-xs font-medium tabular-nums text-ink-muted shrink-0">
+                                          {format(t.finalOne.dashboardClient.xpValue, { xp: m.xp })}
+                                        </span>
+                                      </Link>
+                                    ))}
+                                    {members.length > 20 && (
+                                      <p className="text-xs font-bold text-ink-faint italic sm:col-span-2">
+                                        {format(t.dashboard.levelAndOthers, { count: members.length - 20 })}
+                                      </p>
+                                    )}
+                                  </div>
+                                ) : (
+                                  <p className="text-sm font-bold text-ink-faint italic">
+                                    {t.dashboard.levelNoMembers}
+                                  </p>
                                 )}
                               </div>
-                              <p className="mt-0.5 text-sm font-bold leading-snug text-ink-max">
-                                {objStage
-                                  ? objCopy?.headline ?? t.trackStages[activeTrack]?.stages[objIdx]?.name ?? objStage.name
-                                  : anyDone
-                                    ? t.revampDashboard.objectiveAllDone
-                                    : t.revampDashboard.objectiveNone}
-                              </p>
-                              {objCopy && (
-                                <p className="mt-0.5 text-[11.5px] leading-snug text-ink-faint line-clamp-2">
-                                  {objCopy.outcome}
-                                </p>
-                              )}
-                            </div>
-                          </div>
-
-                          <div className="flex flex-wrap items-center gap-2.5 self-start lg:self-center">
-                            {user?.id && <DashboardStreakWidget userId={user.id} />}
-                          </div>
-                        </div>
-                      );
-                    })()}
-
-                    {/* Không còn `xl:flex-1` kéo giãn theo chiều cao cột bên.
-                        Nó sinh ra để lấp khoảng trống dưới dải avatar, nhưng
-                        cách lấp là kéo cả thẻ cao lên bằng cột UserStats -
-                        tức đổi một khoảng trống lấy một khoảng trống to hơn. */}
-                    <div className="relative z-10">
-                        {/* Thanh tiến độ cấp từng nằm ở đây, không nhãn.
-                            Cột phải đã có đúng con số đó kèm chữ ("Tiến độ cấp
-                            2 (23%)"), nên hai thanh cạnh nhau chỉ làm người đọc
-                            phải đoán cái nào đo cái gì - và cái không nhãn luôn
-                            là cái bị đoán sai. */}
-
-                        <div className="relative group/level-strip">
-                          <button
-                            onClick={() => levelStripRef.current?.scrollBy({ left: -220, behavior: "smooth" })}
-                            className="hidden sm:flex absolute -left-3 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-sm bg-white dark:bg-stone-900 border border-line items-center justify-center text-ink-muted hover:border-stone-950 dark:hover:border-stone-300 transition-all opacity-0 group-hover/level-strip:opacity-100"
-                            aria-label={t.dashboard.scrollLeft}
-                          >
-                            <ChevronLeft className="w-4 h-4" />
-                          </button>
-                          <button
-                            onClick={() => levelStripRef.current?.scrollBy({ left: 220, behavior: "smooth" })}
-                            className="hidden sm:flex absolute -right-3 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-sm bg-white dark:bg-stone-900 border border-line items-center justify-center text-ink-muted hover:border-stone-950 dark:hover:border-stone-300 transition-all opacity-0 group-hover/level-strip:opacity-100"
-                            aria-label={t.dashboard.scrollRight}
-                          >
-                            <ChevronRight className="w-4 h-4" />
-                          </button>
-
-                          <div
-                            ref={levelStripRef}
-                            // Khung nhìn chốt ở 7-8 cấp một lúc, phần còn lại
-                            // cuộn ngang (hai nút mũi tên hai bên, và vuốt trên
-                            // cảm ứng). Mỗi cấp rộng 92px cộng đoạn nối 28-36px,
-                            // nên ~1000px là vừa tám cấp; hơn thế thì dải kéo
-                            // hết bề ngang thẻ và cấp thứ mười lăm vẫn nằm ngoài
-                            // khung - tức vẫn phải cuộn, chỉ là sau khi đã nhìn
-                            // qua một hàng dài hơn mắt bắt được.
-                            className="overflow-x-auto pb-2 -mx-1 px-1 no-scrollbar overscroll-x-contain [contain:paint] [backface-visibility:hidden] [transform:translateZ(0)] xl:min-w-0 xl:max-w-[1000px]"
-                            style={{ WebkitOverflowScrolling: "touch" }}
-                          >
-                            <div className="flex items-stretch gap-0 min-w-max [backface-visibility:hidden]">
-                              {LEVELS.map((lvl, idx) => {
-                                const isUserCurrent = currentUserLevel === lvl.level;
-                                const isPassed = currentUserLevel > lvl.level;
-                                const isReached = isPassed || isUserCurrent;
-                                const members = communityUsersByLevel.get(lvl.level) || [];
-                                const isOpen = openLevel === lvl.level;
-                                const isNextLevel = currentUserLevel + 1 === lvl.level;
-
-                                return (
-                                  <div key={lvl.level} className="flex items-stretch sm:animate-fade-in [backface-visibility:hidden]">
-                                    {/* Đoạn nối mang số XP phải kiếm để sang cấp này: dải
-                                        đọc thành một con đường có giá, không phải một hàng
-                                        thẻ bị làm mờ. Đoạn đã đi qua màu cyan (xong), đoạn
-                                        đang đi màu xanh (hành động), còn lại xám. */}
-                                    {idx > 0 && (
-                                      <div className="flex flex-col items-center justify-end self-end mb-[36px] w-10 sm:w-12 shrink-0 gap-0.5">
-                                        <span className={`font-mono text-[8.5px] font-medium tabular-nums ${isNextLevel ? "text-ink-muted" : "text-ink-faint"}`}>
-                                          {format(t.dashboard.levelGap, { xp: lvl.minXp - LEVELS[idx - 1].minXp })}
-                                        </span>
-                                        <div className={`h-px w-full ${isReached ? "bg-line-strong" : isNextLevel ? "bg-accent-line-mid" : "bg-line"}`} />
-                                      </div>
-                                    )}
-                                    <div className="flex flex-col items-center gap-2 shrink-0">
-                                      <div className={`relative flex items-center justify-center select-none pointer-events-none overflow-hidden rounded-sm bg-surface-raised dark:bg-stone-950 [backface-visibility:hidden] [transform:translateZ(0)] ${isUserCurrent ? "w-14 h-14 sm:w-[76px] sm:h-[76px] border-2 border-brand-600 dark:border-brand-400" : isNextLevel ? "w-12 h-12 sm:w-[64px] sm:h-[64px] border border-line" : "w-12 h-12 sm:w-[64px] sm:h-[64px] border border-transparent"}`}>
-                                        <img
-                                          src={`/levels/level${lvl.level}.jpg`}
-                                          alt={t.levelTitles[lvl.level] ?? lvl.name}
-                                          className={`w-full h-full object-cover transform-gpu [backface-visibility:hidden] transition-all duration-300 ${
-                                            isUserCurrent ? "scale-[1.08] hover:scale-[1.15]" : isPassed ? "scale-[1.08] opacity-60 hover:opacity-100" : isNextLevel ? "scale-[1.08] grayscale opacity-60" : "grayscale opacity-30 contrast-75"
-                                          }`}
-                                        />
-                                      </div>
-
-                                      <button
-                                        onClick={() => setActiveTooltipLevel((prev) => (prev === lvl.level ? null : lvl.level))}
-                                        // Chiều cao là SÀN, không phải chiều cao cố định. `h-[88px]` được chọn cho
-                                        // tên cấp tiếng Việt ngắn; tên cấp dài
-                                        // hơn làm dòng XP và huy hiệu số người bị đẩy ra ngoài khung.
-                                        // Hàng cha là `items-stretch`, nên thẻ cao nhất kéo cả hàng theo -
-                                        // chúng vẫn bằng nhau, chỉ là bằng nhau ở chiều cao đủ chứa chữ.
-                                        aria-expanded={isOpen}
-                                        aria-current={isUserCurrent ? "step" : undefined}
-                                        className={`relative text-left rounded-sm border p-1.5 w-[92px] min-h-[88px] shrink-0 transition-colors cursor-pointer flex flex-col [backface-visibility:hidden] ${
-                                          isUserCurrent
-                                            ? "border-brand-600 bg-brand-600 text-white dark:border-brand-500 dark:bg-brand-600"
-                                            : isReached
-                                            ? `bg-transparent hover:border-line-strong ${isOpen ? "border-line-strong" : "border-line"}`
-                                            : isNextLevel
-                                            ? `bg-transparent hover:border-line-strong ${isOpen ? "border-line-strong" : "border-line"}`
-                                            : `bg-transparent hover:border-line ${isOpen ? "border-line" : "border-transparent"}`
-                                        }`}
-                                      >
-                                        <div className="flex items-center justify-between gap-1">
-                                          <Sys className={isUserCurrent ? "text-white" : isReached || isNextLevel ? "text-ink-muted" : "text-ink-faint"}>
-                                            LV{String(lvl.level).padStart(2, "0")}
-                                          </Sys>
-                                          {isPassed && <CheckCircle2 className="h-3 w-3 text-ink-faint" aria-hidden />}
-                                          {!isReached && <Lock className="h-2.5 w-2.5 text-ink-faint" aria-hidden />}
-                                        </div>
-                                        {isUserCurrent && (
-                                          <span className="mt-0.5 font-mono text-[8px] font-black tracking-wider text-brand-100">{t.dashboard.youAreHere}</span>
-                                        )}
-                                        {isNextLevel && (
-                                          <span className="mt-0.5 font-mono text-[8px] font-bold tracking-wider text-ink-muted">{t.revampDashboard.nextBadge}</span>
-                                        )}
-                                        <p className={`text-[10px] font-extrabold mt-0.5 leading-snug line-clamp-2 flex-1 ${isUserCurrent ? "text-white" : isReached || isNextLevel ? "text-ink-soft" : "text-ink-faint"}`}>
-                                          {t.levelTitles[lvl.level] ?? lvl.name}
-                                        </p>
-                                        <p className={`font-mono text-[9.5px] tabular-nums mt-0.5 ${isUserCurrent ? "text-brand-100" : "text-ink-faint"}`}>{format(t.finalOne.dashboardClient.xpValue, { xp: lvl.minXp })}</p>
-                                        <div className={`inline-flex items-center gap-1 font-mono text-[9px] font-medium tabular-nums mt-1 w-fit ${isUserCurrent ? "text-brand-100" : "text-ink-faint"}`}>
-                                          <Users className="w-2.5 h-2.5" aria-hidden /> {members.length}
-                                        </div>
-                                      </button>
-                                    </div>
-                                  </div>
-                                );
-                              })}
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* Một yêu cầu cụ thể cho cấp kế tiếp, ngay dưới dải: người
-                            học thấy mình đang ở đâu VÀ còn cách bước sau bao xa.
-                            Số bài quy đổi theo XP_PER_LESSON - con đường chắc nhất,
-                            không phải con đường duy nhất. */}
-                        {(() => {
-                          const next = LEVELS.find((l) => l.level === currentUserLevel + 1);
-                          if (!next) {
-                            return <p className="mt-1 text-[11px] font-semibold text-ink-muted">{t.dashboard.maxLevelLine}</p>;
-                          }
-                          const remaining = Math.max(0, next.minXp - userXp);
-                          return (
-                            <div className="mt-1 flex flex-wrap items-baseline gap-x-3 gap-y-0.5">
-                              <Sys className="text-ink-faint">{t.dashboard.nextUnlockLabel}</Sys>
-                              <span className="text-xs font-bold text-ink-body">
-                                {format(t.dashboard.nextUnlockLine, { level: String(next.level).padStart(2, "0"), name: t.levelTitles[next.level] ?? next.name, xp: remaining })}
-                              </span>
-                              <span className="text-[11px] text-ink-faint">
-                                {format(t.dashboard.nextUnlockHint, { lessons: Math.ceil(remaining / XP_PER_LESSON) })}
-                              </span>
-                            </div>
+                            </motion.div>
                           );
                         })()}
-
-                        <AnimatePresence initial={false}>
-                          {openLevel !== null && (() => {
-                            const lvl = LEVELS.find((l) => l.level === openLevel)!;
-                            const members = communityUsersByLevel.get(openLevel) || [];
-                            return (
-                              <motion.div
-                                initial={{ height: 0, opacity: 0 }}
-                                animate={{ height: "auto", opacity: 1 }}
-                                exit={{ height: 0, opacity: 0 }}
-                                transition={{ duration: 0.2 }}
-                                className="overflow-hidden"
-                              >
-                                <div className="mt-4 rounded-sm bg-surface-raised p-4 dark:bg-stone-950">
-                                  <p className="eyebrow text-ink-muted mb-3">
-                                    {format(t.dashboard.levelMembers, { level: lvl.level, name: t.levelTitles[lvl.level] ?? lvl.name, count: members.length })}
-                                  </p>
-                                  {members.length > 0 ? (
-                                    <div className="grid sm:grid-cols-2 gap-2">
-                                      {members.slice(0, 20).map((m, i) => (
-                                        <Link
-                                          key={i}
-                                          href={`/nguoi-hoc/${m.userId}`}
-                                          className="flex items-center gap-2.5 bg-white dark:bg-stone-900 rounded-xs border border-transparent px-3 py-2.5 hover:border-line-strong transition-colors"
-                                        >
-                                          {isValidAvatar(m.avatarUrl) ? (
-                                            // next/image chứ không phải <img>: đây là ảnh trong
-                                            // storage của hệ cũ (hoặc Google OAuth), và một thẻ <img>
-                                            // trần kéo về BẢN GỐC - tới 2MB - để vẽ ra 32 điểm ảnh,
-                                            // cho từng người xem, mỗi lần cache hết hạn.
-                                            <Image src={m.avatarUrl} alt={m.name} width={32} height={32} className="w-8 h-8 rounded-full object-cover shrink-0" />
-                                          ) : (
-                                            <div className="w-8 h-8 rounded-full bg-surface-raised text-ink-soft flex items-center justify-center text-xs font-black shrink-0 dark:bg-stone-800">
-                                              {m.name.charAt(0).toUpperCase()}
-                                            </div>
-                                          )}
-                                          <span className="flex-1 min-w-0 text-sm font-bold text-ink-heading truncate">
-                                            {m.name}
-                                          </span>
-                                          <span className="font-mono text-xs font-medium tabular-nums text-ink-max shrink-0">
-                                            {format(t.finalOne.dashboardClient.xpValue, { xp: m.xp })}
-                                          </span>
-                                        </Link>
-                                      ))}
-                                      {members.length > 20 && (
-                                        <p className="text-xs font-bold text-ink-faint italic sm:col-span-2">
-                                          {format(t.dashboard.levelAndOthers, { count: members.length - 20 })}
-                                        </p>
-                                      )}
-                                    </div>
-                                  ) : (
-                                    <p className="text-sm font-bold text-ink-faint italic">
-                                      {t.dashboard.levelNoMembers}
-                                    </p>
-                                  )}
-                                </div>
-                              </motion.div>
-                            );
-                          })()}
-                        </AnimatePresence>
-
-                        {/* Góc yên tĩnh, bản nhỏ, nằm trong chính thẻ này.
-                            Nó từng là một tấm thẻ riêng cao gần bằng thẻ bản
-                            đồ, cho một dòng chữ và hai liên kết - và đứng
-                            riêng thì nó đòi được đọc ngang hàng với tiến độ
-                            học. Ở đây nó vẫn ở màn hình đầu, chỉ là ở đúng
-                            trọng lượng của nó. */}
-                        {/* Mục tiêu nghề đứng CẠNH góc yên tĩnh, không dưới
-                            nó. Trước đây nó nằm tận lưới dưới, cách bản đồ cấp
-                            độ một màn hình - trong khi cả hai trả lời cùng một
-                            câu "tôi đang đi tới đâu", chỉ khác thước đo: một
-                            cái đo cấp, cái kia đo nghề nhắm tới.
-                            Hai cột trên màn rộng, vì xếp dọc là cộng thêm
-                            chiều cao vào đúng thẻ vừa được thu gọn. */}
-                        {/* CẢ HAI luôn `compact`, không theo preset.
-                            `compact={isCompactCard}` là một cái bẫy ở đây: ở
-                            preset "Đầy đủ" nó dựng bản KHÔNG compact của cả
-                            hai, mà bản không-compact của mỗi widget tự vẽ
-                            `rounded-xl border p-4` của riêng nó - thành viền
-                            trong viền ngay giữa thẻ Bản đồ Cấp độ. Với góc yên
-                            tĩnh còn tệ hơn: màu cam và ngọn lửa chỉ có ở bản
-                            compact, nên đúng preset mặc định lại là preset mất
-                            màu.
-
-                            Thứ tự cũng đảo: mục tiêu nghề đứng TRƯỚC. Trái là
-                            việc phải làm (có nút Học tiếp), phải là chỗ để
-                            nghỉ - và đó cũng là lý do bên phải được phép mang
-                            màu, xem chú thích trong DailyMotivationWidget. */}
-                        {/* ── Hôm nay làm gì? ──
-                            Hành động nổi nhất trang, ngay dưới phần tiến độ: người
-                            học vừa thấy mình ở đâu, thứ tiếp theo mắt gặp phải là
-                            việc cần làm - không phải bảng xếp hạng. Thẻ này trước
-                            chỉ có ở /hoc-bai; trang tổng quan trả lời "học gì
-                            tiếp" bằng một liên kết ở cột phải.
-                            Cơ Cơ chào ở đầu thẻ (xem ResumeLearningButton), nên
-                            đây là thứ đầu tiên "nói" khi mở app.
-                            Lời nhắn hôm nay đứng cạnh, hẹp hơn: chỗ để nghỉ, không
-                            tranh với việc phải làm. */}
-                        <div className="mt-6 grid grid-cols-1 items-start gap-5 border-t border-line pt-5 lg:grid-cols-[minmax(0,1.7fr)_minmax(0,1fr)]">
-                          <div className="min-w-0" data-tour="resume-learning">
-                            <ResumeLearningButton activeTrack={activeTrack} userId={user?.id} compact={isCompactCard} />
-                          </div>
-                          {user?.id && (
-                            <div className="min-w-0">
-                              <DailyMotivationWidget userId={user.id} compact />
-                            </div>
-                          )}
-                        </div>
+                      </AnimatePresence>
                     </div>
 
+                    {/* Lời nhắn hôm nay: một dòng nhạt ở cuối cột, cả dòng là
+                        lối vào Góc yên tĩnh. Chỗ để nghỉ, không tranh với việc
+                        phải làm. */}
+                    <DailyMotivationWidget userId={user.id} quiet />
                   </div>
 
-                  <div className="min-w-0 space-y-4">
-                  {/* Năng lực thực hành đứng TRÊN số liệu học: nó là bằng chứng
-                      làm được (code chạy, mô phỏng đạt, phỏng vấn đúng), còn
-                      số bài/XP bên dưới chỉ nói đã đọc bao nhiêu. */}
-                  <PracticalSkillPanel compact />
-                  <div data-tour="user-stats" className="min-w-0 border-t border-line pt-3">
-                    <UserStats
-                      xp={userXp}
-                      lessonsCompleted={totalDone}
-                      totalLessons={totalLessons}
-                      avgQuizScore={avgQuizScore}
-                      userId={user?.id}
-                      sidebar={true}
-                      embedded={true}
-                      compact={isCompactCard}
-                      hideIdentity
-                    />
-                  </div>
+                  {/* Cột phụ: nền rất nhạt thay cho viền. Năng lực thực hành
+                      thu gọn còn tiêu đề và hai lĩnh vực cao nhất; số liệu
+                      học là một dòng; nút thi thăng cấp là một liên kết. Hai
+                      cảnh báo (mất chuỗi, sắp phải thi lại) vẫn hiện đủ. */}
+                  <div className="min-w-0 space-y-6 rounded-card bg-surface-raised/60 p-4 sm:p-5 dark:bg-stone-950/40">
+                    <PracticalSkillPanel compact collapsible />
+                    <div data-tour="user-stats" className="min-w-0">
+                      <UserStats
+                        xp={userXp}
+                        lessonsCompleted={totalDone}
+                        totalLessons={totalLessons}
+                        avgQuizScore={avgQuizScore}
+                        userId={user?.id}
+                        sidebar={true}
+                        embedded={true}
+                        compact={isCompactCard}
+                        hideIdentity
+                        quiet
+                      />
+                    </div>
                   </div>
                 </div>
-              </Frame>
+              </section>
             );
           })()}
 
@@ -1570,14 +1535,14 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
           // mép trái" là khi THIẾU `xl:col-span-12` - cả dải co vào một cột hẹp
           // và kéo theo một khoảng trống nửa màn hình. Còn ở đây dải vẫn trải
           // đủ 12 cột, chỉ là nội dung neo về đầu hàng.
-          <div className="flex items-center justify-start gap-2 xl:col-span-12">
-            <span className="eyebrow text-ink-muted">
+          <div className="flex items-center justify-start gap-2.5 xl:col-span-12">
+            <span className="text-xs text-ink-faint">
               {t.dashboard.presetLabel}
             </span>
             <div
               role="group"
               aria-label={t.dashboard.presetLabel}
-              className="inline-flex rounded-sm border border-line-strong bg-white p-0.5 dark:border-stone-700 dark:bg-stone-900"
+              className="inline-flex rounded-control bg-surface-raised p-0.5 dark:bg-stone-900"
             >
               {([
                 { id: "gon" as const, label: t.dashboard.presetCompact, hint: t.dashboard.presetCompactHint },
@@ -1589,10 +1554,10 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                   onClick={() => choosePreset(opt.id)}
                   aria-pressed={preset === opt.id}
                   title={opt.hint}
-                  className={`cursor-pointer rounded-xs px-3 py-1.5 text-xs font-bold transition-colors ${
+                  className={`cursor-pointer rounded-control px-3 py-1 text-xs font-semibold transition-colors ${
                     preset === opt.id
-                      ? "bg-stone-950 text-white dark:bg-stone-100 dark:text-stone-950"
-                      : "text-ink-soft hover:bg-surface-raised hover:text-ink-max dark:hover:bg-stone-800"
+                      ? "bg-surface text-ink-body dark:bg-stone-800"
+                      : "text-ink-faint hover:text-ink-body"
                   }`}
                 >
                   {opt.label}
@@ -1608,7 +1573,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
             khổ màn hình. */}
         <div
           style={{ "--sidebar-w": `${sidebar.width}px` } as React.CSSProperties}
-          className={`grid grid-cols-1 gap-4 sm:gap-5 min-w-0 ${isLessonsView ? "xl:relative xl:flex-1 xl:min-h-0 xl:gap-3.5 xl:[grid-template-columns:minmax(0,1fr)_var(--sidebar-w)]" : "xl:col-span-12 xl:min-h-0 xl:grid-cols-12 xl:gap-3.5"}`}
+          className={`grid grid-cols-1 min-w-0 ${isLessonsView ? "gap-4 sm:gap-5 xl:relative xl:flex-1 xl:min-h-0 xl:gap-3.5 xl:[grid-template-columns:minmax(0,1fr)_var(--sidebar-w)]" : "gap-6 xl:col-span-12 xl:min-h-0 xl:grid-cols-12 xl:gap-5"}`}
         >
           {/* Thanh kéo, chỉ từ `xl` trở lên. Đặt tuyệt đối trên lưới thay vì
               làm một rãnh thứ ba, để không cộng thêm một `gap`. */}
@@ -1670,16 +1635,16 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
             {!isLessonsView && (
               <Link
                 href="/lo-trinh"
-                className={`group flex items-center gap-3.5 ${panel} p-4 transition-colors hover:border-stone-950 dark:hover:border-stone-300`}
+                className="group flex items-center gap-3.5 rounded-card bg-surface p-4 transition-colors hover:bg-surface-raised"
               >
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-sm bg-surface-raised text-ink-muted dark:bg-stone-950">
-                  <Route className="h-5 w-5" />
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-control bg-surface-raised text-ink-faint dark:bg-stone-950">
+                  <Route className="h-4.5 w-4.5" />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <p className="text-sm font-black tracking-tight leading-tight text-ink-max">
+                  <p className="text-sm font-bold tracking-tight leading-tight text-ink-body">
                     {t.nav.learningPath}
                   </p>
-                  <p className="mt-0.5 text-xs leading-snug text-ink-muted">
+                  <p className="mt-0.5 truncate text-xs leading-snug text-ink-faint">
                     {t.dashboard.learningPathCardSub}
                   </p>
                 </div>
@@ -2864,10 +2829,27 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                     cấp và XP của chính người học; thứ hạng so với người khác là
                     thông tin phụ, nên nó xuống dưới gợi ý, mờ đi một bậc, và có
                     nhãn nhóm riêng để không đọc như việc cần làm. */}
+                {/* Lượt làm nhẹ: thu gọn mặc định sau một dòng "Xếp hạng".
+                    Chỉ dựng (và chỉ tải) khi mở - lựa chọn được nhớ. */}
                 {!isLessonsView && (
-                  <div className="space-y-2 opacity-90 transition-opacity hover:opacity-100">
-                    <Sys className="block text-ink-faint">{t.revampDashboard.secondaryLabel}</Sys>
-                    <DashboardLeaderboardCard userId={user.id} />
+                  <div>
+                    <button
+                      type="button"
+                      onClick={toggleRanking}
+                      aria-expanded={rankingOpen}
+                      className="flex w-full cursor-pointer items-center justify-between gap-2 rounded-control px-1 py-1 text-xs font-semibold text-ink-faint transition-colors hover:text-ink-body"
+                    >
+                      <span>{t.revampDashboard.rankingLabel}</span>
+                      <span className="inline-flex items-center gap-1">
+                        {rankingOpen ? t.revampDashboard.hideDetails : t.revampDashboard.showDetails}
+                        <ChevronDown className={`h-3.5 w-3.5 transition-transform ${rankingOpen ? "rotate-180" : ""}`} aria-hidden />
+                      </span>
+                    </button>
+                    {rankingOpen && (
+                      <div className="mt-3 rounded-card bg-surface p-4">
+                        <DashboardLeaderboardCard userId={user.id} bare />
+                      </div>
+                    )}
                   </div>
                 )}
                 {/* Người thật, dưới phần gợi ý. Cố ý đặt SAU băng chuyền bài

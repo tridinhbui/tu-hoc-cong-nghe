@@ -392,7 +392,7 @@ export default function StageSkipExamPanel({ userId, fullPage = false }: { userI
                          1,9:1 - dưới xa mức đọc được, mà chữ bị mờ chính là
                          dòng "còn thiếu mấy bài nữa". Ổ khoá đã nói đủ rằng thẻ
                          chưa mở; độ mờ chỉ lấy đi thông tin. */
-                      className={`${panel} p-4 relative overflow-hidden flex flex-col justify-between transition-colors hover:border-stone-950 dark:hover:border-stone-300`}
+                      className={`${panel} p-4 relative overflow-hidden flex flex-col justify-between transition-colors hover:border-line-firm`}
                     >
                       {/* Top Content */}
                       <div className="space-y-2.5">
@@ -546,7 +546,7 @@ export default function StageSkipExamPanel({ userId, fullPage = false }: { userI
                       ? "border-stone-950 bg-stone-950 text-white dark:border-stone-100 dark:bg-stone-100 dark:text-stone-900"
                       : answered
                       ? "border-brand-600 bg-brand-50 text-brand-800 dark:border-brand-400 dark:bg-brand-950/40 dark:text-brand-200"
-                      : "border-stone-300 bg-white text-ink-muted hover:border-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-300"
+                      : "border-stone-300 bg-white text-ink-muted hover:border-stone-400 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-600"
                   }`}
                 >
                   {qi + 1}
@@ -578,7 +578,7 @@ export default function StageSkipExamPanel({ userId, fullPage = false }: { userI
                   className={`grid w-full grid-cols-[1.5rem_minmax(0,1fr)] items-baseline rounded-sm border px-3 py-2.5 text-left text-sm leading-6 transition-colors cursor-pointer ${
                     picked
                       ? "border-brand-600 bg-brand-50 font-medium text-stone-950 dark:border-brand-400 dark:bg-brand-950/40 dark:text-stone-50"
-                      : "border-stone-300 bg-white text-ink-body hover:border-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-300"
+                      : "border-stone-300 bg-white text-ink-body hover:border-stone-400 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-600"
                   }`}
                 >
                   <Sys className={picked ? "text-accent-strong" : "text-ink-faint"}>{String.fromCharCode(65 + oi)}</Sys>
@@ -706,7 +706,7 @@ export default function StageSkipExamPanel({ userId, fullPage = false }: { userI
                       <p className="text-xs font-bold text-accent-strong">
                         {t.stageSkip.reviewCorrectAnswer} {q.options[d.correct]}
                       </p>
-                      <p className="max-w-[68ch] border-l-2 border-stone-950 pl-4 text-sm leading-7 text-ink-soft dark:border-stone-200">
+                      <p className="max-w-[68ch] border-l-2 border-stone-300 pl-4 text-sm leading-7 text-ink-soft dark:border-stone-700">
                         {q.explanation}
                       </p>
                     </div>

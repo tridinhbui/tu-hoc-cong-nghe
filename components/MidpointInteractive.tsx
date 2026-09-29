@@ -72,7 +72,7 @@ export default function MidpointInteractive({
                     : "border-line bg-white dark:bg-stone-900 text-ink-faint"
                 : selected === i
                   ? "border-brand-600 dark:border-brand-400 bg-accent-soft text-ink-max font-semibold"
-                  : "border-line-strong bg-white dark:bg-stone-900 text-ink-body hover:border-stone-950 dark:hover:border-stone-300"
+                  : "border-line-strong bg-white dark:bg-stone-900 text-ink-body hover:border-line-firm"
             }`}
           >
             <span className="font-mono text-sm font-medium">{String.fromCharCode(65 + i)}.</span>{" "}

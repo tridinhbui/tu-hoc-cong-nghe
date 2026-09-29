@@ -174,7 +174,7 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
               className={`w-full rounded-sm border px-4 py-3 text-left text-sm font-semibold transition-colors cursor-pointer ${
                 open
                   ? "border-brand-600 bg-accent-soft text-ink-max dark:border-brand-400"
-                  : "border-line-strong bg-white text-ink-body hover:border-stone-950 dark:bg-stone-900 dark:hover:border-stone-200"
+                  : "border-line-strong bg-white text-ink-body hover:border-stone-400 dark:bg-stone-900 dark:hover:border-stone-200"
               }`}
             >
               “{t.worryReframes[item.id]?.worry ?? item.worry}”
@@ -351,7 +351,7 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
                   className={`rounded-sm border px-3 py-1.5 text-xs font-semibold transition-colors cursor-pointer ${
                     chosen
                       ? "border-brand-600 bg-accent-soft text-ink-max dark:border-brand-400"
-                      : "border-line-strong bg-white text-ink-soft hover:border-stone-950 hover:text-ink dark:bg-stone-900 dark:hover:border-stone-200"
+                      : "border-line-strong bg-white text-ink-soft hover:border-stone-400 hover:text-ink dark:bg-stone-900 dark:hover:border-stone-200"
                   }`}
                 >
                   {t.worryThemes[theme.id] ?? theme.label}

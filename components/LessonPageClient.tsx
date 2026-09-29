@@ -167,7 +167,7 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
           the subtitle shown in the hero above, so there's nothing to
           duplicate here. */}
       {lesson.whyItMatters && (
-        <div className="border-l-2 border-line-strong pl-4 sm:pl-5">
+        <div className="border-l border-line pl-4 sm:pl-5">
           <p className="mb-1.5 text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">
             {t.lessonPage.whyItMattersTitle}
           </p>
@@ -346,7 +346,7 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
 
       {/* 5. Real-life Example block */}
       {lesson.realWorldExample && lesson.realWorldExample.company && (
-        <div className="space-y-2 border-l-2 border-line-strong pl-4 sm:pl-5">
+        <div className="space-y-2 border-l border-line pl-4 sm:pl-5">
           <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">
             {format(t.lessonPage.realWorldExampleTitle, { company: lesson.realWorldExample.company })}
           </p>

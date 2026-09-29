@@ -134,7 +134,7 @@ export default function InteractiveRatios() {
         ))}
       </div>
 
-      <p className="mt-4 border-l-2 border-stone-950 pl-4 text-xs leading-relaxed text-ink-body dark:border-stone-200">
+      <p className="mt-4 border-l-2 border-stone-300 pl-4 text-xs leading-relaxed text-ink-body dark:border-stone-700">
         {liquidityGap > 1
           ? t.ratiosCalc.liquidityGapWide
           : liquidityGap > 0.4

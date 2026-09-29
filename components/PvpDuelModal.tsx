@@ -214,7 +214,7 @@ export default function PvpDuelModal({
       {!embedded && (
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 p-1.5 text-ink-muted hover:text-ink-max rounded-sm border border-line-strong hover:border-stone-950 dark:border-stone-700 dark:hover:border-stone-200 transition-colors z-10"
+          className="absolute top-4 right-4 p-1.5 text-ink-muted hover:text-ink-max rounded-sm border border-line-strong hover:border-stone-400 dark:border-stone-700 dark:hover:border-stone-200 transition-colors z-10"
           aria-label={t.pvpDuel.closeAriaLabel}
         >
           <X className="w-5 h-5" />

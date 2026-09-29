@@ -157,7 +157,7 @@ export default function GlobalSearchModal({
                       key={kw}
                       type="button"
                       onClick={() => setQuery(kw)}
-                      className="px-2.5 py-1 rounded-sm border border-line-strong font-mono text-ink-soft hover:border-stone-950 hover:text-ink dark:hover:border-stone-200 cursor-pointer"
+                      className="px-2.5 py-1 rounded-sm border border-line-strong font-mono text-ink-soft hover:border-stone-400 hover:text-ink dark:hover:border-stone-200 cursor-pointer"
                     >
                       {kw}
                     </button>
@@ -179,7 +179,7 @@ export default function GlobalSearchModal({
                       onClose();
                       router.push(item.url);
                     }}
-                    className="w-full text-left p-3 rounded-sm border border-line-strong hover:border-stone-950 dark:hover:border-stone-300 transition-colors cursor-pointer flex items-center justify-between group"
+                    className="w-full text-left p-3 rounded-sm border border-line-strong hover:border-line-firm transition-colors cursor-pointer flex items-center justify-between group"
                   >
                     <div className="flex items-center gap-3">
                       <span className="flex h-9 w-9 items-center justify-center rounded-sm border border-line-strong text-ink-soft">

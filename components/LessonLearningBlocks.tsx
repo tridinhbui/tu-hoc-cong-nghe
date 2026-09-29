@@ -39,7 +39,7 @@ export function LessonQuestionCard({
         <ul className="space-y-2">
           {options.map((opt, i) => {
             let btnCls =
-              "border-stone-300 bg-white text-ink hover:border-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-300";
+              "border-stone-300 bg-white text-ink hover:border-stone-400 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-600";
             let gutter = "text-ink-faint";
             if (submitted) {
               if (i === correct) {
@@ -146,7 +146,7 @@ export function LessonApplicationCard({ title, message, secondary }: LessonAppli
   const { t } = useI18n();
   const resolvedTitle = title ?? t.learningBlocks.defaultApplicationTitle;
   return (
-    <div className="max-w-[68ch] border-l-2 border-line-strong pl-4 sm:pl-5">
+    <div className="max-w-[68ch] border-l border-line pl-4 sm:pl-5">
       <p className="mb-1.5 text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">{resolvedTitle}</p>
       <p className="text-base font-semibold leading-7 text-ink-max">{message}</p>
       {secondary && <p className="mt-2 text-[15px] leading-7 text-ink-body">{secondary}</p>}
@@ -165,7 +165,7 @@ export function ReviewLoopCard({ title, prompt, cta }: ReviewLoopCardProps) {
   const resolvedTitle = title ?? t.learningBlocks.defaultReviewTitle;
   const resolvedCta = cta ?? t.learningBlocks.defaultReviewCta;
   return (
-    <div className="max-w-[68ch] border-l-2 border-line-strong pl-4 sm:pl-5">
+    <div className="max-w-[68ch] border-l border-line pl-4 sm:pl-5">
       <p className="mb-1.5 text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">{resolvedTitle}</p>
       <p className="text-base font-semibold leading-7 text-ink-max">{prompt}</p>
       <p className="mt-3 inline-flex text-xs font-semibold text-ink-muted">

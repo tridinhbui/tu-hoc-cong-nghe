@@ -113,7 +113,7 @@ export default function InteractiveProfitCalc() {
       )}
 
       {!isShortOfCash && cashReceived === revenue && (
-        <div className="border-l-2 border-stone-950 pl-4 text-sm text-ink-body dark:border-stone-200">
+        <div className="border-l-2 border-stone-300 pl-4 text-sm text-ink-body dark:border-stone-700">
           {t.profitCalc.fullPaymentBody}
         </div>
       )}

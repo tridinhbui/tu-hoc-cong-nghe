@@ -36,7 +36,7 @@ export default function MistakeReviewWidget({ userId }: MistakeReviewWidgetProps
     <div className="w-full mb-4">
       <Link
         href="/on-tap-cau-sai"
-        className="group block bg-white dark:bg-stone-900 border border-line-strong rounded-md p-4 sm:p-5 transition-colors hover:border-stone-950 dark:hover:border-stone-300 relative overflow-hidden"
+        className="group block bg-white dark:bg-stone-900 border border-line-strong rounded-md p-4 sm:p-5 transition-colors hover:border-line-firm relative overflow-hidden"
       >
         <div className="flex items-center gap-3.5 relative z-10">
           <div className="w-10 h-10 rounded-sm border border-line-strong bg-surface-raised text-warn dark:border-stone-700 dark:bg-stone-950 flex items-center justify-center shrink-0">

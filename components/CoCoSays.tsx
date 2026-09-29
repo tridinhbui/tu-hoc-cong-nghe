@@ -40,6 +40,7 @@ export default function CoCoSays({
   salt = 0,
   size = 44,
   className = "",
+  quiet = false,
 }: {
   /** Các câu có thể nói; chọn một theo ngày. */
   lines: readonly string[];
@@ -51,6 +52,10 @@ export default function CoCoSays({
   salt?: number;
   size?: number;
   className?: string;
+  /** Bản lặng: một dòng, không bong bóng, không tên, không gõ chữ. Dùng ở
+   *  dashboard, nơi Cơ Cơ chỉ mở lời cho thẻ Học tiếp chứ không tranh chỗ với
+   *  nó. Mặc định tắt - các trang khác vẫn thấy bong bóng như cũ. */
+  quiet?: boolean;
 }) {
   const { t } = useI18n();
   const mounted = useSyncExternalStore(subscribeNoop, () => true, () => false);
@@ -69,6 +74,20 @@ export default function CoCoSays({
   let line = mounted ? pickLine(lines, salt) : "";
   for (const [k, v] of Object.entries(vars ?? {})) line = line.split(`{${k}}`).join(String(v));
   const text = lead ? `${lead} ${line}` : line;
+
+  if (quiet) {
+    // Câu đầy đủ vẫn còn trong `title` cho ai muốn đọc hết; trên trang chỉ
+    // một dòng, lời chào đậm hơn phần còn lại một bậc.
+    return (
+      <div className={`flex min-w-0 items-center gap-2 ${className}`} title={mounted ? text : undefined}>
+        <CoCoAvatar size={size} />
+        <p className="min-w-0 flex-1 truncate text-sm text-ink-muted" aria-live="polite">
+          {mounted && lead && <span className="font-semibold text-ink-body">{lead} </span>}
+          {mounted ? line : null}
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div className={`flex items-end gap-2.5 ${className}`}>

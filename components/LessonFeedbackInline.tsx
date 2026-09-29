@@ -67,7 +67,7 @@ export default function LessonFeedbackInline({ lessonId, userId }: Props) {
             className={`flex h-10 w-10 cursor-pointer items-center justify-center rounded-sm border text-xl transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 ${
               star <= shownRating
                 ? "border-brand-600 bg-brand-50 text-accent-strong dark:border-brand-400 dark:bg-brand-950/40"
-                : "border-stone-300 text-stone-300 hover:border-stone-950 dark:border-stone-700 dark:text-stone-600"
+                : "border-stone-300 text-stone-300 hover:border-stone-400 dark:border-stone-700 dark:text-stone-600"
             }`}
           >
             <span aria-hidden>★</span>

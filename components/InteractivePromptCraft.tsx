@@ -117,7 +117,7 @@ export default function InteractivePromptCraft() {
         ))}
       </div>
 
-      <div className="mt-5 border-l-2 border-stone-950 pl-4 dark:border-stone-200">
+      <div className="mt-5 border-l-2 border-stone-300 pl-4 dark:border-stone-700">
         <p className="text-[10px] font-black uppercase tracking-widest text-ink-muted">
           {tr.assembledLabel}
         </p>

@@ -233,7 +233,7 @@ function GridPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "grid" }
                   ? "border-brand-600 bg-brand-600 text-white dark:border-brand-500 dark:bg-brand-500"
                   : i === taskIndex
                     ? "border-stone-950 bg-stone-950 text-white dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950"
-                    : "border-stone-300 bg-white text-ink-muted hover:border-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-200",
+                    : "border-stone-300 bg-white text-ink-muted hover:border-stone-400 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-200",
               ].join(" ")}
               aria-label={format(t.excelPractice.taskAriaLabel, { n: i + 1 })}
             >
@@ -389,7 +389,7 @@ function SqlPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "sql" }> 
                   ? "border-brand-600 bg-brand-600 text-white dark:border-brand-500 dark:bg-brand-500"
                   : i === taskIndex
                     ? "border-stone-950 bg-stone-950 text-white dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950"
-                    : "border-stone-300 bg-white text-ink-muted hover:border-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-200",
+                    : "border-stone-300 bg-white text-ink-muted hover:border-stone-400 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-200",
               ].join(" ")}
               aria-label={format(t.excelPractice.taskAriaLabel, { n: i + 1 })}
             >

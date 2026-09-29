@@ -208,7 +208,7 @@ export default function StageMilestoneExamModal({
 
               <div className="space-y-2.5">
                 {questions[currentQIndex].options.map((opt: string, i: number) => {
-                  let btnCls = "border-line-strong bg-white dark:bg-stone-900 text-ink-body hover:border-stone-950 dark:hover:border-stone-300";
+                  let btnCls = "border-line-strong bg-white dark:bg-stone-900 text-ink-body hover:border-line-firm";
                   if (answersChecked) {
                     if (i === questions[currentQIndex].correct) {
                       btnCls = "border-brand-600 dark:border-brand-400 bg-accent-soft text-ink-max font-bold";

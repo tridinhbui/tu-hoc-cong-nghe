@@ -84,7 +84,7 @@ export default function TechCharacterAvatar({
   // gradient, không vòng sáng (luật 2 của components/ui/system.tsx).
   const avatarRingBg =
     level >= 8
-      ? "border-stone-950 dark:border-stone-300"
+      ? "border-line-strong"
       : level >= 5
       ? "border-stone-500 dark:border-stone-400"
       : "border-line-strong";

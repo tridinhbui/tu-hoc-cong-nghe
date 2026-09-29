@@ -75,7 +75,7 @@ export default function FollowButton({ currentUserId, targetUserId, initialFollo
         isSmall
           ? `inline-flex items-center gap-1 rounded-sm border px-2.5 py-1 text-[11px] font-bold transition-colors disabled:opacity-50 cursor-pointer ${
               following
-                ? "border-line-strong text-ink-muted hover:border-stone-950 dark:hover:border-stone-300"
+                ? "border-line-strong text-ink-muted hover:border-line-firm"
                 : "border-stone-950 bg-stone-950 text-white hover:border-brand-700 hover:bg-brand-700 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950 dark:hover:border-brand-300 dark:hover:bg-brand-300"
             }`
           : `${following ? btnSecondary : btnPrimary} cursor-pointer`

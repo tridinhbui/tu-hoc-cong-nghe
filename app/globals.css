@@ -55,17 +55,18 @@
    * lần, thay vì sửa tay 185 tệp. `rounded-full` KHÔNG đổi ở đây - nó còn là
    * ảnh đại diện, chấm trạng thái và thanh tiến độ; viên thuốc được gỡ tay. */
   /* 2026-09-28, lần hai: trang chủ biên tập bỏ hẳn bo góc, và app theo nó.
-   * Mọi thang bo về 0 - khung vuông, nét kẻ làm cấu trúc. `rounded-full` vẫn
-   * giữ cho ảnh đại diện, chấm trạng thái, thanh tiến độ. */
-  --radius-xs: 0px;
-  --radius-sm: 0px;
-  --radius-md: 0px;
-  --radius-lg: 0px;
-  --radius-xl: 0px;
-  --radius-2xl: 0px;
-  --radius-3xl: 0px;
-  --radius-control: 0px;
-  --radius-card: 0px;
+   * 2026-09-29, lần ba: bỏ "khung vuông, nét mực" - người dùng thấy cứng và
+   * nặng. Bo nhẹ, đủ mềm mà vẫn kỹ thuật: control 8px, thẻ 12px, không quá
+   * 14px (bo tròn hơn thì thành "dễ thương", không còn chính xác). */
+  --radius-xs: 3px;
+  --radius-sm: 5px;
+  --radius-md: 7px;
+  --radius-lg: 9px;
+  --radius-xl: 10px;
+  --radius-2xl: 12px;
+  --radius-3xl: 14px;
+  --radius-control: 8px;
+  --radius-card: 12px;
 
   /* Không đổ bóng: chiều sâu đến từ sắc độ nền và viền 1px. Chỉ `shadow-2xl`
    * (hộp thoại, menu nổi) còn một bóng rất nhạt - thứ nổi trên trang phải tách
@@ -248,7 +249,7 @@
   --ink-faint: oklch(70.9% 0.01 56.259);       /* stone-400 */
 
   --surface: #ffffff;
-  --surface-raised: #f4f4f2;                    /* thanh tiêu đề khung */
+  --surface-raised: #f7f7f5;                    /* thanh tiêu đề khung */
   --surface-sunken: #ebebe8;
   --surface-invert: #0d0e11;                    /* mực */
   /* `#fff`, KHÔNG phải stone-100. Giá trị cũ chọn theo trực giác và token này
@@ -258,9 +259,11 @@
      78 nút đổi màu chữ. Đặt token theo call site, đừng bắt call site theo token. */
   --ink-invert: #fff;
 
-  --line: #e2e2de;
-  --line-soft: #f0f0ed;
-  --line-strong: #0d0e11;                       /* nét mực của trang chủ */
+  --line: #ebebe7;
+  --line-soft: #f3f3f0;
+  /* Từng là màu mực #0d0e11 (nét kẻ trang chủ). Giờ là xám nhạt: viền phân
+     nhóm, không phải khung. Trạng thái đang làm dùng brand, không dùng viền. */
+  --line-strong: #d9d9d4;
 
   --accent: var(--color-brand-600);
   --accent-soft: var(--color-brand-50);
@@ -272,7 +275,7 @@
   --accent-line: var(--color-brand-200);
   --ink-soft: oklch(44.4% 0.011 73.639);       /* stone-600 */
   --ink-heading: oklch(26.8% 0.007 34.298);    /* stone-800 */
-  --line-mid: #e2e2de;
+  --line-mid: #ebebe7;
   --accent-strong: var(--color-brand-700);
   --warn-strong: oklch(55.5% 0.163 48.998);    /* amber-700 */
   --warn-line: oklch(92.4% 0.12 95.746);       /* amber-200 */
@@ -310,9 +313,9 @@
   --surface-invert: #eeebe3;
   --ink-invert: #0d0e11;
 
-  --line: #2a2d35;
-  --line-soft: #1f2229;
-  --line-strong: #8d8a82;
+  --line: #262930;
+  --line-soft: #1c1f25;
+  --line-strong: #3a3e47;
 
   --accent: var(--color-brand-400);
   --accent-soft: var(--color-brand-950);

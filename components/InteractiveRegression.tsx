@@ -123,7 +123,7 @@ export default function InteractiveRegression() {
         <Card label={t.regressionCalc.pValueLabel} value={fit.pValue < 0.001 ? t.regressionCalc.pValueBelowThreshold : fit.pValue.toFixed(3)} tone={significant ? "good" : "bad"} />
       </div>
 
-      <p className="mt-4 border-l-2 border-stone-950 pl-4 text-xs leading-relaxed text-ink-body dark:border-stone-200">
+      <p className="mt-4 border-l-2 border-stone-300 pl-4 text-xs leading-relaxed text-ink-body dark:border-stone-700">
         {n < 30
           ? format(t.regressionCalc.smallSampleNote, { n })
           : format(t.regressionCalc.r2ExplainerNote, { r2: fit.r2.toFixed(2) })}

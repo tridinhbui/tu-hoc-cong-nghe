@@ -67,7 +67,7 @@ export default function GameLessonRecommendation({
           <Link
             key={lesson.slug}
             href={`/bai-hoc/${lesson.slug}`}
-            className="group flex items-start justify-between gap-3 rounded-sm border border-line-strong p-3 transition-colors hover:border-stone-950 dark:border-stone-700 dark:hover:border-stone-300"
+            className="group flex items-start justify-between gap-3 rounded-sm border border-line-strong p-3 transition-colors hover:border-stone-400 dark:border-stone-700 dark:hover:border-stone-600"
           >
             <div className="min-w-0 flex-1">
               <div className="mb-0.5 flex items-center gap-1.5 text-xs font-bold text-accent-strong">
