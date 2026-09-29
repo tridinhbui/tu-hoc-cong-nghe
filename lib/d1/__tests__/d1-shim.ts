@@ -1,7 +1,8 @@
 import { DatabaseSync } from "node:sqlite";
-import { readdirSync, copyFileSync, mkdtempSync, existsSync } from "node:fs";
+import { copyFileSync, mkdtempSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
+import { fixtureDbPath } from "./fixture-db";
 
 /**
  * Vỏ bọc D1 mỏng trên `node:sqlite`, để bộ kiểm chạy được bộ dựng truy vấn
@@ -11,12 +12,9 @@ import { tmpdir } from "node:os";
  * `node:sqlite`, nên không cần thêm phụ thuộc nào. Cái này KHÔNG thay cho việc
  * chạy thật trên Workers - nó chỉ kiểm phần SQL, đúng phần dễ sai nhất.
  */
-/** Đường dẫn tới tệp SQLite của D1 local. */
+/** Đường dẫn tới DB test - dựng từ migration + dữ liệu giả, xem fixture-db.ts. */
 export function localD1Path() {
-  const dir = join(process.cwd(), ".wrangler/state/v3/d1/miniflare-D1DatabaseObject");
-  const file = readdirSync(dir).find((f) => f.endsWith(".sqlite") && f !== "metadata.sqlite");
-  if (!file) throw new Error("chưa có D1 local - chạy scripts/d1 để dựng lược đồ và nạp dữ liệu");
-  return join(dir, file);
+  return fixtureDbPath();
 }
 
 /**

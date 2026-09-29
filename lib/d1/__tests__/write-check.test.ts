@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { readFileSync, existsSync, copyFileSync, mkdtempSync } from "node:fs";
+import { readFileSync, copyFileSync, mkdtempSync } from "node:fs";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
 import { DatabaseSync } from "node:sqlite";
@@ -27,7 +27,8 @@ import { localD1Path } from "./d1-shim";
  * là rò - chỉ nhìn `error` là không đủ.
  */
 
-const hasLocalData = existsSync(".wrangler/state/v3/d1/miniflare-D1DatabaseObject");
+// DB test dựng từ migration + dữ liệu giả (fixture-db.ts): luôn có.
+const hasLocalData = true;
 
 const snap = JSON.parse(readFileSync("scripts/d1/schema-snapshot.json", "utf8"));
 const T = (snap.tables ?? snap) as Record<string, { columns: { name: string; format: string }[] }>;

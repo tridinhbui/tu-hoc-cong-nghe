@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { copyFileSync, existsSync, mkdtempSync, readFileSync, readdirSync } from "node:fs";
+import { copyFileSync, mkdtempSync } from "node:fs";
 import { DatabaseSync } from "node:sqlite";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -58,10 +58,12 @@ import {
   getTotalUserCount,
   type D1Like,
 } from "../rpc";
+import { localD1Path } from "./d1-shim";
 
 // Cùng cách gác với query-builder.test.ts: không có D1 local thì bỏ qua chứ
 // không đỏ, vì một bản checkout sạch chưa chạy scripts/d1 thì không có tệp.
-const hasLocalData = existsSync(".wrangler/state/v3/d1/miniflare-D1DatabaseObject");
+// DB test dựng từ migration + dữ liệu giả (fixture-db.ts): luôn có.
+const hasLocalData = true;
 
 // Đối chiếu bản dịch với SQL thô chạy trên cùng cơ sở dữ liệu, chứ không với
 // một con số chép tay. Chép tay thì bộ kiểm đỏ mỗi lần nạp lại dữ liệu, và
@@ -90,28 +92,15 @@ type Sqlite = {
 };
 
 function openCopyOfLocalD1(): D1Like {
-  const dir = join(process.cwd(), ".wrangler/state/v3/d1/miniflare-D1DatabaseObject");
-  const name = readdirSync(dir).find((f) => f.endsWith(".sqlite") && f !== "metadata.sqlite")!;
   const tmp = mkdtempSync(join(tmpdir(), "d1-rpc-"));
-  const dest = join(tmp, name);
-  copyFileSync(join(dir, name), dest);
-  for (const suffix of ["-wal", "-shm"]) {
-    const src = join(dir, name + suffix);
-    if (existsSync(src)) copyFileSync(src, dest + suffix);
-  }
+  const dest = join(tmp, "rpc.sqlite");
+  copyFileSync(localD1Path(), dest);
   // GHI ĐƯỢC, không readOnly. Nhóm B và C là các hàm ghi, và bản sao tạm chính
   // là chỗ đúng để kiểm chúng: mọi thay đổi nằm trong /tmp và biến mất sau khi
   // chạy, nên D1 local không bao giờ bị đụng tới.
   const sqlite = new DatabaseSync(dest) as unknown as Sqlite;
 
-  // Áp 0002_unique_constraints.sql lên bản sao. 0001 sinh từ bản chụp PostgREST
-  // nên KHÔNG có ràng buộc UNIQUE nào, và `ON CONFLICT (...)` ném lỗi "does not
-  // match any PRIMARY KEY or UNIQUE constraint" - tôi phát hiện đúng như vậy khi
-  // chạy bộ kiểm nhóm B lần đầu. Áp ở đây để bộ kiểm chứng minh CẢ HAI: migration
-  // dựng được trên dữ liệu thật, và hàm ghi chạy đúng khi có ràng buộc.
-  for (const line of readFileSync("migrations-d1/0002_unique_constraints.sql", "utf8").split("\n")) {
-    if (line.startsWith("CREATE")) sqlite.exec(line);
-  }
+  // Ràng buộc UNIQUE (0002) đã có sẵn: DB test dựng từ toàn bộ migration.
   return {
     async batch(stmts: unknown[]) {
       // node:sqlite không có API batch; dựng transaction thủ công để bộ kiểm

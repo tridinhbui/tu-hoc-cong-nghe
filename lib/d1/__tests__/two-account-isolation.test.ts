@@ -1,6 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { readFileSync, existsSync, readdirSync } from "node:fs";
-import { join } from "node:path";
+import { readFileSync } from "node:fs";
 import { DatabaseSync } from "node:sqlite";
 import {
   createD1Client,
@@ -8,7 +7,7 @@ import {
   type PolicyRegistry,
   type ManualPredicates,
 } from "../query-builder";
-import { openLocalD1, openWritableCopy } from "./d1-shim";
+import { localD1Path, openLocalD1, openWritableCopy } from "./d1-shim";
 
 /**
  * Bộ kiểm HAI TÀI KHOẢN: chạy dưới danh nghĩa A, thử chạm dữ liệu của B.
@@ -40,7 +39,8 @@ import { openLocalD1, openWritableCopy } from "./d1-shim";
  * hợp, kể cả khi bộ lọc hỏng hoàn toàn - bộ kiểm sẽ xanh vì lý do sai.
  */
 
-const hasLocalData = existsSync(".wrangler/state/v3/d1/miniflare-D1DatabaseObject");
+// DB test dựng từ migration + dữ liệu giả (fixture-db.ts): luôn có.
+const hasLocalData = true;
 
 const snap = JSON.parse(readFileSync("scripts/d1/schema-snapshot.json", "utf8"));
 const types: ColumnTypes = Object.fromEntries(
@@ -52,9 +52,7 @@ const registry: PolicyRegistry = JSON.parse(readFileSync("scripts/d1/policy-regi
 const predicates: ManualPredicates = JSON.parse(readFileSync("scripts/d1/manual-predicates.json", "utf8"));
 
 function rawDb() {
-  const dir = join(process.cwd(), ".wrangler/state/v3/d1/miniflare-D1DatabaseObject");
-  const f = readdirSync(dir).find((x) => x.endsWith(".sqlite") && x !== "metadata.sqlite")!;
-  return new DatabaseSync(join(dir, f), { readOnly: true });
+  return new DatabaseSync(localD1Path(), { readOnly: true });
 }
 
 function twoOwners(table: string, column: string): [string, string] | null {

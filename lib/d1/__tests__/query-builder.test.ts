@@ -1,10 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { readFileSync, existsSync } from "node:fs";
+import { readFileSync } from "node:fs";
 import {
   createD1Client, D1QueryError, D1PolicyError, ADMIN_BYPASS,
   type ColumnTypes, type PolicyRegistry, type ManualPredicates,
 } from "../query-builder";
-import { openLocalD1 } from "./d1-shim";
+import { localD1Path, openLocalD1 } from "./d1-shim";
 
 // Kiểu cột lấy từ bản chụp lược đồ thật, không khai tay: khai tay thì bộ kiểm
 // và mã chạy thật có thể lệch nhau mà vẫn xanh.
@@ -18,7 +18,8 @@ const types: ColumnTypes = Object.fromEntries(
 const registry: PolicyRegistry = JSON.parse(readFileSync("scripts/d1/policy-registry.json", "utf8"));
 const predicates: ManualPredicates = JSON.parse(readFileSync("scripts/d1/manual-predicates.json", "utf8"));
 
-const hasLocalData = existsSync(".wrangler/state/v3/d1/miniflare-D1DatabaseObject");
+// DB test dựng từ migration + dữ liệu giả (fixture-db.ts): luôn có.
+const hasLocalData = true;
 
 // Người dùng THẬT lấy từ dữ liệu đã nạp, không phải một uuid bịa.
 //
@@ -31,11 +32,7 @@ const ACTOR = hasLocalData
       prepare(s: string): { bind(): { all(): Promise<{ results: Record<string, unknown>[] }> } };
     }) && await (async () => {
       const { DatabaseSync } = await import("node:sqlite");
-      const { readdirSync } = await import("node:fs");
-      const { join } = await import("node:path");
-      const dir = join(process.cwd(), ".wrangler/state/v3/d1/miniflare-D1DatabaseObject");
-      const f = readdirSync(dir).find((x) => x.endsWith(".sqlite") && x !== "metadata.sqlite")!;
-      const db = new DatabaseSync(join(dir, f), { readOnly: true });
+      const db = new DatabaseSync(localD1Path(), { readOnly: true });
       const row = db.prepare(
         "SELECT user_id, COUNT(*) n FROM user_progress GROUP BY user_id ORDER BY n DESC LIMIT 1"
       ).all()[0] as { user_id: string };
