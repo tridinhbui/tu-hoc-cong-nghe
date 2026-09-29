@@ -188,7 +188,7 @@ export default function GameHubClient() {
                   className={`${panel} group flex flex-col p-4 text-left transition-colors hover:border-line-firm`}
                 >
                   <div className="flex items-start gap-3.5">
-                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-sm bg-stone-950 text-white dark:bg-stone-100 dark:text-stone-950">
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-sm bg-brand-600 text-white">
                       <Glyph emoji={g.emoji} className="h-5 w-5" />
                     </span>
                     <div className="min-w-0 flex-1">
@@ -243,7 +243,7 @@ export default function GameHubClient() {
           {soundToggle}
         </div>
         <div className="mb-5 flex items-center gap-3">
-          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-sm bg-stone-950 text-white dark:bg-stone-100 dark:text-stone-950">
+          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-sm bg-brand-600 text-white">
             <Glyph emoji={meta.emoji} className="h-5 w-5" />
           </span>
           <h1 className="text-xl font-black tracking-tight text-ink-max sm:text-2xl">{t.gameMeta[meta.id]?.title ?? meta.title}</h1>

@@ -321,7 +321,7 @@ export default function TechRpgWorldMap() {
         </div>
         <div className="flex flex-wrap items-center justify-between gap-3 p-2.5 sm:p-3">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 min-w-10 items-center justify-center rounded-sm bg-stone-950 px-1.5 font-mono text-xs font-medium tabular-nums text-white dark:bg-stone-100 dark:text-stone-950">
+            <div className="flex h-10 min-w-10 items-center justify-center rounded-sm bg-brand-600 px-1.5 font-mono text-xs font-medium tabular-nums text-white">
               {format(t.worldMap.levelShort, { level })}
             </div>
             <div>
@@ -536,7 +536,7 @@ export default function TechRpgWorldMap() {
                     <div className={`relative rounded-full border bg-white p-0.5 ${isMoving ? "border-brand-400" : "border-stone-400"}`}>
                       <TechCharacterAvatar size="sm" level={level} equipments={equippedGear} />
                     </div>
-                    <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-xs border border-stone-700 bg-stone-950 px-1 py-px font-mono text-[8px] font-medium tabular-nums text-white">
+                    <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-xs border border-stone-700 bg-brand-600 px-1 py-px font-mono text-[8px] font-medium tabular-nums text-white">
                       {format(t.worldMap.levelShort, { level })}
                     </div>
                   </div>
@@ -589,7 +589,7 @@ export default function TechRpgWorldMap() {
                           </div>
                         )}
 
-                        <div className="relative flex h-14 w-14 shrink-0 items-center justify-center rounded-sm border border-stone-700 bg-stone-950 text-stone-300 transition-colors group-hover:border-brand-500 group-hover:text-white">
+                        <div className="relative flex h-14 w-14 shrink-0 items-center justify-center rounded-sm border border-stone-700 bg-brand-600 text-stone-300 transition-colors group-hover:border-brand-500 group-hover:text-white">
                           <BuildingIcon id={b.id} className="h-7 w-7" />
                         </div>
 

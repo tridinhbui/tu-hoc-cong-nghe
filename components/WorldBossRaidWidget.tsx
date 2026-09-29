@@ -356,7 +356,7 @@ export default function WorldBossRaidWidget({
                         <div className="flex items-center gap-2">
                           <span className={`flex h-5 w-5 items-center justify-center rounded-xs font-mono text-[10px] font-bold tabular-nums ${
                             item.rank <= 3
-                              ? "bg-stone-950 text-white dark:bg-stone-100 dark:text-stone-950"
+                              ? "bg-brand-600 text-white"
                               : "border border-line-strong text-ink-muted dark:border-stone-700"
                           }`}>
                             {item.rank}
@@ -404,7 +404,7 @@ export default function WorldBossRaidWidget({
                       >
                         <div className="relative">
                           <TechCharacterAvatar level={userLevel} equipments={equipments} size="sm" />
-                          <span className="absolute -bottom-1 -right-1 rounded-xs border border-white/15 bg-stone-950 px-1.5 py-0.5 font-mono text-[9px] font-medium tabular-nums text-white">
+                          <span className="absolute -bottom-1 -right-1 rounded-xs border border-white/15 bg-brand-600 px-1.5 py-0.5 font-mono text-[9px] font-medium tabular-nums text-white">
                             {format(t.worldBoss.levelShort, { level: userLevel })}
                           </span>
                         </div>

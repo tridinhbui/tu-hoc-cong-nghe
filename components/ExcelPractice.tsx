@@ -213,7 +213,7 @@ function GridPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "grid" }
         <button
           type="button"
           onClick={check}
-          className="px-4 rounded-sm bg-stone-950 text-white text-xs font-bold transition-colors hover:bg-brand-700 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-brand-300"
+          className="px-4 rounded-sm bg-brand-600 text-white text-xs font-bold transition-colors hover:bg-brand-700 dark:hover:bg-brand-300"
         >
           {t.excelPractice.check}
         </button>
@@ -232,7 +232,7 @@ function GridPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "grid" }
                 solved.includes(i)
                   ? "border-brand-600 bg-brand-600 text-white dark:border-brand-500 dark:bg-brand-500"
                   : i === taskIndex
-                    ? "border-stone-950 bg-stone-950 text-white dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950"
+                    ? "border-brand-700 bg-brand-600 text-white dark:border-stone-100"
                     : "border-stone-300 bg-white text-ink-muted hover:border-stone-400 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-200",
               ].join(" ")}
               aria-label={format(t.excelPractice.taskAriaLabel, { n: i + 1 })}
@@ -388,7 +388,7 @@ function SqlPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "sql" }> 
                 solved.includes(i)
                   ? "border-brand-600 bg-brand-600 text-white dark:border-brand-500 dark:bg-brand-500"
                   : i === taskIndex
-                    ? "border-stone-950 bg-stone-950 text-white dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950"
+                    ? "border-brand-700 bg-brand-600 text-white dark:border-stone-100"
                     : "border-stone-300 bg-white text-ink-muted hover:border-stone-400 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-200",
               ].join(" ")}
               aria-label={format(t.excelPractice.taskAriaLabel, { n: i + 1 })}
@@ -417,7 +417,7 @@ function SqlPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "sql" }> 
         <button
           type="button"
           onClick={submit}
-          className="w-full py-2.5 rounded-sm bg-stone-950 text-white text-xs font-bold transition-colors hover:bg-brand-700 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-brand-300"
+          className="w-full py-2.5 rounded-sm bg-brand-600 text-white text-xs font-bold transition-colors hover:bg-brand-700 dark:hover:bg-brand-300"
         >
           {t.excelPractice.runQuery}
         </button>
@@ -581,7 +581,7 @@ function StepsPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "steps"
       <button
         type="button"
         onClick={() => setChecked(true)}
-        className="w-full py-2.5 rounded-sm bg-stone-950 text-white text-xs font-bold transition-colors hover:bg-brand-700 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-brand-300"
+        className="w-full py-2.5 rounded-sm bg-brand-600 text-white text-xs font-bold transition-colors hover:bg-brand-700 dark:hover:bg-brand-300"
       >
         {t.excelPractice.checkOrder}
       </button>

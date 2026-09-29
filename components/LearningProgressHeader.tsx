@@ -121,7 +121,7 @@ export default function LearningProgressHeader({
 
               <Link
                 href={`/bai-hoc/${nextMission.slug}`}
-                className="mt-3.5 inline-flex items-center gap-2 rounded-lg bg-stone-950 px-5 py-3 text-sm font-black text-white transition-colors hover:bg-stone-800 dark:bg-brand-600 dark:hover:bg-brand-500"
+                className="mt-3.5 inline-flex items-center gap-2 rounded-lg bg-brand-600 px-5 py-3 text-sm font-black text-white transition-colors hover:bg-brand-700 dark:bg-brand-600 dark:hover:bg-brand-500"
               >
                 {p.cta}
                 <ArrowRight className="h-4 w-4" />

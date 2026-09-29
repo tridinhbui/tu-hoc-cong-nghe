@@ -146,7 +146,7 @@ export default function CacHangUuTienTaiNguyenPage() {
         <section className="space-y-4">
           <h2 className="border-t border-stone-300 pt-5 text-2xl font-black leading-tight tracking-tight text-ink-max dark:border-stone-700">{c.ruleHeading}</h2>
           <p className="max-w-[68ch]">{c.ruleLead}</p>
-          <div className="rounded-md bg-stone-950 p-5 text-white">
+          <div className="rounded-md bg-brand-600 p-5 text-white">
             <div className="mb-2 text-xl font-black tracking-tight text-white">{c.ruleBanner}</div>
             <p className="text-sm leading-6 text-stone-300">{c.ruleNote}</p>
           </div>

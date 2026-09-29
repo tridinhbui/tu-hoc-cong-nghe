@@ -125,7 +125,7 @@ export default function TechCardCollection({ userId }: { userId: string }) {
                   {card.sector}
                 </span>
                 <span className={`font-mono text-[10px] font-medium uppercase tracking-wider px-1.5 py-0.5 rounded-sm border ${
-                  card.rarity === "legendary" ? "border-stone-950 bg-stone-950 text-white dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950" :
+                  card.rarity === "legendary" ? "border-brand-700 bg-brand-600 text-white dark:border-stone-100" :
                   card.rarity === "epic" ? "border-stone-500 text-ink dark:border-stone-400" :
                   card.rarity === "rare" ? "border-brand-400 text-accent-strong dark:border-brand-600" :
                   "border-stone-300 text-ink-muted dark:border-stone-700"

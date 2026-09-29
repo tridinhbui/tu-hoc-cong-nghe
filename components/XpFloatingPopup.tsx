@@ -98,7 +98,7 @@ export default function XpFloatingPopup() {
               rotate: [-4, 2, -1, 0, 0],
             }}
             transition={{ duration: 2.7, times: [0, 0.15, 0.4, 0.8, 1], ease: "easeOut" }}
-            className="flex items-center gap-2.5 rounded-sm border border-stone-700 bg-stone-950 px-3 py-2 text-white dark:border-stone-300 dark:bg-stone-100 dark:text-stone-950"
+            className="flex items-center gap-2.5 rounded-sm border border-stone-700 bg-brand-600 px-3 py-2 text-white dark:border-stone-300"
           >
             {item.xp >= 30 ? (
               <Trophy className="w-4 h-4 shrink-0 text-brand-300 dark:text-brand-700" />

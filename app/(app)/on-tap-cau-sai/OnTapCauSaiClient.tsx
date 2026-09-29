@@ -304,7 +304,7 @@ export default function OnTapCauSaiClient() {
 
             {/* Session Completed View */}
             {sessionCompleted ? (
-              <div className="text-center py-12 px-6 bg-stone-950 border border-stone-700 rounded-md text-white space-y-4">
+              <div className="text-center py-12 px-6 bg-brand-600 border border-stone-700 rounded-md text-white space-y-4">
                 <div className="flex justify-center">
                   <span className="rounded-sm border border-stone-700 p-2.5 text-stone-300">
                     <PartyPopper aria-hidden className="h-8 w-8" strokeWidth={1.5} />

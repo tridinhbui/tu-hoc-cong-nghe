@@ -306,7 +306,7 @@ export default function GamesAdminClient() {
       <div className="bg-white dark:bg-stone-900 border border-line rounded-xl p-6">
         <h3 className="font-bold text-ink mb-4">{tg.actionsHeading}</h3>
         <div className="flex flex-wrap gap-3">
-          <button className="px-4 py-2 rounded-lg bg-stone-950 hover:bg-brand-700 text-white dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-brand-300 font-semibold text-sm transition-colors">
+          <button className="px-4 py-2 rounded-lg bg-brand-600 hover:bg-brand-700 text-white dark:hover:bg-brand-300 font-semibold text-sm transition-colors">
             {tg.checkStatusButton}
           </button>
           <button className="px-4 py-2 rounded-lg bg-surface-sunken hover:bg-surface-deep text-ink font-semibold text-sm transition-colors">

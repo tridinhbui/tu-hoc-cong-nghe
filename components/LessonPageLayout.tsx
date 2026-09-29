@@ -1344,7 +1344,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                         aria-current={i === activeQ ? "true" : undefined}
                         className={`h-9 cursor-pointer rounded-sm border font-mono text-[13px] font-medium tabular-nums transition-colors ${
                           i === activeQ
-                            ? "border-stone-950 bg-stone-950 text-white dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950"
+                            ? "border-brand-700 bg-brand-600 text-white dark:border-stone-100"
                             : submitted[i]
                               ? results[i]
                                 ? "border-brand-600 bg-brand-50 text-accent-strong dark:border-brand-400 dark:bg-brand-950/40"

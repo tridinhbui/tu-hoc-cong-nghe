@@ -87,7 +87,7 @@ export default function HighlightNotebook({ highlights, lessonsById }: Highlight
         <button
           type="button"
           onClick={() => setDeck(shuffleArray(rows))}
-          className="inline-flex cursor-pointer items-center gap-1.5 rounded-sm bg-stone-950 px-3 py-1.5 text-xs font-bold text-white transition-colors hover:bg-brand-700 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-brand-300"
+          className="inline-flex cursor-pointer items-center gap-1.5 rounded-sm bg-brand-600 px-3 py-1.5 text-xs font-bold text-white transition-colors hover:bg-brand-700 dark:hover:bg-brand-300"
         >
           <Repeat className="w-3.5 h-3.5" />
           {t.highlightNotebook.reviewButton}

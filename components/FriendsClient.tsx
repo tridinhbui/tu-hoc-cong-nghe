@@ -369,7 +369,7 @@ export default function FriendsClient() {
                             setMessages([]);
                             setActiveFriendshipId(relation.friendship_id);
                           }}
-                          className="px-3 py-2 rounded-sm bg-stone-950 text-white hover:bg-brand-700 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-brand-300 transition-colors text-xs font-bold"
+                          className="px-3 py-2 rounded-sm bg-brand-600 text-white hover:bg-brand-700 dark:hover:bg-brand-300 transition-colors text-xs font-bold"
                         >
                           {t.friends.message}
                         </button>
@@ -377,7 +377,7 @@ export default function FriendsClient() {
                         <button
                           onClick={() => void handleRespond(relation.friendship_id, "accepted")}
                           disabled={busyUserId === String(relation.friendship_id)}
-                          className="px-3 py-2 rounded-sm bg-stone-950 text-white hover:bg-brand-700 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-brand-300 transition-colors text-xs font-bold disabled:opacity-60"
+                          className="px-3 py-2 rounded-sm bg-brand-600 text-white hover:bg-brand-700 dark:hover:bg-brand-300 transition-colors text-xs font-bold disabled:opacity-60"
                         >
                           {t.friends.accept}
                         </button>
@@ -389,7 +389,7 @@ export default function FriendsClient() {
                         <button
                           onClick={() => void handleSendFriendRequest(account.id)}
                           disabled={busyUserId === account.id}
-                          className="px-3 py-2 rounded-sm bg-stone-950 text-white hover:bg-brand-700 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-brand-300 transition-colors text-xs font-bold disabled:opacity-60 flex items-center gap-1.5"
+                          className="px-3 py-2 rounded-sm bg-brand-600 text-white hover:bg-brand-700 dark:hover:bg-brand-300 transition-colors text-xs font-bold disabled:opacity-60 flex items-center gap-1.5"
                         >
                           <UserPlus className="w-3.5 h-3.5" />
                           {t.friends.addFriend}
@@ -433,7 +433,7 @@ export default function FriendsClient() {
                       <button
                         onClick={() => void handleRespond(connection.friendship_id, "accepted")}
                         disabled={busyUserId === String(connection.friendship_id)}
-                        className="flex-1 py-2 rounded-sm bg-stone-950 text-white hover:bg-brand-700 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-brand-300 transition-colors text-xs font-bold disabled:opacity-60 flex items-center justify-center gap-1.5"
+                        className="flex-1 py-2 rounded-sm bg-brand-600 text-white hover:bg-brand-700 dark:hover:bg-brand-300 transition-colors text-xs font-bold disabled:opacity-60 flex items-center justify-center gap-1.5"
                       >
                         <Check className="w-3.5 h-3.5" />
                         {t.friends.accept}
@@ -569,7 +569,7 @@ export default function FriendsClient() {
                         <div
                           className={`max-w-md px-3.5 py-2 rounded-md text-sm ${
                             isMine
-                              ? "bg-stone-950 text-white dark:bg-stone-100 dark:text-stone-950"
+                              ? "bg-brand-600 text-white"
                               : "bg-white dark:bg-stone-800 text-ink border border-line-mid"
                           }`}
                         >
@@ -605,7 +605,7 @@ export default function FriendsClient() {
                   <button
                     onClick={() => void handleSendMessage()}
                     disabled={!messageInput.trim() || sendingMessage}
-                    className="px-4 py-2.5 rounded-sm bg-stone-950 text-white hover:bg-brand-700 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-brand-300 transition-colors disabled:opacity-50"
+                    className="px-4 py-2.5 rounded-sm bg-brand-600 text-white hover:bg-brand-700 dark:hover:bg-brand-300 transition-colors disabled:opacity-50"
                   >
                     <Send className="w-4 h-4" />
                   </button>

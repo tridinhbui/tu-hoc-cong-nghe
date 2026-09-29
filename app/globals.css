@@ -479,7 +479,7 @@ body {
    nên nó đọc như một dải giấy khác màu trong cùng cuốn sách, chứ như một ứng
    dụng khác. */
 .band-ink::before {
-  background: #12100e;
+  background: var(--color-brand-800); /* xanh chuẩn của app, không còn dải mực */
 }
 
 /* NÉT KẺ, KHÔNG PHẢI VIỀN HỘP. Cao 1px, thu hẹp vào giữa và nhạt dần ở hai
@@ -841,4 +841,10 @@ html [data-sonner-toaster][data-sonner-theme='dark'] {
 @keyframes coco-float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-3px); }
+}
+
+/* Gợi ý / bài liên quan hiện lên sau khi Cơ Cơ gõ xong - components/CoCoChatbot.tsx. */
+@keyframes coco-rise {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
 }

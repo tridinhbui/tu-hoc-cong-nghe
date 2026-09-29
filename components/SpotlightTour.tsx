@@ -223,7 +223,7 @@ export default function SpotlightTour({ steps, storageKey, userId, remoteKey }: 
       />
 
       <div
-        className="fixed rounded-md border border-stone-700 bg-stone-950 text-white p-3.5"
+        className="fixed rounded-md border border-stone-700 bg-brand-600 text-white p-3.5"
         style={{
           top: tooltipTop,
           left: tooltipLeft,

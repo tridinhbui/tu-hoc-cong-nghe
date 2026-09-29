@@ -420,7 +420,7 @@ export default function ChatWithAdminWidget({
           >
             <Logo size={56} className="pointer-events-none" />
             <span className="absolute top-1 right-1 w-2 h-2 rounded-[1px] bg-brand-600 pointer-events-none" aria-hidden />
-            <div className="absolute bottom-full right-0 mb-2 bg-stone-950 text-white text-xs px-2.5 py-1.5 rounded-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+            <div className="absolute bottom-full right-0 mb-2 bg-brand-600 text-white text-xs px-2.5 py-1.5 rounded-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
               {t.adminChat.dragTitle}
             </div>
           </motion.button>
@@ -463,7 +463,7 @@ export default function ChatWithAdminWidget({
               <span className="absolute inset-y-0 left-0 w-px bg-stone-200 transition-colors group-hover/resize:bg-brand-400 dark:bg-stone-800 dark:group-hover/resize:bg-brand-500" />
             </div>
             {/* Header */}
-            <div className="bg-stone-950 text-white px-4 py-3 flex items-center gap-3 border-b border-stone-800 shrink-0">
+            <div className="bg-brand-600 text-white px-4 py-3 flex items-center gap-3 border-b border-brand-700 shrink-0">
               <div className="relative flex-shrink-0">
                 <Logo size={34} />
                 <span className="absolute -bottom-0.5 -right-0.5 w-2 h-2 rounded-[1px] bg-brand-500" aria-hidden />
@@ -595,7 +595,7 @@ export default function ChatWithAdminWidget({
                         <div
                           className={`relative rounded-md px-3 py-2 text-[12px] leading-relaxed w-fit ${
                             isMine
-                              ? "bg-stone-950 text-white dark:bg-stone-100 dark:text-stone-950"
+                              ? "bg-brand-600 text-white"
                               : "bg-white dark:bg-stone-800/90 text-ink-heading border border-line"
                           }`}
                         >
@@ -847,7 +847,7 @@ export default function ChatWithAdminWidget({
                   />
                   <button
                     onClick={() => clearPendingImage()}
-                    className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-stone-950 hover:bg-red-600 text-white rounded-sm flex items-center justify-center transition-colors cursor-pointer"
+                    className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-brand-600 hover:bg-red-600 text-white rounded-sm flex items-center justify-center transition-colors cursor-pointer"
                   >
                     <X className="w-3 h-3" />
                   </button>
@@ -891,7 +891,7 @@ export default function ChatWithAdminWidget({
                 <button
                   onClick={() => void handleSend()}
                   disabled={(!input.trim() && !pendingImage) || sending || !userId}
-                  className="p-2 bg-stone-950 text-white hover:bg-brand-700 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-brand-300 rounded-sm disabled:opacity-30 disabled:pointer-events-none transition-colors flex-shrink-0 cursor-pointer"
+                  className="p-2 bg-brand-600 text-white hover:bg-brand-700 dark:hover:bg-brand-300 rounded-sm disabled:opacity-30 disabled:pointer-events-none transition-colors flex-shrink-0 cursor-pointer"
                   aria-label={t.chat.sendAria}
                 >
                   {uploadingImage || sending ? (

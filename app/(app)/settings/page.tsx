@@ -513,7 +513,7 @@ export default function SettingsPage() {
                       className={`inline-block px-4 py-2 rounded-sm text-sm font-bold cursor-pointer transition-colors ${
                         avatarUploading
                           ? "bg-surface-sunken text-ink-faint cursor-not-allowed"
-                          : "bg-stone-950 text-white hover:bg-brand-700 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-brand-300"
+                          : "bg-brand-600 text-white hover:bg-brand-700 dark:hover:bg-brand-300"
                       }`}
                     >
                       {avatarUploading

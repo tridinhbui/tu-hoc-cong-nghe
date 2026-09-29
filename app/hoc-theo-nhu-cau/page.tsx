@@ -114,7 +114,7 @@ export default async function LearningFlowsPage() {
                 key={step}
                 className={`flex items-baseline gap-3 px-3.5 py-3 text-sm font-bold lg:flex-col lg:gap-1.5 ${
                   i === 3
-                    ? "bg-stone-950 text-white dark:bg-stone-100 dark:text-stone-950"
+                    ? "bg-brand-600 text-white"
                     : "bg-white text-ink-body dark:bg-stone-900"
                 }`}
               >

@@ -401,7 +401,7 @@ export default function PairGame({ userId, gameType, difficulty = "trung-binh", 
 
       {finished ? (
         <div className="text-center py-10 relative z-10 flex flex-col items-center">
-          <span className="mb-3 flex h-12 w-12 items-center justify-center rounded-sm bg-stone-950 text-white dark:bg-stone-100 dark:text-stone-950"><Trophy className="h-6 w-6" strokeWidth={1.5} aria-hidden /></span>
+          <span className="mb-3 flex h-12 w-12 items-center justify-center rounded-sm bg-brand-600 text-white"><Trophy className="h-6 w-6" strokeWidth={1.5} aria-hidden /></span>
           <p className="text-lg font-black text-ink-max">
             {submitting ? pg.savingResult : pg.finishedRound}
           </p>

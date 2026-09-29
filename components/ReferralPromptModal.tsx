@@ -99,7 +99,7 @@ export default function ReferralPromptModal({
             {/* Không còn chấm đỏ nhấp nháy ở góc: nó sáng với MỌI người học,
                 lúc nào cũng vậy, tức là một thông báo chưa đọc không có thật. */}
             <Gift className="w-5 h-5" />
-            <div className="absolute bottom-full right-0 mb-2 bg-stone-950 text-white text-xs px-2.5 py-1 rounded-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition font-bold pointer-events-none">
+            <div className="absolute bottom-full right-0 mb-2 bg-brand-600 text-white text-xs px-2.5 py-1 rounded-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition font-bold pointer-events-none">
               {t.referralPrompt.floatingTooltip}
             </div>
           </motion.button>

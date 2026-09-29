@@ -73,7 +73,7 @@ interface SessionUser {
 /* Nút nhỏ của dòng tin - cùng họ với btnPrimary / btnSecondary ở
    components/ui/system.tsx, chỉ thu cỡ lại cho hàng thao tác dưới mỗi bài. */
 const btnSmPrimary =
-  "inline-flex items-center justify-center gap-1.5 rounded-sm bg-stone-950 px-3 py-1.5 text-xs font-bold text-white transition-colors hover:bg-brand-700 disabled:cursor-not-allowed disabled:opacity-40 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-brand-300";
+  "inline-flex items-center justify-center gap-1.5 rounded-sm bg-brand-600 px-3 py-1.5 text-xs font-bold text-white transition-colors hover:bg-brand-700 disabled:cursor-not-allowed disabled:opacity-40";
 const btnSmGhost =
   "inline-flex items-center gap-1.5 rounded-sm px-2.5 py-1.5 text-xs font-semibold text-ink-soft transition-colors hover:bg-surface-raised hover:text-ink disabled:cursor-not-allowed disabled:opacity-50 dark:hover:bg-stone-800";
 const asideHead = "flex items-center justify-between gap-3 border-b border-line pb-2";
@@ -810,7 +810,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
           <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-9 sm:py-12">
             <Link
               href="/dashboard"
-              className="inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-stone-400 transition-colors hover:text-white"
+              className="inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-brand-200 transition-colors hover:text-white"
             >
               <ArrowLeft className="w-4 h-4" aria-hidden /> {t.feed.backToDashboard}
             </Link>
@@ -819,13 +819,13 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
               {/* Mã định vị + nhãn mắt trên một đường kẻ 1px, như đầu section
                   của trang chủ trên dải mực. */}
               <div className="flex items-center justify-between gap-4 border-b border-white/15 pb-2">
-                <Sys className="text-stone-400">{APP_SYS.feed}</Sys>
-                <span className="eyebrow text-right text-stone-300">{t.feed.eyebrow}</span>
+                <Sys className="text-brand-200">{APP_SYS.feed}</Sys>
+                <span className="eyebrow text-right text-brand-100">{t.feed.eyebrow}</span>
               </div>
               <h1 className="mt-4 text-3xl sm:text-4xl lg:text-[2.75rem] font-black leading-[1.08] tracking-tight text-white">
                 {t.feed.title}
               </h1>
-              <p className="mt-3 max-w-xl text-[15px] leading-relaxed text-stone-300">
+              <p className="mt-3 max-w-xl text-[15px] leading-relaxed text-brand-100">
                 {t.feed.subtitle}
               </p>
             </div>

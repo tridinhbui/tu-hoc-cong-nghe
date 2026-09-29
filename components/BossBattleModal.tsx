@@ -155,7 +155,7 @@ export default function BossBattleModal({
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.9 }}
-        className="bg-stone-950 border border-stone-800 rounded-md p-6 max-w-xl w-full my-auto text-white relative overflow-hidden"
+        className="bg-brand-600 border border-brand-700 rounded-md p-6 max-w-xl w-full my-auto text-white relative overflow-hidden"
       >
         {/* Header Close */}
         <button

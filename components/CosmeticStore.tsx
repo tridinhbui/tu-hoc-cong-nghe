@@ -351,7 +351,7 @@ export default function CosmeticStore({ userId, onBack }: { userId: string; onBa
           const isEquipped = equippedGear[slot] === item.id;
 
           const rarityColor = 
-            item.rarity === "legendary" ? "border-stone-950 bg-stone-950 text-white dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950" :
+            item.rarity === "legendary" ? "border-brand-700 bg-brand-600 text-white dark:border-stone-100" :
             item.rarity === "epic" ? "border-stone-500 text-ink dark:border-stone-400" :
             item.rarity === "rare" ? "border-brand-400 text-accent-strong dark:border-brand-600" :
             "border-stone-300 text-ink-muted dark:border-stone-700";

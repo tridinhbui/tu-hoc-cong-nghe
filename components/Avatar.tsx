@@ -48,7 +48,7 @@ export default function Avatar({
       <span
         style={box}
         aria-hidden="true"
-        className={`flex shrink-0 items-center justify-center rounded-full bg-stone-900 font-black text-white dark:bg-stone-100 dark:text-stone-900 ${className}`}
+        className={`flex shrink-0 items-center justify-center rounded-full bg-brand-600 font-black text-white ${className}`}
       >
         <span style={{ fontSize: Math.max(10, Math.round(size * 0.4)) }}>{initial}</span>
       </span>

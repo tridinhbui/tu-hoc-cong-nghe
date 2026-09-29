@@ -375,7 +375,7 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
                       weeklyClaimed
                         ? "bg-surface-raised text-ink-faint border-stone-300 dark:bg-stone-950 dark:border-stone-700"
                         : dailyQuests.filter((q) => q.current >= q.target).length >= 3
-                        ? "bg-stone-950 text-white border-stone-950 hover:bg-brand-700 hover:border-brand-700 cursor-pointer dark:bg-stone-100 dark:text-stone-950 dark:border-stone-100 dark:hover:bg-brand-300"
+                        ? "bg-brand-600 text-white border-brand-700 hover:bg-brand-700 hover:border-brand-700 cursor-pointer dark:border-stone-100 dark:hover:bg-brand-300"
                         : "text-ink-faint border-line-strong cursor-not-allowed"
                     }`}
                   >

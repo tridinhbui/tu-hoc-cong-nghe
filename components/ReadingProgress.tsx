@@ -200,7 +200,7 @@ export default function ReadingProgress({ progress, onMilestone }: ReadingProgre
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
-            className="fixed left-1/2 top-1/4 z-50 -translate-x-1/2 rounded-md border border-stone-700 bg-stone-950 px-5 py-3.5 text-center text-white"
+            className="fixed left-1/2 top-1/4 z-50 -translate-x-1/2 rounded-md border border-stone-700 bg-brand-600 px-5 py-3.5 text-center text-white"
           >
             <div className="mb-1 flex justify-center text-brand-300">{celebratingMilestone === 100 ? <Flag className="w-6 h-6" strokeWidth={1.75} aria-hidden /> : <PartyPopper className="w-6 h-6" strokeWidth={1.75} aria-hidden />}</div>
             <p className="font-bold">

@@ -1474,7 +1474,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
               <button
                 type="button"
                 onClick={() => void handleManualCheckin()}
-                className="px-3 py-1.5 rounded-sm bg-stone-950 hover:bg-brand-700 text-white dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-brand-300 text-xs font-black transition-colors cursor-pointer shrink-0 flex items-center gap-1"
+                className="px-3 py-1.5 rounded-sm bg-brand-600 hover:bg-brand-700 text-white dark:hover:bg-brand-300 text-xs font-black transition-colors cursor-pointer shrink-0 flex items-center gap-1"
               >
                 <span>{t.studyGroups.checkInNow}</span>
               </button>
@@ -2050,7 +2050,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                                           ? "bg-white border-white text-stone-950"
                                           : isMe
                                           ? "bg-brand-500 border-brand-300 text-stone-950"
-                                          : "bg-stone-950 border-stone-700 text-white"
+                                          : "bg-brand-600 border-stone-700 text-white"
                                       }`}
                                       title={member.full_name || t.studyGroups.memberRole}
                                     >
@@ -2558,7 +2558,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
               <button
                 onClick={() => void handleSendMessage()}
                 disabled={sendingMessage || !messageInput.trim()}
-                className="shrink-0 w-10 h-10 rounded-sm bg-stone-950 text-white dark:bg-stone-100 dark:text-stone-950 flex items-center justify-center hover:bg-brand-700 dark:hover:bg-brand-300 transition-colors disabled:opacity-40"
+                className="shrink-0 w-10 h-10 rounded-sm bg-brand-600 text-white flex items-center justify-center hover:bg-brand-700 dark:hover:bg-brand-300 transition-colors disabled:opacity-40"
                 aria-label={t.chat.sendAria}
               >
                 <Send className="w-4 h-4" />
@@ -2580,7 +2580,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
               <button
                 type="button"
                 onClick={() => void handleAddNote()}
-                className="px-3 py-2 rounded-sm bg-stone-950 text-white dark:bg-stone-100 dark:text-stone-950 font-black text-xs hover:bg-brand-700 dark:hover:bg-brand-300 transition-colors cursor-pointer shrink-0"
+                className="px-3 py-2 rounded-sm bg-brand-600 text-white font-black text-xs hover:bg-brand-700 dark:hover:bg-brand-300 transition-colors cursor-pointer shrink-0"
               >
                 {t.studyGroups.noteAdd}
               </button>
@@ -2739,7 +2739,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
           Giờ nó đọc đúng thứ phòng thật sự có: nhiệm vụ tuần và chủ đề phòng.
           Không có khái niệm "bài học của phòng hôm nay" trong dữ liệu, nên
           không dựng ra một cái. */}
-            <div className="bg-stone-950 border border-stone-800 rounded-md p-3 sm:p-3.5 shrink-0 flex flex-col sm:flex-row items-center justify-between gap-3 text-white">
+            <div className="bg-brand-600 border border-brand-700 rounded-md p-3 sm:p-3.5 shrink-0 flex flex-col sm:flex-row items-center justify-between gap-3 text-white">
               <div className="flex items-center gap-3 min-w-0">
                 <span className="w-9 h-9 rounded-sm text-stone-300 border border-white/15 flex items-center justify-center shrink-0">
                   <Target className="w-5 h-5" strokeWidth={1.75} aria-hidden />
@@ -2847,7 +2847,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                       <button
                         onClick={() => void handleJoinRoom(room.room_id)}
                         disabled={busy}
-                        className="shrink-0 px-3.5 py-2 rounded-sm bg-stone-950 text-white dark:bg-stone-100 dark:text-stone-950 text-xs font-bold hover:bg-brand-700 dark:hover:bg-brand-300 transition-colors disabled:opacity-60"
+                        className="shrink-0 px-3.5 py-2 rounded-sm bg-brand-600 text-white text-xs font-bold hover:bg-brand-700 dark:hover:bg-brand-300 transition-colors disabled:opacity-60"
                       >
                         {t.studyGroups.join}
                       </button>

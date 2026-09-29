@@ -441,7 +441,7 @@ export default function ProfilePage() {
         )}
 
         {/* Đầu hồ sơ: dải mực phẳng (stone-950) - không vầng sáng mờ, không bóng. */}
-        <div className="rounded-md border border-stone-800 bg-stone-950 p-6 text-white sm:p-8">
+        <div className="rounded-md border border-brand-700 bg-brand-600 p-6 text-white sm:p-8">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
             <div className="flex flex-col sm:flex-row items-center sm:items-start gap-5 text-center sm:text-left">
               {isValidAvatar(avatarUrl) ? (

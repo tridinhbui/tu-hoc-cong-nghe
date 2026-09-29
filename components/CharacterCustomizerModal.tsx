@@ -138,7 +138,7 @@ export default function CharacterCustomizerModal({
           initial={{ opacity: 0, scale: 0.95, y: 10 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 10 }}
-          className="bg-stone-900 border border-stone-700 rounded-md max-w-4xl w-full text-white overflow-hidden flex flex-col max-h-[92vh]"
+          className="bg-brand-600 border border-stone-700 rounded-md max-w-4xl w-full text-white overflow-hidden flex flex-col max-h-[92vh]"
         >
           {/* Header Dialog */}
           <div className="flex items-center justify-between border-b border-stone-800 p-4 sm:p-5 bg-stone-950">
@@ -233,7 +233,7 @@ export default function CharacterCustomizerModal({
                           onClick={() => updateConfig("gender", "male")}
                           className={`p-3 rounded-sm border font-bold text-xs flex items-center justify-center gap-2 transition-colors ${
                             config.gender === "male"
-                              ? "bg-stone-950 border-brand-400 text-white"
+                              ? "bg-brand-600 border-brand-400 text-white"
                               : "bg-stone-900 border-stone-700 text-stone-300 hover:border-stone-500"
                           }`}
                         >
@@ -243,7 +243,7 @@ export default function CharacterCustomizerModal({
                           onClick={() => updateConfig("gender", "female")}
                           className={`p-3 rounded-sm border font-bold text-xs flex items-center justify-center gap-2 transition-colors ${
                             config.gender === "female"
-                              ? "bg-stone-950 border-brand-400 text-white"
+                              ? "bg-brand-600 border-brand-400 text-white"
                               : "bg-stone-900 border-stone-700 text-stone-300 hover:border-stone-500"
                           }`}
                         >
@@ -292,7 +292,7 @@ export default function CharacterCustomizerModal({
                               onClick={() => updateConfig("hairStyle", h.id)}
                               className={`p-3 rounded-sm border text-left text-xs font-bold transition-colors flex items-center gap-2 ${
                                 isSelected
-                                  ? "bg-stone-950 border-brand-400 text-white"
+                                  ? "bg-brand-600 border-brand-400 text-white"
                                   : "bg-stone-900 border-stone-700 text-stone-300 hover:border-stone-500"
                               }`}
                             >
@@ -342,7 +342,7 @@ export default function CharacterCustomizerModal({
                             onClick={() => updateConfig("faceShape", f.id)}
                             className={`p-3 rounded-sm border text-left text-xs font-bold transition-colors flex items-center gap-2 ${
                               config.faceShape === f.id
-                                ? "bg-stone-950 border-brand-400 text-white"
+                                ? "bg-brand-600 border-brand-400 text-white"
                                 : "bg-stone-900 border-stone-700 text-stone-300 hover:border-stone-500"
                             }`}
                           >
@@ -363,7 +363,7 @@ export default function CharacterCustomizerModal({
                             onClick={() => updateConfig("eyeExpression", e.id)}
                             className={`p-3 rounded-sm border text-left text-xs font-bold transition-colors flex items-center gap-2 ${
                               config.eyeExpression === e.id
-                                ? "bg-stone-950 border-brand-400 text-white"
+                                ? "bg-brand-600 border-brand-400 text-white"
                                 : "bg-stone-900 border-stone-700 text-stone-300 hover:border-stone-500"
                             }`}
                           >
@@ -387,7 +387,7 @@ export default function CharacterCustomizerModal({
                               onClick={() => updateConfig("glasses", g.id)}
                               className={`p-3 rounded-sm border text-left text-xs font-bold transition-colors flex items-center justify-between gap-1 ${
                                 config.glasses === g.id
-                                  ? "bg-stone-950 border-brand-400 text-white"
+                                  ? "bg-brand-600 border-brand-400 text-white"
                                   : isLocked
                                   ? "bg-stone-950 border-stone-800 opacity-40 cursor-not-allowed text-stone-500"
                                   : "bg-stone-900 border-stone-700 text-stone-300 hover:border-stone-500"
@@ -415,7 +415,7 @@ export default function CharacterCustomizerModal({
                               onClick={() => updateConfig("beard", b.id)}
                               className={`p-3 rounded-sm border text-left text-xs font-bold transition-colors flex items-center gap-2 ${
                                 config.beard === b.id
-                                  ? "bg-stone-950 border-brand-400 text-white"
+                                  ? "bg-brand-600 border-brand-400 text-white"
                                   : "bg-stone-900 border-stone-700 text-stone-300 hover:border-stone-500"
                               }`}
                             >
@@ -445,7 +445,7 @@ export default function CharacterCustomizerModal({
                               onClick={() => updateConfig("outfitStyle", o.id)}
                               className={`p-3.5 rounded-sm border text-left text-xs font-bold transition-colors flex items-center justify-between gap-2 ${
                                 config.outfitStyle === o.id
-                                  ? "bg-stone-950 border-brand-400 text-white"
+                                  ? "bg-brand-600 border-brand-400 text-white"
                                   : isLocked
                                   ? "bg-stone-950 border-stone-800 opacity-40 cursor-not-allowed text-stone-500"
                                   : "bg-stone-900 border-stone-700 text-stone-300 hover:border-stone-500"
@@ -502,7 +502,7 @@ export default function CharacterCustomizerModal({
                               onClick={() => updateConfig("accessory", a.id)}
                               className={`p-3.5 rounded-sm border text-left text-xs font-bold transition-colors flex items-center justify-between gap-2 ${
                                 config.accessory === a.id
-                                  ? "bg-stone-950 border-brand-400 text-white"
+                                  ? "bg-brand-600 border-brand-400 text-white"
                                   : isLocked
                                   ? "bg-stone-950 border-stone-800 opacity-40 cursor-not-allowed text-stone-500"
                                   : "bg-stone-900 border-stone-700 text-stone-300 hover:border-stone-500"
@@ -536,7 +536,7 @@ export default function CharacterCustomizerModal({
                               onClick={() => updateConfig("background", bg.id)}
                               className={`p-3.5 rounded-sm border text-left text-xs font-bold transition-colors flex items-center justify-between gap-2 ${
                                 config.background === bg.id
-                                  ? "bg-stone-950 border-brand-400 text-white"
+                                  ? "bg-brand-600 border-brand-400 text-white"
                                   : isLocked
                                   ? "bg-stone-950 border-stone-800 opacity-40 cursor-not-allowed text-stone-500"
                                   : "bg-stone-900 border-stone-700 text-stone-300 hover:border-stone-500"

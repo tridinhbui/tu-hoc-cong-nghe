@@ -96,7 +96,7 @@ export default function UserProfile() {
             className="w-10 h-10 rounded-full object-cover"
           />
         ) : (
-          <div className="w-10 h-10 rounded-full bg-stone-950 flex items-center justify-center text-white font-bold text-sm dark:bg-stone-100 dark:text-stone-950">
+          <div className="w-10 h-10 rounded-full bg-brand-600 flex items-center justify-center text-white font-bold text-sm">
             {(profile.full_name || profile.email).charAt(0).toUpperCase()}
           </div>
         )}
@@ -114,7 +114,7 @@ export default function UserProfile() {
                 className="w-12 h-12 rounded-full object-cover"
               />
             ) : (
-              <div className="w-12 h-12 rounded-full bg-stone-950 flex items-center justify-center text-white font-bold dark:bg-stone-100 dark:text-stone-950">
+              <div className="w-12 h-12 rounded-full bg-brand-600 flex items-center justify-center text-white font-bold">
                 {(profile.full_name || profile.email).charAt(0).toUpperCase()}
               </div>
             )}

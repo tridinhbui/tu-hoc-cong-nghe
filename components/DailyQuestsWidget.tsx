@@ -354,7 +354,7 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
                   <button
                     onClick={() => handleClaim(quest)}
                     disabled={claimingId !== null}
-                className="w-full sm:w-auto justify-center px-3 py-1.5 text-[10.5px] font-black rounded-sm bg-stone-950 text-white hover:bg-brand-700 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-brand-300 disabled:opacity-50 transition-colors cursor-pointer flex items-center gap-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
+                className="w-full sm:w-auto justify-center px-3 py-1.5 text-[10.5px] font-black rounded-sm bg-brand-600 text-white hover:bg-brand-700 dark:hover:bg-brand-300 disabled:opacity-50 transition-colors cursor-pointer flex items-center gap-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
                 >
                   {/* Số hiển thị phải là số SẼ nhận, không phải mức thưởng
                       danh nghĩa: máy chủ kẹp nó theo ngân sách XP còn lại của
@@ -378,7 +378,7 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
                     <button
                       onClick={() => goToQuestAction(quest.id, router)}
                       title={t.dailyQuests.doActionTitle}
-                      className="group/btn inline-flex items-center gap-1.5 text-[10.5px] font-bold text-white bg-stone-950 hover:bg-brand-700 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-brand-300 px-3 py-1.5 rounded-sm transition-colors duration-200 cursor-pointer shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
+                      className="group/btn inline-flex items-center gap-1.5 text-[10.5px] font-bold text-white bg-brand-600 hover:bg-brand-700 dark:hover:bg-brand-300 px-3 py-1.5 rounded-sm transition-colors duration-200 cursor-pointer shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
                     >
                       {t.dailyQuests.doNow} <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 transition-transform" />
                     </button>

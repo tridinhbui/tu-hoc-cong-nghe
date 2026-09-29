@@ -758,7 +758,7 @@ export default function AppNavbar() {
                   {isValidAvatar(profile.avatar_url) ? (
                     <Image src={profile.avatar_url} alt={displayName} width={36} height={36} className="w-9 h-9 rounded-full object-cover shrink-0" />
                   ) : (
-                    <div className="w-9 h-9 rounded-full bg-stone-950 flex items-center justify-center text-white font-black text-sm shrink-0 dark:bg-stone-100 dark:text-stone-950">
+                    <div className="w-9 h-9 rounded-full bg-brand-600 flex items-center justify-center text-white font-black text-sm shrink-0">
                       {initials || "?"}
                     </div>
                   )}
@@ -892,7 +892,7 @@ export default function AppNavbar() {
                   {isValidAvatar(profile.avatar_url) ? (
                     <Image src={profile.avatar_url} alt={displayName} width={34} height={34} className="w-8 h-8 sm:w-9 sm:h-9 rounded-full object-cover" />
                   ) : (
-                    <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-stone-950 flex items-center justify-center text-white font-bold text-xs dark:bg-stone-100 dark:text-stone-950">
+                    <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-brand-600 flex items-center justify-center text-white font-bold text-xs">
                       {initials || "?"}
                     </div>
                   )}
@@ -925,7 +925,7 @@ export default function AppNavbar() {
               {isValidAvatar(profile.avatar_url) ? (
                 <Image src={profile.avatar_url} alt={displayName} width={36} height={36} className="w-9 h-9 rounded-full object-cover shrink-0" />
               ) : (
-                <div className="w-9 h-9 rounded-full bg-stone-950 flex items-center justify-center text-white font-bold text-xs shrink-0 dark:bg-stone-100 dark:text-stone-950">{initials || "?"}</div>
+                <div className="w-9 h-9 rounded-full bg-brand-600 flex items-center justify-center text-white font-bold text-xs shrink-0">{initials || "?"}</div>
               )}
               <div className="flex-1 min-w-0">
                 <p className="font-bold text-ink truncate text-xs">{profile.full_name || t.nav.user}</p>
@@ -983,7 +983,7 @@ export default function AppNavbar() {
                     {isValidAvatar(profile.avatar_url) ? (
                       <Image src={profile.avatar_url} alt={displayName} width={36} height={36} className="w-9 h-9 rounded-full object-cover shrink-0" />
                     ) : (
-                      <div className="w-9 h-9 rounded-full bg-stone-950 flex items-center justify-center text-white font-bold text-xs shrink-0 dark:bg-stone-100 dark:text-stone-950">
+                      <div className="w-9 h-9 rounded-full bg-brand-600 flex items-center justify-center text-white font-bold text-xs shrink-0">
                         {initials || "?"}
                       </div>
                     )}

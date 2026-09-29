@@ -487,7 +487,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
           }}
           aria-label={t.groupChat.openAria}
           title={room ? format(t.groupChat.dragTitle, { topic: topicLabel(room.topic, t) }) : t.groupChat.joinTitle}
-          className="fixed bottom-21 right-4 sm:bottom-23 sm:right-6 z-50 w-14 h-14 rounded-md bg-stone-950 hover:bg-brand-700 text-white transition-colors flex items-center justify-center border border-stone-950 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-brand-300 dark:border-stone-100 cursor-grab active:cursor-grabbing select-none touch-none group"
+          className="fixed bottom-21 right-4 sm:bottom-23 sm:right-6 z-50 w-14 h-14 rounded-md bg-brand-600 hover:bg-brand-700 text-white transition-colors flex items-center justify-center border border-brand-700 dark:hover:bg-brand-300 dark:border-stone-100 cursor-grab active:cursor-grabbing select-none touch-none group"
         >
           <Users className="w-6 h-6 pointer-events-none" aria-hidden />
 
@@ -652,7 +652,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                         <div
                           className={`relative rounded-md px-3 py-2 text-[12px] leading-relaxed w-fit ${
                             isMine
-                              ? "bg-stone-950 text-white dark:bg-stone-100 dark:text-stone-950"
+                              ? "bg-brand-600 text-white"
                               : "bg-white dark:bg-stone-800/90 text-ink-heading border border-line"
                           }`}
                         >
@@ -915,7 +915,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                 <img src={pendingImagePreview} alt={t.chat.previewAlt} className="w-14 h-14 rounded-sm border border-line-strong object-cover" />
                 <button
                   onClick={() => clearPendingImage()}
-                  className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-stone-950 hover:bg-red-600 text-white rounded-sm flex items-center justify-center transition-colors"
+                  className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-brand-600 hover:bg-red-600 text-white rounded-sm flex items-center justify-center transition-colors"
                 >
                   <X className="w-3 h-3" />
                 </button>
@@ -927,7 +927,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                 <span className="truncate max-w-[180px]">{pendingFile.name}</span>
                 <button
                   onClick={() => clearPendingFile()}
-                  className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-stone-950 hover:bg-red-600 text-white rounded-sm flex items-center justify-center transition-colors"
+                  className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-brand-600 hover:bg-red-600 text-white rounded-sm flex items-center justify-center transition-colors"
                 >
                   <X className="w-3 h-3" />
                 </button>
@@ -986,7 +986,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
               <button
                 onClick={() => void handleSend()}
                 disabled={sending || (!input.trim() && !pendingImage && !pendingFile)}
-                className="p-2 bg-stone-950 text-white hover:bg-brand-700 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-brand-300 rounded-sm disabled:opacity-30 disabled:pointer-events-none transition-colors flex-shrink-0"
+                className="p-2 bg-brand-600 text-white hover:bg-brand-700 dark:hover:bg-brand-300 rounded-sm disabled:opacity-30 disabled:pointer-events-none transition-colors flex-shrink-0"
                 aria-label={t.chat.sendAria}
               >
                 <Send className="w-4.5 h-4.5" />

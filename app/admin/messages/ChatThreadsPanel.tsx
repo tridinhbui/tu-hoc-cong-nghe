@@ -279,7 +279,7 @@ export default function ChatThreadsPanel({ threads: initialThreads }: { threads:
                   <img src={pendingImagePreview} alt={tc.previewAlt} className="h-16 rounded-lg border border-line-mid object-cover" />
                   <button
                     onClick={clearPendingImage}
-                    className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-xs bg-stone-950 text-white flex items-center justify-center"
+                    className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-xs bg-brand-600 text-white flex items-center justify-center"
                   >
                     <X className="w-3 h-3" />
                   </button>

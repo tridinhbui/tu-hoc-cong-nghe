@@ -5,7 +5,7 @@
  * và thứ hạng đã nói bằng chính con số. Từ hạng 4 trở đi chỉ là con số.
  */
 const PODIUM_TONE: Record<number, string> = {
-  1: "border-stone-950 bg-stone-950 text-white dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950",
+  1: "border-brand-700 bg-brand-600 text-white dark:border-stone-100",
   2: "border-stone-400 text-ink-max dark:border-stone-500",
   3: "border-stone-300 text-ink-body dark:border-stone-600",
 };

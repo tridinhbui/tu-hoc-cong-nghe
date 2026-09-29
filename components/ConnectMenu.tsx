@@ -255,7 +255,7 @@ export default function ConnectMenu({
         }}
         aria-label={t.connectMenu.open}
         title={t.connectMenu.dragTitle}
-        className="fixed bottom-6 right-4 sm:right-6 z-50 flex h-12 w-12 items-center justify-center rounded-md border border-stone-950 bg-stone-950 text-white transition-colors hover:bg-brand-700 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-brand-300 cursor-grab active:cursor-grabbing select-none touch-none"
+        className="fixed bottom-6 right-4 sm:right-6 z-50 flex h-12 w-12 items-center justify-center rounded-md border border-brand-700 bg-brand-600 text-white transition-colors hover:bg-brand-700 dark:border-stone-100 dark:hover:bg-brand-300 cursor-grab active:cursor-grabbing select-none touch-none"
       >
         {open ? <X className="h-5.5 w-5.5 pointer-events-none" /> : <Menu className="h-5.5 w-5.5 pointer-events-none" />}
         {!open && badge && (

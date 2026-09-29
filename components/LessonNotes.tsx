@@ -267,7 +267,7 @@ export default function LessonNotes({ lessonId, lessonSlug }: LessonNotesProps) 
                         <button
                           onClick={() => void handleUpdateNote(note.id)}
                           disabled={saving || !noteContent.trim()}
-                          className="inline-flex items-center gap-1.5 rounded-sm bg-stone-950 px-3 py-1 text-sm font-bold text-white transition-colors hover:bg-brand-700 disabled:opacity-50 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-brand-300"
+                          className="inline-flex items-center gap-1.5 rounded-sm bg-brand-600 px-3 py-1 text-sm font-bold text-white transition-colors hover:bg-brand-700 disabled:opacity-50 dark:hover:bg-brand-300"
                         >
                           {saving && <Loader2 className="w-3 h-3 animate-spin" />}
                           {saving ? t.notes.saving : t.notes.save}
@@ -368,7 +368,7 @@ export default function LessonNotes({ lessonId, lessonSlug }: LessonNotesProps) 
                 <button
                   onClick={() => void handleCreateNote()}
                   disabled={saving || !noteContent.trim()}
-                  className="flex items-center gap-1 rounded-sm bg-stone-950 px-3 py-1 text-sm font-bold text-white transition-colors hover:bg-brand-700 disabled:opacity-50 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-brand-300"
+                  className="flex items-center gap-1 rounded-sm bg-brand-600 px-3 py-1 text-sm font-bold text-white transition-colors hover:bg-brand-700 disabled:opacity-50 dark:hover:bg-brand-300"
                 >
                   {saving ? <Loader2 className="w-3 h-3 animate-spin" /> : <Plus className="w-3 h-3" />}
                   {saving ? t.notes.saving : t.notes.add}

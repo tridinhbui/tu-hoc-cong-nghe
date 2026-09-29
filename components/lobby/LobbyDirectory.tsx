@@ -72,7 +72,7 @@ export default function LobbyDirectory() {
       <button
         type="button"
         onClick={() => toggle(true)}
-        className="pointer-events-auto rounded-sm border border-white/15 bg-stone-950 px-4 py-2.5 text-xs font-bold text-white transition-colors hover:border-white/40"
+        className="pointer-events-auto rounded-sm border border-white/15 bg-brand-600 px-4 py-2.5 text-xs font-bold text-white transition-colors hover:border-white/40"
       >
         <Compass className="mr-1.5 inline h-4 w-4 align-[-3px]" strokeWidth={1.75} aria-hidden />
         {t.lobby.directoryToggle}
