@@ -179,8 +179,8 @@ export default function ResumeLearningButton({ activeTrack, compact = false, use
         href={`/bai-hoc/${nextLesson.slug}`}
         onClick={() => trackFeatureClick("resume_learning_click", { label: nextLesson.slug })}
         className={hero
-          ? "group relative block overflow-hidden rounded-card border-2 border-brand-600 bg-brand-50 transition-colors duration-200 hover:bg-brand-100/60 dark:border-brand-500 dark:bg-brand-950/40 dark:hover:bg-brand-950/60"
-          : "group relative block rounded-sm border-2 border-brand-600 bg-white transition-colors hover:border-stone-400 dark:border-brand-500 dark:bg-stone-900 dark:hover:border-stone-600"}
+          ? "group relative block overflow-hidden rounded-card border border-line bg-brand-50 transition-colors duration-200 hover:bg-brand-100/60 dark:border-stone-700 dark:bg-brand-950/40 dark:hover:bg-brand-950/60"
+          : "group relative block rounded-sm border border-line bg-white transition-colors hover:border-stone-400 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-600"}
       >
         <div className={`flex flex-col gap-3 ${hero ? "p-6 sm:p-8 md:gap-10" : quiet ? "p-5 sm:p-6" : compact ? "p-4" : "p-4 sm:p-5"} md:flex-row md:items-center md:gap-6`}>
           <div className="min-w-0 flex-1">
