@@ -229,7 +229,7 @@ export default function LearningPathClient({
         <p className="mt-1 max-w-[68ch] text-sm leading-6 text-ink-body">{p.heroBody}</p>
         </div>
 
-        <div className="rounded-sm border border-stone-200 bg-page p-3.5 dark:border-stone-800 dark:bg-stone-950">
+        <div className="rounded-sm bg-page p-3.5 dark:bg-stone-950">
           {loading ? (
             <p className="text-sm text-ink-muted">{p.heroLoading}</p>
           ) : !nextLesson ? (
@@ -265,19 +265,19 @@ export default function LearningPathClient({
                 type="button"
                 onClick={() => pickTrack(id)}
                 aria-pressed={picked}
-                className={`cursor-pointer rounded-sm border p-4 text-left transition-colors ${
+                className={`group cursor-pointer rounded-sm p-4 text-left transition-colors duration-200 ${
                   picked
-                    ? "border-brand-600 bg-brand-50 dark:border-brand-400 dark:bg-brand-950/40"
-                    : "border-stone-300 bg-white hover:border-stone-400 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-600"
+                    ? "border border-brand-600 bg-brand-50 ring-1 ring-brand-600 dark:border-brand-400 dark:bg-brand-950/40 dark:ring-brand-400"
+                    : "border border-line hover:border-line-strong dark:border-stone-800 dark:hover:border-stone-700"
                 }`}
               >
                 <div className="flex items-start justify-between gap-2">
-                  <span className="text-base font-black tracking-tight text-ink-max">
+                  <span className={`text-base font-black tracking-tight transition-colors ${picked ? "text-brand-950 dark:text-brand-50" : "text-ink-soft group-hover:text-ink-max"}`}>
                     {id === "personal" ? p.trackPersonalName : p.trackProfessionalName}
                   </span>
-                  {picked && <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-accent-strong" />}
+                  {picked && <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-accent" />}
                 </div>
-                <p className="mt-1.5 text-sm leading-6 text-ink-soft">
+                <p className={`mt-1.5 text-sm leading-6 ${picked ? "text-ink-body" : "text-ink-muted"}`}>
                   {id === "personal" ? p.trackPersonalFor : p.trackProfessionalFor}
                 </p>
                 {/* Thẻ ĐANG CHỌN đếm số bài còn lại, thẻ kia đếm tổng.
@@ -289,7 +289,7 @@ export default function LearningPathClient({
                     Thẻ CHƯA chọn vẫn dùng tổng, và đó không phải cẩu thả: câu
                     hỏi ở đó là "hướng này to cỡ nào", không phải "tôi còn bao
                     nhiêu" - người đọc chưa học bài nào của nó. */}
-                <p className="mt-3 text-xs font-bold tabular-nums text-ink-muted">
+                <p className={`mt-3 text-xs font-bold tabular-nums ${picked ? "text-ink-muted" : "text-ink-faint"}`}>
                   {picked
                     ? format(p.trackLessonsLeft, { count: Math.max(0, counts[id] - done[id]) })
                     : format(p.trackLessons, { count: counts[id] })}{" "}
@@ -313,7 +313,7 @@ export default function LearningPathClient({
                 {picked ? (
                   <p className="mt-2 text-xs font-bold text-accent-strong">{p.trackPicked}</p>
                 ) : (
-                  <span className="mt-2 inline-flex rounded-sm border border-line-strong px-2.5 py-1 text-xs font-bold text-stone-700 dark:border-stone-700 dark:text-stone-300">
+                  <span className="mt-2 inline-flex items-center gap-1 text-xs font-semibold text-ink-faint transition-colors group-hover:text-accent-strong">
                     {p.trackPick}
                   </span>
                 )}
@@ -350,7 +350,7 @@ export default function LearningPathClient({
             ))}
           </Field>
         </div>
-        <div className="mt-3 rounded-sm border border-stone-200 bg-page p-3 dark:border-stone-800 dark:bg-stone-950">
+        <div className="mt-3 rounded-sm bg-page p-3 dark:bg-stone-950">
           <p className="text-sm font-bold tabular-nums text-ink-heading">
             {format(p.paceEstimate, { count: remaining, weeks })}
           </p>
@@ -402,7 +402,7 @@ export default function LearningPathClient({
             [p.howPracticeTitle, p.howPracticeBody],
           ].map(([title, body], i) => (
             <li key={title} className="flex gap-3">
-              <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-sm border border-line-strong font-mono text-xs font-medium tabular-nums text-ink-body dark:border-stone-700">
+              <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center font-mono text-xs font-medium tabular-nums text-ink-faint">
                 {String(i + 1).padStart(2, "0")}
               </span>
               <div>
@@ -456,7 +456,7 @@ export default function LearningPathClient({
               className="h-1 w-full overflow-hidden bg-surface-sunken"
             >
               <div
-                className="h-full bg-brand-600 transition-all duration-500 dark:bg-brand-500"
+                className="h-full bg-cyan-500 motion-safe:transition-[width] motion-safe:duration-700 dark:bg-cyan-400"
                 style={{ width: `${total > 0 ? Math.round((done[track] / total) * 100) : 0}%` }}
               />
             </div>
@@ -532,7 +532,7 @@ function Card({
     // như bị cắt.
     <section id={id} className={`scroll-mt-6 ${panel} p-4`}>
       <div className="flex items-center gap-2.5">
-        <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-sm border border-line-strong bg-surface-raised text-ink-body dark:border-stone-700 dark:bg-stone-950">
+        <span className="flex shrink-0 items-center text-ink-faint">
           {icon}
         </span>
         <h2 className="text-base font-black tracking-tight text-ink-max">{title}</h2>
@@ -561,7 +561,7 @@ function Pill({ active, onClick, children }: { active: boolean; onClick: () => v
       className={`cursor-pointer rounded-sm border px-3 py-1.5 text-sm font-bold transition-colors ${
         active
           ? "border-brand-600 bg-brand-50 text-brand-800 dark:border-brand-400 dark:bg-brand-950/40 dark:text-brand-200"
-          : "border-stone-300 bg-white text-ink-body hover:border-stone-400 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-600"
+          : "border-line text-ink-muted hover:border-line-strong hover:text-ink-body dark:border-stone-800 dark:hover:border-stone-700"
       }`}
     >
       {children}

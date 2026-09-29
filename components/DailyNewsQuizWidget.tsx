@@ -18,6 +18,10 @@ interface DailyNewsQuizWidgetProps {
    *  SIGNAL của /kiem-tra - tiêu đề ngày, trạng thái hoàn thành, phản hồi của
    *  Cơ Cơ kèm lập luận, không tự gập. */
   variant?: "card" | "signal";
+  /** Bản lùi của cột phải dashboard: không khung, không ô icon, tiêu đề chữ
+   *  nhạt - để thẻ Học tiếp là thứ duy nhất nổi. Chỉ dashboard bật; /hoc-bai
+   *  và /kiem-tra giữ nguyên. */
+  quiet?: boolean;
 }
 
 const subscribeNoop = () => () => {};
@@ -87,7 +91,7 @@ const KIND_STYLES: Record<QuizKind, { Icon: typeof Newspaper; tint: string; badg
   },
 };
 
-export default function DailyNewsQuizWidget({ userId, compact = false, variant = "card" }: DailyNewsQuizWidgetProps) {
+export default function DailyNewsQuizWidget({ userId, compact = false, variant = "card", quiet = false }: DailyNewsQuizWidgetProps) {
   const { t, locale } = useI18n();
   const isSignal = variant === "signal";
   // Ngày chỉ tính sau khi gắn: giờ phía server có thể khác trình duyệt.
@@ -405,8 +409,10 @@ export default function DailyNewsQuizWidget({ userId, compact = false, variant =
    * Cùng một state, khác mỗi cỡ chữ và khoảng đệm - nên nó là một hàm nhận
    * `big` chứ không phải hai khối JSX chép đôi, thứ sẽ lệch nhau ở lần sửa
    * tiếp theo. */
-  const renderQuiz = (big: boolean) => (
-    <div className={big ? "space-y-5" : isSignal ? "mt-4 space-y-4" : "mt-4 space-y-4 pt-3.5 border-t border-line relative z-10"}>
+  const renderQuiz = (big: boolean) => {
+    const soft = quiet && !big;
+    return (
+    <div className={big ? "space-y-5" : isSignal || soft ? "mt-4 space-y-4" : "mt-4 space-y-4 pt-3.5 border-t border-line relative z-10"}>
       {/* Tag / Category Badge */}
       <div className="flex items-center gap-2">
         <span className={`eyebrow inline-flex items-center gap-1.5 px-2 py-0.5 rounded-sm border ${kindStyle.badge}`}>
@@ -452,34 +458,53 @@ export default function DailyNewsQuizWidget({ userId, compact = false, variant =
               key={idx}
               disabled={activeIsAnswered}
               onClick={() => (practiceMode ? setPracticeSelectedOpt(idx) : setSelectedOpt(idx))}
-              className={`w-full text-left rounded-sm border leading-relaxed transition-colors flex items-center gap-3.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-stone-900 cursor-pointer ${
+              className={`w-full text-left rounded-sm ${isSignal ? "border-2" : "border"} leading-relaxed transition-colors flex items-center gap-3.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-stone-900 cursor-pointer ${
                 big ? "p-4 text-sm" : "p-3.5 text-xs sm:text-[13px]"
               } ${
-                showSuccess
-                  ? "border-brand-600 bg-brand-50 dark:bg-brand-950/40 text-brand-950 dark:text-brand-100 font-bold"
+                /* Biến thể signal (/kiem-tra): đáp án đang chọn nổi hẳn (viền 2px
+                   + nền xanh nhạt), chưa chọn thì bỏ viền và lùi chữ; đúng là
+                   cyan (thành công). Biến thể thẻ ở dashboard giữ nguyên. */
+                isSignal
+                  ? showSuccess
+                    ? "border-cyan-600 bg-cyan-50 text-ink-max font-bold dark:border-cyan-400 dark:bg-cyan-950/40"
+                    : showFailure
+                    ? "border-rose-500 bg-rose-50 dark:bg-rose-950/40 text-rose-950 dark:text-rose-100"
+                    : isSelected
+                    ? "border-accent bg-accent-soft text-ink-max font-bold"
+                    : activeIsAnswered
+                    ? "border-transparent bg-surface-raised/40 text-ink-faint opacity-70"
+                    : "border-transparent bg-surface-raised/60 hover:bg-surface-raised text-ink-soft"
+                  : showSuccess
+                  ? "border-brand-600 bg-brand-50 dark:bg-brand-950/40 text-brand-950 dark:text-brand-50 font-bold"
                   : showFailure
                   ? "border-rose-500 bg-rose-50 dark:bg-rose-950/40 text-rose-950 dark:text-rose-100"
                   : isSelected
                   ? "border-brand-600 bg-brand-50 dark:bg-brand-950/30 text-ink-max font-bold"
+                  : soft
+                  ? "border-line hover:border-line-strong text-ink-soft"
                   : "border-line-strong hover:border-line-firm bg-white dark:bg-stone-900 text-ink-heading"
               }`}
             >
               <span className="shrink-0">
                 {showSuccess ? (
-                  <CheckCircle2 className="w-6 h-6 text-accent" />
+                  <CheckCircle2 className={`w-6 h-6 ${isSignal ? "text-cyan-600 dark:text-cyan-400" : "text-accent"}`} />
                 ) : showFailure ? (
                   <XCircle className="w-6 h-6 text-rose-500" />
                 ) : (
                   <span className={`w-7 h-7 rounded-sm border flex items-center justify-center font-mono text-xs font-medium transition-colors ${
                     isSelected
                       ? "border-brand-600 bg-brand-600 text-white"
+                      : isSignal
+                      ? "border-line text-ink-muted"
+                      : soft
+                      ? "border-line text-ink-muted"
                       : "border-stone-300 bg-surface-raised text-ink-body dark:border-stone-700 dark:bg-stone-950"
                   }`}>
                     {String.fromCharCode(65 + idx)}
                   </span>
                 )}
               </span>
-              <span className="flex-1 font-medium text-ink-heading">{opt}</span>
+              <span className={`flex-1 font-medium ${(soft || isSignal) && !isSelected && !showSuccess ? "text-ink-soft" : "text-ink-heading"}`}>{opt}</span>
             </button>
           );
         })}
@@ -490,7 +515,9 @@ export default function DailyNewsQuizWidget({ userId, compact = false, variant =
         <button
           onClick={practiceMode ? submitPractice : handleSubmit}
           disabled={activeSelectedOpt === null}
-          className={`${btnPrimary} w-full cursor-pointer ${big ? "py-3" : ""}`}
+          className={soft
+            ? "inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-control border border-brand-600 px-4 py-2 text-sm font-bold text-brand-700 transition-colors hover:bg-brand-50 disabled:cursor-not-allowed disabled:border-line disabled:text-ink-faint disabled:hover:bg-transparent dark:border-brand-400 dark:text-brand-300 dark:hover:bg-white/5 dark:disabled:border-white/10"
+            : `${btnPrimary} w-full cursor-pointer ${big ? "py-3" : ""} ${isSignal ? "disabled:!bg-surface-raised disabled:!text-ink-faint disabled:!opacity-100" : ""}`}
         >
           <Send className="w-4 h-4" aria-hidden />
           <span>{t.newsQuiz.submitAnswer}</span>
@@ -538,7 +565,8 @@ export default function DailyNewsQuizWidget({ userId, compact = false, variant =
         </div>
       )}
     </div>
-  );
+    );
+  };
 
   const dialog = expanded ? (
       <div
@@ -650,10 +678,10 @@ export default function DailyNewsQuizWidget({ userId, compact = false, variant =
             <button
               type="button"
               onClick={startPractice}
-              className="group mt-auto flex w-full items-center justify-between gap-3 border-t border-line pt-3 text-left text-xs font-bold text-ink-body transition-colors hover:text-accent-strong cursor-pointer"
+              className="group mt-auto flex w-full items-center justify-between gap-3 border-t border-line-soft pt-3 text-left text-xs font-bold text-ink-muted transition-colors hover:text-accent-strong cursor-pointer"
             >
               <span>{t.dashCards.practiceUnlimited}</span>
-              <ArrowRight className="h-3.5 w-3.5 shrink-0 text-accent-strong transition-transform group-hover:translate-x-0.5" />
+              <ArrowRight className="h-3.5 w-3.5 shrink-0 text-ink-faint transition-[color,transform] group-hover:text-accent-strong motion-safe:group-hover:translate-x-0.5" />
             </button>
           )}
         </section>
@@ -664,7 +692,7 @@ export default function DailyNewsQuizWidget({ userId, compact = false, variant =
 
   return (
     <>
-      <div className={`${panel} p-5 sm:p-6 relative overflow-hidden font-sans`}>
+      <div className={`${quiet ? "px-1" : `${panel} p-5 sm:p-6`} relative overflow-hidden font-sans`}>
         {/* Header */}
         <div className="w-full flex items-center justify-between gap-2 relative z-10">
           <button
@@ -672,10 +700,14 @@ export default function DailyNewsQuizWidget({ userId, compact = false, variant =
             onClick={() => setCollapsed(!collapsed)}
             className="flex items-center gap-3 min-w-0 flex-1 cursor-pointer text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-stone-900"
           >
-            <div className="w-10 h-10 rounded-sm border border-line-strong bg-surface-raised text-ink-body dark:border-stone-700 dark:bg-stone-950 flex items-center justify-center shrink-0">
-              <BookOpen className="w-5 h-5" />
-            </div>
-            <h3 className="font-black tracking-tight text-ink-max flex items-center gap-2 text-sm sm:text-base min-w-0">
+            {quiet ? (
+              <BookOpen className="w-4 h-4 shrink-0 text-ink-faint" aria-hidden />
+            ) : (
+              <div className="w-10 h-10 rounded-sm border border-line-strong bg-surface-raised text-ink-body dark:border-stone-700 dark:bg-stone-950 flex items-center justify-center shrink-0">
+                <BookOpen className="w-5 h-5" />
+              </div>
+            )}
+            <h3 className={quiet ? "font-bold tracking-tight text-ink-soft flex items-center gap-2 text-sm min-w-0" : "font-black tracking-tight text-ink-max flex items-center gap-2 text-sm sm:text-base min-w-0"}>
               <span>{t.newsQuiz.titleFull}</span>
               {!activeIsAnswered ? (
                 <StatusDot />
@@ -724,15 +756,17 @@ export default function DailyNewsQuizWidget({ userId, compact = false, variant =
         <button
           type="button"
           onClick={startPractice}
-          className={`${panel} w-full mt-4 p-3 sm:p-4 flex items-center justify-between gap-3 group cursor-pointer transition-colors hover:border-line-firm text-left`}
+          className={quiet
+            ? "w-full mt-3 px-1 py-1.5 flex items-center justify-between gap-3 group cursor-pointer text-left"
+            : `${panel} w-full mt-4 p-3 sm:p-4 flex items-center justify-between gap-3 group cursor-pointer transition-colors hover:border-line-firm text-left`}
         >
           <div className="flex-1 min-w-0">
-            <span className="text-xs sm:text-sm font-black text-ink">
+            <span className={quiet ? "text-xs font-semibold text-ink-muted transition-colors group-hover:text-accent-strong" : "text-xs sm:text-sm font-black text-ink"}>
               {t.dashCards.practiceUnlimited}
             </span>
           </div>
 
-          <div className="shrink-0 pr-1 text-accent-strong group-hover:translate-x-0.5 transition-transform">
+          <div className={`shrink-0 pr-1 group-hover:translate-x-0.5 transition-[transform,color] ${quiet ? "text-ink-faint group-hover:text-accent-strong" : "text-accent-strong"}`}>
             <ArrowRight className="w-4 h-4" />
           </div>
         </button>

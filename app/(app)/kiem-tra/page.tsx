@@ -13,7 +13,7 @@ import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 import { useQuizKeys } from "@/lib/use-quiz-keys";
 import { getCurrentUserId } from "@/lib/current-user";
-import { Sys, StatusDot, panel, btnPrimary, btnSecondary, textLink } from "@/components/ui/system";
+import { Sys, StatusDot, btnPrimary, btnSecondary, textLink } from "@/components/ui/system";
 
 /** Mã định vị mono ở đầu trang: chính đường dẫn của route, không phải nhãn dịch. */
 const ROUTE_CODE = "THCN://APP/KIEM-TRA";
@@ -230,17 +230,17 @@ export default function KiemTraPage() {
 
       <div className="flex-1 min-h-0 overflow-y-auto max-w-6xl mx-auto w-full px-4 sm:px-6 py-3 sm:py-4">
         {stage === "setup" && (
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 lg:gap-4 items-stretch">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-x-10 lg:gap-y-6 items-stretch">
             {/* TRÁI: DAILY SIGNAL - thử thách công nghệ của hôm nay. */}
             <div className="lg:col-span-6 h-full flex flex-col">
-              <div className={`${panel} p-4 sm:p-5 h-full flex flex-col`}>
+              <div className="h-full flex flex-col">
                 <DailyNewsQuizWidget userId={userId || "guest"} variant="signal" />
               </div>
             </div>
 
             {/* PHẢI: TRAINING LAB - chọn mảng + độ khó rồi chạy một phiên. */}
             <div className="lg:col-span-6 h-full flex flex-col">
-              <div className={`${panel} p-4 sm:p-5 h-full flex flex-col gap-4`}>
+              <div className="h-full flex flex-col gap-5 border-t border-line-soft pt-6 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-10">
                 <div>
                   <Sys className="text-accent-strong">{t.revampQuiz.labName}</Sys>
                   <CoCoSays lines={t.coco.kiemTra} size={40} className="mt-2" />
@@ -274,16 +274,16 @@ export default function KiemTraPage() {
                           aria-checked={on}
                           className={`relative text-left px-3 py-2.5 transition-colors cursor-pointer ${
                             on
-                              ? "border-2 border-brand-600 bg-brand-50/60 dark:border-brand-400 dark:bg-brand-950/30"
-                              : "border-2 border-transparent bg-surface-raised hover:border-line-strong dark:bg-stone-900"
+                              ? "border-2 border-accent bg-accent-soft"
+                              : "border-2 border-transparent bg-surface-raised/60 opacity-80 hover:bg-surface-raised hover:opacity-100"
                           }`}
                         >
                           <div className="flex items-center justify-between gap-2">
                             <Sys className={on ? "text-accent-strong" : "text-ink-faint"}>{letter(i)}</Sys>
                             {on && <Check className="h-3.5 w-3.5 text-accent-strong" aria-hidden />}
                           </div>
-                          <p className={`mt-1 text-sm font-black leading-tight ${on ? "text-ink-max" : "text-ink-body"}`}>{trackLabel(id)}</p>
-                          <p className="mt-0.5 text-[11px] leading-snug text-ink-muted">{desc}</p>
+                          <p className={`mt-1 text-sm font-black leading-tight ${on ? "text-ink-max" : "text-ink-soft"}`}>{trackLabel(id)}</p>
+                          <p className={`mt-0.5 text-[11px] leading-snug ${on ? "text-ink-body" : "text-ink-faint"}`}>{desc}</p>
                         </button>
                       );
                     })}
@@ -294,7 +294,7 @@ export default function KiemTraPage() {
                 <div>
                   <Sys className="text-ink-muted">{t.revampQuiz.labDifficultyLabel}</Sys>
                   <div
-                    className="mt-1.5 grid grid-cols-4 border border-line-strong dark:border-stone-700"
+                    className="mt-1.5 grid grid-cols-4 gap-1 rounded-sm bg-surface-raised/60 p-1"
                     role="radiogroup"
                     aria-label={t.revampQuiz.labDifficultyLabel}
                   >
@@ -307,10 +307,10 @@ export default function KiemTraPage() {
                           role="radio"
                           onClick={() => setDifficulty(id)}
                           aria-checked={on}
-                          className={`py-2 text-xs font-bold transition-colors cursor-pointer ${i > 0 ? "border-l border-line-strong dark:border-stone-700" : ""} ${
+                          className={`rounded-xs py-1.5 text-xs font-bold transition-colors cursor-pointer ${
                             on
-                              ? "bg-brand-600 text-white dark:bg-brand-500 dark:text-stone-950"
-                              : "text-ink-muted hover:bg-surface-raised hover:text-ink dark:hover:bg-stone-800"
+                              ? "bg-surface text-accent-strong font-black ring-2 ring-inset ring-accent"
+                              : "text-ink-muted hover:bg-surface-raised hover:text-ink"
                           }`}
                         >
                           {difficultyLabel(id)}
@@ -349,14 +349,14 @@ export default function KiemTraPage() {
             <div className="lg:col-span-12">
               <Link
                 href="/thi-vuot-chang"
-                className={`${panel} group flex items-center justify-between gap-3 px-4 py-3 text-ink transition-colors hover:border-line-firm`}
+                className="group flex items-center justify-between gap-3 border-t border-line-soft pt-4 text-ink-muted transition-colors hover:text-ink"
               >
                 <span className="flex items-center gap-2.5">
-                  <Trophy className="w-4 h-4 text-ink-muted" />
-                  <span className="text-sm font-black group-hover:text-accent-strong">{t.nav.stageSkipExam}</span>
-                  <span className="hidden sm:inline text-xs font-medium text-ink-muted">{t.stageSkip.pageSubtitle}</span>
+                  <Trophy className="w-4 h-4 text-ink-faint" />
+                  <span className="text-sm font-bold group-hover:text-accent-strong">{t.nav.stageSkipExam}</span>
+                  <span className="hidden sm:inline text-xs font-medium text-ink-faint">{t.stageSkip.pageSubtitle}</span>
                 </span>
-                <ArrowRight className="w-4 h-4 shrink-0 text-accent-strong" />
+                <ArrowRight className="w-4 h-4 shrink-0 text-ink-faint transition-colors group-hover:text-accent-strong" />
               </Link>
             </div>
           </div>
@@ -435,7 +435,7 @@ export default function KiemTraPage() {
               {q.options.map((opt, oi) => {
                 const isSelected = selected === oi;
                 const isCorrectOpt = oi === q.correct;
-                let cls = "border-stone-300 bg-white text-ink hover:border-stone-400 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-600";
+                let cls = "border-transparent bg-surface-raised/60 text-ink-body hover:bg-surface-raised hover:text-ink";
                 let gutter = "text-ink-faint";
                 if (submitted) {
                   if (isCorrectOpt) {
@@ -444,9 +444,9 @@ export default function KiemTraPage() {
                   } else if (isSelected) {
                     cls = "border-red-600 bg-red-50 text-red-800 font-semibold dark:border-red-400 dark:bg-red-950/40 dark:text-red-200";
                     gutter = "text-danger";
-                  } else cls = "border-stone-200 bg-white text-ink-muted dark:border-stone-800 dark:bg-stone-900";
+                  } else cls = "border-transparent bg-surface-raised/40 text-ink-faint";
                 } else if (isSelected) {
-                  cls = "border-brand-600 bg-brand-50 text-ink-max font-semibold dark:border-brand-400 dark:bg-brand-950/40";
+                  cls = "border-accent bg-accent-soft text-ink-max font-semibold";
                   gutter = "text-accent-strong";
                 }
                 return (
@@ -454,7 +454,7 @@ export default function KiemTraPage() {
                     key={oi}
                     disabled={submitted}
                     onClick={() => choose(oi)}
-                    className={`grid w-full grid-cols-[1.5rem_minmax(0,1fr)_1rem] items-baseline text-left px-3 py-2.5 rounded-sm border transition-colors cursor-pointer text-sm leading-6 select-text ${cls}`}
+                    className={`grid w-full grid-cols-[1.5rem_minmax(0,1fr)_1rem] items-baseline text-left px-3 py-2.5 rounded-sm border-2 transition-colors cursor-pointer text-sm leading-6 select-text ${cls}`}
                   >
                     <Sys className={gutter}>{letter(oi)}</Sys>
                     <span>{opt}</span>
@@ -515,7 +515,7 @@ export default function KiemTraPage() {
             )}
 
             {!submitted ? (
-              <button disabled={selected === null} onClick={verify} className={`${btnPrimary} w-full py-3 cursor-pointer`}>
+              <button disabled={selected === null} onClick={verify} className={`${btnPrimary} w-full py-3 cursor-pointer disabled:!bg-surface-raised disabled:!text-ink-faint disabled:!opacity-100`}>
                 <CheckCircle2 className="w-4 h-4" />
                 {t.quizPage.checkAnswer}
               </button>

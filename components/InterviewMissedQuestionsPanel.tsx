@@ -5,7 +5,7 @@ import { Loader2, RotateCcw } from "lucide-react";
 import { getMostMissedQuestions, MIN_WRONG_FOR_MISSED, type MissedQuestion } from "@/lib/interview-weak-areas";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
-import { panel, textLink } from "@/components/ui/system";
+import { textLink } from "@/components/ui/system";
 
 // "Những câu tôi hay sai" - mức CHI TIẾT TỪNG CÂU, khác InterviewWeakAreasPanel ngay
 // bên cạnh vốn tổng hợp theo chủ đề.
@@ -50,7 +50,7 @@ export default function InterviewMissedQuestionsPanel({ userId, onDrillQuestions
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center gap-2 rounded-3xl border border-stone-200/90 dark:border-stone-800 bg-white dark:bg-stone-900 p-5 text-xs font-semibold text-stone-400">
+      <div className="flex items-center justify-center gap-2 border-t border-line-soft pt-4 pb-2 text-xs font-semibold text-stone-400">
         <Loader2 className="h-3.5 w-3.5 animate-spin" />
         {t.interview.missedLoading}
       </div>
@@ -62,7 +62,7 @@ export default function InterviewMissedQuestionsPanel({ userId, onDrillQuestions
   const shown = missed.slice(0, maxItems);
 
   return (
-    <div className={`${panel} p-5 flex flex-col justify-between`}>
+    <div className="border-t border-line-soft pt-4 flex flex-col justify-between">
     <div>
     <div className="flex items-center justify-between gap-2 mb-3">
         <div className="min-w-0">
@@ -79,9 +79,9 @@ export default function InterviewMissedQuestionsPanel({ userId, onDrillQuestions
         </button>
       </div>
 
-      <div className="space-y-2">
+      <div className="divide-y divide-line-soft">
         {shown.map((m) => (
-          <div key={m.questionId} className="p-3 rounded-sm border border-line-strong flex items-center justify-between gap-3">
+          <div key={m.questionId} className="py-2 flex items-center justify-between gap-3">
             <span className="min-w-0 truncate text-xs font-bold text-ink-heading">
               {m.label}
             </span>

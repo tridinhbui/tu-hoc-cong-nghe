@@ -179,15 +179,15 @@ export default function ResumeLearningButton({ activeTrack, compact = false, use
         href={`/bai-hoc/${nextLesson.slug}`}
         onClick={() => trackFeatureClick("resume_learning_click", { label: nextLesson.slug })}
         className={hero
-          ? "group relative block overflow-hidden rounded-[20px] bg-gradient-to-br from-[#fff4e6] via-[#fdebd6] to-[#f6dcc0] shadow-[0_1px_0_rgba(120,70,20,0.06),0_12px_32px_-18px_rgba(150,80,20,0.45)] transition-shadow hover:shadow-[0_1px_0_rgba(120,70,20,0.06),0_18px_40px_-18px_rgba(150,80,20,0.55)] dark:from-[#2a1d12] dark:via-[#24190f] dark:to-[#1d140c]"
+          ? "group relative block overflow-hidden rounded-card border-2 border-brand-600 bg-brand-50 transition-colors duration-200 hover:bg-brand-100/60 dark:border-brand-500 dark:bg-brand-950/40 dark:hover:bg-brand-950/60"
           : "group relative block rounded-sm border-2 border-brand-600 bg-white transition-colors hover:border-stone-400 dark:border-brand-500 dark:bg-stone-900 dark:hover:border-stone-600"}
       >
         <div className={`flex flex-col gap-3 ${hero ? "p-6 sm:p-8 md:gap-10" : quiet ? "p-5 sm:p-6" : compact ? "p-4" : "p-4 sm:p-5"} md:flex-row md:items-center md:gap-6`}>
           <div className="min-w-0 flex-1">
             <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1">
               {hero ? (
-                <span className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.14em] text-orange-700 dark:text-orange-300">
-                  <span className="h-1.5 w-1.5 rounded-full bg-orange-500" aria-hidden />
+                <span className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.14em] text-accent-strong">
+                  <span className="h-2 w-2 rounded-full bg-brand-600 ring-4 ring-brand-600/15 dark:bg-brand-400 dark:ring-brand-400/20" aria-hidden />
                   {t.revampDashboard.heroLabel}
                 </span>
               ) : (
@@ -204,12 +204,12 @@ export default function ResumeLearningButton({ activeTrack, compact = false, use
                 </span>
               )}
             </div>
-            <span className={`block text-xs font-semibold ${hero ? "mt-4 text-[#9a6b43] dark:text-orange-200/70" : "mt-2 text-ink-faint"}`}>{lessonLabel}</span>
-            <h2 className={`mt-0.5 font-black tracking-tight leading-snug ${hero ? "text-2xl sm:text-[32px] sm:leading-tight text-[#3b2414] dark:text-orange-50" : "text-lg sm:text-2xl text-ink-max"}`}>
+            <span className={`block text-xs font-semibold ${hero ? "mt-4 text-ink-muted dark:text-stone-400" : "mt-2 text-ink-faint"}`}>{lessonLabel}</span>
+            <h2 className={`mt-0.5 font-black tracking-tight leading-snug ${hero ? "text-2xl sm:text-[32px] sm:leading-tight text-brand-950 dark:text-stone-100" : "text-lg sm:text-2xl text-ink-max"}`}>
               {shortTitle}
             </h2>
             {nextLesson.subtitle && (
-              <p className={`line-clamp-2 leading-snug ${hero ? "mt-2 text-[15px] text-[#7a5436] dark:text-orange-100/70" : "mt-1 text-sm text-ink-muted"}`}>{nextLesson.subtitle}</p>
+              <p className={`line-clamp-2 leading-snug ${hero ? "mt-2 text-[15px] text-ink-body dark:text-stone-400" : "mt-1 text-sm text-ink-muted"}`}>{nextLesson.subtitle}</p>
             )}
 
             {/* Tử số phải cùng phạm vi với mẫu số. `completedCount` đếm bài
@@ -220,16 +220,16 @@ export default function ResumeLearningButton({ activeTrack, compact = false, use
                 tiến độ đã làm, không phải hành động. */}
             <div className={`flex items-center gap-3 ${hero ? "mt-6" : "mt-4"}`}>
               {trackProgress && (
-                <span className={`text-xs font-medium whitespace-nowrap ${hero ? "text-[#9a6b43] dark:text-orange-200/70" : "text-ink-faint"}`}>
+                <span className={`text-xs font-medium whitespace-nowrap ${hero ? "text-ink-muted dark:text-stone-400" : "text-ink-faint"}`}>
                   {format(t.resume.resumeProgress, {
                     done: trackProgress.completed,
                     total: trackProgress.total,
                   })}
                 </span>
               )}
-              <div className={`flex-1 max-w-xs overflow-hidden relative ${hero ? "h-2 rounded-full bg-white/70 dark:bg-white/10" : "h-1.5 rounded-xs bg-surface-sunken"}`}>
+              <div className={`flex-1 max-w-xs overflow-hidden relative ${hero ? "h-2 rounded-full bg-brand-100 dark:bg-white/10" : "h-1.5 rounded-xs bg-surface-sunken"}`}>
                 <div
-                  className={`h-full transition-all duration-700 ${hero ? "rounded-full bg-orange-500" : "bg-cyan-400 dark:bg-cyan-600"}`}
+                  className={`h-full motion-safe:transition-[width] motion-safe:duration-700 ${hero ? "rounded-full bg-cyan-500 dark:bg-cyan-400" : "bg-cyan-400 dark:bg-cyan-600"}`}
                   style={{ width: `${Math.max(2, progressPercent)}%` }}
                 />
               </div>
@@ -245,14 +245,14 @@ export default function ResumeLearningButton({ activeTrack, compact = false, use
               đã là một <Link>: một <a> lồng trong <a> là HTML không hợp lệ,
               nên đây là một cái nút TRÔNG như nút, còn cú bấm vẫn do thẻ nhận. */}
           <span className={hero
-            ? "pointer-events-none inline-flex shrink-0 items-center gap-2 self-start rounded-full bg-orange-600 px-6 py-3.5 text-sm font-bold text-white shadow-[0_8px_20px_-10px_rgba(194,65,12,0.8)] transition-colors group-hover:bg-orange-700 md:self-center"
+            ? "pointer-events-none inline-flex shrink-0 items-center gap-2 self-start rounded-full bg-brand-600 px-7 py-3.5 text-[15px] font-bold text-white transition-colors group-hover:bg-brand-700 md:self-center"
             : `${btnPrimary} shrink-0 self-start md:self-center px-5 py-3 group-hover:bg-brand-700 dark:group-hover:bg-brand-300 pointer-events-none`}>
             {t.resume.resumeCta}
-            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+            <ArrowRight className="w-4 h-4 motion-safe:transition-transform group-hover:translate-x-0.5" />
           </span>
         </div>
         {hero && footnote && (
-          <div className="border-t border-[#e9c9a4]/60 bg-white/35 px-6 py-3 text-xs text-[#8a5f3c] sm:px-8 dark:border-white/5 dark:bg-white/5 dark:text-orange-100/60">
+          <div className="-mt-2 px-6 pb-5 text-xs text-ink-muted sm:px-8 sm:pb-6 dark:text-stone-400">
             {footnote}
           </div>
         )}

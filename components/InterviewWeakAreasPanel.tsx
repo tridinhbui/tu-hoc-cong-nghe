@@ -11,7 +11,7 @@ import {
 } from "@/lib/interview-weak-areas";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
-import { panel, textLink } from "@/components/ui/system";
+import { textLink } from "@/components/ui/system";
 
 // Reads the per-question record written by the submit route and turns it into
 // "which section should I go back to". Without this the drill could tell you
@@ -72,7 +72,7 @@ export default function InterviewWeakAreasPanel({ userId, onDrillSection, refres
 
   if (loading) {
     return (
-      <div className="rounded-3xl border border-stone-200/90 dark:border-stone-800 bg-white dark:bg-stone-900 p-5 flex items-center justify-center gap-2">
+      <div className="border-t border-line-soft pt-4 pb-2 flex items-center justify-center gap-2">
         <Loader2 className="w-4 h-4 animate-spin text-stone-400" />
         <span className="text-xs font-bold text-ink-muted">{t.ibWeakAreas.computingLoading}</span>
       </div>
@@ -89,7 +89,7 @@ export default function InterviewWeakAreasPanel({ userId, onDrillSection, refres
   if (sortedWeakest.length === 0) return null;
 
   return (
-    <div className={`${panel} p-5 flex flex-col justify-between`}>
+    <div className="border-t border-line-soft pt-4 flex flex-col justify-between">
     <div>
     <div className="flex items-center justify-between gap-2 mb-3">
     <h3 className="eyebrow text-ink-soft flex items-center gap-1.5">
@@ -106,9 +106,9 @@ export default function InterviewWeakAreasPanel({ userId, onDrillSection, refres
     )}
       </div>
 
-      <div className="space-y-2.5">
+      <div className="divide-y divide-line-soft">
       {sortedWeakest.map((p) => (
-        <div key={p.category} className="p-3 rounded-sm border border-line-strong">
+        <div key={p.category} className="py-2">
         <div className="flex items-baseline justify-between gap-2 mb-1.5">
         <span className="text-xs font-black text-ink truncate">
                   {p.label}

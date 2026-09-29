@@ -133,7 +133,7 @@ function MissionIcon({ missionKey }: { missionKey: StudyRoomMission["mission_key
 
 function noteColorClass(color: string) {
   const colors: Record<string, string> = {
-    emerald: "bg-brand-50 dark:bg-brand-950/50 border-accent-line text-brand-950 dark:text-brand-100",
+    emerald: "bg-brand-50 dark:bg-brand-950/50 border-accent-line text-brand-950 dark:text-brand-50",
     amber: "bg-amber-50 dark:bg-amber-950/50 border-warn-line text-amber-950 dark:text-amber-100",
     sky: "bg-sky-50 dark:bg-sky-950/50 border-sky-200 dark:border-sky-800 text-sky-950 dark:text-sky-100",
     rose: "bg-rose-50 dark:bg-rose-950/50 border-alert-line text-rose-950 dark:text-rose-100",

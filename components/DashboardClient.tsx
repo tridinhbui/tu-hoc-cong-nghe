@@ -1240,10 +1240,10 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                   {/* ── Tiến độ: cấp, XP, chuỗi ngày trong một mặt nền.
                       Dải cấp đầy đủ và danh sách người ở từng cấp chỉ mở khi
                       bấm "Xem các cấp". */}
-                  <section className="rounded-[20px] bg-[#fbf5ec] p-6 sm:p-7 dark:bg-stone-900/60">
+                  <section className="px-1">
                     <div className="flex flex-wrap items-center justify-between gap-x-8 gap-y-5">
                       <div className="flex min-w-0 items-center gap-5">
-                        <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-2xl ring-2 ring-orange-300/80 dark:ring-orange-500/40">
+                        <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-2xl ring-1 ring-line dark:ring-white/10">
                           <Image
                             src={`/levels/level${currentUserLevel}.jpg`}
                             alt={t.levelTitles[currentUserLevel] ?? ""}
@@ -1253,24 +1253,24 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                           />
                         </div>
                         <div className="min-w-0">
-                          <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#a0714a] dark:text-orange-200/60">
+                          <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-ink-faint dark:text-stone-400">
                             {t.revampDashboard.progressTitle}
                           </p>
                           <div className="mt-1 flex flex-wrap items-baseline gap-x-2.5">
-                            <span className="font-mono text-xl font-black tabular-nums text-orange-700 dark:text-orange-300">
+                            <span className="font-mono text-xl font-black tabular-nums text-brand-950 dark:text-stone-100">
                               LV{String(currentUserLevel).padStart(2, "0")}
                             </span>
-                            <h3 className="text-lg font-black tracking-tight text-[#3b2414] dark:text-orange-50">
+                            <h3 className="text-lg font-black tracking-tight text-brand-950 dark:text-stone-100">
                               {t.levelTitles[currentUserLevel] ?? LEVELS[currentUserLevel - 1]?.name}
                             </h3>
-                            <span className="font-mono text-xs tabular-nums text-[#a0714a]/80">
+                            <span className="font-mono text-xs font-semibold tabular-nums text-warn-strong">
                               {format(t.revampDashboard.totalXp, { xp: userXp })}
                             </span>
                           </div>
-                          <div className="mt-3 h-2 w-full max-w-[360px] overflow-hidden rounded-full bg-[#efe1cf] dark:bg-white/10">
-                            <div className="h-full rounded-full bg-orange-500 transition-[width] duration-500" style={{ width: `${nextLvl ? levelProgress : 100}%` }} />
+                          <div className="mt-3 h-2 w-full max-w-[360px] overflow-hidden rounded-full bg-surface-sunken dark:bg-white/10">
+                            <div className="h-full rounded-full bg-cyan-500 motion-safe:transition-[width] motion-safe:duration-700 dark:bg-cyan-400" style={{ width: `${nextLvl ? levelProgress : 100}%` }} />
                           </div>
-                          <p className="mt-2 text-xs text-[#8a5f3c] dark:text-orange-100/60">
+                          <p className="mt-2 text-xs font-semibold text-ink-body dark:text-stone-400">
                             {nextLvl
                               ? format(t.dashboard.nextUnlockLine, { level: String(nextLvl.level).padStart(2, "0"), name: t.levelTitles[nextLvl.level] ?? nextLvl.name, xp: xpLeft })
                               : t.dashboard.maxLevelLine}
@@ -1284,7 +1284,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                       type="button"
                       onClick={() => setLevelsOpen((v) => !v)}
                       aria-expanded={levelsOpen}
-                      className="mt-5 inline-flex cursor-pointer items-center gap-1 text-xs font-semibold text-[#9a6b43] transition-colors hover:text-orange-700 dark:text-orange-200/70"
+                      className="mt-4 inline-flex cursor-pointer items-center gap-1 text-xs font-semibold text-ink-faint transition-colors hover:text-brand-700 dark:text-stone-400 dark:hover:text-brand-300"
                     >
                       {levelsOpen ? t.revampDashboard.hideDetails : t.revampDashboard.showLevels}
                       <ChevronDown className={`h-3.5 w-3.5 transition-transform ${levelsOpen ? "rotate-180" : ""}`} aria-hidden />
@@ -1352,9 +1352,9 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                     title={t.levelTitles[lvl.level] ?? lvl.name}
                                     className={`relative flex min-h-[64px] w-[96px] shrink-0 cursor-pointer flex-col rounded-control px-2 py-1.5 text-left transition-[background-color,opacity] ${
                                       isUserCurrent
-                                        ? "bg-orange-600 text-white dark:bg-orange-600"
+                                        ? "bg-brand-600 text-white dark:bg-brand-600"
                                         : isNextLevel
-                                          ? `bg-orange-50 hover:bg-orange-100 dark:bg-orange-500/10 ${isOpen ? "ring-1 ring-orange-300" : ""}`
+                                          ? `bg-brand-50 hover:bg-brand-100 dark:bg-brand-950/40 ${isOpen ? "ring-1 ring-brand-300" : ""}`
                                           : near
                                             ? `hover:bg-surface-raised ${isOpen ? "bg-surface-raised" : ""}`
                                             : `hover:bg-surface-raised hover:opacity-80 ${isOpen ? "bg-surface-raised opacity-80" : "opacity-40"}`
@@ -1376,7 +1376,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                     {/* Số người ở cấp: gợi ý rằng bấm vào xem được
                                         ai đang ở đây. Chỉ ở cấp gần. */}
                                     {near && members.length > 0 && (
-                                      <span className={`mt-1 inline-flex w-fit items-center gap-1 font-mono text-[9px] tabular-nums ${isUserCurrent ? "text-orange-100" : "text-ink-faint"}`}>
+                                      <span className={`mt-1 inline-flex w-fit items-center gap-1 font-mono text-[9px] tabular-nums ${isUserCurrent ? "text-brand-100" : "text-ink-faint"}`}>
                                         <Users className="h-2.5 w-2.5" aria-hidden /> {members.length}
                                       </span>
                                     )}
@@ -1466,19 +1466,19 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                   <section className="space-y-5">
                     <div className="flex flex-wrap items-end justify-between gap-3 px-1">
                       <div>
-                        <h2 className="text-xl font-black tracking-tight text-[#3b2414] dark:text-orange-50">{t.revampDashboard.roadmapTitle}</h2>
-                        <p className="mt-1 text-sm text-[#8a5f3c] dark:text-orange-100/60">{t.revampDashboard.roadmapSub}</p>
+                        <h2 className="text-xl font-black tracking-tight text-brand-950 dark:text-stone-100">{t.revampDashboard.roadmapTitle}</h2>
+                        <p className="mt-1 text-sm text-ink-muted dark:text-stone-400">{t.revampDashboard.roadmapSub}</p>
                       </div>
                       <Link
                         href="/lo-trinh"
-                        className="group inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-semibold text-orange-700 transition-colors hover:bg-orange-50 dark:text-orange-300 dark:hover:bg-white/5"
+                        className="group inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-semibold text-ink-muted transition-colors hover:bg-brand-50 hover:text-brand-700 dark:text-stone-400 dark:hover:bg-white/5 dark:hover:text-brand-300"
                       >
                         <Route className="h-4 w-4" aria-hidden />
                         {t.revampDashboard.roadmapOpen}
                         <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden />
                       </Link>
                     </div>
-                    <div className="space-y-8 rounded-[20px] bg-surface p-6 shadow-[0_1px_0_rgba(120,70,20,0.05),0_10px_30px_-22px_rgba(120,70,20,0.5)] sm:p-7 dark:bg-stone-900">
+                    <div className="space-y-8 px-1">
                       <LearningGoalCard quiet warm />
                       <DashboardRecommendations />
                     </div>
@@ -1487,10 +1487,10 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
 
                 {/* ── Cột phải: nhẹ, cho việc luyện tập và thông tin phụ ── */}
                 <aside className="min-w-0 space-y-6 xl:sticky xl:top-2">
-                  <section className="rounded-[20px] bg-[#fbf5ec] p-5 dark:bg-stone-900/60">
-                    <h2 className="text-base font-black tracking-tight text-[#3b2414] dark:text-orange-50">{t.revampDashboard.practiceTitle}</h2>
-                    <p className="mt-0.5 text-xs text-[#8a5f3c] dark:text-orange-100/60">{t.revampDashboard.practiceSub}</p>
-                    <nav className="mt-4 space-y-1">
+                  <section className="px-1">
+                    <h2 className="text-sm font-bold tracking-tight text-ink-soft dark:text-stone-400">{t.revampDashboard.practiceTitle}</h2>
+                    <p className="mt-0.5 text-xs text-ink-faint dark:text-stone-400">{t.revampDashboard.practiceSub}</p>
+                    <nav className="-mx-2.5 mt-3 space-y-0.5">
                       {([
                         { href: "/kiem-tra", label: t.nav.quiz, icon: GraduationCap },
                         { href: "/phong-van-ky-thuat", label: t.nav.technicalInterview, icon: BriefcaseBusiness },
@@ -1500,19 +1500,17 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                         <Link
                           key={href}
                           href={href}
-                          className="group flex items-center gap-3 rounded-xl px-2.5 py-2.5 text-sm font-semibold text-[#4a2f1c] transition-colors hover:bg-white dark:text-orange-50/90 dark:hover:bg-white/5"
+                          className="group flex items-center gap-3 rounded-xl px-2.5 py-2 text-sm font-medium text-ink-muted transition-colors hover:bg-brand-50 hover:text-brand-700 dark:text-stone-400 dark:hover:bg-white/5 dark:hover:text-brand-300"
                         >
-                          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white text-orange-600 dark:bg-white/10 dark:text-orange-300">
-                            <Icon className="h-4 w-4" aria-hidden />
-                          </span>
+                          <Icon className="h-4 w-4 shrink-0 text-ink-faint transition-colors group-hover:text-accent" aria-hidden />
                           <span className="flex-1">{label}</span>
-                          <ChevronRight className="h-4 w-4 text-[#c9a27f] transition-transform group-hover:translate-x-0.5" aria-hidden />
+                          <ChevronRight className="h-4 w-4 text-ink-faint opacity-0 transition-[opacity,transform] group-hover:translate-x-0.5 group-hover:opacity-100 group-focus-visible:opacity-100" aria-hidden />
                         </Link>
                       ))}
                     </nav>
                   </section>
 
-                  {showOptional && <DailyNewsQuizWidget userId={user.id} compact />}
+                  {showOptional && <DailyNewsQuizWidget userId={user.id} compact quiet />}
 
                   <div className="space-y-5 px-1">
                     <PracticalSkillPanel compact collapsible />
@@ -1563,7 +1561,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                     <DailyMotivationWidget userId={user.id} quiet />
                     <div className="flex items-center gap-2.5">
                       <span className="text-xs text-ink-faint">{t.dashboard.presetLabel}</span>
-                      <div role="group" aria-label={t.dashboard.presetLabel} className="inline-flex rounded-full bg-[#f3e9dc] p-0.5 dark:bg-stone-900">
+                      <div role="group" aria-label={t.dashboard.presetLabel} className="inline-flex rounded-full bg-surface-raised p-0.5 dark:bg-stone-900">
                         {([
                           { id: "gon" as const, label: t.dashboard.presetCompact, hint: t.dashboard.presetCompactHint },
                           { id: "day-du" as const, label: t.dashboard.presetFull, hint: t.dashboard.presetFullHint },
@@ -1575,7 +1573,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                             aria-pressed={preset === opt.id}
                             title={opt.hint}
                             className={`cursor-pointer rounded-full px-3 py-1 text-xs font-semibold transition-colors ${
-                              preset === opt.id ? "bg-white text-[#4a2f1c] shadow-sm dark:bg-stone-800 dark:text-orange-50" : "text-ink-faint hover:text-ink-body"
+                              preset === opt.id ? "bg-white text-ink-heading shadow-sm dark:bg-stone-800 dark:text-stone-100" : "text-ink-faint hover:text-ink-body"
                             }`}
                           >
                             {opt.label}

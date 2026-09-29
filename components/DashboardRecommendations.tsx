@@ -92,7 +92,7 @@ export default function DashboardRecommendations() {
     // làm, nên nó xuống thành một dòng không khung. Câu giải thích lùi vào
     // `title` - vẫn đọc được khi trỏ vào, không chiếm một đoạn riêng.
     <section className="flex w-full items-baseline gap-2 px-1 text-ink-faint" title={t.recommendations.liveSubtitle}>
-      <span className="self-center"><StatusDot /></span>
+      <span className="self-center"><StatusDot tone="muted" /></span>
       <span className="font-mono text-sm font-medium tabular-nums text-ink-muted">
         {liveCompletedCount.toLocaleString(intlLocale(locale))}
       </span>

@@ -32,7 +32,7 @@ export default function ThiVuotChangPage() {
     <div className="h-[calc(100dvh-3.5rem)] lg:h-dvh overflow-hidden flex flex-col bg-surface font-sans text-ink">
       <div className="border-b border-line bg-white dark:bg-stone-900/90 sticky top-0 z-30 shrink-0">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center gap-3">
-          <div className="flex items-center justify-center w-8 h-8 rounded-sm border border-line-strong shrink-0 dark:border-stone-700">
+          <div className="flex items-center justify-center w-8 h-8 rounded-sm bg-surface-raised shrink-0">
             <Trophy className="w-4 h-4 text-ink-body" />
           </div>
           <h1 className="min-w-0 text-base sm:text-lg font-black text-ink-max tracking-tight">

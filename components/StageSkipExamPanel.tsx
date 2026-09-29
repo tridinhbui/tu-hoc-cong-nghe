@@ -30,7 +30,7 @@ const STAGE_ICONS: LucideIcon[] = [Monitor, GitBranch, Code2, Globe, Braces, Lay
 function StageThemedIcon({ index }: { index: number }) {
   const Icon = STAGE_ICONS[index % STAGE_ICONS.length];
   return (
-    <div className="w-9 h-9 rounded-sm border border-line-strong bg-surface-raised text-ink-body flex items-center justify-center shrink-0 dark:border-stone-700 dark:bg-stone-950">
+    <div className="w-9 h-9 rounded-sm bg-surface-raised text-ink-soft flex items-center justify-center shrink-0">
       <Icon className="w-5 h-5" strokeWidth={1.75} />
     </div>
   );
@@ -263,6 +263,8 @@ export default function StageSkipExamPanel({ userId, fullPage = false }: { userI
   const examLength = (s: StageExamEligibility) => Math.min(STAGE_EXAM_QUESTION_COUNT, s.questionCount);
 
   const clearedStages = stages.filter((s) => s.lessonCount > 0 && s.completedCount >= s.lessonCount).length;
+  /** Chặng thi được đầu tiên chưa xong - thứ duy nhất trên lưới được nổi xanh. */
+  const nextStageLabel = stages.find((s) => s.eligible && !(s.lessonCount > 0 && s.completedCount >= s.lessonCount))?.stageLabel;
 
   return (
     // Nền khối vẫn trắng: màu ở đây luôn gắn với một TRẠNG THÁI chứ không tô
@@ -293,7 +295,7 @@ export default function StageSkipExamPanel({ userId, fullPage = false }: { userI
           {/* Ảnh tranh màu nước "núi" từng chiếm 256px bên trái khối này. Nó
               không nói gì về tiến độ, nên đã gỡ: khối giờ chỉ còn mốc đạt, số
               chặng đã xong và thanh chặng. */}
-          <div className={`${panel} relative overflow-hidden p-4 sm:p-5 flex flex-col gap-4 shrink-0`}>
+          <div className="relative flex flex-col gap-4 shrink-0">
 
             {/* Content & Progress Stats */}
             <div className="flex-1 min-w-0 space-y-3 w-full">
@@ -336,7 +338,7 @@ export default function StageSkipExamPanel({ userId, fullPage = false }: { userI
                   return (
                     <span
                       key={s.stageLabel}
-                      className={`h-1.5 flex-1 rounded-[1px] transition-colors ${
+                      className={`h-1.5 flex-1 rounded-[1px] motion-safe:transition-colors motion-safe:duration-500 ${
                         cleared ? "bg-cyan-600 dark:bg-cyan-400" : "bg-surface-sunken"
                       }`}
                     />
@@ -378,6 +380,9 @@ export default function StageSkipExamPanel({ userId, fullPage = false }: { userI
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                 {stages.map((s, i) => {
+                  /* Chỉ chặng thi được ĐẦU TIÊN mang nút xanh đặc và viền xanh:
+                     chín nút "Thi ngay" cùng nổi thì không nút nào là bước kế. */
+                  const isNext = s.stageLabel === nextStageLabel;
                   const done = s.lessonCount > 0 && s.completedCount >= s.lessonCount;
                   const stageNo = s.stageLabel.match(/\d+/)?.[0] ?? String(i + 1);
                   const paddedNo = stageNo.padStart(2, "0");
@@ -392,7 +397,15 @@ export default function StageSkipExamPanel({ userId, fullPage = false }: { userI
                          1,9:1 - dưới xa mức đọc được, mà chữ bị mờ chính là
                          dòng "còn thiếu mấy bài nữa". Ổ khoá đã nói đủ rằng thẻ
                          chưa mở; độ mờ chỉ lấy đi thông tin. */
-                      className={`${panel} p-4 relative overflow-hidden flex flex-col justify-between transition-colors hover:border-line-firm`}
+                      className={`rounded-card p-4 relative overflow-hidden flex flex-col justify-between transition-colors ${
+                        isNext
+                          ? "border-2 border-accent bg-surface"
+                          : done
+                          ? "border border-line-soft bg-surface"
+                          : s.eligible
+                          ? "border border-line bg-surface hover:border-line-strong"
+                          : "border border-transparent bg-surface-raised/50"
+                      }`}
                     >
                       {/* Top Content */}
                       <div className="space-y-2.5">
@@ -402,7 +415,7 @@ export default function StageSkipExamPanel({ userId, fullPage = false }: { userI
                         </div>
 
                         <div>
-                          <h4 className="text-sm font-black tracking-tight text-ink-max line-clamp-2 leading-snug min-h-[2.4rem]">
+                          <h4 className={`text-sm font-black tracking-tight line-clamp-2 ${s.eligible || done ? "text-ink-max" : "text-ink-soft"} leading-snug min-h-[2.4rem]`}>
                             {stageNameOf(s, i)}
                           </h4>
                         </div>
@@ -425,8 +438,8 @@ export default function StageSkipExamPanel({ userId, fullPage = false }: { userI
                         {/* Progress Bar */}
                         <div className="h-1 w-full bg-surface-sunken overflow-hidden">
                           <div
-                            className={`h-full transition-all duration-500 ${
-                              done ? "bg-cyan-600 dark:bg-cyan-400" : "bg-stone-500 dark:bg-stone-400"
+                            className={`h-full motion-safe:transition-all motion-safe:duration-500 ${
+                              done || isNext ? "bg-cyan-600 dark:bg-cyan-400" : "bg-stone-400 dark:bg-stone-600"
                             }`}
                             style={{ width: `${pct}%` }}
                           />
@@ -434,7 +447,7 @@ export default function StageSkipExamPanel({ userId, fullPage = false }: { userI
                       </div>
 
                       {/* Bottom Action Row */}
-                      <div className="mt-3 pt-3 border-t border-line flex items-center justify-between">
+                      <div className="mt-3 pt-3 border-t border-line-soft flex items-center justify-between">
                         {done ? (
                           <span className="inline-flex items-center gap-1.5 text-xs font-bold text-cyan-700 dark:text-cyan-400">
                             <Check className="w-3.5 h-3.5" />
@@ -443,13 +456,13 @@ export default function StageSkipExamPanel({ userId, fullPage = false }: { userI
                         ) : s.eligible ? (
                           <button
                             onClick={() => void startExam(s)}
-                            className={`${btnPrimary} px-3 py-1.5 text-xs cursor-pointer`}
+                            className={isNext ? `${btnPrimary} px-3 py-1.5 text-xs cursor-pointer` : `${btnSecondary} px-3 py-1.5 text-xs cursor-pointer`}
                           >
                             <span>{t.stageSkip.takeExam}</span>
                             <ArrowRight className="w-3.5 h-3.5" />
                           </button>
                         ) : (
-                          <span className="inline-flex items-center gap-1.5 text-xs font-bold text-ink-muted">
+                          <span className="inline-flex items-center gap-1.5 text-xs font-bold text-ink-faint">
                             <Lock className="w-3 h-3" />
                             {t.stageSkip.lockedLabel}
                           </span>
@@ -471,7 +484,7 @@ export default function StageSkipExamPanel({ userId, fullPage = false }: { userI
           {!fullPage && (
             <div className={`${panel} p-5 flex flex-col sm:flex-row items-center justify-between gap-4`}>
               <div className="flex items-center gap-3.5">
-                <div className="w-9 h-9 rounded-sm border border-line-strong bg-surface-raised text-ink-body flex items-center justify-center shrink-0 dark:border-stone-700 dark:bg-stone-950">
+                <div className="w-9 h-9 rounded-sm bg-surface-raised text-ink-soft flex items-center justify-center shrink-0">
                   <Trophy className="w-5 h-5" strokeWidth={1.75} />
                 </div>
                 <div>
@@ -521,7 +534,7 @@ export default function StageSkipExamPanel({ userId, fullPage = false }: { userI
             <div
               // Thanh này nói "đang thi, tới đâu rồi" - một trạng thái, không
               // phải trang trí.
-              className="h-full bg-brand-600 transition-all duration-300 dark:bg-brand-500"
+              className="h-full bg-cyan-600 dark:bg-cyan-400 motion-safe:transition-all motion-safe:duration-300"
               style={{ width: `${((activeQ + 1) / questions.length) * 100}%` }}
             />
           </div>
@@ -543,10 +556,10 @@ export default function StageSkipExamPanel({ userId, fullPage = false }: { userI
                      thoại và 24px nằm dưới hẳn mức chạm tối thiểu. */
                   className={`h-9 w-9 rounded-sm border font-mono text-xs font-medium tabular-nums transition-colors cursor-pointer ${
                     current
-                      ? "border-stone-950 bg-stone-950 text-white dark:border-stone-100 dark:bg-stone-100 dark:text-stone-900"
+                      ? "border-brand-600 bg-brand-600 font-bold text-white dark:border-brand-400 dark:bg-brand-400 dark:text-stone-950"
                       : answered
-                      ? "border-brand-600 bg-brand-50 text-brand-800 dark:border-brand-400 dark:bg-brand-950/40 dark:text-brand-200"
-                      : "border-stone-300 bg-white text-ink-muted hover:border-stone-400 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-600"
+                      ? "border-transparent bg-cyan-50 text-cyan-800 dark:bg-cyan-950/40 dark:text-cyan-200"
+                      : "border-transparent bg-surface-raised/60 text-ink-faint hover:bg-surface-raised hover:text-ink"
                   }`}
                 >
                   {qi + 1}
@@ -575,10 +588,10 @@ export default function StageSkipExamPanel({ userId, fullPage = false }: { userI
                       return n;
                     })
                   }
-                  className={`grid w-full grid-cols-[1.5rem_minmax(0,1fr)] items-baseline rounded-sm border px-3 py-2.5 text-left text-sm leading-6 transition-colors cursor-pointer ${
+                  className={`grid w-full grid-cols-[1.5rem_minmax(0,1fr)] items-baseline rounded-sm border-2 px-3 py-2.5 text-left text-sm leading-6 transition-colors cursor-pointer ${
                     picked
-                      ? "border-brand-600 bg-brand-50 font-medium text-stone-950 dark:border-brand-400 dark:bg-brand-950/40 dark:text-stone-50"
-                      : "border-stone-300 bg-white text-ink-body hover:border-stone-400 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-600"
+                      ? "border-accent bg-accent-soft font-semibold text-ink-max"
+                      : "border-transparent bg-surface-raised/60 text-ink-soft hover:bg-surface-raised hover:text-ink"
                   }`}
                 >
                   <Sys className={picked ? "text-accent-strong" : "text-ink-faint"}>{String.fromCharCode(65 + oi)}</Sys>

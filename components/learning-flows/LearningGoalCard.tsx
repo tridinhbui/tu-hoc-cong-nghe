@@ -44,7 +44,8 @@ export type FlowEffort = Partial<Record<FlowId, { count: number; minutes: number
 /**
  * `warm`: bản của khu "Lộ trình" trên dashboard. Bộ chọn chỉ còn tên mục tiêu,
  * thời lượng và một dòng thành quả (không khối KỸ NĂNG/OUTPUT, không lưới kẻ
- * ô); màu nhấn cam đất cùng tông trang. /hoc-theo-nhu-cau vẫn dùng bản đầy đủ.
+ * ô); tông xanh của app (bản đầu dùng cam đất - người dùng yêu cầu về xanh).
+ * /hoc-theo-nhu-cau vẫn dùng bản đầy đủ.
  */
 export default function LearningGoalCard({ id, effort, quiet = false, warm = false }: { id?: string; effort?: FlowEffort; quiet?: boolean; warm?: boolean } = {}) {
   const { t, locale } = useI18n();
@@ -90,8 +91,8 @@ export default function LearningGoalCard({ id, effort, quiet = false, warm = fal
     const picked = candidate ? getLearningFlow(candidate) : undefined;
     return (
       <section id={id} className="scroll-mt-6">
-        <h3 className="text-base font-black tracking-tight text-[#3b2414] dark:text-orange-50">{c.pickTitle}</h3>
-        <p className="mt-1 text-sm leading-6 text-[#8a5f3c] dark:text-orange-100/60">{r.pickHint}</p>
+        <h3 className="text-base font-black tracking-tight text-ink-max dark:text-stone-100">{c.pickTitle}</h3>
+        <p className="mt-1 text-sm leading-6 text-ink-muted dark:text-stone-400">{r.pickHint}</p>
         <ul className="mt-4 grid gap-2.5 sm:grid-cols-2">
           {LEARNING_FLOWS.map((f) => {
             const on = candidate === f.id;
@@ -102,37 +103,41 @@ export default function LearningGoalCard({ id, effort, quiet = false, warm = fal
                   aria-pressed={on}
                   disabled={pending}
                   onClick={() => setCandidate(on ? null : f.id)}
-                  className={`flex w-full items-start gap-3 rounded-2xl px-4 py-3.5 text-left transition-colors disabled:opacity-60 ${
+                  className={`group flex w-full items-start gap-3 rounded-2xl px-4 py-3.5 text-left transition-[background-color,box-shadow,opacity] duration-200 disabled:opacity-60 ${
                     on
-                      ? "bg-orange-50 ring-2 ring-orange-400 dark:bg-orange-500/10"
-                      : "bg-[#fbf5ec] hover:bg-[#f6ebdc] dark:bg-white/5 dark:hover:bg-white/10"
+                      ? "bg-brand-50 ring-2 ring-brand-600 dark:bg-brand-950/40 dark:ring-brand-400"
+                      : `hover:bg-surface-raised dark:hover:bg-white/5 ${candidate ? "opacity-60 hover:opacity-100" : ""}`
                   }`}
                 >
-                  <Glyph emoji={f.emoji} className={`mt-0.5 h-5 w-5 shrink-0 ${on ? "text-orange-600" : "text-[#b0835d]"}`} />
+                  <Glyph emoji={f.emoji} className={`mt-0.5 h-5 w-5 shrink-0 transition-colors ${on ? "text-accent" : "text-ink-faint group-hover:text-ink-muted"}`} />
                   <span className="min-w-0 flex-1">
-                    <span className="block font-bold leading-snug text-[#3b2414] dark:text-orange-50">{t.learningFlows.flows[f.id].title}</span>
-                    <span className="mt-0.5 block line-clamp-1 text-xs text-[#8a5f3c] dark:text-orange-100/60">{r.flows[f.id].output}</span>
+                    <span className={`block font-bold leading-snug transition-colors ${on ? "text-brand-950 dark:text-stone-100" : "text-ink-soft group-hover:text-ink-max dark:text-stone-400"}`}>{t.learningFlows.flows[f.id].title}</span>
+                    <span className="mt-0.5 block line-clamp-1 text-xs text-ink-faint dark:text-stone-400">{r.flows[f.id].output}</span>
                   </span>
-                  <span className="shrink-0 pt-0.5 font-mono text-[11px] tabular-nums text-[#b0835d]">{effortOf(f.id)}</span>
+                  {on ? (
+                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-accent" aria-hidden />
+                  ) : (
+                    <span className="shrink-0 pt-0.5 font-mono text-[11px] tabular-nums text-ink-faint">{effortOf(f.id)}</span>
+                  )}
                 </button>
               </li>
             );
           })}
         </ul>
         {picked ? (
-          <div className="mt-5 rounded-2xl bg-orange-50/70 p-5 dark:bg-orange-500/10">
+          <div className="mt-5 border-l-2 border-brand-600 pl-5 dark:border-brand-400">
             <CoCoSays key={picked.id} lines={[r.flows[picked.id].firstBuild]} size={36} />
             <div className="mt-4 flex flex-wrap items-center gap-3">
               <button
                 type="button"
                 disabled={pending}
                 onClick={() => choose(picked.id)}
-                className="inline-flex cursor-pointer items-center gap-2 rounded-full bg-orange-600 px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-orange-700 disabled:opacity-60"
+                className="inline-flex cursor-pointer items-center gap-2 rounded-full bg-brand-600 px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-brand-700 disabled:opacity-60"
               >
                 {format(r.startWith, { title: t.learningFlows.flows[picked.id].title })}
                 <ArrowRight className="h-4 w-4" aria-hidden />
               </button>
-              <Link href={`/hoc-theo-nhu-cau/${picked.id}`} className="text-sm font-semibold text-[#8a5f3c] underline-offset-4 hover:underline">
+              <Link href={`/hoc-theo-nhu-cau/${picked.id}`} className="text-sm font-semibold text-ink-muted underline-offset-4 hover:underline">
                 {c.preview}
               </Link>
             </div>
@@ -168,7 +173,7 @@ export default function LearningGoalCard({ id, effort, quiet = false, warm = fal
               <li
                 key={f.id}
                 className={`relative flex flex-col transition-colors ${
-                  on ? "bg-brand-50 dark:bg-brand-950/40" : "bg-surface hover:bg-page dark:hover:bg-stone-900"
+                  on ? "bg-brand-50 ring-2 ring-inset ring-brand-600 dark:bg-brand-950/40 dark:ring-brand-400" : `group bg-surface hover:bg-page dark:hover:bg-stone-900 ${candidate ? "[&>*]:opacity-60 [&>*]:transition-opacity hover:[&>*]:opacity-100" : ""}`
                 }`}
               >
                 {/* Thanh trái 3px: dấu chọn đọc được cả khi không phân biệt màu nền. */}
@@ -186,10 +191,10 @@ export default function LearningGoalCard({ id, effort, quiet = false, warm = fal
                   <span className="flex w-full items-start gap-3">
                     <Glyph
                       emoji={f.emoji}
-                      className={`mt-0.5 h-5 w-5 shrink-0 ${on ? "text-accent-strong" : "text-ink-soft"}`}
+                      className={`mt-0.5 h-5 w-5 shrink-0 transition-colors ${on ? "text-accent" : "text-ink-faint group-hover:text-ink-muted"}`}
                     />
                     <span className="min-w-0 flex-1">
-                      <span className="block text-base font-black leading-snug tracking-tight text-ink-max">{copy.title}</span>
+                      <span className={`block text-base font-black leading-snug tracking-tight ${on ? "text-brand-950 dark:text-stone-100" : "text-ink-heading"}`}>{copy.title}</span>
                       <span className="mt-0.5 block font-mono text-[11px] tabular-nums text-ink-muted">{effortOf(f.id)}</span>
                     </span>
                     {on ? (
@@ -206,7 +211,7 @@ export default function LearningGoalCard({ id, effort, quiet = false, warm = fal
                     </span>
                   ) : null}
                   {!on ? (
-                    <span className="inline-flex items-center gap-1 pl-8 text-xs font-bold text-accent-strong">
+                    <span className="inline-flex items-center gap-1 pl-8 text-xs font-semibold text-ink-faint transition-colors group-hover:text-accent-strong">
                       {r.select} <ArrowRight className="h-3 w-3" aria-hidden />
                     </span>
                   ) : null}
@@ -250,10 +255,10 @@ export default function LearningGoalCard({ id, effort, quiet = false, warm = fal
     <section id={id} className={warm ? "scroll-mt-6" : `scroll-mt-6 bg-surface py-4 pr-4 pl-4 sm:pr-5 sm:pl-5 ${quiet ? "border-l-2 border-accent-line-mid" : "border-l-[3px] border-brand-600 dark:border-brand-400"}`}>
       <div className="flex items-start justify-between gap-3">
         <div className="flex min-w-0 items-start gap-3">
-          <Glyph emoji={flow.emoji} className={`mt-1 h-6 w-6 shrink-0 ${warm ? "text-orange-600" : "text-accent-strong"}`} />
+          <Glyph emoji={flow.emoji} className={`mt-1 h-6 w-6 shrink-0 ${warm ? "text-brand-600" : "text-accent-strong"}`} />
           <div className="min-w-0">
             <p className="font-mono text-[10px] font-bold uppercase tracking-wider text-ink-faint">{c.yourGoal}</p>
-            <p className="text-lg font-black leading-snug tracking-tight text-ink-max">{copy.title}</p>
+            <p className={`text-lg font-black leading-snug tracking-tight ${warm ? "text-brand-950 dark:text-stone-100" : "text-ink-max"}`}>{copy.title}</p>
             <p className="mt-0.5 text-sm text-ink-soft">
               <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-ink-faint">{r.goalOutput}</span>{" "}
               <span className="font-bold text-ink-max">{cap.output}</span>
@@ -275,8 +280,8 @@ export default function LearningGoalCard({ id, effort, quiet = false, warm = fal
           <span>{step ? format(c.stepNow, { n: p.stepIndex + 1 }) : null}</span>
           <span className="font-mono tabular-nums">{format(c.progress, { done: p.done, total: p.total })}</span>
         </div>
-        <div className={`mt-1.5 overflow-hidden ${warm ? "h-2 rounded-full bg-[#efe1cf] dark:bg-white/10" : "h-1.5 bg-surface-sunken"}`}>
-          <div className={`h-full ${warm ? "rounded-full bg-orange-500" : "bg-cyan-500 dark:bg-cyan-400"}`} style={{ width: `${pct}%` }} />
+        <div className={`mt-1.5 overflow-hidden ${warm ? "h-2 rounded-full bg-surface-sunken dark:bg-white/10" : "h-1.5 bg-surface-sunken"}`}>
+          <div className={`h-full motion-safe:transition-[width] motion-safe:duration-700 ${warm ? "rounded-full bg-cyan-500 dark:bg-cyan-400" : "bg-cyan-500 dark:bg-cyan-400"}`} style={{ width: `${pct}%` }} />
         </div>
       </div>
 
@@ -300,7 +305,7 @@ export default function LearningGoalCard({ id, effort, quiet = false, warm = fal
             <p className="text-xs font-bold text-ink-muted">{c.nextLabel}</p>
             <p className="font-bold leading-snug text-ink-max">{cleanLessonTitle(p.next.title)}</p>
           </div>
-          <Link href={`/bai-hoc/${p.next.slug}`} className={warm ? "group inline-flex shrink-0 items-center gap-2 rounded-full bg-[#f3e6d4] px-4 py-2 text-sm font-bold text-[#6b4326] transition-colors hover:bg-[#ecd9c0] dark:bg-white/10 dark:text-orange-50" : quiet ? "group inline-flex shrink-0 items-center gap-2 rounded-sm border border-line px-3.5 py-2 text-sm font-bold text-ink-body transition-colors hover:border-line-strong hover:text-ink-max" : `${btnPrimary} shrink-0`}>
+          <Link href={`/bai-hoc/${p.next.slug}`} className={warm ? "group inline-flex shrink-0 items-center gap-2 py-2 text-sm font-bold text-ink-muted transition-colors hover:text-accent-strong" : quiet ? "group inline-flex shrink-0 items-center gap-2 rounded-sm border border-line px-3.5 py-2 text-sm font-bold text-ink-body transition-colors hover:border-line-strong hover:text-ink-max" : `${btnPrimary} shrink-0`}>
             {notStarted ? r.start : c.nextCta} <ArrowRight className="h-4 w-4" />
           </Link>
         </div>

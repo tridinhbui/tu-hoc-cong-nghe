@@ -193,7 +193,7 @@ export default function BehavioralPrepPanel({ career }: { career?: string | null
               chữ "1 / 119" xám nhạt thì không có cảm giác đang tiến tới đâu. */}
           <div className="h-1 w-full bg-surface-raised">
             <div
-              className="h-full bg-brand-600 dark:bg-brand-500 transition-all duration-300"
+              className="h-full bg-cyan-600 dark:bg-cyan-400 motion-safe:transition-all motion-safe:duration-300"
               style={{ width: `${progressPct}%` }}
             />
           </div>

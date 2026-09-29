@@ -26,7 +26,15 @@
  * xuống dưới 10 ms - ở mức ấy PBKDF2 gần như không còn tác dụng - mà là đẩy
  * việc băm sang một Durable Object hoặc đổi sang gói trả phí.
  */
-const ITERATIONS = 600_000;
+//
+// HẠ XUỐNG 100.000 (2026-09-29). Với 600.000, đăng ký và đăng nhập bằng mật
+// khẩu hỏng trên production trong khi Google vẫn chạy - đúng vì Google không
+// đi qua bước băm. 600k vượt ngân sách CPU của Workers mà app đang chạy, và
+// một số bản runtime của Cloudflare còn từ chối thẳng PBKDF2 trên 100.000 vòng.
+// Chủ sản phẩm chọn 100k thay vì nâng gói. Muốn nâng lại thì chỉ cần đổi hằng
+// số này sau khi chuyển gói trả phí: chuỗi băm tự ghi số vòng, và needsRehash
+// băm lại ngầm lúc đăng nhập.
+const ITERATIONS = 100_000;
 const KEY_BITS = 256;
 const SALT_BYTES = 16;
 const PREFIX = "pbkdf2-sha256";

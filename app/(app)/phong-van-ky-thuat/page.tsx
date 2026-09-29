@@ -122,14 +122,21 @@ const SYS = {
 };
 /* i18n-ignore-end */
 
-/** Ô chọn (nghề, độ khó, số câu, chủ đề): viền 1px, bo 2px. Đang chọn thì
- *  viền xanh + nền xanh nhạt - xanh ở đây là CHỨC NĂNG, không phải trang trí. */
+/** Ô chọn (nghề, độ khó, số câu, chủ đề). Đang chọn: viền 2px xanh + nền
+ *  xanh nhạt + dấu tích - xanh ở đây là CHỨC NĂNG, không phải trang trí. Chưa
+ *  chọn: không viền (viền 2px trong suốt để ô không nhảy kích thước), nền rất
+ *  nhạt, chữ lùi - để ô đã chọn là thứ duy nhất nổi trong lưới. */
 function choiceClass(active: boolean) {
-  return `rounded-sm border transition-colors cursor-pointer ${
+  return `relative rounded-sm border-2 transition-colors cursor-pointer ${
     active
-      ? "border-brand-600 bg-accent-soft text-ink-max dark:border-brand-400"
-      : "border-line-strong bg-white text-ink-heading hover:border-stone-400 dark:bg-stone-900 dark:hover:border-stone-200"
+      ? "border-accent bg-accent-soft text-ink-max"
+      : "border-transparent bg-surface-raised/60 text-ink-soft hover:bg-surface-raised hover:text-ink"
   }`;
+}
+/** Dấu tích góc ô đang chọn - cặp với choiceClass. */
+function ChoiceCheck({ active }: { active: boolean }) {
+  if (!active) return null;
+  return <Check aria-hidden className="absolute right-1 top-1 w-3 h-3 text-accent" strokeWidth={3.2} />;
 }
 const PASS_RATIO = 0.6;
 /** Bằng MIN_DIFFICULTY_POOL trong app/api/knowledge-challenge/route.ts: dưới
@@ -152,11 +159,11 @@ type StepId = "role" | "difficulty" | "focus" | "interview";
 const STEP_BORDER: Record<StepStatus, string> = {
   done: "border-cyan-600 dark:border-cyan-400",
   current: "border-brand-600 dark:border-brand-400",
-  todo: "border-line-strong",
+  todo: "border-line",
 };
 const STEP_TEXT: Record<StepStatus, string> = {
   done: "text-cyan-700 dark:text-cyan-400",
-  current: "text-accent-strong",
+  current: "text-accent",
   todo: "text-ink-faint",
 };
 
@@ -174,10 +181,10 @@ function StepHead({
   statusLabel: string;
 }) {
   return (
-    <div className="border-b border-line-strong pb-2">
+    <div className="pb-1">
       <p className="flex items-center gap-2">
         <Sys className={STEP_TEXT[status]}>{n}</Sys>
-        <span className={`eyebrow ${status === "todo" ? "text-ink-faint" : "text-ink-max"}`}>{label}</span>
+        <span className={`eyebrow ${status === "todo" ? "text-ink-faint" : status === "current" ? "text-accent-strong" : "text-ink-max"}`}>{label}</span>
         <span className={`ml-auto text-[10.5px] font-bold ${STEP_TEXT[status]}`}>{statusLabel}</span>
       </p>
       <p className="mt-0.5 text-xs text-ink-muted">{hint}</p>
@@ -760,7 +767,7 @@ export default function TechnicalInterviewPage() {
               </h1>
             </div>
 
-            <span className="inline-flex items-center rounded-sm border border-amber-300 bg-amber-50 px-2 py-1 text-xs font-bold text-amber-800 dark:border-amber-800 dark:bg-amber-950 dark:text-amber-300">
+            <span className="inline-flex items-center text-xs font-bold tabular-nums text-warn-strong">
               {format(t.quizPage.xpPerQuestion, { xp: QUIZ_XP_PER_CORRECT[difficulty] })}
             </span>
           </div>
@@ -828,14 +835,14 @@ export default function TechnicalInterviewPage() {
                       type="button"
                       onClick={() => scrollToStep(s.id)}
                       aria-current={s.status === "current" ? "step" : undefined}
-                      className={`w-full min-w-0 border-t-2 pt-2 text-left cursor-pointer ${STEP_BORDER[s.status]}`}
+                      className={`w-full min-w-0 pt-2 text-left cursor-pointer transition-colors ${s.status === "current" ? "border-t-[3px]" : "border-t-2"} ${STEP_BORDER[s.status]} ${s.status === "todo" ? "opacity-70 hover:opacity-100" : ""}`}
                     >
                       <span className="flex items-center gap-1.5">
                         <Sys className={STEP_TEXT[s.status]}>{SYS.step(i + 1)}</Sys>
                         {s.status === "done" && <Check className={`w-3.5 h-3.5 ${STEP_TEXT.done}`} strokeWidth={3} />}
                         <span className={`ml-auto text-[10.5px] font-bold ${STEP_TEXT[s.status]}`}>{stepStatusLabel(s)}</span>
                       </span>
-                      <span className={`mt-1 block text-xs font-black ${s.status === "todo" ? "text-ink-faint" : "text-ink-max"}`}>{s.label}</span>
+                      <span className={`mt-1 block text-xs font-black ${s.status === "todo" ? "text-ink-faint" : s.status === "current" ? "text-accent-strong" : "text-ink-max"}`}>{s.label}</span>
                       <span className="block truncate text-[11px] text-ink-muted">{s.value}</span>
                     </button>
                   </li>
@@ -859,6 +866,7 @@ export default function TechnicalInterviewPage() {
                     aria-pressed={selectedCareer === null}
                     className={`${choiceClass(selectedCareer === null)} p-3 flex flex-col items-center justify-center text-center min-h-[72px]`}
                   >
+                    <ChoiceCheck active={selectedCareer === null} />
                     <BriefcaseBusiness className="w-4 h-4 mb-0.5" strokeWidth={2} />
                     <span className="text-xs font-black block truncate w-full">{t.interview.allCareers}</span>
                     <span className="font-mono text-[10.5px] tabular-nums text-ink-muted">{totalQuestions}</span>
@@ -879,6 +887,7 @@ export default function TechnicalInterviewPage() {
                         aria-pressed={active}
                         className={`${choiceClass(active)} p-2.5 flex flex-col items-center justify-center text-center min-h-[72px]`}
                       >
+                        <ChoiceCheck active={active} />
                         <span className="text-xs font-black block line-clamp-2 w-full leading-tight">
                           {c.title}
                         </span>
@@ -893,10 +902,10 @@ export default function TechnicalInterviewPage() {
                   <button
                     type="button"
                     onClick={() => setRolePickerOpen(true)}
-                    className="p-2.5 rounded-sm border border-dashed border-line-firm text-ink-body transition-colors hover:border-line-firm cursor-pointer flex flex-col items-center justify-center min-h-[72px]"
+                    className="p-2.5 rounded-sm border-2 border-dashed border-line text-ink-muted transition-colors hover:border-line-strong hover:text-ink cursor-pointer flex flex-col items-center justify-center min-h-[72px]"
                   >
                     <span className="text-xs font-black block">{t.interview.seeMore}</span>
-                    <span className="text-[10.5px] text-accent-strong font-bold mt-0.5">{t.interview.seeMoreCareers}</span>
+                    <span className="text-[10.5px] text-ink-muted font-bold mt-0.5">{t.interview.seeMoreCareers}</span>
                   </button>
                 </div>
               </section>
@@ -925,6 +934,7 @@ export default function TechnicalInterviewPage() {
                         aria-pressed={isSelected}
                         className={`${choiceClass(isSelected)} p-3 flex flex-col items-center justify-center text-center min-h-[68px]`}
                       >
+                        <ChoiceCheck active={isSelected} />
                         <span className="text-xs font-black flex items-center gap-1">
                           <item.Icon className="w-3.5 h-3.5 shrink-0" strokeWidth={2} /> {item.title}
                         </span>
@@ -956,6 +966,7 @@ export default function TechnicalInterviewPage() {
                           aria-pressed={isSelected}
                           className={`${choiceClass(isSelected)} p-3 flex items-center justify-center gap-1.5 min-h-[48px] font-bold`}
                         >
+                          <ChoiceCheck active={isSelected} />
                           <ScrollText className="w-4 h-4 shrink-0" strokeWidth={2} />
                           <span className="text-xs">
                             <span className="font-mono tabular-nums">{n}</span> {t.interview.questionsUnit}
@@ -993,6 +1004,7 @@ export default function TechnicalInterviewPage() {
                           aria-pressed={active}
                           className={`${choiceClass(active)} p-2.5 flex flex-col items-center justify-center text-center min-h-[68px]`}
                         >
+                          <ChoiceCheck active={active} />
                           <span className="text-xs font-black block line-clamp-2 w-full leading-tight">
                             {topic.label}
                           </span>
@@ -1007,10 +1019,10 @@ export default function TechnicalInterviewPage() {
                       <button
                         type="button"
                         onClick={() => setTopicPickerOpen(true)}
-                        className="p-2.5 rounded-sm border border-dashed border-line-firm text-ink-body transition-colors hover:border-line-firm cursor-pointer flex flex-col items-center justify-center min-h-[68px]"
+                        className="p-2.5 rounded-sm border-2 border-dashed border-line text-ink-muted transition-colors hover:border-line-strong hover:text-ink cursor-pointer flex flex-col items-center justify-center min-h-[68px]"
                       >
                         <span className="text-xs font-black block">{t.interview.seeMore}</span>
-                        <span className="text-[10.5px] text-accent-strong font-bold mt-0.5">
+                        <span className="text-[10.5px] text-ink-muted font-bold mt-0.5">
                           + {activeCategoryCounts.length - 5} {t.interview.seeMoreTopics}
                         </span>
                       </button>
@@ -1049,16 +1061,16 @@ export default function TechnicalInterviewPage() {
             </div>
 
             {/* ────── CỘT PHẢI: TIẾN ĐỘ VÀ ĐIỂM YẾU ────── */}
-            <div className="lg:col-span-4 space-y-5 min-w-0">
+            <div className="lg:col-span-4 space-y-6 min-w-0 lg:border-l lg:border-line-soft lg:pl-5">
               {/* TIẾN ĐỘ CỦA BẠN */}
-              <div className={`${panel} p-5 space-y-4`}>
-                <h3 className="eyebrow border-b border-line-strong pb-2 text-ink-soft">
+              <div className="space-y-4">
+                <h3 className="eyebrow text-ink-faint">
                   {t.interview.progressTitle}
                 </h3>
 
                 <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 shrink-0 rounded-sm border border-line-strong bg-surface-raised dark:bg-stone-950 flex items-center justify-center">
-                    <span className="font-mono text-sm font-medium tabular-nums text-ink-max">
+                  <div className="w-14 h-14 shrink-0 rounded-sm bg-surface-raised flex items-center justify-center">
+                    <span className="font-mono text-sm font-medium tabular-nums text-ink-soft">
                       {SYS.level(totalXp === null ? "-" : String(getLevelByXp(totalXp).level))}
                     </span>
                   </div>
@@ -1069,13 +1081,13 @@ export default function TechnicalInterviewPage() {
                         : `${totalXp.toLocaleString(intlLocale(locale))} / ${(getNextLevel(getLevelByXp(totalXp).level)?.minXp ?? totalXp).toLocaleString(intlLocale(locale))} XP`}
                     </span>
                     <div className="w-full h-1.5 rounded-xs bg-surface-sunken overflow-hidden mt-1.5">
-                      <div className="h-full bg-cyan-600 dark:bg-cyan-400" style={{ width: `${totalXp === null ? 0 : getLevelProgress(totalXp)}%` }} />
+                      <div className="h-full bg-cyan-600 dark:bg-cyan-400 motion-safe:transition-[width] motion-safe:duration-500" style={{ width: `${totalXp === null ? 0 : getLevelProgress(totalXp)}%` }} />
                     </div>
                   </div>
                 </div>
 
                 <StatTable
-                  className="border-t border-line-soft"
+                  className="[&_dd]:text-ink-soft"
                   rows={[
                     // Chỉ con số: cột giá trị của StatTable đi bằng mono, và "{n} ngày"
                     // là chữ tiếng Việt - nhãn "Chuỗi ngày" đã nói đơn vị.
@@ -1317,8 +1329,8 @@ export default function TechnicalInterviewPage() {
                 {q.options.map((opt, oi) => {
                   const isSelected = selected === oi;
                   const isCorrectOpt = oi === q.correct;
-                  let cls = "border-line-strong bg-white dark:bg-stone-900 text-ink hover:border-line-firm";
-                  let badgeCls = "border-line-strong text-ink-muted";
+                  let cls = "border-transparent bg-surface-raised/60 text-ink-body hover:bg-surface-raised hover:text-ink";
+                  let badgeCls = "border-line text-ink-muted";
                   if (submitted) {
                     if (isCorrectOpt) {
                       cls = "border-cyan-600 dark:border-cyan-400 bg-cyan-50 dark:bg-cyan-950 text-ink-max font-bold";
@@ -1327,19 +1339,19 @@ export default function TechnicalInterviewPage() {
                       cls = "border-red-600 dark:border-red-400 bg-danger-soft text-ink-max font-bold";
                       badgeCls = "border-red-600 bg-red-600 text-white dark:border-red-400 dark:bg-red-400 dark:text-stone-950";
                     } else {
-                      cls = "border-line bg-surface text-ink-faint";
+                      cls = "border-transparent bg-surface text-ink-faint opacity-70";
                       badgeCls = "border-line text-ink-faint";
                     }
                   } else if (isSelected) {
-                    cls = "border-brand-600 dark:border-brand-400 bg-accent-soft text-ink-max font-bold";
-                    badgeCls = "border-brand-600 text-accent-strong dark:border-brand-400";
+                    cls = "border-accent bg-accent-soft text-ink-max font-bold";
+                    badgeCls = "border-accent bg-accent text-white dark:text-stone-950";
                   }
                   return (
                     <button
                       key={oi}
                       disabled={submitted}
                       onClick={() => choose(oi)}
-                      className={`w-full text-left px-3.5 py-3 rounded-sm border transition-colors cursor-pointer text-sm select-text font-medium flex items-center gap-3 ${cls}`}
+                      className={`w-full text-left px-3.5 py-3 rounded-sm border-2 transition-colors cursor-pointer text-sm select-text font-medium flex items-center gap-3 ${cls}`}
                     >
                       {/* Huy hiệu A/B/C/D: người học nói "chọn C", và câu hỏi
                           tiếp theo của người phỏng vấn tham chiếu bằng chữ cái. */}
@@ -1424,9 +1436,9 @@ export default function TechnicalInterviewPage() {
               )}
             </div>
 
-            <aside className="lg:col-span-4 min-w-0 space-y-4 lg:sticky lg:top-0">
+            <aside className="lg:col-span-4 min-w-0 space-y-5 lg:sticky lg:top-0 lg:border-l lg:border-line-soft lg:pl-5">
               {/* ĐỒNG HỒ + TIẾN ĐỘ BUỔI */}
-              <div className={`${panel} p-4`}>
+              <div>
                 <p className="eyebrow text-ink-faint">{R.timerLabel}</p>
                 <p className="mt-1 font-mono text-3xl font-medium tabular-nums text-ink-max">{elapsedLabel}</p>
                 <p className="mt-0.5 text-xs text-ink-muted">
@@ -1443,7 +1455,7 @@ export default function TechnicalInterviewPage() {
                       : i === activeQ
                         ? "bg-brand-600 dark:bg-brand-500"
                         : "bg-surface-sunken";
-                    return <span key={i} className={`h-1.5 flex-1 rounded-xs ${tone}`} />;
+                    return <span key={i} className={`h-1.5 flex-1 rounded-xs motion-safe:transition-colors motion-safe:duration-300 ${tone}`} />;
                   })}
                 </div>
                 <p className="mt-2 flex items-center justify-between text-xs font-bold">
@@ -1456,7 +1468,7 @@ export default function TechnicalInterviewPage() {
 
               {/* CÂU HỎI TIẾP THEO - dựng từ chính câu vừa trả lời (chữ cái
                   của phương án bị loại / đã chọn), không bịa nội dung mới. */}
-              <div className={`${panel} p-4`}>
+              <div className="border-t border-line-soft pt-4">
                 <p className="eyebrow text-ink-faint">{R.followUpLabel}</p>
                 {submitted && followUp ? (
                   <div className="mt-1.5 space-y-1.5">
@@ -1471,7 +1483,7 @@ export default function TechnicalInterviewPage() {
 
               {/* GHI CHÚ - chỉ sống trong state của buổi; phím 1-4 không bắt
                   khi con trỏ đang ở đây (useQuizKeys bỏ qua TEXTAREA). */}
-              <div className={`${panel} p-4`}>
+              <div className="border-t border-line-soft pt-4">
                 <label htmlFor="interview-notes" className="eyebrow text-ink-faint">{R.notesLabel}</label>
                 <textarea
                   id="interview-notes"

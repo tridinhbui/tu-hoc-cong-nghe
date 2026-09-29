@@ -83,7 +83,7 @@ export default function CoCoQuizSuggestion({ userId, onSelect }: CoCoQuizSuggest
   }
 
   return (
-    <section className="flex items-center gap-3 border-l-2 border-brand-600 pl-3 dark:border-brand-400">
+    <section className="flex items-center gap-3 border-l-2 border-accent-line pl-3">
       <div className="min-w-0 flex-1">
         <Sys className="text-ink-muted">{t.revampQuiz.suggestionLabel}</Sys>
         <p className="mt-0.5 truncate text-sm font-bold text-ink-max" title={suggestion.lessonTitle}>
@@ -100,7 +100,7 @@ export default function CoCoQuizSuggestion({ userId, onSelect }: CoCoQuizSuggest
       <button
         type="button"
         onClick={() => onSelect(suggestion.track, suggestion.difficulty)}
-        className="inline-flex shrink-0 items-center gap-1.5 border border-brand-600 px-2.5 py-1.5 text-xs font-bold text-accent-strong transition-colors hover:bg-brand-600 hover:text-white dark:border-brand-400 dark:hover:bg-brand-500 dark:hover:text-stone-950 cursor-pointer"
+        className="group inline-flex shrink-0 items-center gap-1.5 rounded-sm px-2.5 py-1.5 text-xs font-bold text-accent-strong transition-colors hover:bg-accent-soft cursor-pointer"
       >
         {t.revampQuiz.suggestionRun}
         <ArrowRight className="h-3.5 w-3.5" />
