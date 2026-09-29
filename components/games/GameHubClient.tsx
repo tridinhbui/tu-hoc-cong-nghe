@@ -97,7 +97,7 @@ export default function GameHubClient() {
 
   if (!activeGame) {
     return (
-      <div className="min-h-screen bg-[#fbfaf7] dark:bg-stone-950">
+      <div className="min-h-screen bg-page dark:bg-stone-950">
         <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6">
           <div className="flex items-start justify-between gap-3">
             <SectionHead
@@ -194,7 +194,7 @@ export default function GameHubClient() {
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center justify-between gap-2">
                         <Sys className="text-ink-faint">{`G${String(i + 1).padStart(2, "0")}`}</Sys>
-                        <span className="shrink-0 rounded-xs border border-stone-300 px-1.5 py-px text-[10px] font-semibold text-ink-muted dark:border-stone-700">
+                        <span className="shrink-0 rounded-xs border border-line-strong px-1.5 py-px text-[10px] font-semibold text-ink-muted dark:border-stone-700">
                           {g.mechanic === "bucket" ? gameHub.bucketMechanic : gameHub.pairMechanic}
                         </span>
                       </div>
@@ -229,7 +229,7 @@ export default function GameHubClient() {
   const meta = localizeGameMeta(getGameMeta(activeGame), locale);
 
   return (
-    <div className="min-h-screen bg-[#fbfaf7] dark:bg-stone-950">
+    <div className="min-h-screen bg-page dark:bg-stone-950">
       <div className="mx-auto max-w-3xl px-4 py-6 sm:px-6 sm:py-8">
         <button
           onClick={() => setActiveGame(null)}

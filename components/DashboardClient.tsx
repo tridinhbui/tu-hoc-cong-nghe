@@ -884,10 +884,10 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#fbfaf7] dark:bg-stone-950 flex flex-col items-center justify-center gap-4">
+      <div className="min-h-screen bg-page dark:bg-stone-950 flex flex-col items-center justify-center gap-4">
         <div className="relative w-16 h-16">
           <span className="absolute -inset-1.5 rounded-full border-2 border-stone-300 border-t-brand-600 animate-spin dark:border-stone-700 dark:border-t-brand-400" />
-          <div className="relative w-16 h-16 rounded-full overflow-hidden bg-[#f3f1ec] dark:bg-stone-900">
+          <div className="relative w-16 h-16 rounded-full overflow-hidden bg-surface-raised dark:bg-stone-900">
             <TaiTaiAvatar size={64} />
           </div>
         </div>
@@ -1212,7 +1212,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                       <div className={`w-7 sm:w-9 h-px self-end mb-[42px] shrink-0 ${isReached ? "bg-stone-500 dark:bg-stone-400" : "bg-surface-deep"}`} />
                                     )}
                                     <div className="flex flex-col items-center gap-2 shrink-0">
-                                      <div className="w-12 h-12 sm:w-[64px] sm:h-[64px] relative flex items-center justify-center select-none pointer-events-none overflow-hidden rounded-sm border border-line-strong bg-[#f3f1ec] dark:bg-stone-950 [backface-visibility:hidden] [transform:translateZ(0)]">
+                                      <div className="w-12 h-12 sm:w-[64px] sm:h-[64px] relative flex items-center justify-center select-none pointer-events-none overflow-hidden rounded-sm border border-line-strong bg-surface-raised dark:bg-stone-950 [backface-visibility:hidden] [transform:translateZ(0)]">
                                         <img
                                           src={`/levels/level${lvl.level}.jpg`}
                                           alt={t.levelTitles[lvl.level] ?? lvl.name}
@@ -1236,7 +1236,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                             ? "border-brand-600 bg-white dark:border-brand-400 dark:bg-stone-900"
                                             : isReached
                                             ? `bg-white dark:bg-stone-900 hover:border-stone-950 dark:hover:border-stone-300 ${isOpen ? "border-stone-950 dark:border-stone-300" : "border-line-strong"}`
-                                            : "border-stone-200 bg-[#f3f1ec] opacity-60 hover:opacity-90 dark:border-stone-800 dark:bg-stone-950"
+                                            : "border-stone-200 bg-surface-raised opacity-60 hover:opacity-90 dark:border-stone-800 dark:bg-stone-950"
                                         }`}
                                       >
                                         <div className="flex items-center justify-between gap-1">
@@ -1278,7 +1278,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                 transition={{ duration: 0.2 }}
                                 className="overflow-hidden"
                               >
-                                <div className="mt-4 rounded-sm border border-stone-300 bg-[#f3f1ec] p-4 dark:border-stone-700 dark:bg-stone-950">
+                                <div className="mt-4 rounded-sm border border-line-strong bg-surface-raised p-4 dark:border-stone-700 dark:bg-stone-950">
                                   <p className="eyebrow text-ink-body mb-3">
                                     {format(t.dashboard.levelMembers, { level: lvl.level, name: t.levelTitles[lvl.level] ?? lvl.name, count: members.length })}
                                   </p>
@@ -1297,7 +1297,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                             // cho từng người xem, mỗi lần cache hết hạn.
                                             <Image src={m.avatarUrl} alt={m.name} width={32} height={32} className="w-8 h-8 rounded-full object-cover shrink-0" />
                                           ) : (
-                                            <div className="w-8 h-8 rounded-full bg-[#f3f1ec] text-ink-soft flex items-center justify-center text-xs font-black shrink-0 dark:bg-stone-800">
+                                            <div className="w-8 h-8 rounded-full bg-surface-raised text-ink-soft flex items-center justify-center text-xs font-black shrink-0 dark:bg-stone-800">
                                               {m.name.charAt(0).toUpperCase()}
                                             </div>
                                           )}
@@ -1364,7 +1364,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
 
                   </div>
 
-                  <div className="min-w-0 rounded-sm border border-stone-200 bg-[#fbfaf7] p-3 dark:border-stone-800 dark:bg-stone-950 xl:p-3.5">
+                  <div className="min-w-0 rounded-sm border border-stone-200 bg-page p-3 dark:border-stone-800 dark:bg-stone-950 xl:p-3.5">
                     <UserStats
                       xp={userXp}
                       lessonsCompleted={totalDone}
@@ -1413,7 +1413,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
             <div
               role="group"
               aria-label={t.dashboard.presetLabel}
-              className="inline-flex rounded-sm border border-stone-300 bg-white p-0.5 dark:border-stone-700 dark:bg-stone-900"
+              className="inline-flex rounded-sm border border-line-strong bg-white p-0.5 dark:border-stone-700 dark:bg-stone-900"
             >
               {([
                 { id: "gon" as const, label: t.dashboard.presetCompact, hint: t.dashboard.presetCompactHint },
@@ -1428,7 +1428,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                   className={`cursor-pointer rounded-xs px-3 py-1.5 text-xs font-bold transition-colors ${
                     preset === opt.id
                       ? "bg-stone-950 text-white dark:bg-stone-100 dark:text-stone-950"
-                      : "text-ink-soft hover:bg-[#f3f1ec] hover:text-ink-max dark:hover:bg-stone-800"
+                      : "text-ink-soft hover:bg-surface-raised hover:text-ink-max dark:hover:bg-stone-800"
                   }`}
                 >
                   {opt.label}
@@ -1508,7 +1508,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                 href="/lo-trinh"
                 className={`group flex items-center gap-3.5 ${panel} p-4 transition-colors hover:border-stone-950 dark:hover:border-stone-300`}
               >
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-sm border border-stone-300 bg-[#f3f1ec] text-ink-body dark:border-stone-700 dark:bg-stone-950">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-sm border border-line-strong bg-surface-raised text-ink-body dark:border-stone-700 dark:bg-stone-950">
                   <Route className="h-5 w-5" />
                 </div>
                 <div className="min-w-0 flex-1">
@@ -1577,7 +1577,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
               <div className={`${panel} px-4 py-4`}>
                 <div className="flex items-center justify-between gap-3 mb-3">
                   <div className="flex items-center gap-2">
-                    <div className="w-9 h-9 rounded-sm border border-stone-300 bg-[#f3f1ec] text-ink-body flex items-center justify-center dark:border-stone-700 dark:bg-stone-950">
+                    <div className="w-9 h-9 rounded-sm border border-line-strong bg-surface-raised text-ink-body flex items-center justify-center dark:border-stone-700 dark:bg-stone-950">
                       <Bookmark className="w-4 h-4" />
                     </div>
                     <div>
@@ -1598,7 +1598,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                     <Link
                       key={bookmark.id}
                       href={`/bai-hoc/${bookmark.lesson_slug}`}
-                      className="group rounded-sm border border-stone-200 bg-[#fbfaf7] dark:border-stone-800 dark:bg-stone-950/40 px-4 py-3 hover:border-stone-950 dark:hover:border-stone-300 transition-colors"
+                      className="group rounded-sm border border-stone-200 bg-page dark:border-stone-800 dark:bg-stone-950/40 px-4 py-3 hover:border-stone-950 dark:hover:border-stone-300 transition-colors"
                     >
                       <div className="flex items-start justify-between gap-3">
                         <div className="min-w-0">
@@ -1697,7 +1697,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
 
  {/* Bảy nhánh kèm mô tả */}
  {showAllBranches && (
- <ul className="mt-2.5 divide-y divide-stone-200 overflow-hidden rounded-md border border-stone-300 bg-white dark:divide-stone-800 dark:border-stone-700 dark:bg-stone-900">
+ <ul className="mt-2.5 divide-y divide-stone-200 overflow-hidden rounded-md border border-line-strong bg-white dark:divide-stone-800 dark:border-stone-700 dark:bg-stone-900">
  {PROFESSIONAL_BRANCHES.map((branch) => (
  <li key={branch.id}>
  <button
@@ -1705,8 +1705,8 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
  handleSetProfessionalBranch(branch.id);
  setShowAllBranches(false);
  }}
- className={`w-full cursor-pointer px-3.5 py-2.5 text-left transition-colors hover:bg-[#f3f1ec] dark:hover:bg-stone-800/60 ${
- professionalBranch === branch.id ? "bg-[#f3f1ec] dark:bg-stone-800/60" : ""
+ className={`w-full cursor-pointer px-3.5 py-2.5 text-left transition-colors hover:bg-surface-raised dark:hover:bg-stone-800/60 ${
+ professionalBranch === branch.id ? "bg-surface-raised dark:bg-stone-800/60" : ""
  }`}
  >
  <span className={`block text-xs font-bold ${professionalBranch === branch.id ? "text-accent-strong" : "text-ink"}`}>
@@ -1787,7 +1787,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
  e.stopPropagation();
  setManualFlagInfoOpen((current) => !current);
  }}
- className="inline-flex items-center justify-center rounded-xs border border-line-strong w-4 h-4 text-[10px] font-black text-stone-500 transition-colors hover:bg-[#f3f1ec] dark:text-stone-400 dark:hover:bg-stone-800" aria-expanded={manualFlagInfoOpen}
+ className="inline-flex items-center justify-center rounded-xs border border-line-strong w-4 h-4 text-[10px] font-black text-stone-500 transition-colors hover:bg-surface-raised dark:text-stone-400 dark:hover:bg-stone-800" aria-expanded={manualFlagInfoOpen}
  aria-label={t.dashboard.markLearned.help}
  >
  ?
@@ -1866,7 +1866,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
      đậm (stone-950) - trước đây là nền vàng và nền brand, nhưng xanh chỉ
      dành cho chức năng. Hình bên trong đổi theo nội dung công nghệ. */}
  {stageIdx === 0 ? (
- <div className="w-10 h-10 rounded-sm flex items-center justify-center shrink-0 border border-stone-300 bg-[#f3f1ec] dark:border-stone-700 dark:bg-stone-950">
+ <div className="w-10 h-10 rounded-sm flex items-center justify-center shrink-0 border border-line-strong bg-surface-raised dark:border-stone-700 dark:bg-stone-950">
  <Flag className="w-5 h-5 text-ink-body" />
  </div>
  ) : (() => {
@@ -1879,7 +1879,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
  })()}
 
  <div className="flex items-center gap-2 flex-wrap min-w-0">
- <span className="text-[10px] tabular-nums font-black uppercase text-ink-body bg-[#f3f1ec] px-2 py-0.5 rounded-xs border border-stone-300 shrink-0 dark:bg-stone-950 dark:border-stone-700">
+ <span className="text-[10px] tabular-nums font-black uppercase text-ink-body bg-surface-raised px-2 py-0.5 rounded-xs border border-line-strong shrink-0 dark:bg-stone-950 dark:border-stone-700">
  {stageDisplayLabels.get(stage.label) || stageCopy?.label || stage.label}
  </span>
  {stage.isNew && (
@@ -1952,11 +1952,11 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
 
  {/* Not available yet - with lock and loading animation */}
  {stageOpen && !stage.available && (
- <div className="mt-4 border border-dashed border-line-strong rounded-sm px-5 py-6 text-center bg-[#fbfaf7] dark:bg-stone-900/50 relative overflow-hidden">
+ <div className="mt-4 border border-dashed border-line-strong rounded-sm px-5 py-6 text-center bg-page dark:bg-stone-900/50 relative overflow-hidden">
 
  {/* Lock icon */}
  <div className="relative z-10 flex flex-col items-center gap-3">
- <div className="w-12 h-12 rounded-sm border border-stone-300 bg-[#f3f1ec] dark:border-stone-700 dark:bg-stone-950 flex items-center justify-center">
+ <div className="w-12 h-12 rounded-sm border border-line-strong bg-surface-raised dark:border-stone-700 dark:bg-stone-950 flex items-center justify-center">
  <svg className="w-6 h-6 text-ink-soft" fill="currentColor" viewBox="0 0 24 24">
  <path d="M12 1C6.48 1 2 5.48 2 11v10c0 .55.45 1 1 1h18c.55 0 1-.45 1-1V11c0-5.52-4.48-10-10-10zm0 2c4.41 0 8 3.59 8 8v2H4v-2c0-4.41 3.59-8 8-8zm-3 13h6v2H9z"/>
  </svg>
@@ -1971,7 +1971,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
 
  {/* Available but no lessons in DB yet - with building animation */}
  {stageOpen && stage.available && stageLessons.length === 0 && (
- <div className="mt-4 border border-dashed border-line-strong rounded-sm px-5 py-6 text-center bg-[#fbfaf7] dark:bg-stone-900/50 relative overflow-hidden">
+ <div className="mt-4 border border-dashed border-line-strong rounded-sm px-5 py-6 text-center bg-page dark:bg-stone-900/50 relative overflow-hidden">
 
  {/* Content */}
  <div className="relative z-10 flex flex-col items-center gap-2">
@@ -2001,7 +2001,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
  <button
  onClick={() => togglePart(partKey)}
  aria-expanded={partOpen}
- className={`w-full flex items-center gap-3 px-4 py-3 hover:bg-[#f3f1ec] dark:hover:bg-stone-800/50 transition-colors cursor-pointer text-left select-none ${partOpen ? "border-b border-stone-200 bg-[#f3f1ec] dark:border-stone-800 dark:bg-stone-950" : ""}`}
+ className={`w-full flex items-center gap-3 px-4 py-3 hover:bg-surface-raised dark:hover:bg-stone-800/50 transition-colors cursor-pointer text-left select-none ${partOpen ? "border-b border-stone-200 bg-surface-raised dark:border-stone-800 dark:bg-stone-950" : ""}`}
  >
  <div className="shrink-0">
  {partDone === partLessons.length && partLessons.length > 0 ? (
@@ -2013,7 +2013,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
  <Play className="w-3.5 h-3.5 fill-current translate-x-0.5" />
  </div>
  ) : (
- <div className="w-7 h-7 rounded-sm border border-stone-300 bg-[#f3f1ec] text-stone-400 flex items-center justify-center dark:border-stone-700 dark:bg-stone-950">
+ <div className="w-7 h-7 rounded-sm border border-line-strong bg-surface-raised text-stone-400 flex items-center justify-center dark:border-stone-700 dark:bg-stone-950">
  <Lock className="w-3.5 h-3.5" />
  </div>
  )}
@@ -2050,7 +2050,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
  <button
  key={lesson.id}
  onClick={() => handleLockedLessonClick(lesson)}
- className="w-full text-left block rounded-sm border border-stone-200 bg-[#f3f1ec] dark:border-stone-800 dark:bg-stone-900/50 opacity-70 hover:opacity-100 transition-opacity cursor-pointer"
+ className="w-full text-left block rounded-sm border border-stone-200 bg-surface-raised dark:border-stone-800 dark:bg-stone-900/50 opacity-70 hover:opacity-100 transition-opacity cursor-pointer"
  >
  <div className="flex items-center gap-4 px-6 py-5">
  <div className="w-12 flex-shrink-0 text-center">
@@ -2059,7 +2059,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
  </span>
  </div>
  <div className="flex-shrink-0">
- <div className="w-6 h-6 rounded-xs border border-stone-300 flex items-center justify-center dark:border-stone-700">
+ <div className="w-6 h-6 rounded-xs border border-line-strong flex items-center justify-center dark:border-stone-700">
  <Lock className="w-3.5 h-3.5 text-ink-muted" />
  </div>
  </div>
@@ -2084,7 +2084,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
  onClick={() => handleSelectableLessonCardClick(lesson.id, isDone)}
  className={`relative block rounded-sm border transition-colors ${
  isDone
- ? "bg-[#fbfaf7] dark:bg-stone-900/60 border-line hover:border-stone-950 dark:hover:border-stone-300"
+ ? "bg-page dark:bg-stone-900/60 border-line hover:border-stone-950 dark:hover:border-stone-300"
  : lesson.id === currentLessonId
  ? "border-stone-900 bg-white dark:border-stone-100 dark:bg-stone-900"
  : isSelectedForFlag
@@ -2259,7 +2259,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
 
  {/* Locked Stage Banner (if stage is locked by previous stage milestone) */}
  {stageOpen && stage.available && isStageLockedByMilestone && (
- <div className="mt-4 border border-dashed border-rose-300 dark:border-rose-900 rounded-sm px-5 py-8 text-center bg-[#fbfaf7] dark:bg-stone-900/50 relative overflow-hidden">
+ <div className="mt-4 border border-dashed border-rose-300 dark:border-rose-900 rounded-sm px-5 py-8 text-center bg-page dark:bg-stone-900/50 relative overflow-hidden">
  <div className="flex flex-col items-center gap-3">
  <div className="w-12 h-12 rounded-sm border border-rose-300 text-rose-600 flex items-center justify-center dark:border-rose-900 dark:text-rose-400">
  <Lock className="w-6 h-6" />
@@ -2322,11 +2322,11 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
  <button
  key={lesson.id}
  onClick={() => handleLockedLessonClick(lesson)}
- className="w-full text-left block rounded-sm border border-stone-200 bg-[#f3f1ec] dark:border-stone-800 dark:bg-stone-900/50 opacity-70 hover:opacity-100 transition-opacity cursor-pointer"
+ className="w-full text-left block rounded-sm border border-stone-200 bg-surface-raised dark:border-stone-800 dark:bg-stone-900/50 opacity-70 hover:opacity-100 transition-opacity cursor-pointer"
  >
  <div className="flex items-center gap-4 px-6 py-4">
  <div className="flex-shrink-0">
- <div className="w-6 h-6 rounded-xs border border-stone-300 flex items-center justify-center dark:border-stone-700">
+ <div className="w-6 h-6 rounded-xs border border-line-strong flex items-center justify-center dark:border-stone-700">
  <Lock className="w-3.5 h-3.5 text-ink-muted" />
  </div>
  </div>
@@ -2351,7 +2351,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
  onClick={() => handleSelectableLessonCardClick(lesson.id, isDone)}
  className={`block rounded-sm border transition-colors ${
  isDone
- ? "bg-[#fbfaf7] dark:bg-stone-900/60 border-line hover:border-stone-950 dark:hover:border-stone-300"
+ ? "bg-page dark:bg-stone-900/60 border-line hover:border-stone-950 dark:hover:border-stone-300"
  : isSelectedForFlag
  ? "bg-white dark:bg-stone-900 border-brand-600 dark:border-brand-400"
  : isFlagged
@@ -2505,7 +2505,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
             {isLessonsView && (
               <div className={`${panel} p-5 flex items-center justify-between gap-3 select-none`}>
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-sm border border-stone-300 bg-[#f3f1ec] flex items-center justify-center shrink-0 dark:border-stone-700 dark:bg-stone-950">
+                  <div className="w-10 h-10 rounded-sm border border-line-strong bg-surface-raised flex items-center justify-center shrink-0 dark:border-stone-700 dark:bg-stone-950">
                     <Trophy className="w-5 h-5 text-ink-body" />
                   </div>
                   <div>

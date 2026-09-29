@@ -71,8 +71,8 @@ export default function ExerciseBlock({ language, title, task, starter, solution
   const lines = code.split("\n").length;
 
   return (
-    <section className="my-8 overflow-hidden rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900">
-      <header className="space-y-2 border-b border-stone-300 bg-[#f3f1ec] px-4 py-3 dark:border-stone-700 dark:bg-stone-950 sm:px-5">
+    <section className="my-8 overflow-hidden rounded-md border border-line-strong bg-white dark:border-stone-700 dark:bg-stone-900">
+      <header className="space-y-2 border-b border-stone-300 bg-surface-raised px-4 py-3 dark:border-stone-700 dark:bg-stone-950 sm:px-5">
         <p className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.08em] text-accent-strong">
           <span>{c.exerciseBadge}</span>
           <span className="text-ink-faint">·</span>

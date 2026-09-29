@@ -8,7 +8,7 @@ import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 import { XP_PER_LESSON } from "@/lib/levels";
 import LiveNumber from "@/components/LiveNumber";
-import { Scramble, TypeText, useInViewOnce } from "@/components/home/v2/effects";
+import { Scramble, TypeText, useInViewOnce } from "@/components/ui/effects";
 import { BAND, Crosshair, ID, INK, Mono, PAPER, RULE, SheetHead, Stamp, useCrosshair } from "@/components/home/v2/kit";
 
 /* ───────────────────────── HERO ───────────────────────── */
@@ -118,7 +118,7 @@ export function EditorialHero({
             <span className="block text-[16vw] font-black uppercase leading-[0.95] tracking-[-0.045em] lg:text-[11rem]">
               <Scramble text={v.heroLine1} duration={700} />
             </span>
-            <span className="-ml-[0.04em] block whitespace-nowrap text-[16vw] font-black uppercase leading-[0.95] tracking-[-0.045em] text-brand-600 dark:text-brand-400 lg:text-[11rem]">
+            <span className="-ml-[0.04em] block whitespace-nowrap text-[16vw] font-black uppercase leading-[0.95] tracking-[-0.045em] text-accent lg:text-[11rem]">
               <Scramble text={v.heroLine2} duration={1100} delay={150} />
             </span>
             <span className="mt-2 block text-[9vw] font-light italic leading-none tracking-tight lg:ml-[40%] lg:text-[5.5rem]">
@@ -145,7 +145,7 @@ export function EditorialHero({
                 <ArrowUpRight className="h-4 w-4" />
               </a>
             </div>
-            <p className="mt-3 pl-1 font-mono text-[11px] text-brand-700 dark:text-brand-300">↑ {v.annotation}</p>
+            <p className="mt-3 pl-1 font-mono text-[11px] text-accent-strong">↑ {v.annotation}</p>
           </div>
 
           <div className="flex flex-col gap-4 lg:col-span-6 lg:col-start-7">

@@ -205,7 +205,7 @@ export default function PvpDuelModal({
       initial={{ opacity: 0, scale: 0.96, y: 12 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.96, y: 12 }}
-      className={`bg-white border border-stone-300 text-ink dark:bg-stone-900 dark:border-stone-700 relative overflow-hidden ${
+      className={`bg-white border border-line-strong text-ink dark:bg-stone-900 dark:border-stone-700 relative overflow-hidden ${
         embedded
           ? "rounded-md p-6 sm:p-7 max-w-4xl w-full mx-auto"
           : "rounded-md p-6 sm:p-7 max-w-4xl w-full"
@@ -214,7 +214,7 @@ export default function PvpDuelModal({
       {!embedded && (
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 p-1.5 text-ink-muted hover:text-ink-max rounded-sm border border-stone-300 hover:border-stone-950 dark:border-stone-700 dark:hover:border-stone-200 transition-colors z-10"
+          className="absolute top-4 right-4 p-1.5 text-ink-muted hover:text-ink-max rounded-sm border border-line-strong hover:border-stone-950 dark:border-stone-700 dark:hover:border-stone-200 transition-colors z-10"
           aria-label={t.pvpDuel.closeAriaLabel}
         >
           <X className="w-5 h-5" />
@@ -252,7 +252,7 @@ export default function PvpDuelModal({
               </div>
             </div>
 
-            <div className={`grid ${embedded ? "grid-cols-1 sm:grid-cols-[auto_1fr]" : "md:grid-cols-[auto_1fr]"} gap-4 items-center bg-[#fbfaf7] border border-stone-300 dark:bg-stone-950 dark:border-stone-700 ${embedded ? "p-4" : "p-5 sm:p-6"} rounded-md`}>
+            <div className={`grid ${embedded ? "grid-cols-1 sm:grid-cols-[auto_1fr]" : "md:grid-cols-[auto_1fr]"} gap-4 items-center bg-page border border-line-strong dark:bg-stone-950 dark:border-stone-700 ${embedded ? "p-4" : "p-5 sm:p-6"} rounded-md`}>
               <div className={embedded ? "justify-self-center sm:justify-self-start" : ""}>
                 <TechCharacterAvatar level={userLevel} equipments={equipments} size={embedded ? "sm" : "md"} />
               </div>
@@ -337,7 +337,7 @@ export default function PvpDuelModal({
               <p className="text-[10px] font-black uppercase tracking-widest text-ink-muted mb-2">
                 {format(t.pvpDuel.fromLessonLabel, { title: currentQuestion.lessonTitle })}
               </p>
-              <h3 className={`${embedded ? "text-sm" : "text-base sm:text-lg"} font-bold bg-[#fbfaf7] p-4 rounded-md border border-stone-300 text-ink-max dark:bg-stone-950 dark:border-stone-700 leading-relaxed break-words`}>
+              <h3 className={`${embedded ? "text-sm" : "text-base sm:text-lg"} font-bold bg-page p-4 rounded-md border border-line-strong text-ink-max dark:bg-stone-950 dark:border-stone-700 leading-relaxed break-words`}>
                 {currentQuestion.prompt}
               </h3>
             </div>
@@ -370,7 +370,7 @@ export default function PvpDuelModal({
             </div>
 
             {selectedOpt !== null && (
-              <p className={`mt-3 ${embedded ? "text-xs p-3" : "text-sm p-4"} leading-relaxed bg-[#fbfaf7] border border-stone-300 text-ink-body rounded-md dark:bg-stone-950 dark:border-stone-700`}>
+              <p className={`mt-3 ${embedded ? "text-xs p-3" : "text-sm p-4"} leading-relaxed bg-page border border-line-strong text-ink-body rounded-md dark:bg-stone-950 dark:border-stone-700`}>
                 {currentQuestion.explanation}
               </p>
             )}

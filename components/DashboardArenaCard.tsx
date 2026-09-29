@@ -31,7 +31,7 @@ export default function DashboardArenaCard({ onOpenBoss, onOpenPvp }: DashboardA
   const { t } = useI18n();
 
   const rowClass =
-    "group flex w-full items-center gap-3 px-1 py-2.5 text-left transition-colors hover:bg-[#f3f1ec] dark:hover:bg-stone-950";
+    "group flex w-full items-center gap-3 px-1 py-2.5 text-left transition-colors hover:bg-surface-raised dark:hover:bg-stone-950";
 
   return (
     <div className={`mt-4 p-4 ${panel}`}>
@@ -50,7 +50,7 @@ export default function DashboardArenaCard({ onOpenBoss, onOpenPvp }: DashboardA
           onClick={() => trackFeatureClick("dashboard_arena_click", { label: "quiz" })}
           className={rowClass}
         >
-          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-sm border border-stone-300 bg-[#f3f1ec] text-ink-body dark:border-stone-700 dark:bg-stone-950">
+          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-sm border border-line-strong bg-surface-raised text-ink-body dark:border-stone-700 dark:bg-stone-950">
             <Dices className="h-4 w-4" />
           </span>
           <span className="min-w-0 flex-1">
@@ -71,7 +71,7 @@ export default function DashboardArenaCard({ onOpenBoss, onOpenPvp }: DashboardA
           }}
           className={rowClass}
         >
-          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-sm border border-stone-300 bg-[#f3f1ec] text-ink-body dark:border-stone-700 dark:bg-stone-950">
+          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-sm border border-line-strong bg-surface-raised text-ink-body dark:border-stone-700 dark:bg-stone-950">
             <Swords className="h-4 w-4" />
           </span>
           <span className="min-w-0 flex-1">
@@ -92,7 +92,7 @@ export default function DashboardArenaCard({ onOpenBoss, onOpenPvp }: DashboardA
           }}
           className={rowClass}
         >
-          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-sm border border-stone-300 bg-[#f3f1ec] text-ink-body dark:border-stone-700 dark:bg-stone-950">
+          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-sm border border-line-strong bg-surface-raised text-ink-body dark:border-stone-700 dark:bg-stone-950">
             <Users className="h-4 w-4" />
           </span>
           <span className="min-w-0 flex-1">

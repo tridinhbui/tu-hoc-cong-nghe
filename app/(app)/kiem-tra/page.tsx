@@ -165,12 +165,12 @@ export default function KiemTraPage() {
     // which is exactly what pinning to one screen is meant to prevent. The
     // desktop sidebar is `fixed` and costs no height, hence lg:h-dvh.
     <div className="h-[calc(100dvh-3.5rem)] lg:h-dvh overflow-hidden flex flex-col bg-surface">
-      <div className="shrink-0 border-b border-stone-300 bg-[#f3f1ec] dark:border-stone-700 dark:bg-stone-950">
+      <div className="shrink-0 border-b border-stone-300 bg-surface-raised dark:border-stone-700 dark:bg-stone-950">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-2.5 flex items-center justify-between gap-4">
           <div className="flex min-w-0 items-center gap-3">
             <Link
               href="/dashboard"
-              className="flex shrink-0 items-center justify-center w-8 h-8 rounded-sm border border-stone-300 text-ink-muted transition-colors hover:border-stone-950 hover:text-ink dark:border-stone-700 dark:hover:border-stone-300"
+              className="flex shrink-0 items-center justify-center w-8 h-8 rounded-sm border border-line-strong text-ink-muted transition-colors hover:border-stone-950 hover:text-ink dark:border-stone-700 dark:hover:border-stone-300"
               aria-label={t.quizPage.backAria}
             >
               <ChevronLeft className="w-4 h-4" />
@@ -452,7 +452,7 @@ export default function KiemTraPage() {
         {stage === "done" && (
           <div className="mx-auto max-w-2xl space-y-5">
             <div className="flex items-start gap-4">
-              <span className="rounded-sm border border-stone-300 p-2.5 text-ink-body dark:border-stone-700">
+              <span className="rounded-sm border border-line-strong p-2.5 text-ink-body dark:border-stone-700">
                 {score === questions.length ? (
                   <Trophy aria-hidden className="h-7 w-7" strokeWidth={1.5} />
                 ) : score >= questions.length * 0.7 ? (

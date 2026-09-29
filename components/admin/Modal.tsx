@@ -37,7 +37,7 @@ export default function Modal({ open, onClose, title, children, footer, maxWidth
         aria-label={title}
         className={`${panel} relative w-full ${maxWidth} max-h-[90vh] flex flex-col`}
       >
-        <div className="flex items-center justify-between px-5 py-3 border-b border-line-strong bg-[#f3f1ec] dark:bg-stone-950 flex-shrink-0">
+        <div className="flex items-center justify-between px-5 py-3 border-b border-line-strong bg-surface-raised dark:bg-stone-950 flex-shrink-0">
           <h2 className="font-bold text-ink">{title}</h2>
           <button
             onClick={onClose}

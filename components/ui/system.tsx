@@ -1,29 +1,28 @@
 import type { ReactNode } from "react";
 
 /*
- * HỆ THIẾT KẾ CHUNG - lấy nguyên từ trang giới thiệu (components/home/HomePage.tsx)
+ * HỆ THIẾT KẾ CHUNG - lấy từ trang chủ biên tập (components/home/v2/kit.tsx)
  * để mọi màn hình sau cửa đăng nhập nói cùng một ngôn ngữ với nó.
  *
- * Năm luật (chép từ đầu HomePage.tsx, đó là nơi chúng được đặt ra):
- *  1. Bo góc 2-6px. Không có gì tròn trừ chấm trạng thái và ảnh đại diện.
- *  2. Viền 1px làm cấu trúc, không đổ bóng. Chiều sâu đến từ sắc độ nền:
- *     giấy ngà #fbfaf7 -> thanh tiêu đề #f3f1ec -> nền mực stone-950.
- *  3. Xanh có CHỨC NĂNG: liên kết, tab đang mở, đáp án được chọn, dữ liệu
- *     sống. Không tô xanh để trang trí.
- *  4. Mono chỉ cho siêu dữ liệu máy - đường dẫn, mã module, số trong bảng,
- *     dấu thời gian. Chữ tiếng Việt luôn đi bằng phông sans.
+ * Luật (chép từ kit.tsx, đó là nơi chúng được đặt ra):
+ *  1. Không bo góc, không bóng, không gradient. Cấu trúc bằng nét mực 1-2px
+ *     (`border-line-strong` giờ LÀ màu mực).
+ *  2. Trong app nền TRẮNG 100% (`bg-page` = `bg-surface` = trắng) -> thanh tiêu đề
+ *     (`bg-surface-raised`) -> dải mực (`bg-surface-invert`). Giấy ngà chỉ ở trang chủ + login.
+ *  3. Xanh brand là màu tín hiệu: nút chính, tab đang mở, dữ liệu sống.
+ *  4. Mono chữ hoa cho siêu dữ liệu máy; chữ tiếng Việt đi bằng sans.
  *  5. Siêu dữ liệu không bịa.
  *
- * Dùng các thành phần ở đây thay vì tự dựng thẻ bo 16-28px có bóng đổ.
+ * Dùng các thành phần ở đây thay vì tự dựng thẻ bo góc có bóng đổ.
  */
 
-/** Nút hành động chính: nền mực, chữ trắng, rê chuột thành xanh thương hiệu. */
+/** Nút hành động chính: khối xanh, chữ hoa đậm, rê chuột thành mực. */
 export const btnPrimary =
-  "group inline-flex items-center justify-center gap-2 rounded-sm bg-stone-950 px-4 py-2.5 text-sm font-bold text-white transition-colors hover:bg-brand-700 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-brand-300";
+  "group inline-flex items-center justify-center gap-2 bg-brand-600 px-4 py-2.5 text-[13px] font-black uppercase tracking-wide text-white transition-colors hover:bg-[#0d0e11] disabled:cursor-not-allowed disabled:opacity-50 dark:hover:bg-brand-400 dark:hover:text-[#0d0e11]";
 
 /** Nút phụ: viền 1px, không nền. */
 export const btnSecondary =
-  "inline-flex items-center justify-center gap-2 rounded-sm border border-stone-400 px-4 py-2.5 text-sm font-bold text-ink transition-colors hover:border-stone-950 disabled:cursor-not-allowed disabled:opacity-50 dark:border-stone-600 dark:hover:border-stone-200";
+  "inline-flex items-center justify-center gap-2 border-2 border-line-strong px-4 py-2 text-sm font-bold text-ink transition-colors hover:bg-surface-invert hover:text-ink-invert disabled:cursor-not-allowed disabled:opacity-50";
 
 /** Liên kết chữ: xanh là chức năng, gạch chân khi rê chuột. */
 export const textLink = "inline-flex items-center gap-1.5 text-sm font-bold text-accent-strong underline-offset-4 hover:underline";
@@ -79,7 +78,7 @@ export function SectionHead({
 }) {
   const titleSize =
     size === "lg"
-      ? "text-[1.65rem] sm:text-[2rem] lg:text-[2.25rem]"
+      ? "text-[1.9rem] sm:text-[2.4rem] lg:text-[2.8rem]"
       : size === "sm"
         ? "text-base sm:text-lg"
         : "text-xl sm:text-2xl";
@@ -87,16 +86,16 @@ export function SectionHead({
     <div className={className}>
       {(code || eyebrow) && (
         <div
-          className={`flex items-center justify-between gap-4 border-b pb-2 ${
-            dark ? "border-white/15" : "border-line-strong"
+          className={`flex items-center justify-between gap-4 border-b-2 pb-2 ${
+            dark ? "border-white/40" : "border-line-strong"
           }`}
         >
-          {code ? <Sys className={dark ? "text-stone-400" : "text-ink-muted"}>{code}</Sys> : <span />}
+          {code ? <Sys className={dark ? "text-brand-300" : "text-accent-strong"}>{code}</Sys> : <span />}
           {eyebrow && <span className={`eyebrow text-right ${dark ? "text-stone-300" : "text-ink-soft"}`}>{eyebrow}</span>}
         </div>
       )}
       <h2
-        className={`${code || eyebrow ? "mt-3" : ""} font-black leading-[1.15] tracking-tight ${titleSize} ${
+        className={`${code || eyebrow ? "mt-3" : ""} font-black leading-[1.12] tracking-[-0.03em] ${titleSize} ${
           dark ? "text-white" : "text-ink-max"
         }`}
       >
@@ -136,14 +135,14 @@ export function Frame({
 }) {
   return (
     <div
-      className={`overflow-hidden rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900 ${className}`}
+      className={`overflow-hidden border-2 border-line-strong bg-surface ${className}`}
     >
-      <div className="flex h-8 items-center justify-between gap-3 border-b border-stone-300 bg-[#f3f1ec] px-3 dark:border-stone-700 dark:bg-stone-950">
+      <div className="flex h-8 items-center justify-between gap-3 border-b-2 border-line-strong bg-surface-raised px-3">
         <div className="flex min-w-0 items-center gap-2.5">
           <span aria-hidden className="flex gap-1">
-            <span className="h-2 w-2 rounded-xs bg-surface-deep" />
-            <span className="h-2 w-2 rounded-xs bg-surface-deep" />
-            <span className="h-2 w-2 rounded-xs bg-surface-deep" />
+            <span className="h-2 w-2 border border-line-strong" />
+            <span className="h-2 w-2 border border-line-strong" />
+            <span className="h-2 w-2 bg-surface-invert" />
           </span>
           <Sys className="truncate normal-case text-ink-muted">{title}</Sys>
         </div>
@@ -159,12 +158,12 @@ export function Frame({
 }
 
 /** Mặt phẳng đơn giản khi không cần thanh tiêu đề: viền 1px, không bóng. */
-export const panel = "rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900";
+export const panel = "border border-line-strong bg-surface";
 
 /** Bảng số liệu hệ thống: nhãn trái, số mono căn phải thẳng cột. */
 export function StatTable({ rows, className = "" }: { rows: { label: ReactNode; value: ReactNode; id?: string }[]; className?: string }) {
   return (
-    <dl className={`divide-y divide-stone-200 dark:divide-stone-800 ${className}`}>
+    <dl className={`divide-y divide-line ${className}`}>
       {rows.map((r, i) => (
         <div key={i} className="flex items-baseline justify-between gap-4 py-2">
           <dt className="flex items-baseline gap-3">
@@ -175,5 +174,29 @@ export function StatTable({ rows, className = "" }: { rows: { label: ReactNode; 
         </div>
       ))}
     </dl>
+  );
+}
+
+/** Con dấu kiểu giấy tờ hành chính - xoay nhẹ, viền kép. */
+export function Stamp({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  return (
+    <span
+      className={`-rotate-6 border-2 border-brand-600 px-2.5 py-1 font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-brand-600 outline outline-1 outline-offset-2 outline-brand-600 dark:border-brand-400 dark:text-brand-400 dark:outline-brand-400 ${className}`}
+    >
+      {children}
+    </span>
+  );
+}
+
+/** Dấu cắt góc như bản in thử - bốn góc của một khung. */
+export function CropMarks({ className = "border-current" }: { className?: string }) {
+  const c = `pointer-events-none absolute h-3 w-3 ${className}`;
+  return (
+    <>
+      <span aria-hidden className={`${c} -left-1.5 -top-1.5 border-l border-t`} />
+      <span aria-hidden className={`${c} -right-1.5 -top-1.5 border-r border-t`} />
+      <span aria-hidden className={`${c} -bottom-1.5 -left-1.5 border-b border-l`} />
+      <span aria-hidden className={`${c} -bottom-1.5 -right-1.5 border-b border-r`} />
+    </>
   );
 }

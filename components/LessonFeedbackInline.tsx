@@ -43,7 +43,7 @@ export default function LessonFeedbackInline({ lessonId, userId }: Props) {
   return (
     <div className={`${panel} p-5 sm:p-6`}>
       <div className="mb-5 flex items-start gap-3">
-        <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-sm border border-stone-300 text-ink-body dark:border-stone-700">
+        <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-sm border border-line-strong text-ink-body dark:border-stone-700">
           <MessageSquare aria-hidden className="h-4 w-4" strokeWidth={1.75} />
         </span>
         <div className="flex-1">
@@ -80,7 +80,7 @@ export default function LessonFeedbackInline({ lessonId, userId }: Props) {
         onChange={(e) => setComment(e.target.value)}
         rows={4}
         placeholder={t.lessonFeedback.commentPlaceholder}
-        className="mb-4 w-full resize-none rounded-sm border border-stone-300 bg-white px-3 py-2.5 text-base leading-7 text-ink placeholder:text-stone-500 focus:border-brand-600 focus:outline-none dark:border-stone-700 dark:bg-stone-950 dark:focus:border-brand-400"
+        className="mb-4 w-full resize-none rounded-sm border border-line-strong bg-white px-3 py-2.5 text-base leading-7 text-ink placeholder:text-stone-500 focus:border-brand-600 focus:outline-none dark:border-stone-700 dark:bg-stone-950 dark:focus:border-brand-400"
       />
 
       <button

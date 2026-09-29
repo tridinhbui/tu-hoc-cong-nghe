@@ -31,7 +31,7 @@ export default async function TermsPage() {
   const p = t.terms;
 
   return (
-    <div className="min-h-screen bg-[#fbfaf7] dark:bg-stone-950">
+    <div className="min-h-screen bg-page dark:bg-stone-950">
       <div className="mx-auto max-w-2xl px-4 py-10 sm:px-6">
         <Link
           href="/login"

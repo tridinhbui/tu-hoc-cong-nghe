@@ -210,7 +210,7 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
           className={`${panel} space-y-4 p-5`}
         >
           <div className="flex items-center gap-3 border-b border-stone-200 pb-3 dark:border-stone-800">
-            <span className="flex h-8 w-8 items-center justify-center rounded-sm border border-stone-300 text-ink-body dark:border-stone-700">
+            <span className="flex h-8 w-8 items-center justify-center rounded-sm border border-line-strong text-ink-body dark:border-stone-700">
               <Lightbulb aria-hidden className="h-4 w-4" strokeWidth={1.75} />
             </span>
             <div>
@@ -222,7 +222,7 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
             <p>
               {t.lessonPage.feynmanIntroPart1} <strong>&quot;{lesson.title}&quot;</strong> {t.lessonPage.feynmanIntroPart2}
             </p>
-            <div className="rounded-sm border border-stone-200 bg-[#fbfaf7] p-3.5 font-semibold text-ink-max dark:border-stone-800 dark:bg-stone-950">
+            <div className="rounded-sm border border-stone-200 bg-page p-3.5 font-semibold text-ink-max dark:border-stone-800 dark:bg-stone-950">
               {t.lessonPage.feynmanMetaphorLeadIn}{" "}
               <TypingText text={`${t.lessonPage.metaphors[getMetaphorForLesson(lesson.title)]}.`} onDone={() => setMetaphorTyped(true)} />
             </div>
@@ -295,10 +295,10 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
           <div className={blockLabel}>
             {t.lessonPage.diagramTitle}
           </div>
-          <div className="flex flex-col items-center rounded-md border border-stone-300 bg-[#fbfaf7] px-4 py-5 dark:border-stone-700 dark:bg-stone-950">
+          <div className="flex flex-col items-center rounded-md border border-line-strong bg-page px-4 py-5 dark:border-stone-700 dark:bg-stone-950">
             {lesson.diagram.map((node: { label: string; arrow?: boolean }, i: number) => (
               <React.Fragment key={i}>
-                <div className="flex w-full max-w-sm items-baseline gap-3 rounded-sm border border-stone-300 bg-white px-4 py-3 text-sm font-semibold text-ink-max dark:border-stone-700 dark:bg-stone-900">
+                <div className="flex w-full max-w-sm items-baseline gap-3 rounded-sm border border-line-strong bg-white px-4 py-3 text-sm font-semibold text-ink-max dark:border-stone-700 dark:bg-stone-900">
                   <Sys className="text-ink-faint">{String(i + 1).padStart(2, "0")}</Sys>
                   <span className="flex-1">{node.label}</span>
                 </div>
@@ -421,7 +421,7 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
       {/* 6. Key Takeaways block */}
       {lesson.keyTakeaways && lesson.keyTakeaways.length > 0 && (
         <div className={`${panel} overflow-hidden`}>
-          <div className="border-b border-stone-300 bg-[#f3f1ec] px-4 py-3 dark:border-stone-700 dark:bg-stone-950 sm:px-5">
+          <div className="border-b border-stone-300 bg-surface-raised px-4 py-3 dark:border-stone-700 dark:bg-stone-950 sm:px-5">
             <p className="text-lg font-black tracking-tight text-ink-max">{t.lessonPage.keyTakeawaysTitle}</p>
           </div>
           <ol className="divide-y divide-stone-200 dark:divide-stone-800">

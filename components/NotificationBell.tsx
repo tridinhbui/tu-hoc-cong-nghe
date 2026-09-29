@@ -200,7 +200,7 @@ export default function NotificationBell({ userId }: { userId: string }) {
         onClick={() => void toggleOpen()}
         aria-label={t.notifications.ariaLabel}
         aria-expanded={open}
-        className="relative flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-sm border border-stone-300 text-ink-soft hover:border-stone-950 transition-colors shrink-0 dark:border-stone-700 dark:hover:border-stone-200"
+        className="relative flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-sm border border-line-strong text-ink-soft hover:border-stone-950 transition-colors shrink-0 dark:border-stone-700 dark:hover:border-stone-200"
       >
         <Bell className="w-4.5 h-4.5" />
         {unreadCount > 0 && (
@@ -214,9 +214,9 @@ export default function NotificationBell({ userId }: { userId: string }) {
         <div
           ref={panelRef}
           style={panelStyle}
-          className="overflow-y-auto overscroll-contain rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900 z-[60]"
+          className="overflow-y-auto overscroll-contain rounded-md border border-line-strong bg-white dark:border-stone-700 dark:bg-stone-900 z-[60]"
         >
-          <div className="flex items-center justify-between gap-2 px-4 py-2.5 border-b border-stone-300 bg-[#f3f1ec] dark:border-stone-700 dark:bg-stone-950">
+          <div className="flex items-center justify-between gap-2 px-4 py-2.5 border-b border-stone-300 bg-surface-raised dark:border-stone-700 dark:bg-stone-950">
             <p className="eyebrow text-ink-soft">{t.notifications.title}</p>
             {unreadCount > 0 && (
               <button
@@ -243,7 +243,7 @@ export default function NotificationBell({ userId }: { userId: string }) {
                   type="button"
                   onClick={() => void handleItemClick(n)}
                   className={`w-full flex items-start gap-2.5 px-4 py-3 text-left transition-colors hover:bg-surface ${
-                    !n.read_at ? "bg-[#fbfaf7] dark:bg-stone-950/60" : ""
+                    !n.read_at ? "bg-page dark:bg-stone-950/60" : ""
                   }`}
                 >
                   {(() => {
@@ -251,7 +251,7 @@ export default function NotificationBell({ userId }: { userId: string }) {
                     if (system) {
                       const { Icon, tone } = system;
                       return (
-                        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-sm border border-stone-300 bg-[#f3f1ec] dark:border-stone-700 dark:bg-stone-950">
+                        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-sm border border-line-strong bg-surface-raised dark:border-stone-700 dark:bg-stone-950">
                           <Icon className={`h-4 w-4 ${tone}`} aria-hidden />
                         </div>
                       );
@@ -276,7 +276,7 @@ export default function NotificationBell({ userId }: { userId: string }) {
                         này: ô ghi chú admin gõ vào trước đây không có đường
                         nào đến được người đọc nó. */}
                     {n.detail && (
-                      <p className="mt-1 rounded-sm border border-stone-200 bg-[#f3f1ec] px-2 py-1 dark:border-stone-800 dark:bg-stone-950 text-[11px] font-medium text-ink-soft leading-snug whitespace-pre-wrap">
+                      <p className="mt-1 rounded-sm border border-stone-200 bg-surface-raised px-2 py-1 dark:border-stone-800 dark:bg-stone-950 text-[11px] font-medium text-ink-soft leading-snug whitespace-pre-wrap">
                         {n.detail}
                       </p>
                     )}

@@ -87,7 +87,7 @@ const CustomTooltip = ({ active, payload, label, formatter, labelFormatter }: Cu
   if (active && payload && payload.length) {
     const formattedLabel = labelFormatter && label !== undefined ? labelFormatter(label) : label;
     return (
-      <div className="z-50 space-y-1 rounded-sm border border-stone-300 bg-white p-2.5 text-xs dark:border-stone-700 dark:bg-stone-900">
+      <div className="z-50 space-y-1 rounded-sm border border-line-strong bg-white p-2.5 text-xs dark:border-stone-700 dark:bg-stone-900">
         {formattedLabel && (
           <p className="mb-1 border-b border-line pb-1 font-bold text-ink">
             {formattedLabel}
@@ -591,7 +591,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
                     <li key={lesson.lessonId}>
                       <Link
                         href={lesson.slug ? `/bai-hoc/${lesson.slug}` : "/ghi-chu"}
-                        className="group flex items-center justify-between gap-4 px-1 py-2.5 transition-colors hover:bg-[#f3f1ec] dark:hover:bg-stone-800/60"
+                        className="group flex items-center justify-between gap-4 px-1 py-2.5 transition-colors hover:bg-surface-raised dark:hover:bg-stone-800/60"
                       >
                         <div className="flex min-w-0 items-center gap-3">
                           <span className="w-6 shrink-0 text-center font-mono text-xs tabular-nums text-ink-faint">

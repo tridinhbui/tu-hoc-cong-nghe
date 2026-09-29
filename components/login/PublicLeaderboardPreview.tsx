@@ -26,11 +26,11 @@ function Avatar({ entry, size }: { entry: LeaderboardRow; size: 36 | 40 }) {
       alt={entry.name}
       width={size}
       height={size}
-      className={`${box} rounded-full border border-stone-300 object-cover dark:border-stone-700`}
+      className={`${box} rounded-full border border-line-strong object-cover dark:border-stone-700`}
     />
   ) : (
     <div
-      className={`${box} flex items-center justify-center rounded-full border border-stone-300 bg-[#f3f1ec] text-xs font-black text-ink-soft dark:border-stone-700 dark:bg-stone-800`}
+      className={`${box} flex items-center justify-center rounded-full border border-line-strong bg-surface-raised text-xs font-black text-ink-soft dark:border-stone-700 dark:bg-stone-800`}
     >
       {entry.name.trim().charAt(0).toUpperCase() || "?"}
     </div>
@@ -152,7 +152,7 @@ export default function PublicLeaderboardPreview() {
         <>
           {/* Bục vinh danh: ba cột phẳng, chiều cao cột nói thứ hạng; hạng 1
               đứng trên nền mực thay cho vàng/bạc/đồng tô gradient. */}
-          <div className="rounded-sm border border-stone-300 bg-[#fbfaf7] p-2.5 sm:p-3 dark:border-stone-700 dark:bg-stone-950">
+          <div className="rounded-sm border border-line-strong bg-page p-2.5 sm:p-3 dark:border-stone-700 dark:bg-stone-950">
             <div className="mb-2 flex items-baseline justify-between gap-3">
               <p className="eyebrow text-ink-muted">{t.leaderboardPreview.podiumBadge}</p>
               <p className="truncate text-xs font-bold text-ink">
@@ -271,7 +271,7 @@ export default function PublicLeaderboardPreview() {
                 <li
                   key={entry.user_id}
                   onClick={() => setSelectedUser(entry)}
-                  className="flex cursor-pointer items-center gap-3 py-2 transition-colors hover:bg-[#fbfaf7] dark:hover:bg-stone-800/50"
+                  className="flex cursor-pointer items-center gap-3 py-2 transition-colors hover:bg-page dark:hover:bg-stone-800/50"
                 >
                   <Sys className="w-5 shrink-0 text-ink-faint">{rankId(idx + 1)}</Sys>
                   <Avatar entry={entry} size={36} />

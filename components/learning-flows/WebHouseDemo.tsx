@@ -98,7 +98,7 @@ document.getElementById("light").onclick=function(){document.body.classList.togg
     } ${locked ? "cursor-not-allowed" : ""}`;
 
   return (
-    <div className="rounded-sm border border-stone-300 bg-[#fbfaf7] p-4 dark:border-stone-700 dark:bg-stone-950">
+    <div className="rounded-sm border border-line-strong bg-page p-4 dark:border-stone-700 dark:bg-stone-950">
       <p className="font-black tracking-tight text-ink-max">{d.title}</p>
       <p className="mb-4 text-sm leading-6 text-ink-muted">{d.sub}</p>
 
@@ -113,7 +113,7 @@ document.getElementById("light").onclick=function(){document.body.classList.togg
               value={name}
               maxLength={40}
               onChange={(e) => setName(e.target.value)}
-              className="w-full rounded-sm border border-stone-300 bg-white px-3 py-2 text-base text-ink-max outline-none focus:border-brand-600 dark:border-stone-700 dark:bg-stone-900"
+              className="w-full rounded-sm border border-line-strong bg-white px-3 py-2 text-base text-ink-max outline-none focus:border-brand-600 dark:border-stone-700 dark:bg-stone-900"
             />
           </div>
 

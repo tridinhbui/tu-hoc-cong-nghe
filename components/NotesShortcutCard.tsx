@@ -12,11 +12,11 @@ export default function NotesShortcutCard() {
   const { collapsed, hydrated, toggle } = useCollapsibleCard("thtcdn:card-collapsed:notes");
 
   return (
-    <div className="group relative rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900 p-5 sm:p-6 overflow-hidden transition-colors hover:border-stone-950 dark:hover:border-stone-300">
+    <div className="group relative rounded-md border border-line-strong bg-white dark:border-stone-700 dark:bg-stone-900 p-5 sm:p-6 overflow-hidden transition-colors hover:border-stone-950 dark:hover:border-stone-300">
       <Link href="/ghi-chu" aria-label={p.notesTitle} className="absolute inset-0 z-10" />
 
       <div className="flex items-start gap-4 relative z-20">
-        <div className="w-10 h-10 rounded-sm border border-stone-300 bg-[#f3f1ec] text-ink-body dark:border-stone-700 dark:bg-stone-950 flex items-center justify-center shrink-0">
+        <div className="w-10 h-10 rounded-sm border border-line-strong bg-surface-raised text-ink-body dark:border-stone-700 dark:bg-stone-950 flex items-center justify-center shrink-0">
           <NotebookPen className="w-5 h-5" />
         </div>
 

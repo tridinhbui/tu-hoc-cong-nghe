@@ -19,7 +19,7 @@ export default async function GamePage() {
   const locale = await getServerLocale();
   const t = getDictionary(locale);
   return (
-    <Suspense fallback={<div className="flex min-h-screen items-center justify-center bg-[#fbfaf7] text-sm text-ink-muted dark:bg-stone-950">{t.finalTwo.gamePage.loading}</div>}>
+    <Suspense fallback={<div className="flex min-h-screen items-center justify-center bg-page text-sm text-ink-muted dark:bg-stone-950">{t.finalTwo.gamePage.loading}</div>}>
       <TechRpgWorldMap />
     </Suspense>
   );

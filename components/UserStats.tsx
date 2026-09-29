@@ -266,7 +266,7 @@ export default function UserStats({
         <div className="text-right shrink-0">
           {/* Tổng XP là số liệu, nên đi bằng mono như số trong bảng hệ thống -
               không còn là viên thuốc gradient. */}
-          <span className={`inline-flex items-center rounded-xs border border-stone-300 bg-[#f3f1ec] font-mono font-medium tabular-nums text-ink-max dark:border-stone-700 dark:bg-stone-950 ${
+          <span className={`inline-flex items-center rounded-xs border border-line-strong bg-surface-raised font-mono font-medium tabular-nums text-ink-max dark:border-stone-700 dark:bg-stone-950 ${
             sidebar ? "text-[10.5px] px-2 py-0.5" : "text-xs px-2.5 py-1"
           }`}>
             {xp} {t.miscUi.userStats.xpUnit}
@@ -295,7 +295,7 @@ export default function UserStats({
                         ? "border-brand-600 bg-white dark:border-brand-400 dark:bg-stone-900"
                         : reached
                         ? "border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900"
-                        : "border-stone-200 bg-[#f3f1ec] opacity-60 dark:border-stone-800 dark:bg-stone-950"
+                        : "border-stone-200 bg-surface-raised opacity-60 dark:border-stone-800 dark:bg-stone-950"
                     }`}
                   >
                     <Glyph emoji={LEVEL_EMOJIS[lvl.level] || "🌱"} className={`w-4 h-4 ${isCurrent ? "text-accent-strong" : reached ? "text-ink-body" : "text-ink-faint"}`} />
@@ -417,7 +417,7 @@ export default function UserStats({
           </div>
 
           {!sidebar && (
-            <div className="mt-3.5 p-3 bg-[#f3f1ec] dark:bg-stone-950 border border-line-strong rounded-sm space-y-2">
+            <div className="mt-3.5 p-3 bg-surface-raised dark:bg-stone-950 border border-line-strong rounded-sm space-y-2">
               <div className="flex items-center gap-2 text-[11px] sm:text-xs font-semibold text-ink-soft">
                 <Target className="w-3.5 h-3.5 shrink-0 text-ink-muted" aria-hidden />
                 <span>
@@ -441,7 +441,7 @@ export default function UserStats({
 
       {!nextLevel && (
         <div className="mt-2.5 pt-2.5 border-t border-line">
-          <div className="p-3 bg-[#f3f1ec] dark:bg-stone-950 border border-line-strong rounded-sm flex items-center gap-2 text-xs text-ink-max font-bold">
+          <div className="p-3 bg-surface-raised dark:bg-stone-950 border border-line-strong rounded-sm flex items-center gap-2 text-xs text-ink-max font-bold">
             <Crown className="w-4 h-4 shrink-0 text-ink-muted" aria-hidden /><span>{format(t.userStats.maxLevelReached, { name: t.levelTitles[currentLevel.level] ?? currentLevel.name })}</span>
           </div>
         </div>

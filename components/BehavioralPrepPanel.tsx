@@ -248,7 +248,7 @@ export default function BehavioralPrepPanel({ career }: { career?: string | null
             </div>
 
             {revealed ? (
-              <div className="rounded-sm border border-line-strong border-l-2 border-l-stone-950 dark:border-l-stone-200 bg-[#f3f1ec] dark:bg-stone-950 p-4 sm:p-5">
+              <div className="rounded-sm border border-line-strong border-l-2 border-l-stone-950 dark:border-l-stone-200 bg-surface-raised dark:bg-stone-950 p-4 sm:p-5">
                 <p className="eyebrow mb-2 text-ink-soft flex items-center gap-1.5">
                   <Lightbulb className="w-3.5 h-3.5" />
                   {t.behavioralPrep.frameworkHeading}

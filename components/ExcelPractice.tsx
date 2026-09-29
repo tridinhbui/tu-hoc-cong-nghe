@@ -127,7 +127,7 @@ function GridPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "grid" }
   const allDone = solved.length === set.tasks.length;
 
   return (
-    <div className="space-y-4 rounded-md border border-stone-300 bg-white p-4 sm:p-6 dark:border-stone-700 dark:bg-stone-900">
+    <div className="space-y-4 rounded-md border border-line-strong bg-white p-4 sm:p-6 dark:border-stone-700 dark:bg-stone-900">
       <div>
         <h3 className="flex items-center gap-2 mb-1 text-lg font-black tracking-tight text-ink-max"><Calculator aria-hidden className="h-5 w-5 flex-shrink-0 text-ink-muted" strokeWidth={1.75} /> {set.title}</h3>
         <p className="text-sm leading-relaxed text-ink-soft">{set.intro}</p>
@@ -138,11 +138,11 @@ function GridPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "grid" }
         <table className="border-collapse text-[11px] sm:text-xs tabular-nums">
           <thead>
             <tr>
-              <th className="w-7 bg-[#f3f1ec] border border-stone-200 dark:bg-stone-950 dark:border-stone-700" />
+              <th className="w-7 bg-surface-raised border border-stone-200 dark:bg-stone-950 dark:border-stone-700" />
               {set.columns.map((col) => (
                 <th
                   key={col}
-                  className="min-w-[74px] px-2 py-1 font-mono font-medium text-ink-muted bg-[#f3f1ec] border border-stone-200 dark:bg-stone-950 dark:border-stone-700"
+                  className="min-w-[74px] px-2 py-1 font-mono font-medium text-ink-muted bg-surface-raised border border-stone-200 dark:bg-stone-950 dark:border-stone-700"
                 >
                   {col}
                 </th>
@@ -152,7 +152,7 @@ function GridPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "grid" }
           <tbody>
             {Array.from({ length: set.rows }, (_, r) => r + 1).map((row) => (
               <tr key={row}>
-                <th className="px-1 font-mono font-medium text-ink-muted bg-[#f3f1ec] border border-stone-200 dark:bg-stone-950 dark:border-stone-700">
+                <th className="px-1 font-mono font-medium text-ink-muted bg-surface-raised border border-stone-200 dark:bg-stone-950 dark:border-stone-700">
                   {row}
                 </th>
                 {set.columns.map((col) => {
@@ -191,7 +191,7 @@ function GridPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "grid" }
 
       {/* Thanh công thức */}
       <div className="flex items-stretch gap-2">
-        <div className="flex items-center px-2.5 rounded-sm border border-stone-200 bg-[#f3f1ec] text-ink-muted font-mono text-xs font-medium dark:border-stone-700 dark:bg-stone-950">
+        <div className="flex items-center px-2.5 rounded-sm border border-stone-200 bg-surface-raised text-ink-muted font-mono text-xs font-medium dark:border-stone-700 dark:bg-stone-950">
           {selected}
         </div>
         <input
@@ -208,7 +208,7 @@ function GridPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "grid" }
           spellCheck={false}
           autoCapitalize="off"
           autoCorrect="off"
-          className="flex-1 min-w-0 px-3 py-2 rounded-sm border border-stone-300 font-mono text-xs bg-white text-ink-max placeholder:text-stone-400 focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600 dark:bg-stone-950 dark:focus:border-brand-400 dark:focus:ring-brand-400 dark:border-stone-700 dark:text-stone-100 dark:placeholder:text-stone-600"
+          className="flex-1 min-w-0 px-3 py-2 rounded-sm border border-line-strong font-mono text-xs bg-white text-ink-max placeholder:text-stone-400 focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600 dark:bg-stone-950 dark:focus:border-brand-400 dark:focus:ring-brand-400 dark:border-stone-700 dark:text-stone-100 dark:placeholder:text-stone-600"
         />
         <button
           type="button"
@@ -220,7 +220,7 @@ function GridPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "grid" }
       </div>
 
       {/* Nhiệm vụ */}
-      <div className="space-y-3 rounded-sm border border-stone-200 bg-[#fbfaf7] p-4 dark:border-stone-800 dark:bg-stone-950">
+      <div className="space-y-3 rounded-sm border border-stone-200 bg-page p-4 dark:border-stone-800 dark:bg-stone-950">
         <div className="flex flex-wrap items-center gap-1.5">
           {set.tasks.map((item, i) => (
             <button
@@ -336,7 +336,7 @@ function SqlPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "sql" }> 
   }
 
   return (
-    <div className="space-y-4 rounded-md border border-stone-300 bg-white p-4 sm:p-6 dark:border-stone-700 dark:bg-stone-900">
+    <div className="space-y-4 rounded-md border border-line-strong bg-white p-4 sm:p-6 dark:border-stone-700 dark:bg-stone-900">
       <div>
         <h3 className="flex items-center gap-2 mb-1 text-lg font-black tracking-tight text-ink-max"><Database aria-hidden className="h-5 w-5 flex-shrink-0 text-ink-muted" strokeWidth={1.75} /> {set.title}</h3>
         <p className="text-sm leading-relaxed text-ink-soft">{set.intro}</p>
@@ -345,7 +345,7 @@ function SqlPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "sql" }> 
       <div className="grid gap-3 sm:grid-cols-2">
         {Object.values(set.db).map((table) => (
           <div key={table.name} className="overflow-hidden rounded-sm border border-line">
-            <div className="border-b border-stone-200 px-3 py-1.5 bg-[#f3f1ec] font-mono text-[11px] font-medium text-ink-muted dark:border-stone-700 dark:bg-stone-950">
+            <div className="border-b border-stone-200 px-3 py-1.5 bg-surface-raised font-mono text-[11px] font-medium text-ink-muted dark:border-stone-700 dark:bg-stone-950">
               {table.name}
             </div>
             <div className="overflow-x-auto">
@@ -376,7 +376,7 @@ function SqlPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "sql" }> 
         ))}
       </div>
 
-      <div className="space-y-3 rounded-sm border border-stone-200 bg-[#fbfaf7] p-4 dark:border-stone-800 dark:bg-stone-950">
+      <div className="space-y-3 rounded-sm border border-stone-200 bg-page p-4 dark:border-stone-800 dark:bg-stone-950">
         <div className="flex flex-wrap items-center gap-1.5">
           {set.tasks.map((item, i) => (
             <button
@@ -411,7 +411,7 @@ function SqlPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "sql" }> 
           autoCapitalize="off"
           autoCorrect="off"
           placeholder={t.excelPractice.sqlPlaceholder}
-          className="w-full px-3 py-2 rounded-sm border border-stone-300 font-mono text-xs bg-white text-ink-max placeholder:text-stone-400 focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600 dark:bg-stone-950 dark:focus:border-brand-400 dark:focus:ring-brand-400 dark:border-stone-700 dark:text-stone-100 dark:placeholder:text-stone-600"
+          className="w-full px-3 py-2 rounded-sm border border-line-strong font-mono text-xs bg-white text-ink-max placeholder:text-stone-400 focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600 dark:bg-stone-950 dark:focus:border-brand-400 dark:focus:ring-brand-400 dark:border-stone-700 dark:text-stone-100 dark:placeholder:text-stone-600"
         />
 
         <button
@@ -530,7 +530,7 @@ function StepsPractice({ set }: { set: Extract<ExcelPracticeSet, { kind: "steps"
   }
 
   return (
-    <div className="space-y-4 rounded-md border border-stone-300 bg-white p-4 sm:p-6 dark:border-stone-700 dark:bg-stone-900">
+    <div className="space-y-4 rounded-md border border-line-strong bg-white p-4 sm:p-6 dark:border-stone-700 dark:bg-stone-900">
       <div>
         <h3 className="flex items-center gap-2 mb-1 text-lg font-black tracking-tight text-ink-max"><Eraser aria-hidden className="h-5 w-5 flex-shrink-0 text-ink-muted" strokeWidth={1.75} /> {set.title}</h3>
         <p className="text-sm leading-relaxed text-ink-soft">{set.intro}</p>

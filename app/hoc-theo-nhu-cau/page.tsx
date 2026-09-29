@@ -46,7 +46,7 @@ export default async function LearningFlowsPage() {
   const bySlug = new Map(metas.map((m) => [m.slug, m]));
 
   return (
-    <div className="min-h-screen bg-[#fbfaf7] dark:bg-stone-950">
+    <div className="min-h-screen bg-page dark:bg-stone-950">
       <FlowsHeader t={t} />
 
       <main className="mx-auto max-w-5xl px-4 pb-16 pt-8 sm:px-6 sm:pt-12">
@@ -70,7 +70,7 @@ export default async function LearningFlowsPage() {
                 >
                   <div className="mb-4 flex items-center justify-between gap-3 border-b border-stone-200 pb-3 dark:border-stone-800">
                     <span className="flex min-w-0 items-center gap-2.5">
-                      <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-sm border border-stone-300 text-ink-soft transition-colors group-hover:border-brand-600 group-hover:text-accent-strong dark:border-stone-700">
+                      <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-sm border border-line-strong text-ink-soft transition-colors group-hover:border-brand-600 group-hover:text-accent-strong dark:border-stone-700">
                         <Glyph emoji={flow.emoji} className="h-5 w-5" />
                       </span>
                       <Sys className="truncate normal-case text-ink-faint">{FLOWS_SYS.flow(flow.id)}</Sys>
@@ -101,7 +101,7 @@ export default async function LearningFlowsPage() {
             trang này được sắp để đưa người đọc tới đúng bước đó sớm nhất. */}
         <section className="mt-14">
           <SectionHead code={FLOWS_SYS.journey} title={t.journeyTitle} sub={t.journeySub} />
-          <ol className="mt-5 grid gap-px overflow-hidden rounded-md border border-stone-300 bg-stone-300 lg:grid-cols-7 dark:border-stone-700 dark:bg-stone-700">
+          <ol className="mt-5 grid gap-px overflow-hidden rounded-md border border-line-strong bg-stone-300 lg:grid-cols-7 dark:border-stone-700 dark:bg-stone-700">
             {t.journeySteps.map((step, i) => (
               <li
                 key={step}

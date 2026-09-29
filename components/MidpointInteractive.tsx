@@ -46,7 +46,7 @@ export default function MidpointInteractive({
       initial={{ opacity: 0, y: 10 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className="rounded-md border border-line-strong bg-[#f3f1ec] dark:bg-stone-950 p-6 my-8"
+      className="rounded-md border border-line-strong bg-surface-raised dark:bg-stone-950 p-6 my-8"
     >
       <div className="flex items-center gap-2 mb-4 border-b border-line-strong pb-2">
         <h3 className="text-base font-bold text-ink">{t.finalOne.midpointInteractive.stopAndCheck}</h3>

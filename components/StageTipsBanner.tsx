@@ -111,7 +111,7 @@ export default function StageTipsBanner({ lessonId, lessonTitle }: Props) {
   }, [phase, tip]);
 
   return (
-    <div className="rounded-md border border-stone-300 bg-white overflow-hidden dark:border-stone-700 dark:bg-stone-900">
+    <div className="rounded-md border border-line-strong bg-white overflow-hidden dark:border-stone-700 dark:bg-stone-900">
       <div className="border-b border-stone-800 bg-stone-950 px-5 py-3 flex items-center gap-3">
         <div className="relative w-8 h-8 flex-shrink-0">
           {phase === "waiting" && (

@@ -68,11 +68,11 @@ export default function FormulaBlock({
   };
 
   return (
-    <div className="my-8 overflow-hidden rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900">
+    <div className="my-8 overflow-hidden rounded-md border border-line-strong bg-white dark:border-stone-700 dark:bg-stone-900">
       {/* Header Bar */}
-      <div className="flex items-center justify-between gap-3 border-b border-stone-300 bg-[#f3f1ec] px-4 py-2.5 dark:border-stone-700 dark:bg-stone-950">
+      <div className="flex items-center justify-between gap-3 border-b border-stone-300 bg-surface-raised px-4 py-2.5 dark:border-stone-700 dark:bg-stone-950">
         <div className="flex items-center gap-2.5">
-          <div className="flex h-7 w-7 items-center justify-center rounded-sm border border-stone-300 text-ink-muted dark:border-stone-700">
+          <div className="flex h-7 w-7 items-center justify-center rounded-sm border border-line-strong text-ink-muted dark:border-stone-700">
             <Calculator className="w-4 h-4" />
           </div>
           <div>
@@ -108,7 +108,7 @@ export default function FormulaBlock({
       </div>
 
       {/* Formula Display Area (Stacked Math Fraction or Plain Equation) */}
-      <div className="flex min-h-[120px] flex-col items-center justify-center border-b border-stone-200 bg-[#fbfaf7] p-6 text-ink-max dark:border-stone-800 dark:bg-stone-950">
+      <div className="flex min-h-[120px] flex-col items-center justify-center border-b border-stone-200 bg-page p-6 text-ink-max dark:border-stone-800 dark:bg-stone-950">
         {numerator && denominator ? (
           <div className="flex items-center justify-center gap-3 text-lg sm:text-xl lg:text-2xl font-serif tracking-wide py-2 flex-wrap">
             {title && <span className="font-sans text-sm font-bold text-ink-muted sm:text-base">{title} =</span>}
@@ -146,7 +146,7 @@ export default function FormulaBlock({
                 key={v.symbol}
                 className="flex items-start gap-2.5 rounded-sm border border-stone-200 bg-white p-2.5 text-xs dark:border-stone-800 dark:bg-stone-900"
               >
-                <span className="shrink-0 rounded-xs border border-stone-300 bg-[#f3f1ec] px-2 py-0.5 font-mono font-medium text-ink-max dark:border-stone-700 dark:bg-stone-950">
+                <span className="shrink-0 rounded-xs border border-line-strong bg-surface-raised px-2 py-0.5 font-mono font-medium text-ink-max dark:border-stone-700 dark:bg-stone-950">
                   {v.symbol}
                 </span>
                 <div>
@@ -172,7 +172,7 @@ export default function FormulaBlock({
             </p>
           </div>
 
-          <div className="space-y-1.5 rounded-sm border border-stone-200 bg-[#fbfaf7] p-3.5 text-xs dark:border-stone-800 dark:bg-stone-950">
+          <div className="space-y-1.5 rounded-sm border border-stone-200 bg-page p-3.5 text-xs dark:border-stone-800 dark:bg-stone-950">
             <div className="flex flex-wrap items-baseline justify-between gap-2 font-bold tabular-nums">
               <span className="text-ink-body">{format(t.formulaBlock.calculationPrefix, { calculation: example.calculation })}</span>
               <span className="font-mono text-sm font-medium tabular-nums text-accent-strong">

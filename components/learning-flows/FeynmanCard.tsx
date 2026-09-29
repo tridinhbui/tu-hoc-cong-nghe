@@ -37,8 +37,8 @@ export default function FeynmanCard({
   // thanh tiêu đề mang chữ đã dịch nên đi bằng sans - luật 4 không cho đặt
   // nhãn tiếng Việt vào phông mono của Frame.
   return (
-    <div className="overflow-hidden rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900">
-      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 border-b border-stone-300 bg-[#f3f1ec] px-4 py-2 dark:border-stone-700 dark:bg-stone-950">
+    <div className="overflow-hidden rounded-md border border-line-strong bg-white dark:border-stone-700 dark:bg-stone-900">
+      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 border-b border-stone-300 bg-surface-raised px-4 py-2 dark:border-stone-700 dark:bg-stone-950">
         <span className="eyebrow inline-flex items-center gap-1.5 text-ink-max">
           <Lightbulb className="h-3.5 w-3.5" aria-hidden />
           {badge}
@@ -50,9 +50,9 @@ export default function FeynmanCard({
         <p className="mb-4 text-[15px] leading-7 text-ink-body">{copy.intro}</p>
 
         {/* Màn hình rộng: bảng. */}
-        <div className="hidden overflow-hidden rounded-sm border border-stone-300 sm:block dark:border-stone-700">
+        <div className="hidden overflow-hidden rounded-sm border border-line-strong sm:block dark:border-stone-700">
           <table className="w-full text-left text-sm">
-            <thead className="border-b border-stone-300 bg-[#fbfaf7] text-ink-muted dark:border-stone-700 dark:bg-stone-950">
+            <thead className="border-b border-stone-300 bg-page text-ink-muted dark:border-stone-700 dark:bg-stone-950">
               <tr>
                 <th scope="col" className="eyebrow w-[18%] px-4 py-2.5">{c0}</th>
                 <th scope="col" className="eyebrow w-[41%] px-4 py-2.5">{c1}</th>
@@ -72,7 +72,7 @@ export default function FeynmanCard({
         </div>
 
         {/* Điện thoại: mỗi hàng một khối, chia bằng gạch mảnh. */}
-        <ul className="divide-y divide-stone-200 rounded-sm border border-stone-300 sm:hidden dark:divide-stone-800 dark:border-stone-700">
+        <ul className="divide-y divide-stone-200 rounded-sm border border-line-strong sm:hidden dark:divide-stone-800 dark:border-stone-700">
           {copy.rows.map((row) => (
             <li key={row[0]} className="p-3">
               <p className="mb-1.5 font-black text-ink-max">{row[0]}</p>

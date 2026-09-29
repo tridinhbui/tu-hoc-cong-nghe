@@ -142,7 +142,7 @@ export default function StageMilestoneExamModal({
       <div className={`${panel} w-full max-w-lg overflow-hidden relative flex flex-col max-h-[90vh]`}>
         
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-line-strong bg-[#f3f1ec] dark:bg-stone-950">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-line-strong bg-surface-raised dark:bg-stone-950">
           <div>
             <span className="eyebrow text-ink-soft">
               {format(t.stageExam.badgeLabel, { stageLabel })}

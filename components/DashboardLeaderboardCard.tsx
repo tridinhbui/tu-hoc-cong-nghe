@@ -164,7 +164,7 @@ export default function DashboardLeaderboardCard({ userId }: { userId: string })
                   <Link
                     href={isMe ? "/profile" : `/nguoi-hoc/${row.user_id}`}
                     className={`flex items-center gap-2.5 rounded-sm px-2 py-1.5 transition-colors ${
-                      isMe ? "bg-accent-soft" : "hover:bg-[#f3f1ec] dark:hover:bg-stone-950"
+                      isMe ? "bg-accent-soft" : "hover:bg-surface-raised dark:hover:bg-stone-950"
                     }`}
                   >
                     <RankBadge rank={i + 1} className="w-6 shrink-0 text-center font-mono text-xs font-medium tabular-nums text-ink-muted" />

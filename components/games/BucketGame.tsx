@@ -261,7 +261,7 @@ export default function BucketGame({ userId, gameType, difficulty = "trung-binh"
 
           {/* SVG countdown timer */}
           {timeLimit && !finished && (
-            <div className="flex items-center gap-1.5 rounded-sm border border-stone-300 p-0.5 dark:border-stone-700">
+            <div className="flex items-center gap-1.5 rounded-sm border border-line-strong p-0.5 dark:border-stone-700">
               <div className="relative w-8 h-8 flex items-center justify-center shrink-0">
                 <svg className="w-8 h-8 transform -rotate-90 overflow-visible" viewBox="0 0 36 36">
                   <circle
@@ -302,7 +302,7 @@ export default function BucketGame({ userId, gameType, difficulty = "trung-binh"
 
           <button
             onClick={resetRound}
-            className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-sm border border-stone-300 text-ink-muted transition-colors hover:border-stone-950 hover:text-ink dark:border-stone-700 dark:hover:border-stone-300"
+            className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-sm border border-line-strong text-ink-muted transition-colors hover:border-stone-950 hover:text-ink dark:border-stone-700 dark:hover:border-stone-300"
             title={bg.restartTitle}
           >
             <RotateCcw className="w-4 h-4" />
@@ -365,8 +365,8 @@ export default function BucketGame({ userId, gameType, difficulty = "trung-binh"
                     isDragOver
                       ? "border-dashed border-brand-600 bg-brand-50 dark:border-brand-400 dark:bg-brand-950"
                       : selectedId !== null
-                      ? "cursor-pointer border-dashed border-stone-400 bg-[#fbfaf7] hover:border-brand-600 dark:border-stone-600 dark:bg-stone-950"
-                      : "border-stone-300 bg-[#fbfaf7] dark:border-stone-700 dark:bg-stone-950"
+                      ? "cursor-pointer border-dashed border-stone-400 bg-page hover:border-brand-600 dark:border-stone-600 dark:bg-stone-950"
+                      : "border-stone-300 bg-page dark:border-stone-700 dark:bg-stone-950"
                   }`}
                 >
                   <div className="mb-3 flex items-center justify-between border-b border-stone-200 pb-1.5 dark:border-stone-800">
@@ -381,7 +381,7 @@ export default function BucketGame({ userId, gameType, difficulty = "trung-binh"
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {bucketItems.map((item) => (
-                      <span key={item.id} className="rounded-sm border border-stone-300 bg-white px-3 py-1.5 text-xs font-bold text-ink dark:border-stone-700 dark:bg-stone-900">
+                      <span key={item.id} className="rounded-sm border border-line-strong bg-white px-3 py-1.5 text-xs font-bold text-ink dark:border-stone-700 dark:bg-stone-900">
                         {item.term}
                       </span>
                     ))}

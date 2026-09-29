@@ -52,7 +52,7 @@ export default function InteractiveChart() {
   const gap = compoundEnd - simpleEnd;
 
   return (
-    <div className="space-y-6 rounded-md border border-stone-300 bg-white p-6 dark:border-stone-700 dark:bg-stone-900">
+    <div className="space-y-6 rounded-md border border-line-strong bg-white p-6 dark:border-stone-700 dark:bg-stone-900">
       <div>
         <h3 className="mb-1 text-lg font-black tracking-tight text-ink-max">
           {t.chartDemo.title}

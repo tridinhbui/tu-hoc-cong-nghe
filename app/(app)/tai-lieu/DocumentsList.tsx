@@ -136,7 +136,7 @@ export default function DocumentsList({ documents, currentUserId }: { documents:
                   setOpenDoc(doc);
                   trackFeatureClick("document_open", { label: doc.file_name });
                 }}
-                className="group overflow-hidden rounded-md border border-stone-300 bg-white text-left transition-colors hover:border-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-300"
+                className="group overflow-hidden rounded-md border border-line-strong bg-white text-left transition-colors hover:border-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-300"
               >
                 {/* Cover image or icon */}
                 {doc.image_url ? (
@@ -154,7 +154,7 @@ export default function DocumentsList({ documents, currentUserId }: { documents:
                     />
                   </div>
                 ) : (
-                  <div className="w-full h-44 border-b border-line bg-[#f3f1ec] dark:bg-stone-950 flex items-center justify-center">
+                  <div className="w-full h-44 border-b border-line bg-surface-raised dark:bg-stone-950 flex items-center justify-center">
                     <Icon className="w-12 h-12 text-ink-faint" aria-hidden />
                   </div>
                 )}
@@ -217,7 +217,7 @@ export default function DocumentsList({ documents, currentUserId }: { documents:
               (() => {
                 const Icon = iconFor(openDoc.file_name);
                 return (
-                  <div className="w-full h-40 rounded-sm border border-line bg-[#f3f1ec] dark:bg-stone-950 flex items-center justify-center">
+                  <div className="w-full h-40 rounded-sm border border-line bg-surface-raised dark:bg-stone-950 flex items-center justify-center">
                     <Icon className="w-12 h-12 text-ink-faint" aria-hidden />
                   </div>
                 );

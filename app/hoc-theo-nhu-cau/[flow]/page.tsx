@@ -73,7 +73,7 @@ export default async function LearningFlowPage({ params }: { params: Promise<{ f
   };
 
   return (
-    <div className="min-h-screen bg-[#fbfaf7] dark:bg-stone-950">
+    <div className="min-h-screen bg-page dark:bg-stone-950">
       <FlowsHeader t={t} code={FLOWS_SYS.flow(flow.id)} />
 
       <main className="mx-auto max-w-5xl px-4 pb-16 pt-6 sm:px-6 sm:pt-10">
@@ -90,7 +90,7 @@ export default async function LearningFlowPage({ params }: { params: Promise<{ f
         {/* ── Mở đầu: câu nhu cầu bằng lời của người học ── */}
         <div className="mb-10">
           <div className="mb-5 flex items-center gap-3">
-            <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-sm border border-stone-300 text-ink-soft dark:border-stone-700">
+            <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-sm border border-line-strong text-ink-soft dark:border-stone-700">
               <Glyph emoji={flow.emoji} className="h-6 w-6" strokeWidth={1.5} />
             </span>
             <StatusPill status={flow.status} t={t} />
@@ -104,7 +104,7 @@ export default async function LearningFlowPage({ params }: { params: Promise<{ f
             {format(t.lessonCount, { count: stats.count, minutes: stats.minutes })}
           </p>
           {note ? (
-            <p className="mt-4 max-w-2xl rounded-sm border border-stone-300 bg-[#f3f1ec] px-4 py-3 text-sm leading-6 text-ink-body dark:border-stone-700 dark:bg-stone-900">
+            <p className="mt-4 max-w-2xl rounded-sm border border-line-strong bg-surface-raised px-4 py-3 text-sm leading-6 text-ink-body dark:border-stone-700 dark:bg-stone-900">
               {note}
             </p>
           ) : null}
@@ -159,7 +159,7 @@ export default async function LearningFlowPage({ params }: { params: Promise<{ f
                         <li key={slug}>
                           <Link
                             href={`/bai-hoc/${slug}`}
-                            className="group flex items-center gap-3 px-4 py-3 transition-colors hover:bg-[#fbfaf7] dark:hover:bg-stone-800/60"
+                            className="group flex items-center gap-3 px-4 py-3 transition-colors hover:bg-page dark:hover:bg-stone-800/60"
                           >
                             <span className="flex w-6 shrink-0 justify-center">
                               {completed.has(slug) ? (
@@ -199,7 +199,7 @@ export default async function LearningFlowPage({ params }: { params: Promise<{ f
               const meta = bySlug.get(slug);
               return (
                 <div key={title} className={`${panel} flex flex-col p-5`}>
-                  <span className="mb-3 inline-flex h-8 w-8 items-center justify-center rounded-sm border border-stone-300 text-ink-soft dark:border-stone-700">
+                  <span className="mb-3 inline-flex h-8 w-8 items-center justify-center rounded-sm border border-line-strong text-ink-soft dark:border-stone-700">
                     <Icon className="h-4 w-4" aria-hidden />
                   </span>
                   <p className="text-lg font-black tracking-tight text-ink-max">{title}</p>

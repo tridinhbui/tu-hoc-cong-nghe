@@ -42,7 +42,7 @@ function SectionCard({
   children: ReactNode;
 }) {
   return (
-    <section className="rounded-md border border-stone-300 bg-white p-5 sm:p-6 dark:border-stone-700 dark:bg-stone-900">
+    <section className="rounded-md border border-line-strong bg-white p-5 sm:p-6 dark:border-stone-700 dark:bg-stone-900">
       <div className="mb-5 flex items-start gap-3 border-b border-line pb-4">
         <span className="mt-0.5 shrink-0 text-ink-faint" aria-hidden>
           {icon}
@@ -443,14 +443,14 @@ export default function SettingsPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#fbfaf7] dark:bg-stone-950 flex items-center justify-center">
+      <div className="min-h-screen bg-page dark:bg-stone-950 flex items-center justify-center">
         <p className="text-ink-muted">{t.settings.loading}</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-[#fbfaf7] text-ink dark:bg-stone-950">
+    <div className="min-h-screen bg-page text-ink dark:bg-stone-950">
       <div className="border-b border-line-strong">
         <div className="max-w-4xl mx-auto px-6 py-5">
           <div className="flex items-center justify-between gap-4 border-b border-line pb-2">
@@ -798,7 +798,7 @@ export default function SettingsPage() {
               description={t.settings.quickActions.description}
             >
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <Link href="/analytics" className="rounded-sm border border-line px-4 py-3 hover:border-stone-500 hover:bg-[#f3f1ec] dark:hover:bg-stone-800/50 transition-colors">
+                <Link href="/analytics" className="rounded-sm border border-line px-4 py-3 hover:border-stone-500 hover:bg-surface-raised dark:hover:bg-stone-800/50 transition-colors">
                   <p className="font-bold text-ink">
                     {t.settings.quickActions.analytics}
                   </p>
@@ -806,7 +806,7 @@ export default function SettingsPage() {
                     {t.settings.quickActions.analyticsHint}
                   </p>
                 </Link>
-                <Link href="/ghi-chu" className="rounded-sm border border-line px-4 py-3 hover:border-stone-500 hover:bg-[#f3f1ec] dark:hover:bg-stone-800/50 transition-colors">
+                <Link href="/ghi-chu" className="rounded-sm border border-line px-4 py-3 hover:border-stone-500 hover:bg-surface-raised dark:hover:bg-stone-800/50 transition-colors">
                   <p className="font-bold text-ink">
                     {t.settings.quickActions.notes}
                   </p>
@@ -814,7 +814,7 @@ export default function SettingsPage() {
                     {t.settings.quickActions.notesHint}
                   </p>
                 </Link>
-                <Link href="/ban-be" className="rounded-sm border border-line px-4 py-3 hover:border-stone-500 hover:bg-[#f3f1ec] dark:hover:bg-stone-800/50 transition-colors">
+                <Link href="/ban-be" className="rounded-sm border border-line px-4 py-3 hover:border-stone-500 hover:bg-surface-raised dark:hover:bg-stone-800/50 transition-colors">
                   <p className="font-bold text-ink">
                     {t.settings.quickActions.friends}
                   </p>
@@ -822,7 +822,7 @@ export default function SettingsPage() {
                     {t.settings.quickActions.friendsHint}
                   </p>
                 </Link>
-                <Link href="/tai-lieu" className="rounded-sm border border-line px-4 py-3 hover:border-stone-500 hover:bg-[#f3f1ec] dark:hover:bg-stone-800/50 transition-colors">
+                <Link href="/tai-lieu" className="rounded-sm border border-line px-4 py-3 hover:border-stone-500 hover:bg-surface-raised dark:hover:bg-stone-800/50 transition-colors">
                   <p className="font-bold text-ink">
                     {t.settings.quickActions.documents}
                   </p>
@@ -878,7 +878,7 @@ export default function SettingsPage() {
             description={t.settings.session.description}
           >
             <div className="space-y-4">
-              <div className="rounded-sm bg-[#f3f1ec] dark:bg-stone-950 border border-line p-4">
+              <div className="rounded-sm bg-surface-raised dark:bg-stone-950 border border-line p-4">
                 <p className="font-bold text-ink">
                   {t.settings.session.statusTitle}
                 </p>

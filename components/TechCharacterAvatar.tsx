@@ -96,7 +96,7 @@ export default function TechCharacterAvatar({
         <div
           className={`w-11 h-11 rounded-full border-2 ${avatarRingBg} bg-white dark:bg-stone-900 relative flex items-center justify-center`}
         >
-          <div className="w-full h-full rounded-full bg-[#f3f1ec] dark:bg-stone-900 flex items-center justify-center text-ink-soft relative overflow-visible">
+          <div className="w-full h-full rounded-full bg-surface-raised dark:bg-stone-900 flex items-center justify-center text-ink-soft relative overflow-visible">
             <UserRound className="w-6 h-6" strokeWidth={1.75} aria-hidden />
             {/* Glasses overlay */}
             {equipments.accessory === "acc_glasses" && (
@@ -122,7 +122,7 @@ export default function TechCharacterAvatar({
 
   return (
     <div
-      className={`relative flex items-center justify-center rounded-md border border-line-strong bg-[#fbfaf7] dark:bg-stone-950 ${containerSize} p-3 group`}
+      className={`relative flex items-center justify-center rounded-md border border-line-strong bg-page dark:bg-stone-950 ${containerSize} p-3 group`}
     >
       {/* Hero Character Frame */}
       <div className="relative flex flex-col items-center justify-center z-10">
@@ -141,7 +141,7 @@ export default function TechCharacterAvatar({
             isLarge ? "w-28 h-28" : isSmall ? "w-14 h-14" : "w-20 h-20"
           }`}
         >
-          <div className="w-full h-full rounded-full bg-[#f3f1ec] dark:bg-stone-800 flex items-center justify-center relative text-ink-soft">
+          <div className="w-full h-full rounded-full bg-surface-raised dark:bg-stone-800 flex items-center justify-center relative text-ink-soft">
             <UserRound className={isLarge ? "w-14 h-14" : isSmall ? "w-7 h-7" : "w-10 h-10"} strokeWidth={1.5} aria-hidden />
             {/* Glasses Overlay */}
             {equipments.accessory === "acc_glasses" && (

@@ -205,7 +205,7 @@ export default function WeeklyQuestsWidget({ userId }: WeeklyQuestsWidgetProps) 
       {/* Epic Chest Claim Button */}
       {allQuestsDone ? (
         isEpicClaimed ? (
-          <div className="p-3 bg-[#f3f1ec] dark:bg-stone-950 border border-line-strong rounded-sm text-center text-[10px] text-ink-muted font-bold flex items-center justify-center gap-1.5">
+          <div className="p-3 bg-surface-raised dark:bg-stone-950 border border-line-strong rounded-sm text-center text-[10px] text-ink-muted font-bold flex items-center justify-center gap-1.5">
             <CheckCircle2 className="w-4 h-4 text-accent" />
             {t.weeklyQuests.claimedMessage}
           </div>
@@ -220,7 +220,7 @@ export default function WeeklyQuestsWidget({ userId }: WeeklyQuestsWidgetProps) 
           </button>
         )
       ) : (
-        <div className="p-3 bg-[#f3f1ec] dark:bg-stone-950 border border-line-strong rounded-sm text-center text-[10px] text-ink-muted font-bold">
+        <div className="p-3 bg-surface-raised dark:bg-stone-950 border border-line-strong rounded-sm text-center text-[10px] text-ink-muted font-bold">
           {t.weeklyQuests.locked}
         </div>
       )}

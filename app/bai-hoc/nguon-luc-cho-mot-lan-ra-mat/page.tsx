@@ -60,8 +60,8 @@ function FundingStructure({ c }: { c: LaunchEffortLessonCopy }) {
   const moic = exitEquity / equity;
 
   return (
-    <div className="my-6 overflow-hidden rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900">
-      <div className="flex h-9 items-center border-b border-stone-300 bg-[#f3f1ec] px-3 dark:border-stone-700 dark:bg-stone-950">
+    <div className="my-6 overflow-hidden rounded-md border border-line-strong bg-white dark:border-stone-700 dark:bg-stone-900">
+      <div className="flex h-9 items-center border-b border-stone-300 bg-surface-raised px-3 dark:border-stone-700 dark:bg-stone-950">
         <h3 className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">{SIMULATOR_HEADING}</h3>
       </div>
       <div className="space-y-5 p-4 sm:p-5">
@@ -145,9 +145,9 @@ export default function Page() {
         <h3 className="mb-3 border-b border-stone-300 pb-2 text-lg font-black tracking-tight text-ink-max dark:border-stone-700">{c.sourcesHeading}</h3>
         <div className="space-y-3">
           {c.sources.map((s, i) => (
-            <div key={SOURCE_TYPES[i]} className="rounded-md border border-stone-300 bg-white p-4 dark:border-stone-700 dark:bg-stone-900">
+            <div key={SOURCE_TYPES[i]} className="rounded-md border border-line-strong bg-white p-4 dark:border-stone-700 dark:bg-stone-900">
               <div className="mb-2 flex items-center gap-2.5">
-                <span className="flex h-7 w-7 items-center justify-center rounded-sm border border-stone-300 text-ink-body dark:border-stone-700">
+                <span className="flex h-7 w-7 items-center justify-center rounded-sm border border-line-strong text-ink-body dark:border-stone-700">
                   {createElement(SOURCE_ICONS[i], { "aria-hidden": true, className: "h-4 w-4", strokeWidth: 1.75 })}
                 </span>
                 <span className="font-bold text-ink-max">{SOURCE_TYPES[i]}</span>
@@ -167,7 +167,7 @@ export default function Page() {
 
       <section>
         <h3 className="mb-3 border-b border-stone-300 pb-2 text-lg font-black tracking-tight text-ink-max dark:border-stone-700">{c.checklistHeading}</h3>
-        <ol className="divide-y divide-stone-200 rounded-md border border-stone-300 bg-white dark:divide-stone-800 dark:border-stone-700 dark:bg-stone-900">
+        <ol className="divide-y divide-stone-200 rounded-md border border-line-strong bg-white dark:divide-stone-800 dark:border-stone-700 dark:bg-stone-900">
           {c.checklist.map((item, i) => (
             <li key={i} className="flex items-baseline gap-3 px-4 py-3 text-base leading-7">
               <Sys className="flex-shrink-0 text-ink-faint">{String(i + 1).padStart(2, "0")}</Sys>

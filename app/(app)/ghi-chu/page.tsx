@@ -84,9 +84,9 @@ export default async function GhiChuPage() {
   // scrolls inside its own cell. Below xl they stack and the page scrolls,
   // since neither panel is usable at a third of a phone screen.
   return (
-    <div className="min-h-screen xl:h-screen xl:overflow-hidden bg-[#fbfaf7] dark:bg-stone-950">
+    <div className="min-h-screen xl:h-screen xl:overflow-hidden bg-page dark:bg-stone-950">
       <div className="px-4 py-4 sm:px-5 sm:py-5 xl:h-full xl:flex xl:flex-col xl:min-h-0">
-        <div className="mx-auto w-full max-w-[1500px] xl:flex-1 xl:min-h-0 xl:rounded-md xl:border xl:border-stone-300 xl:dark:border-stone-700 xl:bg-[#f3f1ec] xl:dark:bg-stone-900/40 xl:p-3.5 xl:grid xl:grid-cols-12 xl:grid-rows-[auto_minmax(0,1fr)] xl:gap-3.5">
+        <div className="mx-auto w-full max-w-[1500px] xl:flex-1 xl:min-h-0 xl:rounded-md xl:border xl:border-stone-300 xl:dark:border-stone-700 xl:bg-surface-raised xl:dark:bg-stone-900/40 xl:p-3.5 xl:grid xl:grid-cols-12 xl:grid-rows-[auto_minmax(0,1fr)] xl:gap-3.5">
           <div className="flex items-center justify-between gap-3 mb-5 xl:mb-0 xl:col-span-12">
             <div className="min-w-0">
               <Sys className="text-ink-muted">{APP_SYS.notes}</Sys>

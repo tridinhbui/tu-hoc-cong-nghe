@@ -52,7 +52,7 @@ export default function SmartRemediationWidget({ userId, lessonsMeta }: SmartRem
     <div className={`${panel} p-4.5 relative overflow-hidden`}>
 
       <div className="flex gap-3.5 items-start">
-        <div className="w-10 h-10 rounded-sm border border-stone-300 bg-[#f3f1ec] text-alert dark:border-stone-700 dark:bg-stone-950 flex items-center justify-center shrink-0">
+        <div className="w-10 h-10 rounded-sm border border-line-strong bg-surface-raised text-alert dark:border-stone-700 dark:bg-stone-950 flex items-center justify-center shrink-0">
           <AlertCircle className="w-5 h-5" />
         </div>
         

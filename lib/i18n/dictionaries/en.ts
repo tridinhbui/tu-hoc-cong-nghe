@@ -787,6 +787,22 @@ export const en: Dictionary = {
   },
 
   login: {
+    v2: {
+      doc: "System entrance",
+      wordLogin: "SIGN IN.",
+      wordSignup: "START.",
+      wordForgot: "RECOVER.",
+      boot: [
+        "checking for a session",
+        "no session - awaiting authentication",
+        "loading {count} lessons",
+        "door open",
+      ],
+      statusIdle: "awaiting input",
+      statusBusy: "authenticating",
+      statusError: "error",
+      statusSent: "sent",
+    },
     backHome: "Back to the homepage",
     freeForever: "Free forever",
     heroTitle: "Learn technology in a way that's compact, clear, and motivating enough to stick with",

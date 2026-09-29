@@ -168,7 +168,7 @@ export default function TextHighlightMenu({ containerRef, lessonId, lessonSlug, 
           : `translate(-50%, ${menu.place === "above" ? "-100%" : "0"})`,
         zIndex: 9999,
       }}
-      className="w-64 rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900 overflow-hidden p-1.5 animate-in fade-in zoom-in-95 duration-150 select-none"
+      className="w-64 rounded-md border border-line-strong bg-white dark:border-stone-700 dark:bg-stone-900 overflow-hidden p-1.5 animate-in fade-in zoom-in-95 duration-150 select-none"
     >
       <div className="px-3 py-1.5 border-b border-line-strong flex items-center justify-between mb-1">
         <span className="eyebrow text-ink-soft flex items-center gap-1">

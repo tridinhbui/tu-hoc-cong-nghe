@@ -298,14 +298,14 @@ export default function FriendsClient() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#fbfaf7] dark:bg-stone-950 flex items-center justify-center">
+      <div className="min-h-screen bg-page dark:bg-stone-950 flex items-center justify-center">
         <p className="text-ink-muted">{t.friends.loading}</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-[#fbfaf7] dark:bg-stone-950">
+    <div className="min-h-screen bg-page dark:bg-stone-950">
       <div className="border-b border-line-strong">
         <div className="max-w-6xl mx-auto px-6 py-5">
           <div className="flex items-center justify-between gap-4 border-b border-line pb-2">
@@ -323,7 +323,7 @@ export default function FriendsClient() {
         <div className="space-y-6">
           <ReferralCard />
 
-          <div className="rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900 p-5">
+          <div className="rounded-md border border-line-strong bg-white dark:border-stone-700 dark:bg-stone-900 p-5">
             <div className="flex items-center gap-2 mb-4">
               <Search className="w-4 h-4 text-stone-400" />
               <h2 className="text-sm font-black tracking-tight text-ink-max">
@@ -406,7 +406,7 @@ export default function FriendsClient() {
             </div>
           </div>
 
-          <div className="rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900 p-5">
+          <div className="rounded-md border border-line-strong bg-white dark:border-stone-700 dark:bg-stone-900 p-5">
             <h2 className="text-sm font-black tracking-tight text-ink-max mb-4">
               {format(t.friends.incoming, { count: incomingRequests.length })}
             </h2>
@@ -453,7 +453,7 @@ export default function FriendsClient() {
             </div>
           </div>
 
-          <div className="rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900 p-5">
+          <div className="rounded-md border border-line-strong bg-white dark:border-stone-700 dark:bg-stone-900 p-5">
             <h2 className="text-sm font-black tracking-tight text-ink-max mb-4">
               {format(t.friends.friendsList, { count: acceptedFriends.length })}
             </h2>
@@ -469,7 +469,7 @@ export default function FriendsClient() {
                     className={`flex items-center gap-2 rounded-sm border px-3 py-2.5 transition-colors ${
                       currentFriendshipId === connection.friendship_id
                         ? "border-accent-line bg-brand-50 dark:bg-brand-950/40"
-                        : "border-line hover:bg-[#f3f1ec] dark:hover:bg-stone-800/50"
+                        : "border-line hover:bg-surface-raised dark:hover:bg-stone-800/50"
                     }`}
                   >
                     <button
@@ -505,7 +505,7 @@ export default function FriendsClient() {
           </div>
 
           {outgoingRequests.length > 0 && (
-            <div className="rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900 p-5">
+            <div className="rounded-md border border-line-strong bg-white dark:border-stone-700 dark:bg-stone-900 p-5">
               <h2 className="text-sm font-black tracking-tight text-ink-max mb-4">
                 {format(t.friends.pending, { count: outgoingRequests.length })}
               </h2>
@@ -522,7 +522,7 @@ export default function FriendsClient() {
           )}
         </div>
 
-        <div className="rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900 overflow-hidden min-h-[640px] flex flex-col">
+        <div className="rounded-md border border-line-strong bg-white dark:border-stone-700 dark:bg-stone-900 overflow-hidden min-h-[640px] flex flex-col">
           {!activeConnection ? (
             <div className="flex-1 flex flex-col items-center justify-center text-center px-6">
               <MessageCircle className="w-10 h-10 text-stone-300 dark:text-stone-600 mb-3" />
@@ -556,7 +556,7 @@ export default function FriendsClient() {
                 </Link>
               </div>
 
-              <div className="flex-1 overflow-y-auto px-5 py-4 space-y-3 bg-[#fbfaf7] dark:bg-stone-950/40">
+              <div className="flex-1 overflow-y-auto px-5 py-4 space-y-3 bg-page dark:bg-stone-950/40">
                 {loadingMessages ? (
                   <p className="text-xs text-stone-400">{t.friends.loadingMessages}</p>
                 ) : messages.length === 0 ? (

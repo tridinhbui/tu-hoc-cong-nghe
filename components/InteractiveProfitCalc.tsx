@@ -27,7 +27,7 @@ export default function InteractiveProfitCalc() {
   const isShortOfCash = actualCash < 0;
 
   return (
-    <div className="space-y-6 rounded-md border border-stone-300 bg-white p-6 dark:border-stone-700 dark:bg-stone-900">
+    <div className="space-y-6 rounded-md border border-line-strong bg-white p-6 dark:border-stone-700 dark:bg-stone-900">
       <div>
         <h3 className="mb-1 text-lg font-black tracking-tight text-ink-max">{t.profitCalc.title}</h3>
         <p className="text-sm text-ink-soft">{t.profitCalc.subtitle}</p>
@@ -88,7 +88,7 @@ export default function InteractiveProfitCalc() {
 
       {/* Results */}
       <div className="grid grid-cols-2 gap-4">
-        <div className={`rounded-sm border bg-[#fbfaf7] p-4 text-center dark:bg-stone-950 ${profit >= 0 ? "border-line-strong" : "border-red-500 dark:border-red-700"}`}>
+        <div className={`rounded-sm border bg-page p-4 text-center dark:bg-stone-950 ${profit >= 0 ? "border-line-strong" : "border-red-500 dark:border-red-700"}`}>
           <div className="mb-1 text-xs font-bold text-ink-muted">{t.profitCalc.profitResultLabel}</div>
           <div className={`text-2xl font-black tabular-nums ${profit >= 0 ? "text-accent-strong" : "text-red-600 dark:text-red-400"}`}>
             {profit >= 0 ? "+" : ""}{format(t.profitCalc.millionUnit, { value: profit })}
@@ -96,7 +96,7 @@ export default function InteractiveProfitCalc() {
           <div className="mt-1 text-xs text-ink-muted">{profit >= 0 ? t.profitCalc.profitPositiveNote : t.profitCalc.profitNegativeNote}</div>
         </div>
 
-        <div className={`rounded-sm border bg-[#fbfaf7] p-4 text-center dark:bg-stone-950 ${actualCash >= 0 ? "border-line-strong" : "border-red-500 dark:border-red-700"}`}>
+        <div className={`rounded-sm border bg-page p-4 text-center dark:bg-stone-950 ${actualCash >= 0 ? "border-line-strong" : "border-red-500 dark:border-red-700"}`}>
           <div className="mb-1 text-xs font-bold text-ink-muted">{t.profitCalc.cashResultLabel}</div>
           <div className={`text-2xl font-black tabular-nums ${actualCash >= 0 ? "text-accent-strong" : "text-red-600 dark:text-red-400"}`}>
             {actualCash >= 0 ? "+" : ""}{format(t.profitCalc.millionUnit, { value: actualCash })}

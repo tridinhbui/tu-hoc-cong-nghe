@@ -52,7 +52,7 @@ export default function AnalyticsPage() {
 
   if (loading) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-[#fbfaf7] dark:bg-stone-950">
+      <div className="flex min-h-screen items-center justify-center bg-page dark:bg-stone-950">
         <p className="text-ink-muted">{t.finalTwo.analyticsPage.loading}</p>
       </div>
     );
@@ -73,7 +73,7 @@ export default function AnalyticsPage() {
     //
     // Cuộn tài liệu bình thường xử lý cả hai chuyện, và đó cũng đúng khuôn mà
     // trang /bxh cũ dùng.
-    <div className="min-h-screen bg-[#fbfaf7] pb-12 dark:bg-stone-950">
+    <div className="min-h-screen bg-page pb-12 dark:bg-stone-950">
       {/* Thanh định vị: liên kết về + mã khu, trên một đường kẻ 1px - cùng khuôn
           với đầu section của trang chủ, thay cho viên thuốc xanh. */}
       <div className="mx-auto flex w-full max-w-[1480px] items-center justify-between gap-4 px-5 pt-4 pb-4 sm:px-6">

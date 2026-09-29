@@ -54,12 +54,18 @@
    * bẩy ấy được dùng có chủ ý: 1.180 chỗ `rounded-xl/2xl/3xl` về 6px trong một
    * lần, thay vì sửa tay 185 tệp. `rounded-full` KHÔNG đổi ở đây - nó còn là
    * ảnh đại diện, chấm trạng thái và thanh tiến độ; viên thuốc được gỡ tay. */
-  --radius-lg: 0.375rem;
-  --radius-xl: 0.375rem;
-  --radius-2xl: 0.375rem;
-  --radius-3xl: 0.375rem;
-  --radius-control: 0.25rem;
-  --radius-card: 0.375rem;
+  /* 2026-09-28, lần hai: trang chủ biên tập bỏ hẳn bo góc, và app theo nó.
+   * Mọi thang bo về 0 - khung vuông, nét kẻ làm cấu trúc. `rounded-full` vẫn
+   * giữ cho ảnh đại diện, chấm trạng thái, thanh tiến độ. */
+  --radius-xs: 0px;
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+  --radius-3xl: 0px;
+  --radius-control: 0px;
+  --radius-card: 0px;
 
   /* Không đổ bóng: chiều sâu đến từ sắc độ nền và viền 1px. Chỉ `shadow-2xl`
    * (hộp thoại, menu nổi) còn một bóng rất nhạt - thứ nổi trên trang phải tách
@@ -230,21 +236,21 @@
   --accent-line-mid: #9fbfe9;
   --warn-ink: #953d00;
   --warn-line-mid: #ffd236;
-  --line-firm: #a6a09b;
-  --surface-deep: #d6d3d1;
+  --line-firm: #9a9a94;
+  --surface-deep: #d6d6d1;
   --line-invert: #1c1917;
-  --ink-max: #0c0a09;
-  --page: #fbfaf7;                             /* nền gốc <body> - giấy ngà của trang giới thiệu */
-  --page-ink: #1A1A1E;                         /* chữ gốc <body>          */
+  --ink-max: #0d0e11;
+  --page: #ffffff;                             /* trong app: nền trắng 100% (trang chủ + login tự đặt giấy ngà) */                             /* nền gốc <body> - giấy ngà của trang giới thiệu */
+  --page-ink: #0d0e11;                         /* chữ gốc <body>          */
   --ink: oklch(21.6% 0.006 56.043);            /* stone-900 */
   --ink-body: oklch(37.4% 0.01 67.558);        /* stone-700 */
   --ink-muted: oklch(55.3% 0.013 58.071);      /* stone-500 */
   --ink-faint: oklch(70.9% 0.01 56.259);       /* stone-400 */
 
-  --surface: oklch(98.5% 0.001 106.423);       /* stone-50  */
-  --surface-raised: oklch(97% 0.001 106.424);  /* stone-100 */
-  --surface-sunken: oklch(92.3% 0.003 48.717); /* stone-200 */
-  --surface-invert: oklch(21.6% 0.006 56.043); /* stone-900 */
+  --surface: #ffffff;
+  --surface-raised: #f4f4f2;                    /* thanh tiêu đề khung */
+  --surface-sunken: #ebebe8;
+  --surface-invert: #0d0e11;                    /* mực */
   /* `#fff`, KHÔNG phải stone-100. Giá trị cũ chọn theo trực giác và token này
      chưa từng được dùng ở đâu (0 chỗ, trong khi `bg-surface-invert` có 76).
      78 chỗ thật viết `text-white dark:text-stone-900`, nên đặt token bằng đúng
@@ -252,9 +258,9 @@
      78 nút đổi màu chữ. Đặt token theo call site, đừng bắt call site theo token. */
   --ink-invert: #fff;
 
-  --line: oklch(92.3% 0.003 48.717);           /* stone-200 */
-  --line-soft: oklch(97% 0.001 106.424);       /* stone-100 */
-  --line-strong: oklch(86.9% 0.005 56.366);    /* stone-300 */
+  --line: #e2e2de;
+  --line-soft: #f0f0ed;
+  --line-strong: #0d0e11;                       /* nét mực của trang chủ */
 
   --accent: var(--color-brand-600);
   --accent-soft: var(--color-brand-50);
@@ -266,7 +272,7 @@
   --accent-line: var(--color-brand-200);
   --ink-soft: oklch(44.4% 0.011 73.639);       /* stone-600 */
   --ink-heading: oklch(26.8% 0.007 34.298);    /* stone-800 */
-  --line-mid: oklch(92.3% 0.003 48.717);       /* stone-200 */
+  --line-mid: #e2e2de;
   --accent-strong: var(--color-brand-700);
   --warn-strong: oklch(55.5% 0.163 48.998);    /* amber-700 */
   --warn-line: oklch(92.4% 0.12 95.746);       /* amber-200 */
@@ -290,23 +296,23 @@
   --line-firm: #57534d;
   --surface-deep: #44403b;
   --line-invert: #f5f5f4;
-  --ink-max: #fafaf9;
-  --page: #18181b;
-  --page-ink: #f4f4f5;
+  --ink-max: #eeebe3;
+  --page: #0c0d10;
+  --page-ink: #eeebe3;
   --ink: oklch(97% 0.001 106.424);             /* stone-100 */
   --ink-body: oklch(86.9% 0.005 56.366);       /* stone-300 */
   --ink-muted: oklch(70.9% 0.01 56.259);       /* stone-400 */
   --ink-faint: oklch(55.3% 0.013 58.071);      /* stone-500 */
 
-  --surface: oklch(21.6% 0.006 56.043);        /* stone-900 */
-  --surface-raised: oklch(26.8% 0.007 34.298); /* stone-800 */
-  --surface-sunken: oklch(26.8% 0.007 34.298); /* stone-800 */
-  --surface-invert: oklch(97% 0.001 106.424);  /* stone-100 */
-  --ink-invert: oklch(21.6% 0.006 56.043);     /* stone-900 */
+  --surface: #15171c;
+  --surface-raised: #1d2027;
+  --surface-sunken: #23262e;
+  --surface-invert: #eeebe3;
+  --ink-invert: #0d0e11;
 
-  --line: oklch(26.8% 0.007 34.298);           /* stone-800 */
-  --line-soft: oklch(26.8% 0.007 34.298);      /* stone-800 */
-  --line-strong: oklch(37.4% 0.01 67.558);     /* stone-700 */
+  --line: #2a2d35;
+  --line-soft: #1f2229;
+  --line-strong: #8d8a82;
 
   --accent: var(--color-brand-400);
   --accent-soft: var(--color-brand-950);
@@ -417,7 +423,7 @@ body {
 }
 
 .band-paper::before {
-  background: #fbfaf7;
+  background: var(--page);
 }
 
 .dark .band-paper::before {

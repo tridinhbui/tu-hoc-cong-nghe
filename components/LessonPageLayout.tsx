@@ -754,11 +754,11 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
   // Nhãn nhỏ kiểu bảng hệ thống: chữ hoa sans (không phải mono - đây là chữ
   // tiếng Việt đã dịch), giống các nhãn "VÍ DỤ", "QUIZ" trong HeroEditor.
   const label = "text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted";
-  const shell = "overflow-hidden rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900";
-  const titleBar = "flex h-9 items-stretch justify-between border-b border-stone-300 bg-[#f3f1ec] dark:border-stone-700 dark:bg-stone-950";
+  const shell = "overflow-hidden rounded-md border border-line-strong bg-white dark:border-stone-700 dark:bg-stone-900";
+  const titleBar = "flex h-9 items-stretch justify-between border-b border-stone-300 bg-surface-raised dark:border-stone-700 dark:bg-stone-950";
 
   return (
-    <div className="min-h-screen bg-[#fbfaf7] font-sans text-ink antialiased dark:bg-stone-950">
+    <div className="min-h-screen bg-page font-sans text-ink antialiased dark:bg-stone-950">
       {/* Thước đọc cố định bên trái - chỉ từ 2xl, vì dưới mức đó cột bài
           học căn giữa nằm quá sát mép và thước đè lên chữ. */}
       <div className="fixed left-4 top-1/2 z-10 hidden -translate-y-1/2 2xl:block">
@@ -777,7 +777,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
             <Link
               href="/hoc-bai"
               aria-label={t.lessonLayout.backAria}
-              className="inline-flex h-9 w-9 flex-shrink-0 items-center justify-center gap-1.5 whitespace-nowrap rounded-sm border border-stone-300 text-sm font-bold text-ink-body transition-colors hover:border-stone-950 hover:text-ink-max dark:border-stone-700 dark:hover:border-stone-200 sm:w-auto sm:px-3"
+              className="inline-flex h-9 w-9 flex-shrink-0 items-center justify-center gap-1.5 whitespace-nowrap rounded-sm border border-line-strong text-sm font-bold text-ink-body transition-colors hover:border-stone-950 hover:text-ink-max dark:border-stone-700 dark:hover:border-stone-200 sm:w-auto sm:px-3"
             >
               <ArrowLeft className="h-4 w-4 flex-shrink-0" />
               <span className="hidden sm:inline">{t.lessonLayout.back}</span>
@@ -819,7 +819,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                 </Sys>
               </div>
             )}
-            <Sys className="rounded-sm border border-stone-300 px-2 py-1 text-ink-body dark:border-stone-700">{lessonLabel}</Sys>
+            <Sys className="rounded-sm border border-line-strong px-2 py-1 text-ink-body dark:border-stone-700">{lessonLabel}</Sys>
           </div>
         </div>
       </header>
@@ -968,7 +968,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
 
               {/* Video bài giảng */}
               <div className={shell}>
-                <div className="flex h-9 items-center justify-between gap-3 border-b border-stone-300 bg-[#f3f1ec] px-3 dark:border-stone-700 dark:bg-stone-950">
+                <div className="flex h-9 items-center justify-between gap-3 border-b border-stone-300 bg-surface-raised px-3 dark:border-stone-700 dark:bg-stone-950">
                   <span className={label}>{t.lessonLayout.videoTitle}</span>
                   <span className="text-[11px] font-semibold text-ink-muted">{t.lessonLayout.videoBadge}</span>
                 </div>
@@ -1075,7 +1075,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
               <button
                 onClick={() => setQuizCollapsed(!quizCollapsed)}
                 aria-expanded={!quizCollapsed}
-                className="flex h-9 w-full items-center justify-between border-b border-stone-300 bg-[#f3f1ec] px-3 transition-colors hover:bg-[#ece9e2] dark:border-stone-700 dark:bg-stone-950 dark:hover:bg-stone-900"
+                className="flex h-9 w-full items-center justify-between border-b border-stone-300 bg-surface-raised px-3 transition-colors hover:bg-[#ece9e2] dark:border-stone-700 dark:bg-stone-950 dark:hover:bg-stone-900"
               >
                 <span className="flex min-w-0 items-center gap-3">
                   <Sys className="normal-case text-ink">{SYS.quiz}</Sys>

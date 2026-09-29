@@ -108,7 +108,7 @@ export default function InteractiveEthicsCase() {
   }
 
   return (
-    <div className="rounded-md border border-stone-300 bg-white p-6 dark:border-stone-700 dark:bg-stone-900">
+    <div className="rounded-md border border-line-strong bg-white p-6 dark:border-stone-700 dark:bg-stone-900">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <h3 className="text-base font-black tracking-tight text-ink-max">
           {format(tr.caseCounter, { current: index + 1, total: CASES.length })}

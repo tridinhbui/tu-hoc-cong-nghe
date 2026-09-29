@@ -231,11 +231,11 @@ export default function WorldBossRaidWidget({
   const hpPercent = bossHpPercent(boss.current_hp, boss.max_hp);
 
   return (
-    <div className="relative flex h-full min-h-0 flex-col overflow-hidden rounded-md border border-stone-300 bg-white p-6 text-ink dark:border-stone-700 dark:bg-stone-900">
+    <div className="relative flex h-full min-h-0 flex-col overflow-hidden rounded-md border border-line-strong bg-white p-6 text-ink dark:border-stone-700 dark:bg-stone-900">
       {/* Header World Boss Banner */}
       <div className="mb-6 flex flex-col items-start justify-between gap-6 border-b border-stone-300 pb-6 md:flex-row md:items-end dark:border-stone-700">
         <div className="flex min-w-0 flex-1 items-start gap-4">
-          <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-md border border-stone-300 bg-[#f3f1ec] text-rose-600 dark:border-stone-700 dark:bg-stone-950 dark:text-rose-400">
+          <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-md border border-line-strong bg-surface-raised text-rose-600 dark:border-stone-700 dark:bg-stone-950 dark:text-rose-400">
             <Glyph emoji={boss.boss_emoji} className="w-7 h-7" strokeWidth={1.5} />
           </div>
           <SectionHead
@@ -267,7 +267,7 @@ export default function WorldBossRaidWidget({
 
       {/* World Boss How-to-Play Guide Box */}
       {showBossGuide && (
-        <div className="mb-6 space-y-2 rounded-md border border-stone-300 bg-[#fbfaf7] p-4 text-xs text-ink-heading dark:border-stone-700 dark:bg-stone-950">
+        <div className="mb-6 space-y-2 rounded-md border border-line-strong bg-page p-4 text-xs text-ink-heading dark:border-stone-700 dark:bg-stone-950">
           <h4 className="flex items-center gap-1.5 text-sm font-black text-ink-max">
             {t.worldBoss.rulesTitle}
           </h4>
@@ -287,7 +287,7 @@ export default function WorldBossRaidWidget({
       )}
 
       {/* Shared Server HP Bar */}
-      <div className="mb-6 space-y-2 rounded-md border border-stone-300 bg-[#fbfaf7] p-4 dark:border-stone-700 dark:bg-stone-950">
+      <div className="mb-6 space-y-2 rounded-md border border-line-strong bg-page p-4 dark:border-stone-700 dark:bg-stone-950">
         <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-bold">
           <span className="flex items-center gap-1.5 text-ink-body">
             <Flame className="w-4 h-4 text-alert" /> {t.worldBoss.serverHpLabel}
@@ -296,7 +296,7 @@ export default function WorldBossRaidWidget({
             {format(t.worldBoss.hpLine, { current: boss.current_hp.toLocaleString(), max: boss.max_hp.toLocaleString(), percent: hpPercent })}
           </span>
         </div>
-        <div className="h-3 w-full overflow-hidden rounded-xs border border-stone-300 bg-stone-100 dark:border-stone-700 dark:bg-stone-900">
+        <div className="h-3 w-full overflow-hidden rounded-xs border border-line-strong bg-stone-100 dark:border-stone-700 dark:bg-stone-900">
           <motion.div
             initial={{ width: 0 }}
             animate={{ width: `${hpPercent}%` }}
@@ -305,7 +305,7 @@ export default function WorldBossRaidWidget({
         </div>
       </div>
 
-      <div className="min-h-0 flex-1 overflow-hidden rounded-md border border-stone-300 bg-white p-3 sm:p-4 dark:border-stone-700 dark:bg-stone-900">
+      <div className="min-h-0 flex-1 overflow-hidden rounded-md border border-line-strong bg-white p-3 sm:p-4 dark:border-stone-700 dark:bg-stone-900">
         <AnimatePresence mode="wait">
           {!inCombat ? (
             <motion.div
@@ -321,7 +321,7 @@ export default function WorldBossRaidWidget({
                     <h4 className="mb-3 flex items-center gap-1.5 text-xs font-black uppercase text-ink-soft">
                       {t.worldBoss.gearTitle}
                     </h4>
-                    <div className="flex items-center gap-4 rounded-md border border-stone-300 bg-[#fbfaf7] p-3 dark:border-stone-700 dark:bg-stone-950">
+                    <div className="flex items-center gap-4 rounded-md border border-line-strong bg-page p-3 dark:border-stone-700 dark:bg-stone-950">
                       <TechCharacterAvatar level={userLevel} equipments={equipments} size="sm" />
                       <div>
                         <span className="block text-xs font-bold text-ink-max">{t.worldBoss.heroPower}</span>
@@ -332,11 +332,11 @@ export default function WorldBossRaidWidget({
                       </div>
                     </div>
                     <div className="mt-4 grid grid-cols-2 gap-2">
-                      <div className="rounded-sm border border-stone-300 px-3 py-2.5 dark:border-stone-700">
+                      <div className="rounded-sm border border-line-strong px-3 py-2.5 dark:border-stone-700">
                         <span className="block text-[10px] font-black uppercase text-ink-muted">{t.worldBoss.raidQuestionCount}</span>
                         <span className="text-base font-black text-ink-max">{format(t.worldBoss.questionCount, { count: boss.questions.length })}</span>
                       </div>
-                      <div className="rounded-sm border border-stone-300 px-3 py-2.5 dark:border-stone-700">
+                      <div className="rounded-sm border border-line-strong px-3 py-2.5 dark:border-stone-700">
                         <span className="block text-[10px] font-black uppercase text-ink-muted">{t.worldBoss.maxDamagePerQuestion}</span>
                         <span className="font-mono text-base font-medium tabular-nums text-alert-strong">{DAMAGE_PER_CORRECT.toLocaleString()}</span>
                       </div>
@@ -357,7 +357,7 @@ export default function WorldBossRaidWidget({
                           <span className={`flex h-5 w-5 items-center justify-center rounded-xs font-mono text-[10px] font-bold tabular-nums ${
                             item.rank <= 3
                               ? "bg-stone-950 text-white dark:bg-stone-100 dark:text-stone-950"
-                              : "border border-stone-300 text-ink-muted dark:border-stone-700"
+                              : "border border-line-strong text-ink-muted dark:border-stone-700"
                           }`}>
                             {item.rank}
                           </span>

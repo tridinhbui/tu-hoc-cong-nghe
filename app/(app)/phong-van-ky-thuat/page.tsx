@@ -458,7 +458,7 @@ export default function TechnicalInterviewPage() {
   const difficultyTitle = IB_DIFFICULTY_TITLE[difficulty];
 
   return (
-    <div className="h-[calc(100dvh-3.5rem)] lg:h-dvh overflow-hidden flex flex-col bg-[#fbfaf7] dark:bg-stone-950 font-sans">
+    <div className="h-[calc(100dvh-3.5rem)] lg:h-dvh overflow-hidden flex flex-col bg-page dark:bg-stone-950 font-sans">
       {/* ─── 1. TOP NAVIGATION HEADER ─── */}
       <div className="shrink-0 border-b border-line-strong bg-white dark:bg-stone-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-4">
@@ -783,7 +783,7 @@ export default function TechnicalInterviewPage() {
                 </h3>
 
                 <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 shrink-0 rounded-sm border border-line-strong bg-[#f3f1ec] dark:bg-stone-950 flex items-center justify-center">
+                  <div className="w-14 h-14 shrink-0 rounded-sm border border-line-strong bg-surface-raised dark:bg-stone-950 flex items-center justify-center">
                     <span className="font-mono text-sm font-medium tabular-nums text-ink-max">
                       {SYS.level(totalXp === null ? "-" : String(getLevelByXp(totalXp).level))}
                     </span>
@@ -1044,7 +1044,7 @@ export default function TechnicalInterviewPage() {
                 bề ngang rồi mới tới thanh tiến độ - ba dòng cho thứ đọc được
                 trong một dòng. */}
             <div className="flex flex-wrap items-center gap-x-4 gap-y-3 border-b border-line-strong pb-4">
-              <span className="shrink-0 w-10 h-10 rounded-sm border border-line-strong bg-[#f3f1ec] dark:bg-stone-950 flex items-center justify-center text-ink-body">
+              <span className="shrink-0 w-10 h-10 rounded-sm border border-line-strong bg-surface-raised dark:bg-stone-950 flex items-center justify-center text-ink-body">
                 <BriefcaseBusiness className="w-5 h-5" strokeWidth={2} />
               </span>
 

@@ -158,10 +158,10 @@ export default function LessonRecallWidget({ userId }: LessonRecallWidgetProps) 
       {/* Collapsible Header */}
       <button
         onClick={() => setCollapsed(!collapsed)}
-        className="w-full flex items-center justify-between gap-2 p-4 cursor-pointer transition-colors hover:bg-[#f3f1ec] dark:hover:bg-stone-950"
+        className="w-full flex items-center justify-between gap-2 p-4 cursor-pointer transition-colors hover:bg-surface-raised dark:hover:bg-stone-950"
       >
           <div className="flex items-center gap-2 min-w-0">
-            <div className={`w-8 h-8 rounded-sm border border-stone-300 bg-[#f3f1ec] dark:border-stone-700 dark:bg-stone-950 flex items-center justify-center shrink-0 ${
+            <div className={`w-8 h-8 rounded-sm border border-line-strong bg-surface-raised dark:border-stone-700 dark:bg-stone-950 flex items-center justify-center shrink-0 ${
               hasWarning ? 'text-warn' : 'text-ink-body'
           }`}>
             {hasWarning ? <AlertCircle className="w-4 h-4" /> : <RefreshCw className="w-4 h-4" />}

@@ -438,7 +438,7 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
                 placeholder={t.flashcards.bulkPlaceholder}
                 value={bulkText}
                 onChange={(e) => setBulkText(e.target.value)}
-                className="w-full text-sm px-3.5 py-2.5 rounded-sm border border-stone-300 bg-[#fbfaf7] text-ink focus:outline-none focus:border-brand-600 dark:border-stone-700 dark:bg-stone-950 dark:focus:border-brand-400 font-mono"
+                className="w-full text-sm px-3.5 py-2.5 rounded-sm border border-line-strong bg-page text-ink focus:outline-none focus:border-brand-600 dark:border-stone-700 dark:bg-stone-950 dark:focus:border-brand-400 font-mono"
               />
               {bulkText.trim() && (
                 <p className="text-[11px] text-ink-faint mt-1.5">
@@ -485,7 +485,7 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
                   placeholder={t.flashcards.termPlaceholder}
                   value={newTerm}
                   onChange={(e) => setNewTerm(e.target.value)}
-                  className="w-full text-sm px-3.5 py-2.5 rounded-sm border border-stone-300 bg-[#fbfaf7] text-ink focus:outline-none focus:border-brand-600 dark:border-stone-700 dark:bg-stone-950 dark:focus:border-brand-400"
+                  className="w-full text-sm px-3.5 py-2.5 rounded-sm border border-line-strong bg-page text-ink focus:outline-none focus:border-brand-600 dark:border-stone-700 dark:bg-stone-950 dark:focus:border-brand-400"
                 />
               </div>
               <div>
@@ -496,7 +496,7 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
                   placeholder={t.flashcards.definitionPlaceholder}
                   value={newDef}
                   onChange={(e) => setNewDef(e.target.value)}
-                  className="w-full text-sm px-3.5 py-2.5 rounded-sm border border-stone-300 bg-[#fbfaf7] text-ink focus:outline-none focus:border-brand-600 dark:border-stone-700 dark:bg-stone-950 dark:focus:border-brand-400"
+                  className="w-full text-sm px-3.5 py-2.5 rounded-sm border border-line-strong bg-page text-ink focus:outline-none focus:border-brand-600 dark:border-stone-700 dark:bg-stone-950 dark:focus:border-brand-400"
                 />
               </div>
             </div>
@@ -526,7 +526,7 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
           </div>
         ) : cards.length === 0 ? (
           <div className={`${panel} text-center py-16 px-6 max-w-md mx-auto`}>
-            <span className="mx-auto mb-4 flex w-fit rounded-sm border border-stone-300 p-2.5 text-ink-muted dark:border-stone-700">
+            <span className="mx-auto mb-4 flex w-fit rounded-sm border border-line-strong p-2.5 text-ink-muted dark:border-stone-700">
               <FolderOpen aria-hidden className="h-8 w-8" strokeWidth={1.5} />
             </span>
             <h2 className="text-lg font-black tracking-tight text-ink-max">{t.flashcards.emptyTitle}</h2>
@@ -644,7 +644,7 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
                     </button>
                     <button
                       onClick={() => handleSM2Action(3)}
-                      className="flex flex-col items-center gap-1 py-3 text-xs font-bold rounded-sm border border-stone-300 bg-white text-ink-body transition-colors hover:border-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-300 cursor-pointer"
+                      className="flex flex-col items-center gap-1 py-3 text-xs font-bold rounded-sm border border-line-strong bg-white text-ink-body transition-colors hover:border-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-300 cursor-pointer"
                     >
                       <ThumbsUp aria-hidden className="h-5 w-5" strokeWidth={1.75} /> {t.flashcards.gradeMedium}
                     </button>
@@ -658,7 +658,7 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
                 </div>
               ) : (
                 <div className={`${panel} w-full text-center py-10 px-6`}>
-                  <span className="mx-auto mb-2.5 flex w-fit rounded-sm border border-stone-300 p-2 text-ink-muted dark:border-stone-700">
+                  <span className="mx-auto mb-2.5 flex w-fit rounded-sm border border-line-strong p-2 text-ink-muted dark:border-stone-700">
                     <PartyPopper aria-hidden className="h-7 w-7" strokeWidth={1.5} />
                   </span>
                   <p className="text-base font-black tracking-tight text-ink-max">{t.flashcards.doneTitle}</p>

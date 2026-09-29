@@ -44,7 +44,7 @@ export default function LessonAppealModal({ userId, lesson, onClose }: LessonApp
       >
         <div className="flex items-start justify-between gap-3">
           <div className="flex items-center gap-2.5">
-            <span className="w-9 h-9 rounded-sm border border-line-strong bg-[#f3f1ec] dark:bg-stone-950 text-ink-body flex items-center justify-center flex-shrink-0">
+            <span className="w-9 h-9 rounded-sm border border-line-strong bg-surface-raised dark:bg-stone-950 text-ink-body flex items-center justify-center flex-shrink-0">
               <ShieldQuestion className="w-4.5 h-4.5" />
             </span>
             <div>

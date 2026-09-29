@@ -190,12 +190,12 @@ export function LoadBar({
   return (
     <div ref={ref} aria-hidden className={`flex min-w-0 items-center gap-3 font-mono text-[10.5px] uppercase tracking-[0.06em] ${className}`}>
       <span className="shrink-0 whitespace-pre">
-        [<span className="text-brand-600 dark:text-brand-400">{"█".repeat(filled)}</span>
+        [<span className="text-accent">{"█".repeat(filled)}</span>
         <span className="opacity-30">{"░".repeat(cells - filled)}</span>]
       </span>
       <span className="w-9 tabular-nums">{Math.floor(p)}%</span>
       <span className="hidden min-w-0 truncate opacity-70 sm:inline">{label}</span>
-      <span className={`ml-auto shrink-0 font-bold ${ok ? "text-brand-600 dark:text-brand-400" : "opacity-40"}`}>
+      <span className={`ml-auto shrink-0 font-bold ${ok ? "text-accent" : "opacity-40"}`}>
         {ok ? done : "…"}
       </span>
     </div>

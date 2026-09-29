@@ -117,7 +117,7 @@ export default function LessonSections({
 
       case "comparison":
         return (
-          <div key={i} className="my-6 grid grid-cols-1 overflow-hidden rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900 sm:grid-cols-2">
+          <div key={i} className="my-6 grid grid-cols-1 overflow-hidden rounded-md border border-line-strong bg-white dark:border-stone-700 dark:bg-stone-900 sm:grid-cols-2">
             {[block.left, block.right].map((side, j) => (
               <div
                 key={side.label}
@@ -132,8 +132,8 @@ export default function LessonSections({
 
       case "conceptTable":
         return (
-          <div key={i} className="my-6 overflow-hidden rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900">
-            <div className="border-b border-stone-300 bg-[#f3f1ec] px-4 py-3 dark:border-stone-700 dark:bg-stone-950 sm:px-5">
+          <div key={i} className="my-6 overflow-hidden rounded-md border border-line-strong bg-white dark:border-stone-700 dark:bg-stone-900">
+            <div className="border-b border-stone-300 bg-surface-raised px-4 py-3 dark:border-stone-700 dark:bg-stone-950 sm:px-5">
               <p className="text-lg font-black tracking-tight text-ink-max">{block.title}</p>
               <p className="mt-0.5 text-sm text-ink-soft">{block.subtitle ?? t.finalTwo.lessonSections.defaultConceptTableSubtitle}</p>
             </div>

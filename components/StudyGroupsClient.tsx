@@ -1300,7 +1300,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
             {/* Top Room Info, Lofi Audio & Mobile Segmented Tab Bar */}
             <div className="bg-white dark:bg-stone-900 border border-line-strong rounded-md px-3 sm:px-4 py-2 shrink-0 flex items-center justify-between gap-2 sm:gap-3">
               <div className="flex items-center gap-2.5 min-w-0">
-                <span className="w-8 h-8 rounded-sm border border-line-strong bg-[#f3f1ec] dark:bg-stone-950 text-ink-body font-black flex items-center justify-center text-xs shrink-0">
+                <span className="w-8 h-8 rounded-sm border border-line-strong bg-surface-raised dark:bg-stone-950 text-ink-body font-black flex items-center justify-center text-xs shrink-0">
                   <Users className="w-4 h-4" strokeWidth={1.75} aria-hidden />
                 </span>
                 <div className="min-w-0">
@@ -1452,7 +1452,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
             </div>
 
             {/* Group Attendance & Daily Quest Guidance Banner */}
-            <div className="mb-3 px-3.5 py-2.5 rounded-md bg-[#f3f1ec] dark:bg-stone-900 border border-line-strong text-xs font-medium text-ink-heading flex flex-wrap items-center justify-between gap-2">
+            <div className="mb-3 px-3.5 py-2.5 rounded-md bg-surface-raised dark:bg-stone-900 border border-line-strong text-xs font-medium text-ink-heading flex flex-wrap items-center justify-between gap-2">
               <div className="flex items-center gap-2 min-w-0">
                 <span className="w-7 h-7 rounded-sm border border-line-strong bg-white dark:bg-stone-950 text-ink-body flex items-center justify-center font-black text-sm shrink-0">
                   <MapPin className="w-4 h-4" strokeWidth={2} aria-hidden />
@@ -2192,7 +2192,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                 </div>
                 {chatSubTab === "chat" && (
                   <div className="flex-1 flex flex-col min-h-0">
-                    <div className="mb-2 px-2.5 py-1 rounded-sm bg-[#f3f1ec] dark:bg-stone-950 border border-line-strong shrink-0 text-[10px] text-ink-soft font-semibold flex items-center gap-1">
+                    <div className="mb-2 px-2.5 py-1 rounded-sm bg-surface-raised dark:bg-stone-950 border border-line-strong shrink-0 text-[10px] text-ink-soft font-semibold flex items-center gap-1">
                       <Lightbulb className="w-3 h-3 shrink-0" strokeWidth={2} aria-hidden />
                       <span>{t.studyGroups.chatCheckinHint}</span>
                     </div>
@@ -2206,7 +2206,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                     <div
                       ref={scrollBoxRef}
                       onScroll={handleMessagesScroll}
-                      className="flex-1 min-h-0 overflow-y-auto rounded-md border border-line-strong bg-[#fbfaf7] dark:bg-stone-950 p-3 space-y-2.5"
+                      className="flex-1 min-h-0 overflow-y-auto rounded-md border border-line-strong bg-page dark:bg-stone-950 p-3 space-y-2.5"
                     >
               {hasOlderMessages && (
                 <div className="flex justify-center pb-1">
@@ -2228,7 +2228,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                   if (msg.is_bot) {
                     return (
                       <div key={msg.id} className="flex justify-start">
-                        <div className="max-w-[85%] rounded-md px-3 py-2 bg-[#f3f1ec] dark:bg-stone-900 border border-line-strong">
+                        <div className="max-w-[85%] rounded-md px-3 py-2 bg-surface-raised dark:bg-stone-900 border border-line-strong">
                           <p className="text-[10px] font-extrabold text-ink-muted mb-0.5">{t.studyGroups.byAdmin}</p>
                           <p className="text-sm break-words text-ink-heading">{renderBotMessage(msg.content, t.groupChat, format)}</p>
                         </div>
@@ -2333,7 +2333,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                           {activeMenuMsgId === msg.id && (
                             <div className={`absolute top-full mt-1 z-50 min-w-[165px] bg-white dark:bg-stone-900 rounded-md p-1.5 border border-line-strong text-xs space-y-1 ${isMine ? "right-0" : "left-0"}`}>
                               {/* Quick Emoji Reaction Row */}
-                              <div className="flex items-center justify-between px-2 py-1 bg-[#f3f1ec] dark:bg-stone-950 rounded-sm mb-1 border border-line">
+                              <div className="flex items-center justify-between px-2 py-1 bg-surface-raised dark:bg-stone-950 rounded-sm mb-1 border border-line">
                                 {REACTION_EMOJIS.map((emoji) => (
                                   <button
                                     key={emoji}
@@ -2501,7 +2501,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
 
             {/* Replying Banner Preview */}
             {replyingTo && (
-              <div className="flex items-center justify-between gap-2 px-3 py-2 rounded-sm bg-[#f3f1ec] dark:bg-stone-950 border border-line-strong border-l-2 border-l-brand-500 text-xs text-ink-heading mt-2">
+              <div className="flex items-center justify-between gap-2 px-3 py-2 rounded-sm bg-surface-raised dark:bg-stone-950 border border-line-strong border-l-2 border-l-brand-500 text-xs text-ink-heading mt-2">
                 <div className="min-w-0 flex-1">
                   <span className="font-bold text-accent">{format(t.chat.replyingTo, { name: replyingTo.senderName })}</span>
                   <p className="truncate text-[11px] text-ink-soft mt-0.5">{replyingTo.content}</p>
@@ -2516,7 +2516,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
               </div>
             )}
             {editingMessage && (
-              <div className="flex items-center justify-between gap-2 px-3 py-2 rounded-sm bg-[#f3f1ec] dark:bg-stone-950 border border-line-strong border-l-2 border-l-stone-950 dark:border-l-stone-200 text-xs text-ink-heading mt-2">
+              <div className="flex items-center justify-between gap-2 px-3 py-2 rounded-sm bg-surface-raised dark:bg-stone-950 border border-line-strong border-l-2 border-l-stone-950 dark:border-l-stone-200 text-xs text-ink-heading mt-2">
                 <div className="min-w-0 flex-1">
                   <span className="font-bold text-ink">{t.chat.editing}</span>
                   <p className="truncate text-[11px] text-ink-soft mt-0.5">{editingMessage.content}</p>
@@ -2624,7 +2624,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
 
         {chatSubTab === "quiz" && (
           <div className="flex-1 flex flex-col min-h-0 overflow-y-auto p-1 space-y-3">
-            <div className="p-3.5 rounded-md bg-[#f3f1ec] dark:bg-stone-950 border border-line-strong text-xs space-y-1 shrink-0">
+            <div className="p-3.5 rounded-md bg-surface-raised dark:bg-stone-950 border border-line-strong text-xs space-y-1 shrink-0">
               <p className="font-black text-ink flex items-center gap-1.5">
                 <span>{t.studyGroups.quizChallengeTitle}</span>
                 <span className="px-2 py-0.5 rounded-sm border border-line-strong bg-white dark:bg-stone-900 text-ink-body text-[9px]">{t.studyGroups.quizReward}</span>
@@ -2646,7 +2646,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
                   </div>
                 ) : (
                   groupQuizQuestions.map((q, qIdx) => (
-                    <div key={`${q.lessonId}-${qIdx}`} className="p-3 rounded-md border border-line-strong bg-[#fbfaf7] dark:bg-stone-950 space-y-2 text-xs">
+                    <div key={`${q.lessonId}-${qIdx}`} className="p-3 rounded-md border border-line-strong bg-page dark:bg-stone-950 space-y-2 text-xs">
                       <p className="font-black text-ink">
                         {format(t.studyGroups.quizQuestion, { index: qIdx + 1, question: q.question })}
                       </p>
@@ -2681,7 +2681,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
               </div>
             ) : (
               <div className="py-6 text-center space-y-3">
-                <div className="mx-auto w-fit rounded-sm border border-line-strong bg-[#f3f1ec] dark:bg-stone-950 text-ink-body p-2.5">
+                <div className="mx-auto w-fit rounded-sm border border-line-strong bg-surface-raised dark:bg-stone-950 text-ink-body p-2.5">
                   {groupQuizScore && groupQuizScore >= 80 ? (
                     <Gift className="w-8 h-8" strokeWidth={1.5} aria-hidden />
                   ) : (
@@ -2707,7 +2707,7 @@ export default function StudyGroupsClient({ embedded = false }: { embedded?: boo
               </div>
             )}
             {quizAttempts.length > 0 && (
-              <div className="rounded-md border border-line-strong bg-[#fbfaf7] dark:bg-stone-950 p-3 space-y-2">
+              <div className="rounded-md border border-line-strong bg-page dark:bg-stone-950 p-3 space-y-2">
                 <p className="text-[10px] font-black uppercase tracking-widest text-ink-muted">{t.studyGroups.quizWeeklyScores}</p>
                 {quizAttempts.slice(0, 5).map((attempt) => {
                   const member = memberById.get(attempt.user_id);

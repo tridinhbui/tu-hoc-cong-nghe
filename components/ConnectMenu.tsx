@@ -167,9 +167,9 @@ export default function ConnectMenu({
               // thì kéo nút sang chỗ khác rồi mở ra, bảng vẫn bung ở góc phải
               // dưới - trông như bấm nhầm vào thứ gì đó.
               style={{ x: bubbleDrag.x, y: bubbleDrag.y }}
-              className="fixed bottom-24 right-4 sm:right-6 z-50 w-[17.5rem] overflow-hidden rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900"
+              className="fixed bottom-24 right-4 sm:right-6 z-50 w-[17.5rem] overflow-hidden rounded-md border border-line-strong bg-white dark:border-stone-700 dark:bg-stone-900"
             >
-              <div className="flex items-center justify-between border-b border-line-strong bg-[#f3f1ec] px-4 py-2.5 dark:bg-stone-950">
+              <div className="flex items-center justify-between border-b border-line-strong bg-surface-raised px-4 py-2.5 dark:bg-stone-950">
                 <p className="text-sm font-black text-ink">{t.connectMenu.title}</p>
                 <button
                   type="button"

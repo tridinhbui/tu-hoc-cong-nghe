@@ -187,10 +187,10 @@ export default function RpgInventoryPanel({ user }: { user: RpgProfile | null })
   });
 
   return (
-    <div className="rounded-md border border-stone-300 bg-white p-4 sm:p-6 dark:border-stone-700 dark:bg-stone-900">
+    <div className="rounded-md border border-line-strong bg-white p-4 sm:p-6 dark:border-stone-700 dark:bg-stone-900">
       <div className="mb-5 flex flex-col gap-3 border-b border-stone-300 pb-4 sm:flex-row sm:items-end sm:justify-between dark:border-stone-700">
         <div>
-          <span className="inline-flex items-center rounded-sm border border-stone-300 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-ink-soft dark:border-stone-700">
+          <span className="inline-flex items-center rounded-sm border border-line-strong px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-ink-soft dark:border-stone-700">
             {t.rpgInventory.badge}
           </span>
           <h2 className="mt-3 text-2xl font-black tracking-tight text-ink-max sm:text-3xl">{t.rpgInventory.title}</h2>
@@ -198,15 +198,15 @@ export default function RpgInventoryPanel({ user }: { user: RpgProfile | null })
             {t.rpgInventory.description}
           </p>
         </div>
-        <div className="rounded-sm border border-stone-300 bg-[#fbfaf7] px-3 py-1.5 text-sm font-bold text-ink dark:border-stone-700 dark:bg-stone-950">
+        <div className="rounded-sm border border-line-strong bg-page px-3 py-1.5 text-sm font-bold text-ink dark:border-stone-700 dark:bg-stone-950">
           {format(t.rpgInventory.equippedCount, { count: equippedItems.length })}
         </div>
       </div>
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
-        <div className="lg:col-span-5 rounded-md border border-stone-300 bg-[#fbfaf7] p-4 dark:border-stone-700 dark:bg-stone-950">
+        <div className="lg:col-span-5 rounded-md border border-line-strong bg-page p-4 dark:border-stone-700 dark:bg-stone-950">
           <div className="mb-3 flex items-center justify-between">
-            <span className="rounded-sm border border-stone-300 bg-white px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-ink dark:border-stone-700 dark:bg-stone-900">
+            <span className="rounded-sm border border-line-strong bg-white px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-ink dark:border-stone-700 dark:bg-stone-900">
               {format(t.rpgInventory.levelLabel, { level })}
             </span>
             <span className="font-mono text-[10px] text-ink-muted">
@@ -215,30 +215,30 @@ export default function RpgInventoryPanel({ user }: { user: RpgProfile | null })
           </div>
 
           <div className="my-5 flex justify-center">
-            <div className="flex h-36 w-36 items-center justify-center rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900">
+            <div className="flex h-36 w-36 items-center justify-center rounded-md border border-line-strong bg-white dark:border-stone-700 dark:bg-stone-900">
               <TechCharacterAvatar level={level} equipments={equippedGear} size="lg" />
             </div>
           </div>
 
-          <div className="space-y-3 rounded-md border border-stone-300 bg-white p-3 dark:border-stone-700 dark:bg-stone-900">
+          <div className="space-y-3 rounded-md border border-line-strong bg-white p-3 dark:border-stone-700 dark:bg-stone-900">
             <div className="flex items-center justify-between border-b border-stone-200 pb-1 text-[10px] font-bold uppercase tracking-wider text-ink-muted dark:border-stone-800">
               <span>{t.rpgInventory.statsTitle}</span>
               <span className="text-ink">{format(t.rpgInventory.buffLabel, { count: equippedItems.length })}</span>
             </div>
             <div className="grid grid-cols-2 gap-2 text-xs">
-              <div className="flex items-center justify-between rounded-sm border border-stone-200 bg-[#fbfaf7] p-2 dark:border-stone-800 dark:bg-stone-950">
+              <div className="flex items-center justify-between rounded-sm border border-stone-200 bg-page p-2 dark:border-stone-800 dark:bg-stone-950">
                 <span className="font-semibold text-ink-soft">{t.rpgInventory.statSpeed}</span>
                 <span className="font-mono font-medium tabular-nums text-ink-max">{totalStats.speed}</span>
               </div>
-              <div className="flex items-center justify-between rounded-sm border border-stone-200 bg-[#fbfaf7] p-2 dark:border-stone-800 dark:bg-stone-950">
+              <div className="flex items-center justify-between rounded-sm border border-stone-200 bg-page p-2 dark:border-stone-800 dark:bg-stone-950">
                 <span className="font-semibold text-ink-soft">{t.rpgInventory.statValuation}</span>
                 <span className="font-mono font-medium tabular-nums text-ink-max">{totalStats.valuation}</span>
               </div>
-              <div className="flex items-center justify-between rounded-sm border border-stone-200 bg-[#fbfaf7] p-2 dark:border-stone-800 dark:bg-stone-950">
+              <div className="flex items-center justify-between rounded-sm border border-stone-200 bg-page p-2 dark:border-stone-800 dark:bg-stone-950">
                 <span className="font-semibold text-ink-soft">{t.rpgInventory.statDefense}</span>
                 <span className="font-mono font-medium tabular-nums text-ink-max">{totalStats.defense}</span>
               </div>
-              <div className="flex items-center justify-between rounded-sm border border-stone-200 bg-[#fbfaf7] p-2 dark:border-stone-800 dark:bg-stone-950">
+              <div className="flex items-center justify-between rounded-sm border border-stone-200 bg-page p-2 dark:border-stone-800 dark:bg-stone-950">
                 <span className="font-semibold text-ink-soft">{t.rpgInventory.statLuck}</span>
                 <span className="font-mono font-medium tabular-nums text-ink-max">{totalStats.luck}</span>
               </div>
@@ -302,10 +302,10 @@ export default function RpgInventoryPanel({ user }: { user: RpgProfile | null })
           </div>
 
           {selectedItem && (
-            <div className="rounded-md border border-stone-300 bg-white p-4 dark:border-stone-700 dark:bg-stone-900">
+            <div className="rounded-md border border-line-strong bg-white p-4 dark:border-stone-700 dark:bg-stone-900">
               <div className="mb-2 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                 <div className="flex min-w-0 items-center gap-3">
-                  <span className="rounded-sm border border-stone-300 bg-[#fbfaf7] p-2 text-ink-soft dark:border-stone-700 dark:bg-stone-950">
+                  <span className="rounded-sm border border-line-strong bg-page p-2 text-ink-soft dark:border-stone-700 dark:bg-stone-950">
                     <Glyph emoji={selectedItem.emoji} className="w-8 h-8" strokeWidth={1.5} />
                   </span>
                   <div className="min-w-0">

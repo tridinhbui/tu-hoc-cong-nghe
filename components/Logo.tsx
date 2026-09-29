@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-// Shared site mark (open book + flame + growth bars) — same file also used
+// Shared site mark (blue flame over an open book, transparent background) — same file also used
 // as app/icon.png (the favicon), so the mark is consistent everywhere.
 export default function Logo({ size = 32, className = "" }: { size?: number; className?: string }) {
   return (
@@ -11,7 +11,7 @@ export default function Logo({ size = 32, className = "" }: { size?: number; cla
       /* i18n-ignore-end */
       width={size}
       height={size}
-      className={`rounded-lg flex-shrink-0 ${className}`}
+      className={`object-contain flex-shrink-0 ${className}`}
     />
   );
 }

@@ -24,7 +24,7 @@ function StatCard({
   hint: string;
 }) {
   return (
-    <div className="rounded-md border border-stone-300 bg-white p-4 dark:border-stone-700 dark:bg-stone-900">
+    <div className="rounded-md border border-line-strong bg-white p-4 dark:border-stone-700 dark:bg-stone-900">
       <p className="mb-2 border-b border-line pb-1.5 text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">
         {label}
       </p>
@@ -85,7 +85,7 @@ export default async function PublicUserProfilePage({
     .slice(0, 2);
 
   return (
-    <div className="min-h-screen bg-[#fbfaf7] dark:bg-stone-950">
+    <div className="min-h-screen bg-page dark:bg-stone-950">
       <div className="border-b border-line-strong">
         <div className="max-w-5xl mx-auto px-6 py-5">
           <div className="flex items-center justify-between gap-4 border-b border-line pb-2">
@@ -107,7 +107,7 @@ export default async function PublicUserProfilePage({
 
       <div className="max-w-5xl mx-auto px-6 py-8 space-y-6">
         <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900 p-7">
+          <div className="rounded-md border border-line-strong bg-white dark:border-stone-700 dark:bg-stone-900 p-7">
             <div className="flex items-start gap-5">
               {isValidAvatar(profile.avatarUrl) ? (
                 <Image
@@ -183,7 +183,7 @@ export default async function PublicUserProfilePage({
         </div>
 
         <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900 p-6">
+          <div className="rounded-md border border-line-strong bg-white dark:border-stone-700 dark:bg-stone-900 p-6">
             <div className="flex items-center justify-between gap-3 mb-5">
               <div>
                 <h3 className="text-base font-black tracking-tight text-ink-max">
@@ -264,7 +264,7 @@ export default async function PublicUserProfilePage({
           </div>
 
           <div className="space-y-6">
-            <div className="rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900 p-6">
+            <div className="rounded-md border border-line-strong bg-white dark:border-stone-700 dark:bg-stone-900 p-6">
               <h3 className="text-base font-black tracking-tight text-ink-max mb-4">
                 {t.publicProfile.quickSummary}
               </h3>
@@ -284,7 +284,7 @@ export default async function PublicUserProfilePage({
               </div>
             </div>
 
-            <div className="rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900 p-6">
+            <div className="rounded-md border border-line-strong bg-white dark:border-stone-700 dark:bg-stone-900 p-6">
               <h3 className="text-base font-black tracking-tight text-ink-max mb-4">
                 {t.publicProfile.recentLessons}
               </h3>
@@ -298,7 +298,7 @@ export default async function PublicUserProfilePage({
                     <Link
                       key={`${lesson.id}-${lesson.completedAt ?? "pending"}`}
                       href={`/bai-hoc/${lesson.slug}`}
-                      className="block rounded-sm border border-line px-4 py-3 hover:border-stone-500 hover:bg-[#f3f1ec] dark:hover:bg-stone-800/50 transition-colors"
+                      className="block rounded-sm border border-line px-4 py-3 hover:border-stone-500 hover:bg-surface-raised dark:hover:bg-stone-800/50 transition-colors"
                     >
                       <p className="text-sm font-bold text-ink">
                         {lesson.title}
@@ -321,7 +321,7 @@ export default async function PublicUserProfilePage({
               )}
             </div>
 
-            <div className="rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900 p-6">
+            <div className="rounded-md border border-line-strong bg-white dark:border-stone-700 dark:bg-stone-900 p-6">
               <div className="flex items-center justify-between gap-3 mb-4">
                 <h3 className="text-base font-black tracking-tight text-ink-max">
                   {t.publicProfile.recentPosts}

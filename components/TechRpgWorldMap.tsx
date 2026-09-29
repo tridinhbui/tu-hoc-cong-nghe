@@ -253,11 +253,11 @@ export default function TechRpgWorldMap() {
   const selected = selectedBuilding ? buildings.find((b) => b.id === selectedBuilding) : undefined;
 
   return (
-    <div className="relative min-h-screen overflow-x-hidden bg-[#fbfaf7] p-3 font-sans text-ink sm:p-5 dark:bg-stone-950">
+    <div className="relative min-h-screen overflow-x-hidden bg-page p-3 font-sans text-ink sm:p-5 dark:bg-stone-950">
       {/* HUD: một thanh tiêu đề kiểu cửa sổ ứng dụng - mã định vị mono, cấp độ và
           ngân sách là số thật đọc từ user_profiles. Không gradient, không kính mờ. */}
-      <div className="relative z-30 mx-auto mb-4 max-w-6xl overflow-hidden rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900">
-        <div className="flex h-8 items-center justify-between gap-3 border-b border-stone-300 bg-[#f3f1ec] px-3 dark:border-stone-700 dark:bg-stone-950">
+      <div className="relative z-30 mx-auto mb-4 max-w-6xl overflow-hidden rounded-md border border-line-strong bg-white dark:border-stone-700 dark:bg-stone-900">
+        <div className="flex h-8 items-center justify-between gap-3 border-b border-stone-300 bg-surface-raised px-3 dark:border-stone-700 dark:bg-stone-950">
           <Sys className="truncate text-ink-muted">{selected ? SYS.building(selected.id) : SYS.kingdom}</Sys>
           <span className="inline-flex items-center gap-1.5">
             <StatusDot />

@@ -49,7 +49,7 @@ export default function InteractiveRegression() {
   const significant = fit.pValue < 0.05;
 
   return (
-    <div className="rounded-md border border-stone-300 bg-white p-6 dark:border-stone-700 dark:bg-stone-900">
+    <div className="rounded-md border border-line-strong bg-white p-6 dark:border-stone-700 dark:bg-stone-900">
       <h3 className="text-base font-black tracking-tight text-ink-max">
         {t.regressionCalc.title}
       </h3>
@@ -75,7 +75,7 @@ export default function InteractiveRegression() {
       <div className="mt-4 overflow-x-auto">
         <svg
           viewBox={`0 0 ${W} ${H}`}
-          className="h-auto w-full min-w-[280px] rounded-sm border border-stone-200 bg-[#fbfaf7] dark:border-stone-800 dark:bg-stone-950"
+          className="h-auto w-full min-w-[280px] rounded-sm border border-stone-200 bg-page dark:border-stone-800 dark:bg-stone-950"
           role="img"
           aria-label={format(t.regressionCalc.chartAriaLabel, {
             n,
@@ -164,7 +164,7 @@ function Card({ label, value, tone }: { label: string; value: string; tone: "goo
         ? "text-warn"
         : "text-ink-heading";
   return (
-    <div className="rounded-sm border border-stone-200 bg-[#fbfaf7] p-3 dark:border-stone-800 dark:bg-stone-950">
+    <div className="rounded-sm border border-stone-200 bg-page p-3 dark:border-stone-800 dark:bg-stone-950">
       <p className="text-[10px] font-bold uppercase tracking-wide text-ink-muted">{label}</p>
       <p className={`mt-0.5 text-base font-black tabular-nums ${color}`}>{value}</p>
     </div>

@@ -120,7 +120,7 @@ export default function ReadingProgress({ progress, onMilestone }: ReadingProgre
           className="group flex cursor-pointer flex-col items-center gap-1.5"
           title={t.readingProgress.open}
         >
-          <span className="relative block h-20 w-2 overflow-hidden rounded-xs border border-stone-300 bg-white transition-colors group-hover:border-stone-950 dark:border-stone-700 dark:bg-stone-900">
+          <span className="relative block h-20 w-2 overflow-hidden rounded-xs border border-line-strong bg-white transition-colors group-hover:border-stone-950 dark:border-stone-700 dark:bg-stone-900">
             <motion.span
               className="absolute inset-x-0 bottom-0 block bg-brand-600 dark:bg-brand-500"
               animate={{ height: `${progress}%` }}
@@ -142,7 +142,7 @@ export default function ReadingProgress({ progress, onMilestone }: ReadingProgre
           </div>
 
           {/* Thước dọc: rãnh 1px, vạch mốc mono bên phải. */}
-          <div className="relative h-72 w-2 rounded-xs border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900">
+          <div className="relative h-72 w-2 rounded-xs border border-line-strong bg-white dark:border-stone-700 dark:bg-stone-900">
             <motion.div
               className="absolute inset-x-0 bottom-0 bg-brand-600 dark:bg-brand-500"
               animate={{ height: `${progress}%` }}

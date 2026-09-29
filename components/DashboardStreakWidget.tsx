@@ -92,7 +92,7 @@ export default function DashboardStreakWidget({ userId }: { userId: string }) {
   };
 
   const featureTile =
-    "flex h-7 w-7 shrink-0 items-center justify-center rounded-sm border border-stone-300 bg-[#f3f1ec] font-mono text-xs font-medium text-ink-body dark:border-stone-700 dark:bg-stone-950";
+    "flex h-7 w-7 shrink-0 items-center justify-center rounded-sm border border-line-strong bg-surface-raised font-mono text-xs font-medium text-ink-body dark:border-stone-700 dark:bg-stone-950";
 
   const modalContent = showModal && mounted ? (
     createPortal(
@@ -117,7 +117,7 @@ export default function DashboardStreakWidget({ userId }: { userId: string }) {
           >
             {/* Header */}
             <div className="flex items-center gap-3 border-b border-line-strong pb-4">
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-sm border border-stone-300 bg-[#f3f1ec] text-ink-body dark:border-stone-700 dark:bg-stone-950">
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-sm border border-line-strong bg-surface-raised text-ink-body dark:border-stone-700 dark:bg-stone-950">
                 <Snowflake className="h-5 w-5" />
               </div>
               <div>
@@ -132,7 +132,7 @@ export default function DashboardStreakWidget({ userId }: { userId: string }) {
             </div>
 
             {/* Status Summary */}
-            <div className="flex items-center justify-between gap-3 rounded-sm border border-stone-300 bg-[#fbfaf7] p-4 dark:border-stone-700 dark:bg-stone-950">
+            <div className="flex items-center justify-between gap-3 rounded-sm border border-line-strong bg-page p-4 dark:border-stone-700 dark:bg-stone-950">
               <div>
                 <p className="text-xs font-black text-ink">{t.streakWidget.statusLabel}</p>
                 <p className="mt-0.5 text-xs font-semibold text-ink-soft">
@@ -203,10 +203,10 @@ export default function DashboardStreakWidget({ userId }: { userId: string }) {
       {/* Interactive Streak Card Button */}
       <div
         onClick={() => setShowModal(true)}
-        className="flex items-center gap-2.5 rounded-sm border border-stone-300 bg-white px-3 py-1.5 transition-colors hover:border-stone-950 cursor-pointer group select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-300"
+        className="flex items-center gap-2.5 rounded-sm border border-line-strong bg-white px-3 py-1.5 transition-colors hover:border-stone-950 cursor-pointer group select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-300"
         title={t.streakWidget.cardTitle}
       >
-        <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-sm border ${streak > 0 ? "border-amber-300 bg-amber-50 text-warn dark:border-amber-800 dark:bg-amber-950/30" : "border-stone-300 bg-[#f3f1ec] text-ink-faint dark:border-stone-700 dark:bg-stone-950"}`}>
+        <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-sm border ${streak > 0 ? "border-amber-300 bg-amber-50 text-warn dark:border-amber-800 dark:bg-amber-950/30" : "border-stone-300 bg-surface-raised text-ink-faint dark:border-stone-700 dark:bg-stone-950"}`}>
           <Flame className={`h-4.5 w-4.5 ${streak > 0 ? "fill-current" : ""}`} />
         </div>
         <div className="min-w-0">

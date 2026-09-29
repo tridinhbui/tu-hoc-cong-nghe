@@ -75,7 +75,7 @@ interface SessionUser {
 const btnSmPrimary =
   "inline-flex items-center justify-center gap-1.5 rounded-sm bg-stone-950 px-3 py-1.5 text-xs font-bold text-white transition-colors hover:bg-brand-700 disabled:cursor-not-allowed disabled:opacity-40 dark:bg-stone-100 dark:text-stone-950 dark:hover:bg-brand-300";
 const btnSmGhost =
-  "inline-flex items-center gap-1.5 rounded-sm px-2.5 py-1.5 text-xs font-semibold text-ink-soft transition-colors hover:bg-[#f3f1ec] hover:text-ink disabled:cursor-not-allowed disabled:opacity-50 dark:hover:bg-stone-800";
+  "inline-flex items-center gap-1.5 rounded-sm px-2.5 py-1.5 text-xs font-semibold text-ink-soft transition-colors hover:bg-surface-raised hover:text-ink disabled:cursor-not-allowed disabled:opacity-50 dark:hover:bg-stone-800";
 const asideHead = "flex items-center justify-between gap-3 border-b border-line pb-2";
 const asideTitle = "text-sm font-black tracking-tight text-ink-max";
 
@@ -228,7 +228,7 @@ function InteractivePollCard({ postId, metadata }: { postId: number; metadata: P
               <div
                 style={{ width: `${pct}%` }}
                 className={`absolute inset-y-0 left-0 ${
-                  isMyChoice ? "bg-brand-50 dark:bg-brand-950/50" : "bg-[#f3f1ec] dark:bg-stone-800"
+                  isMyChoice ? "bg-brand-50 dark:bg-brand-950/50" : "bg-surface-raised dark:bg-stone-800"
                 }`}
                 aria-hidden
               />
@@ -844,7 +844,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                 <button
                   type="button"
                   onClick={() => setIsComposeModalOpen(true)}
-                  className="flex-1 cursor-pointer rounded-sm border border-line bg-[#fbfaf7] px-3.5 py-2.5 text-left text-xs font-medium text-ink-muted transition-colors hover:border-stone-500 sm:text-sm dark:bg-stone-950"
+                  className="flex-1 cursor-pointer rounded-sm border border-line bg-page px-3.5 py-2.5 text-left text-xs font-medium text-ink-muted transition-colors hover:border-stone-500 sm:text-sm dark:bg-stone-950"
                 >
                   {format(t.feed.composerPrompt, { name: (user.user_metadata?.full_name || t.feed.composerFallbackName).split(" ").pop() ?? "" })}
                 </button>
@@ -879,9 +879,9 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 8 }}
                     transition={{ duration: 0.15, ease: "easeOut" }}
-                    className="relative flex max-h-[90vh] w-full max-w-lg flex-col overflow-hidden rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900"
+                    className="relative flex max-h-[90vh] w-full max-w-lg flex-col overflow-hidden rounded-md border border-line-strong bg-white dark:border-stone-700 dark:bg-stone-900"
                   >
-                    <div className="flex h-11 items-center justify-between gap-3 border-b border-stone-300 bg-[#f3f1ec] px-4 dark:border-stone-700 dark:bg-stone-950">
+                    <div className="flex h-11 items-center justify-between gap-3 border-b border-stone-300 bg-surface-raised px-4 dark:border-stone-700 dark:bg-stone-950">
                       <h3 className="text-sm font-black tracking-tight text-ink-max">{t.feed.createPost}</h3>
                       <button
                         type="button"
@@ -917,7 +917,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                       />
 
                       {imagePreview && (
-                        <div className="relative max-h-60 overflow-hidden rounded-sm border border-line bg-[#fbfaf7] dark:bg-stone-950/60">
+                        <div className="relative max-h-60 overflow-hidden rounded-sm border border-line bg-page dark:bg-stone-950/60">
                           <img src={imagePreview} alt={t.feed.previewAlt} className="h-auto max-h-56 w-full object-cover" />
                           <button
                             type="button"
@@ -931,7 +931,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                       )}
 
                       {isPollMode && (
-                        <div className="space-y-3 rounded-sm border border-line bg-[#fbfaf7] p-3 dark:bg-stone-950/40">
+                        <div className="space-y-3 rounded-sm border border-line bg-page p-3 dark:bg-stone-950/40">
                           <div className="flex items-center justify-between">
                             <span className="flex items-center gap-1.5 text-xs font-black text-ink-max">
                               <Vote className="w-4 h-4" aria-hidden />
@@ -1001,7 +1001,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                           <button
                             type="button"
                             onClick={() => fileInputRef.current?.click()}
-                            className="cursor-pointer rounded-sm p-2 text-ink-soft transition-colors hover:bg-[#f3f1ec] hover:text-ink dark:hover:bg-stone-800"
+                            className="cursor-pointer rounded-sm p-2 text-ink-soft transition-colors hover:bg-surface-raised hover:text-ink dark:hover:bg-stone-800"
                             title={t.feed.addImageTitle}
                           >
                             <ImageIcon className="w-5 h-5" aria-hidden />
@@ -1016,7 +1016,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                             className={`cursor-pointer rounded-sm p-2 transition-colors ${
                               isPollMode
                                 ? "bg-brand-50 text-accent-strong dark:bg-brand-950/50"
-                                : "text-ink-soft hover:bg-[#f3f1ec] hover:text-ink dark:hover:bg-stone-800"
+                                : "text-ink-soft hover:bg-surface-raised hover:text-ink dark:hover:bg-stone-800"
                             }`}
                             title={t.feed.addPollTitle}
                           >
@@ -1073,7 +1073,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
               <motion.div
                 key={post.id}
                 id={`community-post-${post.id}`}
-                className="group -mx-3 px-3 py-6 transition-colors duration-150 hover:bg-[#fbfaf7] sm:-mx-4 sm:px-4 dark:hover:bg-stone-900/40"
+                className="group -mx-3 px-3 py-6 transition-colors duration-150 hover:bg-page sm:-mx-4 sm:px-4 dark:hover:bg-stone-900/40"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
@@ -1160,7 +1160,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                         đề - không gradient, không bóng. Điểm số là dữ liệu nên
                         đi bằng mono. */}
                     {post.metadata && typeof post.metadata === "object" && "type" in post.metadata && post.metadata.type === "level_up_achievement" && (
-                      <div className="mt-3.5 rounded-sm border border-line bg-[#f3f1ec] p-3.5 dark:bg-stone-950">
+                      <div className="mt-3.5 rounded-sm border border-line bg-surface-raised p-3.5 dark:bg-stone-950">
                         <div className="flex items-center gap-3">
                           <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-sm border border-line bg-white dark:bg-stone-900">
                             <Glyph emoji={String(post.metadata.emoji || "🏆")} className="h-5 w-5" />
@@ -1185,7 +1185,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                     )}
 
                     {post.metadata && typeof post.metadata === "object" && "image_url" in post.metadata && Boolean(post.metadata.image_url) && (
-                      <div className="mt-4 relative overflow-hidden rounded-sm border border-line bg-[#fbfaf7] dark:bg-stone-950/40">
+                      <div className="mt-4 relative overflow-hidden rounded-sm border border-line bg-page dark:bg-stone-950/40">
                         {/* `<img>` chứ KHÔNG phải next/image, và đây là lần thứ
                             hai chỗ này quay về `<img>`.
 
@@ -1263,7 +1263,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                         </button>
 
                         {reactionPickerFor === post.id && user && (
-                          <div className="absolute bottom-full left-0 z-50 mb-2 flex items-center gap-1 whitespace-nowrap rounded-sm border border-stone-300 bg-white p-1 dark:border-stone-700 dark:bg-stone-900">
+                          <div className="absolute bottom-full left-0 z-50 mb-2 flex items-center gap-1 whitespace-nowrap rounded-sm border border-line-strong bg-white p-1 dark:border-stone-700 dark:bg-stone-900">
                             {REACTION_OPTIONS.map((item) => (
                               <button
                                 key={item}
@@ -1276,7 +1276,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                                 className={`flex shrink-0 cursor-pointer items-center gap-1 rounded-xs px-2.5 py-1.5 text-xs font-semibold transition-colors ${
                                   post.my_reaction === item
                                     ? "bg-brand-50 text-accent-strong dark:bg-brand-950/50"
-                                    : "text-ink-body hover:bg-[#f3f1ec] dark:hover:bg-stone-800"
+                                    : "text-ink-body hover:bg-surface-raised dark:hover:bg-stone-800"
                                 }`}
                               >
                                 <span>{item}</span>
@@ -1319,7 +1319,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                     </div>
 
                     {openComments[post.id] && (
-                      <div className="mt-3 rounded-sm border border-line bg-[#fbfaf7] p-3 dark:bg-stone-950/60">
+                      <div className="mt-3 rounded-sm border border-line bg-page p-3 dark:bg-stone-950/60">
                         {user && (
                           <div className="mb-3 flex items-start gap-2.5">
                             <Avatar name={user.user_metadata?.full_name ?? t.feed.anonYou} avatarUrl={user.user_metadata?.avatar_url ?? null} />
@@ -1337,7 +1337,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                                   <button
                                     type="button"
                                     onClick={() => setCommentDrafts((prev) => ({ ...prev, [post.id]: `${prev[post.id] ?? ""}` }))}
-                                    className="inline-flex items-center gap-1 rounded-sm px-1.5 py-1 transition-colors hover:bg-[#f3f1ec] dark:hover:bg-stone-800"
+                                    className="inline-flex items-center gap-1 rounded-sm px-1.5 py-1 transition-colors hover:bg-surface-raised dark:hover:bg-stone-800"
                                   >
                                     <SmilePlus className="h-3.5 w-3.5" aria-hidden />
                                     {t.feed.emojiHint}
@@ -1426,7 +1426,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                                       type="button"
                                       onClick={() => startEditComment(comment)}
                                       aria-label={t.feed.editCommentAria}
-                                      className="rounded-sm p-1.5 text-ink-faint transition-colors hover:bg-[#f3f1ec] hover:text-ink dark:hover:bg-stone-800"
+                                      className="rounded-sm p-1.5 text-ink-faint transition-colors hover:bg-surface-raised hover:text-ink dark:hover:bg-stone-800"
                                     >
                                       <Pencil className="h-3.5 w-3.5" aria-hidden />
                                     </button>
@@ -1434,7 +1434,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                                       type="button"
                                       onClick={() => void handleDeleteComment(post.id, comment.id)}
                                       aria-label={t.feed.deleteCommentAria}
-                                      className="rounded-sm p-1.5 text-ink-faint transition-colors hover:bg-[#f3f1ec] hover:text-red-600 dark:hover:bg-stone-800"
+                                      className="rounded-sm p-1.5 text-ink-faint transition-colors hover:bg-surface-raised hover:text-red-600 dark:hover:bg-stone-800"
                                     >
                                       <Trash2 className="h-3.5 w-3.5" aria-hidden />
                                     </button>

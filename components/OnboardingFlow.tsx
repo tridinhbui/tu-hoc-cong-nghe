@@ -10,7 +10,7 @@ import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 import { btnPrimary } from "@/components/ui/system";
 
 const ICON_TILE =
-  "rounded-sm border border-stone-300 bg-[#f3f1ec] text-ink-body dark:border-stone-700 dark:bg-stone-950";
+  "rounded-sm border border-line-strong bg-surface-raised text-ink-body dark:border-stone-700 dark:bg-stone-950";
 
 interface OnboardingStep {
   title: string;
@@ -38,13 +38,13 @@ function getOnboardingSteps(t: Dictionary): OnboardingStep[] {
       description: oc.step2Description,
       content: (
         <div className="space-y-4 py-4">
-          <div className="p-4 border border-stone-300 rounded-md dark:border-stone-700">
+          <div className="p-4 border border-line-strong rounded-md dark:border-stone-700">
             <h3 className="font-bold text-ink-max mb-2">{oc.personalTrackTitle}</h3>
             <p className="text-sm text-ink-soft">
               {oc.personalTrackBody}
             </p>
           </div>
-          <div className="p-4 border border-stone-300 rounded-md dark:border-stone-700">
+          <div className="p-4 border border-line-strong rounded-md dark:border-stone-700">
             <h3 className="font-bold text-ink-max mb-2">{oc.professionalTrackTitle}</h3>
             <p className="text-sm text-ink-soft">
               {oc.professionalTrackBody}
@@ -57,7 +57,7 @@ function getOnboardingSteps(t: Dictionary): OnboardingStep[] {
       title: oc.step3Title,
       description: oc.step3Description,
       content: (
-        <div className="my-4 divide-y divide-stone-200 rounded-md border border-stone-300 dark:divide-stone-800 dark:border-stone-700">
+        <div className="my-4 divide-y divide-stone-200 rounded-md border border-line-strong dark:divide-stone-800 dark:border-stone-700">
           <div className="flex items-center gap-4 p-4">
             <div className={`shrink-0 p-2.5 ${ICON_TILE}`}><Sparkles className="w-6 h-6" strokeWidth={1.75} aria-hidden /></div>
             <div>
@@ -86,7 +86,7 @@ function getOnboardingSteps(t: Dictionary): OnboardingStep[] {
       title: oc.step4Title,
       description: oc.step4Description,
       content: (
-        <div className="my-4 divide-y divide-stone-200 rounded-md border border-stone-300 dark:divide-stone-800 dark:border-stone-700">
+        <div className="my-4 divide-y divide-stone-200 rounded-md border border-line-strong dark:divide-stone-800 dark:border-stone-700">
           <div className="flex items-center gap-4 p-4">
             <div className={`shrink-0 p-2.5 ${ICON_TILE}`}><PenLine className="w-6 h-6" strokeWidth={1.75} aria-hidden /></div>
             <div>

@@ -34,7 +34,7 @@ export default function QuickShopModal({ userId, onClose }: QuickShopModalProps)
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.95 }}
-        className="rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900 p-6 max-w-4xl w-full relative max-h-[90vh] overflow-y-auto z-[10000] my-auto"
+        className="rounded-md border border-line-strong bg-white dark:border-stone-700 dark:bg-stone-900 p-6 max-w-4xl w-full relative max-h-[90vh] overflow-y-auto z-[10000] my-auto"
       >
         {/* Close Button */}
         <button

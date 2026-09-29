@@ -133,7 +133,7 @@ export default function FreeRecallCard({
 
   return (
     <div className="overflow-hidden rounded-md border border-line-strong">
-      <div className="flex items-center gap-3 border-b border-stone-300 bg-[#f3f1ec] px-6 py-4 dark:border-stone-700 dark:bg-stone-950">
+      <div className="flex items-center gap-3 border-b border-stone-300 bg-surface-raised px-6 py-4 dark:border-stone-700 dark:bg-stone-950">
         <Brain className="w-5 h-5 text-ink-muted flex-shrink-0" />
         <div className="min-w-0">
           <p className="text-lg font-black tracking-tight text-ink-max">{t.freeRecall.headerTitle}</p>
@@ -193,7 +193,7 @@ export default function FreeRecallCard({
                 rows={6}
                 placeholder={t.freeRecall.textareaPlaceholder}
                 aria-label={t.freeRecall.textareaAriaLabel}
-                className="w-full resize-none rounded-sm border border-stone-300 bg-[#fbfaf7] p-4 leading-relaxed text-ink-heading focus:border-brand-600 focus:outline-hidden dark:border-stone-700 dark:bg-stone-950 dark:focus:border-brand-400"
+                className="w-full resize-none rounded-sm border border-line-strong bg-page p-4 leading-relaxed text-ink-heading focus:border-brand-600 focus:outline-hidden dark:border-stone-700 dark:bg-stone-950 dark:focus:border-brand-400"
               />
               <p className="text-xs text-ink-faint">
                 {t.freeRecall.privacyNote}

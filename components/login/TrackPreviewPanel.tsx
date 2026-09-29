@@ -44,7 +44,7 @@ export default function TrackPreviewPanel({ previewTrack, setPreviewTrack, compa
   return (
     <div className={`${panel} overflow-hidden ${compact ? "mb-8" : ""}`}>
       <div
-        className={`grid ${TRACK_IDS.length === 3 ? "grid-cols-3" : "grid-cols-2"} divide-x divide-stone-300 border-b border-stone-300 bg-[#f3f1ec] dark:divide-stone-700 dark:border-stone-700 dark:bg-stone-950`}
+        className={`grid ${TRACK_IDS.length === 3 ? "grid-cols-3" : "grid-cols-2"} divide-x divide-stone-300 border-b border-stone-300 bg-surface-raised dark:divide-stone-700 dark:border-stone-700 dark:bg-stone-950`}
       >
         {TRACK_IDS.map((id, index) => {
           const trackData = TRACKS[id];
@@ -95,7 +95,7 @@ export default function TrackPreviewPanel({ previewTrack, setPreviewTrack, compa
           className={compact ? "p-4 space-y-3" : "p-5 xl:p-6 space-y-4"}
         >
           <div className="flex items-center justify-between gap-3">
-            <span className="inline-flex items-center gap-1.5 rounded-sm border border-stone-300 px-1.5 py-0.5 text-[11px] font-bold text-ink-soft dark:border-stone-700">
+            <span className="inline-flex items-center gap-1.5 rounded-sm border border-line-strong px-1.5 py-0.5 text-[11px] font-bold text-ink-soft dark:border-stone-700">
               <StatusDot />
               {t.trackPanel.standardised}
             </span>

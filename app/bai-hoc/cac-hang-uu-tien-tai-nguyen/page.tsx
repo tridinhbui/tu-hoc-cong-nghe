@@ -75,8 +75,8 @@ function CapacityWaterfallAnimation({ c }: { c: ResourceClassLessonCopy }) {
   const payouts = WATERFALL_LAYERS.map(l => { const p = Math.min(remaining, l.amount); remaining = Math.max(0, remaining - l.amount); return p; });
 
   return (
-    <div className="my-6 overflow-hidden rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900">
-      <div className="flex h-9 items-center border-b border-stone-300 bg-[#f3f1ec] px-3 dark:border-stone-700 dark:bg-stone-950">
+    <div className="my-6 overflow-hidden rounded-md border border-line-strong bg-white dark:border-stone-700 dark:bg-stone-900">
+      <div className="flex h-9 items-center border-b border-stone-300 bg-surface-raised px-3 dark:border-stone-700 dark:bg-stone-950">
         <span className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">{c.waterfallHeading}</span>
       </div>
       <div className="space-y-4 p-4 sm:p-5">
@@ -154,12 +154,12 @@ export default function CacHangUuTienTaiNguyenPage() {
 
         <section className="space-y-4">
           <h2 className="border-t border-stone-300 pt-5 text-2xl font-black leading-tight tracking-tight text-ink-max dark:border-stone-700">{c.typesHeading}</h2>
-          <div className="divide-y divide-stone-200 overflow-hidden rounded-md border border-stone-300 bg-white dark:divide-stone-800 dark:border-stone-700 dark:bg-stone-900">
+          <div className="divide-y divide-stone-200 overflow-hidden rounded-md border border-line-strong bg-white dark:divide-stone-800 dark:border-stone-700 dark:bg-stone-900">
             {DEBT_TYPES.map((d, i) => (
               <div key={d.id} className="p-4">
                 <div className="flex items-center justify-between gap-3">
                   <div className="flex items-center gap-3">
-                    <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-sm border border-stone-300 text-ink-body dark:border-stone-700"><Glyph emoji={d.emoji} className="h-4 w-4" /></span>
+                    <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-sm border border-line-strong text-ink-body dark:border-stone-700"><Glyph emoji={d.emoji} className="h-4 w-4" /></span>
                     <div>
                       <div className="text-sm font-bold text-ink-max">{d.name}</div>
                       <div className="mt-0.5 text-xs text-ink-muted">
@@ -185,8 +185,8 @@ export default function CacHangUuTienTaiNguyenPage() {
         <section className="space-y-4">
           <h2 className="border-t border-stone-300 pt-5 text-2xl font-black leading-tight tracking-tight text-ink-max dark:border-stone-700">{c.lboHeading}</h2>
           <p className="max-w-[68ch]">{c.lboLead}</p>
-          <div className="overflow-hidden rounded-md border border-stone-300 bg-white text-sm dark:border-stone-700 dark:bg-stone-900">
-            <div className="border-b border-stone-300 bg-[#f3f1ec] px-4 py-2.5 text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted dark:border-stone-700 dark:bg-stone-950">{c.lboTableTitle}</div>
+          <div className="overflow-hidden rounded-md border border-line-strong bg-white text-sm dark:border-stone-700 dark:bg-stone-900">
+            <div className="border-b border-stone-300 bg-surface-raised px-4 py-2.5 text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted dark:border-stone-700 dark:bg-stone-950">{c.lboTableTitle}</div>
             <div className="divide-y divide-stone-200 dark:divide-stone-800">
               {LBO_ROWS.map((r, i) => (
                 <div key={r.layer} className="flex items-baseline gap-3 px-4 py-2.5">

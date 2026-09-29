@@ -22,7 +22,7 @@ const SYS_STATUS = "HTTP 404";
 export default function NotFound() {
   const t = getDictionary(DEFAULT_LOCALE);
   return (
-    <div className="flex min-h-screen items-center justify-center bg-[#fbfaf7] px-4 dark:bg-stone-950">
+    <div className="flex min-h-screen items-center justify-center bg-page px-4 dark:bg-stone-950">
       <div className="w-full max-w-md">
         <div className="flex items-center justify-between gap-4 border-b border-line-strong pb-2">
           <Sys className="text-ink-muted">{SYS_CODE}</Sys>

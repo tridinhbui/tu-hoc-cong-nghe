@@ -42,7 +42,7 @@ export default function InteractiveSupplyDemand() {
   const scenario = getScenario();
 
   return (
-    <div className="space-y-6 rounded-md border border-stone-300 bg-white p-6 dark:border-stone-700 dark:bg-stone-900">
+    <div className="space-y-6 rounded-md border border-line-strong bg-white p-6 dark:border-stone-700 dark:bg-stone-900">
       <div>
         <h3 className="mb-1 text-lg font-black tracking-tight text-ink-max">{t.supplyDemand.title}</h3>
         <p className="text-sm text-ink-soft">{t.supplyDemand.subtitle}</p>
@@ -83,7 +83,7 @@ export default function InteractiveSupplyDemand() {
       </div>
 
       {/* Visual Price Meter */}
-      <div className="rounded-sm border border-stone-200 bg-[#fbfaf7] p-6 text-center dark:border-stone-800 dark:bg-stone-950">
+      <div className="rounded-sm border border-stone-200 bg-page p-6 text-center dark:border-stone-800 dark:bg-stone-950">
         <div className="mb-2 text-sm text-ink-muted">{t.supplyDemand.priceMeterTitle}</div>
         <div className={`flex justify-center ${price.color} mb-1`}>
           {createElement(price.icon, { "aria-hidden": true, className: "h-12 w-12", strokeWidth: 1.5 })}
@@ -116,19 +116,19 @@ export default function InteractiveSupplyDemand() {
       <div className="grid grid-cols-3 gap-3 text-center text-sm">
         <button
           onClick={() => { setSupply(20); setDemand(80); }}
-          className="rounded-sm border border-stone-300 px-3 py-2 font-bold text-ink-body transition-colors hover:border-stone-950 dark:border-stone-700 dark:hover:border-stone-200"
+          className="rounded-sm border border-line-strong px-3 py-2 font-bold text-ink-body transition-colors hover:border-stone-950 dark:border-stone-700 dark:hover:border-stone-200"
         >
           {t.supplyDemand.presetHousingTitle}<br /><span className="text-xs font-normal text-ink-muted">{t.supplyDemand.presetHousingSubtitle}</span>
         </button>
         <button
           onClick={() => { setSupply(80); setDemand(20); }}
-          className="rounded-sm border border-stone-300 px-3 py-2 font-bold text-ink-body transition-colors hover:border-stone-950 dark:border-stone-700 dark:hover:border-stone-200"
+          className="rounded-sm border border-line-strong px-3 py-2 font-bold text-ink-body transition-colors hover:border-stone-950 dark:border-stone-700 dark:hover:border-stone-200"
         >
           {t.supplyDemand.presetFlightsTitle}<br /><span className="text-xs font-normal text-ink-muted">{t.supplyDemand.presetFlightsSubtitle}</span>
         </button>
         <button
           onClick={() => { setSupply(50); setDemand(50); }}
-          className="rounded-sm border border-stone-300 px-3 py-2 font-bold text-ink-body transition-colors hover:border-stone-950 dark:border-stone-700 dark:hover:border-stone-200"
+          className="rounded-sm border border-line-strong px-3 py-2 font-bold text-ink-body transition-colors hover:border-stone-950 dark:border-stone-700 dark:hover:border-stone-200"
         >
           {t.supplyDemand.presetBalancedTitle}<br /><span className="text-xs font-normal text-ink-muted">{t.supplyDemand.presetBalancedSubtitle}</span>
         </button>

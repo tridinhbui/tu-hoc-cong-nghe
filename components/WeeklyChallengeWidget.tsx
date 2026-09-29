@@ -159,7 +159,7 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
   }
 
   return (
-    <div className="h-full min-h-0 bg-white border border-stone-300 rounded-md p-5 sm:p-7 text-ink relative overflow-hidden flex flex-col dark:bg-stone-900 dark:border-stone-700">
+    <div className="h-full min-h-0 bg-white border border-line-strong rounded-md p-5 sm:p-7 text-ink relative overflow-hidden flex flex-col dark:bg-stone-900 dark:border-stone-700">
 
       {/* Header Times Square Banner */}
       <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 border-b border-stone-300 pb-5 mb-6 dark:border-stone-700">
@@ -167,7 +167,7 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
           <div className="flex items-center gap-3 flex-wrap">
             <Sys className="text-ink-muted">{SYS.cases}</Sys>
             <span className="eyebrow text-ink-soft">{t.caseArena.hubTitle}</span>
-            <span className="text-[10px] font-extrabold text-ink-soft border border-stone-300 px-2 py-0.5 rounded-sm flex items-center gap-1 dark:border-stone-700">
+            <span className="text-[10px] font-extrabold text-ink-soft border border-line-strong px-2 py-0.5 rounded-sm flex items-center gap-1 dark:border-stone-700">
               <Zap className="w-3 h-3" /> {t.caseArena.badge}
             </span>
           </div>
@@ -178,7 +178,7 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
 
         {/* Game Stats Badge when playing */}
         {gameState === "playing" && (
-          <div className="flex items-center gap-3 border border-stone-300 bg-[#fbfaf7] px-4 py-2 rounded-sm dark:border-stone-700 dark:bg-stone-950">
+          <div className="flex items-center gap-3 border border-line-strong bg-page px-4 py-2 rounded-sm dark:border-stone-700 dark:bg-stone-950">
             <div>
               <span className="text-[9px] font-black uppercase text-ink-muted block">{t.caseArena.totalScore}</span>
               <span className="font-mono text-base font-medium tabular-nums text-ink-max">{score.toLocaleString()} pts</span>
@@ -224,17 +224,17 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
 
       {gameState !== "summary" && (
         <div className="mb-6 grid gap-3 md:grid-cols-[minmax(0,1.35fr)_minmax(0,0.65fr)]">
-          <div className="rounded-md border border-stone-300 bg-[#fbfaf7] px-4 py-3.5 dark:border-stone-700 dark:bg-stone-950">
+          <div className="rounded-md border border-line-strong bg-page px-4 py-3.5 dark:border-stone-700 dark:bg-stone-950">
             <div className="flex flex-wrap items-center gap-2 mb-2">
-              <span className="inline-flex items-center gap-1 rounded-sm border border-stone-300 px-2 py-0.5 text-[10px] font-black uppercase tracking-wider text-ink-soft dark:border-stone-700">
+              <span className="inline-flex items-center gap-1 rounded-sm border border-line-strong px-2 py-0.5 text-[10px] font-black uppercase tracking-wider text-ink-soft dark:border-stone-700">
                 <Building2 className="w-3 h-3" />
                 {activeCase.company} ({activeCase.ticker})
               </span>
-              <span className="inline-flex items-center gap-1 rounded-sm border border-stone-300 px-2 py-0.5 text-[10px] font-black uppercase tracking-wider text-ink-soft dark:border-stone-700">
+              <span className="inline-flex items-center gap-1 rounded-sm border border-line-strong px-2 py-0.5 text-[10px] font-black uppercase tracking-wider text-ink-soft dark:border-stone-700">
                 <Target className="w-3 h-3" />
                 {activeCase.sector}
               </span>
-              <span className="inline-flex items-center gap-1 rounded-sm border border-stone-300 px-2 py-0.5 text-[10px] font-black uppercase tracking-wider text-ink-soft dark:border-stone-700">
+              <span className="inline-flex items-center gap-1 rounded-sm border border-line-strong px-2 py-0.5 text-[10px] font-black uppercase tracking-wider text-ink-soft dark:border-stone-700">
                 <BarChart3 className="w-3 h-3" />
                 {activeCase.difficulty.toUpperCase()}
               </span>
@@ -248,7 +248,7 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
           </div>
 
           <div className="grid grid-cols-2 gap-2">
-            <div className="rounded-sm border border-stone-300 px-3 py-3 dark:border-stone-700">
+            <div className="rounded-sm border border-line-strong px-3 py-3 dark:border-stone-700">
               <span className="text-[10px] font-black uppercase tracking-wider text-ink-muted block">
                 {t.caseArena.xpReward}
               </span>
@@ -256,7 +256,7 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
                 <Sparkles className="w-3.5 h-3.5" /> +{Math.min(50, activeCase.xpReward)}
               </span>
             </div>
-            <div className="rounded-sm border border-stone-300 px-3 py-3 dark:border-stone-700">
+            <div className="rounded-sm border border-line-strong px-3 py-3 dark:border-stone-700">
               <span className="text-[10px] font-black uppercase tracking-wider text-ink-muted block">
                 {t.caseArena.coins}
               </span>
@@ -264,7 +264,7 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
                 <GoldCoinIcon className="w-3.5 h-3.5" /> +{activeCase.coinReward}
               </span>
             </div>
-            <div className="rounded-sm border border-stone-300 px-3 py-3 dark:border-stone-700">
+            <div className="rounded-sm border border-line-strong px-3 py-3 dark:border-stone-700">
               <span className="text-[10px] font-black uppercase tracking-wider text-ink-muted block">
                 {t.caseArena.questions}
               </span>
@@ -272,7 +272,7 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
                 <BookOpen className="w-3.5 h-3.5" /> {format(t.caseArena.questionCount, { count: activeCase.questions.length })}
               </span>
             </div>
-            <div className="rounded-sm border border-stone-300 px-3 py-3 dark:border-stone-700">
+            <div className="rounded-sm border border-line-strong px-3 py-3 dark:border-stone-700">
               <span className="text-[10px] font-black uppercase tracking-wider text-ink-muted block">
                 {t.caseArena.status}
               </span>
@@ -288,7 +288,7 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
       <div className="flex-1 min-h-0 overflow-y-auto pr-1">
       {gameState === "briefing" && (
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-5">
-          <div className="bg-[#fbfaf7] border border-stone-300 rounded-md p-5 relative overflow-hidden dark:bg-stone-950 dark:border-stone-700">
+          <div className="bg-page border border-line-strong rounded-md p-5 relative overflow-hidden dark:bg-stone-950 dark:border-stone-700">
             <div className="flex items-center justify-between gap-2 mb-2">
               <span className="text-xs font-black uppercase tracking-wider text-ink-muted">
                 {activeCase.sector}
@@ -330,7 +330,7 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
             <span className="text-ink-body">{activeCase.company} <span className="font-mono font-medium">({activeCase.ticker})</span></span>
           </div>
 
-          <div className="w-full bg-stone-100 h-2 rounded-xs border border-stone-300 overflow-hidden dark:bg-stone-950 dark:border-stone-700">
+          <div className="w-full bg-stone-100 h-2 rounded-xs border border-line-strong overflow-hidden dark:bg-stone-950 dark:border-stone-700">
             <div
               className="bg-brand-600 dark:bg-brand-500 h-full transition-all duration-300"
               style={{ width: `${progressPct}%` }}
@@ -338,24 +338,24 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
           </div>
 
           <div className="grid gap-2 sm:grid-cols-3">
-            <div className="rounded-sm border border-stone-300 px-3 py-3 dark:border-stone-700">
+            <div className="rounded-sm border border-line-strong px-3 py-3 dark:border-stone-700">
               <span className="text-[10px] font-black uppercase tracking-wider text-ink-muted block">{t.caseArena.currentScore}</span>
               <span className="mt-1 block font-mono text-lg font-medium tabular-nums text-ink-max">{score.toLocaleString()} pts</span>
             </div>
-            <div className="rounded-sm border border-stone-300 px-3 py-3 dark:border-stone-700">
+            <div className="rounded-sm border border-line-strong px-3 py-3 dark:border-stone-700">
               <span className="text-[10px] font-black uppercase tracking-wider text-ink-muted block">{t.caseArena.currentCombo}</span>
               <span className="mt-1 inline-flex items-center gap-1 font-mono text-lg font-medium tabular-nums text-ink-max">
                 <Flame className="w-4 h-4" /> x{(1 + Math.min(streakCombo, 4) * 0.25).toFixed(1)}
               </span>
             </div>
-            <div className="rounded-sm border border-stone-300 px-3 py-3 dark:border-stone-700">
+            <div className="rounded-sm border border-line-strong px-3 py-3 dark:border-stone-700">
               <span className="text-[10px] font-black uppercase tracking-wider text-ink-muted block">{t.caseArena.currentCorrect}</span>
               <span className="mt-1 block font-mono text-lg font-medium tabular-nums text-ink-max">{correctCount}/{Math.max(currentQIndex, 0) + (selectedOpt !== null ? 1 : 0)}</span>
             </div>
           </div>
 
           {/* Prompt */}
-          <div className="bg-[#fbfaf7] border border-stone-300 p-5 rounded-md dark:bg-stone-950 dark:border-stone-700">
+          <div className="bg-page border border-line-strong p-5 rounded-md dark:bg-stone-950 dark:border-stone-700">
             <div className="mb-3 flex items-center justify-between gap-2">
               <span className="inline-flex items-center gap-1 rounded-sm px-2 py-0.5 text-[10px] font-black uppercase tracking-wider text-ink-soft border border-line-strong">
                 <Zap className="w-3 h-3" /> {t.caseArena.analysisAngle}
@@ -403,7 +403,7 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
 
           {/* Explanation Box on Answer */}
           {selectedOpt !== null && (
-            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="bg-[#fbfaf7] border border-stone-300 p-4 rounded-md space-y-2 dark:bg-stone-950 dark:border-stone-700">
+            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="bg-page border border-line-strong p-4 rounded-md space-y-2 dark:bg-stone-950 dark:border-stone-700">
               <span className="text-[10px] font-black uppercase text-ink-muted flex items-center gap-1">
                 <BookOpen className="w-3.5 h-3.5" /> {t.caseArena.expertExplanation}
               </span>
@@ -433,7 +433,7 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
           </div>
 
           {/* Score breakdown card */}
-          <div className="bg-white border border-stone-300 p-5 rounded-md max-w-md mx-auto grid grid-cols-2 gap-4 text-left dark:bg-stone-900 dark:border-stone-700">
+          <div className="bg-white border border-line-strong p-5 rounded-md max-w-md mx-auto grid grid-cols-2 gap-4 text-left dark:bg-stone-900 dark:border-stone-700">
             <div>
               <span className="text-[10px] font-black uppercase text-stone-500 block">{t.caseArena.correctCount}</span>
               <span className="font-mono text-lg font-medium tabular-nums text-ink-max">{format(t.caseArena.correctOf, { correct: correctCount, total: totalCount })}</span>
@@ -455,7 +455,7 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
           </div>
 
           {/* Theory Lesson Recommendations */}
-          <div className="bg-[#fbfaf7] border border-stone-300 p-4 rounded-md text-left space-y-2 dark:bg-stone-950 dark:border-stone-700">
+          <div className="bg-page border border-line-strong p-4 rounded-md text-left space-y-2 dark:bg-stone-950 dark:border-stone-700">
             <span className="text-[11px] font-black uppercase tracking-wider text-ink-muted flex items-center gap-1.5">
               {t.caseArena.lessonHintTitle}
             </span>
@@ -467,7 +467,7 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
                 <Link
                   key={l.slug}
                   href={`/bai-hoc/${l.slug}`}
-                  className="flex items-center justify-between p-2.5 rounded-sm bg-white border border-stone-300 hover:border-brand-500 text-xs font-bold text-accent-strong transition-colors dark:bg-stone-900 dark:border-stone-700 dark:hover:border-brand-400"
+                  className="flex items-center justify-between p-2.5 rounded-sm bg-white border border-line-strong hover:border-brand-500 text-xs font-bold text-accent-strong transition-colors dark:bg-stone-900 dark:border-stone-700 dark:hover:border-brand-400"
                 >
                   <span className="flex items-center gap-1.5"><BookOpen className="w-3.5 h-3.5 shrink-0" aria-hidden /> {l.title}</span>
                   <ArrowRight className="w-3.5 h-3.5" />

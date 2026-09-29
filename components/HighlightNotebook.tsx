@@ -22,9 +22,9 @@ interface HighlightNotebookProps {
 }
 
 const TRACK_STYLES = {
-  personal: "border-stone-300 bg-[#fbfaf7] dark:border-stone-700 dark:bg-stone-950",
-  professional: "border-stone-300 bg-[#fbfaf7] dark:border-stone-700 dark:bg-stone-950",
-  other: "border-stone-300 bg-[#fbfaf7] dark:border-stone-700 dark:bg-stone-950",
+  personal: "border-stone-300 bg-page dark:border-stone-700 dark:bg-stone-950",
+  professional: "border-stone-300 bg-page dark:border-stone-700 dark:bg-stone-950",
+  other: "border-stone-300 bg-page dark:border-stone-700 dark:bg-stone-950",
 } as const;
 
 const TRACK_LABEL_STYLES = {

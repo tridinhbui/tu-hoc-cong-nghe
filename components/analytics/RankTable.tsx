@@ -74,7 +74,7 @@ export default function RankTable({
           </>
         );
         const rowClass = `flex items-center gap-3 px-2 ${dense ? "py-1.5" : "py-2.5"} transition-colors ${
-          isMe ? "bg-brand-50 dark:bg-brand-950/40" : "hover:bg-[#f3f1ec] dark:hover:bg-stone-800/60"
+          isMe ? "bg-brand-50 dark:bg-brand-950/40" : "hover:bg-surface-raised dark:hover:bg-stone-800/60"
         }`;
         return (
           <li key={row.user_id}>

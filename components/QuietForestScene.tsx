@@ -247,7 +247,7 @@ export default function QuietForestScene({
               type="button"
               onClick={toggleRain}
               aria-pressed={rainOn}
-              className="inline-flex items-center gap-1.5 rounded-full border border-stone-300/70 bg-white/70 px-3 py-1.5 text-[11px] font-bold text-stone-600 backdrop-blur transition-colors hover:bg-white dark:border-stone-700/70 dark:bg-stone-900/70 dark:text-stone-300 dark:hover:bg-stone-900"
+              className="inline-flex items-center gap-1.5 rounded-full border border-line-strong/70 bg-white/70 px-3 py-1.5 text-[11px] font-bold text-stone-600 backdrop-blur transition-colors hover:bg-white dark:border-stone-700/70 dark:bg-stone-900/70 dark:text-stone-300 dark:hover:bg-stone-900"
             >
               {rainOn ? <Volume2 className="h-3.5 w-3.5" /> : <VolumeX className="h-3.5 w-3.5" />}
               {rainOn ? t.miscUi.quietForestScene.turnOffRain : t.miscUi.quietForestScene.turnOnRain}
@@ -256,7 +256,7 @@ export default function QuietForestScene({
               type="button"
               onClick={() => setExpanded((v) => !v)}
               aria-pressed={expanded}
-              className="inline-flex items-center gap-1.5 rounded-full border border-stone-300/70 bg-white/70 px-3 py-1.5 text-[11px] font-bold text-stone-600 backdrop-blur transition-colors hover:bg-white dark:border-stone-700/70 dark:bg-stone-900/70 dark:text-stone-300 dark:hover:bg-stone-900"
+              className="inline-flex items-center gap-1.5 rounded-full border border-line-strong/70 bg-white/70 px-3 py-1.5 text-[11px] font-bold text-stone-600 backdrop-blur transition-colors hover:bg-white dark:border-stone-700/70 dark:bg-stone-900/70 dark:text-stone-300 dark:hover:bg-stone-900"
             >
               {expanded ? <Minimize2 className="h-3.5 w-3.5" /> : <Maximize2 className="h-3.5 w-3.5" />}
               {expanded ? t.quietForest.collapse : t.quietForest.expand}

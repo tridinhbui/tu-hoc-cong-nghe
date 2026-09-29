@@ -123,7 +123,7 @@ function getPlaceholderImageUrl(category: string): string {
     }));
 
   return (
-    <div className="min-h-screen bg-[#fbfaf7] dark:bg-stone-950">
+    <div className="min-h-screen bg-page dark:bg-stone-950">
       <div className="border-b border-line-strong">
         <div className="max-w-4xl mx-auto px-6 py-6">
           <div className="flex items-center justify-between gap-4 border-b border-line pb-2">

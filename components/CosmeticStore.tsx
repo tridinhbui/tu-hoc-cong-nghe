@@ -284,7 +284,7 @@ export default function CosmeticStore({ userId, onBack }: { userId: string; onBa
           <p className="text-xs text-ink-muted mt-1 max-w-md">
             {t.cosmeticStore.sectionDesc}
           </p>
-          <div className="mt-4 inline-flex items-center gap-2 bg-[#fbfaf7] dark:bg-stone-950 border border-line-strong px-4 py-2 rounded-sm">
+          <div className="mt-4 inline-flex items-center gap-2 bg-page dark:bg-stone-950 border border-line-strong px-4 py-2 rounded-sm">
             <span className="text-xs font-bold text-ink-body">{t.cosmeticStore.coinBalanceLabel}</span>
             <div className="flex items-center gap-1">
               <GoldCoinIcon className="w-5 h-5" />

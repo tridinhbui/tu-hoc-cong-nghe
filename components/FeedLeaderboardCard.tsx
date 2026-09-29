@@ -51,7 +51,7 @@ export default function FeedLeaderboardCard() {
   if (rows === null || rows.length === 0) return null;
 
   return (
-    <section className="rounded-md border border-stone-300 bg-white p-4 dark:border-stone-700 dark:bg-stone-900">
+    <section className="rounded-md border border-line-strong bg-white p-4 dark:border-stone-700 dark:bg-stone-900">
       <SectionHead code={APP_SYS.feedRank} title={t.feed.rankTitle} sub={t.feed.rankSub} size="sm" />
 
       {/* Hạng bằng SỐ trong rãnh mono; ba hạng đầu giữ chấm RankBadge nhỏ.

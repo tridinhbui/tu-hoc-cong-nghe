@@ -344,7 +344,7 @@ export default function PairGame({ userId, gameType, difficulty = "trung-binh", 
 
           {/* SVG countdown timer */}
           {timeLimit && !finished && (
-            <div className="flex items-center gap-1.5 rounded-sm border border-stone-300 p-0.5 dark:border-stone-700">
+            <div className="flex items-center gap-1.5 rounded-sm border border-line-strong p-0.5 dark:border-stone-700">
               <div className="relative w-8 h-8 flex items-center justify-center shrink-0">
                 <svg className="w-8 h-8 transform -rotate-90 overflow-visible" viewBox="0 0 36 36">
                   <circle
@@ -385,7 +385,7 @@ export default function PairGame({ userId, gameType, difficulty = "trung-binh", 
 
           <button
             onClick={startNewRound}
-            className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-sm border border-stone-300 text-ink-muted transition-colors hover:border-stone-950 hover:text-ink dark:border-stone-700 dark:hover:border-stone-300"
+            className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-sm border border-line-strong text-ink-muted transition-colors hover:border-stone-950 hover:text-ink dark:border-stone-700 dark:hover:border-stone-300"
             title={pg.restartTitle}
           >
             <RefreshCw className="w-4 h-4" />

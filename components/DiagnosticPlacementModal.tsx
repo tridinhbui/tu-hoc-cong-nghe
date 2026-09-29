@@ -150,9 +150,9 @@ export default function DiagnosticPlacementModal({
           className="relative w-full max-w-lg my-auto rounded-md bg-white dark:bg-stone-900 border border-line-strong overflow-hidden"
         >
           {/* Header */}
-          <div className="flex items-center justify-between px-5 py-3 border-b border-stone-300 bg-[#f3f1ec] dark:border-stone-700 dark:bg-stone-950">
+          <div className="flex items-center justify-between px-5 py-3 border-b border-stone-300 bg-surface-raised dark:border-stone-700 dark:bg-stone-950">
             <div className="flex items-center gap-2">
-              <span className="flex h-8 w-8 items-center justify-center rounded-sm border border-stone-300 bg-white text-ink-body dark:border-stone-700 dark:bg-stone-900">
+              <span className="flex h-8 w-8 items-center justify-center rounded-sm border border-line-strong bg-white text-ink-body dark:border-stone-700 dark:bg-stone-900">
                 <Compass className="w-4 h-4" />
               </span>
               <div>
@@ -200,7 +200,7 @@ export default function DiagnosticPlacementModal({
                           key={idx}
                           type="button"
                           onClick={() => handleSelectOption(opt.scoreTrack)}
-                          className="w-full text-left p-3.5 rounded-sm border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900 hover:border-brand-600 dark:hover:border-brand-400 text-xs sm:text-sm font-semibold text-ink-body transition-colors cursor-pointer flex items-center justify-between"
+                          className="w-full text-left p-3.5 rounded-sm border border-line-strong bg-white dark:border-stone-700 dark:bg-stone-900 hover:border-brand-600 dark:hover:border-brand-400 text-xs sm:text-sm font-semibold text-ink-body transition-colors cursor-pointer flex items-center justify-between"
                         >
                           <span>{opt.text}</span>
                           <ArrowRight className="w-4 h-4 text-ink-muted shrink-0" />
@@ -213,7 +213,7 @@ export default function DiagnosticPlacementModal({
             ) : (
               /* Result Step */
               <div className="text-center py-4 space-y-4">
-                <div className="mx-auto w-fit rounded-sm border border-stone-300 bg-[#f3f1ec] text-ink-body p-3 dark:border-stone-700 dark:bg-stone-950">{createElement(rec.icon, { className: "w-10 h-10", strokeWidth: 1.5, "aria-hidden": true })}</div>
+                <div className="mx-auto w-fit rounded-sm border border-line-strong bg-surface-raised text-ink-body p-3 dark:border-stone-700 dark:bg-stone-950">{createElement(rec.icon, { className: "w-10 h-10", strokeWidth: 1.5, "aria-hidden": true })}</div>
                 <div>
                   <span className="eyebrow text-ink-soft">
                     {t.diagnostic.resultBadge}

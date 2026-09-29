@@ -191,7 +191,7 @@ export default function LessonNotes({ lessonId, lessonSlug }: LessonNotesProps) 
 
   if (loading) {
     return (
-      <div className="rounded-md border border-stone-300 bg-white p-4 dark:border-stone-700 dark:bg-stone-900">
+      <div className="rounded-md border border-line-strong bg-white p-4 dark:border-stone-700 dark:bg-stone-900">
         <div className="mb-2 h-3 w-1/4 rounded-xs bg-surface-sunken"></div>
         <div className="h-8 rounded-sm bg-surface-sunken"></div>
       </div>
@@ -199,9 +199,9 @@ export default function LessonNotes({ lessonId, lessonSlug }: LessonNotesProps) 
   }
 
   return (
-    <div className="overflow-hidden rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900">
+    <div className="overflow-hidden rounded-md border border-line-strong bg-white dark:border-stone-700 dark:bg-stone-900">
       {/* Header */}
-      <div className="flex h-9 items-center justify-between border-b border-stone-300 bg-[#f3f1ec] px-3 dark:border-stone-700 dark:bg-stone-950">
+      <div className="flex h-9 items-center justify-between border-b border-stone-300 bg-surface-raised px-3 dark:border-stone-700 dark:bg-stone-950">
         <div className="flex items-center gap-2">
           <NotebookPen aria-hidden className="h-4 w-4 text-ink-muted" strokeWidth={1.75} />
           <h3 className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">{t.notes.heading}</h3>
@@ -235,7 +235,7 @@ export default function LessonNotes({ lessonId, lessonSlug }: LessonNotesProps) 
               {notes.map((note) => (
                 <div
                   key={note.id}
-                  className="group rounded-sm border border-stone-200 bg-[#fbfaf7] p-3.5 dark:border-stone-800 dark:bg-stone-950"
+                  className="group rounded-sm border border-stone-200 bg-page p-3.5 dark:border-stone-800 dark:bg-stone-950"
                 >
                   {editingNoteId === note.id ? (
                     <div className="space-y-2">
@@ -248,7 +248,7 @@ export default function LessonNotes({ lessonId, lessonSlug }: LessonNotesProps) 
                             void handleUpdateNote(note.id);
                           }
                         }}
-                        className="min-h-[80px] w-full resize-y rounded-sm border border-stone-300 bg-white px-3 py-2 text-sm leading-6 text-ink focus:border-brand-600 focus:outline-none dark:border-stone-700 dark:bg-stone-900"
+                        className="min-h-[80px] w-full resize-y rounded-sm border border-line-strong bg-white px-3 py-2 text-sm leading-6 text-ink focus:border-brand-600 focus:outline-none dark:border-stone-700 dark:bg-stone-900"
                         rows={4}
                         autoFocus
                       />
@@ -344,7 +344,7 @@ export default function LessonNotes({ lessonId, lessonSlug }: LessonNotesProps) 
                   }
                 }}
                 placeholder={t.notes.writePlaceholder}
-                className="min-h-[90px] w-full resize-y rounded-sm border border-stone-300 bg-white px-3 py-2 text-sm leading-6 text-ink focus:border-brand-600 focus:outline-none dark:border-stone-700 dark:bg-stone-900"
+                className="min-h-[90px] w-full resize-y rounded-sm border border-line-strong bg-white px-3 py-2 text-sm leading-6 text-ink focus:border-brand-600 focus:outline-none dark:border-stone-700 dark:bg-stone-900"
                 rows={4}
                 autoFocus
               />

@@ -183,7 +183,7 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
               <motion.div
                 initial={{ opacity: 0, y: -4 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="mt-2 rounded-sm border border-line-strong border-l-2 border-l-stone-950 bg-[#f3f1ec] px-4 py-3.5 dark:border-l-stone-200 dark:bg-stone-950"
+                className="mt-2 rounded-sm border border-line-strong border-l-2 border-l-stone-950 bg-surface-raised px-4 py-3.5 dark:border-l-stone-200 dark:bg-stone-950"
               >
                 <p className="text-sm leading-relaxed text-ink-body">
                   {t.worryReframes[item.id]?.reframe ?? item.reframe}
@@ -313,7 +313,7 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
           khối thở ngắn không bị kéo cao bằng danh sách nỗi lo. */}
       <div className="mt-6 grid gap-6 lg:grid-cols-2 lg:items-start">
       {/* --- Một phút thở -------------------------------------------------- */}
-      <section className="rounded-md border border-line-strong bg-[#f3f1ec] px-6 py-7 dark:bg-stone-950">
+      <section className="rounded-md border border-line-strong bg-surface-raised px-6 py-7 dark:bg-stone-950">
         <h2 className="text-center text-base font-extrabold text-ink-heading">
           {t.quietCorner.breatheTitle}
         </h2>
@@ -438,7 +438,7 @@ export default function QuietCornerClient({ userId }: { userId: string }) {
       {/* --- Ranh giới ------------------------------------------------------
           Luôn hiện, không gập lại được, không đặt sau một cú bấm. Nếu người
           đọc chỉ nhìn trang này một lần thì đây là phần họ cần đọc nhất. */}
-      <section className="mt-6 mb-4 rounded-md border border-line-strong bg-[#f3f1ec] px-5 py-6 dark:bg-stone-950">
+      <section className="mt-6 mb-4 rounded-md border border-line-strong bg-surface-raised px-5 py-6 dark:bg-stone-950">
         <div className="flex items-start gap-3">
           <Info className="mt-0.5 h-4 w-4 shrink-0 text-ink-faint" />
           <div>

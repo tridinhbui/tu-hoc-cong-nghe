@@ -146,7 +146,7 @@ export default function LeaderboardSection({ userId }: LeaderboardSectionProps) 
   const myRankInTop10 = userId !== undefined && entries.some((e) => e.user_id === userId);
 
   return (
-    <section className="rounded-md border border-stone-300 bg-white p-4 sm:p-5 dark:border-stone-700 dark:bg-stone-900">
+    <section className="rounded-md border border-line-strong bg-white p-4 sm:p-5 dark:border-stone-700 dark:bg-stone-900">
       <SectionHead code={APP_SYS.rankings} title={t.leaderboardSection.title} sub={t.leaderboardSection.subtitle} size="sm" />
 
       {/* Tab chữ, cuộn ngang khi hẹp - không cần nút mũi tên tròn nổi. */}

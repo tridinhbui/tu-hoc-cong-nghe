@@ -55,16 +55,16 @@ export default function FlashcardAlbumsGallery({ userId, onImported }: Flashcard
 
   if (openAlbum) {
     return (
-      <div className="mb-6 overflow-hidden rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900">
+      <div className="mb-6 overflow-hidden rounded-md border border-line-strong bg-white dark:border-stone-700 dark:bg-stone-900">
         {/* Bìa album: trước là dải gradient + emoji. Giờ là thanh tiêu đề giấy
             ngà như mọi khung khác - `album.gradient` vẫn nằm trong dữ liệu
             nhưng không còn được tô ở đây (luật 2: không gradient trang trí). */}
-        <div className="border-b border-stone-300 bg-[#f3f1ec] p-5 dark:border-stone-700 dark:bg-stone-950">
+        <div className="border-b border-stone-300 bg-surface-raised p-5 dark:border-stone-700 dark:bg-stone-950">
           <button onClick={() => setOpenAlbumId(null)} className={`${textLink} mb-3 text-xs`}>
             <ArrowLeft className="w-3.5 h-3.5" /> {t.flashcards.albumBack}
           </button>
           <div className="flex items-start gap-3">
-            <span className="flex-shrink-0 rounded-sm border border-stone-300 bg-white p-2 text-ink-body dark:border-stone-700 dark:bg-stone-900">
+            <span className="flex-shrink-0 rounded-sm border border-line-strong bg-white p-2 text-ink-body dark:border-stone-700 dark:bg-stone-900">
               <Glyph emoji={openAlbum.emoji} className="h-7 w-7" strokeWidth={1.5} />
             </span>
             <div className="min-w-0">
@@ -108,9 +108,9 @@ export default function FlashcardAlbumsGallery({ userId, onImported }: Flashcard
           <button
             key={album.id}
             onClick={() => setOpenAlbumId(album.id)}
-            className="group overflow-hidden rounded-md border border-stone-300 bg-white text-left transition-colors hover:border-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-300"
+            className="group overflow-hidden rounded-md border border-line-strong bg-white text-left transition-colors hover:border-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-300"
           >
-            <div className="flex h-9 items-center justify-between gap-3 border-b border-stone-300 bg-[#f3f1ec] px-3 dark:border-stone-700 dark:bg-stone-950">
+            <div className="flex h-9 items-center justify-between gap-3 border-b border-stone-300 bg-surface-raised px-3 dark:border-stone-700 dark:bg-stone-950">
               <span className="text-ink-body">
                 <Glyph emoji={album.emoji} className="h-4 w-4" strokeWidth={1.75} />
               </span>

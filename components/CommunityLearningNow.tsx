@@ -144,7 +144,7 @@ export default function CommunityLearningNow({ lessonsMeta }: { lessonsMeta: Les
           );
 
           const shell =
-            "w-[10.5rem] shrink-0 snap-start rounded-sm border border-stone-300 bg-[#fbfaf7] p-2.5 dark:border-stone-700 dark:bg-stone-950";
+            "w-[10.5rem] shrink-0 snap-start rounded-sm border border-line-strong bg-page p-2.5 dark:border-stone-700 dark:bg-stone-950";
 
           return lesson ? (
             <Link

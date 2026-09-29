@@ -39,7 +39,7 @@ export const FLOWS_SYS = {
 export function StatusPill({ status, t }: { status: FlowStatus; t: FlowsCopy }) {
   const label = status === "ready" ? t.statusReady : status === "partial" ? t.statusPartial : t.statusSoon;
   return (
-    <span className="inline-flex items-center gap-1.5 rounded-sm border border-stone-300 px-1.5 py-0.5 text-[11px] font-bold text-ink-soft dark:border-stone-700">
+    <span className="inline-flex items-center gap-1.5 rounded-sm border border-line-strong px-1.5 py-0.5 text-[11px] font-bold text-ink-soft dark:border-stone-700">
       <StatusDot tone={status === "ready" ? "brand" : "muted"} />
       {label}
     </span>
@@ -49,7 +49,7 @@ export function StatusPill({ status, t }: { status: FlowStatus; t: FlowsCopy }) 
 /** Thanh điều hướng - cùng khuôn với thanh trên cùng của trang chủ. */
 export function FlowsHeader({ t, code = FLOWS_SYS.root }: { t: FlowsCopy; code?: string }) {
   return (
-    <header className="sticky top-0 z-40 border-b border-stone-300 bg-[#fbfaf7] dark:border-stone-800 dark:bg-stone-950">
+    <header className="sticky top-0 z-40 border-b border-stone-300 bg-page dark:border-stone-800 dark:bg-stone-950">
       <div className="mx-auto flex h-14 max-w-5xl items-center justify-between gap-3 px-4 sm:px-6">
         <div className="flex min-w-0 items-center gap-3">
           <Link href="/" className="flex min-w-0 items-center gap-2.5">

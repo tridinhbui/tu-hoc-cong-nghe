@@ -12,7 +12,7 @@ import Logo from "@/components/Logo";
 import PublicLeaderboardPreview from "@/components/login/PublicLeaderboardPreview";
 import InteractiveKingdomPreview from "@/components/home/InteractiveKingdomPreview";
 import ActivityPanel from "@/components/home/ActivityPanel";
-import { Scramble, TypeText, useInViewOnce } from "@/components/home/v2/effects";
+import { Scramble, TypeText, useInViewOnce } from "@/components/ui/effects";
 import { BAND, CropMarks, ID, INK, Mono, PAPER, RULE, SheetHead, Stamp } from "@/components/home/v2/kit";
 
 /* ───────────────────────── NAV ───────────────────────── */
@@ -75,7 +75,7 @@ export function EditorialNav({ debug, onDebug }: { debug: boolean; onDebug: () =
           <span className="h-4 w-px bg-current opacity-30" />
           <Mono className="truncate opacity-70">
             {ID.path}
-            <span className="text-brand-600 dark:text-brand-400">{where.toUpperCase()}</span>
+            <span className="text-accent">{where.toUpperCase()}</span>
           </Mono>
         </div>
         <div className="flex items-center gap-2 sm:gap-3">
@@ -102,7 +102,7 @@ export function EditorialNav({ debug, onDebug }: { debug: boolean; onDebug: () =
           </Link>
         </div>
       </div>
-      <div ref={barRef} aria-hidden className="absolute -bottom-[2px] left-0 h-[2px] w-full origin-left scale-x-0 bg-brand-600 dark:bg-brand-400" />
+      <div ref={barRef} aria-hidden className="absolute -bottom-[2px] left-0 h-[2px] w-full origin-left scale-x-0 bg-brand-600 dark:bg-brand-500" />
     </header>
   );
 }
@@ -129,7 +129,7 @@ export function EditorialCommunity() {
           <CropMarks className="border-brand-600" />
           <div className={`flex items-center justify-between border-b-2 ${RULE} px-3 py-1.5`}>
             <Mono>{ID.sqlFile}</Mono>
-            <Mono className={queryDone ? "text-brand-600 dark:text-brand-400" : "opacity-50"}>{queryDone || reduce ? v.done : "…"}</Mono>
+            <Mono className={queryDone ? "text-accent" : "opacity-50"}>{queryDone || reduce ? v.done : "…"}</Mono>
           </div>
           <div className={`border-b ${RULE} ${BAND} px-3 py-3 font-mono text-[12px]`}>
             <span className="text-brand-400">{ID.prompt} </span>
@@ -288,7 +288,7 @@ export function EditorialMethod() {
                     }`}
                   >
                     <span className="flex justify-center">
-                      {l.step >= 0 && <span className={`h-2 w-2 rounded-full ${here ? "bg-white" : past ? "bg-brand-600 dark:bg-brand-400" : "border border-current opacity-40"}`} />}
+                      {l.step >= 0 && <span className={`h-2 w-2 rounded-full ${here ? "bg-white" : past ? "bg-brand-600 dark:bg-brand-500" : "border border-current opacity-40"}`} />}
                     </span>
                     <span className="text-right opacity-40">{i + 1}</span>
                     <span className="overflow-x-auto whitespace-pre pl-2">{l.code}</span>
@@ -296,7 +296,7 @@ export function EditorialMethod() {
                 );
               })}
               <li className="mt-3 px-3 font-sans text-[13px] leading-6">
-                <span className="font-mono text-brand-600 dark:text-brand-400">{"// "}</span>
+                <span className="font-mono text-accent">{"// "}</span>
                 <strong>{steps[pc].title}</strong> - <TypeText key={pc} text={steps[pc].desc} speed={14} cursor={false} />
               </li>
             </ol>
@@ -313,7 +313,7 @@ export function EditorialMethod() {
                 ).map(([k, val]) => (
                   <div key={k} className="flex justify-between py-0.5">
                     <dt className="opacity-60">{k}</dt>
-                    <dd className="font-bold tabular-nums text-brand-700 dark:text-brand-300">
+                    <dd className="font-bold tabular-nums text-accent-strong">
                       <Scramble key={`${k}-${val}`} text={val} duration={300} />
                     </dd>
                   </div>
@@ -321,7 +321,7 @@ export function EditorialMethod() {
               </dl>
               <svg viewBox="0 0 200 48" className="mx-3 h-14 w-[calc(100%-1.5rem)]" aria-hidden>
                 <line x1="0" y1="46" x2="200" y2="46" stroke="currentColor" strokeOpacity="0.25" />
-                <polyline fill="none" stroke="currentColor" strokeWidth="1.25" points={s.pts} className="text-brand-600 dark:text-brand-400" />
+                <polyline fill="none" stroke="currentColor" strokeWidth="1.25" points={s.pts} className="text-accent" />
               </svg>
               <p className="px-3 pb-1 text-[10px] opacity-50">{v.methodModel}</p>
               <div className={`border-y ${RULE} px-3 py-1.5 uppercase opacity-60`}>{v.methodStack}</div>
@@ -401,7 +401,7 @@ export function EditorialManifest() {
                   key={a.title}
                   className={`relative border-black/15 p-5 dark:border-white/15 ${i % 2 === 0 ? "sm:border-r" : ""} ${i < 2 ? "border-b" : i === 2 ? "border-b sm:border-b-0" : ""}`}
                 >
-                  <Mono className="text-brand-700 dark:text-brand-300">{"tag" in a ? (a as { tag?: string }).tag : ""}</Mono>
+                  <Mono className="text-accent-strong">{"tag" in a ? (a as { tag?: string }).tag : ""}</Mono>
                   <p className="mt-2 text-2xl font-black leading-tight tracking-tight">{a.title}</p>
                   <p className="mt-2 text-[14px] leading-6 opacity-75">{a.desc}</p>
                   <span className="absolute right-4 top-4 font-mono text-[40px] font-black leading-none opacity-[0.08]">{String(i + 1).padStart(2, "0")}</span>
@@ -445,7 +445,7 @@ export function EditorialReport() {
                 {rows.map((r) => (
                   <li key={r.label} className={`grid gap-x-6 gap-y-1 border-b ${RULE} py-5 sm:grid-cols-[minmax(0,11rem)_minmax(0,1fr)]`}>
                     <span
-                      className={`text-5xl font-black leading-none tracking-[-0.04em] sm:text-6xl ${r.key ? "text-brand-600 dark:text-brand-400" : ""} ${
+                      className={`text-5xl font-black leading-none tracking-[-0.04em] sm:text-6xl ${r.key ? "text-accent" : ""} ${
                         /^[\d.,/%\s]+$/.test(r.value) ? "font-mono" : ""
                       }`}
                     >

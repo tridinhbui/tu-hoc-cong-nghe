@@ -61,11 +61,11 @@ export default function InteractiveAiVerify() {
   const correct = CLAIMS.filter((c, i) => picked[i] === c.answer).length;
 
   return (
-    <div className="rounded-md border border-stone-300 bg-white p-6 dark:border-stone-700 dark:bg-stone-900">
+    <div className="rounded-md border border-line-strong bg-white p-6 dark:border-stone-700 dark:bg-stone-900">
       <h3 className="text-base font-black tracking-tight text-ink-max">
         {tr.title}
       </h3>
-      <p className="mt-2 whitespace-pre-line rounded-sm border border-stone-200 bg-[#fbfaf7] p-3 text-[11px] leading-relaxed text-ink-body dark:border-stone-800 dark:bg-stone-950">
+      <p className="mt-2 whitespace-pre-line rounded-sm border border-stone-200 bg-page p-3 text-[11px] leading-relaxed text-ink-body dark:border-stone-800 dark:bg-stone-950">
         {tr.brief}
       </p>
 

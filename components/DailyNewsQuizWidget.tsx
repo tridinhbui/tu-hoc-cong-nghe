@@ -402,7 +402,7 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
                   <span className={`w-7 h-7 rounded-sm border flex items-center justify-center font-mono text-xs font-medium transition-colors ${
                     isSelected
                       ? "border-brand-600 bg-brand-600 text-white"
-                      : "border-stone-300 bg-[#f3f1ec] text-ink-body dark:border-stone-700 dark:bg-stone-950"
+                      : "border-stone-300 bg-surface-raised text-ink-body dark:border-stone-700 dark:bg-stone-950"
                   }`}>
                     {String.fromCharCode(65 + idx)}
                   </span>
@@ -425,7 +425,7 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
           <span>{t.newsQuiz.submitAnswer}</span>
         </button>
       ) : (
-        <div className={`rounded-sm bg-[#fbfaf7] dark:bg-stone-950 border border-line-strong animate-[fadeIn_0.35s_ease-out] ${big ? "p-4" : "p-3.5"}`}>
+        <div className={`rounded-sm bg-page dark:bg-stone-950 border border-line-strong animate-[fadeIn_0.35s_ease-out] ${big ? "p-4" : "p-3.5"}`}>
           <h5 className="eyebrow flex items-center gap-1.5 text-ink-body mb-1.5">
             <Award className={`w-4 h-4 ${activeIsCorrect ? "text-accent" : "text-ink-faint"}`} />
             <span>{activeIsCorrect ? t.newsQuiz.correctAnswerLabel : format(t.newsQuiz.wrongAnswerLabel, { letter: String.fromCharCode(65 + activeQuiz.correctIndex) })}</span>
@@ -477,7 +477,7 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
             onClick={() => setCollapsed(!collapsed)}
             className="flex items-center gap-3 min-w-0 flex-1 cursor-pointer text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-stone-900"
           >
-            <div className="w-10 h-10 rounded-sm border border-stone-300 bg-[#f3f1ec] text-ink-body dark:border-stone-700 dark:bg-stone-950 flex items-center justify-center shrink-0">
+            <div className="w-10 h-10 rounded-sm border border-line-strong bg-surface-raised text-ink-body dark:border-stone-700 dark:bg-stone-950 flex items-center justify-center shrink-0">
               <BookOpen className="w-5 h-5" />
             </div>
             <h3 className="font-black tracking-tight text-ink-max flex items-center gap-2 text-sm sm:text-base min-w-0">
@@ -505,14 +505,14 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
               onClick={() => setExpanded(true)}
               title={t.newsQuiz.expand}
               aria-label={t.newsQuiz.expand}
-              className="p-1.5 rounded-sm text-ink-muted hover:text-ink hover:bg-[#f3f1ec] dark:hover:bg-stone-800 transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-stone-900"
+              className="p-1.5 rounded-sm text-ink-muted hover:text-ink hover:bg-surface-raised dark:hover:bg-stone-800 transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-stone-900"
             >
               <Maximize2 className="w-3.5 h-3.5" />
             </button>
             <button
               type="button"
               onClick={() => setCollapsed(!collapsed)}
-              className="inline-flex items-center gap-1.5 px-2 py-1 rounded-sm text-xs font-bold text-ink-soft hover:bg-[#f3f1ec] dark:hover:bg-stone-800 transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-stone-900"
+              className="inline-flex items-center gap-1.5 px-2 py-1 rounded-sm text-xs font-bold text-ink-soft hover:bg-surface-raised dark:hover:bg-stone-800 transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-stone-900"
             >
               <span>{collapsed ? t.newsQuiz.collapseOpen.replace(/[▾▴]/g, "").trim() : t.newsQuiz.collapseClose.replace(/[▾▴]/g, "").trim()}</span>
               <ChevronDown className={`w-3.5 h-3.5 transition-transform ${collapsed ? "" : "rotate-180"}`} />
@@ -557,7 +557,7 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
           >
             <div className="flex items-start justify-between gap-3 mb-5 border-b border-line-strong pb-4">
               <div className="flex items-center gap-3 min-w-0">
-                <div className="w-10 h-10 rounded-sm border border-stone-300 bg-[#f3f1ec] text-ink-body dark:border-stone-700 dark:bg-stone-950 flex items-center justify-center shrink-0">
+                <div className="w-10 h-10 rounded-sm border border-line-strong bg-surface-raised text-ink-body dark:border-stone-700 dark:bg-stone-950 flex items-center justify-center shrink-0">
                   <BookOpen className="w-5 h-5" />
                 </div>
                 <div className="min-w-0">
@@ -579,7 +579,7 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
                   onClick={() => setExpanded(false)}
                   title={t.newsQuiz.minimize}
                   aria-label={t.newsQuiz.closeDialog}
-                  className="p-2 rounded-sm text-ink-muted hover:text-ink hover:bg-[#f3f1ec] dark:hover:bg-stone-800 transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-stone-900"
+                  className="p-2 rounded-sm text-ink-muted hover:text-ink hover:bg-surface-raised dark:hover:bg-stone-800 transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-stone-900"
                 >
                   <X className="w-4.5 h-4.5" />
                 </button>

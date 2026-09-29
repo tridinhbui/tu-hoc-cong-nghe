@@ -221,7 +221,7 @@ export default function LearningPathClient({
         </div>
         <p className="mt-1.5 max-w-[68ch] text-sm leading-7 text-ink-body">{p.heroBody}</p>
 
-        <div className="mt-4 rounded-sm border border-stone-200 bg-[#fbfaf7] p-4 dark:border-stone-800 dark:bg-stone-950">
+        <div className="mt-4 rounded-sm border border-stone-200 bg-page p-4 dark:border-stone-800 dark:bg-stone-950">
           {loading ? (
             <p className="text-sm text-ink-muted">{p.heroLoading}</p>
           ) : !nextLesson ? (
@@ -301,7 +301,7 @@ export default function LearningPathClient({
                 {picked ? (
                   <p className="mt-2 text-xs font-bold text-accent-strong">{p.trackPicked}</p>
                 ) : (
-                  <span className="mt-2 inline-flex rounded-sm border border-stone-300 px-2.5 py-1 text-xs font-bold text-stone-700 dark:border-stone-700 dark:text-stone-300">
+                  <span className="mt-2 inline-flex rounded-sm border border-line-strong px-2.5 py-1 text-xs font-bold text-stone-700 dark:border-stone-700 dark:text-stone-300">
                     {p.trackPick}
                   </span>
                 )}
@@ -338,7 +338,7 @@ export default function LearningPathClient({
             ))}
           </Field>
         </div>
-        <div className="mt-4 rounded-sm border border-stone-200 bg-[#fbfaf7] p-3.5 dark:border-stone-800 dark:bg-stone-950">
+        <div className="mt-4 rounded-sm border border-stone-200 bg-page p-3.5 dark:border-stone-800 dark:bg-stone-950">
           <p className="text-sm font-bold tabular-nums text-ink-heading">
             {format(p.paceEstimate, { count: remaining, weeks })}
           </p>
@@ -390,7 +390,7 @@ export default function LearningPathClient({
             [p.howPracticeTitle, p.howPracticeBody],
           ].map(([title, body], i) => (
             <li key={title} className="flex gap-3">
-              <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-sm border border-stone-300 font-mono text-xs font-medium tabular-nums text-ink-body dark:border-stone-700">
+              <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-sm border border-line-strong font-mono text-xs font-medium tabular-nums text-ink-body dark:border-stone-700">
                 {String(i + 1).padStart(2, "0")}
               </span>
               <div>
@@ -519,7 +519,7 @@ function Card({
     // như bị cắt.
     <section id={id} className={`scroll-mt-6 ${panel} p-5`}>
       <div className="flex items-center gap-2.5">
-        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-sm border border-stone-300 bg-[#f3f1ec] text-ink-body dark:border-stone-700 dark:bg-stone-950">
+        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-sm border border-line-strong bg-surface-raised text-ink-body dark:border-stone-700 dark:bg-stone-950">
           {icon}
         </span>
         <h2 className="text-base font-black tracking-tight text-ink-max">{title}</h2>

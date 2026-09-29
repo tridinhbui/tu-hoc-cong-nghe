@@ -31,7 +31,7 @@ const STAGE_ICONS: LucideIcon[] = [Monitor, GitBranch, Code2, Globe, Braces, Lay
 function StageThemedIcon({ index }: { index: number }) {
   const Icon = STAGE_ICONS[index % STAGE_ICONS.length];
   return (
-    <div className="w-9 h-9 rounded-sm border border-stone-300 bg-[#f3f1ec] text-ink-body flex items-center justify-center shrink-0 dark:border-stone-700 dark:bg-stone-950">
+    <div className="w-9 h-9 rounded-sm border border-line-strong bg-surface-raised text-ink-body flex items-center justify-center shrink-0 dark:border-stone-700 dark:bg-stone-950">
       <Icon className="w-5 h-5" strokeWidth={1.75} />
     </div>
   );
@@ -479,7 +479,7 @@ export default function StageSkipExamPanel({ userId, fullPage = false }: { userI
           {!fullPage && (
             <div className={`${panel} p-5 flex flex-col sm:flex-row items-center justify-between gap-4`}>
               <div className="flex items-center gap-3.5">
-                <div className="w-9 h-9 rounded-sm border border-stone-300 bg-[#f3f1ec] text-ink-body flex items-center justify-center shrink-0 dark:border-stone-700 dark:bg-stone-950">
+                <div className="w-9 h-9 rounded-sm border border-line-strong bg-surface-raised text-ink-body flex items-center justify-center shrink-0 dark:border-stone-700 dark:bg-stone-950">
                   <Trophy className="w-5 h-5" strokeWidth={1.75} />
                 </div>
                 <div>

@@ -50,7 +50,7 @@ export default function CommunityStreakWidget() {
   if (!posts || posts.length === 0) return null;
 
   return (
-    <div className="rounded-md border border-stone-300 bg-white p-4 dark:border-stone-700 dark:bg-stone-900">
+    <div className="rounded-md border border-line-strong bg-white p-4 dark:border-stone-700 dark:bg-stone-900">
       <div className="mb-3 flex items-center justify-between gap-2">
         <div className="flex items-center gap-2">
           <span className="flex h-8 w-8 items-center justify-center rounded-sm border border-line-strong text-ink-soft">

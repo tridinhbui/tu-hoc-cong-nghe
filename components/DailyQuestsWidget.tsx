@@ -253,7 +253,7 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
       {!embedded && (
       <div className="w-full flex items-center justify-between mb-4 border-b border-line-strong pb-3 relative z-10">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-sm border border-stone-300 bg-[#f3f1ec] text-ink-body dark:border-stone-700 dark:bg-stone-950 flex items-center justify-center">
+          <div className="w-8 h-8 rounded-sm border border-line-strong bg-surface-raised text-ink-body dark:border-stone-700 dark:bg-stone-950 flex items-center justify-center">
             <ListChecks className="w-4 h-4" />
           </div>
           <div className="text-left">
@@ -295,7 +295,7 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
               key={quest.id}
               className={`p-3 rounded-sm border transition-colors duration-200 group/item flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 sm:gap-3.5 ${
                 quest.claimed
-                  ? "bg-[#fbfaf7] dark:bg-stone-950 border-line opacity-60"
+                  ? "bg-page dark:bg-stone-950 border-line opacity-60"
                   : isDone
                   ? "bg-white dark:bg-stone-900 border-warn-line-mid"
                   : "bg-white dark:bg-stone-900 border-line-strong hover:border-stone-950 dark:hover:border-stone-300"
@@ -317,7 +317,7 @@ export default function DailyQuestsWidget({ userId, embedded = false, onQuestsLo
                         IconComponent = Award;
                       }
                       return (
-                        <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-sm border border-stone-300 bg-[#f3f1ec] text-ink-body dark:border-stone-700 dark:bg-stone-950 flex items-center justify-center">
+                        <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-sm border border-line-strong bg-surface-raised text-ink-body dark:border-stone-700 dark:bg-stone-950 flex items-center justify-center">
                           <IconComponent className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
                         </div>
                       );

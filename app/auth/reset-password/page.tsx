@@ -14,7 +14,7 @@ const SYS_CODE = "THCN://AUTH/RESET-PASSWORD";
 /* i18n-ignore-end */
 
 const inputClass =
-  "w-full rounded-sm border border-stone-300 bg-white px-3.5 py-2.5 text-base text-ink-max transition-colors placeholder:text-stone-400 focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-600/20 dark:border-stone-700 dark:bg-stone-900 dark:placeholder:text-stone-500";
+  "w-full rounded-sm border border-line-strong bg-white px-3.5 py-2.5 text-base text-ink-max transition-colors placeholder:text-stone-400 focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-600/20 dark:border-stone-700 dark:bg-stone-900 dark:placeholder:text-stone-500";
 
 export default function ResetPasswordPage() {
   const { t } = useI18n();
@@ -74,7 +74,7 @@ export default function ResetPasswordPage() {
 
   if (checkingSession) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-[#fbfaf7] dark:bg-stone-950">
+      <div className="flex min-h-screen items-center justify-center bg-page dark:bg-stone-950">
         <p className="text-sm text-ink-muted">{t.resetPassword.loading}</p>
       </div>
     );
@@ -82,7 +82,7 @@ export default function ResetPasswordPage() {
 
   if (!hasRecoverySession) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-[#fbfaf7] px-4 dark:bg-stone-950">
+      <div className="flex min-h-screen items-center justify-center bg-page px-4 dark:bg-stone-950">
         <div className="w-full max-w-sm">
           <div className="border-b border-line-strong pb-2">
             <Sys className="text-ink-muted">{SYS_CODE}</Sys>
@@ -98,7 +98,7 @@ export default function ResetPasswordPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-[#fbfaf7] px-4 dark:bg-stone-950">
+    <div className="flex min-h-screen items-center justify-center bg-page px-4 dark:bg-stone-950">
       <Frame title={SYS_CODE} className="w-full max-w-sm" bodyClassName="space-y-6 p-6 sm:p-7">
         <div>
           <h1 className="mb-2 text-2xl font-black tracking-tight text-ink-max">{t.resetPassword.title}</h1>

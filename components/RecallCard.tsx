@@ -38,7 +38,7 @@ export default function RecallCard({ items, title }: { items: RecallItem[]; titl
   );
 
   return (
-    <div className="rounded-md border border-line-strong bg-[#f3f1ec] dark:bg-stone-950 p-6 space-y-4">
+    <div className="rounded-md border border-line-strong bg-surface-raised dark:bg-stone-950 p-6 space-y-4">
       <div className="eyebrow flex items-center gap-2 border-b border-line-strong pb-2 text-ink-soft">
         <RotateCcw className="w-3.5 h-3.5" />
         {heading}

@@ -71,7 +71,7 @@ export default function InteractivePromptCraft() {
     .join("\n");
 
   return (
-    <div className="rounded-md border border-stone-300 bg-white p-6 dark:border-stone-700 dark:bg-stone-900">
+    <div className="rounded-md border border-line-strong bg-white p-6 dark:border-stone-700 dark:bg-stone-900">
       <h3 className="text-base font-black tracking-tight text-ink-max">
         {tr.title}
       </h3>

@@ -417,7 +417,7 @@ export default function ProfilePage() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#fbfaf7] overflow-x-hidden dark:bg-stone-950">
+    <div className="min-h-screen bg-page overflow-x-hidden dark:bg-stone-950">
       <div className="border-b border-line-strong">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-5">
           <div className="flex items-center justify-between gap-4 border-b border-line pb-2">
@@ -578,7 +578,7 @@ export default function ProfilePage() {
                     <Link
                       key={`${lesson.id}-${lesson.completedAt ?? "pending"}`}
                       href={`/bai-hoc/${lesson.slug}`}
-                      className="flex items-center justify-between gap-3 px-1 py-3 hover:bg-[#f3f1ec] dark:hover:bg-stone-800/50 transition-colors group"
+                      className="flex items-center justify-between gap-3 px-1 py-3 hover:bg-surface-raised dark:hover:bg-stone-800/50 transition-colors group"
                     >
                       <div className="min-w-0 flex-1">
                         <p className="text-sm font-semibold text-ink group-hover:text-accent-strong transition-colors truncate">
@@ -778,7 +778,7 @@ export default function ProfilePage() {
                     <Link
                       key={bookmark.id}
                       href={`/bai-hoc/${bookmark.lesson_slug}`}
-                      className="flex items-center justify-between gap-2.5 px-1 py-2.5 hover:bg-[#f3f1ec] dark:hover:bg-stone-800/50 transition-colors group"
+                      className="flex items-center justify-between gap-2.5 px-1 py-2.5 hover:bg-surface-raised dark:hover:bg-stone-800/50 transition-colors group"
                     >
                       <span className="text-sm font-semibold text-ink-heading group-hover:text-accent-strong transition-colors truncate">
                         {bookmark.lesson_title}
@@ -798,7 +798,7 @@ export default function ProfilePage() {
                     <Link
                       key={lesson.lesson_id}
                       href={`/bai-hoc/${lesson.lesson_slug}`}
-                      className="flex items-center justify-between gap-3 px-1 py-2.5 hover:bg-[#f3f1ec] dark:hover:bg-stone-800/50 transition-colors group"
+                      className="flex items-center justify-between gap-3 px-1 py-2.5 hover:bg-surface-raised dark:hover:bg-stone-800/50 transition-colors group"
                     >
                       <span className="text-sm font-semibold text-ink-heading group-hover:text-accent-strong transition-colors truncate">
                         {lesson.lesson_title}

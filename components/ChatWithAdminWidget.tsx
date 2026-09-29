@@ -494,7 +494,7 @@ export default function ChatWithAdminWidget({
 
             {/* Pinned Message Banner */}
             {pinnedMessage && (
-              <div className="shrink-0 px-3.5 py-2 bg-[#f3f1ec] dark:bg-stone-950 border-b border-line flex items-center justify-between gap-2">
+              <div className="shrink-0 px-3.5 py-2 bg-surface-raised dark:bg-stone-950 border-b border-line flex items-center justify-between gap-2">
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-1.5 mb-0.5">
                     <Pin className="w-3 h-3 text-ink-muted" aria-hidden />
@@ -518,7 +518,7 @@ export default function ChatWithAdminWidget({
 
             {/* Community shoutout */}
             {shoutout && (
-              <div className="shrink-0 px-4 py-2 bg-[#fbfaf7] dark:bg-stone-950/40 border-b border-line text-[11px] text-ink-body font-semibold leading-relaxed flex items-center gap-1.5">
+              <div className="shrink-0 px-4 py-2 bg-page dark:bg-stone-950/40 border-b border-line text-[11px] text-ink-body font-semibold leading-relaxed flex items-center gap-1.5">
                 <Lightbulb className="h-3.5 w-3.5 shrink-0 text-ink-faint" strokeWidth={1.75} aria-hidden />
                 {format(t.libData.shoutouts[shoutout.variant] ?? t.libData.shoutouts[0], {
                   name: shoutout.name,
@@ -655,7 +655,7 @@ export default function ChatWithAdminWidget({
                               }`}
                             >
                               {/* Quick Emoji Reaction Row */}
-                              <div className="flex items-center justify-between px-1.5 py-1 bg-[#f3f1ec] dark:bg-stone-800/60 rounded-xs mb-1 border border-line">
+                              <div className="flex items-center justify-between px-1.5 py-1 bg-surface-raised dark:bg-stone-800/60 rounded-xs mb-1 border border-line">
                                 {REACTION_EMOJIS.map((emoji) => (
                                   <button
                                     key={emoji}
@@ -680,7 +680,7 @@ export default function ChatWithAdminWidget({
                                   });
                                   setActiveMenuMsgId(null);
                                 }}
-                                className="w-full flex items-center gap-2 px-2 py-1.5 rounded-xs hover:bg-[#f3f1ec] dark:hover:bg-stone-800 text-ink-heading font-semibold transition-colors text-left text-[11px] cursor-pointer"
+                                className="w-full flex items-center gap-2 px-2 py-1.5 rounded-xs hover:bg-surface-raised dark:hover:bg-stone-800 text-ink-heading font-semibold transition-colors text-left text-[11px] cursor-pointer"
                               >
                                 <CornerUpLeft className="w-3 h-3 text-ink-muted" aria-hidden />
                                 <span>{t.chat.reply}</span>
@@ -691,7 +691,7 @@ export default function ChatWithAdminWidget({
                                   togglePinMessage(msg.id);
                                   setActiveMenuMsgId(null);
                                 }}
-                                className="w-full flex items-center gap-2 px-2 py-1.5 rounded-xs hover:bg-[#f3f1ec] dark:hover:bg-stone-800 text-ink-heading font-semibold transition-colors text-left text-[11px] cursor-pointer"
+                                className="w-full flex items-center gap-2 px-2 py-1.5 rounded-xs hover:bg-surface-raised dark:hover:bg-stone-800 text-ink-heading font-semibold transition-colors text-left text-[11px] cursor-pointer"
                               >
                                 {pinnedMsgId === msg.id ? (
                                   <PinOff className="w-3 h-3 text-ink-muted" aria-hidden />
@@ -706,7 +706,7 @@ export default function ChatWithAdminWidget({
                                   void copyMessageText(mainText || msg.content);
                                   setActiveMenuMsgId(null);
                                 }}
-                                className="w-full flex items-center gap-2 px-2 py-1.5 rounded-xs hover:bg-[#f3f1ec] dark:hover:bg-stone-800 text-ink-heading font-semibold transition-colors text-left text-[11px] cursor-pointer"
+                                className="w-full flex items-center gap-2 px-2 py-1.5 rounded-xs hover:bg-surface-raised dark:hover:bg-stone-800 text-ink-heading font-semibold transition-colors text-left text-[11px] cursor-pointer"
                               >
                                 <Copy className="w-3 h-3 text-ink-muted" aria-hidden />
                                 <span>{t.chat.copy}</span>
@@ -721,7 +721,7 @@ export default function ChatWithAdminWidget({
                                       setReplyingTo(null);
                                       setActiveMenuMsgId(null);
                                     }}
-                                    className="w-full flex items-center gap-2 px-2 py-1.5 rounded-xs hover:bg-[#f3f1ec] dark:hover:bg-stone-800 text-ink-heading font-semibold transition-colors text-left text-[11px] cursor-pointer"
+                                    className="w-full flex items-center gap-2 px-2 py-1.5 rounded-xs hover:bg-surface-raised dark:hover:bg-stone-800 text-ink-heading font-semibold transition-colors text-left text-[11px] cursor-pointer"
                                   >
                                     <Pencil className="w-3 h-3 text-ink-muted" aria-hidden />
                                     <span>{t.chat.edit}</span>
@@ -817,7 +817,7 @@ export default function ChatWithAdminWidget({
 
               {/* Editing Banner Preview */}
               {editingMessage && (
-                <div className="flex items-center justify-between gap-2 px-3 py-1.5 rounded-sm bg-[#f3f1ec] dark:bg-stone-950 border border-line text-xs text-ink-heading mb-2">
+                <div className="flex items-center justify-between gap-2 px-3 py-1.5 rounded-sm bg-surface-raised dark:bg-stone-950 border border-line text-xs text-ink-heading mb-2">
                   <div className="min-w-0 flex-1">
                     <span className="font-bold text-ink-max">{t.chat.editing}</span>
                     <p className="truncate text-[10px] text-ink-soft mt-0.2">
@@ -885,7 +885,7 @@ export default function ChatWithAdminWidget({
                   }}
                   onPaste={handlePaste}
                   placeholder={editingMessage ? t.chat.editPlaceholder : t.adminChat.inputPlaceholder}
-                  className="flex-1 min-w-0 px-3 py-2 border border-line bg-[#fbfaf7] dark:bg-stone-950/60 text-ink rounded-sm text-xs focus:outline-none focus:border-brand-500 focus:bg-white dark:focus:bg-stone-950 transition-colors placeholder:text-stone-400"
+                  className="flex-1 min-w-0 px-3 py-2 border border-line bg-page dark:bg-stone-950/60 text-ink rounded-sm text-xs focus:outline-none focus:border-brand-500 focus:bg-white dark:focus:bg-stone-950 transition-colors placeholder:text-stone-400"
                 />
 
                 <button

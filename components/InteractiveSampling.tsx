@@ -41,7 +41,7 @@ export default function InteractiveSampling() {
   const hiddenCount = Math.round(bound * population);
 
   return (
-    <div className="rounded-md border border-stone-300 bg-white p-6 dark:border-stone-700 dark:bg-stone-900">
+    <div className="rounded-md border border-line-strong bg-white p-6 dark:border-stone-700 dark:bg-stone-900">
       <h3 className="text-base font-black tracking-tight text-ink-max">
         {t.samplingCalc.title}
       </h3>
@@ -141,7 +141,7 @@ function Card({ label, value, tone }: { label: string; value: string; tone: "goo
         ? "text-alert"
         : "text-ink-heading";
   return (
-    <div className="rounded-sm border border-stone-200 bg-[#fbfaf7] p-3 dark:border-stone-800 dark:bg-stone-950">
+    <div className="rounded-sm border border-stone-200 bg-page p-3 dark:border-stone-800 dark:bg-stone-950">
       <p className="text-[11px] font-bold uppercase tracking-wide text-ink-muted">
         {label}
       </p>

@@ -42,7 +42,7 @@ export default function InteractiveBudget() {
   const months = saveAmount > 0 ? Math.ceil(target / saveAmount) : Infinity;
 
   return (
-    <div className="space-y-6 rounded-md border border-stone-300 bg-white p-6 dark:border-stone-700 dark:bg-stone-900">
+    <div className="space-y-6 rounded-md border border-line-strong bg-white p-6 dark:border-stone-700 dark:bg-stone-900">
       <div>
         <h3 className="flex items-center gap-2 mb-1 text-lg font-black tracking-tight text-ink-max">
           <Calculator aria-hidden className="h-5 w-5 text-ink-muted" strokeWidth={1.75} /> {t.budgetSim.title}
@@ -118,7 +118,7 @@ export default function InteractiveBudget() {
 
       <div className="grid gap-3 sm:grid-cols-3">
         {CATEGORIES.map((c) => (
-          <div key={c.key} className="rounded-sm border border-stone-200 bg-[#fbfaf7] p-3 dark:border-stone-800 dark:bg-stone-950">
+          <div key={c.key} className="rounded-sm border border-stone-200 bg-page p-3 dark:border-stone-800 dark:bg-stone-950">
             <p className="text-xs font-bold text-ink-soft">{c.label}</p>
             <p className="text-lg font-black tabular-nums text-ink-max">
               {format(t.budgetSim.categoryAmount, { amount: ((income * share[c.key]) / 100).toFixed(1) })}

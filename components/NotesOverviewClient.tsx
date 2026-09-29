@@ -287,7 +287,7 @@ export default function NotesOverviewClient({ lessonsById, userId, initialNotes,
                 const lessonNotes = grouped.get(lessonId)!;
                 return (
                   <div key={lessonId} className={`${panel} overflow-hidden`}>
-                    <div className="px-5 py-3 border-b border-line-strong flex items-center justify-between bg-[#f3f1ec] dark:bg-stone-950">
+                    <div className="px-5 py-3 border-b border-line-strong flex items-center justify-between bg-surface-raised dark:bg-stone-950">
                       {lessonInfo ? (
                         <Link href={`/bai-hoc/${lessonInfo.slug}`} className="font-extrabold text-ink underline-offset-4 hover:text-accent-strong hover:underline transition-colors">
                           {lessonInfo.title}

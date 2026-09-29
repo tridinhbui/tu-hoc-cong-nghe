@@ -621,21 +621,21 @@ export default function OnTapCauSaiClient() {
                           <button
                             type="button"
                             onClick={() => handleRateSRS(item, "forget")}
-                            className="px-2 py-1 rounded-sm border border-stone-300 text-[10.5px] font-bold tabular-nums text-ink-body transition-colors hover:border-stone-950 dark:border-stone-700 dark:hover:border-stone-300"
+                            className="px-2 py-1 rounded-sm border border-line-strong text-[10.5px] font-bold tabular-nums text-ink-body transition-colors hover:border-stone-950 dark:border-stone-700 dark:hover:border-stone-300"
                           >
                             {t.mistakeReview.plus1Day}
                           </button>
                           <button
                             type="button"
                             onClick={() => handleRateSRS(item, "good")}
-                            className="px-2 py-1 rounded-sm border border-stone-300 text-[10.5px] font-bold tabular-nums text-ink-body transition-colors hover:border-stone-950 dark:border-stone-700 dark:hover:border-stone-300"
+                            className="px-2 py-1 rounded-sm border border-line-strong text-[10.5px] font-bold tabular-nums text-ink-body transition-colors hover:border-stone-950 dark:border-stone-700 dark:hover:border-stone-300"
                           >
                             {t.mistakeReview.plus7Days}
                           </button>
                           <button
                             type="button"
                             onClick={() => handleRateSRS(item, "mastered")}
-                            className="px-2 py-1 rounded-sm border border-stone-300 text-[10.5px] font-bold tabular-nums text-ink-body transition-colors hover:border-stone-950 dark:border-stone-700 dark:hover:border-stone-300"
+                            className="px-2 py-1 rounded-sm border border-line-strong text-[10.5px] font-bold tabular-nums text-ink-body transition-colors hover:border-stone-950 dark:border-stone-700 dark:hover:border-stone-300"
                           >
                             {t.mistakeReview.plus30Days}
                           </button>

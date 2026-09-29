@@ -2,7 +2,10 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
-import { LoadBar, Scramble } from "@/components/home/v2/effects";
+import { LoadBar, Scramble } from "@/components/ui/effects";
+import { CropMarks, Stamp } from "@/components/ui/system";
+
+export { CropMarks, Stamp };
 
 /*
  * TRANG CHỦ - NGÔN NGỮ BIÊN TẬP. Bộ khung dùng chung cho mọi section.
@@ -60,30 +63,6 @@ export function Mono({ children, className = "" }: { children: React.ReactNode; 
   );
 }
 
-/** Con dấu kiểu giấy tờ hành chính - xoay nhẹ, viền kép. */
-export function Stamp({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  return (
-    <span
-      className={`-rotate-6 border-2 border-brand-600 px-2.5 py-1 font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-brand-600 outline outline-1 outline-offset-2 outline-brand-600 dark:border-brand-400 dark:text-brand-400 dark:outline-brand-400 ${className}`}
-    >
-      {children}
-    </span>
-  );
-}
-
-/** Dấu cắt góc như bản in thử - bốn góc của một khung. */
-export function CropMarks({ className = "border-current" }: { className?: string }) {
-  const c = `pointer-events-none absolute h-3 w-3 ${className}`;
-  return (
-    <>
-      <span aria-hidden className={`${c} -left-1.5 -top-1.5 border-l border-t`} />
-      <span aria-hidden className={`${c} -right-1.5 -top-1.5 border-r border-t`} />
-      <span aria-hidden className={`${c} -bottom-1.5 -left-1.5 border-b border-l`} />
-      <span aria-hidden className={`${c} -bottom-1.5 -right-1.5 border-b border-r`} />
-    </>
-  );
-}
-
 /** Đầu một tờ: số tờ + nhãn, thanh nạp, tiêu đề giải mã. */
 export function SheetHead({
   n,
@@ -110,7 +89,7 @@ export function SheetHead({
   return (
     <div className={`min-w-0 ${className}`}>
       <div className={`flex items-center justify-between gap-4 border-b-2 ${line} pb-2`}>
-        <Mono className={dark ? "text-brand-300" : "text-brand-700 dark:text-brand-300"}>
+        <Mono className={dark ? "text-brand-300" : "text-accent-strong"}>
           {ID.sheet(n)} — {kicker}
         </Mono>
         <Mono className="hidden opacity-50 sm:inline">{ID.doc}</Mono>

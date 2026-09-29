@@ -79,7 +79,7 @@ export default function BuildingScenarioGame({ buildingId, userId }: { buildingI
   };
 
   return (
-    <div className="h-full overflow-y-auto bg-[#fbfaf7] p-4 text-ink sm:p-6 dark:bg-stone-950">
+    <div className="h-full overflow-y-auto bg-page p-4 text-ink sm:p-6 dark:bg-stone-950">
       <div className="max-w-2xl mx-auto space-y-4">
         <header>
           <h2 className="text-xl font-black tracking-tight text-ink-max">{game.title}</h2>
@@ -87,7 +87,7 @@ export default function BuildingScenarioGame({ buildingId, userId }: { buildingI
         </header>
 
         {done ? (
-          <div className="rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900 space-y-3 p-5 text-center">
+          <div className="rounded-md border border-line-strong bg-white dark:border-stone-700 dark:bg-stone-900 space-y-3 p-5 text-center">
             <p className="text-lg font-black tabular-nums tracking-tight text-ink-max">{format(copy.resultTitle, { score, total })}</p>
             <p className={xp > 0 ? "font-bold text-accent-strong" : "font-bold text-warn-strong"}>
               {xp > 0 ? format(copy.resultXp, { xp }) : copy.resultNoXp}
@@ -97,7 +97,7 @@ export default function BuildingScenarioGame({ buildingId, userId }: { buildingI
             </button>
           </div>
         ) : (
-          <div className="rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900 space-y-4 p-5">
+          <div className="rounded-md border border-line-strong bg-white dark:border-stone-700 dark:bg-stone-900 space-y-4 p-5">
             <p className="text-xs font-bold uppercase tracking-wide tabular-nums text-ink-muted">
               {format(copy.progress, { n: step + 1, total })}
             </p>

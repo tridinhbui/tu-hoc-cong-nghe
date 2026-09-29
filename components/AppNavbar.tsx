@@ -235,7 +235,7 @@ const ALL_SECTION_KEYS = NAV_SECTIONS.map((section) => section.titleKey);
 // còn lại, kèm ô trạng thái xanh vì đó là dữ liệu sống. "Hot" và "3D" là
 // trang trí nên đã gỡ.
 const NAV_BADGE =
-  "inline-flex items-center gap-1 rounded-xs border border-stone-300 bg-white px-1.5 py-px text-[9.5px] font-bold uppercase tracking-wider text-ink-body dark:border-stone-700 dark:bg-stone-900";
+  "inline-flex items-center gap-1 rounded-xs border border-line-strong bg-white px-1.5 py-px text-[9.5px] font-bold uppercase tracking-wider text-ink-body dark:border-stone-700 dark:bg-stone-900";
 
 // Single, persistent top navbar for every signed-in page (mounted once in
 // app/(app)/layout.tsx, which Next.js keeps alive across client-side
@@ -595,14 +595,13 @@ export default function AppNavbar() {
         aria-current={active ? "page" : undefined}
         className={`group relative flex items-center gap-2.5 rounded-xs px-3 py-1.5 text-sm font-bold transition-colors duration-200 ${
           active
-            ? "bg-[#f3f1ec] text-accent-strong dark:bg-stone-900"
-            : "text-ink-soft hover:bg-[#f3f1ec] hover:text-ink-max dark:hover:bg-stone-900"
+            ? "bg-brand-600 text-white"
+            : "text-ink-soft hover:bg-surface-invert hover:text-ink-invert"
         }`}
       >
-        {/* Dòng đang đứng: chữ xanh + vạch 2px bên trái, như tab đang mở ở
-            trang giới thiệu - không phải nền viên thuốc. */}
-        {active && <span aria-hidden className="absolute inset-y-1 left-0 w-0.5 bg-brand-600 dark:bg-brand-500" />}
-        <Icon className={`h-4 w-4 shrink-0 transition-colors ${active ? "text-accent-strong" : "text-ink-faint group-hover:text-ink-body"}`} />
+        {/* Dòng đang đứng: khối xanh đặc như cột đang mở ở trang chủ biên tập;
+            rê chuột thì đảo mực. */}
+        <Icon className={`h-4 w-4 shrink-0 transition-colors ${active ? "text-white" : "text-ink-faint group-hover:text-ink-invert"}`} />
         <span className="flex-1 truncate">{isGame ? t.dataRest.appNavbar.gameKingdomLabel : navLabel}</span>
         {isKiemTra && hasPendingNewsQuiz && (
           <span className={NAV_BADGE}>
@@ -687,7 +686,7 @@ export default function AppNavbar() {
 
   return (
     <>
-      <aside className="hidden lg:flex fixed inset-y-0 left-0 z-40 w-64 bg-[#fbfaf7] dark:bg-stone-950 border-r border-line-strong">
+      <aside className="hidden lg:flex fixed inset-y-0 left-0 z-40 w-64 bg-page dark:bg-stone-950 border-r-2 border-line-strong">
         {/* Cột biển chỉ đường vẽ tay từng đứng ở góc trái dưới. Đã gỡ: nó là
             hình trang trí nhiều màu, trái luật 2-3 của hệ thiết kế chung, và
             thanh đầu trang giới thiệu - thứ sidebar này soi theo - chỉ có giấy
@@ -702,7 +701,7 @@ export default function AppNavbar() {
             của flex item là `min-height: auto`, nên không có nó thì `<nav>` nở
             ra bằng nội dung và đẩy cả cột cao hơn viewport thay vì tự cuộn. */}
         <div className="flex h-full w-full min-h-0 flex-col relative z-10 px-3.5 py-4">
-          <Link href="/dashboard" className="flex items-center gap-2.5 rounded-xs border-b border-stone-300 px-2 pb-3 pt-1 shrink-0 dark:border-stone-800">
+          <Link href="/dashboard" className="flex items-center gap-2.5 border-b-2 border-line-strong px-2 pb-3 pt-1 shrink-0">
             <Logo size={28} />
             <span className="truncate text-[13px] font-black uppercase tracking-[0.1em] text-ink-heading">{t.nav.brand}</span>
           </Link>
@@ -710,13 +709,13 @@ export default function AppNavbar() {
           <button
             type="button"
             onClick={() => setSearchModalOpen(true)}
-            className="mt-3 flex items-center justify-between w-full px-3 py-2 rounded-sm bg-white border border-stone-300 text-xs font-bold text-ink-muted hover:border-stone-950 transition-colors cursor-pointer dark:bg-stone-900 dark:border-stone-700 dark:hover:border-stone-300"
+            className="mt-3 flex items-center justify-between w-full px-3 py-2 rounded-sm bg-surface border-2 border-line-strong text-xs font-bold text-ink-muted hover:bg-surface-invert hover:text-ink-invert transition-colors cursor-pointer"
           >
             <span className="flex items-center gap-2">
               <Search className="w-3.5 h-3.5 text-ink-faint" />
               <span>{t.nav.searchPlaceholder}</span>
             </span>
-            <kbd className="px-1.5 py-0.5 rounded-xs bg-[#f3f1ec] dark:bg-stone-950 text-[10px] font-mono border border-line-strong">
+            <kbd className="px-1.5 py-0.5 rounded-xs bg-surface-raised dark:bg-stone-950 text-[10px] font-mono border border-line-strong">
               {t.dataRest.appNavbar.cmdKHint}
             </kbd>
           </button>
@@ -746,7 +745,7 @@ export default function AppNavbar() {
             )}
 
             {!profile ? (
-              <div className="h-12 rounded-sm bg-[#f3f1ec] animate-pulse dark:bg-stone-900" />
+              <div className="h-12 rounded-sm bg-surface-raised animate-pulse dark:bg-stone-900" />
             ) : (
               /* Panel không nằm ở đây nữa - nó bay NGANG ra khỏi sidebar và
                  được render ngay dưới khối cuộn, xem chú thích ở đó. */
@@ -754,7 +753,7 @@ export default function AppNavbar() {
                 <button
                   onClick={toggleProfileDropdown}
                   aria-expanded={dropdownOpen}
-                  className="flex w-full items-center gap-2.5 rounded-sm border border-stone-300 bg-white px-3 py-2 text-left transition-colors hover:border-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-300 cursor-pointer"
+                  className="flex w-full items-center gap-2.5 rounded-sm border border-line-strong bg-white px-3 py-2 text-left transition-colors hover:border-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-300 cursor-pointer"
                 >
                   {isValidAvatar(profile.avatar_url) ? (
                     <Image src={profile.avatar_url} alt={displayName} width={36} height={36} className="w-9 h-9 rounded-full object-cover shrink-0" />
@@ -798,17 +797,17 @@ export default function AppNavbar() {
         {dropdownOpen && profile && (
           <div
             ref={desktopDropdownPanelRef}
-            className="absolute bottom-4 left-full ml-2 w-64 z-50 space-y-0.5 rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900 p-1.5 animate-[fadeIn_0.15s_ease-out]"
+            className="absolute bottom-4 left-full ml-2 w-64 z-50 space-y-0.5 rounded-md border border-line-strong bg-white dark:border-stone-700 dark:bg-stone-900 p-1.5 animate-[fadeIn_0.15s_ease-out]"
           >
-            <button type="button" onClick={() => handleDropdownNavigate("/profile")} className="flex w-full items-center gap-2.5 rounded-xs px-3 py-2 text-left text-xs font-bold transition text-ink-heading hover:bg-[#f3f1ec] dark:hover:bg-stone-800">
+            <button type="button" onClick={() => handleDropdownNavigate("/profile")} className="flex w-full items-center gap-2.5 rounded-xs px-3 py-2 text-left text-xs font-bold transition text-ink-heading hover:bg-surface-raised dark:hover:bg-stone-800">
               <User className="h-4 w-4 shrink-0 text-ink-muted" />
               {t.nav.menuProfile}
             </button>
-            <button type="button" onClick={() => handleDropdownNavigate("/ban-be")} className="flex w-full items-center gap-2.5 rounded-xs px-3 py-2 text-left text-xs font-bold transition text-ink-heading hover:bg-[#f3f1ec] dark:hover:bg-stone-800">
+            <button type="button" onClick={() => handleDropdownNavigate("/ban-be")} className="flex w-full items-center gap-2.5 rounded-xs px-3 py-2 text-left text-xs font-bold transition text-ink-heading hover:bg-surface-raised dark:hover:bg-stone-800">
               <Users className="h-4 w-4 shrink-0 text-ink-muted" />
               {t.nav.menuFriends}
             </button>
-            <button type="button" onClick={() => handleDropdownNavigate("/settings")} className="flex w-full items-center gap-2.5 rounded-xs px-3 py-2 text-left text-xs font-bold transition text-ink-heading hover:bg-[#f3f1ec] dark:hover:bg-stone-800">
+            <button type="button" onClick={() => handleDropdownNavigate("/settings")} className="flex w-full items-center gap-2.5 rounded-xs px-3 py-2 text-left text-xs font-bold transition text-ink-heading hover:bg-surface-raised dark:hover:bg-stone-800">
               <Settings className="h-4 w-4 shrink-0 text-ink-muted" />
               {t.nav.menuSettings}
             </button>
@@ -838,7 +837,7 @@ export default function AppNavbar() {
           themselves to one screen subtract exactly this height on mobile
           (see APP_MOBILE_HEADER_H in app/(app)/kiem-tra/page.tsx). Keep the
           two in step. */}
-      <header className="lg:hidden h-14 shrink-0 border-b border-line-strong sticky top-0 bg-[#fbfaf7] dark:bg-stone-950 z-50">
+      <header className="lg:hidden h-14 shrink-0 border-b-2 border-line-strong sticky top-0 bg-page dark:bg-stone-950 z-50">
         <div className="max-w-6xl mx-auto h-full px-3 sm:px-6 flex items-center justify-between gap-1.5 sm:gap-4 w-full overflow-hidden">
           <Link href="/dashboard" className="flex items-center gap-2 shrink-0">
             <Logo size={28} />
@@ -850,7 +849,7 @@ export default function AppNavbar() {
               href="/tai-lieu"
               className={`flex items-center gap-1 text-xs font-bold px-2 sm:px-3 py-1.5 sm:py-2 rounded-sm border transition-colors duration-200 whitespace-nowrap ${
                 pathname === "/tai-lieu"
-                  ? "bg-[#f3f1ec] dark:bg-stone-900 text-accent-strong border-line-strong"
+                  ? "bg-surface-raised dark:bg-stone-900 text-accent-strong border-line-strong"
                   : "bg-white dark:bg-stone-900 text-ink-soft border-line-strong hover:border-stone-950 dark:hover:border-stone-300"
               }`}
             >
@@ -888,7 +887,7 @@ export default function AppNavbar() {
                 <button
                   onClick={toggleProfileDropdown}
                   aria-expanded={dropdownOpen}
-                  className="flex items-center p-0.5 rounded-full hover:bg-[#f3f1ec] transition-colors dark:hover:bg-stone-900"
+                  className="flex items-center p-0.5 rounded-full hover:bg-surface-raised transition-colors dark:hover:bg-stone-900"
                 >
                   {isValidAvatar(profile.avatar_url) ? (
                     <Image src={profile.avatar_url} alt={displayName} width={34} height={34} className="w-8 h-8 sm:w-9 sm:h-9 rounded-full object-cover" />
@@ -935,15 +934,15 @@ export default function AppNavbar() {
             </div>
 
             <div className="space-y-1 mb-2">
-              <button type="button" onClick={() => handleDropdownNavigate("/profile")} className="flex w-full items-center gap-2 rounded-xs px-3 py-1.5 text-left text-xs font-semibold transition text-ink-heading hover:bg-[#f3f1ec] dark:hover:bg-stone-800">
+              <button type="button" onClick={() => handleDropdownNavigate("/profile")} className="flex w-full items-center gap-2 rounded-xs px-3 py-1.5 text-left text-xs font-semibold transition text-ink-heading hover:bg-surface-raised dark:hover:bg-stone-800">
                 <User className="h-3.5 w-3.5 shrink-0 text-ink-muted" />
                 {t.nav.menuProfileShort}
               </button>
-              <button type="button" onClick={() => handleDropdownNavigate("/ban-be")} className="flex w-full items-center gap-2 rounded-xs px-3 py-1.5 text-left text-xs font-semibold transition text-ink-heading hover:bg-[#f3f1ec] dark:hover:bg-stone-800">
+              <button type="button" onClick={() => handleDropdownNavigate("/ban-be")} className="flex w-full items-center gap-2 rounded-xs px-3 py-1.5 text-left text-xs font-semibold transition text-ink-heading hover:bg-surface-raised dark:hover:bg-stone-800">
                 <Users className="h-3.5 w-3.5 shrink-0 text-ink-muted" />
                 {t.nav.menuFriendsShort}
               </button>
-              <button type="button" onClick={() => handleDropdownNavigate("/settings")} className="flex w-full items-center gap-2 rounded-xs px-3 py-1.5 text-left text-xs font-semibold transition text-ink-heading hover:bg-[#f3f1ec] dark:hover:bg-stone-800">
+              <button type="button" onClick={() => handleDropdownNavigate("/settings")} className="flex w-full items-center gap-2 rounded-xs px-3 py-1.5 text-left text-xs font-semibold transition text-ink-heading hover:bg-surface-raised dark:hover:bg-stone-800">
                 <Settings className="h-3.5 w-3.5 shrink-0 text-ink-muted" />
                 {t.nav.menuSettingsShort}
               </button>
@@ -977,9 +976,9 @@ export default function AppNavbar() {
               onClick={() => setMobileMenuOpen(false)}
             />
 
-            <div className="absolute left-0 right-0 top-full bg-[#fbfaf7] dark:bg-stone-950 border-b border-line-strong px-4 sm:px-6 py-3.5 space-y-1 max-h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain z-40 lg:hidden">
+            <div className="absolute left-0 right-0 top-full bg-page dark:bg-stone-950 border-b border-line-strong px-4 sm:px-6 py-3.5 space-y-1 max-h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain z-40 lg:hidden">
               {profile && (
-                <div className="flex items-center justify-between gap-3 p-3 mb-2 rounded-md bg-white border border-stone-300 dark:bg-stone-900 dark:border-stone-700">
+                <div className="flex items-center justify-between gap-3 p-3 mb-2 rounded-md bg-white border border-line-strong dark:bg-stone-900 dark:border-stone-700">
                   <div className="flex items-center gap-2.5 min-w-0">
                     {isValidAvatar(profile.avatar_url) ? (
                       <Image src={profile.avatar_url} alt={displayName} width={36} height={36} className="w-9 h-9 rounded-full object-cover shrink-0" />

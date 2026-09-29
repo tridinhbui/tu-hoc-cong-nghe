@@ -74,7 +74,7 @@ export default function LearningGoalCard({ id }: { id?: string } = {}) {
               // phải chọn mù rồi mới thấy hành trình gồm những gì.
               <div
                 key={f.id}
-                className="flex flex-col rounded-sm border border-stone-300 bg-white transition-colors hover:border-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-300"
+                className="flex flex-col rounded-sm border border-line-strong bg-white transition-colors hover:border-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-300"
               >
                 <button
                   type="button"
@@ -82,7 +82,7 @@ export default function LearningGoalCard({ id }: { id?: string } = {}) {
                   onClick={() => choose(f.id)}
                   className="flex flex-1 items-start gap-3 p-3 text-left disabled:opacity-60"
                 >
-                  <span className="flex-shrink-0 rounded-sm border border-stone-300 bg-[#f3f1ec] p-2 text-ink-body dark:border-stone-700 dark:bg-stone-950"><Glyph emoji={f.emoji} className="h-5 w-5" /></span>
+                  <span className="flex-shrink-0 rounded-sm border border-line-strong bg-surface-raised p-2 text-ink-body dark:border-stone-700 dark:bg-stone-950"><Glyph emoji={f.emoji} className="h-5 w-5" /></span>
                   <span className="min-w-0">
                     <span className="block text-xs font-semibold text-ink-muted">“{t.learningFlows.flows[f.id].need}”</span>
                     <span className="block font-black tracking-tight text-ink-max">{t.learningFlows.flows[f.id].title}</span>
@@ -116,7 +116,7 @@ export default function LearningGoalCard({ id }: { id?: string } = {}) {
     <section id={id} className={`scroll-mt-6 ${panel} p-4 sm:p-5`}>
       <div className="flex items-start justify-between gap-3">
         <div className="flex min-w-0 items-center gap-3">
-          <span className="flex-shrink-0 rounded-sm border border-stone-300 bg-[#f3f1ec] p-2 text-ink-body dark:border-stone-700 dark:bg-stone-950"><Glyph emoji={flow.emoji} className="h-7 w-7" /></span>
+          <span className="flex-shrink-0 rounded-sm border border-line-strong bg-surface-raised p-2 text-ink-body dark:border-stone-700 dark:bg-stone-950"><Glyph emoji={flow.emoji} className="h-7 w-7" /></span>
           <div className="min-w-0">
             <p className="eyebrow text-ink-soft">{c.yourGoal}</p>
             <p className="font-black leading-snug tracking-tight text-ink-max">{copy.title}</p>
@@ -143,7 +143,7 @@ export default function LearningGoalCard({ id }: { id?: string } = {}) {
       </div>
 
       {stepCopy ? (
-        <p className="mt-4 flex gap-2 rounded-sm border border-stone-300 bg-[#f3f1ec] px-3 py-2.5 text-sm font-semibold leading-6 text-ink-max dark:border-stone-700 dark:bg-stone-950">
+        <p className="mt-4 flex gap-2 rounded-sm border border-line-strong bg-surface-raised px-3 py-2.5 text-sm font-semibold leading-6 text-ink-max dark:border-stone-700 dark:bg-stone-950">
           <Lightbulb className="mt-0.5 h-4 w-4 shrink-0 text-amber-500" aria-hidden />
           {stepCopy.oneLiner}
         </p>

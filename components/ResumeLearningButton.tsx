@@ -146,7 +146,7 @@ export default function ResumeLearningButton({ activeTrack, compact = false, use
       >
         {/* Ô biểu tượng trung tính ở góc trên trái */}
         <div className="absolute top-5 left-5 z-20 hidden sm:flex items-center justify-center pointer-events-none">
-          <div className="w-12 h-12 rounded-sm border border-stone-300 bg-[#f3f1ec] text-ink-body flex items-center justify-center dark:border-stone-700 dark:bg-stone-950">
+          <div className="w-12 h-12 rounded-sm border border-line-strong bg-surface-raised text-ink-body flex items-center justify-center dark:border-stone-700 dark:bg-stone-950">
             <BookOpen className="w-6 h-6" />
           </div>
         </div>
@@ -160,7 +160,7 @@ export default function ResumeLearningButton({ activeTrack, compact = false, use
                 <StatusDot />
                 {t.resume.resumeBadge}
               </span>
-              <span className="inline-flex items-center rounded-sm border border-stone-300 px-2 py-0.5 font-mono text-[10.5px] font-medium tabular-nums text-ink-muted dark:border-stone-700">
+              <span className="inline-flex items-center rounded-sm border border-line-strong px-2 py-0.5 font-mono text-[10.5px] font-medium tabular-nums text-ink-muted dark:border-stone-700">
                 {format(t.resume.resumeXpBadge, { xp: XP_PER_LESSON })}
               </span>
             </div>

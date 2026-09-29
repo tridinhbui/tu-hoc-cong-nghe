@@ -101,7 +101,7 @@ export default function BackboneRoutingWidget({ userId }: BackboneRoutingWidgetP
         </button>
       </div>
 
-      <div className="bg-[#f3f1ec] dark:bg-stone-950 border border-line-strong rounded-md p-4 flex items-start gap-3">
+      <div className="bg-surface-raised dark:bg-stone-950 border border-line-strong rounded-md p-4 flex items-start gap-3">
         <AlertTriangle className="w-5 h-5 text-ink-muted shrink-0 mt-0.5" />
         <div className="text-xs space-y-1">
           <p className="font-bold text-ink-max uppercase tracking-wider">{tr.objectiveLabel}</p>
@@ -118,7 +118,7 @@ export default function BackboneRoutingWidget({ userId }: BackboneRoutingWidgetP
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3.5">
-        <div className="bg-[#fbfaf7] dark:bg-stone-950 p-4.5 rounded-md border border-line-strong flex flex-col justify-between">
+        <div className="bg-page dark:bg-stone-950 p-4.5 rounded-md border border-line-strong flex flex-col justify-between">
           <span className="text-[10px] font-bold text-ink-muted uppercase tracking-wider">{tr.rerouteLabel}</span>
           <div className="my-2">
             <span className="font-mono tabular-nums text-2xl sm:text-3xl font-medium text-ink-max">{reroute}%</span>
@@ -126,7 +126,7 @@ export default function BackboneRoutingWidget({ userId }: BackboneRoutingWidgetP
           <span className="text-[10px] text-ink-muted font-medium">{tr.rerouteDesc}</span>
         </div>
 
-        <div className="bg-[#fbfaf7] dark:bg-stone-950 p-4.5 rounded-md border border-line-strong flex flex-col justify-between">
+        <div className="bg-page dark:bg-stone-950 p-4.5 rounded-md border border-line-strong flex flex-col justify-between">
           <span className="text-[10px] font-bold text-ink-muted uppercase tracking-wider">{tr.lossLabel}</span>
           <div className="my-2">
             <span className={`font-mono tabular-nums text-2xl sm:text-3xl font-medium ${loss <= LOSS_TARGET ? "text-accent" : "text-alert"}`}>
@@ -136,7 +136,7 @@ export default function BackboneRoutingWidget({ userId }: BackboneRoutingWidgetP
           <span className="text-[10px] text-ink-muted font-medium">{tr.lossTarget}</span>
         </div>
 
-        <div className="bg-[#fbfaf7] dark:bg-stone-950 p-4.5 rounded-md border border-line-strong flex flex-col justify-between">
+        <div className="bg-page dark:bg-stone-950 p-4.5 rounded-md border border-line-strong flex flex-col justify-between">
           <span className="text-[10px] font-bold text-ink-muted uppercase tracking-wider">{tr.latencyLabel}</span>
           <div className="my-2">
             <span className={`font-mono tabular-nums text-2xl sm:text-3xl font-medium ${latency <= LATENCY_TARGET ? "text-accent" : "text-alert"}`}>
@@ -146,7 +146,7 @@ export default function BackboneRoutingWidget({ userId }: BackboneRoutingWidgetP
           <span className="text-[10px] text-ink-muted font-medium">{tr.latencyTarget}</span>
         </div>
 
-        <div className="bg-[#fbfaf7] dark:bg-stone-950 p-4.5 rounded-md border border-line-strong flex flex-col justify-between">
+        <div className="bg-page dark:bg-stone-950 p-4.5 rounded-md border border-line-strong flex flex-col justify-between">
           <span className="text-[10px] font-bold text-ink-muted uppercase tracking-wider">{tr.throughputLabel}</span>
           <div className="my-2">
             <span className="font-mono tabular-nums text-2xl sm:text-3xl font-medium text-ink-max">{format(tr.throughputValue, { value: delivered })}</span>
@@ -155,7 +155,7 @@ export default function BackboneRoutingWidget({ userId }: BackboneRoutingWidgetP
         </div>
       </div>
 
-      <div className="bg-[#fbfaf7] dark:bg-stone-950 p-5 rounded-md border border-line-strong space-y-4">
+      <div className="bg-page dark:bg-stone-950 p-5 rounded-md border border-line-strong space-y-4">
         <div className="flex items-center justify-between">
           <span className="text-xs font-bold uppercase text-ink-max tracking-wider">{tr.controlLabel}</span>
           <span className="text-xs text-ink-muted font-mono tabular-nums">{format(tr.turnsCount, { turns })}</span>

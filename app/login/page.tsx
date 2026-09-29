@@ -4,8 +4,7 @@ import { MIN_PASSWORD_LENGTH } from "@/lib/auth/password-policy";
 import React, { Suspense, useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { motion } from "framer-motion";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { roundedLessonCount } from "@/lib/track-totals";
 import { translateAuthErrorCode } from "@/lib/auth-error-messages";
 import { stashReferralCodeFromUrl } from "@/lib/referrals";
@@ -17,7 +16,8 @@ import TrackPreviewPanel from "@/components/login/TrackPreviewPanel";
 import { TRACKS, type TrackId } from "@/lib/tracks";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
-import { Frame, Sys, btnPrimary, btnSecondary } from "@/components/ui/system";
+import { CropMarks, Frame, Stamp, Sys, btnPrimary, btnSecondary } from "@/components/ui/system";
+import { LoadBar, Scramble, TypeText } from "@/components/ui/effects";
 
 /* i18n-ignore-start: định danh hệ thống (đường dẫn THCN://) - cùng một chuỗi ở
    mọi ngôn ngữ, như tên tệp; không phải chữ để dịch. */
@@ -27,6 +27,8 @@ const SYS = {
   signup: "THCN://AUTH/SIGNUP",
   forgot: "THCN://AUTH/RESET",
   id: (n: number) => String(n).padStart(2, "0"),
+  os: "THCN_OS · AUTH",
+  ok: "[ OK ]",
 };
 /* i18n-ignore-end */
 
@@ -34,9 +36,10 @@ const SYS = {
 // đặt cứng `background: rgba(255,255,255,.88)` không có bản `.dark` (ô nhập
 // sáng trắng với chữ sáng ở chế độ tối) và `border-radius: 18px`.
 const INPUT_CLASS =
-  "w-full rounded-sm border border-stone-300 bg-white px-3.5 py-2.5 text-[13px] text-stone-900 transition-colors placeholder:text-stone-400 focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-600/20 dark:border-stone-700 dark:bg-stone-950 dark:text-stone-100 dark:placeholder:text-stone-500";
+  "w-full border-2 border-line-strong bg-surface px-3.5 py-2.5 text-[14px] text-ink-max transition-colors placeholder:text-ink-faint focus:border-brand-600 focus:outline-none dark:focus:border-brand-400";
+const LABEL_CLASS = "block font-mono text-[10.5px] font-medium uppercase tracking-[0.08em] text-ink-muted";
 const ERROR_CLASS =
-  "rounded-sm border border-danger-line bg-red-50 px-3 py-2 text-[13px] font-semibold text-danger dark:bg-red-950/50";
+  "border-2 border-danger-line bg-red-50 px-3 py-2 text-[13px] font-semibold text-danger dark:bg-red-950/50";
 
 const MAX_ATTEMPTS = 5;
 const COOLDOWN_MS = 60_000;
@@ -286,305 +289,267 @@ function LoginForm() {
   }
 
   const modeCode = mode === "login" ? SYS.login : mode === "signup" ? SYS.signup : SYS.forgot;
+  const word = mode === "login" ? t.login.v2.wordLogin : mode === "signup" ? t.login.v2.wordSignup : t.login.v2.wordForgot;
+  const status = loading
+    ? t.login.v2.statusBusy
+    : error
+      ? t.login.v2.statusError
+      : resetSent
+        ? t.login.v2.statusSent
+        : t.login.v2.statusIdle;
 
   return (
-    /* Cùng ngôn ngữ với components/home/HomePage.tsx (xem năm luật ở
-       components/ui/system.tsx): nền giấy #fbfaf7 phẳng, viền 1px làm cấu
-       trúc, không bóng, không gradient. Form là một Frame - cửa sổ ứng dụng
-       có thanh tiêu đề mono - vì nó là công cụ, không phải thẻ quảng cáo.
-       Con số "01"/"02" to nhạt và bóng số vàng phía sau đã gỡ: trang chủ đã
-       thay thủ pháp đó bằng mã định vị THCN://. */
-    <div className="relative min-h-screen lg:h-screen lg:max-h-screen lg:overflow-hidden bg-[#fbfaf7] dark:bg-stone-950 px-4 sm:px-6 lg:px-8 py-3 lg:py-4 flex flex-col justify-between">
-      <div className="mx-auto w-full max-w-7xl relative flex-1 flex flex-col justify-between my-auto">
-        <div className="shrink-0 mb-2">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-1.5 text-xs font-bold text-ink-muted hover:text-ink"
-          >
-            <ArrowLeft className="w-3.5 h-3.5" />
+    /* Cùng ngôn ngữ với trang chủ biên tập (components/home/v2/kit.tsx): giấy
+       ngà bẩn, nét mực 2px, không bo góc, không bóng; xanh brand là màu tín
+       hiệu. Cột trái là trang bìa của "cửa vào" - chữ khổng lồ giải mã theo
+       chế độ, terminal khởi động; cột phải là công cụ: form trong một Frame. */
+    <div className="relative min-h-screen bg-[#eeebe3] text-ink-max dark:bg-[#0c0d10]">
+      {/* Dòng đầu tài liệu. */}
+      <div className="border-b-2 border-line-strong">
+        <div className="mx-auto flex h-11 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+          <Link href="/" className="inline-flex items-center gap-2 text-[12px] font-black uppercase tracking-wide hover:text-accent-strong">
+            <ArrowLeft className="h-3.5 w-3.5" />
             {t.login.backHome}
           </Link>
+          <Sys className="hidden text-ink-muted sm:inline">{t.login.v2.doc}</Sys>
+          <Sys className="text-accent-strong">{modeCode}</Sys>
+        </div>
+      </div>
+
+      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-8 sm:px-6 lg:grid-cols-12 lg:gap-0 lg:px-8 lg:py-0">
+        {/* ── Trang bìa ── */}
+        <div className="min-w-0 lg:col-span-7 lg:border-r-2 lg:border-line-strong lg:py-12 lg:pr-10">
+          <div className="flex items-center gap-2.5">
+            <Logo size={24} />
+            <span className="text-[13px] font-black uppercase tracking-[0.04em]">{t.login.brand}</span>
+            <Stamp className="thcn-stamp ml-auto hidden sm:inline-block">{t.login.freeForever}</Stamp>
+          </div>
+
+          <p className="mt-6 whitespace-nowrap text-[17vw] font-black uppercase leading-[0.95] tracking-[-0.05em] text-accent sm:text-[12vw] lg:text-[6.8rem] xl:text-[8rem]">
+            <Scramble key={mode} text={word} duration={650} />
+          </p>
+
+          <h1 className="mt-4 max-w-xl text-[1.35rem] font-black leading-[1.2] tracking-[-0.02em] sm:text-[1.6rem]">
+            {t.login.heroTitle}
+          </h1>
+          <p className="mt-3 max-w-lg text-[14px] leading-6 text-ink-soft">{t.login.heroBody}</p>
+
+          {/* Terminal khởi động - cùng mô-típ với hero trang chủ. */}
+          <div className="mt-7 hidden max-w-xl border-2 border-line-strong bg-[#0d0e11] font-mono text-[11.5px] text-[#eeebe3] sm:block">
+            <div className="flex items-center justify-between border-b border-white/20 px-3 py-1.5">
+              <span className="text-brand-300">{SYS.os}</span>
+              <span className="thcn-blink h-2 w-2 bg-brand-400" aria-hidden />
+            </div>
+            <ol className="px-3 py-2 leading-[1.7]">
+              {t.login.v2.boot.map((line, i) => (
+                <li key={line} className="flex gap-2">
+                  <span className="text-brand-400">{SYS.ok}</span>
+                  <TypeText
+                    text={format(line, { count: lessonCountFloor })}
+                    speed={16}
+                    delay={i * 420}
+                    cursor={i === t.login.v2.boot.length - 1}
+                    className="font-sans"
+                  />
+                </li>
+              ))}
+            </ol>
+          </div>
+
+          <dl className="mt-7 grid max-w-xl border-2 border-line-strong sm:grid-cols-3">
+            {[
+              { t: t.login.perk1Title, b: t.login.perk1Body },
+              { t: t.login.perk2Title, b: t.login.perk2Body },
+              { t: t.login.perk3Title, b: t.login.perk3Body },
+            ].map((perk, i) => (
+              <div key={perk.t} className={`p-3 ${i > 0 ? "border-t border-line-strong sm:border-l sm:border-t-0" : ""}`}>
+                <Sys className="text-accent-strong">{SYS.id(i + 1)}</Sys>
+                <dt className="mt-1 text-[13px] font-black">{perk.t}</dt>
+                <dd className="mt-0.5 text-[12px] leading-5 text-ink-soft">{perk.b}</dd>
+              </div>
+            ))}
+          </dl>
+
+          <div className="mt-8 hidden max-w-xl lg:block">
+            <div className="flex items-baseline justify-between gap-4 border-b-2 border-line-strong pb-1.5">
+              <Sys className="text-accent-strong">{t.login.trackPickTitle}</Sys>
+              <span className="text-[11px] text-ink-muted">{t.login.trackPickBody}</span>
+            </div>
+            <div className="mt-3">
+              <TrackPreviewPanel previewTrack={previewTrack} setPreviewTrack={setPreviewTrack} compact />
+            </div>
+          </div>
         </div>
 
-        <div className="grid gap-8 lg:gap-14 lg:grid-cols-[minmax(0,1.1fr)_minmax(340px,400px)] lg:items-center my-auto flex-1">
-          <motion.div
-            className="relative hidden lg:block"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45, ease: "easeOut" }}
-          >
-            <div className="relative max-w-xl">
-              <div className="flex items-center gap-3">
-                <Sys className="text-ink-muted">{SYS.root}</Sys>
-                <span aria-hidden className="h-px flex-1 bg-surface-deep" />
+        {/* ── Form ── */}
+        <div className="min-w-0 lg:col-span-5 lg:py-12 lg:pl-10">
+          <div className="relative lg:sticky lg:top-8">
+            <CropMarks className="border-brand-600" />
+            <Frame title={modeCode} meta={status} bodyClassName="p-5 sm:p-6 xl:p-7 space-y-4">
+              <div>
+                <h2 className="text-[1.9rem] font-black uppercase leading-none tracking-[-0.03em]">
+                  <Scramble key={mode} text={mode === "login" ? t.login.modeLogin : mode === "signup" ? t.login.modeSignup : t.login.modeForgot} duration={400} />
+                </h2>
+                <p className="mt-2 text-[13px] leading-6 text-ink-soft">
+                  {mode === "login" ? t.login.subLogin : mode === "signup" ? t.login.subSignup : t.login.subForgot}
+                </p>
               </div>
-              <p className="eyebrow mt-3 text-ink-soft">{t.login.freeForever}</p>
 
-              <h1 className="mt-2.5 text-[1.9rem] xl:text-[2.25rem] font-black tracking-tight text-ink-max leading-[1.08] text-balance">
-                {t.login.heroTitle}
-              </h1>
-              <p className="mt-2.5 max-w-lg text-[13px] leading-6 text-ink-soft">
-                {t.login.heroBody}
-              </p>
+              {mode !== "forgot" && (
+                <>
+                  <button
+                    onClick={handleGoogleLogin}
+                    disabled={loading}
+                    className={`${btnSecondary} w-full bg-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600/40`}
+                  >
+                    <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                      <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                      <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                      <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                    </svg>
+                    {t.login.google}
+                  </button>
 
-              {/* Ba lợi ích xếp NGANG chứ không dọc, và đó không phải chuyện
-                  thẩm mỹ: khối bọc ngoài là `lg:overflow-hidden`, nên một cột
-                  trái cao quá viewport bị CẮT chứ không cuộn được. Bản danh
-                  sách dọc đo được 770px trong khung 720px và ăn mất đáy khối
-                  xem trước. Mã 01-03 thay cho vạch xanh: xanh để dành cho
-                  chức năng. */}
-              <dl className="mt-5 grid grid-cols-3 divide-x divide-stone-200 border-y border-stone-300 py-2.5 dark:divide-stone-800 dark:border-stone-700">
+                  <div className="relative flex items-center">
+                    <div className="flex-1 border-t border-line-strong" />
+                    <Sys className="px-3 text-ink-muted">{t.login.orEmail}</Sys>
+                    <div className="flex-1 border-t border-line-strong" />
+                  </div>
+                </>
+              )}
+
+              {mode === "forgot" ? (
+                resetSent ? (
+                  <div role="status" className="border-2 border-brand-600 bg-brand-50 px-3.5 py-3 text-center text-[13px] font-semibold text-brand-800 dark:border-brand-400 dark:bg-brand-950/40 dark:text-brand-200">
+                    {t.login.resetSentPart1}
+                    <strong>{email}</strong>
+                    {t.login.resetSentPart2}
+                  </div>
+                ) : (
+                  <form onSubmit={handleForgotPassword} className="space-y-3">
+                    <div className="space-y-1">
+                      <label className={LABEL_CLASS}>{t.login.emailLabel}</label>
+                      <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="email@vi-du.com" className={INPUT_CLASS} />
+                    </div>
+                    {error && <div role="alert" className={ERROR_CLASS}>{error}</div>}
+                    <button type="submit" disabled={loading} className={`${btnPrimary} mt-1 w-full py-3.5`}>
+                      {loading ? t.login.sending : t.login.sendReset}
+                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    </button>
+                  </form>
+                )
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-3">
+                  {mode === "signup" && (
+                    <div className="space-y-1">
+                      <label className={LABEL_CLASS}>{t.login.nameLabel}</label>
+                      <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder={t.login.namePlaceholder} className={INPUT_CLASS} />
+                    </div>
+                  )}
+
+                  <div className="space-y-1">
+                    <label className={LABEL_CLASS}>{t.login.emailLabel}</label>
+                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="email@vi-du.com" className={INPUT_CLASS} />
+                  </div>
+
+                  <div className="space-y-1">
+                    <div className="flex items-center justify-between">
+                      <label className={LABEL_CLASS}>{t.login.passwordLabel}</label>
+                      {mode === "login" && (
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setMode("forgot");
+                            setError("");
+                            setResetSent(false);
+                          }}
+                          className="text-[11px] font-bold text-accent-strong underline-offset-4 hover:underline"
+                        >
+                          {t.login.forgotLink}
+                        </button>
+                      )}
+                    </div>
+                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="••••••" className={INPUT_CLASS} />
+                  </div>
+
+                  {error && (
+                    <div role="alert" className={ERROR_CLASS}>
+                      <p>{error}</p>
+                    </div>
+                  )}
+
+                  {cooldownUntil && (
+                    <div className="border-2 border-warn-line bg-amber-50 px-3 py-2 text-[13px] font-semibold text-warn-ink dark:bg-amber-950/50">
+                      {format(t.login.tooManyAttempts, { seconds: cooldownLeft })}
+                    </div>
+                  )}
+
+                  <button type="submit" disabled={loading || !!cooldownUntil} className={`thcn-glitch ${btnPrimary} mt-1 w-full py-3.5`}>
+                    {loading ? t.login.processing : mode === "login" ? t.login.modeLogin : t.login.signUp}
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </button>
+                  {loading && <LoadBar label={t.login.v2.statusBusy} done={SYS.ok} cells={14} />}
+                </form>
+              )}
+
+              {/* Ba con số: chỉ số nào ở đây cũng phải đếm được từ dữ liệu thật. */}
+              <dl className="grid grid-cols-3 border-2 border-line-strong">
                 {[
-                  { t: t.login.perk1Title, b: t.login.perk1Body },
-                  { t: t.login.perk2Title, b: t.login.perk2Body },
-                  { t: t.login.perk3Title, b: t.login.perk3Body },
-                ].map((perk, i) => (
-                  <div key={perk.t} className={i === 0 ? "pr-4" : i === 2 ? "pl-4" : "px-4"}>
-                    <Sys className="text-ink-faint">{SYS.id(i + 1)}</Sys>
-                    <dt className="mt-1 text-[13px] font-black text-ink-max">{perk.t}</dt>
-                    <dd className="mt-0.5 text-[12px] leading-5 text-ink-soft">{perk.b}</dd>
+                  { k: t.login.statLessons, v: format(t.login.statLessonsValue, { count: lessonCountFloor }) },
+                  { k: t.login.statTracks, v: format(t.login.statTracksValue, { count: Object.keys(TRACKS).length }) },
+                  { k: t.login.statPrice, v: t.login.statPriceValue },
+                ].map((stat, i) => (
+                  <div key={stat.k} className={`flex flex-col-reverse px-3 py-2 ${i > 0 ? "border-l border-line-strong" : ""}`}>
+                    <dt className="mt-0.5 font-mono text-[10px] font-medium uppercase tracking-[0.08em] text-ink-muted">{stat.k}</dt>
+                    <dd className="text-[13px] font-black tabular-nums">{stat.v}</dd>
                   </div>
                 ))}
               </dl>
 
-              <div className="mt-5">
-                <div className="flex items-baseline justify-between gap-4 border-b border-line-strong pb-1.5">
-                  <span className="eyebrow text-ink-soft">{t.login.trackPickTitle}</span>
-                  <span className="text-[11px] text-ink-muted">{t.login.trackPickBody}</span>
-                </div>
-                <div className="mt-2.5">
-                  <TrackPreviewPanel previewTrack={previewTrack} setPreviewTrack={setPreviewTrack} compact />
-                </div>
-              </div>
-            </div>
-          </motion.div>
-
-          <div className="w-full max-w-md lg:max-w-none mx-auto">
-            <div className="flex items-center gap-2.5 mb-3 lg:hidden">
-              <Logo size={24} />
-              <span className="text-[13px] font-black uppercase tracking-[0.04em] text-ink-heading">
-                {t.login.brand}
-              </span>
-            </div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.45, ease: "easeOut" }}
-            >
-              <Frame title={modeCode} bodyClassName="p-5 sm:p-6 xl:p-7 space-y-3.5">
-                <div className="lg:hidden border-l-2 border-stone-950 pl-3 dark:border-stone-200">
-                  <p className="text-[13px] font-bold text-ink">
-                    {format(t.login.lessonCountLine, { count: lessonCountFloor })}
-                  </p>
-                </div>
-
-                <div>
-                  <p className="eyebrow text-ink-soft">{t.login.brand}</p>
-                  <h1 className="mt-1.5 mb-1.5 text-[1.6rem] font-black leading-[1.15] tracking-tight text-ink-max">
-                    {mode === "login" ? t.login.modeLogin : mode === "signup" ? t.login.modeSignup : t.login.modeForgot}
-                  </h1>
-                  <p className="text-[13px] leading-6 text-ink-soft">
-                    {mode === "login"
-                      ? t.login.subLogin
-                      : mode === "signup"
-                        ? t.login.subSignup
-                        : t.login.subForgot}
-                  </p>
-                </div>
-
-                {mode !== "forgot" && (
+              <div className="text-center text-xs text-ink-soft">
+                {mode === "login" ? (
                   <>
+                    {t.login.noAccount}{" "}
                     <button
-                      onClick={handleGoogleLogin}
-                      disabled={loading}
-                      className={`${btnSecondary} w-full bg-white dark:bg-stone-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600/30`}
+                      onClick={() => {
+                        setMode("signup");
+                        setError("");
+                      }}
+                      className="cursor-pointer font-bold text-accent-strong underline-offset-4 hover:underline"
                     >
-                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-                    <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-                    <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
-                    <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-                  </svg>
-                      {t.login.google}
+                      {t.login.signUp}
                     </button>
-
-                    <div className="relative flex items-center">
-                      <div className="flex-1 border-t border-line" />
-                      <span className="eyebrow px-3 text-ink-muted">{t.login.orEmail}</span>
-                      <div className="flex-1 border-t border-line" />
-                    </div>
+                  </>
+                ) : (
+                  <>
+                    {t.login.haveAccount}{" "}
+                    <button
+                      onClick={() => {
+                        setMode("login");
+                        setError("");
+                        setResetSent(false);
+                      }}
+                      className="cursor-pointer font-bold text-accent-strong underline-offset-4 hover:underline"
+                    >
+                      {t.login.modeLogin}
+                    </button>
                   </>
                 )}
+              </div>
 
-                {mode === "forgot" ? (
-                  resetSent ? (
-                    <div role="status" className="rounded-sm border border-brand-600 bg-brand-50 px-3.5 py-3 text-center text-[13px] font-semibold text-brand-800 dark:border-brand-400 dark:bg-brand-950/40 dark:text-brand-200">
-                      {t.login.resetSentPart1}
-                      <strong>{email}</strong>
-                      {t.login.resetSentPart2}
-                    </div>
-                  ) : (
-                    <form onSubmit={handleForgotPassword} className="space-y-3">
-                      <div className="space-y-1">
-                        {/* KHÔNG dùng .input-premium: lớp đó trong globals.css đặt
-                            cứng nền trắng không có bản `.dark` và bo 18px. Xem
-                            INPUT_CLASS ở đầu file. */}
-                        <label className="eyebrow block text-ink-muted">{t.login.emailLabel}</label>
-                        <input
-                          type="email"
-                          value={email}
-                          onChange={(e) => setEmail(e.target.value)}
-                          placeholder="email@vi-du.com"
-                          className={INPUT_CLASS}
-                        />
-                      </div>
-
-                      {error && <div role="alert" className={ERROR_CLASS}>{error}</div>}
-
-                      <button type="submit" disabled={loading} className={`${btnPrimary} mt-1 w-full`}>
-                        {loading ? t.login.sending : t.login.sendReset}
-                      </button>
-                    </form>
-                  )
-                ) : (
-                  <form onSubmit={handleSubmit} className="space-y-2.5">
-                    {mode === "signup" && (
-                      <div className="space-y-1">
-                        <label className="eyebrow block text-ink-muted">{t.login.nameLabel}</label>
-                        <input
-                          type="text"
-                          value={name}
-                          onChange={(e) => setName(e.target.value)}
-                          placeholder={t.login.namePlaceholder}
-                          className={INPUT_CLASS}
-                        />
-                      </div>
-                    )}
-
-                    <div className="space-y-1">
-                      <label className="eyebrow block text-ink-muted">{t.login.emailLabel}</label>
-                      <input
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        placeholder="email@vi-du.com"
-                        className={INPUT_CLASS}
-                      />
-                    </div>
-
-                    <div className="space-y-1">
-                      <div className="flex items-center justify-between">
-                        <label className="eyebrow block text-ink-muted">{t.login.passwordLabel}</label>
-                        {mode === "login" && (
-                          <button
-                            type="button"
-                            onClick={() => {
-                              setMode("forgot");
-                              setError("");
-                              setResetSent(false);
-                            }}
-                            className="text-[11px] font-bold text-accent-strong underline-offset-4 hover:underline"
-                          >
-                            {t.login.forgotLink}
-                          </button>
-                        )}
-                      </div>
-                      <input
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        placeholder="••••••"
-                        className={INPUT_CLASS}
-                      />
-                    </div>
-
-                    {error && (
-                      <div role="alert" className={ERROR_CLASS}>
-                        <p>{error}</p>
-                      </div>
-                    )}
-
-                    {cooldownUntil && (
-                      <div className="rounded-sm border border-warn-line bg-amber-50 px-3 py-2 text-[13px] font-semibold text-warn-ink dark:bg-amber-950/50">
-                        {format(t.login.tooManyAttempts, { seconds: cooldownLeft })}
-                      </div>
-                    )}
-
-                    <button
-                      type="submit"
-                      disabled={loading || !!cooldownUntil}
-                      className={`${btnPrimary} mt-1 w-full`}
-                    >
-                      {loading ? t.login.processing : mode === "login" ? t.login.modeLogin : t.login.signUp}
-                    </button>
-                  </form>
-                )}
-
-                {/* Ba con số: chỉ số nào ở đây cũng phải đếm được từ dữ liệu
-                    thật. Ô "4.9/5 học viên" và "Hỏi đáp 24/7" từng đứng đây đã
-                    gỡ: không có hệ thống đánh giá hay đội hỗ trợ trực nào đứng
-                    sau hai con số ấy. Giá trị đi sans vì chúng là câu đã dịch
-                    ("Miễn phí"), không phải số máy. */}
-                <dl className="grid grid-cols-3 divide-x divide-stone-200 border-t border-stone-200 pt-3 dark:divide-stone-800 dark:border-stone-800">
-                  {[
-                    { k: t.login.statLessons, v: format(t.login.statLessonsValue, { count: lessonCountFloor }) },
-                    { k: t.login.statTracks, v: format(t.login.statTracksValue, { count: Object.keys(TRACKS).length }) },
-                    { k: t.login.statPrice, v: t.login.statPriceValue },
-                  ].map((stat, i) => (
-                    <div key={stat.k} className={`flex flex-col-reverse ${i === 0 ? "pr-3" : i === 2 ? "pl-3" : "px-3"}`}>
-                      <dt className="mt-0.5 text-[10px] font-bold uppercase tracking-[0.12em] text-ink-muted">
-                        {stat.k}
-                      </dt>
-                      <dd className="text-[13px] font-black tabular-nums text-ink-max">{stat.v}</dd>
-                    </div>
-                  ))}
-                </dl>
-
-                <div className="text-center text-xs text-ink-soft">
-                  {mode === "login" ? (
-                    <>
-                      {t.login.noAccount}{" "}
-                      <button
-                        onClick={() => {
-                          setMode("signup");
-                          setError("");
-                        }}
-                        className="font-bold text-accent-strong underline-offset-4 hover:underline cursor-pointer"
-                      >
-                        {t.login.signUp}
-                      </button>
-                    </>
-                  ) : (
-                    <>
-                      {t.login.haveAccount}{" "}
-                      <button
-                        onClick={() => {
-                          setMode("login");
-                          setError("");
-                          setResetSent(false);
-                        }}
-                        className="font-bold text-accent-strong underline-offset-4 hover:underline cursor-pointer"
-                      >
-                        {t.login.modeLogin}
-                      </button>
-                    </>
-                  )}
-                </div>
-
-                <p className="text-center text-[11px] text-ink-faint pt-1">
-                  {t.login.termsPart1}{" "}
-                  <Link href="/dieu-khoan" className="underline underline-offset-2 hover:text-ink-soft">
-                    {t.login.terms}
-                  </Link>{" "}
-                  {t.login.termsAnd}{" "}
-                  <Link href="/chinh-sach-bao-mat" className="underline underline-offset-2 hover:text-ink-soft">
-                    {t.login.privacy}
-                  </Link>
-                  .
-                </p>
-              </Frame>
-            </motion.div>
+              <p className="pt-1 text-center text-[11px] text-ink-faint">
+                {t.login.termsPart1}{" "}
+                <Link href="/dieu-khoan" className="underline underline-offset-2 hover:text-ink-soft">
+                  {t.login.terms}
+                </Link>{" "}
+                {t.login.termsAnd}{" "}
+                <Link href="/chinh-sach-bao-mat" className="underline underline-offset-2 hover:text-ink-soft">
+                  {t.login.privacy}
+                </Link>
+                .
+              </p>
+            </Frame>
           </div>
         </div>
       </div>

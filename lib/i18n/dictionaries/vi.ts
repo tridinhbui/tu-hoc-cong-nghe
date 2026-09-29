@@ -845,6 +845,22 @@ export const vi = {
   // app/login/page.tsx - public, so this is one of the few screens an English
   // visitor can reach without an account.
   login: {
+    v2: {
+      doc: "Cửa vào hệ thống",
+      wordLogin: "VÀO HỌC.",
+      wordSignup: "BẮT ĐẦU.",
+      wordForgot: "KHÔI PHỤC.",
+      boot: [
+        "kiểm tra phiên đăng nhập",
+        "chưa có phiên - chờ xác thực",
+        "nạp {count} bài học",
+        "cửa đã mở",
+      ],
+      statusIdle: "chờ nhập",
+      statusBusy: "đang xác thực",
+      statusError: "có lỗi",
+      statusSent: "đã gửi",
+    },
     backHome: "Về trang chủ",
     freeForever: "Miễn phí mãi mãi",
     heroTitle: "Học công nghệ theo cách gọn, rõ và đủ động lực để theo lâu dài",

@@ -33,7 +33,7 @@ export default function InteractiveMultiples() {
   const high = (peakLoad * (factor + 2) - headroom) / (regions || 1);
 
   return (
-    <div className="space-y-5 rounded-md border border-stone-300 bg-white p-6 dark:border-stone-700 dark:bg-stone-900">
+    <div className="space-y-5 rounded-md border border-line-strong bg-white p-6 dark:border-stone-700 dark:bg-stone-900">
       <div>
         <h3 className="mb-1 text-lg font-black tracking-tight text-ink-max">
           {t.multiplesCalc.title}
@@ -75,17 +75,17 @@ export default function InteractiveMultiples() {
       </div>
 
       <div className="grid gap-3 sm:grid-cols-3">
-        <div className="rounded-sm border border-stone-200 bg-[#fbfaf7] p-3 dark:border-stone-800 dark:bg-stone-950">
+        <div className="rounded-sm border border-stone-200 bg-page p-3 dark:border-stone-800 dark:bg-stone-950">
           <p className="text-[11px] font-bold text-ink-muted">{t.multiplesCalc.totalCapacityLabel}</p>
           <p className="text-lg font-black tabular-nums text-ink">{format(t.multiplesCalc.totalCapacityAmount, { amount: totalCapacity.toLocaleString(intlLocale(locale)) })}</p>
         </div>
-        <div className="rounded-sm border border-stone-200 bg-[#fbfaf7] p-3 dark:border-stone-800 dark:bg-stone-950">
+        <div className="rounded-sm border border-stone-200 bg-page p-3 dark:border-stone-800 dark:bg-stone-950">
           <p className="text-[11px] font-bold text-ink-muted">{t.multiplesCalc.usableLabel}</p>
           <p className={`text-lg font-black tabular-nums ${usable < 0 ? "text-alert" : "text-ink"}`}>
             {format(t.multiplesCalc.usableAmount, { amount: usable.toLocaleString(intlLocale(locale)) })}
           </p>
         </div>
-        <div className="rounded-sm border border-brand-600 bg-[#fbfaf7] p-3 dark:border-brand-400 dark:bg-stone-950">
+        <div className="rounded-sm border border-brand-600 bg-page p-3 dark:border-brand-400 dark:bg-stone-950">
           <p className="text-[11px] font-bold text-accent-strong">{t.multiplesCalc.perRegionLabel}</p>
           <p className="text-lg font-black tabular-nums text-accent-strong">
             {format(t.multiplesCalc.perRegionAmount, { amount: perRegion.toFixed(1) })}

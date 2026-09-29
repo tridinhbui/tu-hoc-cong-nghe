@@ -147,7 +147,7 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
   const meInTop = !!userId && shown.some((e) => e.user_id === userId);
 
   return (
-    <section className="rounded-md border border-stone-300 bg-white p-4 sm:p-5 dark:border-stone-700 dark:bg-stone-900">
+    <section className="rounded-md border border-line-strong bg-white p-4 sm:p-5 dark:border-stone-700 dark:bg-stone-900">
       <SectionHead
         code={APP_SYS.leaderboard}
         eyebrow={t.leaderboard[activeTab.labelKey]}

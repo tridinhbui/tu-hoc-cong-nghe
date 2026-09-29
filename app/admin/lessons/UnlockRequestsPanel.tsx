@@ -30,7 +30,7 @@ export default function UnlockRequestsPanel({ requests }: { requests: UnlockRequ
 
   return (
     <div className="rounded-md border border-line-strong border-l-2 border-l-amber-500 bg-white dark:bg-stone-900 dark:border-l-amber-400 overflow-hidden">
-      <div className="px-4 py-3 border-b border-line-strong bg-[#f3f1ec] dark:bg-stone-950 flex items-center gap-2">
+      <div className="px-4 py-3 border-b border-line-strong bg-surface-raised dark:bg-stone-950 flex items-center gap-2">
         <Inbox className="w-4 h-4 text-warn-strong" />
         <h2 className="font-bold text-sm text-ink-max">
           {format(tu.pendingTitle, { count: requests.length })}

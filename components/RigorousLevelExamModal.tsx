@@ -165,12 +165,12 @@ export default function RigorousLevelExamModal({
         initial={{ opacity: 0, scale: 0.95, y: 15 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.95, y: 15 }}
-        className="relative w-full max-w-3xl overflow-hidden rounded-md border border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900 flex flex-col max-h-[90vh]"
+        className="relative w-full max-w-3xl overflow-hidden rounded-md border border-line-strong bg-white dark:border-stone-700 dark:bg-stone-900 flex flex-col max-h-[90vh]"
       >
         {/* Top Header */}
-        <div className="border-b border-stone-300 bg-[#f3f1ec] px-6 py-4 dark:border-stone-700 dark:bg-stone-950 flex items-center justify-between shrink-0">
+        <div className="border-b border-stone-300 bg-surface-raised px-6 py-4 dark:border-stone-700 dark:bg-stone-950 flex items-center justify-between shrink-0">
           <div className="flex items-center gap-3">
-            <span className="shrink-0 rounded-sm border border-stone-300 bg-white text-ink-body p-2 dark:border-stone-700 dark:bg-stone-900"><Glyph emoji={levelMeta.emoji || fallbackConfig.badgeEmoji || "🏆"} className="w-7 h-7" /></span>
+            <span className="shrink-0 rounded-sm border border-line-strong bg-white text-ink-body p-2 dark:border-stone-700 dark:bg-stone-900"><Glyph emoji={levelMeta.emoji || fallbackConfig.badgeEmoji || "🏆"} className="w-7 h-7" /></span>
             <div>
               <div className="flex items-center gap-2">
                 <ShieldCheck className="w-3.5 h-3.5 text-ink-muted" aria-hidden />
@@ -386,7 +386,7 @@ export default function RigorousLevelExamModal({
         </div>
 
         {/* Footer Action Buttons */}
-        <div className="border-t border-stone-300 px-6 py-4 bg-[#f3f1ec] dark:border-stone-700 dark:bg-stone-950 flex items-center justify-between shrink-0">
+        <div className="border-t border-stone-300 px-6 py-4 bg-surface-raised dark:border-stone-700 dark:bg-stone-950 flex items-center justify-between shrink-0">
           {!submitted ? (
             <>
               <p className="text-xs text-ink-muted font-semibold">
