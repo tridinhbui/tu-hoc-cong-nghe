@@ -1,6 +1,7 @@
 "use client";
 
-import LearningGoalCard from "@/components/learning-flows/LearningGoalCard";
+import LearningGoalCard, { type FlowEffort } from "@/components/learning-flows/LearningGoalCard";
+import CoCoSays from "@/components/CoCoSays";
 import ExercisePracticeCard from "@/components/ExercisePracticeCard";
 import { useEffect, useState } from "react";
 import Link from "next/link";
@@ -50,6 +51,7 @@ export default function LearningPathClient({
   topicEntry,
   savedTrack,
   savedPace,
+  flowEffort,
 }: {
   counts: Record<Track, number>;
   done: Record<Track, number>;
@@ -57,6 +59,8 @@ export default function LearningPathClient({
   topicEntry: Record<Track, Partial<Record<StageTopicId, { slug: string; title: string }>>>;
   savedTrack: Track | null;
   savedPace: Pace | null;
+  /** Số bài và tổng phút của từng lối học theo nhu cầu, cho thẻ chọn mục tiêu. */
+  flowEffort?: FlowEffort;
 }) {
   const { t, locale } = useI18n();
   const p = t.learningPath;
@@ -171,13 +175,15 @@ export default function LearningPathClient({
           <Sys className="text-ink-muted">{ROUTE_CODE}</Sys>
         </div>
         <h1 className="mt-3 text-2xl font-black leading-[1.15] tracking-tight text-ink-max sm:text-[2rem]">{p.title}</h1>
-        <p className="mt-1.5 max-w-[68ch] text-sm leading-7 text-ink-soft">{p.subtitle}</p>
+        {/* Cơ Cơ hỏi câu mở đầu thay cho dòng phụ đề cứng: cùng một câu hỏi
+            "bạn muốn làm được gì", nhưng nói với người đọc chứ không dán lên tường. */}
+        <CoCoSays lines={t.coco.loTrinh} className="mt-4" />
       </header>
 
       {/* Câu hỏi nhu cầu đứng TRƯỚC mục lục và mọi khối về track/nhịp: người
           non-tech biết mình muốn LÀM gì trước khi biết mình thuộc track nào.
           Xem lib/learning-flows.ts. */}
-      <LearningGoalCard id="goal" />
+      <LearningGoalCard id="goal" effort={flowEffort} />
 
       {/* Cạnh các con số đọc hiểu (bài đã xong, quiz): bài tập tự viết mã. */}
       <ExercisePracticeCard />

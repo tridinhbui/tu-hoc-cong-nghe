@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState, useCallback } from "react";
 import Image from "next/image";
 import { isValidAvatar } from "@/lib/avatar-utils";
-import TaiTaiAvatar from "@/components/TaiTaiAvatar";
+import CoCoAvatar from "@/components/CoCoAvatar";
 import { toast } from "sonner";
 import { Users, Send, X, ImagePlus, Paperclip, FileText, Download, Trash2, CornerUpLeft, MoreVertical, Copy, Pin, PinOff, CheckCheck, Pencil, Clock } from "lucide-react";
 import { createClient } from "@/lib/cloudflare";
@@ -83,7 +83,7 @@ interface FloatingStudyGroupChatProps {
 // Floating widget for the caller's active weekly study-group chat, mounted
 // on the dashboard alongside FloatingChatbot (the feedback widget) rather
 // than folded into the full /nhom-hoc page - so a message from a groupmate
-// (or "Tài Tài"'s daily progress recap, see
+// (or "Cơ Cơ"'s daily progress recap, see
 // app/api/cron/daily-study-group-update/route.ts) is visible without
 // leaving the dashboard. Renders nothing if the caller has no active room.
 export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpenChange, hideTrigger, onUnreadChange }: FloatingStudyGroupChatProps = {}) {
@@ -552,7 +552,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
           {pinnedMessage && (
             <div className="shrink-0 px-3.5 py-2.5 bg-surface-raised dark:bg-stone-950 border-b border-line">
               <div className="flex items-center gap-1.5 mb-1">
-                <TaiTaiAvatar size={16} />
+                <CoCoAvatar size={16} />
                 <span className="text-[10.5px] font-bold uppercase tracking-[0.06em] text-ink-muted">{t.groupChat.pinnedByAdmin}</span>
               </div>
               <p className="text-[11px] text-ink-heading leading-relaxed font-medium">{pinnedMessage.content}</p>
@@ -596,7 +596,7 @@ export default function FloatingStudyGroupChat({ isOpen: controlledIsOpen, onOpe
                     <div key={msg.id} className="flex justify-start">
                       <div className="max-w-[85%] rounded-md px-3 py-2.5 border border-line bg-surface-raised dark:bg-stone-950">
                         <div className="flex items-center gap-1.5 mb-1.5">
-                          <TaiTaiAvatar size={16} />
+                          <CoCoAvatar size={16} />
                           <span className="text-[10.5px] font-bold uppercase tracking-[0.06em] text-ink-muted">{t.groupChat.byAdmin}</span>
                         </div>
                         <p className="text-[12px] text-ink-heading leading-relaxed whitespace-pre-wrap">{renderBotMessage(msg.content, t.groupChat, format)}</p>

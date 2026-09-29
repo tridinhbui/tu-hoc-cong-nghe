@@ -1,17 +1,35 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useSyncExternalStore } from "react";
 import { toast } from "sonner";
-import { Newspaper, Calculator, BookOpen, Scale, BarChart3, HelpCircle, CheckCircle2, XCircle, Award, Flame, ChevronDown, Maximize2, X, ArrowRight } from "lucide-react";
+import { Newspaper, Calculator, BookOpen, Scale, BarChart3, CheckCircle2, XCircle, Award, Flame, ChevronDown, Maximize2, X, ArrowRight, Send, Check } from "lucide-react";
+import CoCoFeedback from "@/components/CoCoFeedback";
+import { QUEST_XP_REWARDS } from "@/lib/quest-rewards";
 import { claimQuestReward } from "@/lib/cloudflare-quests";
 import { shuffleOptionOrder } from "@/lib/shuffle-options";
 import { useI18n } from "@/lib/i18n/context";
-import { format } from "@/lib/i18n";
-import { StatusDot, btnPrimary, panel } from "@/components/ui/system";
+import { format, intlLocale } from "@/lib/i18n";
+import { StatusDot, Sys, btnPrimary, panel } from "@/components/ui/system";
 
 interface DailyNewsQuizWidgetProps {
   userId: string;
   compact?: boolean;
+  /** `card` (mặc định): thẻ gập được ở bảng điều khiển. `signal`: cột DAILY
+   *  SIGNAL của /kiem-tra - tiêu đề ngày, trạng thái hoàn thành, phản hồi của
+   *  Cơ Cơ kèm lập luận, không tự gập. */
+  variant?: "card" | "signal";
+}
+
+const subscribeNoop = () => () => {};
+
+/** dd.mm.yy theo ngôn ngữ đang chọn. Lấy từng phần qua Intl rồi nối bằng dấu
+ *  chấm, để thứ tự ngày-tháng đi theo `intlLocale` chứ không cứng trong mã. */
+function signalDate(locale: Parameters<typeof intlLocale>[0]): string {
+  const parts = new Intl.DateTimeFormat(intlLocale(locale), { day: "2-digit", month: "2-digit", year: "2-digit" }).formatToParts(new Date());
+  return parts
+    .filter((p) => p.type === "day" || p.type === "month" || p.type === "year")
+    .map((p) => p.value)
+    .join(".");
 }
 
 /** Khối này khởi đầu chỉ có tin tức, nên tên component và các khoá từ điển
@@ -69,8 +87,11 @@ const KIND_STYLES: Record<QuizKind, { Icon: typeof Newspaper; tint: string; badg
   },
 };
 
-export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNewsQuizWidgetProps) {
-  const { t } = useI18n();
+export default function DailyNewsQuizWidget({ userId, compact = false, variant = "card" }: DailyNewsQuizWidgetProps) {
+  const { t, locale } = useI18n();
+  const isSignal = variant === "signal";
+  // Ngày chỉ tính sau khi gắn: giờ phía server có thể khác trình duyệt.
+  const mounted = useSyncExternalStore(subscribeNoop, () => true, () => false);
   // NEWS_QUIZZES below is a hand-authored, fixed set of scenarios (not a live
   // news feed) sourced from the dictionary so it renders in the reader's
   // language - see t.newsQuiz.quizzes in
@@ -334,12 +355,58 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
       ? t.newsQuiz.kindData
       : t.newsQuiz.badgeToday;
 
+  const dailyXp = QUEST_XP_REWARDS.daily_news_quiz;
+  const letterOf = (i: number) => String.fromCharCode(65 + i);
+
+  /** Phản hồi của biến thể signal: Cơ Cơ nói một câu ngắn (kèm XP của câu
+   *  này), rồi LẬP LUẬN - đáp án đúng viết ra nguyên văn, sau đó "vì sao".
+   *  Bản thẻ cũ chỉ nói "đáp án đúng là A" và để người học tự dò lại chữ A là
+   *  gì; ở đây câu đúng đứng ngay trên phần giải thích nó. */
+  const renderSignalFeedback = (big: boolean) => {
+    const correctText = activeQuiz.options[activeQuiz.correctIndex];
+    const picked = activeSelectedOpt ?? -1;
+    return (
+      <div className="space-y-3 border-t border-line pt-3 animate-[fadeIn_0.3s_ease-out]">
+        <CoCoFeedback
+          lines={activeIsCorrect ? t.revampQuiz.feedbackCorrect : t.revampQuiz.feedbackWrong}
+          tone={activeIsCorrect ? "correct" : "wrong"}
+          salt={practiceMode ? practiceCount : 0}
+          trailing={
+            practiceMode ? null : activeIsCorrect ? (
+              <span className="font-mono text-xs font-bold tabular-nums text-warn-strong">
+                {format(t.revampQuiz.xpThisQuestion, { xp: dailyXp })}
+              </span>
+            ) : (
+              <span className="font-mono text-xs font-bold tabular-nums text-ink-faint">{t.revampQuiz.noXpThisQuestion}</span>
+            )
+          }
+        />
+        <div className={`space-y-2 ${big ? "text-sm" : "text-[13px]"}`}>
+          {!activeIsCorrect && picked >= 0 && activeQuiz.options[picked] !== undefined && (
+            <p className="text-danger">
+              <span className="font-bold">{format(t.revampQuiz.yourPick, { letter: letterOf(picked) })}</span>
+              <span className="text-ink-muted"> - {activeQuiz.options[picked]}</span>
+            </p>
+          )}
+          <div className="border-l-2 border-cyan-600 pl-3 dark:border-cyan-400">
+            <Sys className="text-cyan-700 dark:text-cyan-400">{format(t.revampQuiz.answerHead, { letter: letterOf(activeQuiz.correctIndex) })}</Sys>
+            <p className="mt-0.5 font-bold leading-snug text-ink-max">{correctText}</p>
+          </div>
+          <div className="pl-3.5">
+            <Sys className="text-ink-muted">{t.revampQuiz.whyHead}</Sys>
+            <p className="mt-0.5 leading-relaxed text-ink-soft">{activeQuiz.explanation}</p>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   /** Thân câu hỏi được vẽ ở hai chỗ: trong thẻ ở cột phải, và trong lớp phủ.
    * Cùng một state, khác mỗi cỡ chữ và khoảng đệm - nên nó là một hàm nhận
    * `big` chứ không phải hai khối JSX chép đôi, thứ sẽ lệch nhau ở lần sửa
    * tiếp theo. */
   const renderQuiz = (big: boolean) => (
-    <div className={big ? "space-y-5" : "mt-4 space-y-4 pt-3.5 border-t border-line relative z-10"}>
+    <div className={big ? "space-y-5" : isSignal ? "mt-4 space-y-4" : "mt-4 space-y-4 pt-3.5 border-t border-line relative z-10"}>
       {/* Tag / Category Badge */}
       <div className="flex items-center gap-2">
         <span className={`eyebrow inline-flex items-center gap-1.5 px-2 py-0.5 rounded-sm border ${kindStyle.badge}`}>
@@ -355,9 +422,13 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
 
       {/* Prompt Title & Sub-question */}
       <div className="space-y-1">
-        <p className={`font-black text-ink-max leading-snug ${big ? "text-base" : "text-sm sm:text-[15px]"}`}>
-          {activeQuiz.promptTitle}
-        </p>
+        {/* Ở biến thể signal, tiêu đề tình huống đã là dòng tiêu đề lớn của
+            cột - vẽ lại ở đây là in hai lần cách nhau vài chục pixel. */}
+        {(big || !isSignal) && (
+          <p className={`font-black text-ink-max leading-snug ${big ? "text-base" : "text-sm sm:text-[15px]"}`}>
+            {activeQuiz.promptTitle}
+          </p>
+        )}
         <p className={`font-bold text-ink-body leading-relaxed ${big ? "text-sm" : "text-xs sm:text-[13px]"}`}>
           {activeQuiz.question}
         </p>
@@ -421,9 +492,11 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
           disabled={activeSelectedOpt === null}
           className={`${btnPrimary} w-full cursor-pointer ${big ? "py-3" : ""}`}
         >
-          <span>✈</span>
+          <Send className="w-4 h-4" aria-hidden />
           <span>{t.newsQuiz.submitAnswer}</span>
         </button>
+      ) : isSignal ? (
+        renderSignalFeedback(big)
       ) : (
         <div className={`rounded-sm bg-page dark:bg-stone-950 border border-line-strong animate-[fadeIn_0.35s_ease-out] ${big ? "p-4" : "p-3.5"}`}>
           <h5 className="eyebrow flex items-center gap-1.5 text-ink-body mb-1.5">
@@ -467,6 +540,128 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
     </div>
   );
 
+  const dialog = expanded ? (
+      <div
+        className="fixed inset-0 z-[100] flex items-start sm:items-center justify-center p-3 sm:p-6 bg-stone-950/60 animate-[fadeIn_0.15s_ease-out]"
+        role="dialog"
+        aria-modal="true"
+        aria-label={practiceMode ? t.newsQuiz.expandedTitle : t.newsQuiz.titleFull}
+        onClick={() => setExpanded(false)}
+      >
+        <div
+          className="w-full max-w-2xl max-h-[92vh] overflow-y-auto rounded-md border border-line-strong bg-white dark:bg-stone-900 p-5 sm:p-7 font-sans"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div className="flex items-start justify-between gap-3 mb-5 border-b border-line-strong pb-4">
+            <div className="flex items-center gap-3 min-w-0">
+              <div className="w-10 h-10 rounded-sm border border-line-strong bg-surface-raised text-ink-body dark:border-stone-700 dark:bg-stone-950 flex items-center justify-center shrink-0">
+                <BookOpen className="w-5 h-5" />
+              </div>
+              <div className="min-w-0">
+                <h3 className="font-black tracking-tight text-ink-max text-lg leading-tight">
+                  {practiceMode ? t.newsQuiz.expandedTitle : t.newsQuiz.titleFull}
+                </h3>
+                <p className="text-[11px] font-bold text-ink-muted mt-0.5">
+                  {practiceMode
+                    ? practiceCount > 0
+                      ? format(t.newsQuiz.answeredCount, { n: practiceCount })
+                      : t.newsQuiz.expandedHint
+                    : t.newsQuiz.subtitle}
+                </p>
+              </div>
+            </div>
+            <div className="flex items-center gap-1 shrink-0">
+              <button
+                type="button"
+                onClick={() => setExpanded(false)}
+                title={t.newsQuiz.minimize}
+                aria-label={t.newsQuiz.closeDialog}
+                className="p-2 rounded-sm text-ink-muted hover:text-ink hover:bg-surface-raised dark:hover:bg-stone-800 transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-stone-900"
+              >
+                <X className="w-4.5 h-4.5" />
+              </button>
+            </div>
+          </div>
+          {renderQuiz(true)}
+        </div>
+      </div>
+  ) : null;
+
+  if (isSignal) {
+    const answeredToday = isAnswered;
+    return (
+      <>
+        <section className="flex h-full flex-col">
+          <div className="flex items-center justify-between gap-3">
+            <Sys className="text-accent-strong">
+              {format(t.revampQuiz.signalHeading, { date: mounted ? signalDate(locale) : "" })}
+            </Sys>
+            <div className="flex items-center gap-2">
+              {answeredToday ? (
+                <span className="inline-flex items-center gap-1.5 text-xs font-bold text-cyan-700 dark:text-cyan-400">
+                  <CheckCircle2 className="h-3.5 w-3.5" aria-hidden />
+                  {t.revampQuiz.signalDone}
+                </span>
+              ) : (
+                <span className="inline-flex items-center gap-1.5 text-xs font-bold text-ink-body">
+                  <StatusDot />
+                  {t.revampQuiz.signalPending}
+                </span>
+              )}
+              <button
+                type="button"
+                onClick={() => setExpanded(true)}
+                title={t.revampQuiz.signalExpand}
+                aria-label={t.revampQuiz.signalExpand}
+                className="p-1.5 text-ink-muted transition-colors hover:bg-surface-raised hover:text-ink cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600"
+              >
+                <Maximize2 className="h-3.5 w-3.5" />
+              </button>
+            </div>
+          </div>
+
+          <h2 className="mt-2 text-lg sm:text-xl font-black leading-snug tracking-tight text-ink-max">
+            {activeQuiz.promptTitle}
+          </h2>
+          <p className="mt-1.5 flex flex-wrap items-center gap-x-2 font-mono text-xs tabular-nums text-ink-muted">
+            <span>{t.revampQuiz.signalCount}</span>
+            <span aria-hidden className="h-1 w-1 bg-stone-400 dark:bg-stone-600" />
+            <span className="font-bold text-warn-strong">{format(t.revampQuiz.signalXp, { xp: dailyXp })}</span>
+            <span aria-hidden className="h-1 w-1 bg-stone-400 dark:bg-stone-600" />
+            <span>{t.revampQuiz.signalTime}</span>
+          </p>
+
+          {renderQuiz(false)}
+
+          {answeredToday && !practiceMode && (
+            <p className="mt-3 flex flex-wrap items-center gap-x-2 text-xs font-bold">
+              {isCorrect ? (
+                <span className="font-mono tabular-nums text-warn-strong">
+                  {format(t.revampQuiz.signalXpEarned, { xp: dailyXp })}
+                </span>
+              ) : (
+                <span className="font-mono tabular-nums text-ink-faint">{t.revampQuiz.signalXpMissed}</span>
+              )}
+              <span className="font-medium text-ink-muted">{t.revampQuiz.signalNextHint}</span>
+            </p>
+          )}
+
+          {!practiceMode && (
+            <button
+              type="button"
+              onClick={startPractice}
+              className="group mt-auto flex w-full items-center justify-between gap-3 border-t border-line pt-3 text-left text-xs font-bold text-ink-body transition-colors hover:text-accent-strong cursor-pointer"
+            >
+              <span>{t.dashCards.practiceUnlimited}</span>
+              <ArrowRight className="h-3.5 w-3.5 shrink-0 text-accent-strong transition-transform group-hover:translate-x-0.5" />
+            </button>
+          )}
+        </section>
+        {dialog}
+      </>
+    );
+  }
+
   return (
     <>
       <div className={`${panel} p-5 sm:p-6 relative overflow-hidden font-sans`}>
@@ -493,7 +688,7 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
                   }`}
                   aria-label={activeIsCorrect ? t.newsQuiz.resultCorrect : t.newsQuiz.resultWrong}
                 >
-                  {activeIsCorrect ? "✓" : "✗"}
+                  {activeIsCorrect ? <Check className="w-3.5 h-3.5" /> : <X className="w-3.5 h-3.5" />}
                 </span>
               )}
             </h3>
@@ -543,52 +738,7 @@ export default function DailyNewsQuizWidget({ userId, compact = false }: DailyNe
         </button>
       )}
 
-      {expanded && (
-        <div
-          className="fixed inset-0 z-[100] flex items-start sm:items-center justify-center p-3 sm:p-6 bg-stone-950/60 animate-[fadeIn_0.15s_ease-out]"
-          role="dialog"
-          aria-modal="true"
-          aria-label={practiceMode ? t.newsQuiz.expandedTitle : t.newsQuiz.titleFull}
-          onClick={() => setExpanded(false)}
-        >
-          <div
-            className="w-full max-w-2xl max-h-[92vh] overflow-y-auto rounded-md border border-line-strong bg-white dark:bg-stone-900 p-5 sm:p-7 font-sans"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="flex items-start justify-between gap-3 mb-5 border-b border-line-strong pb-4">
-              <div className="flex items-center gap-3 min-w-0">
-                <div className="w-10 h-10 rounded-sm border border-line-strong bg-surface-raised text-ink-body dark:border-stone-700 dark:bg-stone-950 flex items-center justify-center shrink-0">
-                  <BookOpen className="w-5 h-5" />
-                </div>
-                <div className="min-w-0">
-                  <h3 className="font-black tracking-tight text-ink-max text-lg leading-tight">
-                    {practiceMode ? t.newsQuiz.expandedTitle : t.newsQuiz.titleFull}
-                  </h3>
-                  <p className="text-[11px] font-bold text-ink-muted mt-0.5">
-                    {practiceMode
-                      ? practiceCount > 0
-                        ? format(t.newsQuiz.answeredCount, { n: practiceCount })
-                        : t.newsQuiz.expandedHint
-                      : t.newsQuiz.subtitle}
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-center gap-1 shrink-0">
-                <button
-                  type="button"
-                  onClick={() => setExpanded(false)}
-                  title={t.newsQuiz.minimize}
-                  aria-label={t.newsQuiz.closeDialog}
-                  className="p-2 rounded-sm text-ink-muted hover:text-ink hover:bg-surface-raised dark:hover:bg-stone-800 transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-stone-900"
-                >
-                  <X className="w-4.5 h-4.5" />
-                </button>
-              </div>
-            </div>
-            {renderQuiz(true)}
-          </div>
-        </div>
-      )}
+      {dialog}
     </>
   );
 }

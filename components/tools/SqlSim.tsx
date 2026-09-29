@@ -24,11 +24,15 @@ import type { SqlValue } from "@/lib/mini-sql";
 import { execute, type ExecOutcome } from "@/lib/tools/sql/engine";
 import { SAMPLE_DB, SAMPLE_SCHEMA } from "@/lib/tools/sql/sample-db";
 import { SQL_MISSIONS } from "@/lib/tools/sql/missions";
+import { TOOL_STORAGE } from "@/lib/tools/progress";
 
-const KEY_PREFIX = "thtcdn:tool-sql:";
+const KEY_PREFIX = TOOL_STORAGE.sqlPrefix;
 const DONE_KEY = `${KEY_PREFIX}done`;
 const HISTORY_KEY = `${KEY_PREFIX}history`;
 const DRAFT_KEY = `${KEY_PREFIX}draft`;
+const ARTIFACT_KEY = `${KEY_PREFIX}artifacts`;
+/** Số dòng tối đa cất lại cho mỗi kết quả bàn giao. */
+const ARTIFACT_ROWS = 10;
 const HISTORY_LIMIT = 30;
 const STARTER_SQL = "SELECT * FROM customers LIMIT 10;";
 
@@ -39,7 +43,18 @@ interface HistoryEntry {
   at: number;
 }
 
-type MissionCopy = Record<string, { title: string; hint: string }>;
+/** Bảng kết quả của lần chạy đã đóng một ticket - "artifact" để bàn giao. */
+interface SqlArtifact {
+  sql: string;
+  columns: string[];
+  rows: SqlValue[][];
+  total: number;
+}
+
+type MissionCopy = Record<
+  string,
+  { title: string; hint: string; from: string; brief: string; criteria: Record<string, string> }
+>;
 
 function readJson<T>(key: string, fallback: T): T {
   try {
@@ -61,6 +76,7 @@ function writeJson(key: string, value: unknown) {
 export default function SqlSim() {
   const { t, locale } = useI18n();
   const c = t.toolSql;
+  const r = t.revampTools.sql;
   const missionCopy = c.missions as MissionCopy;
 
   const [sql, setSql] = useState(STARTER_SQL);
@@ -68,7 +84,8 @@ export default function SqlSim() {
   const [tab, setTab] = useState<"results" | "history">("results");
   const [history, setHistory] = useState<HistoryEntry[]>([]);
   const [done, setDone] = useState<string[]>([]);
-  const [flash, setFlash] = useState<string[]>([]);
+  const [artifacts, setArtifacts] = useState<Record<string, SqlArtifact>>({});
+  const [errorKey, setErrorKey] = useState(0);
   const [open, setOpen] = useState<Record<string, boolean>>({ customers: true });
   const [loaded, setLoaded] = useState(false);
   const editorRef = useRef<HTMLTextAreaElement>(null);
@@ -79,6 +96,7 @@ export default function SqlSim() {
     setDone(readJson<string[]>(DONE_KEY, []));
     setHistory(readJson<HistoryEntry[]>(HISTORY_KEY, []));
     setSql(readJson<string>(DRAFT_KEY, STARTER_SQL));
+    setArtifacts(readJson<Record<string, SqlArtifact>>(ARTIFACT_KEY, {}));
     setLoaded(true);
   }, []);
 
@@ -91,6 +109,9 @@ export default function SqlSim() {
   useEffect(() => {
     if (loaded) writeJson(DRAFT_KEY, sql);
   }, [sql, loaded]);
+  useEffect(() => {
+    if (loaded) writeJson(ARTIFACT_KEY, artifacts);
+  }, [artifacts, loaded]);
 
   const run = useCallback(
     (text: string) => {
@@ -107,10 +128,18 @@ export default function SqlSim() {
       );
       if (result.ok) {
         const newly = SQL_MISSIONS.filter((m) => !done.includes(m.id) && m.check({ result: result.result })).map((m) => m.id);
-        setFlash(newly);
-        if (newly.length) setDone((d) => [...d, ...newly.filter((id) => !d.includes(id))]);
+        if (newly.length) {
+          setDone((d) => [...d, ...newly.filter((id) => !d.includes(id))]);
+          const artifact: SqlArtifact = {
+            sql: query,
+            columns: result.result.columns,
+            rows: result.result.rows.slice(0, ARTIFACT_ROWS),
+            total: result.result.rows.length,
+          };
+          setArtifacts((a) => ({ ...a, ...Object.fromEntries(newly.map((id) => [id, artifact])) }));
+        }
       } else {
-        setFlash([]);
+        setErrorKey((k) => k + 1);
       }
     },
     [done],
@@ -156,15 +185,47 @@ export default function SqlSim() {
     setHistory([]);
     setSql(STARTER_SQL);
     setOutcome(null);
-    setFlash([]);
+    setArtifacts({});
   };
 
-  const missions = SQL_MISSIONS.map((m) => ({
-    id: m.id,
-    title: missionCopy[m.id]?.title ?? m.id,
-    hint: missionCopy[m.id]?.hint ?? "",
-    done: done.includes(m.id),
-  }));
+  // Tiêu chí đọc lần chạy gần nhất: lỗi thì chưa có kết quả nào để chấm.
+  const current = { result: outcome?.ok ? outcome.result : null };
+  const missions = SQL_MISSIONS.map((m) => {
+    const copy = missionCopy[m.id];
+    return {
+      id: m.id,
+      title: copy?.title ?? m.id,
+      hint: copy?.hint ?? "",
+      from: copy?.from,
+      brief: copy?.brief,
+      done: done.includes(m.id),
+      criteria: m.criteria.map((cr) => ({
+        id: cr.id,
+        label:
+          cr.id === "runs" ? r.runs : cr.id === "rows" ? format(r.rows, { n: m.expectedRowCount() }) : (copy?.criteria[cr.id] ?? cr.id),
+        met: cr.check(current),
+      })),
+    };
+  });
+
+  const renderArtifact = (id: string) => {
+    const a = artifacts[id];
+    if (!a) return <p className="text-xs text-ink-muted">{r.missing}</p>;
+    return (
+      <div className="space-y-2">
+        <pre className="max-h-24 overflow-auto whitespace-pre-wrap rounded-md bg-stone-950 px-2.5 py-2 font-mono text-[11px] leading-relaxed text-stone-100">
+          {a.sql}
+        </pre>
+        <div className="overflow-hidden rounded-md border border-line">
+          <ResultTable columns={a.columns} rows={a.rows} compact />
+        </div>
+        <p className="text-[11px] tabular-nums text-ink-muted">
+          {format(r.rowCount, { count: a.total })}
+          {a.total > a.rows.length && <> {format(r.more, { count: a.total - a.rows.length })}</>}
+        </p>
+      </div>
+    );
+  };
 
   const lineCount = Math.max(sql.split("\n").length, 1);
   const timeFmt = useMemo(
@@ -173,7 +234,14 @@ export default function SqlSim() {
   );
 
   return (
-    <ToolShell tool="sql" missions={missions} onReset={reset}>
+    <ToolShell
+      tool="sql"
+      missions={missions}
+      onReset={reset}
+      ready={loaded}
+      errorKey={errorKey}
+      renderArtifact={renderArtifact}
+    >
       <div className="overflow-hidden rounded-2xl border border-line bg-white shadow-sm dark:bg-stone-900">
         {/* Thanh công cụ */}
         <div className="flex flex-wrap items-center justify-between gap-2 border-b border-line bg-surface-raised px-3 py-2">
@@ -350,14 +418,6 @@ export default function SqlSim() {
               )}
             </div>
 
-            {flash.length > 0 && tab === "results" && (
-              <div className="border-b border-accent-line bg-brand-50 px-3 py-2 text-xs font-bold text-accent-ink dark:bg-brand-950/40">
-                {flash.map((id) => (
-                  <p key={id}>{format(c.missionDone, { title: missionCopy[id]?.title ?? id })}</p>
-                ))}
-              </div>
-            )}
-
             <div className="min-h-[220px]">
               {tab === "results" ? (
                 <ResultsPanel outcome={outcome} />
@@ -455,12 +515,12 @@ function ResultsPanel({ outcome }: { outcome: ExecOutcome | null }) {
   );
 }
 
-function ResultTable({ columns, rows }: { columns: string[]; rows: SqlValue[][] }) {
+function ResultTable({ columns, rows, compact = false }: { columns: string[]; rows: SqlValue[][]; compact?: boolean }) {
   const { t } = useI18n();
   const c = t.toolSql;
   return (
-    <div className="max-h-[360px] overflow-auto">
-      <table className="w-full border-collapse font-mono text-xs">
+    <div className={`overflow-auto ${compact ? "max-h-56" : "max-h-[360px]"}`}>
+      <table className={`w-full border-collapse font-mono ${compact ? "text-[11px]" : "text-xs"}`}>
         <thead>
           <tr>
             <th className="sticky top-0 z-10 w-10 border-b border-r border-line bg-surface-raised px-2 py-1.5 text-right font-semibold text-ink-faint">

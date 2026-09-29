@@ -1560,12 +1560,12 @@ export const vi = {
 
     feedbackTitle: "Phản hồi học tập",
     reviewOnTime: "Tổng ôn đúng lúc",
-    coachReminder: "Tài Tài nhắc bạn: {message}",
+    coachReminder: "Cơ Cơ nhắc bạn: {message}",
     openStage: "Mở {stage}: {lesson}",
     gapsLeaning: "Lỗ hổng kiến thức hiện tại của bạn đang nghiêng về:",
     stumblingMost: "Bạn đang vấp nhiều nhất ở: {topic}",
     wrongCount: "Đã sai {count} lần trong bài “{lesson}”",
-    coachSuggestion: "Gợi ý của Tài Tài: {action}",
+    coachSuggestion: "Gợi ý của Cơ Cơ: {action}",
     // Câu dự phòng khi câu quiz không có explanation. Trước đây server action
     // tự ghép câu này rồi trả về, tức server sinh câu chữ; giờ nó trả
     // explanation: null và chỗ này lo phần câu chữ.
@@ -1863,7 +1863,7 @@ export const vi = {
     deleted: "Tin nhắn đã bị xoá",
     you: "Bạn",
     member: "Thành viên",
-    admin: "Tài Tài",
+    admin: "Cơ Cơ",
 
     // Bốn màn hình chat trong repo này - ChatWithAdminWidget,
     // FloatingStudyGroupChat, CommunityFeedClient và StudyGroupsClient - viết
@@ -1874,7 +1874,7 @@ export const vi = {
     editFailed: "Không sửa được tin nhắn",
     sendFailed: "Không gửi được tin nhắn",
     sendFailedRetry: "Không gửi được tin nhắn. Vui lòng thử lại.",
-    taitaiFailed: "Không gọi được tài tài",
+    taitaiFailed: "Không gọi được Cơ Cơ",
     reactionTitle: "Thả {emoji}",
     editPlaceholder: "Chỉnh lại nội dung tin nhắn...",
     // alt của ảnh đại diện khi người dùng chưa có tên. Trước là "User" viết
@@ -1890,7 +1890,7 @@ export const vi = {
     collapseChat: "Thu nhỏ chat",
     expandChat: "Phóng to chat",
     inputPlaceholder: "Nhập tin nhắn, dán ảnh...",
-    title: "Tài tài chatbot",
+    title: "Cơ Cơ chatbot",
     status: "Đang hoạt động • Phản hồi siêu tốc",
     closeAria: "Đóng chat",
     pinnedBy: "Tin nhắn đã ghim ({who})",
@@ -1915,8 +1915,8 @@ export const vi = {
     roomFallback: "Học tập",
     memberCount: "{count}/{max} thành viên hoạt động",
     closeAria: "Đóng",
-    pinnedByAdmin: "Tài Tài • Quản lý nhóm • Đã ghim",
-    byAdmin: "Tài Tài • Quản lý nhóm",
+    pinnedByAdmin: "Cơ Cơ • Quản lý nhóm • Đã ghim",
+    byAdmin: "Cơ Cơ • Quản lý nhóm",
 
     // Tin nhắn bot: lưu dưới dạng SỰ KIỆN trong study_room_messages.content
     // (xem lib/study-room-bot-messages.ts) rồi dựng câu ở đây, nên mỗi người
@@ -1925,7 +1925,7 @@ export const vi = {
     botDailyAll: "Cập nhật hôm nay: cả {count} thành viên đều đã học ít nhất 1 bài! Nhóm đang giữ nhịp rất tốt",
     botDailyPartial: "Cập nhật hôm nay: {names} đã học rồi. Còn {notYet} bạn chưa học hôm nay - đừng để mai dồn nhé!",
     botDailyExtra: " +{extra} bạn nữa",
-    botRules: "Tài tài đây nhóm này đang học theo hướng {topic}, hiện có khoảng {count} bài để cả nhóm cùng cày. Luật ngắn gọn: mỗi người cố giữ nhịp tối thiểu 3 bài/tuần, đạt chỉ tiêu thì nhóm được giữ tiếp, và giữ được 3 tuần liên tiếp thì lên nhóm vĩnh viễn.",
+    botRules: "Cơ Cơ đây nhóm này đang học theo hướng {topic}, hiện có khoảng {count} bài để cả nhóm cùng cày. Luật ngắn gọn: mỗi người cố giữ nhịp tối thiểu 3 bài/tuần, đạt chỉ tiêu thì nhóm được giữ tiếp, và giữ được 3 tuần liên tiếp thì lên nhóm vĩnh viễn.",
     botTopicPersonal: "Nền tảng công nghệ",
     botTopicProfessional: "Công nghệ chuyên sâu",
     botTopicCertification: "Chứng chỉ AWS",
@@ -2028,8 +2028,8 @@ export const vi = {
     live: "Live",
     chatCheckinHint:
       "Nhắn 1 tin nhắn bất kỳ lên chat để tự động ghi nhận điểm danh nhóm hôm nay!",
-    pinnedByAdmin: "Tài Tài · Quản lý nhóm · Đã ghim",
-    byAdmin: "Tài Tài · Quản lý nhóm",
+    pinnedByAdmin: "Cơ Cơ · Quản lý nhóm · Đã ghim",
+    byAdmin: "Cơ Cơ · Quản lý nhóm",
     loadOlder: "↑ Xem tin nhắn cũ hơn",
     loadOlderFailed: "Không tải được tin nhắn cũ",
     chatEmpty: "Chưa có tin nhắn nào. Chào các thành viên trong nhóm nhé!",
@@ -2134,7 +2134,7 @@ export const vi = {
     noteDeleteFailed: "Không xóa được ghi chú",
     quizScoreSaveFailed: "Không lưu được điểm quiz nhóm",
     messageEditFailed: "Không sửa được tin nhắn",
-    taitaiFailed: "Không gọi được tài tài",
+    taitaiFailed: "Không gọi được Cơ Cơ",
     matchFailed: "Không thể ghép nhóm lúc này",
     joinFailed: "Không thể tham gia phòng này",
     leaveFailed: "Không thể rời phòng lúc này",
@@ -2173,6 +2173,14 @@ export const vi = {
 
     // Badge marking the current learner's own row in a leaderboard strip.
     youBadge: "Bạn",
+    // Dải 15 cấp đọc như một hành trình: cấp đang đứng, XP còn thiếu tới cấp
+    // kế, và đúng một yêu cầu cụ thể để mở cấp đó.
+    youAreHere: "BẠN Ở ĐÂY",
+    levelGap: "+{xp} XP",
+    nextUnlockLabel: "MỞ KHÓA KẾ TIẾP",
+    nextUnlockLine: "LV{level} {name} · còn {xp} XP",
+    nextUnlockHint: "≈ {lessons} bài học, hoặc bài học + quiz + thi vượt chặng",
+    maxLevelLine: "Bạn đã ở cấp cao nhất - giờ là lúc chứng minh bằng dự án và chứng chỉ.",
     savedTitle: "Bài đã lưu",
     savedSubtitle: "Quay lại nhanh những bài bạn muốn đọc tiếp",
 

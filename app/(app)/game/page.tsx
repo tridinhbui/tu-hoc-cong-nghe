@@ -10,8 +10,8 @@ export async function generateMetadata(): Promise<Metadata> {
   const locale = await getServerLocale();
   const t = getDictionary(locale);
   return {
-    title: t.finalTwo.gamePage.metaTitle,
-    description: t.finalTwo.gamePage.metaDescription,
+    title: t.revampGame.meta.title,
+    description: t.revampGame.meta.description,
   };
 }
 
@@ -19,7 +19,7 @@ export default async function GamePage() {
   const locale = await getServerLocale();
   const t = getDictionary(locale);
   return (
-    <Suspense fallback={<div className="flex min-h-screen items-center justify-center bg-page text-sm text-ink-muted dark:bg-stone-950">{t.finalTwo.gamePage.loading}</div>}>
+    <Suspense fallback={<div className="flex min-h-screen items-center justify-center bg-page text-sm text-ink-muted dark:bg-stone-950">{t.revampGame.meta.loading}</div>}>
       <TechRpgWorldMap />
     </Suspense>
   );

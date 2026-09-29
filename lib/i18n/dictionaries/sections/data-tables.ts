@@ -9,7 +9,7 @@
 export const dataTablesVi = {
   dataTables: {
     stageTips: {
-      mascotName: "Tài Tài",
+      mascotName: "Cơ Cơ",
       tips: {
         "personal-Chặng 1": [
           "Quy tắc đơn giản nhất của nghề: biết máy mình đang chạy gì trước khi cài thêm thứ gì. Phần lớn sự cố 'máy chậm' của người mới là một tiến trình bỏ quên, không phải phần cứng yếu.",
@@ -209,7 +209,7 @@ export const dataTablesVi = {
 export const dataTablesEn: typeof dataTablesVi = {
   dataTables: {
     stageTips: {
-      mascotName: "Tài Tài",
+      mascotName: "Cơ Cơ",
       tips: {
         "personal-Chặng 1": [
           "The simplest rule in the trade: know what your machine is running before you install anything else. Most 'my computer is slow' problems for beginners are a forgotten process, not weak hardware.",

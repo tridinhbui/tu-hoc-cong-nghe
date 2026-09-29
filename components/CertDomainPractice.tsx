@@ -103,7 +103,7 @@ export default function CertDomainPractice({
     }
     setStage("done");
     try {
-      const result = await submitQuizSession("cert", "tat-ca", answers);
+      const result = await submitQuizSession("cert", "tat-ca", answers, { cert: certId, domain: domainId });
       setXp(result.xpEarned);
       const userId = await getCurrentUserId();
       if (userId) await recalculateUserStats(userId);

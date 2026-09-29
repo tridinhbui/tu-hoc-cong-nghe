@@ -1,17 +1,19 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useMemo } from "react";
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, ChevronLeft, Dumbbell, PartyPopper, Sparkles, Trophy } from "lucide-react";
-import { submitQuizSession, computeQuizXp, type QuizTrack, type QuizDifficulty, type QuizAnswerSubmission } from "@/lib/cloudflare-quiz-sessions";
+import { ArrowRight, Check, CheckCircle2, ChevronLeft, RotateCcw, Trophy, X } from "lucide-react";
+import { submitQuizSession, computeQuizXp, QUIZ_XP_PER_CORRECT, type QuizTrack, type QuizDifficulty, type QuizAnswerSubmission } from "@/lib/cloudflare-quiz-sessions";
 import { recalculateUserStats } from "@/lib/cloudflare-user";
-import TaiTaiQuizSuggestion from "@/components/TaiTaiQuizSuggestion";
+import CoCoQuizSuggestion from "@/components/CoCoQuizSuggestion";
+import CoCoSays from "@/components/CoCoSays";
+import CoCoFeedback from "@/components/CoCoFeedback";
 import DailyNewsQuizWidget from "@/components/DailyNewsQuizWidget";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
-import { QUEST_XP_REWARDS } from "@/lib/quest-rewards";
+import { useQuizKeys } from "@/lib/use-quiz-keys";
 import { getCurrentUserId } from "@/lib/current-user";
-import { SectionHead, Sys, StatusDot, StatTable, panel, tabClass, btnPrimary, btnSecondary, textLink } from "@/components/ui/system";
+import { Sys, StatusDot, panel, btnPrimary, btnSecondary, textLink } from "@/components/ui/system";
 
 /** Mã định vị mono ở đầu trang: chính đường dẫn của route, không phải nhãn dịch. */
 const ROUTE_CODE = "THCN://APP/KIEM-TRA";
@@ -32,7 +34,6 @@ interface ChallengeQuestion {
 const TRACK_IDS: QuizTrack[] = ["personal", "professional"];
 const DIFFICULTY_IDS: QuizDifficulty[] = ["tat-ca", "de", "trung-binh", "kho"];
 
-const XP_PER_QUESTION = 5;
 const PASS_RATIO = 0.6;
 
 type Stage = "setup" | "loading" | "empty" | "error" | "ready" | "done";
@@ -100,11 +101,27 @@ export default function KiemTraPage() {
     }
   }, [track, difficulty]);
 
+  /** XP mỗi câu đúng đọc từ bảng của lib/cloudflare-quiz-sessions, không viết
+   *  cứng: con số trên màn hình phải là con số máy chủ sẽ cộng. */
+  const xpPerQuestion = QUIZ_XP_PER_CORRECT[difficulty];
+  const trackLabel = (id: QuizTrack) => (id === "personal" ? t.quizPage.trackPersonal : t.quizPage.trackProfessional);
+  const difficultyLabel = (id: QuizDifficulty) =>
+    id === "tat-ca" ? t.quizPage.diffAll : id === "de" ? t.quizPage.diffEasy : id === "trung-binh" ? t.quizPage.diffMedium : t.quizPage.diffHard;
+
   const q = questions[activeQ];
   const allDone = submitted && activeQ === questions.length - 1;
   const score = results.filter(Boolean).length;
   const passed = questions.length > 0 && score >= Math.ceil(questions.length * PASS_RATIO);
-  const progressPct = questions.length > 0 ? Math.round(((activeQ + (submitted ? 1 : 0)) / questions.length) * 100) : 0;
+  const passNeed = Math.ceil(questions.length * PASS_RATIO);
+  const answeredSoFar = activeQ + (submitted ? 1 : 0);
+  const correctSoFar = results.slice(0, answeredSoFar).filter(Boolean).length;
+  const wrongLessons = useMemo(
+    () =>
+      Array.from(new Set(questions.filter((_, i) => !results[i]).map((qq) => qq.lessonId))).map(
+        (lessonId) => questions.find((qq) => qq.lessonId === lessonId)!
+      ),
+    [questions, results]
+  );
 
   function startSelectedQuiz(nextTrack: QuizTrack, nextDifficulty: QuizDifficulty = difficulty) {
     setTrack(nextTrack);
@@ -147,6 +164,15 @@ export default function KiemTraPage() {
     setSubmitted(true);
   }
 
+  // 1-4 chọn, Enter kiểm tra rồi đi tiếp - cùng hook mà phòng thi vượt chặng
+  // dùng. Gọi trước `return` để thứ tự hook không đổi.
+  useQuizKeys({
+    optionCount: q?.options.length ?? 0,
+    enabled: stage === "ready" && !!q,
+    onPick: choose,
+    onEnter: () => (submitted ? next() : verify()),
+  });
+
   function next() {
     if (activeQ === questions.length - 1) {
       setStage("done");
@@ -157,6 +183,8 @@ export default function KiemTraPage() {
     setSelected(null);
     setSubmitted(false);
   }
+
+  const letter = (i: number) => String.fromCharCode(65 + i);
 
   return (
     // APP_MOBILE_HEADER_H: 3.5rem is AppNavbar's mobile header (h-14). It is
@@ -178,155 +206,139 @@ export default function KiemTraPage() {
             <div className="min-w-0">
               <Sys className="text-ink-muted">{ROUTE_CODE}</Sys>
               <h1 className="text-lg font-black leading-tight text-ink-max tracking-tight">{t.quizPage.title}</h1>
-              <p className="hidden sm:block truncate text-xs font-semibold text-ink-muted mt-0.5">
-                {t.quizPage.subtitle}
-              </p>
             </div>
           </div>
 
-          <span className="hidden sm:inline-flex items-center gap-2 text-xs font-bold text-accent-strong">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>{format(t.quizPage.xpPerQuestion, { xp: XP_PER_QUESTION })}</span>
-          </span>
+          {/* Trạng thái hằng ngày đứng ở thanh đầu, thấy được cả khi đang ở
+              giữa một phiên luyện - lúc đó cột DAILY SIGNAL không còn trên màn. */}
+          <div className="flex shrink-0 items-center gap-2 text-xs font-bold">
+            <Sys className="hidden sm:inline text-ink-faint">{t.revampQuiz.todayLabel}</Sys>
+            {isNewsAnswered ? (
+              <span className="inline-flex items-center gap-1.5 text-cyan-700 dark:text-cyan-400">
+                <CheckCircle2 className="w-3.5 h-3.5" aria-hidden />
+                {t.revampQuiz.todaySignalDone}
+              </span>
+            ) : (
+              <span className="inline-flex items-center gap-1.5 text-ink-body">
+                <StatusDot />
+                {t.revampQuiz.todaySignalPending}
+              </span>
+            )}
+          </div>
         </div>
       </div>
 
       <div className="flex-1 min-h-0 overflow-y-auto max-w-6xl mx-auto w-full px-4 sm:px-6 py-3 sm:py-4">
         {stage === "setup" && (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 lg:gap-4 items-stretch">
-            {/* LEFT COLUMN */}
+            {/* TRÁI: DAILY SIGNAL - thử thách công nghệ của hôm nay. */}
             <div className="lg:col-span-6 h-full flex flex-col">
-              <div className={`${panel} p-3.5 sm:p-4 h-full flex flex-col justify-between`}>
-                <div>
-                  <SectionHead eyebrow={t.quizPage.leftEyebrow} title={t.quizPage.newsTitle} size="sm" />
-                  <div className="mt-2 flex items-center gap-2 text-xs font-bold">
-                    {isNewsAnswered ? (
-                      <span className="inline-flex items-center gap-1.5 text-accent-strong">
-                        <CheckCircle2 className="w-3.5 h-3.5" />
-                        {t.quizPage.newsDone}
-                      </span>
-                    ) : (
-                      <span className="inline-flex items-center gap-1.5 text-ink-body">
-                        <StatusDot />
-                        <span>{t.quizPage.newsPending}</span>
-                        <span className="font-medium text-ink-muted">{t.quizPage.newsPendingNote}</span>
-                      </span>
-                    )}
-                  </div>
-
-                  <p className="mt-2.5 mb-2.5 max-w-[68ch] border-l-2 border-stone-950 pl-4 text-xs leading-6 text-ink-soft dark:border-stone-200">
-                    {t.quizPage.newsBodyPart1}
-                    <strong className="font-mono tabular-nums text-ink-max">{format(t.quizPage.newsXp, { xp: QUEST_XP_REWARDS.daily_news_quiz })}</strong>
-                    {t.quizPage.newsBodyPart2}
-                  </p>
-                </div>
-
-                <div className="flex-1 flex flex-col justify-end">
-                  <DailyNewsQuizWidget userId={userId || "guest"} compact={false} />
-                </div>
+              <div className={`${panel} p-4 sm:p-5 h-full flex flex-col`}>
+                <DailyNewsQuizWidget userId={userId || "guest"} variant="signal" />
               </div>
             </div>
 
-            {/* RIGHT COLUMN: Enhanced Test Creation Form */}
+            {/* PHẢI: TRAINING LAB - chọn mảng + độ khó rồi chạy một phiên. */}
             <div className="lg:col-span-6 h-full flex flex-col">
-              <div className={`${panel} p-3.5 sm:p-4 space-y-3 h-full flex flex-col justify-between`}>
-                <SectionHead eyebrow={t.quizPage.rightEyebrow} title={t.quizPage.builderTitle} size="sm" />
+              <div className={`${panel} p-4 sm:p-5 h-full flex flex-col gap-4`}>
+                <div>
+                  <Sys className="text-accent-strong">{t.revampQuiz.labName}</Sys>
+                  <CoCoSays lines={t.coco.kiemTra} size={40} className="mt-2" />
+                </div>
 
                 {userId && (
-                  <TaiTaiQuizSuggestion
+                  <CoCoQuizSuggestion
                     userId={userId}
-                    onSelect={(t, d) => {
-                      setTrack(t);
-                      setDifficulty(d);
-                      void startQuiz(t, d);
+                    onSelect={(nextTrack, nextDifficulty) => {
+                      setTrack(nextTrack);
+                      setDifficulty(nextDifficulty);
+                      void startQuiz(nextTrack, nextDifficulty);
                     }}
                   />
                 )}
 
-                {/* Track Selector */}
+                {/* Mảng kiến thức: hai ô cạnh nhau, ô đang chọn có viền xanh
+                    dày và dấu tích - quét bằng mắt là biết, không phải đọc. */}
                 <div>
-                  <label className="block text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted mb-1.5">
-                    {t.quizPage.step1}
-                  </label>
-                  <div className="space-y-1.5">
+                  <Sys className="text-ink-muted">{t.revampQuiz.labAreaLabel}</Sys>
+                  <div className="mt-1.5 grid grid-cols-1 sm:grid-cols-2 gap-2" role="radiogroup" aria-label={t.revampQuiz.labAreaLabel}>
                     {TRACK_IDS.map((id, i) => {
-                      const label = id === "personal" ? t.quizPage.trackPersonal : t.quizPage.trackProfessional;
-                      const desc =
-                        id === "personal" ? t.quizPage.trackPersonalDesc : t.quizPage.trackProfessionalDesc;
-                      const selected = track === id;
+                      const desc = id === "personal" ? t.quizPage.trackPersonalDesc : t.quizPage.trackProfessionalDesc;
+                      const on = track === id;
                       return (
                         <button
                           key={id}
                           type="button"
+                          role="radio"
                           onClick={() => setTrack(id)}
-                          aria-pressed={selected}
-                          className={`w-full text-left rounded-sm border px-3 py-2.5 transition-colors cursor-pointer flex items-start gap-3 ${
-                            selected
-                              ? "border-brand-600 bg-brand-50 text-ink dark:border-brand-400 dark:bg-brand-950/40"
-                              : "border-stone-300 bg-white text-ink-body hover:border-stone-950 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-300"
+                          aria-checked={on}
+                          className={`relative text-left px-3 py-2.5 transition-colors cursor-pointer ${
+                            on
+                              ? "border-2 border-brand-600 bg-brand-50/60 dark:border-brand-400 dark:bg-brand-950/30"
+                              : "border-2 border-transparent bg-surface-raised hover:border-line-strong dark:bg-stone-900"
                           }`}
                         >
-                          <Sys className={`pt-0.5 ${selected ? "text-accent-strong" : "text-ink-faint"}`}>{String.fromCharCode(65 + i)}</Sys>
-                          <div className="min-w-0 flex-1">
-                            <div className="font-bold text-sm flex items-center gap-2">
-                              <span>{label}</span>
-                              {selected && (
-                                <span className="text-[10px] font-bold uppercase tracking-[0.08em] text-accent-strong">
-                                  {t.quizPage.selecting}
-                                </span>
-                              )}
-                            </div>
-                            <p className="text-[11px] mt-0.5 text-ink-muted leading-snug">{desc}</p>
+                          <div className="flex items-center justify-between gap-2">
+                            <Sys className={on ? "text-accent-strong" : "text-ink-faint"}>{letter(i)}</Sys>
+                            {on && <Check className="h-3.5 w-3.5 text-accent-strong" aria-hidden />}
                           </div>
+                          <p className={`mt-1 text-sm font-black leading-tight ${on ? "text-ink-max" : "text-ink-body"}`}>{trackLabel(id)}</p>
+                          <p className="mt-0.5 text-[11px] leading-snug text-ink-muted">{desc}</p>
                         </button>
                       );
                     })}
                   </div>
                 </div>
 
-                {/* Difficulty Selector */}
+                {/* Độ khó: một thanh bốn nấc liền nhau, nấc đang chọn tô đặc. */}
                 <div>
-                  <label className="block text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted mb-1.5">
-                    {t.quizPage.step2}
-                  </label>
-                  <div className="flex flex-wrap gap-x-5 gap-y-1 border-b border-line">
-                    {DIFFICULTY_IDS.map((id) => {
-                      const label =
-                        id === "tat-ca"
-                          ? t.quizPage.diffAll
-                          : id === "de"
-                            ? t.quizPage.diffEasy
-                            : id === "trung-binh"
-                              ? t.quizPage.diffMedium
-                              : t.quizPage.diffHard;
-                      const selected = difficulty === id;
+                  <Sys className="text-ink-muted">{t.revampQuiz.labDifficultyLabel}</Sys>
+                  <div
+                    className="mt-1.5 grid grid-cols-4 border border-line-strong dark:border-stone-700"
+                    role="radiogroup"
+                    aria-label={t.revampQuiz.labDifficultyLabel}
+                  >
+                    {DIFFICULTY_IDS.map((id, i) => {
+                      const on = difficulty === id;
                       return (
                         <button
                           key={id}
                           type="button"
+                          role="radio"
                           onClick={() => setDifficulty(id)}
-                          aria-pressed={selected}
-                          className={`${tabClass(selected)} cursor-pointer`}
+                          aria-checked={on}
+                          className={`py-2 text-xs font-bold transition-colors cursor-pointer ${i > 0 ? "border-l border-line-strong dark:border-stone-700" : ""} ${
+                            on
+                              ? "bg-brand-600 text-white dark:bg-brand-500 dark:text-stone-950"
+                              : "text-ink-muted hover:bg-surface-raised hover:text-ink dark:hover:bg-stone-800"
+                          }`}
                         >
-                          {label}
+                          {difficultyLabel(id)}
                         </button>
                       );
                     })}
                   </div>
                 </div>
 
-                {/* XP Reward hint */}
-                <p className="border-l-2 border-stone-950 pl-4 text-xs font-semibold leading-6 text-ink-body dark:border-stone-200">
-                  {t.quizPage.rewardPart1}
-                  <strong className="font-mono tabular-nums text-accent-strong">{format(t.quizPage.rewardXp, { xp: XP_PER_QUESTION })}</strong>
-                  {t.quizPage.rewardPart2}
-                </p>
-
-                {/* Start Action Button */}
-                <button onClick={() => startSelectedQuiz(track, difficulty)} className={`${btnPrimary} w-full cursor-pointer`}>
-                  <span>{t.quizPage.start}</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
+                {/* Cấu hình phiên đọc lại thành một dòng, cùng phần thưởng. */}
+                <div className="mt-auto space-y-3">
+                  <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1 border-t border-line pt-3">
+                    <p className="min-w-0 text-xs text-ink-muted">
+                      <Sys className="mr-2 text-ink-faint">{t.revampQuiz.labSpecLabel}</Sys>
+                      <span className="font-bold text-ink-max">{trackLabel(track)}</span>
+                      <span aria-hidden className="mx-1.5 inline-block h-1 w-1 translate-y-[-2px] bg-stone-400 dark:bg-stone-600" />
+                      <span className="font-bold text-ink-max">{difficultyLabel(difficulty)}</span>
+                    </p>
+                    <p className="font-mono text-xs tabular-nums">
+                      <span className="font-bold text-warn-strong">{format(t.revampQuiz.labRewardXp, { xp: xpPerQuestion })}</span>
+                      <span className="text-ink-muted"> {format(t.revampQuiz.labPassRule, { pct: Math.round(PASS_RATIO * 100) })}</span>
+                    </p>
+                  </div>
+                  <button type="button" onClick={() => startSelectedQuiz(track, difficulty)} className={`${btnPrimary} w-full cursor-pointer`}>
+                    <span>{t.revampQuiz.labStart}</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
+                </div>
               </div>
             </div>
 
@@ -347,11 +359,9 @@ export default function KiemTraPage() {
                 <ArrowRight className="w-4 h-4 shrink-0 text-accent-strong" />
               </Link>
             </div>
-
           </div>
         )}
 
-        {/* Quiz Execution Views (Center aligned max-w-2xl) */}
         {stage !== "setup" && (
           <div className="max-w-2xl mx-auto">
             {stage === "loading" && <p className="text-center text-ink-muted py-16">{t.quizPage.loadingQuestions}</p>}
@@ -377,19 +387,45 @@ export default function KiemTraPage() {
         )}
 
         {stage === "ready" && q && (
-          <div className="mx-auto max-w-2xl space-y-5">
+          <div className="mx-auto max-w-2xl space-y-4">
+            {/* Dòng trạng thái phiên: cấu hình, vị trí câu, điểm và XP đang chạy. */}
             <div>
-              <div className="flex flex-wrap items-center justify-between gap-3">
-                <span className="text-xs font-bold tabular-nums text-ink-muted">
+              <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
+                <Sys className="text-ink-muted">
+                  {t.revampQuiz.runLabel}
+                  <span aria-hidden className="mx-1.5 inline-block h-1 w-1 translate-y-[-2px] bg-stone-400 dark:bg-stone-600" />
+                  {trackLabel(track)}
+                  <span aria-hidden className="mx-1.5 inline-block h-1 w-1 translate-y-[-2px] bg-stone-400 dark:bg-stone-600" />
+                  {difficultyLabel(difficulty)}
+                </Sys>
+                <span className="flex items-baseline gap-3 font-mono text-xs tabular-nums">
+                  <span className="text-cyan-700 dark:text-cyan-400">{format(t.revampQuiz.runningScore, { correct: correctSoFar })}</span>
+                  <span className="font-bold text-warn-strong">
+                    {format(t.revampQuiz.runningXp, { xp: correctSoFar * xpPerQuestion })}
+                  </span>
+                </span>
+              </div>
+
+              {/* Một đoạn cho mỗi câu: cyan đúng, đỏ sai, xanh đang làm, xám chưa tới. */}
+              <div className="mt-2 flex gap-1" aria-hidden>
+                {questions.map((_, i) => {
+                  const done = i < answeredSoFar;
+                  const cls = done
+                    ? results[i]
+                      ? "bg-cyan-600 dark:bg-cyan-400"
+                      : "bg-red-500 dark:bg-red-400"
+                    : i === activeQ
+                      ? "bg-brand-600 dark:bg-brand-500"
+                      : "bg-surface-sunken";
+                  return <span key={i} className={`h-1.5 flex-1 transition-colors ${cls}`} />;
+                })}
+              </div>
+
+              <div className="mt-2 flex flex-wrap items-center justify-between gap-2 text-xs">
+                <span className="font-bold tabular-nums text-ink-max">
                   {format(t.quizPage.questionCounter, { current: activeQ + 1, total: questions.length })}
                 </span>
-                <span className="text-xs truncate max-w-[60%] text-ink-faint">{q.lessonTitle}</span>
-              </div>
-              <div className="mt-3 h-1 overflow-hidden bg-surface-sunken">
-                <div
-                  className="h-full transition-all duration-500 bg-brand-600 dark:bg-brand-500"
-                  style={{ width: `${Math.max(6, progressPct)}%` }}
-                />
+                <span className="truncate max-w-[60%] text-ink-faint">{q.lessonTitle}</span>
               </div>
             </div>
 
@@ -403,8 +439,8 @@ export default function KiemTraPage() {
                 let gutter = "text-ink-faint";
                 if (submitted) {
                   if (isCorrectOpt) {
-                    cls = "border-brand-600 bg-brand-50 text-brand-800 font-semibold dark:border-brand-400 dark:bg-brand-950/40 dark:text-brand-200";
-                    gutter = "text-accent-strong";
+                    cls = "border-cyan-600 bg-cyan-50 text-ink-max font-semibold dark:border-cyan-400 dark:bg-cyan-950/40";
+                    gutter = "text-cyan-700 dark:text-cyan-400";
                   } else if (isSelected) {
                     cls = "border-red-600 bg-red-50 text-red-800 font-semibold dark:border-red-400 dark:bg-red-950/40 dark:text-red-200";
                     gutter = "text-danger";
@@ -418,21 +454,63 @@ export default function KiemTraPage() {
                     key={oi}
                     disabled={submitted}
                     onClick={() => choose(oi)}
-                    className={`grid w-full grid-cols-[1.5rem_minmax(0,1fr)] items-baseline text-left px-3 py-2.5 rounded-sm border transition-colors cursor-pointer text-sm leading-6 select-text ${cls}`}
+                    className={`grid w-full grid-cols-[1.5rem_minmax(0,1fr)_1rem] items-baseline text-left px-3 py-2.5 rounded-sm border transition-colors cursor-pointer text-sm leading-6 select-text ${cls}`}
                   >
-                    <Sys className={gutter}>{String.fromCharCode(65 + oi)}</Sys>
+                    <Sys className={gutter}>{letter(oi)}</Sys>
                     <span>{opt}</span>
+                    <span className="self-center">
+                      {submitted && isCorrectOpt && <Check className="h-4 w-4 text-cyan-700 dark:text-cyan-400" aria-hidden />}
+                      {submitted && isSelected && !isCorrectOpt && <X className="h-4 w-4 text-danger" aria-hidden />}
+                    </span>
                   </button>
                 );
               })}
             </div>
 
+            {!submitted && (
+              <div className="flex items-center justify-between gap-3 text-xs">
+                <span className={selected === null ? "text-ink-muted" : "font-bold text-accent-strong"}>
+                  {selected === null ? t.revampQuiz.stateUnanswered : format(t.revampQuiz.statePicked, { letter: letter(selected) })}
+                </span>
+                <span className="hidden sm:inline font-mono text-ink-faint">{t.revampQuiz.keysHint}</span>
+              </div>
+            )}
+
+            {/* Phản hồi: Cơ Cơ nói một câu ngắn kèm XP của câu này, rồi LẬP
+                LUẬN - đáp án đúng viết nguyên văn, sau đó "vì sao". Câu đúng
+                cũng nhận đủ phần giải thích, không chỉ một dấu tích. */}
             {submitted && (
-              <div className={`border-l-2 pl-4 text-sm leading-7 ${results[activeQ] ? "border-brand-600 text-ink-body dark:border-brand-400" : "border-red-600 text-ink-body dark:border-red-400"}`}>
-                <p className={`font-bold mb-1 ${results[activeQ] ? "text-accent-strong" : "text-danger"}`}>
-                  {results[activeQ] ? format(t.quizPage.correctWithXp, { xp: XP_PER_QUESTION }) : t.quizPage.explanation}
-                </p>
-                <p className="max-w-[68ch]">{q.explanation}</p>
+              <div className="space-y-3 border-t border-line pt-4">
+                <CoCoFeedback
+                  lines={results[activeQ] ? t.revampQuiz.feedbackCorrect : t.revampQuiz.feedbackWrong}
+                  tone={results[activeQ] ? "correct" : "wrong"}
+                  salt={activeQ}
+                  trailing={
+                    results[activeQ] ? (
+                      <span className="font-mono text-xs font-bold tabular-nums text-warn-strong">
+                        {format(t.revampQuiz.xpThisQuestion, { xp: xpPerQuestion })}
+                      </span>
+                    ) : (
+                      <span className="font-mono text-xs font-bold tabular-nums text-ink-faint">{t.revampQuiz.noXpThisQuestion}</span>
+                    )
+                  }
+                />
+                <div className="space-y-2.5 text-sm">
+                  {!results[activeQ] && selected !== null && (
+                    <p className="text-danger">
+                      <span className="font-bold">{format(t.revampQuiz.yourPick, { letter: letter(selected) })}</span>
+                      <span className="text-ink-muted"> - {q.options[selected]}</span>
+                    </p>
+                  )}
+                  <div className="border-l-2 border-cyan-600 pl-3 dark:border-cyan-400">
+                    <Sys className="text-cyan-700 dark:text-cyan-400">{format(t.revampQuiz.answerHead, { letter: letter(q.correct) })}</Sys>
+                    <p className="mt-0.5 font-bold leading-6 text-ink-max">{q.options[q.correct]}</p>
+                  </div>
+                  <div className="pl-3.5">
+                    <Sys className="text-ink-muted">{t.revampQuiz.whyHead}</Sys>
+                    <p className="mt-0.5 max-w-[68ch] leading-7 text-ink-body">{q.explanation}</p>
+                  </div>
+                </div>
               </div>
             )}
 
@@ -451,77 +529,76 @@ export default function KiemTraPage() {
 
         {stage === "done" && (
           <div className="mx-auto max-w-2xl space-y-5">
-            <div className="flex items-start gap-4">
-              <span className="rounded-sm border border-line-strong p-2.5 text-ink-body dark:border-stone-700">
-                {score === questions.length ? (
-                  <Trophy aria-hidden className="h-7 w-7" strokeWidth={1.5} />
-                ) : score >= questions.length * 0.7 ? (
-                  <PartyPopper aria-hidden className="h-7 w-7" strokeWidth={1.5} />
-                ) : (
-                  <Dumbbell aria-hidden className="h-7 w-7" strokeWidth={1.5} />
-                )}
-              </span>
+            <div className="flex flex-wrap items-end justify-between gap-4">
               <div>
-                <h3 className="font-black tracking-tight text-xl text-ink-max">{t.quizPage.doneTitle}</h3>
-                <p className="text-sm mt-1 tabular-nums text-ink-muted">
-                  {format(t.quizPage.doneScore, { score, total: questions.length })}
-                  {passed ? <span className="font-bold text-accent-strong">{t.quizPage.donePassed}</span> : ""}
+                <Sys className="text-ink-muted">{t.revampQuiz.resultTitle}</Sys>
+                <p className="mt-1 flex items-baseline gap-3">
+                  <span className="font-mono text-4xl font-medium tabular-nums leading-none text-ink-max">
+                    {score}/{questions.length}
+                  </span>
+                  {passed ? (
+                    <span className="inline-flex items-center gap-1 text-sm font-black text-cyan-700 dark:text-cyan-400">
+                      <CheckCircle2 className="h-4 w-4" aria-hidden />
+                      {t.revampQuiz.resultPassed}
+                    </span>
+                  ) : (
+                    <span className="text-sm font-bold text-ink-muted">
+                      {format(t.revampQuiz.resultNotPassed, { need: passNeed, total: questions.length })}
+                    </span>
+                  )}
                 </p>
               </div>
-            </div>
-
-            <div className={`${panel} px-4 py-2`}>
-              <StatTable
-                rows={[
-                  {
-                    label: t.quizPage.xpEarned,
-                    value: (
-                      <span className="text-accent-strong">
-                        {xpAwarded === null ? "..." : format(t.miscUi.xpGain, { count: xpAwarded })}
-                      </span>
-                    ),
-                  },
-                ]}
-              />
+              <div className="text-right">
+                <Sys className="text-ink-muted">{t.quizPage.xpEarned}</Sys>
+                <p className="mt-1 font-mono text-2xl font-bold tabular-nums leading-none text-warn-strong">
+                  {xpAwarded === null ? "..." : format(t.miscUi.xpGain, { count: xpAwarded })}
+                </p>
+              </div>
             </div>
 
             <div className="flex flex-wrap gap-1.5">
               {results.map((ok, i) => (
                 <div
                   key={i}
-                  className={`w-8 h-8 rounded-sm border font-mono text-xs flex items-center justify-center font-bold ${
+                  className={`w-8 h-8 rounded-sm border flex items-center justify-center ${
                     ok
-                      ? "border-brand-600 bg-brand-50 text-brand-800 dark:border-brand-400 dark:bg-brand-950/40 dark:text-brand-200"
+                      ? "border-cyan-600 bg-cyan-50 text-cyan-800 dark:border-cyan-400 dark:bg-cyan-950/40 dark:text-cyan-200"
                       : "border-red-600 bg-red-50 text-red-800 dark:border-red-400 dark:bg-red-950/40 dark:text-red-200"
                   }`}
                 >
-                  {ok ? "✓" : "✗"}
+                  {ok ? <Check className="h-4 w-4" aria-hidden /> : <X className="h-4 w-4" aria-hidden />}
                 </div>
               ))}
             </div>
 
-            {questions.some((_, i) => !results[i]) && (
+            <CoCoSays
+              lines={passed ? t.revampQuiz.resultGood : t.revampQuiz.resultReview}
+              vars={{ score, total: questions.length }}
+              size={40}
+            />
+
+            {wrongLessons.length > 0 && (
               <div className="border-l-2 border-stone-950 pl-4 space-y-1.5 dark:border-stone-200">
-                <p className="text-[11px] font-bold text-ink-muted uppercase tracking-[0.08em] mb-2">
-                  {t.quizPage.reviewWrongLessons}
-                </p>
-                {Array.from(new Set(questions.filter((_, i) => !results[i]).map((qq) => qq.lessonId))).map((lessonId) => {
-                  const lq = questions.find((qq) => qq.lessonId === lessonId)!;
-                  return (
-                    <Link key={lessonId} href={`/bai-hoc/${lq.lessonSlug}`} className={`${textLink} flex`}>
-                      → {lq.lessonTitle}
-                    </Link>
-                  );
-                })}
+                <Sys className="block mb-2 text-ink-muted">{t.quizPage.reviewWrongLessons}</Sys>
+                {wrongLessons.map((lq) => (
+                  <Link key={lq.lessonId} href={`/bai-hoc/${lq.lessonSlug}`} className={`${textLink} flex`}>
+                    <ArrowRight className="h-3.5 w-3.5" aria-hidden />
+                    {lq.lessonTitle}
+                  </Link>
+                ))}
               </div>
             )}
 
-            <div className="grid grid-cols-2 gap-3 pt-2">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-2">
               <Link href="/dashboard" className={btnSecondary}>
                 {t.quizPage.backToDashboard}
               </Link>
-              <button onClick={() => setStage("setup")} className={`${btnPrimary} cursor-pointer`}>
-                {t.quizPage.newQuiz}
+              <button onClick={() => setStage("setup")} className={`${btnSecondary} cursor-pointer`}>
+                {t.revampQuiz.changeConfig}
+              </button>
+              <button onClick={() => void startQuiz()} className={`${btnPrimary} cursor-pointer`}>
+                <RotateCcw className="h-4 w-4" aria-hidden />
+                {t.revampQuiz.retrySame}
               </button>
             </div>
           </div>

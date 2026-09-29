@@ -145,7 +145,7 @@ const SOLUTIONS: Record<string, string> = {
   "best-sellers":
     "SELECT p.name, SUM(i.quantity) AS total FROM products p JOIN order_items i ON i.product_id = p.id GROUP BY p.id ORDER BY total DESC LIMIT 3",
   "revenue-per-customer":
-    "SELECT c.id, c.name, SUM(i.quantity * p.price) AS revenue FROM orders o JOIN customers c ON c.id = o.customer_id JOIN order_items i ON i.order_id = o.id JOIN products p ON p.id = i.product_id GROUP BY c.id",
+    "SELECT c.id, c.name, SUM(i.quantity * p.price) AS revenue FROM orders o JOIN customers c ON c.id = o.customer_id JOIN order_items i ON i.order_id = o.id JOIN products p ON p.id = i.product_id GROUP BY c.id ORDER BY revenue DESC LIMIT 10",
 };
 
 /** Lỗi thường gặp - phải KHÔNG qua nhiệm vụ. */
@@ -156,6 +156,9 @@ const WRONG: Record<string, string> = {
   "having-avg": "SELECT category FROM products WHERE price > 5000000 GROUP BY category",
   "left-join-null": "SELECT c.name FROM customers c JOIN orders o ON o.customer_id = c.id WHERE o.id IS NULL",
   "best-sellers": "SELECT p.name, COUNT(*) AS n FROM products p JOIN order_items i ON i.product_id = p.id GROUP BY p.id ORDER BY n DESC LIMIT 3",
+  // Đúng số liệu nhưng quên xếp hạng: CEO hỏi "cao nhất", thứ tự là một phần đáp án.
+  "revenue-per-customer":
+    "SELECT c.name, SUM(i.quantity * p.price) AS revenue FROM customers c JOIN orders o ON o.customer_id = c.id JOIN order_items i ON i.order_id = o.id JOIN products p ON p.id = i.product_id GROUP BY c.name ORDER BY revenue ASC",
 };
 
 describe("nhiệm vụ", () => {

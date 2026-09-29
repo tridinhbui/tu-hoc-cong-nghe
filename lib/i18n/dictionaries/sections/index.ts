@@ -32,6 +32,14 @@ import { interactiveRestVi, interactiveRestEn } from "./interactive-rest";
 import { learningPathVi, learningPathEn } from "./learning-path";
 import { learningFlowsVi, learningFlowsEn } from "./learning-flows";
 import { certTracksVi, certTracksEn } from "./cert-tracks";
+import { cocoVi, cocoEn } from "./coco";
+import { revampDashboardVi, revampDashboardEn } from "./revamp-dashboard";
+import { revampGoalsVi, revampGoalsEn } from "./revamp-goals";
+import { revampQuizVi, revampQuizEn } from "./revamp-quiz";
+import { revampInterviewVi, revampInterviewEn } from "./revamp-interview";
+import { revampToolsVi, revampToolsEn } from "./revamp-tools";
+import { revampGameVi, revampGameEn } from "./revamp-game";
+import { practicalSkillVi, practicalSkillEn } from "./practical-skill";
 import { lessonCodeVi, lessonCodeEn } from "./lesson-code";
 import { dashboardCardsVi, dashboardCardsEn } from "./dashboard-cards";
 import { toolSimsVi, toolSimsEn } from "./tool-sims";
@@ -96,6 +104,14 @@ export const viSections = {
   ...learningPathVi,
   ...learningFlowsVi,
   ...certTracksVi,
+  ...cocoVi,
+  ...revampDashboardVi,
+  ...revampGoalsVi,
+  ...revampQuizVi,
+  ...revampInterviewVi,
+  ...revampToolsVi,
+  ...revampGameVi,
+  ...practicalSkillVi,
   ...lessonCodeVi,
   ...dashboardCardsVi,
   ...toolSimsVi,
@@ -162,6 +178,14 @@ export const enSections: typeof viSections = {
   ...learningPathEn,
   ...learningFlowsEn,
   ...certTracksEn,
+  ...cocoEn,
+  ...revampDashboardEn,
+  ...revampGoalsEn,
+  ...revampQuizEn,
+  ...revampInterviewEn,
+  ...revampToolsEn,
+  ...revampGameEn,
+  ...practicalSkillEn,
   ...lessonCodeEn,
   ...dashboardCardsEn,
   ...toolSimsEn,

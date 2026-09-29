@@ -5,6 +5,9 @@ import { isLessonIdInTrack } from "@/lib/track-stages";
 import { stageTopicFor, type StageTopicId } from "@/lib/stage-topics";
 import { paceFromParts, type Pace } from "@/lib/learning-pace";
 import LearningPathClient from "@/components/LearningPathClient";
+import { LEARNING_FLOWS } from "@/lib/learning-flows";
+import { flowStats } from "@/components/learning-flows/shared";
+import type { FlowEffort } from "@/components/learning-flows/LearningGoalCard";
 
 // Đọc Cloudflare lúc render, nên không prerender tĩnh.
 export const dynamic = "force-dynamic";
@@ -93,6 +96,13 @@ export default async function LearningPathPage() {
     topicEntry[track] = map;
   }
 
+  /** "18 bài · ~2 giờ" trên thẻ chọn mục tiêu: đếm từ meta bài thật, cùng
+   *  phép tính /hoc-theo-nhu-cau dùng, để hai trang không ghi hai con số. */
+  const bySlug = new Map(lessonsMeta.map((m) => [m.slug, m]));
+  const flowEffort: FlowEffort = Object.fromEntries(
+    LEARNING_FLOWS.map((f) => [f.id, flowStats(f, bySlug)]),
+  );
+
   const savedTrack: Track | null =
     profile?.learning_track === "personal" || profile?.learning_track === "professional"
       ? profile.learning_track
@@ -110,6 +120,7 @@ export default async function LearningPathPage() {
       topicEntry={topicEntry}
       savedTrack={savedTrack}
       savedPace={savedPace}
+      flowEffort={flowEffort}
     />
   );
 }

@@ -11,9 +11,13 @@ import { findRepo } from "@/lib/tools/terminal/git";
 import { TERMINAL_MISSIONS, completedMissionIds } from "@/lib/tools/terminal/missions";
 import { HELP_GROUPS } from "@/lib/tools/terminal/reference";
 import type { NoticeId, OutputLine, SpanColor, TermState } from "@/lib/tools/terminal/types";
+import { TOOL_STORAGE } from "@/lib/tools/progress";
+import { format } from "@/lib/i18n";
 
-const STORAGE_STATE = "thtcdn:tool-terminal:state";
-const STORAGE_DONE = "thtcdn:tool-terminal:done";
+const STORAGE_STATE = TOOL_STORAGE.terminalState;
+const STORAGE_DONE = TOOL_STORAGE.terminalDone;
+/** Số lệnh gần nhất hiện trong kết quả bàn giao. */
+const ARTIFACT_COMMANDS = 6;
 const MAX_SCREEN = 800;
 
 type ScreenEntry =
@@ -74,6 +78,7 @@ export default function TerminalSim() {
   const [input, setInput] = useState("");
   const [cheatOpen, setCheatOpen] = useState(false);
   const [loaded, setLoaded] = useState(false);
+  const [errorKey, setErrorKey] = useState(0);
 
   const histIndex = useRef<number | null>(null);
   const draft = useRef("");
@@ -130,6 +135,8 @@ export default function TerminalSim() {
     }
     const { state: next, result } = runLine(state, line, Date.now());
     setState(next);
+    const lastRun = next.log.length > state.log.length ? next.log[next.log.length - 1] : null;
+    if (lastRun && lastRun.code !== 0) setErrorKey((k) => k + 1);
     const entries: ScreenEntry[] = result.lines.map((l) => ({ k: "out", line: l }));
     for (const n of result.notices) entries.push(n === "help" ? { k: "help" } : { k: "notice", id: n });
     if (result.clear) push(entries, true);
@@ -216,8 +223,58 @@ export default function TerminalSim() {
 
   const missions = TERMINAL_MISSIONS.map((m) => {
     const copy = c.missions[m.id as keyof typeof c.missions];
-    return { id: m.id, title: copy.title, hint: copy.hint, done: doneIds.has(m.id) };
+    const labels = copy.criteria as Record<string, string>;
+    return {
+      id: m.id,
+      title: copy.title,
+      hint: copy.hint,
+      from: copy.from,
+      brief: copy.brief,
+      done: doneIds.has(m.id),
+      criteria: m.criteria.map((cr) => ({ id: cr.id, label: labels[cr.id] ?? cr.id, met: cr.check(state) })),
+    };
   });
+
+  // Kết quả bàn giao: những lệnh vừa gõ, kèm trạng thái Git / Docker nếu có -
+  // đúng thứ người ta dán vào ticket để báo "đã làm".
+  const renderArtifact = () => {
+    const r = t.revampTools.terminal;
+    const recent = state.history.slice(-ARTIFACT_COMMANDS);
+    return (
+      <div className="space-y-2">
+        <p className="text-[11px] font-bold text-ink-muted">{r.commands}</p>
+        <div className="rounded-md bg-stone-950 px-2.5 py-2 font-mono text-[11px] leading-relaxed text-stone-100">
+          {recent.length === 0 ? (
+            <p className="text-stone-500">{r.empty}</p>
+          ) : (
+            recent.map((cmd, i) => (
+              <p key={i} className="break-all">
+                <span className="text-emerald-400">$ </span>
+                {cmd}
+              </p>
+            ))
+          )}
+        </div>
+        {repo && (
+          <p className="flex items-center gap-1.5 font-mono text-[11px] text-ink">
+            <GitBranch className="h-3.5 w-3.5 text-accent" />
+            {format(r.branch, { branch: repo.head })} · {format(r.commits, { count: Object.keys(repo.commits).length })}
+          </p>
+        )}
+        {running.length > 0 && (
+          <div>
+            <p className="text-[11px] font-bold text-ink-muted">{r.containers}</p>
+            {running.map((x) => (
+              <p key={x.id} className="flex items-center gap-1.5 font-mono text-[11px] text-ink">
+                <Container className="h-3.5 w-3.5 text-accent" />
+                {x.name} · {x.image} · {x.ports.map((p) => `${p.host}→${p.container}`).join(", ")}
+              </p>
+            ))}
+          </div>
+        )}
+      </div>
+    );
+  };
 
   const renderEntry = (entry: ScreenEntry, i: number) => {
     switch (entry.k) {
@@ -284,7 +341,14 @@ export default function TerminalSim() {
   };
 
   return (
-    <ToolShell tool="terminal" missions={missions} onReset={onReset}>
+    <ToolShell
+      tool="terminal"
+      missions={missions}
+      onReset={onReset}
+      ready={loaded}
+      errorKey={errorKey}
+      renderArtifact={renderArtifact}
+    >
       <div className="space-y-3">
         <div className="overflow-hidden rounded-2xl border border-stone-800 bg-stone-950 shadow-xl">
           <div className="flex items-center gap-2 border-b border-stone-800 bg-stone-900 px-3 py-2">

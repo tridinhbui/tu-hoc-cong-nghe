@@ -36,6 +36,10 @@ interface UserStatsProps {
   /** Bản gọn của trang tổng quan. Rút banner thi thăng cấp về một dòng; phần
    *  bị rút quay lại nguyên vẹn khi người học chọn "Đầy đủ". */
   compact?: boolean;
+  /** Bỏ hàng avatar + tên cấp + tổng XP ở đầu thẻ. Dashboard bật cờ này vì
+   *  khối "Trung tâm kỹ năng" ngay cạnh đã nói đúng ba thứ đó, to hơn - hai
+   *  bản của cùng một danh tính cách nhau một cột chỉ làm mắt phải chọn. */
+  hideIdentity?: boolean;
 }
 
 const LEVEL_EMOJIS: Record<number, string> = {
@@ -69,6 +73,7 @@ export default function UserStats({
   sidebar = false,
   embedded = false,
   compact = false,
+  hideIdentity = false,
 }: UserStatsProps) {
   const { t } = useI18n();
   const currentLevel = getLevelByXp(xp);
@@ -237,6 +242,7 @@ export default function UserStats({
       {/* Hai quầng sáng mờ và dải gradient đầu thẻ đã gỡ: hệ thiết kế chung
           (components/ui/system.tsx) lấy chiều sâu từ sắc độ nền và đường kẻ
           1px, không từ bóng hay ánh sáng trang trí. */}
+      {!hideIdentity && (
       <div className={`flex items-center gap-2.5 ${sidebar ? "mb-2" : "mb-4"}`}>
         <motion.div
           whileTap={{ scale: 0.95 }}
@@ -273,6 +279,7 @@ export default function UserStats({
           </span>
         </div>
       </div>
+      )}
 
       {/* Mini RPG Status / Wardrobe Widget removed to declutter the card */}
 

@@ -86,7 +86,7 @@ function getMetaphorForLesson(title: string): MetaphorId {
 export default function LessonPageClient({ lesson, nextLesson }: Props) {
   const { t } = useI18n();
   const [feynmanMode, setFeynmanMode] = useState(false);
-  // Staged reveal for the "Tài Tài giải thích" card, like a chatbot response:
+  // Staged reveal for the "Cơ Cơ giải thích" card, like a chatbot response:
   // the metaphor line types itself out first, then the takeaways/mistake
   // warning fade in - instead of the whole card appearing at once.
   const [metaphorTyped, setMetaphorTyped] = useState(false);

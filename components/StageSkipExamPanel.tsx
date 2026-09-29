@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
-import Image from "next/image";
 import { toast } from "sonner";
 import { Loader2, XCircle, ChevronLeft, Lock, Check, Trophy, Target, ArrowRight, Monitor, GitBranch, Code2, Globe, Braces, Layers, Server, Database, Cloud, type LucideIcon } from "lucide-react";
 import { recalculateUserStats } from "@/lib/cloudflare-user";
@@ -291,17 +290,10 @@ export default function StageSkipExamPanel({ userId, fullPage = false }: { userI
       {view === "pick" && (
         <>
           {/* ── 1. HERO BANNER CARD ── */}
-          <div className={`${panel} relative overflow-hidden p-5 sm:p-6 flex flex-col md:flex-row items-center gap-6 shrink-0`}>
-            {/* Storybook Mountain Watercolor Painting */}
-            <div className="w-full md:w-64 h-40 relative shrink-0 rounded-sm overflow-hidden border border-line">
-              <Image
-                src="/images/dashboard/checkpoint_hero_mountain.jpg"
-                alt={t.dashCards.stageExamAlt}
-                fill
-                className="object-cover"
-                priority
-              />
-            </div>
+          {/* Ảnh tranh màu nước "núi" từng chiếm 256px bên trái khối này. Nó
+              không nói gì về tiến độ, nên đã gỡ: khối giờ chỉ còn mốc đạt, số
+              chặng đã xong và thanh chặng. */}
+          <div className={`${panel} relative overflow-hidden p-4 sm:p-5 flex flex-col gap-4 shrink-0`}>
 
             {/* Content & Progress Stats */}
             <div className="flex-1 min-w-0 space-y-3 w-full">
@@ -345,7 +337,7 @@ export default function StageSkipExamPanel({ userId, fullPage = false }: { userI
                     <span
                       key={s.stageLabel}
                       className={`h-1.5 flex-1 rounded-[1px] transition-colors ${
-                        cleared ? "bg-brand-600 dark:bg-brand-500" : "bg-surface-sunken"
+                        cleared ? "bg-cyan-600 dark:bg-cyan-400" : "bg-surface-sunken"
                       }`}
                     />
                   );
@@ -434,7 +426,7 @@ export default function StageSkipExamPanel({ userId, fullPage = false }: { userI
                         <div className="h-1 w-full bg-surface-sunken overflow-hidden">
                           <div
                             className={`h-full transition-all duration-500 ${
-                              done ? "bg-brand-600 dark:bg-brand-500" : "bg-stone-500 dark:bg-stone-400"
+                              done ? "bg-cyan-600 dark:bg-cyan-400" : "bg-stone-500 dark:bg-stone-400"
                             }`}
                             style={{ width: `${pct}%` }}
                           />
@@ -444,7 +436,7 @@ export default function StageSkipExamPanel({ userId, fullPage = false }: { userI
                       {/* Bottom Action Row */}
                       <div className="mt-3 pt-3 border-t border-line flex items-center justify-between">
                         {done ? (
-                          <span className="inline-flex items-center gap-1.5 text-xs font-bold text-accent-strong">
+                          <span className="inline-flex items-center gap-1.5 text-xs font-bold text-cyan-700 dark:text-cyan-400">
                             <Check className="w-3.5 h-3.5" />
                             {t.stageSkip.done}
                           </span>

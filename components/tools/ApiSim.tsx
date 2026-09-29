@@ -24,6 +24,7 @@ import {
   type SentRequest,
 } from "@/lib/tools/api/engine";
 import { API_MISSIONS } from "@/lib/tools/api/missions";
+import { TOOL_STORAGE } from "@/lib/tools/progress";
 import {
   COLLECTION,
   autoHeaders,
@@ -33,7 +34,7 @@ import {
   type RequestDraft,
 } from "@/lib/tools/api/collection";
 
-const STORAGE_KEY = "thtcdn:tool-api:state";
+const STORAGE_KEY = TOOL_STORAGE.api;
 
 const METHOD_COLOR: Record<HttpMethod, string> = {
   GET: "text-brand-500",
@@ -108,6 +109,7 @@ export default function ApiSim() {
   const [methodOpen, setMethodOpen] = useState(false);
   const [pendingValue, setPendingValue] = useState("");
   const [tokenApplied, setTokenApplied] = useState(false);
+  const [errorKey, setErrorKey] = useState(0);
   const generation = useRef(0);
 
   useEffect(() => {
@@ -141,12 +143,48 @@ export default function ApiSim() {
     }
   }, [api, allDone, draft, loaded]);
 
-  const missions = API_MISSIONS.map((m) => ({
-    id: m.id,
-    title: c.missions[m.id].title,
-    hint: c.missions[m.id].hint,
-    done: allDone.includes(m.id),
-  }));
+  const missions = API_MISSIONS.map((m) => {
+    const copy = c.missions[m.id];
+    const labels = copy.criteria as Record<string, string>;
+    return {
+      id: m.id,
+      title: copy.title,
+      hint: copy.hint,
+      from: copy.from,
+      brief: copy.brief,
+      done: allDone.includes(m.id),
+      criteria: m.criteria.map((cr) => ({ id: cr.id, label: labels[cr.id] ?? cr.id, met: cr.check(api) })),
+    };
+  });
+
+  const renderArtifact = (id: string) => {
+    const mission = API_MISSIONS.find((m) => m.id === id);
+    const entry = mission?.evidence(api);
+    const r = t.revampTools.api;
+    if (!entry) return <p className="text-xs text-ink-muted">{r.missing}</p>;
+    return (
+      <div className="space-y-2">
+        <p className="text-[11px] font-bold text-ink-muted">{r.evidence}</p>
+        <div className="rounded-md bg-stone-950 px-2.5 py-2 font-mono text-[11px] leading-relaxed">
+          <p className="break-all text-stone-100">
+            <span className={`font-bold ${METHOD_COLOR[entry.request.method]}`}>{entry.request.method}</span> {entry.request.url}
+          </p>
+          <p className="mt-1 flex items-center gap-2">
+            <span className={`rounded px-1.5 py-0.5 font-bold ${statusTone(entry.status)}`}>{entry.status}</span>
+            <span className="text-stone-400">{format(r.latency, { ms: entry.timeMs })}</span>
+          </p>
+        </div>
+        {entry.request.body.trim() && (
+          <>
+            <p className="text-[11px] font-bold text-ink-muted">{r.body}</p>
+            <pre className="max-h-32 overflow-auto rounded-md bg-stone-950 px-2.5 py-2 font-mono text-[11px] text-stone-200">
+              {prettyJson(entry.request.body)}
+            </pre>
+          </>
+        )}
+      </div>
+    );
+  };
 
   const update = (patch: Partial<RequestDraft>) => setDraft((d) => ({ ...d, ...patch }));
 
@@ -167,6 +205,7 @@ export default function ApiSim() {
     setApi(next);
     setResult(res);
     setSending(false);
+    if (res.kind !== "http" || res.status >= 400) setErrorKey((k) => k + 1);
     setResTab("body");
   }
 
@@ -227,7 +266,14 @@ export default function ApiSim() {
     "w-full min-w-0 rounded-md border border-line bg-white px-2 py-1.5 font-mono text-xs text-ink outline-none placeholder:text-ink-faint focus:border-brand-500 dark:bg-stone-950";
 
   return (
-    <ToolShell tool="api" missions={missions} onReset={reset}>
+    <ToolShell
+      tool="api"
+      missions={missions}
+      onReset={reset}
+      ready={loaded}
+      errorKey={errorKey}
+      renderArtifact={renderArtifact}
+    >
       <div className="overflow-hidden rounded-2xl border border-line bg-white dark:bg-stone-900">
         <div className="grid md:grid-cols-[220px_minmax(0,1fr)]">
           {/* ------------------------------------------------ Sidebar */}

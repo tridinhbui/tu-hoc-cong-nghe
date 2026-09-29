@@ -11,7 +11,9 @@ import { LEARNING_FLOWS, getLearningFlow } from "@/lib/learning-flows";
 import FeynmanCard, { type FeynmanCopy } from "@/components/learning-flows/FeynmanCard";
 import WebHouseDemo from "@/components/learning-flows/WebHouseDemo";
 import { FLOWS_SYS, FlowsHeader, StatusPill, cleanLessonTitle, flowStats } from "@/components/learning-flows/shared";
-import { Frame, SectionHead, Sys, panel, textLink } from "@/components/ui/system";
+import { Frame, SectionHead, Sys, btnPrimary, panel, textLink } from "@/components/ui/system";
+import { CapabilityFacts, effortLabel } from "@/components/learning-flows/capability";
+import CoCoSays from "@/components/CoCoSays";
 
 export function generateStaticParams() {
   return LEARNING_FLOWS.map((f) => ({ flow: f.id }));
@@ -42,6 +44,8 @@ export default async function LearningFlowPage({ params }: { params: Promise<{ f
   const locale = await getServerLocale();
   const t = getDictionary(locale).learningFlows;
   const copy = t.flows[flow.id];
+  const r = getDictionary(locale).revampGoals;
+  const cap = r.flows[flow.id];
   const metas = await getLessonsMeta(locale);
   const bySlug = new Map(metas.map((m) => [m.slug, m]));
   const stats = flowStats(flow, bySlug);
@@ -99,10 +103,10 @@ export default async function LearningFlowPage({ params }: { params: Promise<{ f
           <p className="text-base font-semibold text-ink-muted">“{copy.need}”</p>
           <h1 className="mt-1 text-[2.1rem] font-black leading-[1.08] tracking-tight text-ink-max sm:text-5xl">{copy.title}</h1>
           <p className="mt-3 max-w-2xl text-[15px] leading-7 text-ink-soft sm:text-base">{copy.promise}</p>
-          <p className="mt-3 text-sm text-ink-muted">
-            {format(t.stepCount, { count: flow.steps.length })} ·{" "}
-            {format(t.lessonCount, { count: stats.count, minutes: stats.minutes })}
+          <p className="mt-3 font-mono text-xs tabular-nums text-ink-muted">
+            {format(t.stepCount, { count: flow.steps.length })} · {effortLabel(r, locale, stats.count, stats.minutes)}
           </p>
+          <CapabilityFacts r={r} skill={cap.skill} output={cap.output} className="mt-4 max-w-xl" />
           {note ? (
             <p className="mt-4 max-w-2xl rounded-sm border border-line-strong bg-surface-raised px-4 py-3 text-sm leading-6 text-ink-body dark:border-stone-700 dark:bg-stone-900">
               {note}
@@ -110,20 +114,18 @@ export default async function LearningFlowPage({ params }: { params: Promise<{ f
           ) : null}
         </div>
 
-        {/* ── Chiến thắng đầu tiên: dải mực, nút trắng - cú bấm đầu tiên của
-            cả trang, nên là mảng tối duy nhất trên trang. ── */}
+        {/* ── Thứ đầu tiên bạn làm ra: Cơ Cơ nói đúng việc cụ thể trong bài mở
+            đầu (phần "Làm ngay hôm nay" của nó), rồi một nút duy nhất - cú bấm
+            đầu tiên của cả trang. Thanh trái xanh thay cho dải nền mực: xanh
+            là hành động, và đây là hành động. ── */}
         {firstWin ? (
-          <section className="mb-12 flex flex-col gap-4 rounded-md border border-stone-950 bg-stone-950 p-5 text-white sm:flex-row sm:items-center sm:justify-between sm:p-6 dark:border-stone-700">
-            <div>
-              <p className="text-lg font-black tracking-tight">{t.firstWinTitle}</p>
-              <p className="mt-1 max-w-xl text-sm leading-6 text-stone-300">{t.firstWinSub}</p>
-            </div>
-            <Link
-              href={`/bai-hoc/${flow.firstWinSlug}`}
-              className="inline-flex shrink-0 items-center justify-center gap-2 rounded-sm bg-white px-4 py-2.5 text-sm font-bold text-stone-950 transition-colors hover:bg-brand-300"
-            >
+          <section className="mb-12 border-l-[3px] border-brand-600 pl-4 sm:pl-5 dark:border-brand-400">
+            <p className="font-mono text-[10px] font-bold uppercase tracking-wider text-ink-faint">{r.firstBuildLabel}</p>
+            <CoCoSays lines={[cap.firstBuild]} className="mt-2 max-w-2xl" />
+            <p className="mt-3 max-w-xl text-sm leading-6 text-ink-soft">{t.firstWinSub}</p>
+            <Link href={`/bai-hoc/${flow.firstWinSlug}`} className={`${btnPrimary} mt-3`}>
               <PlayCircle className="h-4 w-4" />
-              {t.firstWinCta} · {format(t.minutes, { minutes: minutesOf(flow.firstWinSlug) })}
+              {format(r.firstLessonCta, { minutes: minutesOf(flow.firstWinSlug) })}
             </Link>
           </section>
         ) : null}

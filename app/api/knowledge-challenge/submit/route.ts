@@ -5,6 +5,7 @@ import { applyBooster, getXpMultiplier } from "@/lib/boosters";
 import { verifyQuestionToken } from "@/lib/quiz-tokens";
 import { STANDALONE_QUIZ_DAILY_XP_CAP, computeQuizXp, normalizeQuizTrack } from "@/lib/cloudflare-quiz-sessions";
 import { PILLAR_QUIZ_SOURCE } from "@/lib/study-session";
+import { certEvidence, interviewEvidence, writeSkillEvidence } from "@/lib/practical-skill-server";
 
 /**
  * Nộp bài cho mọi trắc nghiệm đứng riêng (/kiem-tra, /phong-van-ky-thuat,
@@ -117,6 +118,23 @@ export async function POST(request: NextRequest) {
     const { error: attemptsError } = await admin.from("user_interview_question_attempts").insert(attempts);
     if (attemptsError) console.error("Error recording interview question attempts:", attemptsError.message);
   }
+
+  // Năng lực thực hành (lib/practical-skill.ts): chỉ câu ĐÚNG, lấy từ token đã
+  // xác minh. Câu phỏng vấn theo questionId; luyện chứng chỉ theo miền mà
+  // client khai, nhưng chỉ tính câu có lessonId nằm trong miền đó.
+  const correctPayloads = answers
+    .map((a) => ({ payload: verifyQuestionToken(a.token), selected: a.selected }))
+    .filter((x) => x.payload && x.payload.correct === x.selected)
+    .map((x) => x.payload!);
+  const evidence = [
+    ...interviewEvidence(
+      correctPayloads.filter((p) => p.category && typeof p.questionId === "number").map((p) => p.questionId!)
+    ),
+    ...(track === "cert"
+      ? certEvidence(body.cert, body.domain, correctPayloads.filter((p) => p.lessonId > 0).map((p) => p.lessonId))
+      : []),
+  ];
+  await writeSkillEvidence(admin, user.id, evidence);
 
   return NextResponse.json({ score, total, xpEarned });
 }

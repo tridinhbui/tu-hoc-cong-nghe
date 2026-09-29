@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { Trophy } from "lucide-react";
 import StageSkipExamPanel from "@/components/StageSkipExamPanel";
+import CoCoSays from "@/components/CoCoSays";
 import { useI18n } from "@/lib/i18n/context";
 import { getCurrentUserId } from "@/lib/current-user";
 
@@ -31,17 +32,12 @@ export default function ThiVuotChangPage() {
     <div className="h-[calc(100dvh-3.5rem)] lg:h-dvh overflow-hidden flex flex-col bg-surface font-sans text-ink">
       <div className="border-b border-line bg-white dark:bg-stone-900/90 sticky top-0 z-30 shrink-0">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center gap-3">
-          <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-amber-100/80 dark:bg-amber-950 shrink-0">
-            <Trophy className="w-5 h-5 text-warn-strong" />
+          <div className="flex items-center justify-center w-8 h-8 rounded-sm border border-line-strong shrink-0 dark:border-stone-700">
+            <Trophy className="w-4 h-4 text-ink-body" />
           </div>
-          <div className="min-w-0">
-            <h1 className="text-base sm:text-lg font-black text-ink-max tracking-tight">
-              {t.stageSkip.title}
-            </h1>
-            <p className="text-xs text-ink-muted mt-0.5">
-              {t.stageSkip.pageSubtitle}
-            </p>
-          </div>
+          <h1 className="min-w-0 text-base sm:text-lg font-black text-ink-max tracking-tight">
+            {t.stageSkip.title}
+          </h1>
         </div>
       </div>
 
@@ -49,8 +45,13 @@ export default function ThiVuotChangPage() {
           nằm sâu hơn một tầng, quanh đúng khối thẻ chặng. Để chỗ này cuộn nữa
           là có hai thanh cuộn lồng nhau, và cái ngoài kéo cả hero đi mất. */}
       <div className="flex-1 min-h-0 overflow-hidden w-full px-4 sm:px-6 py-4">
-        <div className="max-w-4xl mx-auto h-full min-h-0">
-          <StageSkipExamPanel userId={userId} fullPage />
+        {/* Cơ Cơ thay dòng phụ đề cứng dưới tiêu đề: cùng thông tin (đạt 80%
+            là cả chặng tính xong, trượt thì phải chờ), nói ở đầu phòng thi. */}
+        <div className="max-w-4xl mx-auto h-full min-h-0 flex flex-col gap-3">
+          <CoCoSays lines={t.coco.stageSkip} size={40} className="shrink-0" />
+          <div className="flex-1 min-h-0">
+            <StageSkipExamPanel userId={userId} fullPage />
+          </div>
         </div>
       </div>
     </div>

@@ -5,6 +5,8 @@
  *  được, chỉ là không có gì để lưu, và lỗi mạng không được làm hỏng khoảnh
  *  khắc "Đúng rồi!" của người học. */
 import { createClient } from "@/lib/cloudflare";
+import { exerciseRef } from "@/lib/practical-skill";
+import { recordSkillEvidence } from "@/lib/practical-skill-client";
 
 export interface ExercisePass {
   lesson_id: number;
@@ -13,6 +15,8 @@ export interface ExercisePass {
 }
 
 export async function recordExercisePass(lessonId: number, blockIndex: number): Promise<void> {
+  // Bằng chứng năng lực thực hành (lib/practical-skill.ts) - bắn rồi quên.
+  recordSkillEvidence("exercise", exerciseRef(lessonId, blockIndex));
   try {
     await createClient().rpc("record_exercise_pass", { p_lesson_id: lessonId, p_block_index: blockIndex });
   } catch {

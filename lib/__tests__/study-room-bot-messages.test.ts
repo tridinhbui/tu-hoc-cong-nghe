@@ -36,7 +36,7 @@ describe("tin nhắn bot phòng học", () => {
   it("tin nhắn cũ dạng câu văn vẫn hiện nguyên văn", () => {
     const legacy = [
       "Cập nhật hôm nay: chưa ai trong nhóm học bài nào cả 👀 Ai học đầu tiên hôm nay nào?",
-      "Tài Tài đây 👋 Nhóm này đang học theo hướng AWS Solutions Architect, hiện có khoảng 324 bài.",
+      "Cơ Cơ đây 👋 Nhóm này đang học theo hướng AWS Solutions Architect, hiện có khoảng 324 bài.",
       "", // hàng rỗng cũng không được ném lỗi
       "thtcdn:bot:{hỏng", // JSON hỏng: rơi về nguyên văn thay vì vỡ
       "thtcdn:bot:null",
@@ -84,10 +84,10 @@ describe("tin nhắn bot phòng học", () => {
   it("bản tiếng Anh không còn chữ tiếng Việt", () => {
     const DIACRITICS =
       /[ăâđêôơưàáảãạằắẳẵặầấẩẫậèéẻẽẹềếểễệìíỉĩịòóỏõọồốổỗộờớởỡợùúủũụừứửữựỳýỷỹỵ]/i;
-    // "Tài Tài" là TÊN của bot, giữ nguyên ở cả hai ngôn ngữ - bản EN của
-    // `byAdmin` cũng viết "Tài Tài • group admin". Trừ nó ra trước khi soát,
+    // "Cơ Cơ" là TÊN của bot, giữ nguyên ở cả hai ngôn ngữ - bản EN của
+    // `byAdmin` cũng viết "Cơ Cơ • group admin". Trừ nó ra trước khi soát,
     // đúng cách đã làm với "CPA Việt Nam" ở bản dịch nghề.
-    const BOT_NAME = "Tài Tài";
+    const BOT_NAME = "Cơ Cơ";
     for (const content of [
       encodeBotEvent({ kind: "daily-none" }),
       encodeBotEvent({ kind: "daily-all", count: 4 }),

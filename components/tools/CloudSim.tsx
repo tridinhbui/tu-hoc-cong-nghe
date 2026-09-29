@@ -51,6 +51,7 @@ import {
   diskMonthly,
   initialState,
   launchVm,
+  isLiveWebsite,
   liveVms,
   monthlyTotal,
   parseState,
@@ -84,8 +85,9 @@ import {
   type Warning,
 } from "@/lib/tools/cloud/engine";
 import { CLOUD_MISSIONS, mergeCompleted } from "@/lib/tools/cloud/missions";
+import { TOOL_STORAGE } from "@/lib/tools/progress";
 
-const STORAGE_KEY = "thtcdn:tool-cloud:state";
+const STORAGE_KEY = TOOL_STORAGE.cloud;
 
 type PageId = "overview" | "compute" | "storage" | "database" | "networking" | "monitoring" | "billing";
 
@@ -166,6 +168,7 @@ export default function CloudSim() {
   const [hydrated, setHydrated] = useState(false);
   const [page, setPage] = useState<PageId>("overview");
   const [notice, setNotice] = useState<Notice>(null);
+  const [errorKey, setErrorKey] = useState(0);
   const state = model.cloud;
 
   useEffect(() => {
@@ -203,6 +206,7 @@ export default function CloudSim() {
   const run = (result: Result, success?: string): boolean => {
     if (!result.ok) {
       setNotice({ tone: "error", text: c.errors[result.error] });
+      setErrorKey((k) => k + 1);
       return false;
     }
     dispatch({ type: "set", cloud: result.state });
@@ -212,12 +216,19 @@ export default function CloudSim() {
 
   const errorText = (code: CloudErrorCode) => c.errors[code];
 
-  const missions = CLOUD_MISSIONS.map((m) => ({
-    id: m.id,
-    title: c.missions[m.id as keyof typeof c.missions].title,
-    hint: c.missions[m.id as keyof typeof c.missions].hint,
-    done: model.done.includes(m.id),
-  }));
+  const missions = CLOUD_MISSIONS.map((m) => {
+    const copy = c.missions[m.id as keyof typeof c.missions];
+    const labels = copy.criteria as Record<string, string>;
+    return {
+      id: m.id,
+      title: copy.title,
+      hint: copy.hint,
+      from: copy.from,
+      brief: copy.brief,
+      done: model.done.includes(m.id),
+      criteria: m.criteria.map((cr) => ({ id: cr.id, label: labels[cr.id] ?? cr.id, met: cr.check(state) })),
+    };
+  });
 
   const total = monthlyTotal(state);
   const region = REGIONS[state.region];
@@ -228,6 +239,9 @@ export default function CloudSim() {
     <ToolShell
       tool="cloud"
       missions={missions}
+      ready={hydrated}
+      errorKey={errorKey}
+      renderArtifact={() => <InfraSummary state={state} money={money} />}
       onReset={() => {
         dispatch({ type: "reset" });
         setNotice(null);
@@ -340,6 +354,73 @@ interface PageCtx {
   money: (n: number) => string;
   errorText: (code: CloudErrorCode) => string;
   go: (page: PageId) => void;
+}
+
+/** Kết quả bàn giao của mọi ticket Cloud: hạ tầng đang có và hoá đơn tháng -
+ *  đúng bản tóm tắt người ta gửi lại cho người yêu cầu. */
+function InfraSummary({ state, money }: { state: CloudState; money: (n: number) => string }) {
+  const { t } = useI18n();
+  const r = t.revampTools.cloud;
+  const vms = liveVms(state);
+  const sites = state.buckets.filter(isLiveWebsite);
+  const total = monthlyTotal(state);
+  const row = "flex flex-wrap items-center justify-between gap-1.5 font-mono text-[11px] text-ink";
+  const head = "text-[11px] font-bold text-ink-muted";
+  return (
+    <div className="space-y-2">
+      <div>
+        <p className={head}>{r.vms}</p>
+        {vms.length === 0 ? (
+          <p className="text-[11px] text-ink-faint">{r.none}</p>
+        ) : (
+          vms.map((v) => (
+            <p key={v.id} className={row}>
+              <span className="min-w-0 truncate">
+                {v.name} · {v.size}
+              </span>
+              <StateBadge state={v.state} />
+            </p>
+          ))
+        )}
+      </div>
+      <div>
+        <p className={head}>{r.sites}</p>
+        {sites.length === 0 ? (
+          <p className="text-[11px] text-ink-faint">{r.none}</p>
+        ) : (
+          sites.map((b) => (
+            <p key={b.name} className="break-all font-mono text-[11px] text-accent">
+              {websiteUrl(b)}
+            </p>
+          ))
+        )}
+      </div>
+      <div>
+        <p className={head}>{r.dbs}</p>
+        {state.databases.length === 0 ? (
+          <p className="text-[11px] text-ink-faint">{r.none}</p>
+        ) : (
+          state.databases.map((d) => (
+            <p key={d.id} className={row}>
+              <span className="min-w-0 truncate">
+                {d.name} · {d.engine}
+              </span>
+              <StateBadge state={d.status} />
+            </p>
+          ))
+        )}
+      </div>
+      <div className="flex items-baseline justify-between border-t border-line pt-2">
+        <p className={head}>{r.bill}</p>
+        <p className="text-right">
+          <span className={`font-mono text-sm font-black tabular-nums ${total > BUDGET_LIMIT ? "text-danger" : "text-ink-max"}`}>
+            {money(total)}
+          </span>
+          <span className="block text-[10px] text-ink-faint">{format(r.budget, { limit: money(BUDGET_LIMIT) })}</span>
+        </p>
+      </div>
+    </div>
+  );
 }
 
 function PageHeader({ title, intro, action }: { title: string; intro: string; action?: React.ReactNode }) {

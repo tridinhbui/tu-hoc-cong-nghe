@@ -5,6 +5,7 @@ import { getLessonById, getLessonsMeta } from "@/lib/lessons-loader";
 import { getServerLocale } from "@/lib/i18n/server";
 import { DEFAULT_LOCALE, type Locale } from "@/lib/i18n/locales";
 import { signQuestionToken, verifyQuestionToken } from "@/lib/quiz-tokens";
+import { stageExamEvidence, writeSkillEvidence } from "@/lib/practical-skill-server";
 import {
   buildEligibility,
   findStage,
@@ -303,6 +304,10 @@ export async function POST(request: NextRequest) {
       retryAfterMs: STAGE_EXAM_RETRY_COOLDOWN_MS,
     });
   }
+
+  // Năng lực thực hành: bài thi đạt là bằng chứng cho lĩnh vực của chặng
+  // (lib/practical-skill.ts STAGE_AREAS). Không bao giờ ném.
+  await writeSkillEvidence(admin, user.id, stageExamEvidence(track, stage.label));
 
   // Credit the whole stage. Only rows that don't already exist as completed
   // are written, so re-taking a passed exam doesn't reset completed_at or

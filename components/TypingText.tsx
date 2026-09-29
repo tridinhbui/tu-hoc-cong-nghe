@@ -10,7 +10,7 @@ interface TypingTextProps {
 }
 
 // Character-by-character reveal with a blinking cursor while typing - the
-// classic chatbot "typing response" effect, for Tài Tài's on-demand ELI5
+// classic chatbot "typing response" effect, for Cơ Cơ's on-demand ELI5
 // explanation (components/LessonPageClient.tsx) rather than an instant
 // wall of text. Resets and re-types whenever `text` changes (e.g. a
 // different lesson's metaphor), so it isn't stuck mid-animation from a

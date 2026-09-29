@@ -2519,7 +2519,7 @@ const BOT = {
   giaiTan: (tb: string) =>
     `Rất tiếc! 💔 Tuần vừa qua nhóm chỉ đạt trung bình ${tb} bài học/thành viên, không đủ chỉ tiêu tối thiểu là 3 bài/thành viên. Nhóm của chúng ta sẽ bị giải tán. Hãy cố gắng học tập đều đặn hơn ở các nhóm mới nhé! Tạm biệt mọi người!`,
   gioiThieu: (danhSach: string) =>
-    `Chào mọi người! Mình là Tài Tài 👋 Đây là nhóm học chung tuần này của các bạn: ${danhSach}. Chỉ tiêu của nhóm: mỗi thành viên học trung bình ít nhất 3 bài/tuần. Nếu đạt chỉ tiêu, nhóm sẽ tiếp tục duy trì vào tuần sau. Nếu không đạt, nhóm sẽ bị giải tán vào cuối tuần. Đặc biệt, nếu đạt chỉ tiêu liên tiếp 3 tuần, nhóm sẽ được duy trì Vĩnh Viễn!`,
+    `Chào mọi người! Mình là Cơ Cơ 👋 Đây là nhóm học chung tuần này của các bạn: ${danhSach}. Chỉ tiêu của nhóm: mỗi thành viên học trung bình ít nhất 3 bài/tuần. Nếu đạt chỉ tiêu, nhóm sẽ tiếp tục duy trì vào tuần sau. Nếu không đạt, nhóm sẽ bị giải tán vào cuối tuần. Đặc biệt, nếu đạt chỉ tiêu liên tiếp 3 tuần, nhóm sẽ được duy trì Vĩnh Viễn!`,
 };
 /* i18n-ignore-end */
 

@@ -4490,6 +4490,57 @@
      "foreignKey": null
     }
    ]
+  },
+  "user_skill_evidence": {
+   "columns": [
+    {
+     "name": "user_id",
+     "format": "uuid",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": {
+      "table": "user_profiles",
+      "column": "id"
+     }
+    },
+    {
+     "name": "area",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": false,
+     "foreignKey": null
+    },
+    {
+     "name": "source",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "ref",
+     "format": "text",
+     "notNull": true,
+     "primaryKey": true,
+     "foreignKey": null
+    },
+    {
+     "name": "points",
+     "format": "integer",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "1",
+     "foreignKey": null
+    },
+    {
+     "name": "created_at",
+     "format": "timestamp with time zone",
+     "notNull": true,
+     "primaryKey": false,
+     "default": "now()",
+     "foreignKey": null
+    }
+   ]
   }
  },
  "rpcs": [

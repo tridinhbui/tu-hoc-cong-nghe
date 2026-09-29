@@ -17,6 +17,11 @@ export interface SqlMissionState {
 
 export interface SqlMission {
   id: string;
+  /** Số dòng đáp án đúng phải có - hiện thành tiêu chí "trả về đúng n dòng". */
+  expectedRowCount: () => number;
+  /** Tiêu chí đạt, xếp từ yếu tới mạnh; tiêu chí cuối CHÍNH LÀ `check`, nên
+   *  "đủ mọi tiêu chí" và "qua nhiệm vụ" không bao giờ lệch nhau. */
+  criteria: { id: SqlCriterionId; check: (state: SqlMissionState) => boolean }[];
   /** Câu tham chiếu: chỉ chứa những cột bắt buộc phải có. */
   reference: string;
   /** Thứ tự dòng có được chấm không (chỉ khi đề bài yêu cầu sắp xếp). */
@@ -24,17 +29,26 @@ export interface SqlMission {
   check: (state: SqlMissionState) => boolean;
 }
 
+export type SqlCriterionId = "runs" | "rows" | "match";
+
 function mission(id: string, reference: string, ordered: boolean): SqlMission {
   let expected: QueryResult | null = null;
+  const getExpected = () => (expected ??= runQuery(SAMPLE_DB, reference));
+  const check = (state: SqlMissionState) => {
+    if (!state.result) return false;
+    return resultCovers(state.result, getExpected(), ordered);
+  };
   return {
     id,
     reference,
     ordered,
-    check: (state) => {
-      if (!state.result) return false;
-      expected ??= runQuery(SAMPLE_DB, reference);
-      return resultCovers(state.result, expected, ordered);
-    },
+    check,
+    expectedRowCount: () => getExpected().rows.length,
+    criteria: [
+      { id: "runs", check: (s) => s.result !== null },
+      { id: "rows", check: (s) => !!s.result && s.result.rows.length === getExpected().rows.length },
+      { id: "match", check },
+    ],
   };
 }
 
@@ -59,10 +73,13 @@ export const SQL_MISSIONS: SqlMission[] = [
     "SELECT p.name, SUM(oi.quantity) AS sold FROM order_items oi JOIN products p ON p.id = oi.product_id GROUP BY p.name ORDER BY sold DESC LIMIT 3",
     true,
   ),
+  // "CEO muốn biết 10 khách hàng tạo doanh thu cao nhất": xếp hạng nên thứ tự
+  // được chấm. Chỉ 10 trong 12 khách từng mua, nên LEFT JOIN (12 dòng, 2 dòng
+  // NULL) trượt tiêu chí số dòng - đúng chỗ người học phải tự debug.
   mission(
     "revenue-per-customer",
-    "SELECT c.name, SUM(oi.quantity * p.price) FROM customers c JOIN orders o ON o.customer_id = c.id JOIN order_items oi ON oi.order_id = o.id JOIN products p ON p.id = oi.product_id GROUP BY c.name",
-    false,
+    "SELECT c.name, SUM(oi.quantity * p.price) AS revenue FROM customers c JOIN orders o ON o.customer_id = c.id JOIN order_items oi ON oi.order_id = o.id JOIN products p ON p.id = oi.product_id GROUP BY c.name ORDER BY revenue DESC LIMIT 10",
+    true,
   ),
 ];
 /* i18n-ignore-end */

@@ -3,11 +3,31 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { useSearchParams } from "next/navigation";
 import { organicBuildingsOf, type OrganicBuilding } from "@/lib/rpg-buildings";
-import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowRight, ChevronLeft, Coins, Lock, ShoppingBag, Layers, Compass, Cloud, Construction } from "lucide-react";
+import {
+  ArrowRight,
+  ArrowLeftRight,
+  ChevronLeft,
+  Coins,
+  Construction,
+  Cpu,
+  Gamepad2,
+  Gauge,
+  HardDrive,
+  Layers,
+  Lock,
+  Move,
+  Network,
+  Radio,
+  Server,
+  ShoppingBag,
+  Sparkles,
+  Swords,
+  Unplug,
+  CloudCog,
+  type LucideIcon,
+} from "lucide-react";
 import { btnPrimary, btnSecondary, Sys, StatusDot } from "@/components/ui/system";
-import Glyph from "@/components/Glyph";
 import { createClient } from "@/lib/cloudflare";
 import { getRequiredLevelForBuilding } from "@/lib/levels";
 import { normalizeBuildingId } from "@/lib/legacy-ids";
@@ -27,6 +47,8 @@ import CapacitySizingWidget from "@/components/CapacitySizingWidget";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 import { getCurrentUser } from "@/lib/current-user";
+import SystemMapPanel from "@/components/games/SystemMapPanel";
+import { computeSystemMap } from "@/lib/system-map";
 
 
 interface EquipmentRow {
@@ -42,11 +64,29 @@ interface ProgressRow {
 /* i18n-ignore-start: định danh hệ thống, không phải chữ hiển thị - cùng một
    chuỗi ở mọi ngôn ngữ, như đường dẫn tệp. Số khu là độ dài danh sách thật. */
 const SYS = {
-  kingdom: "THCN://GAME/KINGDOM",
-  building: (id: string) => `THCN://GAME/${id.toUpperCase()}`,
-  zones: (n: number) => `ZONES ${n}`,
+  kingdom: "THCN://SYSTEM/OPS",
+  building: (id: string) => `THCN://SYSTEM/${id.toUpperCase()}`,
+  zones: (n: number) => `SERVICES ${n}`,
 };
 /* i18n-ignore-end */
+
+// Mỗi dịch vụ một icon vẽ (lucide), thay cho ảnh chụp thành phố: bản đồ là sơ
+// đồ hạ tầng, không phải bưu thiếp. Khoá theo id công trình đã lưu.
+const BUILDING_ICONS: Record<string, LucideIcon> = {
+  "world-boss": Server,
+  pvp: Swords,
+  arcade: Gamepad2,
+  "weekly-challenge": Radio,
+  "capacity-lab": Gauge,
+  cards: Layers,
+  shop: ShoppingBag,
+  "backbone-hub": Network,
+  "silicon-bay": Sparkles,
+  "cloud-capital": CloudCog,
+  "resource-floor": Cpu,
+  "data-haven": HardDrive,
+  "singapore-dock": ArrowLeftRight,
+};
 
 const BUILDING_AVATAR_POSITIONS: Record<string, { x: number; y: number }> = {
   "world-boss": { x: 50, y: 8 },
@@ -65,11 +105,21 @@ const BUILDING_AVATAR_POSITIONS: Record<string, { x: number; y: number }> = {
 
 
 
+function BuildingIcon({ id, className }: { id: string; className: string }) {
+  const Icon = BUILDING_ICONS[id] ?? Server;
+  return <Icon className={className} strokeWidth={1.5} aria-hidden />;
+}
+
 export default function TechRpgWorldMap() {
   const { t } = useI18n();
   // Danh sách địa điểm giờ mang chữ theo ngôn ngữ đang xem, nên nó không còn
   // là hằng số ở module scope được nữa.
-  const buildings = useMemo(() => organicBuildingsOf(t), [t]);
+  // Tên hiển thị theo ẩn dụ hệ thống (revampGame.buildings) phủ lên tên cũ;
+  // id, cấp mở khoá và mọi trường cấu trúc giữ nguyên.
+  const buildings = useMemo<OrganicBuilding[]>(
+    () => organicBuildingsOf(t).map((b) => ({ ...b, ...(t.revampGame.buildings[b.id] ?? {}) })),
+    [t],
+  );
   const MAP_BUILDINGS = useMemo(() => buildings.filter((b) => b.id !== "shop"), [buildings]);
   const searchParams = useSearchParams();
   const initialBuilding = normalizeBuildingId(searchParams.get("building"));
@@ -95,6 +145,8 @@ export default function TechRpgWorldMap() {
     }
   });
   const [completedLessonIds, setCompletedLessonIds] = useState<number[]>([]);
+  const [progressReady, setProgressReady] = useState(false);
+  const systemStatus = useMemo(() => computeSystemMap(completedLessonIds), [completedLessonIds]);
 
   useEffect(() => {
     const cloudflare = createClient();
@@ -143,7 +195,10 @@ export default function TechRpgWorldMap() {
             if (progressRows) {
               setCompletedLessonIds((progressRows as ProgressRow[]).map((r) => Number(r.lesson_id)));
             }
+            setProgressReady(true);
           });
+      } else {
+        setProgressReady(true);
       }
     });
 
@@ -194,7 +249,7 @@ export default function TechRpgWorldMap() {
       }
       const newCoins = coins + 5;
       setCoins(newCoins);
-      toast.success(t.miscUi.techRpgWorldMap.regionDiscovered);
+      toast.success(t.revampGame.services.connected);
       if (user?.id) {
         const client = createClient();
         // Hai lượt ghi tách đôi, vì chúng có mức tin cậy khác nhau.
@@ -232,12 +287,12 @@ export default function TechRpgWorldMap() {
       setIsMoving(false);
 
       if (targetBuilding?.isUnderConstruction) {
-        toast.info(format(t.miscUi.techRpgWorldMap.underConstruction, { name: targetBuilding.name, level: reqLevel }));
+        toast.info(format(t.revampGame.services.underConstruction, { name: targetBuilding.name, level: reqLevel }));
         return;
       }
 
       if (level < reqLevel) {
-        toast.error(format(t.miscUi.techRpgWorldMap.levelLocked, { level: reqLevel }));
+        toast.error(format(t.revampGame.services.levelLocked, { level: reqLevel }));
         return;
       }
 
@@ -270,8 +325,8 @@ export default function TechRpgWorldMap() {
               {format(t.worldMap.levelShort, { level })}
             </div>
             <div>
-              <h2 className="text-sm font-black text-ink-max">{t.worldMap.empireTitle}</h2>
-              <p className="text-[11px] text-ink-muted">{t.worldMap.empireSub}</p>
+              <h2 className="text-sm font-black text-ink-max">{t.revampGame.hud.title}</h2>
+              <p className="text-[11px] text-ink-muted">{t.revampGame.hud.sub}</p>
             </div>
           </div>
 
@@ -280,9 +335,9 @@ export default function TechRpgWorldMap() {
             <div className="flex items-center gap-2 border-l border-stone-300 pl-3 dark:border-stone-700">
               <Coins className="h-4 w-4 text-warn" aria-hidden />
               <div>
-                <p className="text-[10px] font-semibold text-ink-muted leading-none">{t.worldMap.capitalLabel}</p>
+                <p className="text-[10px] font-semibold text-ink-muted leading-none">{t.revampGame.hud.budget}</p>
                 <p className="mt-0.5 font-mono text-sm font-medium tabular-nums leading-tight text-warn-ink">
-                  {format(t.worldMap.coinsValue, { count: coins.toLocaleString() })}
+                  {format(t.revampGame.hud.coins, { count: coins.toLocaleString() })}
                 </p>
               </div>
             </div>
@@ -292,19 +347,19 @@ export default function TechRpgWorldMap() {
             <button
               onClick={() => handleBuildingClick("shop")}
               className={`${btnPrimary} px-3 py-1.5 text-xs`}
-              title={t.worldMap.shopTitle}
+              title={t.revampGame.hud.shopTitle}
             >
               <ShoppingBag className="h-3.5 w-3.5" aria-hidden />
-              <span className="hidden sm:inline">{t.worldMap.shopShort}</span>
+              <span className="hidden sm:inline">{t.revampGame.hud.shopShort}</span>
             </button>
 
             <button
               onClick={() => handleBuildingClick("cards")}
               className={`${btnSecondary} px-3 py-1.5 text-xs`}
-              title={t.worldMap.cardsTitle}
+              title={t.revampGame.hud.cardsTitle}
             >
               <Layers className="h-3.5 w-3.5" aria-hidden />
-              <span className="hidden sm:inline">{t.worldMap.cardsShort}</span>
+              <span className="hidden sm:inline">{t.revampGame.hud.cardsShort}</span>
             </button>
           </div>
         </div>
@@ -317,24 +372,24 @@ export default function TechRpgWorldMap() {
       {/* Main Content */}
       <div className="relative z-10 mx-auto max-w-6xl">
         {!selectedBuilding ? (
-          // Bản đồ đứng trên một dải mực stone-950 - đúng như khu Game Kingdom ở
-          // trang giới thiệu. Ảnh skyline là nội dung, nên nó ở lại, chỉ lùi về
-          // phía sau dải mực thay vì phủ lên cả HUD.
-          <div className="relative overflow-hidden rounded-md border border-stone-800 bg-stone-950">
-            <div className="pointer-events-none absolute inset-0 z-0 opacity-20">
-              <Image
-                src="/saigon-skyline.jpg"
-                alt={t.worldMap.bgAlt}
-                fill
-                className="object-cover grayscale"
-                priority
-              />
-            </div>
+          <>
+          {/* Bản đồ hệ thống: tiến độ học thật (user_progress) hiện thành các
+              node lên mạng. Nằm trên cùng vì đây là "mục tiêu hiện tại" của trang. */}
+          <SystemMapPanel
+            status={systemStatus}
+            ready={progressReady}
+            onOpenIncident={() => handleBuildingClick("world-boss")}
+          />
 
+          {/* Các dịch vụ vận hành đứng trên một dải mực stone-950. Ảnh skyline
+              phía sau đã gỡ: đây là sơ đồ hạ tầng, không phải ảnh minh hoạ. */}
+          <div className="relative overflow-hidden rounded-md border border-stone-800 bg-stone-950">
             <div className="relative z-10 flex items-center justify-between gap-4 border-b border-white/15 px-4 py-2.5">
               <span className="inline-flex min-w-0 items-center gap-2 text-xs font-semibold text-stone-300">
-                <Compass className="h-3.5 w-3.5 shrink-0 text-stone-500" aria-hidden />
-                <span className="hidden truncate md:inline">{t.worldMap.dragHint}</span>
+                <Server className="h-3.5 w-3.5 shrink-0 text-stone-500" aria-hidden />
+                <span className="shrink-0 font-bold text-white">{t.revampGame.services.heading}</span>
+                <span className="hidden truncate text-stone-400 md:inline">{t.revampGame.services.hint}</span>
+                <Move className="hidden h-3.5 w-3.5 shrink-0 text-stone-500 md:inline" aria-hidden />
               </span>
               <Sys className="shrink-0 text-stone-500">{SYS.zones(MAP_BUILDINGS.length)}</Sys>
             </div>
@@ -371,10 +426,10 @@ export default function TechRpgWorldMap() {
                           >
                             {!isDiscovered && (
                               <div className="absolute inset-0 z-30 flex items-center gap-2 border border-dashed border-stone-600 bg-stone-950 px-3">
-                                <Cloud className="h-5 w-5 shrink-0 text-stone-500" strokeWidth={1.75} aria-hidden />
+                                <Unplug className="h-5 w-5 shrink-0 text-stone-500" strokeWidth={1.75} aria-hidden />
                                 <div>
-                                  <p className="text-[11px] font-bold text-stone-200">{t.worldMap.fogTitle}</p>
-                                  <p className="text-[10px] font-semibold text-amber-300">{t.worldMap.fogHint}</p>
+                                  <p className="font-mono text-[11px] font-bold text-stone-200">{t.revampGame.services.notConnected}</p>
+                                  <p className="text-[10px] font-semibold text-amber-300">{t.revampGame.services.connectHint}</p>
                                 </div>
                               </div>
                             )}
@@ -383,8 +438,8 @@ export default function TechRpgWorldMap() {
                               <div className="absolute inset-0 z-25 flex items-center gap-2 border border-dashed border-stone-600 bg-stone-950 px-3">
                                 <Construction className="h-5 w-5 shrink-0 text-stone-500" strokeWidth={1.75} aria-hidden />
                                 <div>
-                                  <p className="text-[11px] font-bold uppercase text-stone-200">{t.worldMap.underConstruction}</p>
-                                  <p className="text-[10px] font-semibold text-stone-400">{format(t.worldMap.lockedLevel, { level: reqLevel })}</p>
+                                  <p className="font-mono text-[11px] font-bold uppercase text-stone-200">{t.revampGame.services.building}</p>
+                                  <p className="text-[10px] font-semibold text-stone-400">{format(t.revampGame.services.lockedLevel, { level: reqLevel })}</p>
                                 </div>
                               </div>
                             )}
@@ -393,18 +448,14 @@ export default function TechRpgWorldMap() {
                               <div className="absolute inset-0 z-25 flex items-center gap-2 border border-dashed border-stone-600 bg-stone-950 px-3">
                                 <Lock className="h-4 w-4 shrink-0 text-stone-500" aria-hidden />
                                 <div>
-                                  <p className="font-mono text-[11px] font-medium tabular-nums text-stone-200">{format(t.worldMap.lockedShort, { level: reqLevel })}</p>
-                                  <p className="text-[10px] font-semibold text-stone-400">{t.worldMap.lockedNeedLessons}</p>
+                                  <p className="font-mono text-[11px] font-medium tabular-nums text-stone-200">{format(t.revampGame.services.lockedShort, { level: reqLevel })}</p>
+                                  <p className="text-[10px] font-semibold text-stone-400">{t.revampGame.services.lockedNeedLessons}</p>
                                 </div>
                               </div>
                             )}
 
-                            <div className="relative flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-sm border border-stone-700 bg-stone-950 text-stone-300">
-                              {b.imageSrc ? (
-                                <Image src={b.imageSrc} alt={b.name} fill className="object-cover" />
-                              ) : (
-                                <Glyph emoji={b.emoji} className="h-7 w-7" strokeWidth={1.5} />
-                              )}
+                            <div className="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-sm border border-stone-700 bg-stone-950 text-stone-300">
+                              <BuildingIcon id={b.id} className="h-6 w-6" />
                             </div>
 
                             <div className="min-w-0 flex-1">
@@ -426,7 +477,7 @@ export default function TechRpgWorldMap() {
                 type="button"
                 onClick={() => handleBuildingClick("shop")}
                 className="absolute right-4 top-4 z-[45] w-[230px] rounded-md border border-stone-700 bg-stone-950 p-3 text-left transition-colors hover:border-stone-400"
-                title={t.worldMap.gearOpenTitle}
+                title={t.revampGame.services.gearOpenTitle}
               >
                 <div className="flex items-center gap-3">
                   <div className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-sm border border-stone-700 bg-stone-900">
@@ -436,13 +487,13 @@ export default function TechRpgWorldMap() {
                     </span>
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[10px] font-semibold text-stone-400">{t.worldMap.gearEyebrow}</p>
-                    <h3 className="truncate text-sm font-black text-white">{t.worldMap.gearTitle}</h3>
-                    <p className="mt-0.5 truncate text-[11px] text-stone-400">{t.worldMap.gearSub}</p>
+                    <p className="text-[10px] font-semibold text-stone-400">{t.revampGame.services.gearEyebrow}</p>
+                    <h3 className="truncate text-sm font-black text-white">{t.revampGame.services.gearTitle}</h3>
+                    <p className="mt-0.5 truncate text-[11px] text-stone-400">{format(t.revampGame.services.gearSub, { count: Object.keys(equippedGear).length })}</p>
                   </div>
                 </div>
                 <div className="mt-2.5 flex items-center justify-between border-t border-white/15 pt-2">
-                  <span className="text-[11px] font-bold text-white">{t.worldMap.gearCta}</span>
+                  <span className="text-[11px] font-bold text-white">{t.revampGame.services.gearCta}</span>
                   <ArrowRight className="h-3.5 w-3.5 text-stone-400" aria-hidden />
                 </div>
               </button>
@@ -508,23 +559,23 @@ export default function TechRpgWorldMap() {
                       >
                         {b.id === "weekly-challenge" && (
                           <span className="absolute right-2.5 top-2 z-30 rounded-xs border border-stone-600 px-1.5 py-px text-[9px] font-bold text-stone-300">
-                            {t.worldMap.hotCase}
+                            {t.revampGame.hud.live}
                           </span>
                         )}
 
                         {!isDiscovered && (
                           <div className="absolute inset-0 z-30 flex flex-col items-center justify-center border border-dashed border-stone-600 bg-stone-950 p-2 text-center transition-colors group-hover:border-stone-400">
-                            <Cloud className="mb-1 h-6 w-6 text-stone-500" strokeWidth={1.75} aria-hidden />
-                            <span className="text-[11px] font-bold uppercase text-stone-200">{t.worldMap.fogTitle}</span>
-                            <span className="mt-0.5 text-[10px] font-semibold text-amber-300">{t.worldMap.fogHintLong}</span>
+                            <Unplug className="mb-1 h-6 w-6 text-stone-500" strokeWidth={1.75} aria-hidden />
+                            <span className="font-mono text-[11px] font-bold uppercase text-stone-200">{t.revampGame.services.notConnected}</span>
+                            <span className="mt-0.5 text-[10px] font-semibold text-amber-300">{t.revampGame.services.connectHint}</span>
                           </div>
                         )}
 
                         {b.isUnderConstruction && isDiscovered && (
                           <div className="absolute inset-0 z-25 flex flex-col items-center justify-center border border-dashed border-stone-600 bg-stone-950 p-2 text-center">
                             <Construction className="mb-1 h-6 w-6 text-stone-500" strokeWidth={1.75} aria-hidden />
-                            <span className="text-xs font-bold uppercase text-stone-200">{t.worldMap.underConstruction}</span>
-                            <span className="mt-0.5 text-[10px] font-semibold text-stone-400">{format(t.worldMap.lockedLevel, { level: reqLevel })}</span>
+                            <span className="font-mono text-xs font-bold uppercase text-stone-200">{t.revampGame.services.building}</span>
+                            <span className="mt-0.5 text-[10px] font-semibold text-stone-400">{format(t.revampGame.services.lockedLevel, { level: reqLevel })}</span>
                           </div>
                         )}
 
@@ -532,18 +583,14 @@ export default function TechRpgWorldMap() {
                           <div className="absolute inset-0 z-25 flex flex-col items-center justify-center border border-dashed border-stone-600 bg-stone-950 p-2 text-center">
                             <div className="flex items-center gap-1.5 text-stone-200">
                               <Lock className="h-4 w-4 text-stone-500" aria-hidden />
-                              <span className="font-mono text-xs font-medium tabular-nums">{format(t.worldMap.lockedShort, { level: reqLevel })}</span>
+                              <span className="font-mono text-xs font-medium tabular-nums">{format(t.revampGame.services.lockedShort, { level: reqLevel })}</span>
                             </div>
-                            <span className="mt-0.5 text-[10px] font-semibold text-stone-400">{t.worldMap.lockedNeedLessonsShort}</span>
+                            <span className="mt-0.5 text-[10px] font-semibold text-stone-400">{t.revampGame.services.lockedNeedLessons}</span>
                           </div>
                         )}
 
-                        <div className="relative flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-sm border border-stone-700 bg-stone-950 text-stone-300 sm:h-20 sm:w-20">
-                          {b.imageSrc ? (
-                            <Image src={b.imageSrc} alt={b.name} fill className="object-cover" />
-                          ) : (
-                            <Glyph emoji={b.emoji} className="h-9 w-9" strokeWidth={1.5} />
-                          )}
+                        <div className="relative flex h-14 w-14 shrink-0 items-center justify-center rounded-sm border border-stone-700 bg-stone-950 text-stone-300 transition-colors group-hover:border-brand-500 group-hover:text-white">
+                          <BuildingIcon id={b.id} className="h-7 w-7" />
                         </div>
 
                         <div className="min-w-0 flex-1">
@@ -560,16 +607,17 @@ export default function TechRpgWorldMap() {
               </motion.div>
             </div>
           </div>
+          </>
         ) : (
           /* Khu đang mở */
           <div className="flex min-h-[calc(100vh-8.5rem)] flex-col sm:min-h-[calc(100vh-9rem)]">
             <div className="mb-5 flex flex-col items-start gap-3 border-b border-stone-300 pb-3 sm:flex-row sm:items-center sm:justify-between dark:border-stone-700">
               <button onClick={handleCloseBuilding} className={`${btnSecondary} px-3 py-1.5 text-xs`}>
-                <ChevronLeft className="h-4 w-4" aria-hidden /> {t.worldMap.backToMap}
+                <ChevronLeft className="h-4 w-4" aria-hidden /> {t.revampGame.services.backToMap}
               </button>
 
               <span className="text-xs font-semibold leading-tight text-ink-muted">
-                {format(t.worldMap.opening, { name: selected?.name ?? "" })}
+                {format(t.revampGame.services.opening, { name: selected?.name ?? "" })}
               </span>
             </div>
 

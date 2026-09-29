@@ -56,7 +56,7 @@ export const placementFocusVi = {
   smartRemediation: {
     badge: "Thử thách khắc phục lỗi sai",
     xpBonus: "x1.5 XP",
-    titlePart1: "Tài Tài phát hiện bạn làm sai",
+    titlePart1: "Cơ Cơ phát hiện bạn làm sai",
     titlePart2: "lần trong bài",
     description: "Có vẻ bạn đang gặp khó khăn ở phần kiến thức này. Hãy ôn luyện lại bài học hoặc chơi mini-game để củng cố và nhận thưởng nhân hệ số XP!",
     reviewNow: "Học lại ngay",
@@ -160,7 +160,7 @@ export const placementFocusEn: typeof placementFocusVi = {
   smartRemediation: {
     badge: "Mistake-fixing challenge",
     xpBonus: "x1.5 XP",
-    titlePart1: "Tài Tài noticed you got it wrong",
+    titlePart1: "Cơ Cơ noticed you got it wrong",
     titlePart2: "times in the lesson",
     description: "It looks like you're struggling with this topic. Review the lesson or play a mini-game to reinforce it and earn a bonus XP multiplier!",
     reviewNow: "Review now",

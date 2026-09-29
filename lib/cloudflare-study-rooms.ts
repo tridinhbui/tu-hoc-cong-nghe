@@ -473,7 +473,7 @@ export async function requestStudyRoomBot(roomId: number, command: string): Prom
 
   const payload = (await response.json().catch(() => null)) as { message?: StudyRoomMessage; error?: string } | null;
   if (!response.ok || !payload?.message) {
-    throw new Error(payload?.error || "Không gọi được Tài Tài lúc này");
+    throw new Error(payload?.error || "Không gọi được Cơ Cơ lúc này");
   }
 
   return payload.message;

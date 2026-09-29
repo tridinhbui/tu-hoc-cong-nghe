@@ -71,9 +71,10 @@ import {
 import { buildSrcDoc, isShimMessage, missingFileMessage, notFoundMessage } from "@/lib/tools/editor/srcdoc";
 import { validateProject, type Problem } from "@/lib/tools/editor/validate";
 import { highlight, type TokenKind } from "@/lib/tools/editor/highlight";
-import { EDITOR_MISSIONS } from "@/lib/tools/editor/missions";
+import { EDITOR_MISSIONS, headingOf } from "@/lib/tools/editor/missions";
+import { TOOL_STORAGE } from "@/lib/tools/progress";
 
-const STORAGE_KEY = "thtcdn:tool-editor:state";
+const STORAGE_KEY = TOOL_STORAGE.editor;
 const LINE_H = 20;
 const PAD_Y = 8;
 
@@ -745,8 +746,66 @@ export default function EditorSim() {
 
   const missions = EDITOR_MISSIONS.map((m) => {
     const copy = c.missions[m.id as keyof typeof c.missions];
-    return { id: m.id, title: copy.title, hint: copy.hint, done: box.done.includes(m.id) };
+    const labels = copy.criteria as Record<string, string>;
+    return {
+      id: m.id,
+      title: copy.title,
+      hint: copy.hint,
+      from: copy.from,
+      brief: copy.brief,
+      done: box.done.includes(m.id),
+      criteria: m.criteria.map((cr) => ({ id: cr.id, label: labels[cr.id] ?? cr.id, met: cr.check(editor) })),
+    };
   });
+  // Mỗi lần chạy có lỗi đỏ là một "lỗi" với Cơ Cơ; id lần chạy đổi nên hai lần
+  // chạy lỗi liền nhau vẫn là hai lần.
+  const errorKey = run0 && consoleErrors > 0 ? run0.id : 0;
+
+  const renderArtifact = () => {
+    const r = t.revampTools.editor;
+    const heading = headingOf(run0?.snapshot[run0.entry]);
+    const logs = (run0?.console ?? []).slice(-4);
+    return (
+      <div className="space-y-2">
+        <div>
+          <p className="text-[11px] font-bold text-ink-muted">{r.page}</p>
+          {run0 ? (
+            <p className="font-mono text-[11px] text-ink">
+              {run0.entry}
+              {heading && <span className="block font-sans text-sm font-bold text-ink-max">{format(r.heading, { text: heading })}</span>}
+            </p>
+          ) : (
+            <p className="text-[11px] text-ink-faint">{r.noHeading}</p>
+          )}
+        </div>
+        {logs.length > 0 && (
+          <div>
+            <p className="text-[11px] font-bold text-ink-muted">{r.console}</p>
+            <div className="rounded-md bg-stone-950 px-2.5 py-2 font-mono text-[11px] leading-relaxed">
+              {logs.map((e, i) => (
+                <p key={i} className={`break-all ${e.level === "error" ? "text-red-300" : e.level === "warn" ? "text-amber-300" : "text-stone-200"}`}>
+                  {e.text}
+                </p>
+              ))}
+            </div>
+          </div>
+        )}
+        <div>
+          <p className="text-[11px] font-bold text-ink-muted">{r.files}</p>
+          <ul className="font-mono text-[11px]">
+            {editor.files.map((f) => (
+              <li key={f.path} className="flex justify-between gap-2 text-ink">
+                <span className="min-w-0 truncate">{f.path}</span>
+                <span className={f.content !== f.saved ? "text-warn-ink" : "text-cyan-700 dark:text-cyan-400"}>
+                  {f.content !== f.saved ? r.unsaved : r.saved}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    );
+  };
 
   const problemText = (p: Problem) => format(c.problemMessages[p.code], p.params);
 
@@ -775,7 +834,14 @@ export default function EditorSim() {
   const project = c.projectName;
 
   return (
-    <ToolShell tool="editor" missions={missions} onReset={reset}>
+    <ToolShell
+      tool="editor"
+      missions={missions}
+      onReset={reset}
+      ready={loaded}
+      errorKey={errorKey}
+      renderArtifact={renderArtifact}
+    >
       <div
         onKeyDown={onRootKeyDown}
         className={`flex flex-col overflow-hidden rounded-xl border font-sans shadow-sm ${P.frame} md:h-[680px]`}

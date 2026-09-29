@@ -4,7 +4,7 @@ import { getSystemDb } from "@/lib/d1/server";
 
 // Vercel Cron hits this via GET (see vercel.json: "0 14 * * *" = daily,
 // after the weekly-study-match run so a freshly-formed room gets its first
-// "Tài Tài" update the same day). Posts one automated progress-recap
+// "Cơ Cơ" update the same day). Posts one automated progress-recap
 // message per active study room, acting as the group's "quản lý" - who
 // studied today, who hasn't yet, and how close the room is to its weekly
 // XP goal. Posted as is_bot=true/sender_id=null (see

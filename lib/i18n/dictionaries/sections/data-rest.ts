@@ -64,7 +64,7 @@ export const dataRestVi = {
         "Thanh này theo dõi bạn đã đọc đến đâu - tự động lưu lại, quay lại bài học lúc nào cũng thấy đúng chỗ cũ.",
       bookmarkTitle: "Lưu bài để đọc sau",
       bookmarkText: "Bấm vào đây để đánh dấu bài học này, xem lại nhanh trong danh sách đã lưu của bạn.",
-      taiTaiTitle: "Tài Tài - mẹo tự động",
+      taiTaiTitle: "Cơ Cơ - mẹo tự động",
       taiTaiText: "Mỗi bài đều có một mẹo ngắn liên quan đến nội dung, tự động chọn cho bạn - không cần hỏi.",
       quizTitle: "Kiểm tra nhanh",
       quizText:
@@ -221,7 +221,7 @@ export const dataRestEn: typeof dataRestVi = {
         "This bar tracks how far you've read - saved automatically, so you always come back to the same spot.",
       bookmarkTitle: "Save for later",
       bookmarkText: "Click here to bookmark this lesson, so you can quickly find it in your saved list.",
-      taiTaiTitle: "Tài Tài - automatic tip",
+      taiTaiTitle: "Cơ Cơ - automatic tip",
       taiTaiText: "Every lesson has a short tip related to its content, picked automatically for you - no need to ask.",
       quizTitle: "Quick check",
       quizText: "Take the quiz here to check your own understanding - the result is saved to your learning progress.",

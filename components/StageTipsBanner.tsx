@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import TaiTaiAvatar from "@/components/TaiTaiAvatar";
+import CoCoAvatar from "@/components/CoCoAvatar";
 import { TRACK_PERSONAL, TRACK_PROFESSIONAL } from "@/lib/track-stages";
 import { useI18n } from "@/lib/i18n/context";
 import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
@@ -120,7 +120,7 @@ export default function StageTipsBanner({ lessonId, lessonTitle }: Props) {
             </>
           )}
           <div className="relative w-8 h-8 rounded-full overflow-hidden bg-stone-800">
-            <TaiTaiAvatar size={32} />
+            <CoCoAvatar size={32} />
           </div>
         </div>
         <div className="flex-1 min-w-0">

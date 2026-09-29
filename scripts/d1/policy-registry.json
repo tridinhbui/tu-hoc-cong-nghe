@@ -313,5 +313,9 @@
  "leaderboard_cache": {
   "kind": "manual",
   "reason": "khong co chinh sach RLS nao trong migration"
+ },
+ "user_skill_evidence": {
+  "kind": "manual",
+  "reason": "chi may chu ghi/doc qua createAdminClient (app/api/skill-evidence, knowledge-challenge/submit, stage-exam); client khong duoc tu ghi bang chung nang luc"
  }
 }

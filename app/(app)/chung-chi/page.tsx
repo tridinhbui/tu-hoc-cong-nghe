@@ -5,6 +5,7 @@ import { Award, ArrowRight, Info } from "lucide-react";
 import { getServerLocale } from "@/lib/i18n/server";
 import { format, getDictionary } from "@/lib/i18n";
 import { loadCertProgress } from "@/lib/cert-progress";
+import CoCoSays from "@/components/CoCoSays";
 
 export const dynamic = "force-dynamic";
 
@@ -38,18 +39,21 @@ export default async function ChungChiPage() {
           priority
         />
         {/* Ảnh núi sáng màu: không có lớp phủ thì dòng phụ trắng chìm vào trời. */}
-        <div className="absolute inset-0 bg-gradient-to-r from-brand-950/90 via-brand-900/70 to-brand-900/20" />
+        <div className="absolute inset-0 bg-brand-950/75" />
         <div className="relative mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-10">
           <span className="inline-flex items-center gap-1.5 font-mono text-[11px] font-bold tracking-wider text-brand-200 uppercase">
             <Award className="h-3.5 w-3.5" />
             {s.hubEyebrow}
           </span>
           <h1 className="mt-2 text-2xl font-black tracking-tight sm:text-3xl">{s.hubTitle}</h1>
-          <p className="mt-2 max-w-2xl text-sm text-brand-100/90">{s.hubSubtitle}</p>
         </div>
       </div>
 
       <div className="mx-auto max-w-6xl space-y-5 px-4 py-6 sm:px-6">
+        {/* Cơ Cơ nói thay dòng phụ đề cứng; câu phụ đề cũ (cách trang tổ chức
+            theo miền thi) đứng cuối để câu của Cơ Cơ không phải lặp lại nó. */}
+        <CoCoSays lines={[...t.coco.certs]} className="max-w-3xl" />
+        <p className="-mt-2 max-w-3xl text-xs text-ink-muted">{s.hubSubtitle}</p>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
           {certs.map(({ cert, domains, distinctLessonCount, distinctCompleted }) => {
             const pct = distinctLessonCount > 0 ? Math.round((distinctCompleted / distinctLessonCount) * 100) : 0;

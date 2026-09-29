@@ -68,12 +68,15 @@ export interface QuizAnswerSubmission {
 export async function submitQuizSession(
   track: QuizTrack,
   difficulty: QuizDifficulty,
-  answers: QuizAnswerSubmission[]
+  answers: QuizAnswerSubmission[],
+  /** Chỉ cho track "cert": miền đang luyện, để máy chủ ghi bằng chứng năng lực
+   *  thực hành (lib/practical-skill.ts). Máy chủ chỉ tính câu thuộc đúng miền này. */
+  certScope?: { cert: string; domain: string }
 ): Promise<{ score: number; total: number; xpEarned: number }> {
   const res = await fetch("/api/knowledge-challenge/submit", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ mode: "quiz", track, difficulty, answers }),
+    body: JSON.stringify({ mode: "quiz", track, difficulty, answers, ...certScope }),
   });
 
   if (!res.ok) {

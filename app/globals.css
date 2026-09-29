@@ -833,3 +833,9 @@ html [data-sonner-toaster][data-sonner-theme='dark'] {
 @media (prefers-reduced-motion: reduce) {
   .thcn-caret, .thcn-rise, .thcn-draw, .thcn-stamp, .thcn-glitch:hover { animation: none; }
 }
+
+/* Cơ Cơ lơ lửng nhẹ khi đang "nói" - components/CoCoAvatar.tsx (float). */
+@keyframes coco-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}

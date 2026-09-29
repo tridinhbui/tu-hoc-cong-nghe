@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
-import { ArrowRight, BookOpen } from "lucide-react";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
+import CoCoSays, { useCoCoGreeting } from "@/components/CoCoSays";
 import { getDashboardGreetingAction } from "@/app/(app)/dashboard/actions";
 import { trackFeatureClick } from "@/lib/feature-events";
 import { getLessonDisplayLabel, getLessonShortTitle } from "@/lib/lesson-labels";
@@ -14,7 +14,7 @@ import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 import { getCurrentUser } from "@/lib/current-user";
 import { XP_PER_LESSON } from "@/lib/levels";
-import { StatusDot, btnPrimary, panel } from "@/components/ui/system";
+import { StatusDot, Sys, btnPrimary, panel } from "@/components/ui/system";
 
 interface ResumeLearningButtonProps {
   activeTrack: "personal" | "professional";
@@ -29,6 +29,10 @@ interface ResumeLearningButtonProps {
    *  từ lúc phiên resolve. Vẫn giữ nhánh tự đọc để thẻ còn dùng được ở chỗ
    *  không có sẵn id. */
   userId?: string | null;
+  /** Cơ Cơ nói lời chào ngay trên thẻ. Tắt ở /hoc-bai, nơi Cơ Cơ đã đứng đầu
+   *  trang với lời riêng của trang đó - hai con linh vật cách nhau một thẻ là
+   *  một con thừa. */
+  showCoCo?: boolean;
 }
 
 interface Greeting {
@@ -57,10 +61,13 @@ interface Greeting {
   } | null;
 }
 
-export default function ResumeLearningButton({ activeTrack, compact = false, userId }: ResumeLearningButtonProps) {
+export default function ResumeLearningButton({ activeTrack, compact = false, userId, showCoCo = true }: ResumeLearningButtonProps) {
   const { t } = useI18n();
   const [greeting, setGreeting] = useState<Greeting | null>(null);
   const [loading, setLoading] = useState(true);
+  // Gọi ở đầu, trước mọi nhánh return: đây là một hook. Tên chưa có thì lời
+  // chào vẫn đúng, chỉ không kèm tên - và tự cập nhật khi greeting về.
+  const cocoLead = useCoCoGreeting(greeting?.firstName ?? null);
 
   useEffect(() => {
     const fetchGreeting = async () => {
@@ -82,12 +89,12 @@ export default function ResumeLearningButton({ activeTrack, compact = false, use
 
   if (loading) {
     return (
-      <div className={`${panel} p-6 flex items-center gap-4 animate-pulse`}>
-      <div className="w-12 h-12 rounded-sm bg-surface-sunken" />
-      <div className="flex-1 space-y-2">
-      <div className="h-4 bg-surface-sunken rounded-xs w-1/3" />
-      <div className="h-5 bg-surface-sunken rounded-xs w-3/4" />
-          </div>
+      <div className={`${panel} p-5 flex items-center gap-4 animate-pulse`}>
+        <div className="w-11 h-11 rounded-sm bg-surface-sunken" />
+        <div className="flex-1 space-y-2">
+          <div className="h-4 bg-surface-sunken rounded-xs w-1/3" />
+          <div className="h-5 bg-surface-sunken rounded-xs w-3/4" />
+        </div>
       </div>
     );
   }
@@ -99,18 +106,24 @@ export default function ResumeLearningButton({ activeTrack, compact = false, use
 
   const trackStages = activeTrack === "personal" ? TRACK_PERSONAL.stages : TRACK_PROFESSIONAL.stages;
   const stageIdx = nextLesson ? trackStages.findIndex((stage) => isLessonInRange(nextLesson.id, stage)) : -1;
-  const stageName = stageIdx >= 0 ? t.trackStages[activeTrack]?.stages[stageIdx]?.name ?? trackStages[stageIdx].name : null;
+  const stageTag = stageIdx >= 0 ? t.revampDashboard.stages[activeTrack]?.[stageIdx]?.tag ?? null : null;
 
+  // Cơ Cơ là thứ ĐẦU TIÊN nói với người học khi mở app: lời chào theo giờ,
+  // rồi đúng một câu về việc hôm nay. Nó thay cho dòng "Nhiệm vụ đang học"
+  // cứng trước đây - cùng thông tin, nhưng có người nói.
   if (!nextLesson) {
     return (
-      <div className="rounded-md border border-stone-950 bg-stone-950 p-6 text-white dark:border-stone-700">
-        <div className="flex items-center gap-4">
-        <div className="w-12 h-12 rounded-sm border border-white/15 flex items-center justify-center">
-            <BookOpen className="w-6 h-6" />
-          </div>
-          <div className="flex-1">
-            <p className="font-black tracking-tight text-lg">{format(t.resume.congrats, { name: firstName ? `, ${firstName}` : "" })}</p>
-            <p className="text-sm text-stone-300">{t.resume.allDone}</p>
+      <div className="space-y-3">
+        {showCoCo && <CoCoSays lead={cocoLead} lines={t.coco.dashboardDone} size={compact ? 40 : 48} />}
+        <div className="rounded-sm border border-cyan-500/50 bg-white p-4 dark:bg-stone-900">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 shrink-0 rounded-sm bg-cyan-600 text-white flex items-center justify-center">
+              <CheckCircle2 className="w-5 h-5" aria-hidden />
+            </div>
+            <div className="min-w-0">
+              <p className="font-black tracking-tight text-base text-ink-max">{format(t.resume.congrats, { name: firstName ? `, ${firstName}` : "" })}</p>
+              <p className="text-sm text-ink-muted">{t.resume.allDone}</p>
+            </div>
           </div>
         </div>
       </div>
@@ -118,8 +131,8 @@ export default function ResumeLearningButton({ activeTrack, compact = false, use
   }
 
   const progressPercent = trackProgress && trackProgress.total > 0
-  ? Math.round((trackProgress.completed / trackProgress.total) * 100)
-  : 0;
+    ? Math.round((trackProgress.completed / trackProgress.total) * 100)
+    : 0;
 
   // Nhãn chặng/bài đọc từ TIÊU ĐỀ, qua đúng hàm mà trang bài học và trang ôn
   // tập dùng. Bản trước tự dựng lấy hai con số và cả hai đều sai:
@@ -136,67 +149,55 @@ export default function ResumeLearningButton({ activeTrack, compact = false, use
     { id: nextLesson.id, title: nextLesson.title, track: undefined },
     t.lessonLabel
   );
+  const shortTitle = getLessonShortTitle({ title: nextLesson.title });
 
   return (
-    <div className="flex flex-col h-full justify-between font-sans">
+    <div className="flex flex-col h-full gap-3 font-sans">
+      {showCoCo && (
+        <CoCoSays
+          lead={cocoLead}
+          lines={completedCount === 0 ? t.coco.dashboardFirst : t.coco.dashboardNext}
+          vars={{ lesson: shortTitle }}
+          size={compact ? 40 : 48}
+        />
+      )}
+
+      {/* Ảnh minh hoạ ngọn núi từng chiếm nửa phải thẻ này (352px) - ảnh không
+          nói gì về bài học, và cái giá của nó là tiêu đề bài bị ép hẹp ở
+          1024-1279px. Chỗ đó giờ là của bài học và nút hành động. */}
       <Link
         href={`/bai-hoc/${nextLesson.slug}`}
         onClick={() => trackFeatureClick("resume_learning_click", { label: nextLesson.slug })}
-        className="group relative overflow-hidden block rounded-md border border-line-strong bg-white dark:bg-stone-900 transition-colors hover:border-stone-950 dark:hover:border-stone-300 min-h-[175px]"
+        className="group relative block rounded-sm border-2 border-brand-600 bg-white transition-colors hover:border-stone-950 dark:border-brand-500 dark:bg-stone-900 dark:hover:border-stone-300"
       >
-        {/* Ô biểu tượng trung tính ở góc trên trái */}
-        <div className="absolute top-5 left-5 z-20 hidden sm:flex items-center justify-center pointer-events-none">
-          <div className="w-12 h-12 rounded-sm border border-line-strong bg-surface-raised text-ink-body flex items-center justify-center dark:border-stone-700 dark:bg-stone-950">
-            <BookOpen className="w-6 h-6" />
-          </div>
-        </div>
-
-        <div className="relative z-10 flex flex-col md:flex-row items-stretch justify-between p-5 sm:p-6 sm:pl-20 gap-4">
-          {/* Left Content */}
-          <div className="min-w-0 flex-1 space-y-2.5 flex flex-col justify-between">
-            {/* Top Badges */}
-            <div className="flex items-center gap-2 flex-wrap">
-              <span className="eyebrow inline-flex items-center gap-1.5 text-ink-soft">
+        <div className={`flex flex-col gap-3 ${compact ? "p-4" : "p-4 sm:p-5"} md:flex-row md:items-center md:gap-6`}>
+          <div className="min-w-0 flex-1">
+            <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1">
+              <Sys className="inline-flex items-center gap-1.5 text-accent-strong">
                 <StatusDot />
-                {t.resume.resumeBadge}
-              </span>
-              <span className="inline-flex items-center rounded-sm border border-line-strong px-2 py-0.5 font-mono text-[10.5px] font-medium tabular-nums text-ink-muted dark:border-stone-700">
-                {format(t.resume.resumeXpBadge, { xp: XP_PER_LESSON })}
-              </span>
-            </div>
-
-            {/* Main Title (2 lines) */}
-            <div>
-              <span className="text-xs font-bold text-ink-muted block">
-                {lessonLabel}
-              </span>
-              <h2 className="text-lg sm:text-2xl font-black text-ink-max tracking-tight leading-snug transition-colors mt-0.5">
-                {getLessonShortTitle({ title: nextLesson.title })}
-              </h2>
-            </div>
-
-            {/* Hành động chính của cả màn hình.
-                Thẻ này trước đây không có nút và không có động từ nào, nên nút
-                tô đậm mạnh nhất phía trên màn hình là nút "Làm ngay" của dòng
-                nhiệm vụ daily_1 - trang trả lời "nhận thưởng ở đâu" trước khi
-                trả lời "học gì tiếp". `pointer-events-none` vì cả thẻ đã là
-                một <Link>: một <a> lồng trong <a> là HTML không hợp lệ, nên
-                đây là một cái nút TRÔNG như nút, còn cú bấm vẫn do thẻ nhận. */}
-            <div className="pt-0.5">
-              <span className={`${btnPrimary} group-hover:bg-brand-700 dark:group-hover:bg-brand-300 pointer-events-none`}>
-                {t.resume.resumeCta}
-                <ArrowRight className="w-3.5 h-3.5" />
+                {t.revampDashboard.todayLabel}
+              </Sys>
+              <span className="font-mono text-[10.5px] font-bold tabular-nums text-warn-strong">
+                {stageTag
+                  ? format(t.revampDashboard.todayMeta, { xp: XP_PER_LESSON, stage: stageTag })
+                  : format(t.resume.resumeXpBadge, { xp: XP_PER_LESSON })}
               </span>
             </div>
+            <span className="mt-2 block text-xs font-bold text-ink-muted">{lessonLabel}</span>
+            <h2 className="mt-0.5 text-lg sm:text-2xl font-black text-ink-max tracking-tight leading-snug">
+              {shortTitle}
+            </h2>
+            {nextLesson.subtitle && (
+              <p className="mt-1 text-sm leading-snug text-ink-soft line-clamp-2">{nextLesson.subtitle}</p>
+            )}
 
-            {/* Bottom Progress Bar & Lesson Count */}
-            <div className="pt-1 flex items-center gap-3">
-              {/* Tử số phải cùng phạm vi với mẫu số. `completedCount` đếm bài
-                  đã xong ở MỌI tuyến, còn `trackProgress.total` chỉ đếm bài
-                  của tuyến đang học, nên đặt cạnh nhau ra những dòng như
-                  "412/326 bài" ngay cạnh thanh 78%. Và khi chưa có
-                  trackProgress thì không in con số nào: mặc định 524 cũ là
-                  tổng số bài của nhiều tháng trước, giờ kho đã hơn 1.600. */}
+            {/* Tử số phải cùng phạm vi với mẫu số. `completedCount` đếm bài
+                đã xong ở MỌI tuyến, còn `trackProgress.total` chỉ đếm bài
+                của tuyến đang học, nên đặt cạnh nhau ra những dòng như
+                "412/326 bài" ngay cạnh thanh 78%. Và khi chưa có
+                trackProgress thì không in con số nào. Thanh màu cyan: đây là
+                tiến độ đã làm, không phải hành động. */}
+            <div className="mt-3 flex items-center gap-3">
               {trackProgress && (
                 <span className="text-xs font-bold text-ink-muted whitespace-nowrap">
                   {format(t.resume.resumeProgress, {
@@ -207,7 +208,7 @@ export default function ResumeLearningButton({ activeTrack, compact = false, use
               )}
               <div className="flex-1 max-w-xs h-1.5 rounded-xs bg-surface-sunken overflow-hidden relative">
                 <div
-                  className="h-full bg-brand-600 dark:bg-brand-500 transition-all duration-700"
+                  className="h-full bg-cyan-500 transition-all duration-700"
                   style={{ width: `${Math.max(2, progressPercent)}%` }}
                 />
               </div>
@@ -217,26 +218,13 @@ export default function ResumeLearningButton({ activeTrack, compact = false, use
             </div>
           </div>
 
-          {/* Bên phải: tranh minh hoạ */}
-          {/* Bề rộng ảnh ở khoảng 1024-1279px: PHÉP TÍNH CỦA CHÍNH THẺ NÀY
-              không đóng được. Cột trái là `lg:col-span-7` của khung 720px
-              (~412px), trừ `sm:pl-20` + `pr-6` còn ~308px chỗ cho nội dung,
-              trong khi khối ảnh là `md:w-88 shrink-0` = 352px. Cột chữ
-              (`flex-1 min-w-0`) co về gần 0 và tiêu đề bài bị `overflow-hidden`
-              của thẻ cắt mất. Không có bề rộng ảnh nào ở dải đó vừa đủ cho chữ
-              vừa đủ để ảnh còn ra hình, nên ảnh ẩn hẳn từ `lg` tới `xl` và
-              quay lại ở `xl`, nơi cột trái là `col-span-8` (~814px). */}
-          <div className="relative w-full md:w-88 lg:hidden xl:block xl:w-88 h-38 shrink-0 rounded-sm overflow-hidden select-none border border-line-strong bg-surface">
-            <Image
-              src="/images/dashboard/hero_mountain.jpg"
-              alt={t.dashCards.resumeHeroAlt}
-              fill
-              /* Không có `sizes` thì Next phục vụ biến thể rộng nhất - 1,03MB
-                 cho một hộp rộng nhất 352px. */
-              sizes="(min-width: 1280px) 352px, (min-width: 768px) 352px, 100vw"
-              className="object-cover object-right-top"
-            />
-          </div>
+          {/* Hành động chính của cả màn hình. `pointer-events-none` vì cả thẻ
+              đã là một <Link>: một <a> lồng trong <a> là HTML không hợp lệ,
+              nên đây là một cái nút TRÔNG như nút, còn cú bấm vẫn do thẻ nhận. */}
+          <span className={`${btnPrimary} shrink-0 self-start md:self-center px-5 py-3 group-hover:bg-brand-700 dark:group-hover:bg-brand-300 pointer-events-none`}>
+            {t.resume.resumeCta}
+            <ArrowRight className="w-4 h-4" />
+          </span>
         </div>
       </Link>
     </div>

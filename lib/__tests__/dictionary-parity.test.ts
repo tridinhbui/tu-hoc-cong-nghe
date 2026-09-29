@@ -63,7 +63,7 @@ const INTENTIONALLY_UNTRANSLATED = new Set([
   "rpgBuildings.resource-floor.badge",
   "rpgBuildings.data-haven.badge",
   "rpgBuildings.singapore-dock.badge",
-  // "Tài Tài" is the name of the study-group admin character. A proper noun
+  // "Cơ Cơ" is the name of the study-group admin character. A proper noun
   // stays as it is in every language - the same reason the leaderboard's
   // Vietnamese nicknames are exempted in lib/i18n/dictionaries/vi.ts.
   "studyGroups.byAdmin",
@@ -72,14 +72,14 @@ const INTENTIONALLY_UNTRANSLATED = new Set([
   "chat.admin",
   "chat.taitaiFailed",
   // Cùng lý do, cho câu luật mà bot đăng vào phòng: cả câu đã là tiếng Anh,
-  // chỉ còn đúng tên riêng "Tài Tài" mang dấu - và tên riêng thì giữ nguyên ở
+  // chỉ còn đúng tên riêng "Cơ Cơ" mang dấu - và tên riêng thì giữ nguyên ở
   // mọi ngôn ngữ. Miễn trừ đúng khoá này chứ không nới ngưỡng dấu, vì ngưỡng
   // ấy là thứ bắt được bản dịch copy-paste.
   "groupChat.botRules",
   "adminChat.title",
   "groupChat.byAdmin",
   "groupChat.pinnedByAdmin",
-  // Cùng "Tài Tài", lần này mở đầu lời chào khi phòng vừa lập. Tin nhắn bot
+  // Cùng "Cơ Cơ", lần này mở đầu lời chào khi phòng vừa lập. Tin nhắn bot
   // giờ lưu dạng sự kiện và dựng câu ở phía người đọc
   // (lib/study-room-bot-messages.ts), nên chuỗi này LÀ bản tiếng Anh - chỉ có
   // tên nhân vật giữ nguyên.
@@ -97,9 +97,17 @@ const INTENTIONALLY_UNTRANSLATED = new Set([
   "mistakeReview.srsBadge",
   // Same drill name as interview.drillTitle, already English in the source.
   "quizPage.ibEyebrow",
-  // "Tài Tài" once more - the coach byline on the resume card.
+  // "Cơ Cơ" once more - the coach byline on the resume card.
   "resume.coachReminder",
   "resume.coachSuggestion",
+  // "Cơ Cơ" giải thích thẻ Feynman trong bài học - trước đây bản EN viết
+  // "Tai Tai" không dấu; giờ tên linh vật giữ nguyên ở mọi ngôn ngữ.
+  "lessonPage.feynmanSubtitle",
+  "lessonPage.feynmanCardTitle",
+  "lessonPage.feynmanIntroPart2",
+  // Lời thoại của chính Cơ Cơ (lib/i18n/dictionaries/sections/coco.ts).
+  "coco.typingLabel",
+  "coco.dashboardFirst",
   // Already English in the Vietnamese source: the game's own branded chrome
   // (studio and arsenal banners, the arena badge) and two building names. They
   // are in the dictionary rather than inline because the coverage script scores
@@ -124,7 +132,7 @@ const INTENTIONALLY_UNTRANSLATED = new Set([
   "leaderboardPreview.name4",
   "leaderboardPreview.name5",
   "leaderboardPreview.name6",
-  // "Tài Tài" the study coach again.
+  // "Cơ Cơ" the study coach again.
   "quizSuggestion.greeting",
   "quizSuggestion.suggestionLabel",
   // The formula carved above each lobby station's door. Algebra, in both
@@ -138,7 +146,7 @@ const INTENTIONALLY_UNTRANSLATED = new Set([
   "dataRest.globalSearchModal.sampleGlossary",
   // A watch. Rolex Submariner Gold is the product's name, not a description.
   "dataTables.rpgInventory.items.watch_rolex.name",
-  // A proper noun and a keyboard shortcut, plus "Tài Tài" inside an otherwise
+  // A proper noun and a keyboard shortcut, plus "Cơ Cơ" inside an otherwise
   // translated tour title.
   "dataRest.appNavbar.gameKingdomLabel",
   "dataRest.appNavbar.cmdKHint",
@@ -150,7 +158,7 @@ const INTENTIONALLY_UNTRANSLATED = new Set([
   "miscUi.userStats.xpUnit",
   "miscUi.xpFloatingPopup.xpUnit",
   "miscUi.lessonRoomCard.fallbackDistrictLabel",
-  // "Tài Tài" the coach and the product's own name, in English sentences.
+  // "Cơ Cơ" the coach and the product's own name, in English sentences.
   "smartRemediation.titlePart1",
   "motivationShare.downloadedFilenameCaption",
   // Product names, an already-English word, and dev-tool debug labels.
@@ -191,7 +199,7 @@ const INTENTIONALLY_UNTRANSLATED = new Set([
   // trình viên đặt cho khối JSX. Giờ là chữ thật ở cả hai ngôn ngữ.
   "kingdomPreview.bossRaidLabel",
   "kingdomPreview.bossHpValue",
-  // The product's own name, and "Tài Tài" the study-group character, both of
+  // The product's own name, and "Cơ Cơ" the study-group character, both of
   // which stay as they are in an English sentence.
   "onboarding.step1Title",
   "onboarding.assistantLabel",

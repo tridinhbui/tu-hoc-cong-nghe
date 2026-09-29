@@ -166,7 +166,7 @@ export async function updateQuizScore(userId: string, lessonId: number, score: n
 }
 
 // Tổng số phút học thực tế (tổng time_spent_seconds đã ghi nhận), dùng cho
-// lời chào tóm tắt của Tài Tài trên dashboard.
+// lời chào tóm tắt của Cơ Cơ trên dashboard.
 export async function getTotalTimeSpentMinutes(userId: string, client?: CloudflareClient): Promise<number> {
   const cloudflare = client ?? createClient();
   const { data, error } = await cloudflare

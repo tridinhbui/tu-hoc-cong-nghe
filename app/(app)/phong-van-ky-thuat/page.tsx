@@ -1,8 +1,7 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import {
   BriefcaseBusiness,
   ChevronLeft,
@@ -22,9 +21,7 @@ import {
   Clock,
   ArrowRight,
   ArrowLeft,
-  Target,
-  Trophy,
-  Flame,
+  Play,
   Search,
   X,
 } from "lucide-react";
@@ -36,8 +33,8 @@ import { getLevelByXp, getNextLevel, getLevelProgress } from "@/lib/levels";
 import {
   TECH_CAREERS,
   TECH_INTERVIEW_QUESTIONS,
-  TECH_BEHAVIORAL_CARDS,
   formatCategoryLabel,
+  getInterviewQuestionById,
   getTechnicalQuestionsForCareer,
 } from "@/lib/interview-bank";
 import BehavioralPrepPanel from "@/components/BehavioralPrepPanel";
@@ -50,6 +47,7 @@ import { matchesVietnamese } from "@/lib/vn-search";
 import { getCurrentUserId } from "@/lib/current-user";
 import { getInterviewCoverage, type InterviewCoverage } from "@/lib/interview-weak-areas";
 import InterviewerStage from "@/components/InterviewerStage";
+import CoCoSays from "@/components/CoCoSays";
 import { useQuizKeys } from "@/lib/use-quiz-keys";
 import { btnPrimary, btnSecondary, panel, SectionHead, StatTable, Sys, tabClass, textLink } from "@/components/ui/system";
 
@@ -134,12 +132,75 @@ function choiceClass(active: boolean) {
   }`;
 }
 const PASS_RATIO = 0.6;
+/** Bằng MIN_DIFFICULTY_POOL trong app/api/knowledge-challenge/route.ts: dưới
+ *  ngưỡng này route bù câu ở độ khó gần nhất. Khối "Buổi phỏng vấn sẽ được
+ *  tạo" nói điều đó ra, nên hai con số phải đi cùng nhau. */
+const API_MIN_DIFFICULTY_POOL = 20;
+
+/** Người ngồi đối diện theo độ khó - cùng bảng tên InterviewerStage dùng. */
+const ROUND_NAME_KEY: Record<QuizDifficulty, "roundScreen" | "roundAnalyst" | "roundPressure" | "roundMixed"> = {
+  de: "roundScreen",
+  "trung-binh": "roundAnalyst",
+  kho: "roundPressure",
+  "tat-ca": "roundMixed",
+};
+
+/** Trạng thái của một bước thiết lập: đã chọn = cyan (tiến độ), đang chọn =
+ *  brand (hành động), chưa tới = xám. */
+type StepStatus = "done" | "current" | "todo";
+type StepId = "role" | "difficulty" | "focus" | "interview";
+const STEP_BORDER: Record<StepStatus, string> = {
+  done: "border-cyan-600 dark:border-cyan-400",
+  current: "border-brand-600 dark:border-brand-400",
+  todo: "border-line-strong",
+};
+const STEP_TEXT: Record<StepStatus, string> = {
+  done: "text-cyan-700 dark:text-cyan-400",
+  current: "text-accent-strong",
+  todo: "text-ink-faint",
+};
+
+function StepHead({
+  n,
+  label,
+  hint,
+  status,
+  statusLabel,
+}: {
+  n: string;
+  label: string;
+  hint: string;
+  status: StepStatus;
+  statusLabel: string;
+}) {
+  return (
+    <div className="border-b border-line-strong pb-2">
+      <p className="flex items-center gap-2">
+        <Sys className={STEP_TEXT[status]}>{n}</Sys>
+        <span className={`eyebrow ${status === "todo" ? "text-ink-faint" : "text-ink-max"}`}>{label}</span>
+        <span className={`ml-auto text-[10.5px] font-bold ${STEP_TEXT[status]}`}>{statusLabel}</span>
+      </p>
+      <p className="mt-0.5 text-xs text-ink-muted">{hint}</p>
+    </div>
+  );
+}
+
+/* i18n-ignore-start: nhãn phương án A-D và đồng hồ mm:ss, cùng ở mọi ngôn ngữ */
+function optionLetter(i: number): string {
+  return String.fromCharCode(65 + i);
+}
+function clock(totalSeconds: number): string {
+  const s = Math.max(0, Math.round(totalSeconds));
+  return `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`;
+}
+/* i18n-ignore-end */
 
 type Stage = "setup" | "loading" | "empty" | "error" | "ready" | "done";
 type Mode = "technical" | "behavioral";
 
 export default function TechnicalInterviewPage() {
   const { t, locale } = useI18n();
+  const R = t.revampInterview;
   const IB_DIFFICULTY_COPY = ibDifficultyCopy(t);
   const IB_DIFFICULTY_TITLE = ibDifficultyTitle(t);
   const [userId, setUserId] = useState<string | null>(null);
@@ -179,9 +240,21 @@ export default function TechnicalInterviewPage() {
   const [answers, setAnswers] = useState<QuizAnswerSubmission[]>([]);
   const [xpAwarded, setXpAwarded] = useState<number | null>(null);
   const [recording, setRecording] = useState(false);
+  /** Bước nào người học đã CHỦ ĐỘNG chọn. Giá trị mặc định (mọi vị trí, trộn
+   *  độ khó, 5 câu) vẫn chạy được, nhưng chưa bấm thì bước đó chưa "xong" -
+   *  đó là thứ làm dải 01-04 thành tiến độ thật. */
+  const [roleChosen, setRoleChosen] = useState(false);
+  const [diffChosen, setDiffChosen] = useState(false);
+  const [focusChosen, setFocusChosen] = useState(false);
+  /** Giây (tính từ lúc bắt đầu buổi) mà câu hiện tại được hỏi, và số giây đã
+   *  dùng cho từng câu - đo lúc chốt đáp án, không ước lượng. */
+  const [qStartSec, setQStartSec] = useState(0);
+  const [durations, setDurations] = useState<number[]>([]);
+  const [notes, setNotes] = useState("");
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const pendingScroll = useRef<StepId | null>(null);
 
   const totalQuestions = TECH_INTERVIEW_QUESTIONS.length;
-  const behavioralCount = TECH_BEHAVIORAL_CARDS.length;
 
   const careerCoverage = useMemo(
     () =>
@@ -294,7 +367,26 @@ export default function TechnicalInterviewPage() {
     return () => clearInterval(id);
   }, [startedAt]);
 
-  const elapsedLabel = `${String(Math.floor(elapsed / 60)).padStart(2, "0")}:${String(elapsed % 60).padStart(2, "0")}`;
+  const elapsedLabel = clock(elapsed);
+
+  const scrollToStep = useCallback((id: StepId) => {
+    document.getElementById(`step-${id}`)?.scrollIntoView?.({ behavior: "smooth", block: "start" });
+  }, []);
+
+  /** Về màn thiết lập và dừng đồng hồ - đồng hồ không chạy ngầm sau lưng. */
+  const exitToSetup = useCallback(() => {
+    setStartedAt(null);
+    setStage("setup");
+  }, []);
+
+  // Cuộn tới một bước sau khi màn thiết lập đã render lại (nút "Chọn mức khó
+  // hơn" ở màn kết quả). Đọc ref trong effect, không đặt state.
+  useEffect(() => {
+    if (stage !== "setup" || !pendingScroll.current) return;
+    const id = pendingScroll.current;
+    pendingScroll.current = null;
+    requestAnimationFrame(() => scrollToStep(id));
+  }, [stage, scrollToStep]);
 
   const startQuiz = useCallback(async (
     overrideDifficulty?: QuizDifficulty,
@@ -312,6 +404,10 @@ export default function TechnicalInterviewPage() {
     setResults([]);
     setAnswers([]);
     setXpAwarded(null);
+    setQStartSec(0);
+    setDurations([]);
+    setNotes("");
+    if (scrollRef.current) scrollRef.current.scrollTop = 0;
     try {
       const careerParam = selectedCareer ? `&career=${encodeURIComponent(selectedCareer)}` : "";
       const sectionParam = overrideSection ? `&section=${encodeURIComponent(overrideSection)}` : "";
@@ -349,24 +445,10 @@ export default function TechnicalInterviewPage() {
   // bản dịch, chỗ này là nơi ghép lại - và phương án phải đi qua `optionOrder`.
   const localizedQuestions = questions;
 
-  const missedSections = useMemo(() => {
-    const counts = new Map<string, number>();
-    localizedQuestions.forEach((question, i) => {
-      if (results[i]) return;
-      const label = question.lessonTitle.split("·").pop()?.trim();
-      if (!label) return;
-      counts.set(label, (counts.get(label) ?? 0) + 1);
-    });
-    return Array.from(counts.entries())
-      .map(([label, missed]) => ({ label, missed }))
-      .sort((a, b) => b.missed - a.missed);
-  }, [localizedQuestions, results]);
-
   const q = localizedQuestions[activeQ];
   const allDone = submitted && activeQ === questions.length - 1;
   const score = results.filter(Boolean).length;
   const passed = questions.length > 0 && score >= Math.ceil(questions.length * PASS_RATIO);
-  const progressPct = questions.length > 0 ? Math.round(((activeQ + (submitted ? 1 : 0)) / questions.length) * 100) : 0;
 
   async function finalizeQuiz() {
     if (!userId || recording || xpAwarded !== null) return;
@@ -408,6 +490,14 @@ export default function TechnicalInterviewPage() {
       n[activeQ] = { token: q.token, selected };
       return n;
     });
+    if (startedAt !== null && durations[activeQ] === undefined) {
+      const spent = Math.floor((Date.now() - startedAt) / 1000) - qStartSec;
+      setDurations((d) => {
+        const n = [...d];
+        n[activeQ] = Math.max(0, spent);
+        return n;
+      });
+    }
     setSubmitted(true);
     void recordQuizMistake(q.lessonId, 0, ok, q.question);
   }
@@ -427,6 +517,9 @@ export default function TechnicalInterviewPage() {
 
   function next() {
     if (activeQ === questions.length - 1) {
+      if (startedAt !== null) setElapsed(Math.floor((Date.now() - startedAt) / 1000));
+      setStartedAt(null);
+      if (scrollRef.current) scrollRef.current.scrollTop = 0;
       setStage("done");
       void finalizeQuiz();
       return;
@@ -441,6 +534,9 @@ export default function TechnicalInterviewPage() {
     setActiveQ(target);
     setSelected(stored?.selected ?? null);
     setSubmitted(stored !== undefined);
+    if (stored === undefined && startedAt !== null) {
+      setQStartSec(Math.floor((Date.now() - startedAt) / 1000));
+    }
   }
 
   // 1-4 chọn phương án, Enter chốt rồi sang câu sau. Tắt khi đang mở modal để
@@ -455,44 +551,224 @@ export default function TechnicalInterviewPage() {
     },
   });
 
-  const difficultyTitle = IB_DIFFICULTY_TITLE[difficulty];
+  const inSession = stage === "ready" && !!q;
+
+  const sessionRoleLabel = selectedCareer
+    ? careerCoverage.find((c) => c.careerId === selectedCareer)?.title ?? R.allRoles
+    : R.allRoles;
+
+  /** Kho khớp với lựa chọn, tính đúng theo luật của interviewQuestionsFor
+   *  trong app/api/knowledge-challenge/route.ts. */
+  const envPool = useMemo(() => {
+    let base = selectedCareer ? getTechnicalQuestionsForCareer(selectedCareer) : TECH_INTERVIEW_QUESTIONS;
+    if (selectedSection) {
+      const scoped = base.filter((qq) => qq.category === selectedSection);
+      if (scoped.length > 0) base = scoped;
+    }
+    if (difficulty === "tat-ca") return { pool: base.length, exact: base.length, padded: false };
+    const exact = base.filter((qq) => qq.difficulty === difficulty).length;
+    if (exact >= API_MIN_DIFFICULTY_POOL) return { pool: exact, exact, padded: false };
+    return { pool: Math.min(base.length, API_MIN_DIFFICULTY_POOL), exact, padded: true };
+  }, [selectedCareer, selectedSection, difficulty]);
+
+  const plannedCount = Math.min(questionCount, envPool.pool);
+  const plannedPass = Math.ceil(plannedCount * PASS_RATIO);
+
+  const envRows = [
+    { label: R.envInterviewer, value: t.interview[ROUND_NAME_KEY[difficulty]] },
+    { label: R.envRole, value: sessionRoleLabel },
+    { label: R.envDifficulty, value: `${IB_DIFFICULTY_TITLE[difficulty]} - ${IB_DIFFICULTY_COPY[difficulty]}` },
+    {
+      label: R.envTopic,
+      value: selectedSection ?? format(R.envTopicMixed, { n: activeCategoryCounts.length }),
+    },
+    {
+      label: R.envQuestions,
+      value: format(envPool.pool < questionCount ? R.envQuestionsShort : R.envQuestionsValue, {
+        n: plannedCount,
+        pool: envPool.pool,
+      }),
+    },
+    {
+      label: R.envScoring,
+      value: format(R.envScoringValue, { pass: plannedPass, n: plannedCount, xp: QUIZ_XP_PER_CORRECT[difficulty] }),
+    },
+    { label: R.envClock, value: R.envClockValue },
+  ];
+
+  const focusValue = `${questionCount} ${t.interview.questionsUnit} - ${selectedSection ?? t.interview.topicPickerAll}`;
+  const stepDone = [roleChosen, diffChosen, focusChosen];
+  const firstOpen = stepDone.findIndex((d) => !d);
+  const currentStep = firstOpen === -1 ? 3 : firstOpen;
+  const stepStatusOf = (i: number): StepStatus => (i < 3 && stepDone[i] ? "done" : i === currentStep ? "current" : "todo");
+  const steps: { id: StepId; label: string; value: string; status: StepStatus }[] = [
+    { id: "role", label: R.stepRole, value: sessionRoleLabel, status: stepStatusOf(0) },
+    { id: "difficulty", label: R.stepDifficulty, value: IB_DIFFICULTY_TITLE[difficulty], status: stepStatusOf(1) },
+    { id: "focus", label: R.stepFocus, value: focusValue, status: stepStatusOf(2) },
+    { id: "interview", label: R.stepInterview, value: t.interview[ROUND_NAME_KEY[difficulty]], status: stepStatusOf(3) },
+  ];
+  function stepStatusLabel(s: { id: StepId; status: StepStatus }): string {
+    if (s.id === "interview") return s.status === "current" ? R.statusReady : R.statusNext;
+    return s.status === "done" ? R.statusDone : s.status === "current" ? R.statusCurrent : R.statusNext;
+  }
+
+  // ─── Buổi phỏng vấn: thời gian câu hiện tại và câu hỏi tiếp theo ───
+  const questionSeconds =
+    submitted && durations[activeQ] !== undefined ? durations[activeQ] : Math.max(0, elapsed - qStartSec);
+
+  const followUp = useMemo(() => {
+    if (!q || !submitted) return null;
+    const generic = R.followUpGeneric[activeQ % R.followUpGeneric.length];
+    const picked = answers[activeQ]?.selected ?? selected;
+    if (results[activeQ]) {
+      const others = q.options.map((_, i) => i).filter((i) => i !== q.correct);
+      const letter = optionLetter(others[activeQ % Math.max(1, others.length)] ?? 0);
+      return { specific: format(R.followUpWhyNot, { letter }), generic };
+    }
+    return {
+      specific: format(R.followUpWrong, {
+        picked: optionLetter(picked ?? 0),
+        correct: optionLetter(q.correct),
+      }),
+      generic,
+    };
+  }, [q, submitted, activeQ, answers, selected, results, R]);
+
+  // ─── Màn kết quả: dữ liệu từng câu, bốn trục, kỹ năng ưu tiên ───
+  const perQuestion = useMemo(
+    () =>
+      localizedQuestions.map((qq, i) => ({
+        category: (qq as ChallengeQuestion & { category?: string }).category ?? qq.lessonTitle.split("·").pop()?.trim() ?? "",
+        difficulty: getInterviewQuestionById(-qq.lessonId)?.difficulty,
+        ok: results[i] === true,
+        seconds: durations[i] as number | undefined,
+      })),
+    [localizedQuestions, results, durations]
+  );
+
+  const avgSeconds = useMemo(() => {
+    const measured = perQuestion.map((d) => d.seconds).filter((s): s is number => s !== undefined);
+    return measured.length ? measured.reduce((a, b) => a + b, 0) / measured.length : 0;
+  }, [perQuestion]);
+
+  const axes = useMemo(() => {
+    const pctOf = (list: typeof perQuestion) =>
+      list.length ? Math.round((list.filter((d) => d.ok).length / list.length) * 100) : null;
+    const mid = perQuestion.filter((d) => d.difficulty === "trung-binh");
+    const hard = perQuestion.filter((d) => d.difficulty === "kho");
+    return [
+      {
+        id: "accuracy",
+        label: R.axisAccuracy,
+        pct: pctOf(perQuestion),
+        basis: format(R.axisAccuracyBasis, { correct: score, total: perQuestion.length }),
+      },
+      {
+        id: "reasoning",
+        label: R.axisReasoning,
+        pct: pctOf(mid),
+        basis: mid.length ? format(R.axisReasoningBasis, { n: mid.length }) : R.axisReasoningNone,
+      },
+      { id: "communication", label: R.axisCommunication, pct: null, basis: R.axisCommunicationNone },
+      {
+        id: "depth",
+        label: R.axisDepth,
+        pct: pctOf(hard),
+        basis: hard.length ? format(R.axisDepthBasis, { n: hard.length }) : R.axisDepthNone,
+      },
+    ];
+  }, [perQuestion, score, R]);
+
+  /** Chủ đề sai nhiều nhất; hoà thì chủ đề có tỉ lệ đúng thấp hơn. */
+  const topicStats = useMemo(() => {
+    const byTopic = new Map<string, { label: string; wrong: number; attempted: number }>();
+    for (const d of perQuestion) {
+      if (!d.category) continue;
+      const row = byTopic.get(d.category) ?? { label: d.category, wrong: 0, attempted: 0 };
+      row.attempted += 1;
+      if (!d.ok) row.wrong += 1;
+      byTopic.set(d.category, row);
+    }
+    return [...byTopic.values()]
+      .filter((r) => r.wrong > 0)
+      .sort((a, b) => b.wrong - a.wrong || b.wrong / b.attempted - a.wrong / a.attempted);
+  }, [perQuestion]);
+  const priority = topicStats[0] ?? null;
+  const otherMissed = topicStats.slice(1);
+  const cocoResultLines = !priority ? R.cocoPerfect : passed ? R.cocoPass : R.cocoFail;
 
   return (
     <div className="h-[calc(100dvh-3.5rem)] lg:h-dvh overflow-hidden flex flex-col bg-page dark:bg-stone-950 font-sans">
-      {/* ─── 1. TOP NAVIGATION HEADER ─── */}
+      {/* ─── 1. THANH TRÊN ───
+          Trong buổi phỏng vấn thanh này chỉ còn ba thứ: nút thoát, đang ở câu
+          nào của vị trí nào, và đồng hồ. Không có liên kết về dashboard, không
+          có chip XP - người ngồi phòng phỏng vấn thật không nhìn thấy menu. */}
       <div className="shrink-0 border-b border-line-strong bg-white dark:bg-stone-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            {stage !== "setup" && mode !== "behavioral" ? (
+        {inSession ? (
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 py-2.5 flex items-center justify-between gap-4">
+            <div className="flex min-w-0 items-center gap-3">
               <button
                 type="button"
-                onClick={() => setStage("setup")}
-                className="flex items-center justify-center w-9 h-9 rounded-sm text-ink-muted hover:bg-surface-raised hover:text-ink transition-colors cursor-pointer"
-                aria-label={t.interview.back}
+                onClick={exitToSetup}
+                aria-label={R.exit}
+                title={R.exit}
+                className={`${btnSecondary} !px-2.5 !py-1.5 !text-xs cursor-pointer`}
               >
-                <ChevronLeft className="w-5 h-5" />
+                <X className="w-4 h-4" strokeWidth={2.4} />
+                <span>{R.exitShort}</span>
               </button>
-            ) : (
-              <Link
-                href="/dashboard"
-                className="flex items-center justify-center w-9 h-9 rounded-sm text-ink-muted hover:bg-surface-raised hover:text-ink transition-colors cursor-pointer"
-              >
-                <ChevronLeft className="w-5 h-5" />
-              </Link>
-            )}
-            <h1 className="text-lg sm:text-xl font-black text-ink-max tracking-tight">
-              {t.interview.pageTitle}
-            </h1>
+              <div className="min-w-0">
+                <p className="flex min-w-0 items-center gap-1.5 text-sm font-black text-ink-max">
+                  <span className="truncate">{sessionRoleLabel}</span>
+                  <span aria-hidden className="h-3 w-px shrink-0 bg-line-strong" />
+                  <span className="truncate">{t.interview[ROUND_NAME_KEY[difficulty]]}</span>
+                </p>
+                <p className="font-mono text-[11px] tabular-nums text-ink-muted">
+                  {format(R.questionOf, { n: activeQ + 1, total: questions.length })}
+                </p>
+              </div>
+            </div>
+            <div className="flex items-center gap-2 font-mono text-lg font-medium tabular-nums text-ink-max">
+              <Clock className="w-4 h-4 text-ink-faint" strokeWidth={2} aria-hidden />
+              <span className="sr-only">{R.timerLabel}</span>
+              {elapsedLabel}
+            </div>
           </div>
+        ) : (
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-4">
+            <div className="flex items-center gap-3">
+              {stage !== "setup" && mode !== "behavioral" ? (
+                <button
+                  type="button"
+                  onClick={exitToSetup}
+                  className="flex items-center justify-center w-9 h-9 rounded-sm text-ink-muted hover:bg-surface-raised hover:text-ink transition-colors cursor-pointer"
+                  aria-label={t.interview.back}
+                >
+                  <ChevronLeft className="w-5 h-5" />
+                </button>
+              ) : (
+                <Link
+                  href="/dashboard"
+                  aria-label={t.interview.backToDashboard}
+                  className="flex items-center justify-center w-9 h-9 rounded-sm text-ink-muted hover:bg-surface-raised hover:text-ink transition-colors cursor-pointer"
+                >
+                  <ChevronLeft className="w-5 h-5" />
+                </Link>
+              )}
+              <h1 className="text-lg sm:text-xl font-black text-ink-max tracking-tight">
+                {t.interview.pageTitle}
+              </h1>
+            </div>
 
-          <span className="inline-flex items-center rounded-sm border border-line-strong px-2 py-1 text-xs font-bold text-ink-soft">
-            {format(t.quizPage.xpPerQuestion, { xp: QUIZ_XP_PER_CORRECT[difficulty] })}
-          </span>
-        </div>
+            <span className="inline-flex items-center rounded-sm border border-amber-300 bg-amber-50 px-2 py-1 text-xs font-bold text-amber-800 dark:border-amber-800 dark:bg-amber-950 dark:text-amber-300">
+              {format(t.quizPage.xpPerQuestion, { xp: QUIZ_XP_PER_CORRECT[difficulty] })}
+            </span>
+          </div>
+        )}
       </div>
 
-      {/* ─── 2. MAIN SCROLLABLE CONTENT ─── */}
-      <div className="flex-1 min-h-0 overflow-y-auto px-4 sm:px-6 py-4 [scrollbar-width:thin]">
+      {/* ─── 2. NỘI DUNG CUỘN ─── */}
+      <div ref={scrollRef} className="flex-1 min-h-0 overflow-y-auto px-4 sm:px-6 py-4 [scrollbar-width:thin]">
         {stage === "setup" && (
           <div className="max-w-7xl mx-auto space-y-5">
             {/* CHỌN CHẾ ĐỘ: KỸ THUẬT / HÀNH VI
@@ -520,92 +796,72 @@ export default function TechnicalInterviewPage() {
             {mode === "behavioral" ? (
               <BehavioralPrepPanel career={selectedCareer} />
             ) : (
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
-            {/* ────── LEFT COLUMN (~68% width) ────── */}
-            <div className="lg:col-span-8 space-y-5 min-w-0">
-              {/* 1. HERO */}
-              <div className={`${panel} p-4 sm:p-5 flex flex-col xl:flex-row items-stretch justify-between gap-4`}>
-                <div className="min-w-0 flex-1 flex flex-col justify-between gap-3">
-                  <SectionHead
-                    code={SYS.interview}
-                    eyebrow={t.interview.heroEyebrow}
-                    title={t.interview.heroTitle}
-                    sub={t.interview.heroSub}
-                  />
-
-                  <div className="flex items-center gap-3">
-                    <span className="text-xs font-bold text-ink-muted">
-                      {t.interview.heroDone}
-                    </span>
-                    <div className="w-28 sm:w-36 h-1.5 rounded-xs bg-surface-sunken overflow-hidden">
-                      <div className="h-full bg-brand-600 dark:bg-brand-500" style={{ width: `${ibCoverage?.pct ?? 0}%` }} />
-                    </div>
-                    <span className="text-xs font-bold tabular-nums text-ink-soft">
-                      {format(t.interview.heroProgress, { pct: ibCoverage?.pct ?? 0, xp: ibXp })}
-                    </span>
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+            {/* ────── CỘT TRÁI: BỐN BƯỚC THIẾT LẬP ────── */}
+            <div className="lg:col-span-8 space-y-6 min-w-0">
+              {/* 1. MỞ ĐẦU - Cơ Cơ thay cho dòng phụ đề cứng. Ảnh núi và nút
+                  "Bắt đầu" thứ hai trên ảnh đã gỡ: hai nút bắt đầu thì không nút
+                  nào là đích của phần thiết lập. */}
+              <div className="space-y-3">
+                <SectionHead code={SYS.interview} eyebrow={R.eyebrow} title={R.title} />
+                <CoCoSays lines={t.coco.interview} size={40} />
+                <div className="flex items-center gap-3">
+                  <div className="w-28 sm:w-36 h-1.5 rounded-xs bg-surface-sunken overflow-hidden">
+                    <div className="h-full bg-cyan-600 dark:bg-cyan-400" style={{ width: `${ibCoverage?.pct ?? 0}%` }} />
                   </div>
-                </div>
-
-                <div className="relative w-full xl:w-80 h-38 shrink-0 rounded-sm overflow-hidden select-none border border-line-strong bg-surface flex items-center justify-center">
-                  <Image
-                    src="/images/dashboard/interview_hero_mountain.jpg"
-                    alt={t.interview.heroAlt}
-                    fill
-                    className="object-cover object-center"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => void startQuiz(difficulty, selectedSection)}
-                    className={`${btnPrimary} absolute bottom-3 right-3 z-20 cursor-pointer`}
-                  >
-                    <span>{t.interview.heroCta}</span>
-                    <ArrowRight className="w-4 h-4" strokeWidth={2.2} />
-                  </button>
+                  <span className="text-xs font-bold tabular-nums text-ink-soft">
+                    {format(R.coverage, { pct: ibCoverage?.pct ?? 0 })}
+                  </span>
+                  <span className="text-xs font-bold tabular-nums text-warn-strong">
+                    {format(R.xpGain, { xp: ibXp })}
+                  </span>
                 </div>
               </div>
 
-              {/* 2. BỐN BƯỚC */}
-              <ol className="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-3">
-                {[
-                  { title: t.interview.step1, sub: t.interview.step1Sub },
-                  { title: t.interview.step2, sub: t.interview.step2Sub },
-                  { title: t.interview.step3, sub: t.interview.step3Sub },
-                  { title: t.interview.step4, sub: t.interview.step4Sub },
-                ].map((s, i) => (
-                  <li
-                    key={i}
-                    className={`min-w-0 border-t-2 pt-2 ${i === 0 ? "border-brand-600 dark:border-brand-400" : "border-line-strong"}`}
-                  >
-                    <Sys className={i === 0 ? "text-accent-strong" : "text-ink-faint"}>{SYS.step(i + 1)}</Sys>
-                    <p className="mt-1 text-xs font-black text-ink-max truncate">{s.title}</p>
-                    <p className="text-[10.5px] text-ink-muted truncate">{s.sub}</p>
+              {/* 2. BỐN BƯỚC LÀ TIẾN ĐỘ THẬT, không phải trang trí.
+                  Đã chọn = cyan, đang chọn = xanh brand, chưa tới = xám. Bấm vào
+                  một bước là cuộn tới đúng khối của bước đó. */}
+              <ol aria-label={R.stepperLabel} className="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-3">
+                {steps.map((s, i) => (
+                  <li key={s.id} className="min-w-0">
+                    <button
+                      type="button"
+                      onClick={() => scrollToStep(s.id)}
+                      aria-current={s.status === "current" ? "step" : undefined}
+                      className={`w-full min-w-0 border-t-2 pt-2 text-left cursor-pointer ${STEP_BORDER[s.status]}`}
+                    >
+                      <span className="flex items-center gap-1.5">
+                        <Sys className={STEP_TEXT[s.status]}>{SYS.step(i + 1)}</Sys>
+                        {s.status === "done" && <Check className={`w-3.5 h-3.5 ${STEP_TEXT.done}`} strokeWidth={3} />}
+                        <span className={`ml-auto text-[10.5px] font-bold ${STEP_TEXT[s.status]}`}>{stepStatusLabel(s)}</span>
+                      </span>
+                      <span className={`mt-1 block text-xs font-black ${s.status === "todo" ? "text-ink-faint" : "text-ink-max"}`}>{s.label}</span>
+                      <span className="block truncate text-[11px] text-ink-muted">{s.value}</span>
+                    </button>
                   </li>
                 ))}
               </ol>
 
-              {/* 3. SECTION 1: CHỌN NGHỀ NGHIỆP PHỎNG VẤN */}
-              <div className="space-y-2">
-                <h3 className="eyebrow border-b border-line-strong pb-2 text-ink-soft">
-                  {t.interview.sectionCareer}
-                </h3>
+              {/* 01 VỊ TRÍ */}
+              <section id="step-role" className="scroll-mt-4 space-y-2">
+                <StepHead n={SYS.step(1)} label={R.stepRole} hint={R.roleHint} status={steps[0].status} statusLabel={stepStatusLabel(steps[0])} />
                 {/* lg:grid-cols-7 - bảy thẻ (tất cả + 5 nghề + "Xem thêm") vốn
                     tràn xuống hàng hai chỉ để chứa đúng một nút. Ở lg có chỗ cho
-                    cả bảy trên một hàng, và ~92px thu lại ở đó nhiều hơn mọi
-                    lượt cắt padding trong trang cộng lại. Giữ 6 cột ở md. */}
+                    cả bảy trên một hàng. Giữ 6 cột ở md. */}
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 lg:grid-cols-7 gap-2">
                   <button
                     type="button"
                     onClick={() => {
                       setSelectedCareer(null);
                       setSelectedSection(null);
+                      setRoleChosen(true);
                     }}
                     aria-pressed={selectedCareer === null}
                     className={`${choiceClass(selectedCareer === null)} p-3 flex flex-col items-center justify-center text-center min-h-[72px]`}
                   >
                     <BriefcaseBusiness className="w-4 h-4 mb-0.5" strokeWidth={2} />
-                    <span className="text-xs font-black block truncate w-full">
-                      {selectedCareer === null ? `${totalQuestions} ${t.interview.questionsUnit}` : t.interview.allCareers}
-                    </span>
+                    <span className="text-xs font-black block truncate w-full">{t.interview.allCareers}</span>
+                    <span className="font-mono text-[10.5px] tabular-nums text-ink-muted">{totalQuestions}</span>
                   </button>
 
                   {topCareers.map((c, i) => {
@@ -618,6 +874,7 @@ export default function TechnicalInterviewPage() {
                         onClick={() => {
                           setSelectedCareer(active ? null : c.careerId);
                           setSelectedSection(null);
+                          setRoleChosen(true);
                         }}
                         aria-pressed={active}
                         className={`${choiceClass(active)} p-2.5 flex flex-col items-center justify-center text-center min-h-[72px]`}
@@ -642,13 +899,11 @@ export default function TechnicalInterviewPage() {
                     <span className="text-[10.5px] text-accent-strong font-bold mt-0.5">{t.interview.seeMoreCareers}</span>
                   </button>
                 </div>
-              </div>
+              </section>
 
-              {/* 4. SECTION 2: CHỌN ĐỘ KHÓ */}
-              <div className="space-y-2">
-                <h3 className="eyebrow border-b border-line-strong pb-2 text-ink-soft">
-                  {t.interview.sectionDifficulty}
-                </h3>
+              {/* 02 ĐỘ KHÓ */}
+              <section id="step-difficulty" className="scroll-mt-4 space-y-2">
+                <StepHead n={SYS.step(2)} label={R.stepDifficulty} hint={R.difficultyHint} status={steps[1].status} statusLabel={stepStatusLabel(steps[1])} />
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                   {DIFFICULTY_IDS.map((id) => {
                     const isSelected = difficulty === id;
@@ -663,7 +918,10 @@ export default function TechnicalInterviewPage() {
                       <button
                         key={id}
                         type="button"
-                        onClick={() => setDifficulty(id)}
+                        onClick={() => {
+                          setDifficulty(id);
+                          setDiffChosen(true);
+                        }}
                         aria-pressed={isSelected}
                         className={`${choiceClass(isSelected)} p-3 flex flex-col items-center justify-center text-center min-h-[68px]`}
                       >
@@ -677,104 +935,120 @@ export default function TechnicalInterviewPage() {
                     );
                   })}
                 </div>
-              </div>
+              </section>
 
-              {/* 5. SECTION 3: CHỌN SỐ LƯỢNG CÂU */}
-              <div className="space-y-2">
-                <h3 className="eyebrow border-b border-line-strong pb-2 text-ink-soft">
-                  {t.interview.sectionCount}
-                </h3>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                  {QUESTION_COUNT_OPTIONS.map((n) => {
-                    const isSelected = questionCount === n;
-                    return (
+              {/* 03 TRỌNG TÂM: số câu + chủ đề */}
+              <section id="step-focus" className="scroll-mt-4 space-y-3">
+                <StepHead n={SYS.step(3)} label={R.stepFocus} hint={R.focusHint} status={steps[2].status} statusLabel={stepStatusLabel(steps[2])} />
+                <div className="space-y-1.5">
+                  <p className="text-[11px] font-bold text-ink-soft">{R.countLabel}</p>
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                    {QUESTION_COUNT_OPTIONS.map((n) => {
+                      const isSelected = questionCount === n;
+                      return (
+                        <button
+                          key={n}
+                          type="button"
+                          onClick={() => {
+                            setQuestionCount(n);
+                            setFocusChosen(true);
+                          }}
+                          aria-pressed={isSelected}
+                          className={`${choiceClass(isSelected)} p-3 flex items-center justify-center gap-1.5 min-h-[48px] font-bold`}
+                        >
+                          <ScrollText className="w-4 h-4 shrink-0" strokeWidth={2} />
+                          <span className="text-xs">
+                            <span className="font-mono tabular-nums">{n}</span> {t.interview.questionsUnit}
+                          </span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                <div className="space-y-1.5">
+                  <div className="flex items-center justify-between">
+                    <p className="text-[11px] font-bold text-ink-soft">{R.topicLabel}</p>
+                    {selectedSection && (
                       <button
-                        key={n}
                         type="button"
-                        onClick={() => setQuestionCount(n)}
-                        aria-pressed={isSelected}
-                        className={`${choiceClass(isSelected)} p-3 flex items-center justify-center gap-1.5 min-h-[48px] font-bold`}
+                        onClick={() => setSelectedSection(null)}
+                        className="text-xs font-bold text-ink-muted hover:text-ink cursor-pointer"
                       >
-                        <ScrollText className="w-4 h-4 shrink-0" strokeWidth={2} />
-                        <span className="text-xs">
-                          <span className="font-mono tabular-nums">{n}</span> {t.interview.questionsUnit}
+                        {t.interview.clearTopic} <X className="w-3 h-3 inline-block align-[-1px]" strokeWidth={2.6} />
+                      </button>
+                    )}
+                  </div>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2">
+                    {activeCategoryCounts.slice(0, 5).map((topic) => {
+                      const active = selectedSection === topic.value;
+                      return (
+                        <button
+                          key={topic.value}
+                          type="button"
+                          onClick={() => {
+                            setSelectedSection(active ? null : topic.value);
+                            setFocusChosen(true);
+                          }}
+                          aria-pressed={active}
+                          className={`${choiceClass(active)} p-2.5 flex flex-col items-center justify-center text-center min-h-[68px]`}
+                        >
+                          <span className="text-xs font-black block line-clamp-2 w-full leading-tight">
+                            {topic.label}
+                          </span>
+                          <span className="font-mono text-[10.5px] mt-1 tabular-nums text-ink-muted">
+                            {topic.count}
+                          </span>
+                        </button>
+                      );
+                    })}
+
+                    {activeCategoryCounts.length > 5 && (
+                      <button
+                        type="button"
+                        onClick={() => setTopicPickerOpen(true)}
+                        className="p-2.5 rounded-sm border border-dashed border-line-firm text-ink-body transition-colors hover:border-stone-950 dark:hover:border-stone-300 cursor-pointer flex flex-col items-center justify-center min-h-[68px]"
+                      >
+                        <span className="text-xs font-black block">{t.interview.seeMore}</span>
+                        <span className="text-[10.5px] text-accent-strong font-bold mt-0.5">
+                          + {activeCategoryCounts.length - 5} {t.interview.seeMoreTopics}
                         </span>
                       </button>
-                    );
-                  })}
+                    )}
+                  </div>
                 </div>
-              </div>
+              </section>
 
-              {/* 6. SECTION 4: CHỌN CHỦ ĐỀ TRỌNG ĐIỂM */}
-              <div className="space-y-2">
-                <div className="flex items-center justify-between border-b border-line-strong pb-2">
-                  <h3 className="eyebrow text-ink-soft">
-                    {t.interview.sectionTopic}
-                  </h3>
-                  {selectedSection && (
-                    <button
-                      type="button"
-                      onClick={() => setSelectedSection(null)}
-                      className="text-xs font-bold text-ink-muted hover:text-ink cursor-pointer"
-                    >
-                      {t.interview.clearTopic} <X className="w-3 h-3 inline-block align-[-1px]" strokeWidth={2.6} />
-                    </button>
-                  )}
-                </div>
-
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2">
-                  {activeCategoryCounts.slice(0, 5).map((topic) => {
-                    const active = selectedSection === topic.value;
-                    return (
-                      <button
-                        key={topic.value}
-                        type="button"
-                        onClick={() => setSelectedSection(active ? null : topic.value)}
-                        aria-pressed={active}
-                        className={`${choiceClass(active)} p-2.5 flex flex-col items-center justify-center text-center min-h-[68px]`}
-                      >
-                        <span className="text-xs font-black block line-clamp-2 w-full leading-tight">
-                          {topic.label}
-                        </span>
-                        <span className="font-mono text-[10.5px] mt-1 tabular-nums text-ink-muted">
-                          {topic.count}
-                        </span>
-                      </button>
-                    );
-                  })}
-
-                  {activeCategoryCounts.length > 5 && (
-                    <button
-                      type="button"
-                      onClick={() => setTopicPickerOpen(true)}
-                      className="p-2.5 rounded-sm border border-dashed border-line-firm text-ink-body transition-colors hover:border-stone-950 dark:hover:border-stone-300 cursor-pointer flex flex-col items-center justify-center min-h-[68px]"
-                    >
-                      <span className="text-xs font-black block">{t.interview.seeMore}</span>
-                      <span className="text-[10.5px] text-accent-strong font-bold mt-0.5">
-                        + {activeCategoryCounts.length - 5} {t.interview.seeMoreTopics}
-                      </span>
-                    </button>
-                  )}
-                </div>
-              </div>
-
-              {/* 7. NÚT BẮT ĐẦU */}
-              <button
-                type="button"
-                onClick={() => void startQuiz(difficulty, selectedSection)}
-                className={`${btnPrimary} w-full flex-col !gap-1 !py-4 cursor-pointer`}
-              >
-                <span className="text-base font-black tracking-wide flex items-center gap-2">
-                  {t.interview.startNow}
-                  <ArrowRight className="w-4 h-4" strokeWidth={2.2} />
-                </span>
-                <span className="text-xs font-medium opacity-75">
-                  {questionCount} {t.interview.startNote} {difficultyTitle} • {selectedSection ? selectedSection : t.interview.diffAllSub}
-                </span>
-              </button>
+              {/* 04 PHỎNG VẤN - buổi phỏng vấn các lựa chọn trên sẽ tạo ra, rồi
+                  nút duy nhất để bắt đầu. Mọi con số ở đây tính từ chính kho câu
+                  hỏi theo đúng luật của /api/knowledge-challenge, không ước lượng. */}
+              <section id="step-interview" className="scroll-mt-4 space-y-3">
+                <StepHead n={SYS.step(4)} label={R.stepInterview} hint={R.interviewHint} status={steps[3].status} statusLabel={stepStatusLabel(steps[3])} />
+                <dl className="grid grid-cols-1 sm:grid-cols-2 gap-x-6">
+                  {envRows.map((row) => (
+                    <div key={row.label} className="flex items-baseline gap-3 border-b border-line-soft py-2">
+                      <dt className="w-28 shrink-0 eyebrow text-ink-faint">{row.label}</dt>
+                      <dd className="min-w-0 text-sm font-bold text-ink-max">{row.value}</dd>
+                    </div>
+                  ))}
+                </dl>
+                {envPool.padded && (
+                  <p className="text-xs text-ink-muted">{format(R.envPadded, { exact: envPool.exact })}</p>
+                )}
+                <button
+                  type="button"
+                  onClick={() => void startQuiz(difficulty, selectedSection)}
+                  className={`${btnPrimary} w-full !py-5 !text-base cursor-pointer`}
+                >
+                  <Play className="w-5 h-5" strokeWidth={2.4} />
+                  <span>{R.startCta}</span>
+                  <ArrowRight className="w-5 h-5" strokeWidth={2.4} />
+                </button>
+                <p className="text-center text-[11px] text-ink-muted">{R.startHint}</p>
+              </section>
             </div>
 
-            {/* ────── RIGHT COLUMN (~32% width) ────── */}
+            {/* ────── CỘT PHẢI: TIẾN ĐỘ VÀ ĐIỂM YẾU ────── */}
             <div className="lg:col-span-4 space-y-5 min-w-0">
               {/* TIẾN ĐỘ CỦA BẠN */}
               <div className={`${panel} p-5 space-y-4`}>
@@ -789,13 +1063,13 @@ export default function TechnicalInterviewPage() {
                     </span>
                   </div>
                   <div className="min-w-0 flex-1">
-                    <span className="font-mono text-xs tabular-nums text-ink-heading">
+                    <span className="font-mono text-xs tabular-nums text-warn-strong">
                       {totalXp === null
                         ? "-- XP"
                         : `${totalXp.toLocaleString(intlLocale(locale))} / ${(getNextLevel(getLevelByXp(totalXp).level)?.minXp ?? totalXp).toLocaleString(intlLocale(locale))} XP`}
                     </span>
                     <div className="w-full h-1.5 rounded-xs bg-surface-sunken overflow-hidden mt-1.5">
-                      <div className="h-full bg-brand-600 dark:bg-brand-500" style={{ width: `${totalXp === null ? 0 : getLevelProgress(totalXp)}%` }} />
+                      <div className="h-full bg-cyan-600 dark:bg-cyan-400" style={{ width: `${totalXp === null ? 0 : getLevelProgress(totalXp)}%` }} />
                     </div>
                   </div>
                 </div>
@@ -812,42 +1086,15 @@ export default function TechnicalInterviewPage() {
                 />
               </div>
 
-              {/* THẺ "NHIỆM VỤ HÀNG NGÀY" ĐÃ GỠ, và đừng dựng lại ở đây.
-                  Nó hiện ba nhiệm vụ với tiến độ 0/1, 7/10 và 1/2 cùng ba thanh
-                  0%, 70%, 50% - tất cả viết cứng, nên mọi người học thấy y hệt.
-                  Kèm một đồng hồ đếm ngược "12:34:57" cũng cố định.
+              {/* Hai panel điểm yếu đã được import từ lâu mà không render ở đâu.
+                  Cả hai tự ẩn khi chưa đủ dữ liệu, nên không vẽ khung rỗng. */}
+              <InterviewWeakAreasPanel userId={userId} onDrillSection={(label) => void redrillSection(label)} refreshKey={weakAreasKey} />
+              <InterviewMissedQuestionsPanel userId={userId} onDrillQuestions={redrillQuestions} refreshKey={weakAreasKey} />
 
-                  Ba nhiệm vụ ấy không có gì đỡ phía sau: danh mục nhiệm vụ thật
-                  nằm ở lib/supabase-quests.ts (daily_1..daily_4, daily_focus...)
-                  và không chứa nhiệm vụ nào của trang phỏng vấn. Muốn có thẻ này
-                  thì việc đúng là thêm nhiệm vụ vào danh mục ấy rồi đọc qua
-                  getDailyQuests, chứ không phải vẽ lại ba thanh tiến độ. */}
-
-              {/* THẺ "PHẦN THƯỞNG" CŨNG ĐÃ GỠ, cùng lý do. Ba rương 50 / 120 /
-                  200 XP viết cứng, dòng "Hoàn thành mục tiêu để mở rương" và
-                  một nút "Xem tất cả" không dẫn đi đâu. Không có mục tiêu nào,
-                  không có rương nào và không có dòng mã nào cộng số XP đó -
-                  XP thật của trang này là computeQuizXp, hiện ở màn kết quả. */}
-
-              {/* BẠN ĐANG LÀM RẤT TỐT */}
-              <div className={`${panel} p-5 space-y-2`}>
-                <h3 className="eyebrow border-b border-line-strong pb-2 text-ink-soft">
-                  {t.interview.encourageTitle}
-                </h3>
-                <div className="flex items-center justify-between gap-3">
-                  <p className="text-xs text-ink-soft font-medium leading-relaxed flex-1">
-                    {t.interview.encourageBody}
-                  </p>
-                  <div className="relative w-16 h-14 shrink-0 overflow-hidden rounded-sm">
-                    <Image
-                      src="/images/dashboard/quote_mountain.jpg"
-                      alt={t.interview.encourageAlt}
-                      fill
-                      className="object-contain"
-                    />
-                  </div>
-                </div>
-              </div>
+              {/* THẺ "NHIỆM VỤ HÀNG NGÀY" VÀ "PHẦN THƯỞNG" ĐÃ GỠ, đừng dựng lại.
+                  Cả hai viết cứng tiến độ và rương XP mà không có gì đỡ phía
+                  sau. Thẻ "Bạn đang làm rất tốt" với ảnh núi cũng gỡ theo đợt
+                  revamp: ảnh minh hoạ không mang thông tin gì. */}
             </div>
             </div>
             )}
@@ -912,6 +1159,7 @@ export default function TechnicalInterviewPage() {
                             onClick={() => {
                               setSelectedCareer(active ? null : c.careerId);
                               setSelectedSection(null);
+                              setRoleChosen(true);
                               setRolePickerOpen(false);
                             }}
                             aria-pressed={active}
@@ -996,6 +1244,7 @@ export default function TechnicalInterviewPage() {
                       type="button"
                       onClick={() => {
                         setSelectedSection(active ? null : topic.value);
+                        setFocusChosen(true);
                         setTopicPickerOpen(false);
                       }}
                       aria-pressed={active}
@@ -1030,232 +1279,363 @@ export default function TechnicalInterviewPage() {
             <p className="text-ink-muted font-bold">
               {stage === "error" ? t.interview.loadError : t.interview.loadEmpty}
             </p>
-            <button onClick={() => setStage("setup")} className={`${textLink} cursor-pointer`}>
+            <button onClick={exitToSetup} className={`${textLink} cursor-pointer`}>
               {t.interview.backToSetup}
             </button>
           </div>
         )}
 
-        {/* ─── STAGE: READY (DRILL IN PROGRESS) ─── */}
-        {stage === "ready" && q && (
-          <div className={`${panel} mx-auto max-w-5xl space-y-5 p-5 sm:p-6`}>
-            {/* Dải tiêu đề: bên trái là "đang ở đâu", bên phải là "đang thế nào".
-                Bản trước xếp ba ô vuông CÂU HỎI / ĐÃ ĐÚNG / ĐỘ KHÓ chiếm trọn
-                bề ngang rồi mới tới thanh tiến độ - ba dòng cho thứ đọc được
-                trong một dòng. */}
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-3 border-b border-line-strong pb-4">
-              <span className="shrink-0 w-10 h-10 rounded-sm border border-line-strong bg-surface-raised dark:bg-stone-950 flex items-center justify-center text-ink-body">
-                <BriefcaseBusiness className="w-5 h-5" strokeWidth={2} />
-              </span>
+        {/* ─── STAGE: READY - BUỔI PHỎNG VẤN ───
+            Trái: người phỏng vấn, câu hỏi, câu trả lời của ứng viên. Phải:
+            đồng hồ, tiến độ buổi, câu hỏi tiếp theo và ghi chú. Không có gì
+            khác trên màn - không menu, không thẻ tiến độ tổng. */}
+        {inSession && q && (
+          <div className="mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
+            <div className="lg:col-span-8 min-w-0 space-y-4">
+              <InterviewerStage
+                round={difficulty}
+                question={q.question}
+                questionKey={activeQ}
+                explanation={submitted ? q.explanation : null}
+                verdict={submitted ? (results[activeQ] ? "correct" : "wrong") : null}
+                bleed={false}
+                maxHeightVh={40}
+              />
 
-              <div className="min-w-0 flex-1">
-                <p className="text-sm font-black text-ink truncate">
-                  {t.interview.drillHeader}
+              {/* CÂU HỎI DẠNG CHỮ THẬT, không chỉ trong bong bóng 3D: chọn/copy
+                  được, trình đọc màn hình đọc được, và vẫn còn khi WebGL không
+                  dựng được. Cảnh 3D ở trên là phần không khí. */}
+              <div>
+                <p className="eyebrow text-ink-faint">{R.interviewerQuestion}</p>
+                <p className="mt-1 select-text text-lg font-extrabold leading-snug text-ink-max sm:text-xl">
+                  {q.question}
                 </p>
-                <div className="mt-1.5 flex items-center gap-2.5">
-                  <div className="h-1.5 flex-1 rounded-xs overflow-hidden bg-surface-sunken">
-                    <div
-                      className="h-full transition-all duration-500 bg-brand-600 dark:bg-brand-500"
-                      style={{ width: `${Math.max(6, progressPct)}%` }}
-                    />
-                  </div>
-                  <span className="shrink-0 text-[11px] font-bold text-ink-muted">
-                    <span className="font-mono tabular-nums">{activeQ + 1}/{questions.length}</span> {t.interview.questionsUnit}
-                  </span>
-                </div>
               </div>
 
-              <div className="flex items-stretch shrink-0 divide-x divide-line-strong rounded-sm border border-line-strong">
-                {[
-                  { Icon: Clock, label: t.interview.chipTime, value: elapsedLabel },
-                  { Icon: Target, label: t.interview.chipCorrect, value: `${score}/${questions.length}` },
-                  { Icon: Trophy, label: t.interview.chipScore, value: String(score * QUIZ_XP_PER_CORRECT[difficulty]) },
-                ].map(({ Icon, label, value }) => (
-                  <div key={label} className="px-2.5 py-1.5 flex items-center gap-2">
-                    <Icon className="w-4 h-4 shrink-0 text-ink-faint" strokeWidth={2} />
-                    <div className="leading-tight">
-                      <p className="text-[9px] font-bold uppercase tracking-wider text-ink-faint">{label}</p>
-                      <p className="font-mono text-xs font-medium tabular-nums text-ink">{value}</p>
+              <div className="space-y-2">
+                <p className="eyebrow text-ink-faint">{R.yourAnswer}</p>
+                {q.options.map((opt, oi) => {
+                  const isSelected = selected === oi;
+                  const isCorrectOpt = oi === q.correct;
+                  let cls = "border-line-strong bg-white dark:bg-stone-900 text-ink hover:border-stone-950 dark:hover:border-stone-300";
+                  let badgeCls = "border-line-strong text-ink-muted";
+                  if (submitted) {
+                    if (isCorrectOpt) {
+                      cls = "border-cyan-600 dark:border-cyan-400 bg-cyan-50 dark:bg-cyan-950 text-ink-max font-bold";
+                      badgeCls = "border-cyan-600 bg-cyan-600 text-white dark:border-cyan-400 dark:bg-cyan-400 dark:text-stone-950";
+                    } else if (isSelected) {
+                      cls = "border-red-600 dark:border-red-400 bg-danger-soft text-ink-max font-bold";
+                      badgeCls = "border-red-600 bg-red-600 text-white dark:border-red-400 dark:bg-red-400 dark:text-stone-950";
+                    } else {
+                      cls = "border-line bg-surface text-ink-faint";
+                      badgeCls = "border-line text-ink-faint";
+                    }
+                  } else if (isSelected) {
+                    cls = "border-brand-600 dark:border-brand-400 bg-accent-soft text-ink-max font-bold";
+                    badgeCls = "border-brand-600 text-accent-strong dark:border-brand-400";
+                  }
+                  return (
+                    <button
+                      key={oi}
+                      disabled={submitted}
+                      onClick={() => choose(oi)}
+                      className={`w-full text-left px-3.5 py-3 rounded-sm border transition-colors cursor-pointer text-sm select-text font-medium flex items-center gap-3 ${cls}`}
+                    >
+                      {/* Huy hiệu A/B/C/D: người học nói "chọn C", và câu hỏi
+                          tiếp theo của người phỏng vấn tham chiếu bằng chữ cái. */}
+                      <span
+                        className={`shrink-0 w-7 h-7 rounded-xs border flex items-center justify-center font-mono text-xs font-medium ${badgeCls}`}
+                      >
+                        {optionLetter(oi)}
+                      </span>
+                      <span className="flex-1 leading-snug">{opt}</span>
+                      {submitted && isCorrectOpt && (
+                        <Check className="w-5 h-5 shrink-0 text-cyan-700 dark:text-cyan-400" strokeWidth={3} />
+                      )}
+                      {submitted && isSelected && !isCorrectOpt && (
+                        <X className="w-5 h-5 shrink-0 text-danger" strokeWidth={3} />
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {submitted && (
+                <div
+                  className={`rounded-sm border border-l-2 p-3.5 flex items-start gap-3 ${
+                    results[activeQ]
+                      ? "border-cyan-200 border-l-cyan-600 bg-cyan-50 dark:border-cyan-900 dark:border-l-cyan-400 dark:bg-cyan-950"
+                      : "border-danger-line border-l-red-600 bg-danger-soft dark:border-l-red-400"
+                  }`}
+                >
+                  <span className={`shrink-0 mt-0.5 ${results[activeQ] ? "text-cyan-700 dark:text-cyan-400" : "text-danger"}`}>
+                    {results[activeQ] ? <Check className="w-4.5 h-4.5" strokeWidth={2.6} /> : <X className="w-4.5 h-4.5" strokeWidth={2.6} />}
+                  </span>
+                  <div className="min-w-0 flex-1">
+                    <p className={`text-sm font-black ${results[activeQ] ? "text-cyan-800 dark:text-cyan-300" : "text-danger"}`}>
+                      {results[activeQ] ? format(t.interview.verdictRight, { xp: QUIZ_XP_PER_CORRECT[difficulty] }) : t.interview.verdictWrong}
+                    </p>
+                    <p className="mt-1 text-xs leading-relaxed text-ink-body">
+                      {q.explanation}
+                    </p>
+                  </div>
+                </div>
+              )}
+
+              {/* Cơ Cơ đứng NGOÀI phòng phỏng vấn: người phỏng vấn là cảnh 3D ở
+                  trên, còn Cơ Cơ là huấn luyện viên nhận xét sau mỗi câu. */}
+              {submitted && (
+                <CoCoSays
+                  key={`${activeQ}-${results[activeQ] ? "r" : "w"}`}
+                  lines={results[activeQ] ? R.cocoRight : R.cocoWrong}
+                  salt={activeQ}
+                  size={36}
+                />
+              )}
+
+              {!submitted ? (
+                <button
+                  disabled={selected === null}
+                  onClick={verify}
+                  className={`${btnPrimary} w-full !py-3.5 cursor-pointer`}
+                >
+                  <CheckCircle2 className="w-5 h-5" />
+                  <span>{t.interview.lockAnswer}</span>
+                </button>
+              ) : (
+                <div className="flex items-center justify-between gap-3">
+                  <button
+                    type="button"
+                    disabled={activeQ === 0}
+                    onClick={prev}
+                    className={`${btnSecondary} cursor-pointer`}
+                  >
+                    <ArrowLeft className="w-4 h-4" strokeWidth={2.4} />
+                    <span>{t.interview.prevQuestion}</span>
+                  </button>
+                  <button
+                    onClick={next}
+                    className={`${btnPrimary} cursor-pointer`}
+                  >
+                    <span>{allDone ? t.interview.seeResult : t.interview.nextQuestion}</span>
+                    <ArrowRight className="w-4 h-4" strokeWidth={2.4} />
+                  </button>
+                </div>
+              )}
+            </div>
+
+            <aside className="lg:col-span-4 min-w-0 space-y-4 lg:sticky lg:top-0">
+              {/* ĐỒNG HỒ + TIẾN ĐỘ BUỔI */}
+              <div className={`${panel} p-4`}>
+                <p className="eyebrow text-ink-faint">{R.timerLabel}</p>
+                <p className="mt-1 font-mono text-3xl font-medium tabular-nums text-ink-max">{elapsedLabel}</p>
+                <p className="mt-0.5 text-xs text-ink-muted">
+                  {format(R.thisQuestion, { time: clock(questionSeconds) })}
+                </p>
+                <p className="mt-4 eyebrow text-ink-faint">{R.progressLabel}</p>
+                <div className="mt-1.5 flex gap-1" aria-hidden>
+                  {questions.map((_, i) => {
+                    const answered = answers[i] !== undefined;
+                    const tone = answered
+                      ? results[i]
+                        ? "bg-cyan-600 dark:bg-cyan-400"
+                        : "bg-red-600 dark:bg-red-400"
+                      : i === activeQ
+                        ? "bg-brand-600 dark:bg-brand-500"
+                        : "bg-surface-sunken";
+                    return <span key={i} className={`h-1.5 flex-1 rounded-xs ${tone}`} />;
+                  })}
+                </div>
+                <p className="mt-2 flex items-center justify-between text-xs font-bold">
+                  <span className="text-ink-soft tabular-nums">{format(R.correctSoFar, { n: score, total: questions.length })}</span>
+                  <span className="tabular-nums text-warn-strong">
+                    {format(R.xpGain, { xp: score * QUIZ_XP_PER_CORRECT[difficulty] })}
+                  </span>
+                </p>
+              </div>
+
+              {/* CÂU HỎI TIẾP THEO - dựng từ chính câu vừa trả lời (chữ cái
+                  của phương án bị loại / đã chọn), không bịa nội dung mới. */}
+              <div className={`${panel} p-4`}>
+                <p className="eyebrow text-ink-faint">{R.followUpLabel}</p>
+                {submitted && followUp ? (
+                  <div className="mt-1.5 space-y-1.5">
+                    <p className="text-sm font-bold leading-snug text-ink-max">{followUp.specific}</p>
+                    <p className="text-sm leading-snug text-ink-body">{followUp.generic}</p>
+                    <p className="text-[11px] text-ink-muted">{R.followUpHint}</p>
+                  </div>
+                ) : (
+                  <p className="mt-1.5 text-xs text-ink-muted">{R.followUpPending}</p>
+                )}
+              </div>
+
+              {/* GHI CHÚ - chỉ sống trong state của buổi; phím 1-4 không bắt
+                  khi con trỏ đang ở đây (useQuizKeys bỏ qua TEXTAREA). */}
+              <div className={`${panel} p-4`}>
+                <label htmlFor="interview-notes" className="eyebrow text-ink-faint">{R.notesLabel}</label>
+                <textarea
+                  id="interview-notes"
+                  value={notes}
+                  onChange={(e) => setNotes(e.target.value)}
+                  rows={6}
+                  placeholder={R.notesPlaceholder}
+                  className="mt-1.5 w-full resize-y rounded-sm border border-line-strong bg-surface px-3 py-2 text-sm leading-relaxed text-ink focus:border-brand-600 focus:outline-none"
+                />
+                <p className="mt-1 text-[11px] text-ink-muted">{R.notesNote}</p>
+              </div>
+            </aside>
+          </div>
+        )}
+
+        {/* ─── STAGE: DONE - PHẢN HỒI CÓ CẤU TRÚC ───
+            Bốn trục chỉ lấy từ dữ liệu thật của lượt vừa làm. Trục nào câu trắc
+            nghiệm không đo được thì in "CHƯA ĐO" kèm lý do, không có số. */}
+        {stage === "done" && (
+          <div className="mx-auto max-w-3xl space-y-6">
+            <div className="space-y-3">
+              <div className="flex flex-wrap items-end justify-between gap-3">
+                <SectionHead code={SYS.result} title={R.resultTitle} />
+                <span
+                  className={`rounded-sm border px-2 py-1 font-mono text-xs font-medium ${
+                    passed
+                      ? "border-cyan-600 text-cyan-800 dark:border-cyan-400 dark:text-cyan-300"
+                      : "border-line-strong text-ink-muted"
+                  }`}
+                >
+                  {passed ? R.passBadge : R.failBadge}
+                </span>
+              </div>
+              <CoCoSays
+                lines={cocoResultLines}
+                vars={priority ? { topic: priority.label } : undefined}
+                size={40}
+              />
+            </div>
+
+            <dl className="grid grid-cols-2 sm:grid-cols-4 border-y border-line-strong divide-x divide-line-soft">
+              {[
+                { label: R.statScore, value: `${score}/${questions.length}`, tone: "text-ink-max" },
+                { label: R.statTime, value: elapsedLabel, tone: "text-ink-max" },
+                { label: R.statAvg, value: clock(avgSeconds), tone: "text-ink-max" },
+                {
+                  label: R.statXp,
+                  value: xpAwarded === null ? "..." : format(R.xpGain, { xp: xpAwarded }),
+                  tone: "text-warn-strong",
+                },
+              ].map((s) => (
+                <div key={s.label} className="px-3 py-3">
+                  <dt className="eyebrow text-ink-faint">{s.label}</dt>
+                  <dd className={`mt-1 font-mono text-lg font-medium tabular-nums ${s.tone}`}>{s.value}</dd>
+                </div>
+              ))}
+            </dl>
+
+            {/* BỐN TRỤC */}
+            <div className="space-y-2">
+              <p className="eyebrow text-ink-soft border-b border-line-strong pb-2">{R.axesTitle}</p>
+              <ul className="divide-y divide-line-soft">
+                {axes.map((axis) => (
+                  <li key={axis.id} className="py-3 grid grid-cols-1 sm:grid-cols-[10rem_1fr_3.5rem] gap-x-4 gap-y-1.5 items-center">
+                    <p className="text-sm font-black text-ink-max">{axis.label}</p>
+                    <div className="min-w-0">
+                      {axis.pct === null ? (
+                        <p className="text-xs leading-relaxed text-ink-muted">{axis.basis}</p>
+                      ) : (
+                        <>
+                          <div className="h-1.5 w-full rounded-xs bg-surface-sunken overflow-hidden">
+                            <div className="h-full bg-cyan-600 dark:bg-cyan-400" style={{ width: `${axis.pct}%` }} />
+                          </div>
+                          <p className="mt-1 text-[11px] text-ink-muted">{axis.basis}</p>
+                        </>
+                      )}
+                      {axis.id === "communication" && (
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setMode("behavioral");
+                            exitToSetup();
+                          }}
+                          className={`${textLink} mt-1 !text-xs cursor-pointer`}
+                        >
+                          {R.axisCommunicationCta}
+                          <ArrowRight className="w-3.5 h-3.5" strokeWidth={2.4} />
+                        </button>
+                      )}
                     </div>
+                    <p className={`font-mono text-sm font-medium tabular-nums sm:text-right ${axis.pct === null ? "text-ink-faint" : "text-ink-max"}`}>
+                      {axis.pct === null ? R.notMeasured : `${axis.pct}%`}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* KỸ NĂNG ƯU TIÊN - đúng MỘT: chủ đề sai nhiều nhất trong buổi. */}
+            <div className="border-l-2 border-brand-600 dark:border-brand-400 bg-accent-soft px-4 py-4 space-y-2">
+              <p className="eyebrow text-accent-strong">{R.priorityTitle}</p>
+              {priority ? (
+                <>
+                  <p className="text-lg font-black leading-snug text-ink-max">{priority.label}</p>
+                  <p className="text-xs text-ink-body">
+                    {format(R.priorityBasis, { wrong: priority.wrong, attempted: priority.attempted })}
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => void redrillSection(priority.label)}
+                    className={`${btnPrimary} cursor-pointer`}
+                  >
+                    <RotateCcw className="w-4 h-4" strokeWidth={2.4} />
+                    <span>{R.priorityCta}</span>
+                  </button>
+                </>
+              ) : (
+                <>
+                  <p className="text-sm font-bold text-ink-max">{R.priorityNone}</p>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      exitToSetup();
+                      pendingScroll.current = "difficulty";
+                    }}
+                    className={`${btnPrimary} cursor-pointer`}
+                  >
+                    <span>{R.priorityNoneCta}</span>
+                    <ArrowRight className="w-4 h-4" strokeWidth={2.4} />
+                  </button>
+                </>
+              )}
+            </div>
+
+            {/* TỪNG CÂU: đúng/sai, độ khó, thời gian */}
+            <div className="space-y-2">
+              <p className="eyebrow text-ink-soft border-b border-line-strong pb-2">{R.timelineTitle}</p>
+              <div className="flex flex-wrap gap-1.5">
+                {perQuestion.map((d, i) => (
+                  <div
+                    key={i}
+                    title={d.category}
+                    className={`min-w-12 rounded-xs border px-1.5 py-1 text-center ${
+                      d.ok
+                        ? "border-cyan-600 dark:border-cyan-400"
+                        : "border-red-600 dark:border-red-400"
+                    }`}
+                  >
+                    <span className={`flex items-center justify-center ${d.ok ? "text-cyan-700 dark:text-cyan-400" : "text-danger"}`}>
+                      {d.ok ? <Check className="w-3.5 h-3.5" strokeWidth={3} /> : <X className="w-3.5 h-3.5" strokeWidth={3} />}
+                    </span>
+                    <span className="block font-mono text-[10px] tabular-nums text-ink-muted">
+                      {d.seconds === undefined ? "--" : clock(d.seconds)}
+                    </span>
                   </div>
                 ))}
               </div>
             </div>
 
-            <InterviewerStage
-              round={difficulty}
-              question={q.question}
-              questionKey={activeQ}
-              explanation={submitted ? q.explanation : null}
-              verdict={submitted ? (results[activeQ] ? "correct" : "wrong") : null}
-            />
-
-            {/* CÂU HỎI DẠNG CHỮ THẬT, không chỉ trong bong bóng 3D.
-                Trước đây khối này render `InterviewerStage` mà không bật
-                `showCaption`, và không in câu hỏi ở đâu nữa - nên câu hỏi chỉ
-                tồn tại trong một texture của three.js: không chọn/copy được,
-                không cho tiện ích dịch đọc, không cho trình đọc màn hình đọc,
-                bé đi theo khung ở 375px, và biến mất hẳn nếu WebGL không dựng
-                được. Cảnh 3D ở trên giờ là phần trang trí. */}
-            <p className="select-text text-base font-extrabold leading-snug text-ink sm:text-lg">
-              <span className="sr-only">{t.interview.questionLabel}: </span>
-              {q.question}
-            </p>
-
-            <div className="space-y-2">
-              {q.options.map((opt, oi) => {
-                const isSelected = selected === oi;
-                const isCorrectOpt = oi === q.correct;
-                let cls = "border-line-strong bg-white dark:bg-stone-900 text-ink hover:border-stone-950 dark:hover:border-stone-300";
-                let badgeCls = "border-line-strong text-ink-muted";
-                if (submitted) {
-                  if (isCorrectOpt) {
-                    cls = "border-brand-600 dark:border-brand-400 bg-accent-soft text-ink-max font-bold";
-                    badgeCls = "border-brand-600 bg-brand-600 text-white dark:border-brand-400 dark:bg-brand-400 dark:text-stone-950";
-                  } else if (isSelected) {
-                    cls = "border-red-600 dark:border-red-400 bg-danger-soft text-ink-max font-bold";
-                    badgeCls = "border-red-600 bg-red-600 text-white dark:border-red-400 dark:bg-red-400 dark:text-stone-950";
-                  } else {
-                    cls = "border-line bg-surface text-ink-faint";
-                    badgeCls = "border-line text-ink-faint";
-                  }
-                } else if (isSelected) {
-                  cls = "border-brand-600 dark:border-brand-400 bg-accent-soft text-ink-max font-bold";
-                  badgeCls = "border-brand-600 text-accent-strong dark:border-brand-400";
-                }
-                return (
-                  <button
-                    key={oi}
-                    disabled={submitted}
-                    onClick={() => choose(oi)}
-                    className={`w-full text-left px-3.5 py-3 rounded-sm border transition-colors cursor-pointer text-sm select-text font-medium flex items-center gap-3 ${cls}`}
-                  >
-                    {/* Huy hiệu A/B/C/D. Nó không chỉ để đẹp: người học nói
-                        "chọn C" chứ không nói "chọn dòng thứ ba", và không có
-                        chữ cái thì lời giải bên dưới không tham chiếu được. */}
-                    <span
-                      className={`shrink-0 w-7 h-7 rounded-xs border flex items-center justify-center font-mono text-xs font-medium ${badgeCls}`}
-                    >
-                      {String.fromCharCode(65 + oi)}
-                    </span>
-                    <span className="flex-1 leading-snug">{opt}</span>
-                    {submitted && isCorrectOpt && (
-                      <Check className="w-5 h-5 shrink-0 text-accent" strokeWidth={3} />
-                    )}
-                    {submitted && isSelected && !isCorrectOpt && (
-                      <X className="w-5 h-5 shrink-0 text-danger" strokeWidth={3} />
-                    )}
-                  </button>
-                );
-              })}
-            </div>
-
-            {submitted && (
-              <div
-                className={`rounded-sm border border-l-2 p-3.5 flex items-start gap-3 ${
-                  results[activeQ]
-                    ? "border-accent-line border-l-brand-600 bg-accent-soft dark:border-l-brand-400"
-                    : "border-danger-line border-l-red-600 bg-danger-soft dark:border-l-red-400"
-                }`}
-              >
-                <span className={`shrink-0 mt-0.5 ${results[activeQ] ? "text-accent" : "text-danger"}`}>
-                  {results[activeQ] ? <Check className="w-4.5 h-4.5" strokeWidth={2.6} /> : <X className="w-4.5 h-4.5" strokeWidth={2.6} />}
-                </span>
-                <div className="min-w-0 flex-1">
-                  <p className={`text-sm font-black ${results[activeQ] ? "text-accent-strong" : "text-danger"}`}>
-                    {results[activeQ] ? format(t.interview.verdictRight, { xp: QUIZ_XP_PER_CORRECT[difficulty] }) : t.interview.verdictWrong}
-                  </p>
-                  {/* Lời giải hiện ở ĐÂY chứ không chỉ trong cảnh 3D: cảnh là
-                      thứ người học nhìn lúc đọc câu hỏi, còn lời giải là thứ họ
-                      đọc lúc mắt đã ở dưới cột đáp án. */}
-                  <p className="mt-1 text-xs leading-relaxed text-ink-body">
-                    {q.explanation}
-                  </p>
-                </div>
-              </div>
-            )}
-
-            {!submitted ? (
-              <button
-                disabled={selected === null}
-                onClick={verify}
-                className={`${btnPrimary} w-full !py-3.5 cursor-pointer`}
-              >
-                <CheckCircle2 className="w-5 h-5" />
-                <span>{t.interview.lockAnswer}</span>
-              </button>
-            ) : (
-              <div className="flex items-center justify-between gap-3">
-                <button
-                  type="button"
-                  disabled={activeQ === 0}
-                  onClick={prev}
-                  className={`${btnSecondary} cursor-pointer`}
-                >
-                  <ArrowLeft className="w-4 h-4" strokeWidth={2.4} />
-                  <span>{t.interview.prevQuestion}</span>
-                </button>
-                <button
-                  onClick={next}
-                  className={`${btnPrimary} cursor-pointer`}
-                >
-                  <span>{allDone ? t.interview.seeResult : t.interview.nextQuestion}</span>
-                  <ArrowRight className="w-4 h-4" strokeWidth={2.4} />
-                </button>
-              </div>
-            )}
-          </div>
-        )}
-
-        {/* ─── STAGE: DONE (SUMMARY & REVIEWS) ─── */}
-        {stage === "done" && (
-          <div className={`${panel} mx-auto max-w-2xl space-y-5 p-6 sm:p-8`}>
-            <SectionHead
-              code={SYS.result}
-              title={t.interview.doneTitle}
-              sub={`${t.interview.doneScore} ${score}/${questions.length} ${t.interview.questionsUnit} ${passed ? t.interview.donePass : ""}`}
-            />
-
-            <StatTable
-              rows={[
-                { label: t.interview.readinessLabel, value: `${Math.round((score / Math.max(1, questions.length)) * 100)}%` },
-                { label: t.interview.xpEarnedLabel, value: xpAwarded === null ? "..." : `+${xpAwarded} XP` },
-              ]}
-            />
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <div className="rounded-sm border border-line-strong p-4">
-                <p className="eyebrow text-ink-faint">{t.interview.roundLabel}</p>
-                <p className="mt-1 text-sm font-black text-ink">{IB_DIFFICULTY_COPY[difficulty]}</p>
-              </div>
-              <div className="rounded-sm border border-line-strong p-4">
-                <p className="eyebrow text-ink-faint">{t.interview.nextStepLabel}</p>
-                <p className="mt-1 text-sm font-black text-ink">
-                  {passed ? t.interview.nextHarder : t.interview.nextReview}
-                </p>
-              </div>
-            </div>
-
-            <div className="flex flex-wrap gap-1.5">
-              {results.map((ok, i) => (
-                <div
-                  key={i}
-                  className={`w-7 h-7 rounded-xs text-xs flex items-center justify-center text-white font-bold ${
-                    ok ? "bg-brand-600" : "bg-red-600"
-                  }`}
-                >
-                  {ok ? <Check className="w-4 h-4" strokeWidth={3} /> : <X className="w-4 h-4" strokeWidth={3} />}
-                </div>
-              ))}
-            </div>
-
-            {missedSections.length > 0 && (
-              <div className="rounded-sm border border-line-strong p-4">
-                <p className="eyebrow text-ink-muted mb-2.5">
-                  {t.interview.weakTopics}
-                </p>
+            {otherMissed.length > 0 && (
+              <div className="space-y-2">
+                <p className="eyebrow text-ink-muted">{R.otherTopics}</p>
                 <div className="flex flex-wrap gap-2">
-                  {missedSections.map(({ label, missed }) => (
+                  {otherMissed.map(({ label, wrong }) => (
                     <button
                       key={label}
                       type="button"
@@ -1264,7 +1644,7 @@ export default function TechnicalInterviewPage() {
                     >
                       <span>{label}</span>
                       <span className="text-danger">
-                        (<span className="font-mono tabular-nums">{missed}</span> {t.interview.wrongCount})
+                        (<span className="font-mono tabular-nums">{wrong}</span> {t.interview.wrongCount})
                       </span>
                       <RotateCcw className="w-3.5 h-3.5" strokeWidth={2.4} />
                     </button>
@@ -1273,12 +1653,11 @@ export default function TechnicalInterviewPage() {
               </div>
             )}
 
-            <button
-              onClick={() => setStage("setup")}
-              className={`${btnPrimary} w-full cursor-pointer`}
-            >
-              {t.interview.practiceAgain}
-            </button>
+            <div className="flex flex-wrap items-center gap-3 border-t border-line-strong pt-4">
+              <button onClick={exitToSetup} className={`${btnSecondary} cursor-pointer`}>
+                {t.interview.practiceAgain}
+              </button>
+            </div>
           </div>
         )}
       </div>
