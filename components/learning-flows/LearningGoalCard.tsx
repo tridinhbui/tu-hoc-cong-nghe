@@ -36,7 +36,12 @@ export type FlowEffort = Partial<Record<FlowId, { count: number; minutes: number
  * `effort` chỉ /lo-trinh truyền (nó có meta bài ở server); dashboard không
  * truyền thì thẻ chỉ ghi số bài, không đoán số giờ.
  */
-export default function LearningGoalCard({ id, effort }: { id?: string; effort?: FlowEffort } = {}) {
+/**
+ * `quiet`: dashboard đặt thẻ này ở cột phải, cạnh thẻ "Hôm nay làm gì" - nên
+ * ở đó nó là thông tin phụ: vạch trái nhạt và nút "Học tiếp" không phải khối
+ * xanh đặc, để trang chỉ có một hành động chính.
+ */
+export default function LearningGoalCard({ id, effort, quiet = false }: { id?: string; effort?: FlowEffort; quiet?: boolean } = {}) {
   const { t, locale } = useI18n();
   const c = t.learningFlows.goalCard;
   const r = t.revampGoals;
@@ -180,7 +185,7 @@ export default function LearningGoalCard({ id, effort }: { id?: string; effort?:
   const notStarted = p.done === 0;
 
   return (
-    <section id={id} className="scroll-mt-6 border-l-[3px] border-brand-600 bg-surface py-4 pr-4 pl-4 sm:pr-5 sm:pl-5 dark:border-brand-400">
+    <section id={id} className={`scroll-mt-6 bg-surface py-4 pr-4 pl-4 sm:pr-5 sm:pl-5 ${quiet ? "border-l-2 border-accent-line-mid" : "border-l-[3px] border-brand-600 dark:border-brand-400"}`}>
       <div className="flex items-start justify-between gap-3">
         <div className="flex min-w-0 items-start gap-3">
           <Glyph emoji={flow.emoji} className="mt-1 h-6 w-6 shrink-0 text-accent-strong" />
@@ -233,7 +238,7 @@ export default function LearningGoalCard({ id, effort }: { id?: string; effort?:
             <p className="text-xs font-bold text-ink-muted">{c.nextLabel}</p>
             <p className="font-bold leading-snug text-ink-max">{cleanLessonTitle(p.next.title)}</p>
           </div>
-          <Link href={`/bai-hoc/${p.next.slug}`} className={`${btnPrimary} shrink-0`}>
+          <Link href={`/bai-hoc/${p.next.slug}`} className={quiet ? "group inline-flex shrink-0 items-center gap-2 rounded-sm border border-line px-3.5 py-2 text-sm font-bold text-ink-body transition-colors hover:border-line-strong hover:text-ink-max" : `${btnPrimary} shrink-0`}>
             {notStarted ? r.start : c.nextCta} <ArrowRight className="h-4 w-4" />
           </Link>
         </div>

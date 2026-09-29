@@ -76,16 +76,16 @@ export default function PracticalSkillPanel({ refreshKey = 0, compact = false, c
   const empty = state === "ready" && total === 0;
 
   return (
-    <section className={`${panel} p-4 sm:p-5 ${className}`} aria-labelledby="practical-skill-title">
+    <section className={`${compact ? "" : `${panel} p-4 sm:p-5`} ${className}`} aria-labelledby="practical-skill-title">
       <div className="flex flex-wrap items-baseline justify-between gap-2">
-        <h2 id="practical-skill-title" className="text-base font-black text-ink-max">
+        <h2 id="practical-skill-title" className={compact ? "text-sm font-bold text-ink-body" : "text-base font-black text-ink-max"}>
           {c.title}
         </h2>
         {state === "ready" && total > 0 && (
-          <span className="font-mono text-xs text-ink-muted">{format(c.evidenceCount, { count: total })}</span>
+          <span className="font-mono text-xs text-ink-faint">{format(c.evidenceCount, { count: total })}</span>
         )}
       </div>
-      {!empty && <p className="mt-1 text-sm text-ink-muted">{c.subtitle}</p>}
+      {!empty && <p className={`mt-1 text-ink-muted ${compact ? "text-xs" : "text-sm"}`}>{c.subtitle}</p>}
 
       {state === "loading" && (
         <p className="mt-4 inline-flex items-center gap-2 text-sm text-ink-muted" role="status">
@@ -105,7 +105,7 @@ export default function PracticalSkillPanel({ refreshKey = 0, compact = false, c
 
       {empty && (
         <div className="mt-3">
-          <CoCoSays lines={c.emptyLines} size={40} />
+          <CoCoSays lines={c.emptyLines} size={compact ? 32 : 40} />
         </div>
       )}
 
@@ -119,22 +119,22 @@ export default function PracticalSkillPanel({ refreshKey = 0, compact = false, c
             return (
               <li key={a.area}>
                 <div className="grid grid-cols-[6.5rem_1fr_3rem] items-center gap-3">
-                  <span className={`truncate text-sm font-bold ${a.percent > 0 ? "text-ink-max" : "text-ink-faint"}`}>{label}</span>
+                  <span className={`truncate text-sm font-bold ${a.percent > 0 ? "text-ink-body" : "text-ink-faint"}`}>{label}</span>
                   <div
-                    className="h-2.5 bg-surface-sunken"
+                    className="h-1.5 bg-surface-sunken"
                     role="progressbar"
                     aria-label={label}
                     aria-valuemin={0}
                     aria-valuemax={100}
                     aria-valuenow={a.percent}
                   >
-                    <div className="h-full bg-cyan-600 transition-[width] duration-500 dark:bg-cyan-400" style={{ width: `${a.percent}%` }} />
+                    <div className="h-full bg-cyan-400 transition-[width] duration-500 dark:bg-cyan-600" style={{ width: `${a.percent}%` }} />
                   </div>
-                  <span className={`text-right font-mono text-sm tabular-nums ${a.percent > 0 ? "text-cyan-700 dark:text-cyan-400" : "text-ink-faint"}`}>
+                  <span className={`text-right font-mono text-sm tabular-nums ${a.percent > 0 ? "text-ink-muted" : "text-ink-faint"}`}>
                     {a.percent}%
                   </span>
                 </div>
-                {parts.length > 0 && <p className="mt-0.5 pl-[7.25rem] text-xs text-ink-muted">{parts.join(" · ")}</p>}
+                {parts.length > 0 && <p className="mt-0.5 pl-[7.25rem] text-xs text-ink-faint">{parts.join(" · ")}</p>}
               </li>
             );
           })}
@@ -143,14 +143,14 @@ export default function PracticalSkillPanel({ refreshKey = 0, compact = false, c
 
       {state === "ready" && (empty || !compact) && (
         <div className="mt-5 border-t border-line pt-4">
-          <p className="text-xs font-black uppercase tracking-wider text-ink-muted">{c.howTitle}</p>
+          <p className="text-xs font-bold uppercase tracking-wider text-ink-faint">{c.howTitle}</p>
           <ul className="mt-2 space-y-1.5">
             {EVIDENCE_SOURCES.map((s) => {
               const Icon = SOURCE_ICON[s];
               const link = SOURCE_LINK[s];
               return (
                 <li key={s} className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-ink">
-                  <Icon className="h-4 w-4 shrink-0 text-accent" aria-hidden />
+                  <Icon className="h-4 w-4 shrink-0 text-ink-faint" aria-hidden />
                   <span>{c.how[s]}</span>
                   {link && (
                     <Link href={link.href} className={textLink}>

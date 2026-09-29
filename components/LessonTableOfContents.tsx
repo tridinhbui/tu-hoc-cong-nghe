@@ -62,29 +62,40 @@ export default function LessonTableOfContents({ sections }: LessonTableOfContent
     }
   };
 
+  // Mục đang đọc là thứ duy nhất có màu; mục đã qua lùi về chữ thường nhạt,
+  // mục phía sau xám hơn nữa - mắt tìm thấy "mình đang ở đâu" trước tiên.
+  const activeIndex = tocItems.findIndex((item) => item.id === activeId);
+
   return (
     <div className="hidden xl:block sticky top-24 h-fit">
-      <div className="bg-white dark:bg-stone-900 border-2 border-line rounded-xl p-4">
+      <div className="pl-1">
         <div className="flex items-center gap-2 mb-3">
-          <List className="w-4 h-4 text-ink-muted" />
-          <p className="text-xs font-extrabold uppercase tracking-widest text-ink-muted">
+          <List className="w-3.5 h-3.5 text-ink-faint" />
+          <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-faint">
             {t.miscUi.lessonTableOfContents.title}
           </p>
         </div>
-        <nav className="space-y-1">
-          {tocItems.map((item) => (
-            <button
-              key={item.id}
-              onClick={() => handleClick(item.id)}
-              className={`block w-full text-left text-xs font-semibold px-2 py-1.5 rounded-lg transition-colors ${
-                activeId === item.id
-                  ? "bg-brand-50 dark:bg-brand-950/40 text-accent-strong"
-                  : "text-ink-soft hover:bg-surface hover:text-ink"
-              }`}
-            >
-              {item.text}
-            </button>
-          ))}
+        <nav className="space-y-0.5 border-l border-line">
+          {tocItems.map((item, index) => {
+            const isActive = index === activeIndex;
+            const isPast = activeIndex >= 0 && index < activeIndex;
+            return (
+              <button
+                key={item.id}
+                onClick={() => handleClick(item.id)}
+                aria-current={isActive ? "location" : undefined}
+                className={`-ml-px block w-full border-l-2 py-1.5 pl-3 pr-2 text-left text-xs leading-5 transition-colors ${
+                  isActive
+                    ? "border-brand-600 font-bold text-accent-strong dark:border-brand-400"
+                    : isPast
+                      ? "border-transparent font-medium text-ink-muted hover:text-ink"
+                      : "border-transparent font-medium text-ink-faint hover:text-ink"
+                }`}
+              >
+                {item.text}
+              </button>
+            );
+          })}
         </nav>
       </div>
     </div>

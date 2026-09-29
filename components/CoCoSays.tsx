@@ -73,13 +73,13 @@ export default function CoCoSays({
   return (
     <div className={`flex items-end gap-2.5 ${className}`}>
       <CoCoAvatar size={size} float />
-      <div className="relative min-w-0 flex-1 rounded-lg rounded-bl-none border border-brand-200 bg-white px-3.5 py-2.5 dark:border-brand-900/60 dark:bg-stone-900">
-        <p className="font-mono text-[9.5px] font-black tracking-wider text-accent-strong">{t.coco.name}</p>
-        <p className="mt-0.5 min-h-[1.25rem] text-sm leading-relaxed text-ink" aria-live="polite">
+      <div className="relative min-w-0 flex-1 rounded-lg rounded-bl-none bg-surface-raised px-3.5 py-2.5 dark:bg-stone-900">
+        <p className="font-mono text-[9.5px] font-bold tracking-wider text-ink-faint">{t.coco.name}</p>
+        <p className="mt-0.5 min-h-[1.25rem] text-sm leading-relaxed text-ink-body" aria-live="polite">
           {!mounted ? null : thinking && !reduced ? (
             <span className="inline-flex items-center gap-1 py-1" aria-label={t.coco.typingLabel}>
               {[0, 150, 300].map((d) => (
-                <span key={d} className="h-1.5 w-1.5 rounded-full bg-brand-400 motion-safe:animate-bounce" style={{ animationDelay: `${d}ms` }} />
+                <span key={d} className="h-1.5 w-1.5 rounded-full bg-stone-300 motion-safe:animate-bounce dark:bg-stone-600" style={{ animationDelay: `${d}ms` }} />
               ))}
             </span>
           ) : reduced ? (

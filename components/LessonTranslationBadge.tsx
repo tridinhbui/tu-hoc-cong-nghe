@@ -31,9 +31,9 @@ export default function LessonTranslationBadge({ translated }: { translated?: bo
   return (
     <p
       title={t.content.viOnlyBadgeTitle}
-      className="inline-flex items-center gap-1.5 rounded-sm border border-warn-line-mid px-2.5 py-1 text-[11px] font-bold text-warn-ink"
+      className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-ink-muted"
     >
-      <Languages aria-hidden className="h-3.5 w-3.5 flex-shrink-0" strokeWidth={1.75} />
+      <Languages aria-hidden className="h-3.5 w-3.5 flex-shrink-0 text-warn" strokeWidth={1.75} />
       {t.content.viOnlyBadge}
     </p>
   );

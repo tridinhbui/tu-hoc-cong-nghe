@@ -117,10 +117,10 @@ export default function DashboardLeaderboardCard({ userId }: { userId: string })
     <Frame title={SYS_TITLE} bodyClassName="p-4">
     <section>
       <header>
-        <h2 className="text-base font-black tracking-tight text-ink-max">{t.rankWidget.title}</h2>
+        <h2 className="text-sm font-bold tracking-tight text-ink-body">{t.rankWidget.title}</h2>
       </header>
 
-      <div className="mt-3 flex gap-5 overflow-x-auto border-b border-line-strong scrollbar-none" role="tablist">
+      <div className="mt-3 flex gap-5 overflow-x-auto border-b border-line scrollbar-none" role="tablist">
         {METRICS.map((m) => (
           <button
             key={m.id}
@@ -156,7 +156,7 @@ export default function DashboardLeaderboardCard({ userId }: { userId: string })
         ) : rows.length === 0 ? (
           <p className="py-4 text-center text-xs text-ink-muted">{t.rankWidget.empty}</p>
         ) : (
-          <ol className="divide-y divide-stone-200 dark:divide-stone-800">
+          <ol className="divide-y divide-line">
             {rows.map((row, i) => {
               const isMe = row.user_id === userId;
               return (
@@ -172,7 +172,7 @@ export default function DashboardLeaderboardCard({ userId }: { userId: string })
                     <span className={`min-w-0 flex-1 truncate text-sm ${isMe ? "font-bold text-accent-strong" : "font-semibold text-ink-body"}`}>
                       {isMe ? t.rankWidget.you : row.name}
                     </span>
-                    <span className="shrink-0 font-mono text-sm font-medium tabular-nums text-ink-max">{format(row.value)}</span>
+                    <span className="shrink-0 font-mono text-sm font-medium tabular-nums text-ink-muted">{format(row.value)}</span>
                   </Link>
                 </li>
               );
@@ -190,7 +190,7 @@ export default function DashboardLeaderboardCard({ userId }: { userId: string })
 
       <Link
         href="/analytics"
-        className="mt-3 flex items-center justify-center gap-1 text-xs font-bold text-accent-strong underline-offset-4 hover:underline"
+        className="mt-3 flex items-center justify-center gap-1 text-xs font-bold text-ink-muted underline-offset-4 hover:text-accent-strong hover:underline"
       >
         {t.rankWidget.viewAll}
         <ArrowRight className="h-3.5 w-3.5" />

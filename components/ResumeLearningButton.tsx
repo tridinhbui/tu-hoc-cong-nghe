@@ -114,10 +114,10 @@ export default function ResumeLearningButton({ activeTrack, compact = false, use
   if (!nextLesson) {
     return (
       <div className="space-y-3">
-        {showCoCo && <CoCoSays lead={cocoLead} lines={t.coco.dashboardDone} size={compact ? 40 : 48} />}
-        <div className="rounded-sm border border-cyan-500/50 bg-white p-4 dark:bg-stone-900">
+        {showCoCo && <CoCoSays lead={cocoLead} lines={t.coco.dashboardDone} size={compact ? 36 : 40} />}
+        <div className="rounded-sm border border-line bg-white p-4 dark:bg-stone-900">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 shrink-0 rounded-sm bg-cyan-600 text-white flex items-center justify-center">
+            <div className="w-10 h-10 shrink-0 rounded-sm bg-surface-raised text-cyan-600 flex items-center justify-center dark:text-cyan-400">
               <CheckCircle2 className="w-5 h-5" aria-hidden />
             </div>
             <div className="min-w-0">
@@ -158,7 +158,7 @@ export default function ResumeLearningButton({ activeTrack, compact = false, use
           lead={cocoLead}
           lines={completedCount === 0 ? t.coco.dashboardFirst : t.coco.dashboardNext}
           vars={{ lesson: shortTitle }}
-          size={compact ? 40 : 48}
+          size={compact ? 36 : 40}
         />
       )}
 
@@ -177,18 +177,18 @@ export default function ResumeLearningButton({ activeTrack, compact = false, use
                 <StatusDot />
                 {t.revampDashboard.todayLabel}
               </Sys>
-              <span className="font-mono text-[10.5px] font-bold tabular-nums text-warn-strong">
+              <span className="font-mono text-[10.5px] font-medium tabular-nums text-ink-faint">
                 {stageTag
                   ? format(t.revampDashboard.todayMeta, { xp: XP_PER_LESSON, stage: stageTag })
                   : format(t.resume.resumeXpBadge, { xp: XP_PER_LESSON })}
               </span>
             </div>
-            <span className="mt-2 block text-xs font-bold text-ink-muted">{lessonLabel}</span>
+            <span className="mt-2 block text-xs font-semibold text-ink-faint">{lessonLabel}</span>
             <h2 className="mt-0.5 text-lg sm:text-2xl font-black text-ink-max tracking-tight leading-snug">
               {shortTitle}
             </h2>
             {nextLesson.subtitle && (
-              <p className="mt-1 text-sm leading-snug text-ink-soft line-clamp-2">{nextLesson.subtitle}</p>
+              <p className="mt-1 text-sm leading-snug text-ink-muted line-clamp-2">{nextLesson.subtitle}</p>
             )}
 
             {/* Tử số phải cùng phạm vi với mẫu số. `completedCount` đếm bài
@@ -197,9 +197,9 @@ export default function ResumeLearningButton({ activeTrack, compact = false, use
                 "412/326 bài" ngay cạnh thanh 78%. Và khi chưa có
                 trackProgress thì không in con số nào. Thanh màu cyan: đây là
                 tiến độ đã làm, không phải hành động. */}
-            <div className="mt-3 flex items-center gap-3">
+            <div className="mt-4 flex items-center gap-3">
               {trackProgress && (
-                <span className="text-xs font-bold text-ink-muted whitespace-nowrap">
+                <span className="text-xs font-medium text-ink-faint whitespace-nowrap">
                   {format(t.resume.resumeProgress, {
                     done: trackProgress.completed,
                     total: trackProgress.total,
@@ -208,11 +208,11 @@ export default function ResumeLearningButton({ activeTrack, compact = false, use
               )}
               <div className="flex-1 max-w-xs h-1.5 rounded-xs bg-surface-sunken overflow-hidden relative">
                 <div
-                  className="h-full bg-cyan-500 transition-all duration-700"
+                  className="h-full bg-cyan-400 transition-all duration-700 dark:bg-cyan-600"
                   style={{ width: `${Math.max(2, progressPercent)}%` }}
                 />
               </div>
-              <span className="text-xs font-mono font-medium tabular-nums text-ink-max">
+              <span className="text-xs font-mono font-medium tabular-nums text-ink-muted">
                 {progressPercent}%
               </span>
             </div>

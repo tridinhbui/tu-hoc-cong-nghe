@@ -83,7 +83,7 @@ export default function LessonSections({
 
       case "heading":
         return (
-          <h2 key={i} id={`heading-${i}`} className="scroll-mt-24 border-t border-stone-300 pt-5 text-2xl font-black leading-tight tracking-tight text-ink-max dark:border-stone-700">
+          <h2 key={i} id={`heading-${i}`} className="scroll-mt-24 border-t border-line pt-8 text-2xl font-black leading-tight tracking-tight text-ink-max">
             {block.text}
           </h2>
         );
@@ -109,7 +109,7 @@ export default function LessonSections({
 
       case "callout":
         return (
-          <div key={i} className="my-6 max-w-[68ch] space-y-1.5 border-l-2 border-stone-950 py-1 pl-4 dark:border-stone-200 sm:pl-5">
+          <div key={i} className="my-6 max-w-[68ch] space-y-1.5 border-l-2 border-line-strong py-1 pl-4 sm:pl-5">
             <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">{block.label}</p>
             <div className="text-base leading-7 text-ink-heading sm:text-[17px] sm:leading-8">{renderFormattedText(block.text, seenTerms)}</div>
           </div>
@@ -117,11 +117,11 @@ export default function LessonSections({
 
       case "comparison":
         return (
-          <div key={i} className="my-6 grid grid-cols-1 overflow-hidden rounded-md border border-line-strong bg-white dark:border-stone-700 dark:bg-stone-900 sm:grid-cols-2">
+          <div key={i} className="my-6 grid grid-cols-1 overflow-hidden rounded-md border border-line bg-white dark:bg-stone-900 sm:grid-cols-2">
             {[block.left, block.right].map((side, j) => (
               <div
                 key={side.label}
-                className={`space-y-2 p-5 ${j > 0 ? "border-t border-line-strong sm:border-l sm:border-t-0" : ""}`}
+                className={`space-y-2 p-5 ${j > 0 ? "border-t border-line sm:border-l sm:border-t-0" : ""}`}
               >
                 <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">{side.label}</p>
                 <div className="text-base leading-7 text-ink-body">{renderFormattedText(side.text, seenTerms)}</div>
@@ -132,12 +132,12 @@ export default function LessonSections({
 
       case "conceptTable":
         return (
-          <div key={i} className="my-6 overflow-hidden rounded-md border border-line-strong bg-white dark:border-stone-700 dark:bg-stone-900">
-            <div className="border-b border-stone-300 bg-surface-raised px-4 py-3 dark:border-stone-700 dark:bg-stone-950 sm:px-5">
+          <div key={i} className="my-6 overflow-hidden rounded-md border border-line bg-white dark:bg-stone-900">
+            <div className="border-b border-line px-4 py-3 sm:px-5">
               <p className="text-lg font-black tracking-tight text-ink-max">{block.title}</p>
               <p className="mt-0.5 text-sm text-ink-soft">{block.subtitle ?? t.finalTwo.lessonSections.defaultConceptTableSubtitle}</p>
             </div>
-            <dl className="divide-y divide-stone-200 dark:divide-stone-800">
+            <dl className="divide-y divide-line">
               {block.concepts.map(({ vi, en, def }, j) => (
                 <div key={en} className="flex items-baseline gap-4 px-4 py-4 sm:px-5">
                   <Sys className="flex-shrink-0 text-ink-faint">{String(j + 1).padStart(2, "0")}</Sys>
@@ -172,7 +172,7 @@ export default function LessonSections({
 
       case "closing":
         return (
-          <div key={i} className="my-6 max-w-[68ch] space-y-2 border-t border-stone-300 py-6 dark:border-stone-700">
+          <div key={i} className="my-6 max-w-[68ch] space-y-2 border-t border-line py-6">
             {block.lines.map((line, j) => (
               <p
                 key={j}

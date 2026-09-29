@@ -26,8 +26,8 @@ export function LessonQuestionCard({
   const resolvedTitle = title ?? t.learningBlocks.defaultQuestionTitle;
 
   return (
-    <div className="overflow-hidden rounded-md border border-line-strong bg-white dark:border-stone-700 dark:bg-stone-900">
-      <div className="flex h-9 items-center gap-2 border-b border-stone-300 bg-surface-raised px-3 dark:border-stone-700 dark:bg-stone-950">
+    <div className="overflow-hidden rounded-md border border-line bg-white dark:bg-stone-900">
+      <div className="flex h-9 items-center gap-2 border-b border-line px-3">
         <StatusDot />
         <span className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">{resolvedTitle}</span>
       </div>
@@ -117,8 +117,8 @@ export function LessonSummaryCard({ summary }: LessonSummaryCardProps) {
     summary.action ? { label: t.learningBlocks.actionLabel, value: summary.action } : null,
   ].filter((r): r is { label: string; value: string; strong?: boolean } => r !== null);
   return (
-    <div className="overflow-hidden rounded-md border border-line-strong bg-white dark:border-stone-700 dark:bg-stone-900">
-      <div className="flex h-9 items-center border-b border-stone-300 bg-surface-raised px-3 dark:border-stone-700 dark:bg-stone-950">
+    <div className="overflow-hidden rounded-md border border-line bg-white dark:bg-stone-900">
+      <div className="flex h-9 items-center border-b border-line px-3">
         <span className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">{t.learningBlocks.summaryTitle}</span>
       </div>
       <dl className="divide-y divide-stone-200 dark:divide-stone-800">
@@ -146,7 +146,7 @@ export function LessonApplicationCard({ title, message, secondary }: LessonAppli
   const { t } = useI18n();
   const resolvedTitle = title ?? t.learningBlocks.defaultApplicationTitle;
   return (
-    <div className="max-w-[68ch] border-l-2 border-stone-950 pl-4 dark:border-stone-200 sm:pl-5">
+    <div className="max-w-[68ch] border-l-2 border-line-strong pl-4 sm:pl-5">
       <p className="mb-1.5 text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">{resolvedTitle}</p>
       <p className="text-base font-semibold leading-7 text-ink-max">{message}</p>
       {secondary && <p className="mt-2 text-[15px] leading-7 text-ink-body">{secondary}</p>}
@@ -165,10 +165,10 @@ export function ReviewLoopCard({ title, prompt, cta }: ReviewLoopCardProps) {
   const resolvedTitle = title ?? t.learningBlocks.defaultReviewTitle;
   const resolvedCta = cta ?? t.learningBlocks.defaultReviewCta;
   return (
-    <div className="max-w-[68ch] border-l-2 border-stone-950 pl-4 dark:border-stone-200 sm:pl-5">
+    <div className="max-w-[68ch] border-l-2 border-line-strong pl-4 sm:pl-5">
       <p className="mb-1.5 text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">{resolvedTitle}</p>
       <p className="text-base font-semibold leading-7 text-ink-max">{prompt}</p>
-      <p className="mt-3 inline-flex rounded-sm border border-line-strong px-2.5 py-1 text-xs font-semibold text-ink-body dark:border-stone-700">
+      <p className="mt-3 inline-flex text-xs font-semibold text-ink-muted">
         {resolvedCta}
       </p>
     </div>

@@ -203,20 +203,20 @@ export default function DashboardStreakWidget({ userId }: { userId: string }) {
       {/* Interactive Streak Card Button */}
       <div
         onClick={() => setShowModal(true)}
-        className="flex items-center gap-2.5 rounded-sm border border-line-strong bg-white px-3 py-1.5 transition-colors hover:border-stone-950 cursor-pointer group select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-300"
+        className="flex items-center gap-2.5 rounded-sm border border-transparent px-2 py-1.5 transition-colors hover:border-line cursor-pointer group select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
         title={t.streakWidget.cardTitle}
       >
-        <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-sm border ${streak > 0 ? "border-amber-300 bg-amber-50 text-warn dark:border-amber-800 dark:bg-amber-950/30" : "border-stone-300 bg-surface-raised text-ink-faint dark:border-stone-700 dark:bg-stone-950"}`}>
+        <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-sm ${streak > 0 ? "bg-amber-50 text-amber-500 dark:bg-amber-950/30" : "bg-surface-raised text-ink-faint dark:bg-stone-950"}`}>
           <Flame className={`h-4.5 w-4.5 ${streak > 0 ? "fill-current" : ""}`} />
         </div>
         <div className="min-w-0">
           <div className="flex items-center gap-1">
-            <span className="block text-[10px] font-bold uppercase tracking-wider text-ink-muted">{t.streakWidget.streakLabel}</span>
+            <span className="block text-[10px] font-bold uppercase tracking-wider text-ink-faint">{t.streakWidget.streakLabel}</span>
             <span className="text-[9px] font-bold text-ink-faint">ⓘ</span>
           </div>
           <div className="flex items-center gap-2 mt-0.5">
-            <span className="text-xs font-black leading-none text-warn">{format(t.streakWidget.streakDaysSuffix, { count: streak })}</span>
-            <span className="flex items-center gap-0.5 font-mono text-[10px] font-medium leading-none tabular-nums text-ink-muted" title={format(t.streakWidget.freezesTooltip, { count: freezesLeft })}>
+            <span className="text-xs font-bold leading-none text-ink-body">{format(t.streakWidget.streakDaysSuffix, { count: streak })}</span>
+            <span className="flex items-center gap-0.5 font-mono text-[10px] font-medium leading-none tabular-nums text-ink-faint" title={format(t.streakWidget.freezesTooltip, { count: freezesLeft })}>
               <ShieldCheck className="w-3 h-3" />
               <span>{freezesLeft}</span>
             </span>

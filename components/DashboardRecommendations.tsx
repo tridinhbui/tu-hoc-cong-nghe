@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { getTotalCompletedLessonsCount } from "@/lib/cloudflare-user";
 import { useI18n } from "@/lib/i18n/context";
 import { intlLocale } from "@/lib/i18n";
-import { StatusDot, panel } from "@/components/ui/system";
+import { StatusDot } from "@/components/ui/system";
 
 // Topic titles are copy, slugs/icons/colors are structure - so these are
 // built from `t` rather than kept as a static module-scope array. See
@@ -87,7 +87,7 @@ export default function DashboardRecommendations() {
     // và đặt nó cạnh ba dòng chữ thì nó phải nhỏ lại vừa chiều cao của chúng.
     // Xếp dọc, nó được cỡ chữ của một tiêu đề, còn nhãn và câu giải thích lùi
     // xuống làm chú thích - đúng thứ tự đọc mà khối này muốn.
-    <section className={`w-full ${panel} p-5`}>
+    <section className="w-full border border-line bg-surface p-4">
       {/* Màu xanh còn đúng một chấm 6px. Huy hiệu "LIVE" trước đây là chữ hoa,
           giãn chữ, viền, nền và một biểu tượng nhấp nháy - năm thứ trang trí
           cho một thông tin mà cái chấm nói xong. */}
@@ -99,7 +99,7 @@ export default function DashboardRecommendations() {
       </div>
 
       <p className="mt-2.5 flex items-baseline gap-1.5">
-        <span className="font-mono text-[34px] font-medium leading-none tracking-tight tabular-nums text-ink-max">
+        <span className="font-mono text-2xl font-medium leading-none tracking-tight tabular-nums text-ink-body">
           {liveCompletedCount.toLocaleString(intlLocale(locale))}
         </span>
         <span className="text-xs font-semibold text-ink-faint">

@@ -37,14 +37,14 @@ export default function CoCoFeedback({
 
   return (
     <div className="flex items-start gap-2.5" aria-live="polite">
-      <CoCoAvatar size={30} />
+      <CoCoAvatar size={26} />
       <div
         className={`min-w-0 flex-1 border-l-2 pl-3 ${
           tone === "correct" ? "border-cyan-600 dark:border-cyan-400" : "border-red-600 dark:border-red-400"
         }`}
       >
         <div className="flex items-baseline justify-between gap-3">
-          <p className="font-mono text-[9.5px] font-black tracking-wider text-accent-strong">{t.coco.name}</p>
+          <p className="font-mono text-[9.5px] font-bold tracking-wider text-ink-faint">{t.coco.name}</p>
           {trailing}
         </div>
         <p className="mt-0.5 text-sm leading-relaxed text-ink">{line}</p>

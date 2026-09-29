@@ -91,16 +91,20 @@ export default function DailyMotivationWidget({ userId, compact = false }: { use
 
   return (
     <div
-      className={`relative rounded-md border border-l-2 bg-white dark:bg-stone-900 ${
-        hot ? "border-line-strong border-l-brand-600 dark:border-l-brand-400" : "border-line-strong"
-      } ${compact ? "p-2.5" : "p-5"}`}
+      className={
+        compact
+          ? `relative border-l-2 py-0.5 pl-3 ${hot ? "border-l-accent-line-mid" : "border-l-line"}`
+          : `relative rounded-md border border-l-2 bg-white p-5 dark:bg-stone-900 ${
+              hot ? "border-line border-l-accent-line-mid" : "border-line"
+            }`
+      }
     >
       {/* Phần chữ là link sang trang riêng; nút chia sẻ nằm ngoài link, vì một
           <button> lồng trong <a> là HTML không hợp lệ và bàn phím sẽ lạc. */}
       <Link href="/loi-nhan" className={`relative flex items-start group ${compact ? "gap-3" : "gap-3.5"}`}>
         <div
-          className={`mt-0.5 flex shrink-0 items-center justify-center rounded-sm border ${
-            hot ? "border-brand-600 text-accent dark:border-brand-400" : "border-line-strong text-ink-soft"
+          className={`mt-0.5 flex shrink-0 items-center justify-center rounded-sm bg-surface-raised dark:bg-stone-950 ${
+            hot ? "text-accent" : "text-ink-faint"
           } ${compact ? "h-7 w-7" : "h-10 w-10"}`}
         >
           <Flame className={compact ? "h-4 w-4" : "h-5 w-5"} />
@@ -112,13 +116,13 @@ export default function DailyMotivationWidget({ userId, compact = false }: { use
               {lateNight}
             </p>
           )}
-          <p className={`eyebrow text-ink-soft ${compact ? "!text-[9px]" : ""}`}>
+          <p className={`eyebrow text-ink-faint ${compact ? "!text-[9px]" : ""}`}>
             {t.motivationToneLabel[tone] ?? MOTIVATION_TONE_LABEL[tone]}
           </p>
-          <p className={`font-semibold leading-relaxed text-ink-heading ${compact ? "mt-1 text-[11px]" : "mt-1.5 text-sm"}`}>
+          <p className={`font-medium leading-relaxed text-ink-body ${compact ? "mt-1 text-[11px]" : "mt-1.5 text-sm"}`}>
             {line}
           </p>
-          <p className={`font-bold text-accent-strong underline-offset-4 group-hover:underline ${compact ? "mt-1 text-[10px]" : "mt-2 text-[11px]"}`}>
+          <p className={`font-semibold text-ink-muted underline-offset-4 group-hover:text-accent-strong group-hover:underline ${compact ? "mt-1 text-[10px]" : "mt-2 text-[11px]"}`}>
             {t.miscUi.dailyMotivationWidget.openQuietCorner}
           </p>
         </div>

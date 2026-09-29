@@ -24,7 +24,7 @@ import { Sys, panel } from "@/components/ui/system";
 
 // Nhãn mục kiểu bảng hệ thống - chữ hoa sans, vì đó là chữ tiếng Việt đã
 // dịch chứ không phải định danh máy (luật 4 ở components/ui/system.tsx).
-const blockLabel = "border-b border-stone-300 pb-2 text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted dark:border-stone-700";
+const blockLabel = "border-b border-line pb-2 text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted";
 
 interface Props {
   // LocalizedLesson when it came through the locale-aware loader, plain Lesson
@@ -167,7 +167,7 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
           the subtitle shown in the hero above, so there's nothing to
           duplicate here. */}
       {lesson.whyItMatters && (
-        <div className="border-l-2 border-stone-950 pl-4 dark:border-stone-200 sm:pl-5">
+        <div className="border-l-2 border-line-strong pl-4 sm:pl-5">
           <p className="mb-1.5 text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">
             {t.lessonPage.whyItMattersTitle}
           </p>
@@ -196,7 +196,7 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
           className={`shrink-0 cursor-pointer rounded-sm border px-3 py-2 text-xs font-bold transition-colors ${
             feynmanMode
               ? "border-brand-600 bg-brand-50 text-brand-800 dark:border-brand-400 dark:bg-brand-950/40 dark:text-brand-200"
-              : "border-stone-300 text-ink-body hover:border-stone-950 dark:border-stone-700 dark:hover:border-stone-200"
+              : "border-line text-ink-muted hover:border-line-firm hover:text-ink"
           }`}
         >
           {feynmanMode ? t.lessonPage.feynmanOn : t.lessonPage.feynmanOff}
@@ -209,8 +209,8 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
           animate={{ opacity: 1, y: 0 }}
           className={`${panel} space-y-4 p-5`}
         >
-          <div className="flex items-center gap-3 border-b border-stone-200 pb-3 dark:border-stone-800">
-            <span className="flex h-8 w-8 items-center justify-center rounded-sm border border-line-strong text-ink-body dark:border-stone-700">
+          <div className="flex items-center gap-3 border-b border-line pb-3">
+            <span className="flex h-8 w-8 items-center justify-center rounded-sm bg-surface text-ink-muted">
               <Lightbulb aria-hidden className="h-4 w-4" strokeWidth={1.75} />
             </span>
             <div>
@@ -222,7 +222,7 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
             <p>
               {t.lessonPage.feynmanIntroPart1} <strong>&quot;{lesson.title}&quot;</strong> {t.lessonPage.feynmanIntroPart2}
             </p>
-            <div className="rounded-sm border border-stone-200 bg-page p-3.5 font-semibold text-ink-max dark:border-stone-800 dark:bg-stone-950">
+            <div className="rounded-sm bg-surface p-3.5 font-semibold text-ink-max">
               {t.lessonPage.feynmanMetaphorLeadIn}{" "}
               <TypingText text={`${t.lessonPage.metaphors[getMetaphorForLesson(lesson.title)]}.`} onDone={() => setMetaphorTyped(true)} />
             </div>
@@ -295,10 +295,10 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
           <div className={blockLabel}>
             {t.lessonPage.diagramTitle}
           </div>
-          <div className="flex flex-col items-center rounded-md border border-line-strong bg-page px-4 py-5 dark:border-stone-700 dark:bg-stone-950">
+          <div className="flex flex-col items-center rounded-md bg-surface px-4 py-5">
             {lesson.diagram.map((node: { label: string; arrow?: boolean }, i: number) => (
               <React.Fragment key={i}>
-                <div className="flex w-full max-w-sm items-baseline gap-3 rounded-sm border border-line-strong bg-white px-4 py-3 text-sm font-semibold text-ink-max dark:border-stone-700 dark:bg-stone-900">
+                <div className="flex w-full max-w-sm items-baseline gap-3 rounded-sm border border-line bg-white px-4 py-3 text-sm font-semibold text-ink-max dark:bg-stone-900">
                   <Sys className="text-ink-faint">{String(i + 1).padStart(2, "0")}</Sys>
                   <span className="flex-1">{node.label}</span>
                 </div>
@@ -332,7 +332,7 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
           <div className={blockLabel}>
             {t.lessonPage.summaryImageTitle}
           </div>
-          <div className="overflow-hidden rounded-md border border-line-strong">
+          <div className="overflow-hidden rounded-md border border-line">
             <Image
               src={lesson.summaryImage}
               alt={format(t.lessonPage.summaryImageAlt, { title: lesson.title })}
@@ -346,7 +346,7 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
 
       {/* 5. Real-life Example block */}
       {lesson.realWorldExample && lesson.realWorldExample.company && (
-        <div className="space-y-2 border-l-2 border-stone-950 pl-4 dark:border-stone-200 sm:pl-5">
+        <div className="space-y-2 border-l-2 border-line-strong pl-4 sm:pl-5">
           <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">
             {format(t.lessonPage.realWorldExampleTitle, { company: lesson.realWorldExample.company })}
           </p>
@@ -421,10 +421,10 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
       {/* 6. Key Takeaways block */}
       {lesson.keyTakeaways && lesson.keyTakeaways.length > 0 && (
         <div className={`${panel} overflow-hidden`}>
-          <div className="border-b border-stone-300 bg-surface-raised px-4 py-3 dark:border-stone-700 dark:bg-stone-950 sm:px-5">
+          <div className="border-b border-line px-4 py-3 sm:px-5">
             <p className="text-lg font-black tracking-tight text-ink-max">{t.lessonPage.keyTakeawaysTitle}</p>
           </div>
-          <ol className="divide-y divide-stone-200 dark:divide-stone-800">
+          <ol className="divide-y divide-line">
             {lesson.keyTakeaways.map((takeaway: string, i: number) => (
               <li key={i} className="flex items-baseline gap-4 px-4 py-4 sm:px-5">
                 <Sys className="flex-shrink-0 text-ink-faint">{String(i + 1).padStart(2, "0")}</Sys>

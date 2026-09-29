@@ -151,8 +151,8 @@ export default function LessonRecallWidget({ userId }: LessonRecallWidgetProps) 
   return (
     <div className={`rounded-md border overflow-hidden relative bg-white dark:bg-stone-900 ${
       hasWarning
-        ? 'border-amber-400 dark:border-amber-700'
-        : 'border-line-strong'
+        ? 'border-warn-line'
+        : 'border-line'
     }`}>
 
       {/* Collapsible Header */}
@@ -161,7 +161,7 @@ export default function LessonRecallWidget({ userId }: LessonRecallWidgetProps) 
         className="w-full flex items-center justify-between gap-2 p-4 cursor-pointer transition-colors hover:bg-surface-raised dark:hover:bg-stone-950"
       >
           <div className="flex items-center gap-2 min-w-0">
-            <div className={`w-8 h-8 rounded-sm border border-line-strong bg-surface-raised dark:border-stone-700 dark:bg-stone-950 flex items-center justify-center shrink-0 ${
+            <div className={`w-8 h-8 rounded-sm bg-surface flex items-center justify-center shrink-0 ${
               hasWarning ? 'text-warn' : 'text-ink-body'
           }`}>
             {hasWarning ? <AlertCircle className="w-4 h-4" /> : <RefreshCw className="w-4 h-4" />}
@@ -189,11 +189,11 @@ export default function LessonRecallWidget({ userId }: LessonRecallWidgetProps) 
 
       {/* Collapsible Content */}
       {!collapsed && (
-      <div className="px-4 pb-4 space-y-4 border-t border-line-strong">
+      <div className="px-4 pb-4 space-y-4 border-t border-line">
         {!activeItem ? (
           <div className="space-y-4 pt-4">
 
-          <div className="divide-y divide-stone-200 dark:divide-stone-800 rounded-sm border border-line-strong">
+          <div className="divide-y divide-line">
             {dueRecalls.slice(0, 3).map((item) => (
               <div
                 key={item.lessonId}
@@ -229,7 +229,7 @@ export default function LessonRecallWidget({ userId }: LessonRecallWidgetProps) 
             <span className="text-xs font-bold text-ink-max truncate max-w-[70%]">
               {format(t.recallWidget.reviewingLesson, { title: activeItem.lessonTitle })}
             </span>
-            <span className="font-mono text-[10.5px] font-medium tabular-nums text-ink-muted border border-line-strong px-2 py-0.5 rounded-sm shrink-0">
+            <span className="font-mono text-[10.5px] font-medium tabular-nums text-ink-faint shrink-0">
               {format(t.recallWidget.questionCounter, { index: currentQIndex + 1, total: questions.length })}
             </span>
           </div>

@@ -272,7 +272,7 @@ export default function UserStats({
         <div className="text-right shrink-0">
           {/* Tổng XP là số liệu, nên đi bằng mono như số trong bảng hệ thống -
               không còn là viên thuốc gradient. */}
-          <span className={`inline-flex items-center rounded-xs border border-line-strong bg-surface-raised font-mono font-medium tabular-nums text-ink-max dark:border-stone-700 dark:bg-stone-950 ${
+          <span className={`inline-flex items-center rounded-xs bg-surface-raised font-mono font-medium tabular-nums text-ink-max dark:border-stone-700 dark:bg-stone-950 ${
             sidebar ? "text-[10.5px] px-2 py-0.5" : "text-xs px-2.5 py-1"
           }`}>
             {xp} {t.miscUi.userStats.xpUnit}
@@ -301,8 +301,8 @@ export default function UserStats({
                       isCurrent
                         ? "border-brand-600 bg-white dark:border-brand-400 dark:bg-stone-900"
                         : reached
-                        ? "border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900"
-                        : "border-stone-200 bg-surface-raised opacity-60 dark:border-stone-800 dark:bg-stone-950"
+                        ? "border-line bg-white dark:bg-stone-900"
+                        : "border-transparent opacity-50"
                     }`}
                   >
                     <Glyph emoji={LEVEL_EMOJIS[lvl.level] || "🌱"} className={`w-4 h-4 ${isCurrent ? "text-accent-strong" : reached ? "text-ink-body" : "text-ink-faint"}`} />
@@ -323,7 +323,7 @@ export default function UserStats({
       {/* Bảng số liệu: nhãn trái, số mono căn phải - cùng khuôn StatTable của
           trang giới thiệu, thay cho hai ô màu xanh da trời / xanh thương hiệu. */}
       <StatTable
-        className={`border-y border-line-strong ${sidebar ? "mb-2.5" : "mb-4"}`}
+        className={`border-y border-line ${sidebar ? "mb-2.5" : "mb-4"}`}
         rows={[
           {
             label: (
@@ -399,16 +399,16 @@ export default function UserStats({
       {/* Level Progress Bar & Alert Banner */}
       {nextLevel && (
         <div className="mt-0.5 pt-2">
-          <div className="flex items-center justify-between gap-2 text-[10.5px] mb-1.5 font-bold text-ink-muted">
-            <span>{format(t.userStats.progressLabel, { level: currentLevel.level })} <span className="font-mono font-medium tabular-nums text-accent-strong">({Math.round(progress)}%)</span></span>
-            <span className="inline-flex items-center gap-1 text-ink-soft">
-              {format(t.userStats.nextLevelLabel, { level: nextLevel.level, name: t.levelTitles[nextLevel.level] ?? nextLevel.name })} <Glyph emoji={LEVEL_EMOJIS[nextLevel.level] || "🌱"} className="w-3 h-3 text-ink-muted" />
+          <div className="flex items-center justify-between gap-2 text-[10.5px] mb-1.5 font-semibold text-ink-faint">
+            <span>{format(t.userStats.progressLabel, { level: currentLevel.level })} <span className="font-mono font-medium tabular-nums text-ink-muted">({Math.round(progress)}%)</span></span>
+            <span className="inline-flex items-center gap-1 text-ink-muted">
+              {format(t.userStats.nextLevelLabel, { level: nextLevel.level, name: t.levelTitles[nextLevel.level] ?? nextLevel.name })} <Glyph emoji={LEVEL_EMOJIS[nextLevel.level] || "🌱"} className="w-3 h-3 text-ink-faint" />
               {/* Số XP còn thiếu đứng CẠNH tên cấp sắp tới, không còn là một ô
                   riêng ghi "+54 XP" không nói đi đâu. Ô đó, dòng "Tiến độ cấp
                   2 (23%)" và tên cấp kế tiếp là ba cách nói cùng một câu, xếp
                   cách nhau chưa tới một phân. */}
               {xpToNext > 0 && (
-                <span className="font-black text-ink-max">
+                <span className="font-semibold text-ink-body">
                   · {format(t.userStats.xpToNext, { count: xpToNext })}
                 </span>
               )}
@@ -418,13 +418,13 @@ export default function UserStats({
               vuông 2px, không gradient, không nhấp nháy. */}
           <div className="w-full h-1.5 bg-surface-sunken rounded-xs overflow-hidden">
             <div
-              className="h-full bg-brand-600 dark:bg-brand-500 transition-[width] duration-500"
+              className={`h-full transition-[width] duration-500 ${sidebar ? "bg-accent-line-mid" : "bg-brand-600 dark:bg-brand-500"}`}
               style={{ width: `${progress}%` }}
             />
           </div>
 
           {!sidebar && (
-            <div className="mt-3.5 p-3 bg-surface-raised dark:bg-stone-950 border border-line-strong rounded-sm space-y-2">
+            <div className="mt-3.5 p-3 bg-surface-raised dark:bg-stone-950 rounded-sm space-y-2">
               <div className="flex items-center gap-2 text-[11px] sm:text-xs font-semibold text-ink-soft">
                 <Target className="w-3.5 h-3.5 shrink-0 text-ink-muted" aria-hidden />
                 <span>
@@ -448,7 +448,7 @@ export default function UserStats({
 
       {!nextLevel && (
         <div className="mt-2.5 pt-2.5 border-t border-line">
-          <div className="p-3 bg-surface-raised dark:bg-stone-950 border border-line-strong rounded-sm flex items-center gap-2 text-xs text-ink-max font-bold">
+          <div className="p-3 bg-surface-raised dark:bg-stone-950 rounded-sm flex items-center gap-2 text-xs text-ink-body font-semibold">
             <Crown className="w-4 h-4 shrink-0 text-ink-muted" aria-hidden /><span>{format(t.userStats.maxLevelReached, { name: t.levelTitles[currentLevel.level] ?? currentLevel.name })}</span>
           </div>
         </div>
@@ -482,7 +482,7 @@ export default function UserStats({
               setSelectedExamLevel(nextLevel.level);
               setShowExamModal(true);
             }}
-            className={`${btnPrimary} w-full justify-between text-xs ${compact ? "p-2" : "p-3"}`}
+            className={`${sidebar ? "group inline-flex items-center gap-2 rounded-sm border border-line text-ink-body transition-colors hover:border-line-strong hover:text-ink-max" : btnPrimary} w-full justify-between text-xs ${compact ? "p-2" : "p-3"}`}
           >
             <div className="flex items-center gap-2 text-left">
               <ShieldCheck className={`${compact ? "w-4 h-4" : "w-5 h-5"} shrink-0`} strokeWidth={1.75} aria-hidden />

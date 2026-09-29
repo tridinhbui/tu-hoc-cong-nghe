@@ -71,8 +71,8 @@ export default function ExerciseBlock({ language, title, task, starter, solution
   const lines = code.split("\n").length;
 
   return (
-    <section className="my-8 overflow-hidden rounded-md border border-line-strong bg-white dark:border-stone-700 dark:bg-stone-900">
-      <header className="space-y-2 border-b border-stone-300 bg-surface-raised px-4 py-3 dark:border-stone-700 dark:bg-stone-950 sm:px-5">
+    <section className="my-8 overflow-hidden rounded-md border border-line bg-white dark:bg-stone-900">
+      <header className="space-y-2 border-b border-line px-4 py-3 sm:px-5">
         <p className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.08em] text-accent-strong">
           <span>{c.exerciseBadge}</span>
           <span className="text-ink-faint">·</span>
@@ -83,7 +83,7 @@ export default function ExerciseBlock({ language, title, task, starter, solution
         <p className="max-w-[68ch] text-sm leading-6 text-ink-muted">{c.exerciseHint}</p>
       </header>
 
-      <div className="grid gap-0 border-b border-line-strong">
+      <div className="grid gap-0 border-b border-line">
         <div className="px-4 py-3 sm:px-5">
           <p className="mb-1 text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">{c.expected}</p>
           <pre className="overflow-x-auto rounded-sm bg-stone-100 px-3 py-2 font-mono text-[13px] leading-6 text-ink-max dark:bg-stone-800">
@@ -187,14 +187,14 @@ function GradeBanner({ grade }: { grade: GradeResult }) {
   const c = t.lessonCode;
   if (grade.pass) {
     return (
-      <p role="status" className="flex items-center gap-2 border-b border-stone-300 bg-brand-50 px-4 py-3 text-sm font-bold text-brand-800 dark:border-stone-700 dark:bg-brand-950/40 dark:text-brand-200 sm:px-5">
+      <p role="status" className="flex items-center gap-2 border-b border-line bg-brand-50 px-4 py-3 text-sm font-bold text-brand-800 dark:bg-brand-950/40 dark:text-brand-200 sm:px-5">
         <CheckCircle2 className="h-4 w-4" aria-hidden />
         {c.pass}
       </p>
     );
   }
   return (
-    <div role="status" className="space-y-1 border-b border-stone-300 bg-red-50 px-4 py-3 text-sm text-red-900 dark:border-stone-700 dark:bg-red-950/40 dark:text-red-100 sm:px-5">
+    <div role="status" className="space-y-1 border-b border-line bg-red-50 px-4 py-3 text-sm text-red-900 dark:bg-red-950/40 dark:text-red-100 sm:px-5">
       <p className="flex items-center gap-2 font-bold">
         <XCircle className="h-4 w-4" aria-hidden />
         {grade.line ? format(c.failLine, { line: grade.line }) : c.failGeneric}

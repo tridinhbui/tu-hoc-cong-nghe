@@ -754,8 +754,8 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
   // Nhãn nhỏ kiểu bảng hệ thống: chữ hoa sans (không phải mono - đây là chữ
   // tiếng Việt đã dịch), giống các nhãn "VÍ DỤ", "QUIZ" trong HeroEditor.
   const label = "text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted";
-  const shell = "overflow-hidden rounded-md border border-line-strong bg-white dark:border-stone-700 dark:bg-stone-900";
-  const titleBar = "flex h-9 items-stretch justify-between border-b border-stone-300 bg-surface-raised dark:border-stone-700 dark:bg-stone-950";
+  const shell = "overflow-hidden rounded-md border border-line bg-white dark:bg-stone-900";
+  const titleBar = "flex h-9 items-stretch justify-between border-b border-line bg-surface";
 
   return (
     <div className="min-h-screen bg-page font-sans text-ink antialiased dark:bg-stone-950">
@@ -766,7 +766,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
       </div>
 
       {/* Thanh trên cùng */}
-      <header className="sticky top-0 z-50 border-b border-stone-300 bg-white dark:border-stone-700 dark:bg-stone-900">
+      <header className="sticky top-0 z-50 border-b border-line bg-white dark:bg-stone-900">
         {/* Tiến độ cuộn: 2px, xanh vì nó là dữ liệu sống. */}
         <div className="h-0.5 w-full bg-surface-sunken">
           <div className="h-full bg-brand-600 transition-[width] duration-150 dark:bg-brand-500" style={{ width: `${readPct}%` }} />
@@ -777,7 +777,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
             <Link
               href="/hoc-bai"
               aria-label={t.lessonLayout.backAria}
-              className="inline-flex h-9 w-9 flex-shrink-0 items-center justify-center gap-1.5 whitespace-nowrap rounded-sm border border-line-strong text-sm font-bold text-ink-body transition-colors hover:border-stone-950 hover:text-ink-max dark:border-stone-700 dark:hover:border-stone-200 sm:w-auto sm:px-3"
+              className="inline-flex h-9 w-9 flex-shrink-0 items-center justify-center gap-1.5 whitespace-nowrap rounded-sm border border-line text-sm font-semibold text-ink-muted transition-colors hover:border-line-firm hover:text-ink-max sm:w-auto sm:px-3"
             >
               <ArrowLeft className="h-4 w-4 flex-shrink-0" />
               <span className="hidden sm:inline">{t.lessonLayout.back}</span>
@@ -801,7 +801,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
             <LessonStatsHover />
 
             {/* Trạng thái đọc: câu tiếng Việt, nên đi bằng sans. */}
-            <span className="hidden text-xs font-semibold text-ink-soft sm:inline">
+            <span className="hidden text-xs font-medium text-ink-faint sm:inline">
               {readPct < 100
                 ? readPct === 0
                   ? format(t.lessonLayout.readMinutes, { minutes: readingMin })
@@ -819,7 +819,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                 </Sys>
               </div>
             )}
-            <Sys className="rounded-sm border border-line-strong px-2 py-1 text-ink-body dark:border-stone-700">{lessonLabel}</Sys>
+            <Sys className="text-ink-faint">{lessonLabel}</Sys>
           </div>
         </div>
       </header>
@@ -835,29 +835,29 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
               onCreated={(h) => setHighlights((prev) => [...prev, h])}
             />
 
-            <article ref={articleRef} className="min-w-0 flex-1 space-y-8 pb-20 lg:pb-0">
+            <article ref={articleRef} className="min-w-0 flex-1 space-y-10 pb-20 lg:pb-0">
               {/* Đầu bài: một cửa sổ soạn thảo, đúng khuôn HeroEditor ở trang
                   giới thiệu - tab tệp, thân bài, thanh trạng thái. Các tab
                   quiz.ts / notes.md là liên kết thật tới cột bên phải. */}
               <div className={shell}>
                 <div className={titleBar}>
                   <div className="flex min-w-0">
-                    <span className="relative flex min-w-0 items-center border-r border-stone-300 bg-white px-3.5 dark:border-stone-700 dark:bg-stone-900">
+                    <span className="relative flex min-w-0 items-center border-r border-line bg-white px-3.5 dark:bg-stone-900">
                       <span aria-hidden className="absolute inset-x-0 top-0 h-[2px] bg-brand-600 dark:bg-brand-500" />
                       <Sys className="truncate normal-case text-ink">{slug ? SYS.file(slug) : lessonLabel}</Sys>
                     </span>
                     {quiz.length > 0 && (
-                      <a href="#lesson-quiz" className="hidden items-center border-r border-stone-300 px-3.5 hover:bg-white dark:border-stone-700 dark:hover:bg-stone-900 sm:flex">
+                      <a href="#lesson-quiz" className="hidden items-center border-r border-line px-3.5 hover:bg-white dark:hover:bg-stone-900 sm:flex">
                         <Sys className="normal-case text-ink-muted">{SYS.quiz}</Sys>
                       </a>
                     )}
-                    <a href="#lesson-notes" className="hidden items-center border-r border-stone-300 px-3.5 hover:bg-white dark:border-stone-700 dark:hover:bg-stone-900 md:flex">
+                    <a href="#lesson-notes" className="hidden items-center border-r border-line px-3.5 hover:bg-white dark:hover:bg-stone-900 md:flex">
                       <Sys className="normal-case text-ink-muted">{SYS.notes}</Sys>
                     </a>
                   </div>
                   <div className="flex shrink-0 items-center gap-3 px-3">
-                    <Sys className="hidden text-ink-muted xs:inline">{lessonLabel}</Sys>
-                    <Sys className="text-accent-strong">{SYS.xp(XP_PER_LESSON)}</Sys>
+                    <Sys className="hidden text-ink-faint xs:inline">{lessonLabel}</Sys>
+                    <Sys className="text-ink-faint">{SYS.xp(XP_PER_LESSON)}</Sys>
                   </div>
                 </div>
 
@@ -871,7 +871,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                   </h1>
                   <p className="mt-4 max-w-[68ch] text-lg leading-8 text-ink-body">{lesson.subtitle}</p>
 
-                  <div className="mt-6 grid grid-cols-3 border-y border-stone-200 text-sm dark:border-stone-800">
+                  <div className="mt-6 grid grid-cols-3 border-y border-line text-sm">
                     {[
                       format(t.lessonLayout.durationRead, { duration: lesson.duration }),
                       format(t.lessonLayout.quizCount, { count: quiz.length }),
@@ -881,7 +881,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                           ? t.lessonLayout.readDone
                           : format(t.lessonLayout.readPercent, { percent: readPct }),
                     ].map((value, i) => (
-                      <div key={i} className={`min-w-0 py-2.5 ${i > 0 ? "border-l border-stone-200 pl-3 dark:border-stone-800" : ""}`}>
+                      <div key={i} className={`min-w-0 py-2.5 ${i > 0 ? "border-l border-line pl-3" : ""}`}>
                         <p className={`truncate font-semibold ${i === 2 && readPct > 0 ? "text-accent-strong" : "text-ink-max"}`}>{value}</p>
                       </div>
                     ))}
@@ -925,7 +925,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                     return (
                       <div
                         className={`mt-6 border-l-2 pl-4 ${
-                          allDoneNow ? "border-brand-600 dark:border-brand-400" : "border-stone-950 dark:border-stone-300"
+                          allDoneNow ? "border-brand-600 dark:border-brand-400" : "border-line-strong"
                         }`}
                       >
                         <p className={`${label} ${allDoneNow ? "text-accent-strong" : ""}`}>{t.lessonLayout.checklistTitle}</p>
@@ -968,9 +968,9 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
 
               {/* Video bài giảng */}
               <div className={shell}>
-                <div className="flex h-9 items-center justify-between gap-3 border-b border-stone-300 bg-surface-raised px-3 dark:border-stone-700 dark:bg-stone-950">
+                <div className="flex h-9 items-center justify-between gap-3 border-b border-line bg-surface px-3">
                   <span className={label}>{t.lessonLayout.videoTitle}</span>
-                  <span className="text-[11px] font-semibold text-ink-muted">{t.lessonLayout.videoBadge}</span>
+                  <span className="text-[11px] font-semibold text-ink-faint">{t.lessonLayout.videoBadge}</span>
                 </div>
 
                 {(() => {
@@ -1029,11 +1029,11 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                 </LessonCompletionContext.Provider>
               </div>
 
-              <div className="mt-12 border-t border-stone-300 pt-8 dark:border-stone-700">
+              <div className="mt-16 border-t border-line pt-8">
                 <LessonFeedbackInline lessonId={persistedLessonId} userId={userId} />
               </div>
 
-              <div className="mt-8 border-t border-stone-200 pt-6 dark:border-stone-800 lg:hidden">
+              <div className="mt-8 border-t border-line pt-6 lg:hidden">
                 <p className="text-center text-sm font-semibold text-ink-muted">{t.lessonLayout.scrollForQuiz}</p>
               </div>
 
@@ -1059,7 +1059,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
           <aside
             id="lesson-quiz"
             data-tour="lesson-quiz"
-            className="w-full flex-shrink-0 scroll-mt-24 space-y-4 xl:sticky xl:top-24 xl:max-h-[calc(100vh-7rem)] xl:w-[440px] xl:overflow-y-auto"
+            className="w-full flex-shrink-0 scroll-mt-24 space-y-6 xl:sticky xl:top-24 xl:max-h-[calc(100vh-7rem)] xl:w-[440px] xl:overflow-y-auto"
           >
             <div id="lesson-notes" className="scroll-mt-24">
               <LessonNotes lessonId={persistedLessonId} lessonSlug={slug} />
@@ -1075,7 +1075,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
               <button
                 onClick={() => setQuizCollapsed(!quizCollapsed)}
                 aria-expanded={!quizCollapsed}
-                className="flex h-9 w-full items-center justify-between border-b border-stone-300 bg-surface-raised px-3 transition-colors hover:bg-[#ece9e2] dark:border-stone-700 dark:bg-stone-950 dark:hover:bg-stone-900"
+                className="flex h-9 w-full items-center justify-between border-b border-line bg-surface px-3 transition-colors hover:bg-surface-raised"
               >
                 <span className="flex min-w-0 items-center gap-3">
                   <Sys className="normal-case text-ink">{SYS.quiz}</Sys>
@@ -1090,7 +1090,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
               </button>
 
               {!quizCollapsed && (
-                <div className="flex gap-1 border-b border-stone-200 px-4 py-3 dark:border-stone-800">
+                <div className="flex gap-1 border-b border-line px-4 py-3">
                   {quiz.map((_, i) => (
                     <button
                       key={i}
@@ -1197,7 +1197,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                       trong tầm tay ngay sau khi chọn - không phải lăn xuống
                       bấm rồi lăn lên đọc phản hồi. Nền đặc + viền trên thay
                       cho lớp mờ dần cũ. */}
-                  <div className="sticky bottom-0 -mx-5 -mb-5 border-t border-stone-200 bg-white px-5 pb-5 pt-3 dark:border-stone-800 dark:bg-stone-900 sm:-mx-6 sm:-mb-6 sm:px-6 sm:pb-6">
+                  <div className="sticky bottom-0 -mx-5 -mb-5 border-t border-line bg-white px-5 pb-5 pt-3 dark:bg-stone-900 sm:-mx-6 sm:-mb-6 sm:px-6 sm:pb-6">
                     {!qSubmitted ? (
                       <button disabled={qSelected === null} onClick={() => verify(activeQ)} className={`${btnPrimary} w-full`}>
                         {t.lessonLayout.check}
@@ -1245,7 +1245,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                         Chỉ hiện khi chúng khác nhau: người làm đúng hết ngay lần
                         đầu không cần đọc một dòng giải thích về việc thử lại. */}
                     {firstScore !== score && (
-                      <p className="mt-3 border-l-2 border-stone-950 pl-3 text-xs leading-6 text-ink-muted dark:border-stone-200">
+                      <p className="mt-3 border-l-2 border-line-strong pl-3 text-xs leading-6 text-ink-muted">
                         <strong className="font-semibold text-ink-body">
                           {format(t.lessonLayout.firstAttemptScore, { score: firstScore, total: quiz.length })}
                         </strong>{" "}
@@ -1334,7 +1334,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
 
               {/* Danh sách câu: số mono, câu đang mở là mực, đúng xanh, sai đỏ. */}
               {(!finished || reviewMode) && quiz.length > 1 && (
-                <div className="border-t border-stone-200 p-4 dark:border-stone-800">
+                <div className="border-t border-line p-4">
                   <div className={`${label} mb-2.5`}>{t.lessonLayout.questionList}</div>
                   <div className="grid grid-cols-5 gap-1.5">
                     {quiz.map((_, i) => (

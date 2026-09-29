@@ -62,13 +62,13 @@ export default function LessonStatsHover() {
         }}
         aria-label={t.lessonStatsHover.quickStatsAria}
         title={t.lessonStatsHover.statsTitle}
-        className="w-10 h-10 rounded-sm border border-line-strong flex items-center justify-center text-ink-muted hover:border-stone-950 hover:text-ink dark:hover:border-stone-200 transition-colors cursor-pointer"
+        className="w-10 h-10 rounded-sm border border-line flex items-center justify-center text-ink-faint hover:border-line-firm hover:text-ink transition-colors cursor-pointer"
       >
         <BarChart3 className="w-4 h-4" />
       </button>
 
       {open && (
-        <div className="absolute right-0 top-full mt-2 z-50 w-56 bg-white dark:bg-stone-900 border border-line-strong rounded-md p-4">
+        <div className="absolute right-0 top-full mt-2 z-50 w-56 bg-white dark:bg-stone-900 border border-line rounded-md p-4">
           {loading && !stats ? (
             <p className="text-xs text-ink-faint">{t.lessonStatsHover.loading}</p>
           ) : stats ? (
