@@ -178,7 +178,7 @@ export default function InteractiveKingdomPreview() {
             <span className="h-2.5 w-2.5 rounded-full bg-stone-700" />
           </div>
           <div className="hidden sm:block min-w-0 flex-1 truncate rounded-sm border border-stone-800 bg-stone-950 px-4 py-1 text-center text-[11px] font-semibold text-stone-500">
-            tuhoccongnghe.vn/game-kingdom
+            tuhoccongnghe.org/game-kingdom
           </div>
         </div>
 

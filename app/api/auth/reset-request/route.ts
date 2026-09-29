@@ -9,7 +9,7 @@ export async function POST(req: Request) {
     const r = await requestPasswordReset(getDb(), email);
 
     if (r) {
-      const base = process.env.NEXT_PUBLIC_SITE_URL || "https://tuhoccongnghe.vn";
+      const base = process.env.NEXT_PUBLIC_SITE_URL || "https://tuhoccongnghe.org";
       const link = `${base}/auth/reset-password?token=${encodeURIComponent(r.token)}`;
       await sendEmail(
         email,

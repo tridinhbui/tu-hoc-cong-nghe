@@ -24,7 +24,7 @@ const args = process.argv.slice(2);
 const limit = Number(args.find((a) => a.startsWith("--limit="))?.split("=")[1] ?? Infinity);
 const dryRun = args.includes("--dry-run");
 const BUCKET = "thcn-files";
-const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://tuhoccongnghe.vn";
+const SITE = process.env.NEXT_PUBLIC_SITE_URL || "https://tuhoccongnghe.org";
 
 const SOURCES = [
   { file: "scripts/d1/data/user_profiles.jsonl", table: "user_profiles", pk: "id", column: "avatar_url" },
