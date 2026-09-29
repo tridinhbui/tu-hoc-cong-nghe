@@ -9,7 +9,7 @@ import CoCoSays from "@/components/CoCoSays";
 import { useRouter, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
-import { CheckCircle2, Lock, CheckCheck, Bookmark, ChevronLeft, ChevronRight, Search, X, Route, Users, Construction, Clock, LockOpen, ChevronDown, Play, Layers, HardHat, Flag, FileText, Compass, BookOpen, Award, ArrowRight, Trophy, GitBranch, Code2, Globe, Braces, Database, Server, Cloud, ShieldCheck, Smartphone, Cpu, type LucideIcon } from "lucide-react";
+import { CheckCircle2, Lock, CheckCheck, Bookmark, ChevronLeft, ChevronRight, Search, X, Route, Users, Construction, Clock, LockOpen, ChevronDown, Play, Layers, HardHat, Flag, FileText, Compass, BookOpen, Award, ArrowRight, Trophy, GitBranch, Code2, Globe, Braces, Database, Server, Cloud, ShieldCheck, Smartphone, Cpu, GraduationCap, BriefcaseBusiness, TerminalSquare, type LucideIcon } from "lucide-react";
 import { getCommunityLearningNow, getLessonLearnerCounts, type CommunityLearner } from "@/lib/community-learning";
 import { stripStageLessonPrefix } from "@/lib/lesson-stage-prefix";
 import { useResizableSidebar, SIDEBAR_MIN_WIDTH, SIDEBAR_MAX_WIDTH } from "@/lib/use-resizable-sidebar";
@@ -47,7 +47,7 @@ import { hasCompletedOnboarding, completeOnboarding } from "@/lib/cloudflare-onb
 import { getUserProfile, recalculateUserStats, getLeaderboardByMetric } from "@/lib/cloudflare-user";
 import { syncLocalLevelExams } from "@/lib/cloudflare-level-exams";
 import { getDashboardSummary, getLessonState, type DashboardSummary, type LessonState } from "@/lib/cloudflare-dashboard-optimized";
-import { getLevelByXp, getLevelProgress, LEVELS, XP_PER_LESSON } from "@/lib/levels";
+import { getLevelByXp, getLevelProgress, LEVELS } from "@/lib/levels";
 import UnlockRequestModal from "@/components/UnlockRequestModal";
 import StageMilestoneExamModal from "@/components/StageMilestoneExamModal";
 import CertificateModal from "@/components/CertificateModal";
@@ -66,7 +66,7 @@ import { isValidAvatar } from "@/lib/avatar-utils";
 // đây: các nhánh render của chúng đã bỏ cùng những giá trị tab không ai chọn
 // được. Ba widget đó sống ở RPG hub.
 import TechCharacterAvatar, { CharacterEquipments } from "@/components/TechCharacterAvatar";
-import { Sys, StatusDot, panel, btnPrimary, btnSecondary, tabClass } from "@/components/ui/system";
+import { Sys, panel, btnPrimary, btnSecondary, tabClass } from "@/components/ui/system";
 
 /* i18n-ignore-start: định danh hệ thống trong thanh tiêu đề khung, không phải
    chữ hiển thị để dịch - cùng một chuỗi ở mọi ngôn ngữ, như đường dẫn tệp. */
@@ -407,6 +407,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
   // Dải cấp gọn (chỉ cấp gần) hay đủ 15 cấp; bảng xếp hạng thu gọn hay mở.
   const [showAllLevels, toggleAllLevels] = useStoredFlag("thtcdn_dashboard_all_levels");
   const [rankingOpen, toggleRanking] = useStoredFlag("thtcdn_dashboard_ranking_open");
+  const [levelsOpen, setLevelsOpen] = useState(false);
   const [dbAvatarUrl, setDbAvatarUrl] = useState<string | null>(null);
   const [equippedGear, setEquippedGear] = useState<CharacterEquipments>({});
   const [showBossBattle, setShowBossBattle] = useState(false);
@@ -1148,7 +1149,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
           className={`mx-auto w-full space-y-5 min-w-0 xl:flex-1 xl:min-h-0 xl:space-y-0 ${
             isLessonsView
               ? "max-w-[1500px] xl:flex xl:flex-col"
-              : "max-w-[1500px] xl:grid xl:grid-cols-12 xl:grid-rows-[auto_auto_minmax(0,1fr)] xl:gap-5"
+              : "max-w-[1500px] pt-2 sm:pt-4"
           }`}
         >
 
@@ -1199,21 +1200,20 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
             );
 
             return (
-              <section className="rounded-card bg-surface p-5 sm:p-7 xl:col-span-12 xl:min-h-0">
-                <div className="grid grid-cols-1 gap-8 xl:grid-cols-[minmax(0,1fr)_288px] xl:items-start xl:gap-10">
-                  <div className="min-w-0 space-y-8">
-                    {/* ── 1. Bài đang học ──
-                        Hành động nổi nhất trang, và giờ đứng ĐẦU: người mở
-                        dashboard trước hết cần biết học gì tiếp. Cơ Cơ mở lời
-                        bằng một dòng nhạt ngay trên thẻ (xem ResumeLearningButton
-                        `quiet`), không còn bong bóng thoại. Chặng đang làm là
-                        một dòng chú thích dưới thẻ; câu "làm được gì sau chặng"
-                        nằm trong `title` của dòng đó. */}
-                    <div className="min-w-0 space-y-2.5">
-                      <div data-tour="resume-learning">
-                        <ResumeLearningButton activeTrack={activeTrack} userId={user?.id} compact={isCompactCard} quiet />
-                      </div>
-                      <p className="truncate px-1 text-xs text-ink-faint" title={objCopy?.outcome}>
+              <div className="mx-auto grid w-full max-w-[1240px] grid-cols-1 gap-10 xl:grid-cols-[minmax(0,1fr)_340px] xl:items-start xl:gap-12">
+                {/* ── Cột chính: một hành trình đọc từ trên xuống ──
+                    1. Học tiếp hôm nay (thẻ duy nhất nổi màu), 2. tiến độ gọn,
+                    3. một khu lộ trình. Mọi thứ phụ sang cột phải. */}
+                <div className="min-w-0 space-y-10">
+                  <div data-tour="resume-learning">
+                    <ResumeLearningButton
+                      activeTrack={activeTrack}
+                      userId={user?.id}
+                      compact={isCompactCard}
+                      quiet
+                      hero
+                      footnote={
+                        <span className="block truncate" title={objCopy?.outcome}>
                         {objStage ? (
                           <>
                             {format(t.revampDashboard.objectiveStage, {
@@ -1232,83 +1232,65 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                         ) : (
                           t.revampDashboard.objectiveNone
                         )}
-                      </p>
+                        </span>
+                      }
+                    />
+                  </div>
+
+                  {/* ── Tiến độ: cấp, XP, chuỗi ngày trong một mặt nền.
+                      Dải cấp đầy đủ và danh sách người ở từng cấp chỉ mở khi
+                      bấm "Xem các cấp". */}
+                  <section className="rounded-[20px] bg-[#fbf5ec] p-6 sm:p-7 dark:bg-stone-900/60">
+                    <div className="flex flex-wrap items-center justify-between gap-x-8 gap-y-5">
+                      <div className="flex min-w-0 items-center gap-5">
+                        <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-2xl ring-2 ring-orange-300/80 dark:ring-orange-500/40">
+                          <Image
+                            src={`/levels/level${currentUserLevel}.jpg`}
+                            alt={t.levelTitles[currentUserLevel] ?? ""}
+                            width={64}
+                            height={64}
+                            className="h-full w-full scale-[1.08] object-cover"
+                          />
+                        </div>
+                        <div className="min-w-0">
+                          <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#a0714a] dark:text-orange-200/60">
+                            {t.revampDashboard.progressTitle}
+                          </p>
+                          <div className="mt-1 flex flex-wrap items-baseline gap-x-2.5">
+                            <span className="font-mono text-xl font-black tabular-nums text-orange-700 dark:text-orange-300">
+                              LV{String(currentUserLevel).padStart(2, "0")}
+                            </span>
+                            <h3 className="text-lg font-black tracking-tight text-[#3b2414] dark:text-orange-50">
+                              {t.levelTitles[currentUserLevel] ?? LEVELS[currentUserLevel - 1]?.name}
+                            </h3>
+                            <span className="font-mono text-xs tabular-nums text-[#a0714a]/80">
+                              {format(t.revampDashboard.totalXp, { xp: userXp })}
+                            </span>
+                          </div>
+                          <div className="mt-3 h-2 w-full max-w-[360px] overflow-hidden rounded-full bg-[#efe1cf] dark:bg-white/10">
+                            <div className="h-full rounded-full bg-orange-500 transition-[width] duration-500" style={{ width: `${nextLvl ? levelProgress : 100}%` }} />
+                          </div>
+                          <p className="mt-2 text-xs text-[#8a5f3c] dark:text-orange-100/60">
+                            {nextLvl
+                              ? format(t.dashboard.nextUnlockLine, { level: String(nextLvl.level).padStart(2, "0"), name: t.levelTitles[nextLvl.level] ?? nextLvl.name, xp: xpLeft })
+                              : t.dashboard.maxLevelLine}
+                          </p>
+                        </div>
+                      </div>
+                      <DashboardStreakWidget userId={user.id} quiet />
                     </div>
 
-                    {/* ── 2. Cấp hiện tại và 3. mở khoá kế tiếp ──
-                        Một khối, một con số XP. Trước đây cùng một câu "còn
-                        bao nhiêu XP tới cấp sau" được nói ba lần: cạnh thanh
-                        tiến độ, dưới dải cấp, và ở cột phải - giờ chỉ còn dòng
-                        "Mở khoá kế tiếp" ngay dưới thanh. Hình của cấp đang
-                        đứng đặt cạnh bóng mờ của cấp kế tiếp, không còn nhãn
-                        chữ dưới mỗi hình. */}
-                    <div className="min-w-0">
-                      <div className="flex flex-wrap items-start justify-between gap-x-6 gap-y-4">
-                        <div className="flex min-w-0 items-center gap-4">
-                          <div className="flex shrink-0 items-center gap-1.5">
-                            <div className="relative h-16 w-16 overflow-hidden rounded-card border-2 border-brand-600 bg-surface-raised dark:border-brand-400 dark:bg-stone-950">
-                              <Image
-                                src={`/levels/level${currentUserLevel}.jpg`}
-                                alt={t.levelTitles[currentUserLevel] ?? ""}
-                                width={64}
-                                height={64}
-                                className="h-full w-full scale-[1.08] object-cover"
-                              />
-                            </div>
-                            {nextLvl && (
-                              <>
-                                <ChevronRight className="h-3.5 w-3.5 shrink-0 text-ink-faint" aria-hidden />
-                                <div className="relative h-10 w-10 overflow-hidden rounded-control bg-surface-raised dark:bg-stone-950">
-                                  <Image
-                                    src={`/levels/level${nextLvl.level}.jpg`}
-                                    alt={t.levelTitles[nextLvl.level] ?? nextLvl.name}
-                                    width={40}
-                                    height={40}
-                                    className="h-full w-full scale-[1.08] object-cover opacity-50 grayscale"
-                                  />
-                                  <Lock className="absolute right-0.5 top-0.5 h-2.5 w-2.5 text-ink-faint" aria-hidden />
-                                </div>
-                              </>
-                            )}
-                          </div>
-
-                          <div className="min-w-0">
-                            <div className="flex flex-wrap items-baseline gap-x-2.5 gap-y-0.5">
-                              <span className="font-mono text-2xl font-black tabular-nums tracking-tight text-accent-strong">
-                                LV{String(currentUserLevel).padStart(2, "0")}
-                              </span>
-                              <h3 className="text-lg font-black leading-tight tracking-tight text-ink-max">
-                                {t.levelTitles[currentUserLevel] ?? LEVELS[currentUserLevel - 1]?.name}
-                              </h3>
-                              <span className="font-mono text-xs tabular-nums text-ink-faint">
-                                {format(t.revampDashboard.totalXp, { xp: userXp })}
-                              </span>
-                            </div>
-                            <div className="mt-2 h-2 w-full max-w-[320px] overflow-hidden rounded-xs bg-surface-sunken">
-                              <div className="h-full bg-brand-600 transition-[width] duration-500 dark:bg-brand-500" style={{ width: `${nextLvl ? levelProgress : 100}%` }} />
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* Chuỗi ngày: một dòng nhạt. Nhãn, số lượt đóng băng
-                            và phần giải thích nằm trong hộp mở ra khi bấm. */}
-                        <DashboardStreakWidget userId={user.id} quiet />
-                      </div>
-
-                      {nextLvl ? (
-                        <div className="mt-4 flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                          <Sys className="text-accent-strong">{t.dashboard.nextUnlockLabel}</Sys>
-                          <span className="text-sm font-bold text-ink-body">
-                            {format(t.dashboard.nextUnlockLine, { level: String(nextLvl.level).padStart(2, "0"), name: t.levelTitles[nextLvl.level] ?? nextLvl.name, xp: xpLeft })}
-                          </span>
-                          <span className="text-xs text-ink-faint">
-                            {format(t.dashboard.nextUnlockHint, { lessons: Math.ceil(xpLeft / XP_PER_LESSON) })}
-                          </span>
-                        </div>
-                      ) : (
-                        <p className="mt-4 text-xs font-semibold text-ink-muted">{t.dashboard.maxLevelLine}</p>
-                      )}
-
+                    <button
+                      type="button"
+                      onClick={() => setLevelsOpen((v) => !v)}
+                      aria-expanded={levelsOpen}
+                      className="mt-5 inline-flex cursor-pointer items-center gap-1 text-xs font-semibold text-[#9a6b43] transition-colors hover:text-orange-700 dark:text-orange-200/70"
+                    >
+                      {levelsOpen ? t.revampDashboard.hideDetails : t.revampDashboard.showLevels}
+                      <ChevronDown className={`h-3.5 w-3.5 transition-transform ${levelsOpen ? "rotate-180" : ""}`} aria-hidden />
+                    </button>
+                    {levelsOpen && (
+                      <div className="mt-2">
                       {/* Dải cấp: gần thì rõ, xa thì gộp. Mũi tên cuộn chỉ cần
                           khi cả dải đang mở - bản gọn vừa một hàng. */}
                       <div className="relative group/level-strip mt-6">
@@ -1370,9 +1352,9 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                     title={t.levelTitles[lvl.level] ?? lvl.name}
                                     className={`relative flex min-h-[64px] w-[96px] shrink-0 cursor-pointer flex-col rounded-control px-2 py-1.5 text-left transition-[background-color,opacity] ${
                                       isUserCurrent
-                                        ? "bg-brand-600 text-white dark:bg-brand-600"
+                                        ? "bg-orange-600 text-white dark:bg-orange-600"
                                         : isNextLevel
-                                          ? `bg-accent-soft hover:bg-accent-soft ${isOpen ? "ring-1 ring-accent-line-mid" : ""}`
+                                          ? `bg-orange-50 hover:bg-orange-100 dark:bg-orange-500/10 ${isOpen ? "ring-1 ring-orange-300" : ""}`
                                           : near
                                             ? `hover:bg-surface-raised ${isOpen ? "bg-surface-raised" : ""}`
                                             : `hover:bg-surface-raised hover:opacity-80 ${isOpen ? "bg-surface-raised opacity-80" : "opacity-40"}`
@@ -1394,7 +1376,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                                     {/* Số người ở cấp: gợi ý rằng bấm vào xem được
                                         ai đang ở đây. Chỉ ở cấp gần. */}
                                     {near && members.length > 0 && (
-                                      <span className={`mt-1 inline-flex w-fit items-center gap-1 font-mono text-[9px] tabular-nums ${isUserCurrent ? "text-brand-100" : "text-ink-faint"}`}>
+                                      <span className={`mt-1 inline-flex w-fit items-center gap-1 font-mono text-[9px] tabular-nums ${isUserCurrent ? "text-orange-100" : "text-ink-faint"}`}>
                                         <Users className="h-2.5 w-2.5" aria-hidden /> {members.length}
                                       </span>
                                     )}
@@ -1476,19 +1458,63 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                           );
                         })()}
                       </AnimatePresence>
+                      </div>
+                    )}
+                  </section>
+
+                  {/* ── Lộ trình: mục tiêu đã chọn và gợi ý học tiếp, một khu. */}
+                  <section className="space-y-5">
+                    <div className="flex flex-wrap items-end justify-between gap-3 px-1">
+                      <div>
+                        <h2 className="text-xl font-black tracking-tight text-[#3b2414] dark:text-orange-50">{t.revampDashboard.roadmapTitle}</h2>
+                        <p className="mt-1 text-sm text-[#8a5f3c] dark:text-orange-100/60">{t.revampDashboard.roadmapSub}</p>
+                      </div>
+                      <Link
+                        href="/lo-trinh"
+                        className="group inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-semibold text-orange-700 transition-colors hover:bg-orange-50 dark:text-orange-300 dark:hover:bg-white/5"
+                      >
+                        <Route className="h-4 w-4" aria-hidden />
+                        {t.revampDashboard.roadmapOpen}
+                        <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden />
+                      </Link>
                     </div>
+                    <div className="space-y-8 rounded-[20px] bg-surface p-6 shadow-[0_1px_0_rgba(120,70,20,0.05),0_10px_30px_-22px_rgba(120,70,20,0.5)] sm:p-7 dark:bg-stone-900">
+                      <LearningGoalCard quiet warm />
+                      <DashboardRecommendations />
+                    </div>
+                  </section>
+                </div>
 
-                    {/* Lời nhắn hôm nay: một dòng nhạt ở cuối cột, cả dòng là
-                        lối vào Góc yên tĩnh. Chỗ để nghỉ, không tranh với việc
-                        phải làm. */}
-                    <DailyMotivationWidget userId={user.id} quiet />
-                  </div>
+                {/* ── Cột phải: nhẹ, cho việc luyện tập và thông tin phụ ── */}
+                <aside className="min-w-0 space-y-6 xl:sticky xl:top-2">
+                  <section className="rounded-[20px] bg-[#fbf5ec] p-5 dark:bg-stone-900/60">
+                    <h2 className="text-base font-black tracking-tight text-[#3b2414] dark:text-orange-50">{t.revampDashboard.practiceTitle}</h2>
+                    <p className="mt-0.5 text-xs text-[#8a5f3c] dark:text-orange-100/60">{t.revampDashboard.practiceSub}</p>
+                    <nav className="mt-4 space-y-1">
+                      {([
+                        { href: "/kiem-tra", label: t.nav.quiz, icon: GraduationCap },
+                        { href: "/phong-van-ky-thuat", label: t.nav.technicalInterview, icon: BriefcaseBusiness },
+                        { href: "/cong-cu", label: t.nav.toolSimulators, icon: TerminalSquare },
+                        { href: "/thi-vuot-chang", label: t.nav.stageSkipExam, icon: Trophy },
+                      ] as const).map(({ href, label, icon: Icon }) => (
+                        <Link
+                          key={href}
+                          href={href}
+                          className="group flex items-center gap-3 rounded-xl px-2.5 py-2.5 text-sm font-semibold text-[#4a2f1c] transition-colors hover:bg-white dark:text-orange-50/90 dark:hover:bg-white/5"
+                        >
+                          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white text-orange-600 dark:bg-white/10 dark:text-orange-300">
+                            <Icon className="h-4 w-4" aria-hidden />
+                          </span>
+                          <span className="flex-1">{label}</span>
+                          <ChevronRight className="h-4 w-4 text-[#c9a27f] transition-transform group-hover:translate-x-0.5" aria-hidden />
+                        </Link>
+                      ))}
+                    </nav>
+                  </section>
 
-                  {/* Cột phụ: nền rất nhạt thay cho viền. Năng lực thực hành
-                      thu gọn còn tiêu đề và hai lĩnh vực cao nhất; số liệu
-                      học là một dòng; nút thi thăng cấp là một liên kết. Hai
-                      cảnh báo (mất chuỗi, sắp phải thi lại) vẫn hiện đủ. */}
-                  <div className="min-w-0 space-y-6 rounded-card bg-surface-raised/60 p-4 sm:p-5 dark:bg-stone-950/40">
+                  {showOptional && <DailyNewsQuizWidget userId={user.id} compact />}
+
+                  <div className="space-y-5 px-1">
                     <PracticalSkillPanel compact collapsible />
                     <div data-tour="user-stats" className="min-w-0">
                       <UserStats
@@ -1504,9 +1530,62 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                         quiet
                       />
                     </div>
+                    <div>
+                      <button
+                        type="button"
+                        onClick={toggleRanking}
+                        aria-expanded={rankingOpen}
+                        className="flex w-full cursor-pointer items-center justify-between gap-2 py-1 text-xs font-semibold text-ink-faint transition-colors hover:text-ink-body"
+                      >
+                        <span>{t.revampDashboard.rankingLabel}</span>
+                        <ChevronDown className={`h-3.5 w-3.5 transition-transform ${rankingOpen ? "rotate-180" : ""}`} aria-hidden />
+                      </button>
+                      {rankingOpen && (
+                        <div className="mt-3 rounded-2xl bg-surface p-4 dark:bg-stone-900">
+                          <DashboardLeaderboardCard userId={user.id} bare />
+                        </div>
+                      )}
+                    </div>
                   </div>
-                </div>
-              </section>
+
+                  {/* Chế độ Đầy đủ: phần thưởng, đấu trường và cộng đồng -
+                      xếp ở cuối cột phụ, không tranh với việc học. */}
+                  {isFullPreset && (
+                    <div className="space-y-6">
+                      <CombinedRewardsWidget userId={user.id} defaultExpanded={false} compact />
+                      <DashboardArenaCard onOpenBoss={() => setShowBossBattle(true)} onOpenPvp={() => setShowPvpModal(true)} />
+                      <CommunityLearningNow lessonsMeta={lessonsMeta} />
+                      <CommunityStreakWidget />
+                    </div>
+                  )}
+
+                  <div className="space-y-4 px-1">
+                    <DailyMotivationWidget userId={user.id} quiet />
+                    <div className="flex items-center gap-2.5">
+                      <span className="text-xs text-ink-faint">{t.dashboard.presetLabel}</span>
+                      <div role="group" aria-label={t.dashboard.presetLabel} className="inline-flex rounded-full bg-[#f3e9dc] p-0.5 dark:bg-stone-900">
+                        {([
+                          { id: "gon" as const, label: t.dashboard.presetCompact, hint: t.dashboard.presetCompactHint },
+                          { id: "day-du" as const, label: t.dashboard.presetFull, hint: t.dashboard.presetFullHint },
+                        ]).map((opt) => (
+                          <button
+                            key={opt.id}
+                            type="button"
+                            onClick={() => choosePreset(opt.id)}
+                            aria-pressed={preset === opt.id}
+                            title={opt.hint}
+                            className={`cursor-pointer rounded-full px-3 py-1 text-xs font-semibold transition-colors ${
+                              preset === opt.id ? "bg-white text-[#4a2f1c] shadow-sm dark:bg-stone-800 dark:text-orange-50" : "text-ink-faint hover:text-ink-body"
+                            }`}
+                          >
+                            {opt.label}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </aside>
+              </div>
             );
           })()}
 
@@ -1514,63 +1593,11 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
             Cố ý là một hàng nhỏ, chữ thường, không viền nổi: nó là một tuỳ
             chọn hiển thị, không phải một việc cần làm, nên nó không được
             tranh chỗ với thứ người học vào đây để làm. */}
-        {!isLessonsView && (
-          // `xl:col-span-12` ở đây là bắt buộc, không phải trang trí.
-          //
-          // Dải này là một Ô của lưới 12 cột phía trên. Thiếu col-span thì nó
-          // chiếm ĐÚNG MỘT cột: hai chữ "Bảng nhìn" bị ép xuống dòng, dải dạt
-          // sang mép trái, và khối nội dung `col-span-12` ngay sau không lọt
-          // cạnh nó nên bị đẩy xuống hàng kế.
-          //
-          // Hàng nó bỏ lại là hàng `minmax(0,1fr)` - hàng nuốt toàn bộ chiều
-          // cao còn thừa của trang. Kết quả: một dải trống bằng nửa màn hình
-          // với đúng một cái nút nhỏ nằm ở mép trái.
-          //
-          // Và vì thế bản mẫu hàng ở lưới cha cũng phải thành ba hàng
-          // (auto_auto_minmax), nếu không hàng thứ ba là hàng ngầm và mất luôn
-          // ràng buộc chiều cao mà `minmax(0,1fr)` đang giữ.
-          //
-          // `justify-start` là CỐ Ý, không phải sót. Dải này từng `justify-end`.
-          // Đừng lẫn nó với triệu chứng mô tả ở đoạn trên: chỗ đó nói "dạt sang
-          // mép trái" là khi THIẾU `xl:col-span-12` - cả dải co vào một cột hẹp
-          // và kéo theo một khoảng trống nửa màn hình. Còn ở đây dải vẫn trải
-          // đủ 12 cột, chỉ là nội dung neo về đầu hàng.
-          <div className="flex items-center justify-start gap-2.5 xl:col-span-12">
-            <span className="text-xs text-ink-faint">
-              {t.dashboard.presetLabel}
-            </span>
-            <div
-              role="group"
-              aria-label={t.dashboard.presetLabel}
-              className="inline-flex rounded-control bg-surface-raised p-0.5 dark:bg-stone-900"
-            >
-              {([
-                { id: "gon" as const, label: t.dashboard.presetCompact, hint: t.dashboard.presetCompactHint },
-                { id: "day-du" as const, label: t.dashboard.presetFull, hint: t.dashboard.presetFullHint },
-              ]).map((opt) => (
-                <button
-                  key={opt.id}
-                  type="button"
-                  onClick={() => choosePreset(opt.id)}
-                  aria-pressed={preset === opt.id}
-                  title={opt.hint}
-                  className={`cursor-pointer rounded-control px-3 py-1 text-xs font-semibold transition-colors ${
-                    preset === opt.id
-                      ? "bg-surface text-ink-body dark:bg-stone-800"
-                      : "text-ink-faint hover:text-ink-body"
-                  }`}
-                >
-                  {opt.label}
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
-
         {/* Ở /hoc-bai hai cột là `minmax(0,1fr)` + bề rộng cột phải do người
             học kéo. Bề ngang đi qua biến CSS chứ không phải gridTemplateColumns
             nội tuyến: dưới `xl` bố cục là một cột, và biến thì vô hại ở mọi
             khổ màn hình. */}
+        {isLessonsView && (
         <div
           style={{ "--sidebar-w": `${sidebar.width}px` } as React.CSSProperties}
           className={`grid grid-cols-1 min-w-0 ${isLessonsView ? "gap-4 sm:gap-5 xl:relative xl:flex-1 xl:min-h-0 xl:gap-3.5 xl:[grid-template-columns:minmax(0,1fr)_var(--sidebar-w)]" : "gap-6 xl:col-span-12 xl:min-h-0 xl:grid-cols-12 xl:gap-5"}`}
@@ -2890,6 +2917,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
 
           </div>
         </div>
+        )}
       </div>
       </div>
 
