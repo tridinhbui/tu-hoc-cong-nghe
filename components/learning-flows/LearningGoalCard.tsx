@@ -89,9 +89,9 @@ export default function LearningGoalCard({ id, effort, quiet = false }: { id?: s
           <h2 className="text-lg font-black tracking-tight text-ink-max">{c.pickTitle}</h2>
           <span className="font-mono text-[11px] tabular-nums text-ink-faint">{LEARNING_FLOWS.length}</span>
         </div>
-        <p className="mt-2 text-sm leading-6 text-ink-soft">{r.pickHint}</p>
+        <p className="mt-1.5 text-sm leading-6 text-ink-soft">{r.pickHint}</p>
 
-        <ul className="mt-3 grid gap-px bg-surface-deep sm:grid-cols-2">
+        <ul className="mt-2.5 grid gap-px bg-surface-deep sm:grid-cols-2">
           {LEARNING_FLOWS.map((f) => {
             const p = state.progress[f.id];
             const copy = t.learningFlows.flows[f.id];
@@ -119,7 +119,7 @@ export default function LearningGoalCard({ id, effort, quiet = false }: { id?: s
                   aria-pressed={on}
                   disabled={pending}
                   onClick={() => setCandidate(on ? null : f.id)}
-                  className="flex flex-1 flex-col gap-3 px-4 pt-4 pb-2 text-left disabled:opacity-60"
+                  className="flex flex-1 flex-col gap-2 px-3.5 pt-3 pb-1.5 text-left disabled:opacity-60"
                 >
                   <span className="flex w-full items-start gap-3">
                     <Glyph
@@ -127,7 +127,7 @@ export default function LearningGoalCard({ id, effort, quiet = false }: { id?: s
                       className={`mt-0.5 h-5 w-5 shrink-0 ${on ? "text-accent-strong" : "text-ink-soft"}`}
                     />
                     <span className="min-w-0 flex-1">
-                      <span className="block text-[17px] font-black leading-snug tracking-tight text-ink-max">{copy.title}</span>
+                      <span className="block text-base font-black leading-snug tracking-tight text-ink-max">{copy.title}</span>
                       <span className="mt-0.5 block font-mono text-[11px] tabular-nums text-ink-muted">{effortOf(f.id)}</span>
                     </span>
                     {on ? (
@@ -151,7 +151,7 @@ export default function LearningGoalCard({ id, effort, quiet = false }: { id?: s
                 </button>
                 <Link
                   href={`/hoc-theo-nhu-cau/${f.id}`}
-                  className="mb-3 ml-12 inline-flex items-center gap-1 self-start text-xs font-bold text-ink-muted underline-offset-4 hover:text-ink-max hover:underline"
+                  className="mb-2.5 ml-[2.875rem] inline-flex items-center gap-1 self-start text-xs font-bold text-ink-muted underline-offset-4 hover:text-ink-max hover:underline"
                 >
                   {c.preview} <ArrowRight className="h-3 w-3" aria-hidden />
                 </Link>

@@ -1,3 +1,4 @@
+import AppShell from "@/components/AppShell";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -76,9 +77,15 @@ export default async function LearningFlowPage({ params }: { params: Promise<{ f
     return m ? m.totalMinutes ?? (parseInt(m.duration, 10) || 0) : 0;
   };
 
+  // Người đã đăng nhập tới đây từ /lo-trinh (trong app), nên trang phải giữ
+  // thanh điều hướng của app - thiếu nó thì họ không còn đường nào về ngoài
+  // nút Back. Khách vẫn thấy đầu trang công khai (logo + "Vào học"). Vỏ app
+  // chép đúng app/(app)/layout.tsx; route này không nằm trong nhóm (app) vì
+  // nó phải mở được khi chưa đăng nhập.
+  const Shell = signedIn ? AppShellFrame : PublicShell;
+
   return (
-    <div className="min-h-screen bg-page dark:bg-stone-950">
-      <FlowsHeader t={t} code={FLOWS_SYS.flow(flow.id)} />
+    <Shell t={t} code={FLOWS_SYS.flow(flow.id)}>
 
       <main className="mx-auto max-w-5xl px-4 pb-16 pt-6 sm:px-6 sm:pt-10">
         {/* Về đúng nơi người đọc chọn hành trình: /lo-trinh nếu đã đăng nhập
@@ -218,6 +225,19 @@ export default async function LearningFlowPage({ params }: { params: Promise<{ f
           </div>
         </section>
       </main>
+    </Shell>
+  );
+}
+
+function AppShellFrame({ children }: { t: unknown; code: string; children: React.ReactNode }) {
+  return <AppShell>{children}</AppShell>;
+}
+
+function PublicShell({ t, code, children }: { t: Parameters<typeof FlowsHeader>[0]["t"]; code: string; children: React.ReactNode }) {
+  return (
+    <div className="min-h-screen bg-page dark:bg-stone-950">
+      <FlowsHeader t={t} code={code} />
+      {children}
     </div>
   );
 }

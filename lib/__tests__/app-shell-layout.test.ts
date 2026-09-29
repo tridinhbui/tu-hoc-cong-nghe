@@ -28,15 +28,21 @@ import { describe, expect, it } from "vitest";
  */
 
 const repoRoot = path.resolve(__dirname, "..", "..");
-const layoutPath = path.join(repoRoot, "app", "(app)", "layout.tsx");
+// Vỏ nằm ở components/AppShell.tsx; app/(app)/layout.tsx chỉ gọi nó.
+const layoutPath = path.join(repoRoot, "components", "AppShell.tsx");
 const source = readFileSync(layoutPath, "utf8");
 
 describe("lớp vỏ (app)", () => {
+  it("app/(app)/layout.tsx dùng vỏ chung", () => {
+    const layout = readFileSync(path.join(repoRoot, "app", "(app)", "layout.tsx"), "utf8");
+    expect(layout).toMatch(/<AppShell>/);
+  });
+
   it("render AppNavbar", () => {
     expect(source).toContain('from "@/components/AppNavbar"');
     expect(
       /<AppNavbar\s*\/>/.test(source),
-      "app/(app)/layout.tsx phải render <AppNavbar />; đây là chỗ duy nhất trong app dựng nó"
+      "components/AppShell.tsx phải render <AppNavbar />; đây là chỗ duy nhất dựng nó"
     ).toBe(true);
   });
 
@@ -52,12 +58,12 @@ describe("lớp vỏ (app)", () => {
     // đúng, và cổng này đang canh sai tệp.
     const { execSync } = require("node:child_process") as typeof import("node:child_process");
     const hits = execSync(
-      `grep -rl "<AppNavbar" --include="*.tsx" app/ || true`,
+      `grep -rl "<AppNavbar" --include="*.tsx" app/ components/ || true`,
       { cwd: repoRoot, encoding: "utf8" }
     )
       .split("\n")
       .filter(Boolean);
-    expect(hits).toEqual(["app/(app)/layout.tsx"]);
+    expect(hits).toEqual(["components/AppShell.tsx"]);
   });
 
   /** Thanh bên cao đúng một viewport, và chỉ RUỘT nó cuộn.
