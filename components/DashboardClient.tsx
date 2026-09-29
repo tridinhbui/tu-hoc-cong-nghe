@@ -708,7 +708,14 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
         localStorage.setItem(ONBOARDING_LOCAL_KEY, "1");
         setShowOnboarding(false);
       } catch (error) {
+        // Lưu lên server hỏng thì vẫn cho vào học: đóng màn hướng dẫn, giữ
+        // lộ trình vừa chọn và nhớ trên máy như nút "Bỏ qua". Trước đây lỗi
+        // bị nuốt ở đây mà màn hình vẫn đứng yên - bấm "Bắt đầu học" không
+        // có phản hồi nào.
         console.error("Error completing onboarding:", error);
+        setActiveTrack(selectedTrack);
+        localStorage.setItem(ONBOARDING_LOCAL_KEY, "1");
+        setShowOnboarding(false);
       }
     }
   };

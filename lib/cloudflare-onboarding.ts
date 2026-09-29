@@ -50,14 +50,21 @@ export async function completeOnboarding(
   const cloudflare = createClient();
   const { data, error } = await cloudflare
     .from("user_onboarding")
-    .upsert([
-      {
-        user_id: userId,
-        completed: true,
-        selected_track: selectedTrack,
-        completed_at: new Date().toISOString(),
-      },
-    ])
+    // D1: upsert phải nêu cột xung đột (query builder ném lỗi nếu thiếu), và
+    // "id" là TEXT NOT NULL không có mặc định nên phải tự sinh. Thiếu hai thứ
+    // này thì nút "Bắt đầu học" của màn hướng dẫn không làm gì cả.
+    .upsert(
+      [
+        {
+          id: crypto.randomUUID(),
+          user_id: userId,
+          completed: true,
+          selected_track: selectedTrack,
+          completed_at: new Date().toISOString(),
+        },
+      ],
+      { onConflict: "user_id" }
+    )
     .select()
     .single();
 

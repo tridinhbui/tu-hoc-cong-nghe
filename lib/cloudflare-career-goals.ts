@@ -80,7 +80,7 @@ export async function setCareerGoal(userId: string, careerId: string): Promise<C
   const cloudflare = createClient();
   const { error } = await cloudflare
     .from("user_career_goals")
-    .upsert({ user_id: userId, career_id: careerId, set_at: new Date().toISOString() });
+    .upsert({ user_id: userId, career_id: careerId, set_at: new Date().toISOString() }, { onConflict: "user_id" });
 
   if (error) {
     if (isMissingTableError(error)) {

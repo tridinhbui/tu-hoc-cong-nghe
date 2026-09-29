@@ -29,7 +29,7 @@ export async function saveLessonVideoUrl(lessonId: number, videoUrl: string): Pr
   const cloudflare = createAdminClient();
   const { error } = await cloudflare
     .from("lesson_videos")
-    .upsert({ lesson_id: lessonId, video_url: videoUrl, updated_at: new Date().toISOString() });
+    .upsert({ lesson_id: lessonId, video_url: videoUrl, updated_at: new Date().toISOString() }, { onConflict: "lesson_id" });
   if (error) throw error;
 }
 
