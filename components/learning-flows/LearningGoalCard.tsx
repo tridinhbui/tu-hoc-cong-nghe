@@ -158,7 +158,7 @@ export default function LearningGoalCard({ id, effort, quiet = false, warm = fal
         </div>
         <p className="mt-1.5 text-sm leading-6 text-ink-soft">{r.pickHint}</p>
 
-        <ul className="mt-2.5 grid gap-px bg-surface-deep sm:grid-cols-2">
+        <ul className="mt-4 grid gap-3 sm:grid-cols-2">
           {LEARNING_FLOWS.map((f) => {
             const p = state.progress[f.id];
             const copy = t.learningFlows.flows[f.id];
@@ -172,21 +172,26 @@ export default function LearningGoalCard({ id, effort, quiet = false, warm = fal
               // phải chọn mù rồi mới thấy hành trình gồm những gì.
               <li
                 key={f.id}
-                className={`relative flex flex-col transition-colors ${
-                  on ? "bg-brand-50 ring-2 ring-inset ring-brand-600 dark:bg-brand-950/40 dark:ring-brand-400" : `group bg-surface hover:bg-page dark:hover:bg-stone-900 ${candidate ? "[&>*]:opacity-60 [&>*]:transition-opacity hover:[&>*]:opacity-100" : ""}`
+                // Mỗi mục là một thẻ riêng có viền xanh mảnh (trước là lưới
+                // kẻ ô xám liền nhau - đọc như một bảng, không như lựa chọn).
+                // Rê chuột: viền đậm lên và nổi nhẹ; đang chọn: viền 2px.
+                className={`relative flex flex-col overflow-hidden rounded-card border transition-[border-color,box-shadow,background-color] duration-200 ${
+                  on
+                    ? "border-brand-600 bg-brand-50 ring-1 ring-brand-600 dark:border-brand-400 dark:bg-brand-950/40 dark:ring-brand-400"
+                    : `group border-brand-300 bg-surface hover:border-brand-500 hover:shadow-[0_6px_18px_-12px_rgba(41,97,184,0.55)] dark:border-brand-900 dark:hover:border-brand-600 ${candidate ? "[&>*]:opacity-60 [&>*]:transition-opacity hover:[&>*]:opacity-100" : ""}`
                 }`}
               >
                 {/* Thanh trái 3px: dấu chọn đọc được cả khi không phân biệt màu nền. */}
                 <span
                   aria-hidden
-                  className={`absolute inset-y-0 left-0 w-[3px] ${on ? "bg-brand-600 dark:bg-brand-500" : "bg-transparent"}`}
+                  className={`absolute inset-y-0 left-0 w-[3px] transition-colors ${on ? "bg-brand-600 dark:bg-brand-500" : "bg-brand-300 group-hover:bg-brand-500 dark:bg-brand-800"}`}
                 />
                 <button
                   type="button"
                   aria-pressed={on}
                   disabled={pending}
                   onClick={() => setCandidate(on ? null : f.id)}
-                  className="flex flex-1 flex-col gap-2 px-3.5 pt-3 pb-1.5 text-left disabled:opacity-60"
+                  className="flex flex-1 flex-col gap-2 px-4 pt-4 pb-1.5 text-left disabled:opacity-60"
                 >
                   <span className="flex w-full items-start gap-3">
                     <Glyph
@@ -218,7 +223,7 @@ export default function LearningGoalCard({ id, effort, quiet = false, warm = fal
                 </button>
                 <Link
                   href={`/hoc-theo-nhu-cau/${f.id}`}
-                  className="mb-2.5 ml-[2.875rem] inline-flex items-center gap-1 self-start text-xs font-bold text-ink-muted underline-offset-4 hover:text-ink-max hover:underline"
+                  className="mb-3.5 ml-[3rem] inline-flex items-center gap-1 self-start text-xs font-bold text-ink-muted underline-offset-4 hover:text-ink-max hover:underline"
                 >
                   {c.preview} <ArrowRight className="h-3 w-3" aria-hidden />
                 </Link>
