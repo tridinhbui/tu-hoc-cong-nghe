@@ -93,7 +93,7 @@ export function getLevelProgress(currentXp: number) {
   return Math.min(100, Math.max(0, progress));
 }
 
-/* ─── XP Constants (Chống lạm phát XP) ───────────────────────────────── */
+/* ─── XP Constants (Chống XP tăng vô tội vạ) ───────────────────────────────── */
 
 /** XP cho một bài học hoàn thành. Đây là NGUỒN DUY NHẤT của con số đó:
  *  recalculateUserStats nhân số bài đã xong với nó, và mọi câu chữ hứa hẹn XP

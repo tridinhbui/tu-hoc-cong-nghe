@@ -347,7 +347,7 @@ export function looseEquals(a: CellValue | undefined, b: CellValue | undefined):
   if (!Number.isNaN(an) && !Number.isNaN(bn) && String(a ?? "").trim() !== "" && String(b ?? "").trim() !== "") {
     return an === bn;
   }
-  // Cố ý KHÔNG cắt khoảng trắng: "HPG " khác "HPG" trong Excel, và chính sự
+  // Cố ý KHÔNG cắt khoảng trắng: "CDN " khác "CDN" trong Excel, và chính sự
   // khác biệt vô hình đó là nguyên nhân số một của lỗi tra cứu mà bài 2 dạy.
   // Cắt hộ ở đây sẽ làm bài tập luôn chạy đúng và xoá mất bài học.
   return toText(a).toLowerCase() === toText(b).toLowerCase();

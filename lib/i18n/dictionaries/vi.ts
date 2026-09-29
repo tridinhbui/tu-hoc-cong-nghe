@@ -1000,7 +1000,7 @@ export const vi = {
     flaggedLessons: "Bài tự đánh dấu ({count})",
   },
 
-  // app/(app)/phong-van-ky-thuat/page.tsx - the IB interview drill.
+  // app/(app)/phong-van-ky-thuat/page.tsx - the technical interview drill.
   interview: {
     missedTitle: "Câu bạn hay sai",
     missedRatio: "sai {wrong}/{attempted}",
@@ -2620,7 +2620,7 @@ export const vi = {
     finish: "Hoàn tất",
     nextQuestion: "Câu tiếp theo",
   },
-  // components/MockInterviewModal.tsx - the timed IB mock interview.
+  // components/MockInterviewModal.tsx - the timed mock interview.
   mockInterview: {
     fallbackCategory: "Phỏng vấn",
     saveFailed: "Không lưu được kết quả phỏng vấn, nhưng bạn vẫn xem được phần chấm điểm.",

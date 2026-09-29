@@ -2,8 +2,8 @@
 // những từ mà một bài học về đúng chủ đề ấy gần như không thể không dùng.
 //
 // Lý do cần bảng: `interactiveType` là một chuỗi tự do gắn tay vào từng bài,
-// và không có gì đối chiếu nó với nội dung bài. Sai một chữ thì bài về mô hình
-// hoá độ biến động GARCH hiện ra biểu đồ so sánh lãi đơn với lãi kép - không
+// và không có gì đối chiếu nó với nội dung bài. Sai một chữ thì bài về an toàn
+// thông tin hiện ra biểu đồ ước lượng dung lượng - không
 // lỗi, không cảnh báo, chỉ là một khối "Thử nghiệm tương tác" nói chuyện khác.
 // Mười bài mới thêm trong một ngày đã dính đúng lỗi đó.
 //
@@ -18,7 +18,7 @@
    chính tệp này và bộ kiểm của nó.
 
    Dịch chúng sang tiếng Anh sẽ làm mọi phép so khớp trượt, và triệu chứng đúng
-   bằng lỗi mà chú thích đầu tệp mô tả: bài về GARCH hiện ra biểu đồ lãi kép,
+   bằng lỗi mà chú thích đầu tệp mô tả: bài lệch chủ đề hiện ra widget khác,
    không lỗi, không cảnh báo. */
 export const WIDGET_TOPIC_TERMS: Record<string, string[]> = {
   // Widget này vẽ một đường cong theo thời gian (tăng trưởng, tích luỹ, tải).
@@ -34,10 +34,6 @@ export const WIDGET_TOPIC_TERMS: Record<string, string[]> = {
   budget: ["dung lượng", "dự phòng", "tải nền", "cao điểm", "cấp phát", "hạn mức", "tỷ lệ để trống", "ngân sách"],
   prospect: ["tâm lý", "hành vi", "prospect", "mất mát", "thiên kiến", "behavioral", "sai lầm"],
   "supply-demand": ["cung", "cầu", "giá cân bằng", "thị trường", "chi phí biên", "sức mua"],
-  // Loại tính lạm phát đã tạm rút khỏi WIDGET_TYPES (xem chú thích trong
-  // components/InteractiveWidget.tsx), và bảng này chỉ được chứa widget có
-  // thật. Khi có bài về sức mua theo thời gian, thêm lại cả hai chỗ cùng lúc:
-  // ["lạm phát", "sức mua"]
   "ethics-case": ["đạo đức", "ethics", "chuẩn mực", "standard", "xung đột lợi ích", "tuân thủ", "xác minh danh tính", "lỗ hổng", "gian lận", "công bố", "trọng yếu", "khủng hoảng"],
   "tail-risk": ["p99", "độ trễ", "latency", "percentile", "phân vị", "đuôi", "tail", "tốc độ tải", "thời gian chờ", "biến động", "phân phối"],
   ratios: ["độ phủ", "tỷ trọng", "chỉ số", "tỷ lệ", "khẳng định", "kiểm thử", "nợ kỹ thuật", "phần rủi ro"],

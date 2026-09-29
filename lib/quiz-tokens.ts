@@ -17,14 +17,14 @@ import { createHmac, timingSafeEqual } from "crypto";
 export interface QuestionTokenPayload {
   lessonId: number;
   correct: number;
-  /** IB question bank category, carried so the submit route can record which
+  /** Interview question bank category, carried so the submit route can record which
    *  topic each answer belonged to - the client never sends this, so it can't
    *  be forged to make a weak area look strong. Optional: lesson quizzes have
    *  no category, and tokens minted before this field existed must still
    *  verify rather than scoring every in-flight answer as wrong. */
   category?: string;
   /** The bank question's own id, so an attempt can be traced back to the
-   *  exact question. Only set for IB questions. */
+   *  exact question. Only set for interview questions. */
   questionId?: number;
   /** Index of the question within its lesson's quiz array.
    *

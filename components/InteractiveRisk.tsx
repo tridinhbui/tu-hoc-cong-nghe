@@ -33,7 +33,7 @@ export default function InteractiveRisk() {
 
   // Dải kết quả xấp xỉ bằng ±1 độ lệch chuẩn của lợi suất cộng dồn. Độ lệch
   // chuẩn nhiều năm co lại theo căn bậc hai của thời gian, còn phần giữa thì
-  // tăng theo lãi kép - chính hai tốc độ khác nhau đó là bài học.
+  // tăng theo cấp số nhân - chính hai tốc độ khác nhau đó là bài học.
   const band = useMemo(() => {
     const mid = Math.pow(1 + profile.ret / 100, years);
     const spread = (profile.vol / 100) * Math.sqrt(years);

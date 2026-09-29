@@ -1,6 +1,6 @@
 import type { Lesson } from "./lesson-types";
 
-// Chặng 16 của track cá nhân: phòng lừa đảo và an toàn tài chính.
+// Chặng 16 của track cá nhân: phòng lừa đảo và an toàn số.
 //
 // VÌ SAO CHẶNG NÀY TỒN TẠI. Track cá nhân có đúng MỘT bài về lừa đảo (id 284,
 // trong chặng Quản lý tài sản), trong khi đây là nguyên nhân mất tiền nhanh

@@ -3,8 +3,8 @@
 import { getLessonsMeta } from "@/lib/lessons-loader";
 import type { LessonMeta } from "@/lib/lesson-types";
 
-// Strips Vietnamese diacritics so a learner typing "roe" or "lai kep" without
-// dấu still matches "ROE" / "lãi kép" - most people type without accents on
+// Strips Vietnamese diacritics so a learner typing "git" or "vong lap" without
+// dấu still matches "Git" / "vòng lặp" - most people type without accents on
 // mobile, and 108+ lessons is too many to browse by scrolling the stage list
 // to find one by name.
 function normalize(text: string): string {

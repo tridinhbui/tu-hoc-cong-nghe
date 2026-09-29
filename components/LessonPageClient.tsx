@@ -42,8 +42,8 @@ interface Props {
  *  chuỗi trong khi mỗi bài học đều hiện một câu ví von tiếng Việt.
  *
  *  Danh sách từ khoá thì GIỮ NGUYÊN và không dịch: chúng dò trên tiêu đề bài,
- *  và mỗi khoá đã có sẵn cả bản tiếng Việt lẫn tiếng Anh ("lãi kép" ||
- *  "compound"), nên bộ dò vẫn khớp khi bài đã được dịch. Đây là toán hạng so
+ *  và mỗi khoá đã có sẵn cả bản tiếng Việt lẫn tiếng Anh ("vòng lặp" ||
+ *  "loop"), nên bộ dò vẫn khớp khi bài đã được dịch. Đây là toán hạng so
  *  sánh, không phải câu chữ. */
 type MetaphorId =
   | "commandLine"

@@ -91,7 +91,6 @@ export const TOPIC_ADVICE: Record<StageTopicId, TopicAdviceId> = {
   "quant-data": "generic",
   "career-application": "generic",
   "vn-product": "generic",
-  // "đầu tư thay thế" là đầu tư; substring cũ không bắt được vì chữ thường.
   "private-markets": "investing",
   "wealth-insurance": "generic",
   "infra-project": "generic",
@@ -114,8 +113,7 @@ export const TOPIC_ADVICE: Record<StageTopicId, TopicAdviceId> = {
  *  không lộ ra ở đâu: mọi bài vẫn có một chủ đề, chỉ là sai chủ đề, và cái sai
  *  đi thẳng vào topicGapSummary ("bạn đang yếu chủ đề gì") cùng
  *  recommendedActionForTopic ("nên làm gì tiếp") trên dashboard. Người học vấp
- *  quiz Thuế TNCN được bảo là yếu "Đầu tư cá nhân" rồi khuyên đi đọc lại một
- *  tình huống đầu tư.
+ *  quiz một chặng được bảo là yếu một chủ đề khác hẳn.
  *
  *  Viết thành BẢNG chứ không phải chuỗi if, vì một mục thiếu ở đây là một nhãn
  *  không có chủ đề - lesson-stage-topics.test.ts thấy ngay - còn một điều kiện
@@ -133,8 +131,6 @@ const PERSONAL_STAGE_TOPIC: Record<string, StageTopicId> = {
   "Chặng 8": "portfolio-retirement",
   "Chặng 9": "housing-protection",
   "Chặng 10": "investing-psychology",
-  // Chặng 11 nói về vế thu nhập, không phải vế phân bổ - nên nó thuộc nhóm nền
-  // tảng tiền bạc chứ không thuộc nhóm đầu tư cá nhân.
   "Chặng 11": "money-foundations",
   "Chặng 12": "banking-deposits",
   "Chặng 13": "gold-fx",
@@ -176,9 +172,8 @@ const PERSONAL_STAGE_TOPIC: Record<string, StageTopicId> = {
  *
  *  Chọn id chủ đề ở đây là đang định tuyến cả lời khuyên, qua TOPIC_ADVICE. Bản
  *  cũ định tuyến bằng topic.includes("Kế toán" | "Định giá" | "Rủi ro" | ...)
- *  trên chính câu chữ hiển thị, và includes phân biệt hoa thường - nên
- *  "Private markets & đầu tư thay thế" trượt câu khuyên về đầu tư chỉ vì chữ
- *  "đầu tư" viết thường. Giờ tra bằng id nên chuyện đó không xảy ra được nữa. */
+ *  trên chính câu chữ hiển thị, và includes phân biệt hoa thường - nên một
+ *  nhãn viết thường là trượt câu khuyên. Giờ tra bằng id nên chuyện đó không xảy ra được nữa. */
 const PROFESSIONAL_STAGE_TOPIC: Record<string, StageTopicId> = {
   "Chặng 1": "accounting-reporting",
   "Chặng 2": "accounting-reporting",

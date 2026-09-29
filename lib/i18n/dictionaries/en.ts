@@ -2454,7 +2454,7 @@ export const en: Dictionary = {
     finish: "Finish",
     nextQuestion: "Next question",
   },
-  // components/MockInterviewModal.tsx - the timed IB mock interview.
+  // components/MockInterviewModal.tsx - the timed mock interview.
   mockInterview: {
     fallbackCategory: "Interview",
     saveFailed: "Could not save your interview result, but you can still see the scoring.",

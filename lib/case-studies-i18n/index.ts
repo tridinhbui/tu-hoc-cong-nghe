@@ -6,7 +6,7 @@ import { caseStudiesEn } from "./en";
  * Bản dịch 3 case study doanh nghiệp Việt Nam trong lib/case-studies-data.ts.
  *
  * KHÔNG GHI ĐÈ ĐƯỢC, và ở đây danh sách dài hơn mọi bộ trước:
- *   `ticker`      mã cổ phiếu - FPT, VNM, HPG là mã trên sàn, không phải chữ.
+ *   `ticker`      mã ngắn của tình huống (SCALE, DB-MIG, SEV-1) - là mã, không phải chữ.
  *   `difficulty`  giá trị enum dùng để chọn màu và lọc.
  *   `xpReward`,
  *   `coinReward`  số, và là phần thưởng thật ghi vào tài khoản người học.

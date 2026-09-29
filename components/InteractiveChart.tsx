@@ -12,10 +12,7 @@ import { format } from "@/lib/i18n";
 // đầu rồi mở toác ra về sau. Đọc "ngoại suy tuyến tính luôn thiếu" thì gật
 // đầu; nhìn hai đường tách nhau thì mới tin - và mới hiểu vì sao một kế hoạch
 // dung lượng dựng từ dữ liệu ba tháng đầu hụt đúng vào lúc tải cao nhất.
-//
-// Phép tính giữ nguyên từ bản trước (lãi đơn so với lãi kép): cùng một cặp
-// đường, đổi tên trục và đổi phần diễn giải. Ghi lại để người sau khỏi đi tìm
-// lý do vì sao mã tính lãi lại nằm trong một widget về tải.
+
 
 const WIDTH = 320;
 const HEIGHT = 150;

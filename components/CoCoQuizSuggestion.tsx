@@ -39,7 +39,7 @@ interface CoCoQuizSuggestionProps {
   onSelect: (track: QuizTrack, difficulty: QuizDifficulty) => void;
 }
 
-/** Gợi ý một phiên luyện theo bài vừa học (trước đây là thẻ "Tài Tài gợi ý").
+/** Gợi ý một phiên luyện theo bài vừa học.
  *
  *  Nằm trong TRAINING LAB, ngay dưới lời chào của Cơ Cơ - nên nó không vẽ
  *  thêm avatar thứ hai, chỉ là một dòng cấu hình dựng sẵn: bài gốc, mảng, độ

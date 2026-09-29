@@ -52,8 +52,8 @@ function keywords(text: string): string[] {
 // Pick the tip whose text shares the most keywords with the lesson's own
 // title/subtitle - previously this just used lessonId % pool.length, which
 // picks tips arbitrarily within a Chặng's pool and often surfaces a tip about
-// a completely different lesson in the same Chặng (e.g. a "khẩu vị rủi ro"
-// tip under the "quỹ khẩn cấp" lesson). Falls back to the old modulo when no
+// a completely different lesson in the same Chặng (e.g. a Git tip under a
+// networking lesson). Falls back to the old modulo when no
 // tip shares any keyword, so every lesson still gets a tip.
 function getTip(t: Dictionary, lessonId: number, lessonTitle: string): string {
   const stageTips = stageTipsOf(t);

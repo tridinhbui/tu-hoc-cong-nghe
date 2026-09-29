@@ -186,10 +186,7 @@ export const TRACK_PERSONAL = {
       ],
     },
     {
-      // Chặng 11 nói về vế còn lại của phương trình: số tiền ĐI VÀO. Mười
-      // chặng trên phủ rất kỹ việc phân bổ và đầu tư số tiền đã có, nhưng
-      // không có bài nào về thu nhập - trong khi với người đi làm, đó thường
-      // là biến thay đổi được nhiều nhất.
+      // Chặng 11: nghề lập trình - thu nhập, đàm phán và học tiếp.
       //
       // Ids 300-309 nằm ngay sau Chặng 9 (289-298). Dải 299-800 trống hoàn
       // toàn ở cả tệp này lẫn career-competency.ts, nên khai báo được bằng
@@ -207,11 +204,6 @@ export const TRACK_PERSONAL = {
       ],
     },
     {
-      // Chặng 12: nơi gần như 100% người học Việt Nam thật sự để tiền. Track
-      // này dạy rất kỹ cổ phiếu, trái phiếu và danh mục, nhưng sổ tiết kiệm
-      // ngân hàng thì trước đây không có bài nào - nên người học biết tính
-      // duration của trái phiếu mà không biết vì sao rút sổ trước hạn lại mất
-      // gần hết lãi.
       label: "Chặng 12",
       name: "Linux, mạng & giao thức",
       days: [310, 319] as [number, number],
@@ -240,8 +232,6 @@ export const TRACK_PERSONAL = {
       ],
     },
     {
-      // Chặng 14: Chặng 4 có 20 bài lý thuyết về cổ phiếu nhưng không bài nào
-      // nói người học phải làm gì để MUA được một cổ phiếu ở Việt Nam.
       label: "Chặng 14",
       name: "Thị trường IT Việt Nam trong thực tế",
       days: [330, 339] as [number, number],
@@ -881,9 +871,7 @@ export const TRACK_PROFESSIONAL = {
       ],
     },
     {
-      // Chặng 10 dạy vì sao mua, mua ai, trả bằng gì và vì sao hậu sáp nhập
-      // hay hỏng. Chặng này lo phần cơ khí ở giữa - và là phần mà bộ câu hỏi
-      // phỏng vấn IB hỏi nhiều nhất trong khi chưa có bài học nào dạy nó.
+      // Chặng 27: phần cơ khí của phát hành và di trú hệ thống.
       label: "Chặng 27",
       name: "Cơ chế phát hành và di trú hệ thống",
       days: [1521, 1526] as [number, number],

@@ -3,7 +3,7 @@
 import Image from "next/image";
 
 /**
- * Cơ Cơ - linh vật trợ lý học của app (thay Tài Tài của bản tài chính).
+ * Cơ Cơ - linh vật trợ lý học của app.
  *
  * Hai ảnh: `head` (mặc định) cho khung nhỏ - dưới ~48px thân và laptop chỉ
  * còn là một đốm, nên cắt lấy phần đầu cho dễ nhận ra; `full` cho chỗ đủ rộng

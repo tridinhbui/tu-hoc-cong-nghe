@@ -1,13 +1,6 @@
 import type { Lesson } from "./lesson-types";
 
-// Chặng 12 của track cá nhân: ngân hàng, tiết kiệm và tiền gửi.
-//
-// VÌ SAO CHẶNG NÀY TỒN TẠI. Track cá nhân dạy rất kỹ cổ phiếu (20 bài), trái
-// phiếu (20 bài) và danh mục (22 bài), nhưng nơi mà gần như 100% người học
-// Việt Nam thật sự để tiền - sổ tiết kiệm ngân hàng - thì không có bài nào.
-// Kết quả là người học biết tính duration của trái phiếu nhưng không biết vì
-// sao rút sổ trước hạn lại mất gần hết lãi, hay bảo hiểm tiền gửi bảo vệ tới
-// đâu.
+// Chặng 12 của track cá nhân: tiến trình, hệ điều hành và mạng.
 //
 // Ids 310-319 nối tiếp Chặng 11 (300-309) trong dải 299-800 vốn trống.
 // Id là VỊ TRÍ trong lộ trình chứ không phải số tự tăng - xem chú thích đầu

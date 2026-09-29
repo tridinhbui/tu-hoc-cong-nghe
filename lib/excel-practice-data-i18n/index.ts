@@ -12,7 +12,7 @@ import { excelPracticeEn } from "./en";
  * 1. `formula` và `solution`. Tên hàm Excel và từ khoá SQL đã là tiếng Anh, và
  *    bộ chấm so bằng GIÁ TRỊ tính ra - dịch một công thức mẫu là làm nó sai.
  *
- * 2. Ô chứa mã chứng khoán. `A3` của bộ excel-lookup là `"HPG "` với một khoảng
+ * 2. Ô chứa mã dịch vụ. `A3` của bộ excel-lookup có với một khoảng
  *    trắng ở cuối, và cả nhiệm vụ 2 của bộ đó tồn tại để học viên tìm ra khoảng
  *    trắng ấy. Chạm vào ô này là xoá mất bài học.
  *
@@ -27,7 +27,7 @@ import { excelPracticeEn } from "./en";
 
 /** Ô có nội dung chuỗi mà KHÔNG phải chữ hiển thị, theo từng bộ. */
 export const NOT_COPY_CELLS: Record<string, ReadonlySet<string>> = {
-  // Mã chứng khoán ở cả bảng nguồn và danh mục. A3 = "HPG " (có khoảng trắng).
+  // Mã dịch vụ ở cả bảng nguồn và bảng tra. A3 có khoảng trắng ở cuối.
   "excel-lookup": new Set(["A2", "A3", "A4", "A5", "A6", "E2", "E3", "E4", "E5"]),
   // Nhãn tháng T1..T12.
   "excel-shortcuts": new Set(Array.from({ length: 12 }, (_, i) => `A${i + 2}`)),

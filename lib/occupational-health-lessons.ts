@@ -10,7 +10,7 @@ import type { Lesson } from "./lesson-types";
 //
 // KHÔNG ĐIỀN interactiveType. Trường này tuỳ chọn, và không widget nào trong
 // WIDGET_TOPIC_TERMS nói về sức khoẻ nghề nghiệp - gắn ép thì widget-topic-match
-// im nhưng người học mở bài Tư thế ra lại thấy một máy tính lãi kép.
+// im nhưng người học mở bài Tư thế ra lại thấy một biểu đồ tải hệ thống.
 //
 // Ids 380-384 nối tiếp Chặng 18 (370-376).
 
