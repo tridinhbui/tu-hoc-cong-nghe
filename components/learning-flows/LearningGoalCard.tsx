@@ -92,10 +92,12 @@ export default function LearningGoalCard({ id, effort, quiet = false, warm = fal
     return (
       <section id={id} className="scroll-mt-6">
         <h3 className="text-base font-black tracking-tight text-ink-max dark:text-stone-100">{c.pickTitle}</h3>
-        <p className="mt-1 text-sm leading-6 text-ink-muted dark:text-stone-400">{r.pickHint}</p>
-        <ul className="mt-4 grid gap-2.5 sm:grid-cols-2">
+        <p className="mt-1 text-sm leading-6 text-ink-body dark:text-stone-300">{r.pickHint}</p>
+        <ul className="mt-5 grid gap-3 sm:grid-cols-2">
           {LEARNING_FLOWS.map((f) => {
             const on = candidate === f.id;
+            const fp = state.progress[f.id];
+            const pct = fp.total ? Math.round((fp.done / fp.total) * 100) : 0;
             return (
               <li key={f.id}>
                 <button
@@ -103,22 +105,33 @@ export default function LearningGoalCard({ id, effort, quiet = false, warm = fal
                   aria-pressed={on}
                   disabled={pending}
                   onClick={() => setCandidate(on ? null : f.id)}
-                  className={`group flex w-full items-start gap-3 rounded-2xl px-4 py-3.5 text-left transition-[background-color,box-shadow,opacity] duration-200 disabled:opacity-60 ${
+                  className={`group flex h-full w-full flex-col gap-3 rounded-[18px] p-4 text-left transition-[background-color,box-shadow,transform,opacity] duration-200 disabled:opacity-60 motion-safe:hover:-translate-y-0.5 ${
                     on
-                      ? "bg-brand-50 ring-2 ring-brand-600 dark:bg-brand-950/40 dark:ring-brand-400"
-                      : `hover:bg-surface-raised dark:hover:bg-white/5 ${candidate ? "opacity-60 hover:opacity-100" : ""}`
+                      ? "bg-brand-50 shadow-[0_10px_28px_-16px_rgba(41,97,184,0.7)] ring-2 ring-brand-600 dark:bg-brand-950/50 dark:ring-brand-400"
+                      : `bg-brand-50/60 ring-1 ring-brand-100 hover:bg-brand-50 hover:shadow-[0_10px_28px_-18px_rgba(41,97,184,0.6)] hover:ring-brand-300 dark:bg-white/5 dark:ring-white/10 dark:hover:bg-white/10 ${candidate ? "opacity-60 hover:opacity-100" : ""}`
                   }`}
                 >
-                  <Glyph emoji={f.emoji} className={`mt-0.5 h-5 w-5 shrink-0 transition-colors ${on ? "text-accent" : "text-ink-faint group-hover:text-ink-muted"}`} />
-                  <span className="min-w-0 flex-1">
-                    <span className={`block font-bold leading-snug transition-colors ${on ? "text-brand-950 dark:text-stone-100" : "text-ink-soft group-hover:text-ink-max dark:text-stone-400"}`}>{t.learningFlows.flows[f.id].title}</span>
-                    <span className="mt-0.5 block line-clamp-1 text-xs text-ink-faint dark:text-stone-400">{r.flows[f.id].output}</span>
+                  <span className="flex w-full items-start gap-3">
+                    <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl transition-colors ${on ? "bg-brand-600 text-white" : "bg-white text-brand-600 shadow-sm group-hover:bg-brand-600 group-hover:text-white dark:bg-stone-900 dark:text-brand-300"}`}>
+                      <Glyph emoji={f.emoji} className="h-5 w-5" />
+                    </span>
+                    <span className="min-w-0 flex-1">
+                      <span className="block font-black leading-snug tracking-tight text-ink-max dark:text-stone-100">{t.learningFlows.flows[f.id].title}</span>
+                      <span className="mt-1 flex items-start gap-1.5 text-[13px] font-semibold leading-snug text-brand-800 dark:text-brand-200">
+                        <ArrowRight className="mt-0.5 h-3.5 w-3.5 shrink-0 text-brand-500" aria-hidden />
+                        <span className="line-clamp-2">{r.flows[f.id].output}</span>
+                      </span>
+                    </span>
+                    {on ? <Check className="mt-1 h-5 w-5 shrink-0 text-accent" aria-hidden /> : null}
                   </span>
-                  {on ? (
-                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-accent" aria-hidden />
-                  ) : (
-                    <span className="shrink-0 pt-0.5 font-mono text-[11px] tabular-nums text-ink-faint">{effortOf(f.id)}</span>
-                  )}
+                  <span className="mt-auto flex items-center gap-3 pl-[52px]">
+                    <span className="h-1.5 flex-1 overflow-hidden rounded-full bg-white ring-1 ring-brand-100 dark:bg-white/10 dark:ring-0">
+                      <span className="block h-full rounded-full bg-gradient-to-r from-brand-500 to-cyan-400" style={{ width: `${Math.max(fp.done ? 4 : 0, pct)}%` }} />
+                    </span>
+                    <span className="shrink-0 font-mono text-[11px] font-semibold tabular-nums text-ink-muted dark:text-stone-400">
+                      {fp.done > 0 ? `${fp.done}/${fp.total}` : effortOf(f.id)}
+                    </span>
+                  </span>
                 </button>
               </li>
             );

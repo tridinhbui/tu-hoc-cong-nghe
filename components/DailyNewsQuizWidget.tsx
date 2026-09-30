@@ -167,7 +167,9 @@ export default function DailyNewsQuizWidget({ userId, compact = false, variant =
   const [isCorrect, setIsCorrect] = useState<boolean>(false);
   // On the dashboard sidebar this is now treated as a "today in tech"
   // block rather than an optional challenge, so it starts open by default.
-  const [collapsed, setCollapsed] = useState<boolean>(false);
+  // Bản `quiet` (cột phải dashboard) bắt đầu GẬP: thử thách là việc phụ, không
+  // được tranh chỗ với hành trình học. Mở ra bằng một cú bấm.
+  const [collapsed, setCollapsed] = useState<boolean>(quiet);
 
   // "Unlimited" continuous practice mode: cycles through the same fixed
   // question pool (NEWS_QUIZZES is hand-authored, not a live feed - there's

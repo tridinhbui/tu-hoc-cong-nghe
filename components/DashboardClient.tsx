@@ -9,7 +9,7 @@ import CoCoSays from "@/components/CoCoSays";
 import { useRouter, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
-import { CheckCircle2, Lock, CheckCheck, Bookmark, ChevronLeft, ChevronRight, Search, X, Route, Users, Construction, Clock, LockOpen, ChevronDown, Play, Layers, HardHat, Flag, FileText, Compass, BookOpen, Award, ArrowRight, Trophy, GitBranch, Code2, Globe, Braces, Database, Server, Cloud, ShieldCheck, Smartphone, Cpu, GraduationCap, BriefcaseBusiness, TerminalSquare, type LucideIcon } from "lucide-react";
+import { CheckCircle2, Lock, CheckCheck, Bookmark, ChevronLeft, ChevronRight, Search, X, Route, Users, Construction, Clock, LockOpen, ChevronDown, Play, Layers, HardHat, Flag, FileText, Compass, BookOpen, Award, ArrowRight, Trophy, GitBranch, Code2, Globe, Braces, Database, Server, Cloud, ShieldCheck, Smartphone, Cpu, GraduationCap, BriefcaseBusiness, TerminalSquare, Sparkles, type LucideIcon } from "lucide-react";
 import { getCommunityLearningNow, getLessonLearnerCounts, type CommunityLearner } from "@/lib/community-learning";
 import { stripStageLessonPrefix } from "@/lib/lesson-stage-prefix";
 import { useResizableSidebar, SIDEBAR_MIN_WIDTH, SIDEBAR_MAX_WIDTH } from "@/lib/use-resizable-sidebar";
@@ -47,7 +47,7 @@ import { hasCompletedOnboarding, completeOnboarding } from "@/lib/cloudflare-onb
 import { getUserProfile, recalculateUserStats, getLeaderboardByMetric } from "@/lib/cloudflare-user";
 import { syncLocalLevelExams } from "@/lib/cloudflare-level-exams";
 import { getDashboardSummary, getLessonState, type DashboardSummary, type LessonState } from "@/lib/cloudflare-dashboard-optimized";
-import { getLevelByXp, getLevelProgress, LEVELS } from "@/lib/levels";
+import { getLevelByXp, getLevelProgress, LEVELS, XP_PER_LESSON } from "@/lib/levels";
 import UnlockRequestModal from "@/components/UnlockRequestModal";
 import StageMilestoneExamModal from "@/components/StageMilestoneExamModal";
 import CertificateModal from "@/components/CertificateModal";
@@ -1247,51 +1247,63 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                   {/* ── Tiến độ: cấp, XP, chuỗi ngày trong một mặt nền.
                       Dải cấp đầy đủ và danh sách người ở từng cấp chỉ mở khi
                       bấm "Xem các cấp". */}
-                  <section className="px-1">
+                  <section className="rounded-[20px] bg-gradient-to-br from-brand-50 to-white p-5 ring-1 ring-brand-100 sm:p-6 dark:from-brand-950/40 dark:to-stone-900 dark:ring-brand-900/60">
                     <div className="flex flex-wrap items-center justify-between gap-x-8 gap-y-5">
                       <div className="flex min-w-0 items-center gap-5">
-                        <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-2xl ring-1 ring-line dark:ring-white/10">
-                          <Image
-                            src={`/levels/level${currentUserLevel}.jpg`}
-                            alt={t.levelTitles[currentUserLevel] ?? ""}
-                            width={64}
-                            height={64}
-                            className="h-full w-full scale-[1.08] object-cover"
-                          />
+                        <div className="relative shrink-0">
+                          <div className="h-[72px] w-[72px] overflow-hidden rounded-2xl ring-2 ring-white shadow-[0_8px_20px_-12px_rgba(41,97,184,0.7)] dark:ring-brand-900">
+                            <Image
+                              src={`/levels/level${currentUserLevel}.jpg`}
+                              alt={t.levelTitles[currentUserLevel] ?? ""}
+                              width={72}
+                              height={72}
+                              className="h-full w-full scale-[1.08] object-cover"
+                            />
+                          </div>
+                          {/* Huy hiệu cấp đè góc ảnh: dấu thành tích, không phải nút. */}
+                          <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-brand-600 px-2 py-0.5 font-mono text-[10px] font-black tabular-nums text-white shadow ring-2 ring-white dark:ring-stone-900">
+                            LV{String(currentUserLevel).padStart(2, "0")}
+                          </span>
                         </div>
                         <div className="min-w-0">
-                          <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-ink-faint dark:text-stone-400">
+                          <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-accent-strong">
                             {t.revampDashboard.progressTitle}
                           </p>
-                          <div className="mt-1 flex flex-wrap items-baseline gap-x-2.5">
-                            <span className="font-mono text-xl font-black tabular-nums text-brand-950 dark:text-stone-100">
-                              LV{String(currentUserLevel).padStart(2, "0")}
-                            </span>
-                            <h3 className="text-lg font-black tracking-tight text-brand-950 dark:text-stone-100">
+                          <div className="mt-1 flex flex-wrap items-center gap-x-2.5 gap-y-1">
+                            <h3 className="text-xl font-black tracking-tight text-ink-max dark:text-stone-100">
                               {t.levelTitles[currentUserLevel] ?? LEVELS[currentUserLevel - 1]?.name}
                             </h3>
-                            <span className="font-mono text-xs font-semibold tabular-nums text-warn-strong">
+                            <span className="inline-flex items-center gap-1 rounded-full bg-amber-100 px-2 py-0.5 font-mono text-[11px] font-bold tabular-nums text-amber-800 dark:bg-amber-500/15 dark:text-amber-300">
+                              <Sparkles className="h-3 w-3" aria-hidden />
                               {format(t.revampDashboard.totalXp, { xp: userXp })}
                             </span>
                           </div>
-                          <div className="mt-3 h-2 w-full max-w-[360px] overflow-hidden rounded-full bg-surface-sunken dark:bg-white/10">
-                            <div className="h-full rounded-full bg-cyan-500 motion-safe:transition-[width] motion-safe:duration-700 dark:bg-cyan-400" style={{ width: `${nextLvl ? levelProgress : 100}%` }} />
+                          <div className="mt-3 h-2.5 w-full max-w-[380px] overflow-hidden rounded-full bg-brand-100 dark:bg-white/10">
+                            <div className="h-full rounded-full bg-gradient-to-r from-brand-600 to-cyan-400 motion-safe:transition-[width] motion-safe:duration-700" style={{ width: `${nextLvl ? Math.max(3, levelProgress) : 100}%` }} />
                           </div>
-                          <p className="mt-2 text-xs font-semibold text-ink-body dark:text-stone-400">
+                          <p className="mt-2 text-xs font-semibold text-ink-body dark:text-stone-300">
                             {nextLvl
                               ? format(t.dashboard.nextUnlockLine, { level: String(nextLvl.level).padStart(2, "0"), name: t.levelTitles[nextLvl.level] ?? nextLvl.name, xp: xpLeft })
                               : t.dashboard.maxLevelLine}
+                            {nextLvl && (
+                              <span className="font-medium text-ink-muted dark:text-stone-400">
+                                {" · "}
+                                {format(t.dashboard.nextUnlockHint, { lessons: Math.ceil(xpLeft / XP_PER_LESSON) })}
+                              </span>
+                            )}
                           </p>
                         </div>
                       </div>
-                      <DashboardStreakWidget userId={user.id} quiet />
+                      <div className="rounded-2xl bg-white/80 px-4 py-3 shadow-sm ring-1 ring-brand-100 dark:bg-stone-900/80 dark:ring-brand-900/60">
+                        <DashboardStreakWidget userId={user.id} quiet />
+                      </div>
                     </div>
 
                     <button
                       type="button"
                       onClick={() => setLevelsOpen((v) => !v)}
                       aria-expanded={levelsOpen}
-                      className="mt-4 inline-flex cursor-pointer items-center gap-1 text-xs font-semibold text-ink-faint transition-colors hover:text-brand-700 dark:text-stone-400 dark:hover:text-brand-300"
+                      className="mt-4 inline-flex cursor-pointer items-center gap-1 text-xs font-semibold text-brand-700 transition-colors hover:text-brand-900 dark:text-brand-300 dark:hover:text-brand-200"
                     >
                       {levelsOpen ? t.revampDashboard.hideDetails : t.revampDashboard.showLevels}
                       <ChevronDown className={`h-3.5 w-3.5 transition-transform ${levelsOpen ? "rotate-180" : ""}`} aria-hidden />
@@ -1474,11 +1486,11 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                     <div className="flex flex-wrap items-end justify-between gap-3 px-1">
                       <div>
                         <h2 className="text-xl font-black tracking-tight text-brand-950 dark:text-stone-100">{t.revampDashboard.roadmapTitle}</h2>
-                        <p className="mt-1 text-sm text-ink-muted dark:text-stone-400">{t.revampDashboard.roadmapSub}</p>
+                        <p className="mt-1 text-sm text-ink-body dark:text-stone-300">{t.revampDashboard.roadmapSub}</p>
                       </div>
                       <Link
                         href="/lo-trinh"
-                        className="group inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-semibold text-ink-muted transition-colors hover:bg-brand-50 hover:text-brand-700 dark:text-stone-400 dark:hover:bg-white/5 dark:hover:text-brand-300"
+                        className="group inline-flex items-center gap-1.5 rounded-full bg-brand-50 px-3.5 py-1.5 text-sm font-bold text-brand-700 transition-colors hover:bg-brand-100 dark:bg-white/5 dark:text-brand-300 dark:hover:bg-white/10"
                       >
                         <Route className="h-4 w-4" aria-hidden />
                         {t.revampDashboard.roadmapOpen}
@@ -1495,8 +1507,8 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                 {/* ── Cột phải: nhẹ, cho việc luyện tập và thông tin phụ ── */}
                 <aside className="min-w-0 space-y-6 xl:sticky xl:top-2">
                   <section className="px-1">
-                    <h2 className="text-sm font-bold tracking-tight text-ink-soft dark:text-stone-400">{t.revampDashboard.practiceTitle}</h2>
-                    <p className="mt-0.5 text-xs text-ink-faint dark:text-stone-400">{t.revampDashboard.practiceSub}</p>
+                    <h2 className="text-sm font-black tracking-tight text-ink-max dark:text-stone-100">{t.revampDashboard.practiceTitle}</h2>
+                    <p className="mt-0.5 text-xs text-ink-muted dark:text-stone-400">{t.revampDashboard.practiceSub}</p>
                     <nav className="-mx-2.5 mt-3 space-y-0.5">
                       {([
                         { href: "/kiem-tra", label: t.nav.quiz, icon: GraduationCap },
@@ -1507,9 +1519,9 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                         <Link
                           key={href}
                           href={href}
-                          className="group flex items-center gap-3 rounded-xl px-2.5 py-2 text-sm font-medium text-ink-muted transition-colors hover:bg-brand-50 hover:text-brand-700 dark:text-stone-400 dark:hover:bg-white/5 dark:hover:text-brand-300"
+                          className="group flex items-center gap-3 rounded-xl px-2.5 py-2 text-sm font-semibold text-ink-body transition-colors hover:bg-brand-50 hover:text-brand-700 dark:text-stone-300 dark:hover:bg-white/5 dark:hover:text-brand-300"
                         >
-                          <Icon className="h-4 w-4 shrink-0 text-ink-faint transition-colors group-hover:text-accent" aria-hidden />
+                          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-600 transition-colors group-hover:bg-brand-600 group-hover:text-white dark:bg-white/5 dark:text-brand-300"><Icon className="h-4 w-4" aria-hidden /></span>
                           <span className="flex-1">{label}</span>
                           <ChevronRight className="h-4 w-4 text-ink-faint opacity-0 transition-[opacity,transform] group-hover:translate-x-0.5 group-hover:opacity-100 group-focus-visible:opacity-100" aria-hidden />
                         </Link>
