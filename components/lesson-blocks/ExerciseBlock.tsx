@@ -19,6 +19,10 @@ interface Props {
   hints?: string[];
   /** Gọi mỗi lần đầu ra khớp. Lưu là việc của nơi gọi (có id bài). */
   onPass?: () => void;
+  /** Bắt đầu GẬP sau một nút "Thử tự viết code". Dùng ở các chặng đầu của
+   *  lộ trình nền tảng: người mới hoàn toàn gặp một ô soạn mã ở bài thứ ba
+   *  là lúc muốn bỏ cuộc (đi thử trang như người U40, 2026-09-29). */
+  collapsed?: boolean;
 }
 
 const INDENT = "    ";
@@ -28,9 +32,10 @@ const INDENT = "    ";
 // chữ theo một luật. Cuộn ngang thì textarea cuộn một mình, lớp màu đứng yên.
 const EDITOR_TEXT = CODE_TEXT.replace("whitespace-pre", "whitespace-pre-wrap [overflow-wrap:anywhere]");
 
-export default function ExerciseBlock({ language, title, task, starter, solution, expectedOutput, hints = [], onPass }: Props) {
+export default function ExerciseBlock({ language, title, task, starter, solution, expectedOutput, hints = [], onPass, collapsed = false }: Props) {
   const { t } = useI18n();
   const c = t.lessonCode;
+  const [open, setOpen] = useState(!collapsed);
   const [code, setCode] = useState(starter);
   const [grade, setGrade] = useState<GradeResult | null>(null);
   const [hintsShown, setHintsShown] = useState(0);
@@ -70,6 +75,27 @@ export default function ExerciseBlock({ language, title, task, starter, solution
 
   const lines = code.split("\n").length;
 
+  if (!open) {
+    return (
+      <section className="my-8 rounded-md border border-dashed border-line bg-surface-raised/50 px-4 py-4 sm:px-5 dark:bg-stone-900/50">
+        <p className="flex flex-wrap items-center gap-2 text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">
+          <span>{c.exerciseBadge}</span>
+          <span className="rounded-full bg-surface px-2 py-0.5 normal-case tracking-normal text-ink-body dark:bg-stone-800">{c.exerciseOptional}</span>
+        </p>
+        <h3 className="mt-2 text-base font-bold tracking-tight text-ink-heading">{title}</h3>
+        <p className="mt-1 max-w-[68ch] text-sm leading-6 text-ink-body">{c.exerciseOptionalNote}</p>
+        <button
+          type="button"
+          onClick={() => setOpen(true)}
+          className="mt-3 inline-flex items-center gap-1.5 rounded-sm border border-line px-3 py-1.5 text-xs font-bold text-ink-body transition-colors hover:border-accent hover:text-accent-strong"
+        >
+          <Play className="h-3.5 w-3.5" aria-hidden />
+          {c.exerciseOpen}
+        </button>
+      </section>
+    );
+  }
+
   return (
     <section className="my-8 overflow-hidden rounded-md border border-line bg-white dark:bg-stone-900">
       <header className="space-y-2 border-b border-line px-4 py-3 sm:px-5">
@@ -77,6 +103,8 @@ export default function ExerciseBlock({ language, title, task, starter, solution
           <span>{c.exerciseBadge}</span>
           <span className="text-ink-faint">·</span>
           <span className="font-mono">{c.languageNames[language]}</span>
+          <span className="text-ink-faint">·</span>
+          <span className="normal-case tracking-normal text-ink-muted">{c.exerciseOptional}</span>
         </p>
         <h3 className="text-lg font-black tracking-tight text-ink-max">{title}</h3>
         <p className="max-w-[68ch] whitespace-pre-line text-base leading-7 text-ink-body">{task}</p>

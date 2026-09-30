@@ -35,6 +35,7 @@ export const revampDashboardVi = {
     todayLabel: "HÔM NAY LÀM GÌ?",
     // Bố cục "hành trình": thẻ chính, tiến độ gọn, một khu lộ trình, cột luyện tập.
     heroLabel: "Học tiếp hôm nay",
+    flowLessonLabel: "Bài {n}/{total} · {flow}",
     progressTitle: "Tiến độ của bạn",
     showLevels: "Xem các cấp",
     roadmapTitle: "Lộ trình của bạn",
@@ -175,6 +176,7 @@ export const revampDashboardEn: typeof revampDashboardVi = {
     nextBadge: "NEXT",
     todayLabel: "WHAT SHOULD I DO TODAY?",
     heroLabel: "Continue today",
+    flowLessonLabel: "Lesson {n}/{total} · {flow}",
     progressTitle: "Your progress",
     showLevels: "See all levels",
     roadmapTitle: "Your roadmap",

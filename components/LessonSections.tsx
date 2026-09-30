@@ -8,6 +8,14 @@ import FeynmanCard from "@/components/learning-flows/FeynmanCard";
 import CodeBlock from "@/components/lesson-blocks/CodeBlock";
 import ExerciseBlock from "@/components/lesson-blocks/ExerciseBlock";
 import { recordExercisePass } from "@/lib/exercise-passes";
+import { TRACK_PERSONAL, isLessonInRange } from "@/lib/track-stages";
+
+// Hai chặng đầu của lộ trình nền tảng (máy tính, Git) dành cho người chưa định
+// lập trình: bài tập viết mã ở đó bắt đầu gập. Từ Chặng 3 (học lập trình) trở
+// đi, bài tập là phần chính của bài nên mở sẵn.
+const COLLAPSED_EXERCISE_STAGES = TRACK_PERSONAL.stages.filter((s) => s.label === "Chặng 1" || s.label === "Chặng 2");
+const exerciseStartsCollapsed = (lessonId?: number) =>
+  lessonId !== undefined && COLLAPSED_EXERCISE_STAGES.some((s) => isLessonInRange(lessonId, s));
 import { useI18n } from "@/lib/i18n/context";
 import { Sys } from "@/components/ui/system";
 
@@ -212,6 +220,7 @@ export default function LessonSections({
             expectedOutput={block.expectedOutput}
             hints={block.hints}
             onPass={lessonId ? () => void recordExercisePass(lessonId, i) : undefined}
+            collapsed={exerciseStartsCollapsed(lessonId)}
           />
         );
 

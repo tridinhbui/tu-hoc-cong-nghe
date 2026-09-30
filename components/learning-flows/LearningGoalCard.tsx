@@ -1,5 +1,6 @@
 "use client";
 
+import { LEARNING_GOAL_CHANGED } from "@/lib/learning-goal-events";
 import { useEffect, useState, useTransition } from "react";
 import Link from "next/link";
 import { ArrowRight, Check, CheckCircle2, Lightbulb } from "lucide-react";
@@ -63,11 +64,18 @@ export default function LearningGoalCard({ id, effort, quiet = false, warm = fal
 
   useEffect(() => {
     let alive = true;
-    getLearningGoalState()
-      .then((s) => alive && setState(s))
-      .catch(() => alive && setState(null));
+    const load = () => {
+      getLearningGoalState()
+        .then((s) => alive && setState(s))
+        .catch(() => alive && setState(null));
+    };
+    load();
+    // Câu hỏi "Bạn học để làm gì?" ghi mục tiêu từ một modal khác trên cùng
+    // trang - nghe sự kiện để khu Lộ trình đổi theo ngay.
+    window.addEventListener(LEARNING_GOAL_CHANGED, load);
     return () => {
       alive = false;
+      window.removeEventListener(LEARNING_GOAL_CHANGED, load);
     };
   }, []);
 
@@ -84,6 +92,7 @@ export default function LearningGoalCard({ id, effort, quiet = false, warm = fal
         setFailed(true);
         setState((s) => (s ? { ...s, goal: previous } : s));
       }
+      else window.dispatchEvent(new CustomEvent(LEARNING_GOAL_CHANGED));
     });
   };
 

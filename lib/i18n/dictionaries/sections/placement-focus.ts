@@ -5,6 +5,24 @@
 
 export const placementFocusVi = {
   diagnostic: {
+    // Một câu hỏi "học để làm gì" thay cho bài khảo sát ba câu kiểu lập trình
+    // viên. Mỗi lựa chọn là một câu người đi làm tự nói ra - không thuật ngữ.
+    goalTitle: "Bạn học để làm gì?",
+    goalSubtitle: "Chọn một câu gần với bạn nhất. Đổi lúc nào cũng được.",
+    goalOffice: "Dùng AI cho công việc văn phòng: viết email, tóm tắt, làm báo cáo",
+    goalNotSure: "Chưa rõ - tôi chỉ muốn hiểu công nghệ để không bị tụt lại",
+    goalData: "Làm việc với bảng số liệu, Excel, báo cáo kinh doanh",
+    goalMarketing: "Viết nội dung, làm marketing nhanh hơn",
+    goalWebsite: "Tự làm một trang web của riêng mình",
+    goalCareer: "Học bài bản để đi làm nghề công nghệ (lập trình, hệ thống)",
+    goalResultLead: "Hành trình của bạn",
+    goalResultFirst: "Việc đầu tiên bạn làm được:",
+    goalResultTime: "{lessons} bài ngắn · bài đầu khoảng 8 phút",
+    goalStartFirst: "Bắt đầu bài đầu tiên",
+    goalLater: "Về trang chính",
+    goalCareerLead: "Lộ trình nền tảng",
+    goalCareerDesc: "Đi từ máy tính và dòng lệnh tới chương trình đầu tiên và trang web chạy được, từng bước một.",
+    goalSaveFailed: "Chưa lưu được lựa chọn - bạn vẫn học được, và có thể chọn lại ở mục Lộ trình.",
     modalTitle: "Chẩn Đoán Trình Độ Đầu Vào",
     modalSubtitle: "Khảo sát 3 phút xếp lớp tự động",
     dismissTitle: "Bỏ qua",
@@ -109,6 +127,22 @@ export const placementFocusVi = {
 
 export const placementFocusEn: typeof placementFocusVi = {
   diagnostic: {
+    goalTitle: "What are you learning for?",
+    goalSubtitle: "Pick the line closest to you. You can change it any time.",
+    goalOffice: "Use AI for office work: emails, summaries, reports",
+    goalNotSure: "Not sure yet - I just don't want to fall behind on technology",
+    goalData: "Work with spreadsheets, Excel and business reports",
+    goalMarketing: "Write content and do marketing faster",
+    goalWebsite: "Build a website of my own",
+    goalCareer: "Study properly to work in tech (programming, systems)",
+    goalResultLead: "Your journey",
+    goalResultFirst: "The first thing you'll be able to do:",
+    goalResultTime: "{lessons} short lessons · the first takes about 8 minutes",
+    goalStartFirst: "Start the first lesson",
+    goalLater: "Back to the home screen",
+    goalCareerLead: "Foundations path",
+    goalCareerDesc: "From your computer and the command line to your first program and a working website, one step at a time.",
+    goalSaveFailed: "Couldn't save your choice - you can still learn, and pick again under Learning path.",
     modalTitle: "Placement Diagnostic",
     modalSubtitle: "3-minute survey, automatic track placement",
     dismissTitle: "Dismiss",

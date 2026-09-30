@@ -15,6 +15,8 @@ import { format } from "@/lib/i18n";
 import { getCurrentUser } from "@/lib/current-user";
 import { XP_PER_LESSON } from "@/lib/levels";
 import { StatusDot, Sys, btnPrimary, panel } from "@/components/ui/system";
+import { getLearningGoalState, type LearningGoalState } from "@/app/actions/learning-goal";
+import { LEARNING_GOAL_CHANGED } from "@/lib/learning-goal-events";
 
 interface ResumeLearningButtonProps {
   activeTrack: "personal" | "professional";
@@ -78,6 +80,27 @@ export default function ResumeLearningButton({ activeTrack, compact = false, use
   // chào vẫn đúng, chỉ không kèm tên - và tự cập nhật khi greeting về.
   const cocoLead = useCoCoGreeting(greeting?.firstName ?? null);
 
+  // Thẻ hero đi theo MỤC TIÊU HỌC khi người học đã chọn một (câu "Bạn học để
+  // làm gì?" hoặc thẻ Lộ trình): bài kế tiếp của hành trình đó, đếm "Bài 1/13"
+  // thay cho "0/268 bài". Người chọn "dùng AI cho văn phòng" mà thẻ to nhất
+  // vẫn chỉ vào bài dòng lệnh là lý do đầu tiên họ bỏ đi.
+  const [goalState, setGoalState] = useState<LearningGoalState | null>(null);
+  useEffect(() => {
+    if (!hero) return;
+    let alive = true;
+    const load = () => {
+      getLearningGoalState()
+        .then((s) => alive && setGoalState(s))
+        .catch(() => {});
+    };
+    load();
+    window.addEventListener(LEARNING_GOAL_CHANGED, load);
+    return () => {
+      alive = false;
+      window.removeEventListener(LEARNING_GOAL_CHANGED, load);
+    };
+  }, [hero]);
+
   useEffect(() => {
     const fetchGreeting = async () => {
       try {
@@ -108,10 +131,16 @@ export default function ResumeLearningButton({ activeTrack, compact = false, use
     );
   }
 
-  const nextLesson = greeting?.nextLesson ?? null;
+  const goalProgress = hero && goalState?.goal ? goalState.progress[goalState.goal] : null;
+  const flowNext = goalProgress?.next ?? null;
+  const nextLesson = flowNext
+    ? { id: -1, slug: flowNext.slug, title: flowNext.title, subtitle: "", duration: "" }
+    : greeting?.nextLesson ?? null;
   const completedCount = greeting?.completedCount ?? 0;
   const firstName = greeting?.firstName ?? null;
-  const trackProgress = greeting?.trackProgress ?? null;
+  const trackProgress = flowNext && goalProgress
+    ? { completed: goalProgress.done, total: goalProgress.total, percent: 0 }
+    : greeting?.trackProgress ?? null;
 
   const trackStages = activeTrack === "personal" ? TRACK_PERSONAL.stages : TRACK_PROFESSIONAL.stages;
   const stageIdx = nextLesson ? trackStages.findIndex((stage) => isLessonInRange(nextLesson.id, stage)) : -1;
@@ -154,10 +183,13 @@ export default function ResumeLearningButton({ activeTrack, compact = false, use
   // "Chặng 1 • Bài 301" ở thẻ Học tiếp, trong khi mọi màn hình khác gọi
   // getLessonDisplayLabel nên vẫn ghi "Chặng 12 · Bài 2". Hai con số ấy không
   // có cách nào khớp được, vì id không phải thứ tự học.
-  const lessonLabel = getLessonDisplayLabel(
-    { id: nextLesson.id, title: nextLesson.title, track: undefined },
-    t.lessonLabel
-  );
+  const lessonLabel = flowNext && goalProgress && goalState?.goal
+    ? format(t.revampDashboard.flowLessonLabel, {
+        n: goalProgress.done + 1,
+        total: goalProgress.total,
+        flow: t.learningFlows.flows[goalState.goal].title,
+      })
+    : getLessonDisplayLabel({ id: nextLesson.id, title: nextLesson.title, track: undefined }, t.lessonLabel);
   const shortTitle = getLessonShortTitle({ title: nextLesson.title });
 
   return (
@@ -266,7 +298,7 @@ export default function ResumeLearningButton({ activeTrack, compact = false, use
             <ArrowRight className="w-4 h-4 motion-safe:transition-transform group-hover:translate-x-0.5" />
           </span>
         </div>
-        {hero && footnote && (
+        {hero && footnote && !flowNext && (
           <div className="relative border-t border-white/10 bg-black/10 px-6 py-3 text-xs font-medium text-brand-100 sm:px-8">
             {footnote}
           </div>

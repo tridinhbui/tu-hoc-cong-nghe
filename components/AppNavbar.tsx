@@ -325,7 +325,14 @@ export default function AppNavbar() {
       if (nav && !nav.dailyChestClaimed) {
         earnChest(user.id, "daily_login", 1)
           .then((granted) => {
-            if (granted) toast.success(t.nav.dailyGiftReady);
+            // Người mới chưa trả lời "Bạn học để làm gì?" (khoá do
+            // DiagnosticPlacementModal ghi) thì rương vẫn được nhận nhưng
+            // không bật thông báo: ngày đầu chỉ nên có một việc cần nhìn.
+            let firstVisit = false;
+            try {
+              firstVisit = !localStorage.getItem(`thtcdn_placement_test_${user.id}`);
+            } catch {}
+            if (granted && !firstVisit) toast.success(t.nav.dailyGiftReady);
           })
           .catch(() => {});
       }

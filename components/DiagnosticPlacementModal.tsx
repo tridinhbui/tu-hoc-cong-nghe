@@ -1,58 +1,43 @@
 "use client";
 
-import { createElement, useState, useEffect, useMemo } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Compass, CheckCircle2, ArrowRight, X, BrainCircuit, Award, Sprout, Briefcase, GraduationCap, Bot, type LucideIcon } from "lucide-react";
-import { toast } from "sonner";
+import { Compass, ArrowRight, X, Sprout } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
-import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 import { btnPrimary } from "@/components/ui/system";
+import { saveLearningGoal } from "@/app/actions/learning-goal";
+import { flowLessonSlugs, getLearningFlow, type FlowId } from "@/lib/learning-flows";
+import Glyph from "@/components/Glyph";
+import { LEARNING_GOAL_CHANGED } from "@/lib/learning-goal-events";
 
-interface DiagnosticQuestion {
-  id: number;
-  question: string;
-  options: { text: string; scoreTrack: "personal" | "professional" | "certification" | "ai" }[];
-}
+/**
+ * Câu hỏi đầu tiên sau khi vào dashboard: "Bạn học để làm gì?".
+ *
+ * Trước đây là bài khảo sát ba câu "xếp lớp" mà cả bốn đáp án đều là mục tiêu
+ * của lập trình viên (Git, backend, chứng chỉ đám mây, "AI rà soát mã"), và
+ * kết quả chỉ đổi track - không nối vào hành trình học theo nhu cầu. Đi thử
+ * trang như một người U40 làm văn phòng (2026-09-29): không có đáp án nào cho
+ * họ, và thẻ "Học tiếp" vẫn chỉ vào bài dòng lệnh.
+ *
+ * Giờ là một câu, mỗi đáp án là một câu người đi làm tự nói ra. Chọn xong thì
+ * lưu thành mục tiêu học (user_profiles.learning_goal) - thẻ Học tiếp và khu
+ * Lộ trình trên dashboard đọc đúng giá trị đó - và mời vào bài đầu tiên ngay.
+ * "Học để đi làm nghề" giữ đường cũ: không mục tiêu, học theo lộ trình nền tảng.
+ */
 
-// Scoring is purely by `scoreTrack` per option (question id + option order),
-// never by option text - translating the labels below must never change
-// which track an option scores toward.
-function buildDiagnosticQuestions(t: Dictionary): DiagnosticQuestion[] {
-  return [
-    {
-      id: 1,
-      question: t.diagnostic.q1,
-      options: [
-        { text: t.diagnostic.q1Opt1, scoreTrack: "personal" },
-        { text: t.diagnostic.q1Opt2, scoreTrack: "professional" },
-        { text: t.diagnostic.q1Opt3, scoreTrack: "certification" },
-        { text: t.diagnostic.q1Opt4, scoreTrack: "ai" },
-      ],
-    },
-    {
-      id: 2,
-      question: t.diagnostic.q2,
-      options: [
-        { text: t.diagnostic.q2Opt1, scoreTrack: "personal" },
-        { text: t.diagnostic.q2Opt2, scoreTrack: "professional" },
-        { text: t.diagnostic.q2Opt3, scoreTrack: "certification" },
-        { text: t.diagnostic.q2Opt4, scoreTrack: "ai" },
-      ],
-    },
-    {
-      id: 3,
-      question: t.diagnostic.q3,
-      options: [
-        { text: t.diagnostic.q3Opt1, scoreTrack: "personal" },
-        { text: t.diagnostic.q3Opt2, scoreTrack: "professional" },
-        { text: t.diagnostic.q3Opt3, scoreTrack: "certification" },
-        { text: t.diagnostic.q3Opt4, scoreTrack: "ai" },
-      ],
-    },
-  ];
-}
+
+type Choice = { key: string; goal: FlowId | null };
+
+const CHOICES: Choice[] = [
+  { key: "goalOffice", goal: "ai-assistant" },
+  { key: "goalNotSure", goal: "ai-assistant" },
+  { key: "goalData", goal: "data-ai" },
+  { key: "goalMarketing", goal: "ai-marketing" },
+  { key: "goalWebsite", goal: "website" },
+  { key: "goalCareer", goal: null },
+];
 
 export default function DiagnosticPlacementModal({
   userId,
@@ -65,174 +50,140 @@ export default function DiagnosticPlacementModal({
 }) {
   const router = useRouter();
   const { t } = useI18n();
-  const [step, setStep] = useState<"quiz" | "result">("quiz");
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [scores, setScores] = useState<Record<string, number>>({
-    personal: 0,
-    professional: 0,
-    certification: 0,
-    ai: 0,
-  });
+  const d = t.diagnostic;
+  const [picked, setPicked] = useState<Choice | null>(null);
+  const [saving, setSaving] = useState(false);
+  const [failed, setFailed] = useState(false);
 
-  const DIAGNOSTIC_QUESTIONS = useMemo(() => buildDiagnosticQuestions(t), [t]);
-
-  const handleSelectOption = (track: "personal" | "professional" | "certification" | "ai") => {
-    setScores((prev) => ({ ...prev, [track]: prev[track] + 1 }));
-
-    if (currentIndex + 1 < DIAGNOSTIC_QUESTIONS.length) {
-      setCurrentIndex((prev) => prev + 1);
-    } else {
-      setStep("result");
-    }
+  const remember = (value: string) => {
+    try {
+      localStorage.setItem(`thtcdn_placement_test_${userId}`, value);
+    } catch {}
   };
-
-  const getRecommendedTrack = () => {
-    const sorted = Object.entries(scores).sort(([, a], [, b]) => b - a);
-    return sorted[0]?.[0] || "personal";
-  };
-
-  const recommendedTrack = getRecommendedTrack();
-
-  const trackNames: Record<string, { title: string; desc: string; url: string; icon: LucideIcon }> = {
-    personal: {
-      title: t.diagnostic.trackPersonalTitle,
-      desc: t.diagnostic.trackPersonalDesc,
-      url: "/dashboard?track=personal",
-      icon: Sprout,
-    },
-    professional: {
-      title: t.diagnostic.trackProfessionalTitle,
-      desc: t.diagnostic.trackProfessionalDesc,
-      url: "/dashboard?track=professional",
-      icon: Briefcase,
-    },
-    certification: {
-      title: t.diagnostic.trackCertificationTitle,
-      desc: t.diagnostic.trackCertificationDesc,
-      url: "/chung-chi",
-      icon: GraduationCap,
-    },
-    ai: {
-      title: t.diagnostic.trackAiTitle,
-      desc: t.diagnostic.trackAiDesc,
-      url: "/dashboard?track=professional",
-      icon: Bot,
-    },
-  };
-
-  const rec = trackNames[recommendedTrack];
 
   const handleDismiss = () => {
-    try {
-      localStorage.setItem(`thtcdn_placement_test_${userId}`, "dismissed");
-    } catch (e) {}
+    remember("dismissed");
     onClose();
   };
 
-  const handleComplete = () => {
-    try {
-      localStorage.setItem(`thtcdn_placement_test_${userId}`, recommendedTrack);
-    } catch (e) {}
-    toast.success(format(t.diagnostic.setupToastSuccess, { title: rec.title }));
+  const choose = async (choice: Choice) => {
+    setSaving(true);
+    setFailed(false);
+    const res = await saveLearningGoal(choice.goal).catch(() => ({ ok: false }));
+    setSaving(false);
+    if (!res.ok) setFailed(true);
+    remember(choice.goal ?? "personal");
+    window.dispatchEvent(new CustomEvent(LEARNING_GOAL_CHANGED));
+    setPicked(choice);
+  };
+
+  const flow = picked?.goal ? getLearningFlow(picked.goal) : undefined;
+
+  const startFirst = () => {
     onClose();
-    router.push(rec.url);
+    if (flow) router.push(`/bai-hoc/${flow.firstWinSlug}`);
+    else router.push("/dashboard?track=personal");
   };
 
   if (!isOpen) return null;
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto p-4 bg-stone-950/60 font-sans">
+      <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-stone-950/60 p-4 font-sans">
         <motion.div
           initial={{ opacity: 0, scale: 0.95, y: 10 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 10 }}
-          className="relative w-full max-w-lg my-auto rounded-md bg-white dark:bg-stone-900 border border-line-strong overflow-hidden"
+          className="relative my-auto w-full max-w-lg overflow-hidden rounded-card bg-white shadow-2xl dark:bg-stone-900"
         >
-          {/* Header */}
-          <div className="flex items-center justify-between px-5 py-3 border-b border-stone-300 bg-surface-raised dark:border-stone-700 dark:bg-stone-950">
-            <div className="flex items-center gap-2">
-              <span className="flex h-8 w-8 items-center justify-center rounded-sm border border-line-strong bg-white text-ink-body dark:border-stone-700 dark:bg-stone-900">
-                <Compass className="w-4 h-4" />
+          <div className="flex items-start justify-between gap-3 px-6 pb-2 pt-6">
+            <div className="flex items-start gap-3">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-accent-soft text-accent">
+                <Compass className="h-5 w-5" aria-hidden />
               </span>
               <div>
-                <h3 className="text-sm font-black tracking-tight text-ink-max">
-                  {t.diagnostic.modalTitle}
-                </h3>
-                <p className="text-[11px] font-semibold text-ink-muted">{t.diagnostic.modalSubtitle}</p>
+                <h3 className="text-lg font-black tracking-tight text-ink-max">{picked ? d.goalResultLead : d.goalTitle}</h3>
+                {!picked && <p className="mt-0.5 text-sm text-ink-body">{d.goalSubtitle}</p>}
               </div>
             </div>
             <button
               type="button"
               onClick={handleDismiss}
-              className="p-1.5 rounded-sm text-ink-muted hover:text-ink cursor-pointer transition-colors"
-              title={t.diagnostic.dismissTitle}
+              className="cursor-pointer rounded-sm p-1.5 text-ink-muted transition-colors hover:text-ink"
+              title={d.dismissTitle}
+              aria-label={d.dismissTitle}
             >
-              <X className="w-4 h-4" />
+              <X className="h-4 w-4" />
             </button>
           </div>
 
-          {/* Body */}
-          <div className="p-5 space-y-4">
-            {step === "quiz" ? (
-              (() => {
-                const q = DIAGNOSTIC_QUESTIONS[currentIndex];
-                return (
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between text-xs font-bold text-ink-muted">
-                      <span>{format(t.diagnostic.questionCounter, { current: currentIndex + 1, total: DIAGNOSTIC_QUESTIONS.length })}</span>
-                      <button
-                        type="button"
-                        onClick={handleDismiss}
-                        className="text-[11px] font-bold text-ink-muted hover:text-ink underline underline-offset-4 cursor-pointer"
-                      >
-                        {t.diagnostic.skipForNow}
-                      </button>
-                    </div>
-
-                    <p className="font-black tracking-tight text-base text-ink-max leading-snug">
-                      {q.question}
-                    </p>
-
-                    <div className="space-y-2">
-                      {q.options.map((opt, idx) => (
-                        <button
-                          key={idx}
-                          type="button"
-                          onClick={() => handleSelectOption(opt.scoreTrack)}
-                          className="w-full text-left p-3.5 rounded-sm border border-line-strong bg-white dark:border-stone-700 dark:bg-stone-900 hover:border-brand-600 dark:hover:border-brand-400 text-xs sm:text-sm font-semibold text-ink-body transition-colors cursor-pointer flex items-center justify-between"
-                        >
-                          <span>{opt.text}</span>
-                          <ArrowRight className="w-4 h-4 text-ink-muted shrink-0" />
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                );
-              })()
-            ) : (
-              /* Result Step */
-              <div className="text-center py-4 space-y-4">
-                <div className="mx-auto w-fit rounded-sm border border-line-strong bg-surface-raised text-ink-body p-3 dark:border-stone-700 dark:bg-stone-950">{createElement(rec.icon, { className: "w-10 h-10", strokeWidth: 1.5, "aria-hidden": true })}</div>
-                <div>
-                  <span className="eyebrow text-ink-soft">
-                    {t.diagnostic.resultBadge}
-                  </span>
-                  <h3 className="text-lg font-black tracking-tight text-ink-max mt-2">
-                    {rec.title}
-                  </h3>
-                  <p className="text-xs text-ink-soft mt-1 max-w-sm mx-auto leading-relaxed">
-                    {rec.desc}
-                  </p>
+          <div className="px-6 pb-6 pt-3">
+            {!picked ? (
+              <>
+                <div className="space-y-2">
+                  {CHOICES.map((c) => (
+                    <button
+                      key={c.key}
+                      type="button"
+                      disabled={saving}
+                      onClick={() => void choose(c)}
+                      className="flex w-full cursor-pointer items-center justify-between gap-3 rounded-xl bg-surface-raised/70 px-4 py-3 text-left text-sm font-semibold text-ink-body ring-1 ring-line-soft transition-colors hover:bg-accent-soft hover:text-accent-strong hover:ring-accent-line disabled:opacity-60 dark:bg-white/5"
+                    >
+                      <span>{d[c.key as keyof typeof d] as string}</span>
+                      <ArrowRight className="h-4 w-4 shrink-0 text-ink-faint" aria-hidden />
+                    </button>
+                  ))}
                 </div>
-
                 <button
                   type="button"
-                  onClick={handleComplete}
-                  className={`${btnPrimary} w-full cursor-pointer`}
+                  onClick={handleDismiss}
+                  className="mt-4 cursor-pointer text-xs font-semibold text-ink-muted underline-offset-4 hover:text-ink hover:underline"
                 >
-                  {t.diagnostic.startLearningNow} <ArrowRight className="w-4 h-4" />
+                  {d.skipForNow}
                 </button>
+              </>
+            ) : (
+              <div className="space-y-5">
+                {flow ? (
+                  <div className="rounded-2xl bg-accent-soft p-5">
+                    <div className="flex items-center gap-3">
+                      <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-accent shadow-sm dark:bg-stone-900">
+                        <Glyph emoji={flow.emoji} className="h-5 w-5" />
+                      </span>
+                      <div>
+                        <p className="font-black tracking-tight text-ink-max">{t.learningFlows.flows[flow.id].title}</p>
+                        <p className="text-xs font-semibold text-ink-muted">
+                          {format(d.goalResultTime, { lessons: flowLessonSlugs(flow).length })}
+                        </p>
+                      </div>
+                    </div>
+                    <p className="mt-4 text-xs font-bold uppercase tracking-[0.08em] text-accent-strong">{d.goalResultFirst}</p>
+                    <p className="mt-1 text-sm leading-6 text-ink-body">{t.revampGoals.flows[flow.id].firstBuild}</p>
+                  </div>
+                ) : (
+                  <div className="rounded-2xl bg-accent-soft p-5">
+                    <div className="flex items-center gap-3">
+                      <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-accent shadow-sm dark:bg-stone-900">
+                        <Sprout className="h-5 w-5" aria-hidden />
+                      </span>
+                      <p className="font-black tracking-tight text-ink-max">{d.goalCareerLead}</p>
+                    </div>
+                    <p className="mt-3 text-sm leading-6 text-ink-body">{d.goalCareerDesc}</p>
+                  </div>
+                )}
+                {failed && <p className="text-xs font-semibold text-warn-strong">{d.goalSaveFailed}</p>}
+                <div className="flex flex-wrap items-center gap-3">
+                  <button type="button" onClick={startFirst} className={`${btnPrimary} cursor-pointer`}>
+                    {flow ? d.goalStartFirst : d.startLearningNow} <ArrowRight className="h-4 w-4" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={onClose}
+                    className="cursor-pointer text-sm font-semibold text-ink-muted underline-offset-4 hover:text-ink hover:underline"
+                  >
+                    {d.goalLater}
+                  </button>
+                </div>
               </div>
             )}
           </div>

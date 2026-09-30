@@ -25,6 +25,11 @@ export const lessonCodeVi = {
     inputUnsupported: "input() chưa dùng được ở đây - hãy gán giá trị thẳng vào biến, ví dụ ten = \"An\".",
 
     exerciseBadge: "Bài tập",
+    // Bài tập không nằm trong điều kiện hoàn thành bài (chỉ đọc hết + quiz).
+    // Nói thẳng ra để người không định lập trình không nghĩ mình bị chặn.
+    exerciseOptional: "Không bắt buộc",
+    exerciseOptionalNote: "Phần này dành cho ai muốn thử tự viết code. Bỏ qua cũng không sao - bài vẫn được tính là xong khi bạn đọc hết và làm quiz.",
+    exerciseOpen: "Thử tự viết code",
     exerciseHint: "Sửa mã bên dưới, bấm Chạy và kiểm tra. Chấm theo kết quả in ra - viết cách nào cũng được.",
     editorLabel: "Mã của bạn",
     check: "Chạy và kiểm tra",
@@ -78,6 +83,9 @@ export const lessonCodeEn: typeof lessonCodeVi = {
     inputUnsupported: "input() isn't available here - assign the value to a variable instead, e.g. name = \"An\".",
 
     exerciseBadge: "Exercise",
+    exerciseOptional: "Optional",
+    exerciseOptionalNote: "This part is for anyone who wants to try writing code. Skipping it is fine - the lesson still counts as done once you read it through and finish the quiz.",
+    exerciseOpen: "Try writing the code",
     exerciseHint: "Edit the code below, press Run and check. Graded on what it prints - any approach that works is fine.",
     editorLabel: "Your code",
     check: "Run and check",
