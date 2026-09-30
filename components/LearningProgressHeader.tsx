@@ -76,7 +76,7 @@ export default function LearningProgressHeader({
       : 0;
 
   return (
-    <section className="border-y border-stone-200/80 py-6 dark:border-stone-800/80">
+    <section className="rounded-card bg-surface px-5 py-6 shadow-card sm:px-6">
       <div className="flex flex-col gap-7 lg:flex-row lg:items-start lg:justify-between lg:gap-12">
         {/* ── Trái: mình đang ở đâu ─────────────────────────────────────── */}
         <div className="min-w-0 flex-1">
@@ -92,9 +92,11 @@ export default function LearningProgressHeader({
           {/* Thanh cấp độ. Đây là thứ thay cho con số "1/20" ở mọi chỗ: một
               thanh nói được "còn bao xa" trong một cái liếc, con số thì phải
               đọc và chia. */}
-          <div className="mt-3 h-1.5 w-full overflow-hidden rounded-xs bg-surface-sunken">
+          {/* Cấp độ là TIẾN TRÌNH PHẦN THƯỞNG (XP) nên đi màu vàng; tiến độ học
+              (chặng, bài) đi xanh - logic màu chung ở globals.css. */}
+          <div className="mt-3 h-2 w-full overflow-hidden rounded-full bg-reward-soft ring-1 ring-inset ring-reward-line/50">
             <div
-              className="h-full bg-brand-600 transition-[width] duration-500 ease-out dark:bg-brand-500"
+              className="h-full rounded-full bg-gradient-to-r from-amber-400 to-reward transition-[width] duration-500 ease-out"
               style={{ width: `${levelPct}%` }}
             />
           </div>
@@ -121,7 +123,7 @@ export default function LearningProgressHeader({
 
               <Link
                 href={`/bai-hoc/${nextMission.slug}`}
-                className="mt-3.5 inline-flex items-center gap-2 rounded-lg bg-brand-600 px-5 py-3 text-sm font-black text-white transition-colors hover:bg-brand-700 dark:bg-brand-600 dark:hover:bg-brand-500"
+                className="mt-3.5 inline-flex items-center gap-2 rounded-lg bg-gradient-to-b from-brand-500 to-brand-600 px-5 py-3 text-sm font-black text-white shadow-[inset_0_1px_0_rgb(255_255_255/0.18),0_8px_20px_-10px_rgb(41_97_184/0.8)] transition-[transform,background-color] hover:to-brand-700 motion-safe:hover:-translate-y-px"
               >
                 {p.cta}
                 <ArrowRight className="h-4 w-4" />
@@ -131,7 +133,7 @@ export default function LearningProgressHeader({
                   Người học cần biết bấm vào thì được gì TRƯỚC khi bấm; đặt nó
                   cách nút ba khối là bắt họ tự nối hai thứ lại. */}
               <p className="mt-2.5 text-xs font-semibold text-ink-muted">
-                {format(p.reward, { xp: XP_PER_LESSON })}
+                <span className="font-bold text-reward-strong">{format(p.reward, { xp: XP_PER_LESSON })}</span>
                 {currentStage && stageLeft > 0 && (
                   <>
                     {" · "}
@@ -151,11 +153,11 @@ export default function LearningProgressHeader({
 
       {/* ── Mốc: xong chặng này thì mở ra cái gì ───────────────────────── */}
       {currentStage && currentStage.total > 0 && (
-        <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 border-t border-stone-200/70 pt-4 dark:border-stone-800/70">
+        <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 rounded-control bg-surface-raised px-3.5 py-3">
           {stageLeft > 0 ? (
-            <Lock className="h-3.5 w-3.5 shrink-0 text-stone-400" />
+            <Lock className="h-3.5 w-3.5 shrink-0 text-ink-faint" />
           ) : (
-            <Trophy className="h-3.5 w-3.5 shrink-0 text-accent" />
+            <Trophy className="h-3.5 w-3.5 shrink-0 text-reward" />
           )}
           <p className="text-xs font-semibold text-ink-soft">
             {format(stageLeft > 0 ? p.milestoneLocked : p.milestoneReady, {
@@ -165,9 +167,9 @@ export default function LearningProgressHeader({
           {/* Thanh nhỏ của riêng chặng, đặt cạnh câu mốc chứ không đứng rời:
               nó đo đúng khoảng cách tới cái mốc mà câu vừa nhắc tới. */}
           <span className="ml-auto flex items-center gap-2">
-            <span className="h-1 w-24 overflow-hidden rounded-xs bg-surface-sunken">
+            <span className="h-1.5 w-24 overflow-hidden rounded-full bg-surface-sunken">
               <span
-                className="block h-full bg-stone-900 transition-[width] duration-500 ease-out dark:bg-stone-300"
+                className="block h-full rounded-full bg-gradient-to-r from-brand-500 to-sky-400 transition-[width] duration-500 ease-out"
                 style={{ width: `${stagePct}%` }}
               />
             </span>

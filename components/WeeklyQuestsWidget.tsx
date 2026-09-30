@@ -137,7 +137,7 @@ export default function WeeklyQuestsWidget({ userId }: WeeklyQuestsWidgetProps) 
       <div className="flex items-center justify-between border-b border-line-strong pb-3">
         <div>
           <h4 className="text-xs font-black tracking-tight text-ink-max flex items-center gap-1.5">
-            <Trophy className="w-4 h-4 text-ink-muted" />
+            <Trophy className="w-4 h-4 text-reward" />
             {t.weeklyQuests.title}
           </h4>
           <p className="text-[9px] text-ink-faint font-semibold mt-0.5">
@@ -155,7 +155,7 @@ export default function WeeklyQuestsWidget({ userId }: WeeklyQuestsWidgetProps) 
         <div className="space-y-1.5">
           <div className="flex justify-between items-center text-[10px] font-extrabold text-ink-body">
             <span className="flex items-center gap-1">
-              <Flame className="w-3.5 h-3.5 text-warn" />
+              <Flame className="w-3.5 h-3.5 fill-current text-reward" />
               {t.weeklyQuests.streakLabel}
             </span>
             <span>{format(t.weeklyQuests.streakProgress, { progress: streakProgress })}</span>

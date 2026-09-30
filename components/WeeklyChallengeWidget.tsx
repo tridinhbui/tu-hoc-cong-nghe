@@ -167,8 +167,8 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
           <div className="flex items-center gap-3 flex-wrap">
             <Sys className="text-ink-muted">{SYS.cases}</Sys>
             <span className="eyebrow text-ink-soft">{t.caseArena.hubTitle}</span>
-            <span className="text-[10px] font-extrabold text-ink-soft border border-line-strong px-2 py-0.5 rounded-sm flex items-center gap-1 dark:border-stone-700">
-              <Zap className="w-3 h-3" /> {t.caseArena.badge}
+            <span className="text-[10px] font-extrabold text-energy-strong bg-energy-soft px-2 py-0.5 rounded-full flex items-center gap-1">
+              <Zap className="w-3 h-3 fill-current" /> {t.caseArena.badge}
             </span>
           </div>
           <h2 className="text-xl sm:text-2xl font-black text-ink-max mt-2 tracking-tight">
@@ -187,7 +187,7 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
               <div className="border-l border-stone-300 pl-3 dark:border-stone-700">
                 <span className="text-[9px] font-black uppercase text-ink-muted block">{t.caseArena.combo}</span>
                 <span className="font-mono text-xs font-medium tabular-nums text-ink-max flex items-center gap-0.5">
-                  <Flame className="w-3.5 h-3.5" /> x{(1 + Math.min(streakCombo - 1, 4) * 0.25).toFixed(1)}
+                  <Flame className="w-3.5 h-3.5 fill-current text-energy" /> x{(1 + Math.min(streakCombo - 1, 4) * 0.25).toFixed(1)}
                 </span>
               </div>
             )}
@@ -345,7 +345,7 @@ export default function WeeklyChallengeWidget({ userId }: { userId: string }) {
             <div className="rounded-sm border border-line-strong px-3 py-3 dark:border-stone-700">
               <span className="text-[10px] font-black uppercase tracking-wider text-ink-muted block">{t.caseArena.currentCombo}</span>
               <span className="mt-1 inline-flex items-center gap-1 font-mono text-lg font-medium tabular-nums text-ink-max">
-                <Flame className="w-4 h-4" /> x{(1 + Math.min(streakCombo, 4) * 0.25).toFixed(1)}
+                <Flame className="w-4 h-4 fill-current text-energy" /> x{(1 + Math.min(streakCombo, 4) * 0.25).toFixed(1)}
               </span>
             </div>
             <div className="rounded-sm border border-line-strong px-3 py-3 dark:border-stone-700">

@@ -15,10 +15,11 @@ import XpFloatingPopup from "@/components/XpFloatingPopup";
  * mobile. Xem lib/__tests__/app-shell-layout.test.ts.
  */
 export default function AppShell({ children }: { children: React.ReactNode }) {
-  // Nền TRẮNG 100% trong app (2026-09-28, theo yêu cầu chủ sản phẩm): giấy
-  // ngà chỉ dành cho trang chủ và cửa đăng nhập.
+  // Nền app là `bg-page` - xanh băng rất nhạt (2026-09-30, trước là trắng
+  // 100%) - để thẻ trắng nổi thành lớp thay vì chìm vào một mặt trắng liền.
+  // Giấy ngà chỉ dành cho trang chủ và cửa đăng nhập.
   return (
-    <div className="min-h-screen bg-white dark:bg-stone-950 lg:pl-64 overflow-x-hidden">
+    <div className="min-h-screen bg-page lg:pl-64 overflow-x-hidden">
       <AppNavbar />
       <XpFloatingPopup />
       {children}

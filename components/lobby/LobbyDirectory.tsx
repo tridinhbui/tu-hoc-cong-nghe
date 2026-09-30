@@ -72,7 +72,7 @@ export default function LobbyDirectory() {
       <button
         type="button"
         onClick={() => toggle(true)}
-        className="pointer-events-auto rounded-sm border border-white/15 bg-brand-600 px-4 py-2.5 text-xs font-bold text-white transition-colors hover:border-white/40"
+        className="pointer-events-auto rounded-control border border-white/15 bg-brand-600 px-4 py-2.5 text-xs font-bold text-white shadow-lg shadow-black/30 transition-colors hover:border-white/40 hover:bg-brand-500"
       >
         <Compass className="mr-1.5 inline h-4 w-4 align-[-3px]" strokeWidth={1.75} aria-hidden />
         {t.lobby.directoryToggle}
@@ -85,15 +85,17 @@ export default function LobbyDirectory() {
   // và cần điều khiển ở đáy. Danh sách tự cuộn bên trong, nên cắt ngắn không
   // mất mục nào.
   return (
-    <div className="pointer-events-auto flex max-h-[min(46vh,32rem)] w-72 max-w-[calc(100vw-2rem)] flex-col overflow-hidden rounded-md border border-white/15 bg-stone-950 sm:max-h-[min(70vh,32rem)]">
-      <div className="flex items-center justify-between gap-2 border-b border-white/15 px-4 py-2.5">
-        <h2 className="text-xs font-black uppercase tracking-widest text-stone-300">
+    // Kính tối mờ nổi trên cảnh 3D, cùng lớp HUD với LobbyClient.
+    <div className="pointer-events-auto flex max-h-[min(46vh,32rem)] w-72 max-w-[calc(100vw-2rem)] flex-col overflow-hidden rounded-card border border-white/10 bg-stone-950/85 shadow-lg shadow-black/30 backdrop-blur-md sm:max-h-[min(70vh,32rem)]">
+      <div className="flex items-center justify-between gap-2 border-b border-white/10 px-4 py-2.5">
+        <h2 className="flex items-center gap-1.5 text-xs font-black uppercase tracking-widest text-brand-300">
+          <Compass className="h-3.5 w-3.5" strokeWidth={2} aria-hidden />
           {t.lobby.directoryTitle}
         </h2>
         <button
           type="button"
           onClick={() => toggle(false)}
-          className="shrink-0 rounded-sm px-2 py-1 text-[11px] font-bold text-stone-400 transition-colors hover:bg-stone-800 hover:text-stone-200"
+          className="shrink-0 rounded-control px-2 py-1 text-[11px] font-bold text-stone-400 transition-colors hover:bg-white/10 hover:text-stone-200"
         >
           {t.lobby.directoryClose}
         </button>
@@ -108,10 +110,10 @@ export default function LobbyDirectory() {
             <li key={s.id}>
               <Link
                 href={stationRoomHref(s)}
-                className="flex items-start gap-2.5 rounded-sm px-2 py-1.5 transition-colors hover:bg-stone-900"
+                className="flex items-start gap-2.5 rounded-control px-2 py-1.5 transition-colors hover:bg-white/[0.07]"
               >
                 <span
-                  className="mt-1.5 h-2 w-2 shrink-0 rounded-[1px]"
+                  className="mt-1.5 h-2 w-2 shrink-0 rounded-full"
                   style={{ backgroundColor: s.accent }}
                 />
                 <span className="min-w-0">
@@ -131,10 +133,10 @@ export default function LobbyDirectory() {
             <li key={g.id}>
               <Link
                 href={g.href}
-                className="flex items-start gap-2.5 rounded-sm px-2 py-1.5 transition-colors hover:bg-stone-900"
+                className="flex items-start gap-2.5 rounded-control px-2 py-1.5 transition-colors hover:bg-white/[0.07]"
               >
                 <span
-                  className="mt-1.5 h-2 w-2 shrink-0 rounded-[1px]"
+                  className="mt-1.5 h-2 w-2 shrink-0 rounded-full"
                   style={{ backgroundColor: g.accent }}
                 />
                 <span className="min-w-0">
@@ -147,7 +149,7 @@ export default function LobbyDirectory() {
         </ul>
       </div>
 
-      <p className="border-t border-white/15 px-4 py-2 text-[10px] leading-snug text-stone-500">
+      <p className="border-t border-white/10 px-4 py-2 text-[10px] leading-snug text-stone-500">
         {t.lobby.directoryHint}
       </p>
     </div>

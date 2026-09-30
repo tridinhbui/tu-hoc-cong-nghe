@@ -176,7 +176,7 @@ export default function OnTapCauSaiClient() {
   const currentCardItem = sessionDeck[currentIndex];
 
   return (
-    <div className="min-h-screen bg-surface font-sans text-ink pb-12">
+    <div className="min-h-screen bg-page font-sans text-ink pb-12">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
         {/* Arriving from the 7:30 push: say why this is a short list, so a
             trimmed session doesn't read as missing mistakes. */}

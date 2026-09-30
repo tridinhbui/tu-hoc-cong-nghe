@@ -17,7 +17,8 @@ import {
   Trash2,
   XCircle,
 } from "lucide-react";
-import ToolShell, { embedMissions, type ToolEmbed } from "@/components/tools/ToolShell";
+import ToolShell, { btnRun, embedMissions, type ToolEmbed } from "@/components/tools/ToolShell";
+import { chipAccent, panel } from "@/components/ui/system";
 import { useI18n } from "@/lib/i18n/context";
 import { format, intlLocale } from "@/lib/i18n";
 import type { SqlValue } from "@/lib/mini-sql";
@@ -221,7 +222,7 @@ export default function SqlSim({ embed }: { embed?: ToolEmbed }) {
         <pre className="max-h-24 overflow-auto whitespace-pre-wrap rounded-md bg-stone-950 px-2.5 py-2 font-mono text-[11px] leading-relaxed text-stone-100">
           {a.sql}
         </pre>
-        <div className="overflow-hidden rounded-md border border-line">
+        <div className="overflow-hidden rounded-control border border-line-soft">
           <ResultTable columns={a.columns} rows={a.rows} compact />
         </div>
         <p className="text-[11px] tabular-nums text-ink-muted">
@@ -248,11 +249,13 @@ export default function SqlSim({ embed }: { embed?: ToolEmbed }) {
       renderArtifact={renderArtifact}
       embed={embed}
     >
-      <div className="overflow-hidden rounded-2xl border border-line bg-white shadow-sm dark:bg-stone-900">
+      <div className={`${panel} overflow-hidden`}>
         {/* Thanh công cụ */}
-        <div className="flex flex-wrap items-center justify-between gap-2 border-b border-line bg-surface-raised px-3 py-2">
+        <div className="flex flex-wrap items-center justify-between gap-2 border-b border-line-soft bg-surface-raised px-3 py-2">
           <div className="flex min-w-0 items-center gap-2">
-            <DatabaseIcon className="h-4 w-4 shrink-0 text-accent" />
+            <span aria-hidden className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-control bg-accent-wash text-accent">
+              <DatabaseIcon className="h-4 w-4" />
+            </span>
             <span className="font-mono text-sm font-bold text-ink">{c.dbName}</span>
             <span className="truncate text-xs text-ink-muted">{c.dbLabel}</span>
           </div>
@@ -263,14 +266,14 @@ export default function SqlSim({ embed }: { embed?: ToolEmbed }) {
               onClick={() => setSql("")}
               title={c.clear}
               aria-label={c.clear}
-              className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-line text-ink-muted hover:text-ink"
+              className="inline-flex h-8 w-8 items-center justify-center rounded-control border border-accent-line bg-surface text-ink-muted transition-colors hover:bg-accent-wash hover:text-accent-strong"
             >
               <Eraser className="h-4 w-4" />
             </button>
             <button
               type="button"
               onClick={() => run(sql)}
-              className="inline-flex h-8 items-center gap-1.5 rounded-lg bg-brand-600 px-3 text-sm font-bold text-white hover:bg-brand-700"
+              className={`${btnRun} h-8 px-3.5`}
             >
               <Play className="h-3.5 w-3.5 fill-current" />
               {c.run}
@@ -280,14 +283,14 @@ export default function SqlSim({ embed }: { embed?: ToolEmbed }) {
 
         <div className="grid md:grid-cols-[220px_minmax(0,1fr)]">
           {/* Cây bảng */}
-          <aside className="max-h-64 overflow-y-auto border-b border-line p-2 md:max-h-none md:border-b-0 md:border-r">
+          <aside className="max-h-64 overflow-y-auto border-b border-line-soft bg-surface-raised/50 p-2 md:max-h-none md:border-b-0 md:border-r">
             <p className="px-1.5 pb-1 text-[11px] font-black uppercase tracking-wider text-ink-muted">{c.explorer}</p>
             <ul className="space-y-0.5">
               {SAMPLE_SCHEMA.map((table) => {
                 const isOpen = !!open[table.name];
                 return (
                   <li key={table.name}>
-                    <div className="flex items-center rounded-md hover:bg-surface-raised">
+                    <div className="flex items-center rounded-control transition-colors hover:bg-accent-wash">
                       <button
                         type="button"
                         onClick={() => setOpen((o) => ({ ...o, [table.name]: !isOpen }))}
@@ -323,7 +326,7 @@ export default function SqlSim({ embed }: { embed?: ToolEmbed }) {
                                     ? format(c.foreignKey, { table: col.ref ?? "" })
                                     : undefined
                               }
-                              className="flex w-full items-center gap-1.5 rounded px-1 py-0.5 text-left hover:bg-surface-raised"
+                              className="flex w-full items-center gap-1.5 rounded px-1 py-0.5 text-left hover:bg-accent-wash"
                             >
                               {col.key === "pk" ? (
                                 <KeyRound className="h-3 w-3 shrink-0 text-amber-500" />
@@ -380,7 +383,7 @@ export default function SqlSim({ embed }: { embed?: ToolEmbed }) {
             </div>
 
             {/* Tab kết quả / lịch sử */}
-            <div className="flex items-center justify-between border-y border-line bg-surface-raised px-2">
+            <div className="flex items-center justify-between border-y border-line-soft bg-surface-raised px-2">
               <div className="flex" role="tablist">
                 {(["results", "history"] as const).map((k) => (
                   <button
@@ -390,13 +393,13 @@ export default function SqlSim({ embed }: { embed?: ToolEmbed }) {
                     aria-selected={tab === k}
                     onClick={() => setTab(k)}
                     className={`inline-flex items-center gap-1.5 border-b-2 px-3 py-2 text-xs font-bold ${
-                      tab === k ? "border-brand-600 text-ink" : "border-transparent text-ink-muted hover:text-ink"
+                      tab === k ? "border-brand-600 text-accent-strong dark:border-brand-400" : "border-transparent text-ink-muted hover:text-accent-strong"
                     }`}
                   >
                     {k === "results" ? <Rows3 className="h-3.5 w-3.5" /> : <History className="h-3.5 w-3.5" />}
                     {k === "results" ? c.tabResults : c.tabHistory}
                     {k === "history" && history.length > 0 && (
-                      <span className="rounded-full bg-brand-100 px-1.5 text-[10px] tabular-nums text-brand-700 dark:bg-brand-950 dark:text-brand-300">
+                      <span className={`${chipAccent} px-1.5 py-0 text-[10px] tabular-nums`}>
                         {history.length}
                       </span>
                     )}

@@ -850,7 +850,7 @@ export default function EditorSim({ embed }: { embed?: ToolEmbed }) {
     >
       <div
         onKeyDown={onRootKeyDown}
-        className={`flex flex-col overflow-hidden rounded-xl border font-sans shadow-sm ${P.frame} ${embedded ? "md:h-[460px]" : "md:h-[680px]"}`}
+        className={`flex flex-col overflow-hidden rounded-card border font-sans shadow-card-hover ${P.frame} ${embedded ? "md:h-[460px]" : "md:h-[680px]"}`}
       >
         {/* Thanh tiêu đề */}
         <div className={`flex h-9 shrink-0 items-center gap-2 border-b px-3 text-xs ${P.titleBar}`}>

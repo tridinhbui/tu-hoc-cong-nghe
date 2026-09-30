@@ -26,7 +26,7 @@
  *  thứ hai. */
 export default function LessonLoading() {
   return (
-    <div className="min-h-screen animate-pulse bg-white dark:bg-stone-950">
+    <div className="min-h-screen animate-pulse bg-page">
       {/* Hero */}
       <div className="border-b border-line">
         <div className="mx-auto max-w-3xl px-5 py-8 sm:px-6">

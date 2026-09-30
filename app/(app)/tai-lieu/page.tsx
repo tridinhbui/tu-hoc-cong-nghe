@@ -4,7 +4,7 @@ import { createServerCloudflareClient } from "@/lib/cloudflare-server";
 import { getServerDictionary } from "@/lib/i18n/server";
 import DocumentsList from "./DocumentsList";
 import { APP_SYS } from "@/components/analytics/system-codes";
-import { StatusDot, Sys, textLink } from "@/components/ui/system";
+import { IconTile, StatusDot, Sys, chipAccent, panelFocus, textLink } from "@/components/ui/system";
 
 export const dynamic = "force-dynamic";
 
@@ -57,13 +57,13 @@ function getPlaceholderImageUrl(category: string): string {
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 280">
     <defs>
       <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" style="stop-color:#f3f4f6;stop-opacity:1" />
-        <stop offset="100%" style="stop-color:#e5e7eb;stop-opacity:1" />
+        <stop offset="0%" style="stop-color:#eef4fc;stop-opacity:1" />
+        <stop offset="100%" style="stop-color:#dbe7f7;stop-opacity:1" />
       </linearGradient>
     </defs>
     <rect width="200" height="280" fill="url(#grad)"/>
-    <rect x="10" y="10" width="180" height="260" rx="8" fill="white" stroke="#d1d5db" stroke-width="1"/>
-    <circle cx="100" cy="140" r="44" fill="#f3f7fc"/>
+    <rect x="10" y="10" width="180" height="260" rx="8" fill="white" stroke="#c9d9ef" stroke-width="1"/>
+    <circle cx="100" cy="140" r="44" fill="#e8f0fb"/>
     <g transform="translate(76 116) scale(2)" fill="none" stroke="#2961b8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${icon}</g>
   </svg>`;
 
@@ -124,18 +124,20 @@ function getPlaceholderImageUrl(category: string): string {
 
   return (
     <div className="min-h-screen bg-page dark:bg-stone-950">
-      <div className="border-b border-line-strong">
-        <div className="max-w-4xl mx-auto px-6 py-6">
-          <div className="flex items-center justify-between gap-4 border-b border-line pb-2">
+      {/* Đầu trang: không còn đường kẻ xám cắt ngang - thứ bậc đến từ tiêu đề
+          và thẻ quà tặng (điểm nhấn duy nhất của màn này). */}
+      <div>
+        <div className="max-w-4xl mx-auto px-6 pt-6 pb-2">
+          <div className="flex items-center justify-between gap-4 pb-2">
             <Link href="/dashboard" className={`${textLink} text-xs`}>
               <ChevronLeft className="w-3.5 h-3.5" aria-hidden />
               {t.finalOne.taiLieuPage.backHome}
             </Link>
-            <Sys className="text-ink-muted">{APP_SYS.documents}</Sys>
+            <Sys className="text-accent-strong">{APP_SYS.documents}</Sys>
           </div>
           <div className="mt-3 flex items-center gap-3 flex-wrap">
             <h1 className="text-2xl font-black tracking-tight text-ink-max">{t.finalOne.taiLieuPage.title}</h1>
-            <span className="inline-flex items-center gap-1.5 rounded-sm border border-line-strong px-1.5 py-0.5 text-[11px] font-bold uppercase tracking-[0.06em] text-ink-body">
+            <span className={`${chipAccent} gap-1.5 uppercase tracking-[0.06em]`}>
               <StatusDot />
               {t.finalOne.taiLieuPage.freeBadge}
             </span>
@@ -143,11 +145,13 @@ function getPlaceholderImageUrl(category: string): string {
           <p className="text-sm text-ink-soft mt-2">
             {t.finalOne.taiLieuPage.subtitle}
           </p>
-          <div className="mt-4 flex items-start gap-3 rounded-sm border border-line bg-white p-4 dark:bg-stone-900">
-            <Gift className="w-4 h-4 text-ink-faint shrink-0 mt-0.5" aria-hidden />
+          <div className={`${panelFocus} mt-5 flex items-start gap-3.5 p-4 sm:p-5`}>
+            <IconTile tone="reward">
+              <Gift className="w-[18px] h-[18px]" aria-hidden />
+            </IconTile>
             <div>
               <p className="text-sm font-black text-ink-max">{t.finalOne.taiLieuPage.giftTitle}</p>
-              <p className="text-xs text-ink-soft mt-1 leading-relaxed">
+              <p className="text-[13px] text-ink-soft mt-1 leading-relaxed">
                 {t.finalOne.taiLieuPage.giftBody}
               </p>
             </div>

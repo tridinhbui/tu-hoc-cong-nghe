@@ -98,16 +98,16 @@ export default function XpFloatingPopup() {
               rotate: [-4, 2, -1, 0, 0],
             }}
             transition={{ duration: 2.7, times: [0, 0.15, 0.4, 0.8, 1], ease: "easeOut" }}
-            className="flex items-center gap-2.5 rounded-sm border border-stone-700 bg-brand-600 px-3 py-2 text-white dark:border-stone-300"
+            className="flex items-center gap-2.5 rounded-full bg-gradient-to-r from-amber-400 to-reward px-3.5 py-2 text-[#2a1600] shadow-[0_10px_24px_-10px_rgb(227_138_6/0.8)]"
           >
             {item.xp >= 30 ? (
-              <Trophy className="w-4 h-4 shrink-0 text-brand-300 dark:text-brand-700" />
+              <Trophy className="w-4 h-4 shrink-0 fill-current text-white" />
             ) : (
-              <Zap className="w-4 h-4 shrink-0 text-brand-300 dark:text-brand-700" />
+              <Zap className="w-4 h-4 shrink-0 fill-current text-white" />
             )}
 
-            {/* Số XP là dữ liệu sống: mono, xanh. Nhãn đi bằng sans. */}
-            <span className="font-mono text-base font-medium tabular-nums">
+            {/* XP là phần thưởng: vàng (logic màu chung, globals.css). Số đi mono. */}
+            <span className="font-mono text-base font-bold tabular-nums">
               +{item.xp} {t.miscUi.xpFloatingPopup.xpUnit}
             </span>
             {item.label && (

@@ -12,7 +12,7 @@ import { DAMAGE_PER_CORRECT, bossHpPercent } from "@/lib/world-boss";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 import { translateApiError, ApiError } from "@/lib/api-error-code";
-import { btnPrimary, btnSecondary, panel, SectionHead } from "@/components/ui/system";
+import { btnEnergy, btnSecondary, panel, SectionHead } from "@/components/ui/system";
 
 /* i18n-ignore-start: định danh hệ thống, không phải chữ hiển thị */
 const SYS = {
@@ -258,7 +258,7 @@ export default function WorldBossRaidWidget({
 
           <button
             onClick={handleStartRaid}
-            className={`${btnPrimary} w-full shrink-0 sm:w-auto`}
+            className={`${btnEnergy} w-full shrink-0 sm:w-auto`}
           >
             <Swords className="w-4 h-4" /> {t.worldBoss.huntNow}
           </button>
@@ -290,7 +290,7 @@ export default function WorldBossRaidWidget({
       <div className="mb-6 space-y-2 rounded-md border border-line-strong bg-page p-4 dark:border-stone-700 dark:bg-stone-950">
         <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-bold">
           <span className="flex items-center gap-1.5 text-ink-body">
-            <Flame className="w-4 h-4 text-alert" /> {t.worldBoss.serverHpLabel}
+            <Flame className="w-4 h-4 fill-current text-energy" /> {t.worldBoss.serverHpLabel}
           </span>
           <span className="font-mono tabular-nums text-alert-strong">
             {format(t.worldBoss.hpLine, { current: boss.current_hp.toLocaleString(), max: boss.max_hp.toLocaleString(), percent: hpPercent })}
@@ -346,7 +346,7 @@ export default function WorldBossRaidWidget({
 
                 <div className={`${panel} p-4`}>
                   <h4 className="mb-3 flex items-center justify-between border-b border-stone-300 pb-2 text-xs font-black uppercase text-ink-soft dark:border-stone-700">
-                    <span className="flex items-center gap-1.5"><Trophy className="w-4 h-4 text-ink-muted" /> {t.worldBoss.leaderboardTitle}</span>
+                    <span className="flex items-center gap-1.5"><Trophy className="w-4 h-4 text-reward" /> {t.worldBoss.leaderboardTitle}</span>
                     <button onClick={fetchBossData} className="text-ink-faint hover:text-accent-strong" title={t.worldBoss.refreshTitle}><RefreshCw className="w-3.5 h-3.5" /></button>
                   </h4>
 

@@ -235,7 +235,11 @@ const ALL_SECTION_KEYS = NAV_SECTIONS.map((section) => section.titleKey);
 // còn lại, kèm ô trạng thái xanh vì đó là dữ liệu sống. "Hot" và "3D" là
 // trang trí nên đã gỡ.
 const NAV_BADGE =
-  "inline-flex items-center gap-1 rounded-xs border border-line-strong bg-white px-1.5 py-px text-[9.5px] font-bold uppercase tracking-wider text-ink-body dark:border-stone-700 dark:bg-stone-900";
+  "inline-flex items-center gap-1 rounded-full bg-accent-wash px-1.5 py-px text-[9.5px] font-bold uppercase tracking-wider text-accent-strong";
+/** Huy hiệu "đang chờ thử thách" (quiz tin tức mới ở Kiểm tra) - coral, màu
+ *  năng lượng của app. Xem logic màu ở đầu khối token trong globals.css. */
+const NAV_BADGE_ENERGY =
+  "inline-flex items-center gap-1 rounded-full bg-energy-soft px-1.5 py-px text-[9.5px] font-bold uppercase tracking-wider text-energy-strong";
 
 // Single, persistent top navbar for every signed-in page (mounted once in
 // app/(app)/layout.tsx, which Next.js keeps alive across client-side
@@ -600,19 +604,19 @@ export default function AppNavbar() {
           trackFeatureClick("nav_click", { label: href });
         }}
         aria-current={active ? "page" : undefined}
-        className={`group relative flex items-center gap-2.5 rounded-xs px-3 py-1.5 text-sm font-bold transition-colors duration-200 ${
+        className={`group relative flex items-center gap-2.5 rounded-control px-3 py-1.5 text-sm font-bold transition-[background-color,color,box-shadow] duration-200 ${
           active
-            ? "bg-brand-600 text-white"
-            : "text-ink-soft hover:bg-surface-invert hover:text-ink-invert"
+            ? "bg-gradient-to-r from-brand-600 to-brand-500 text-white shadow-[0_6px_16px_-8px_rgba(41,97,184,0.8)]"
+            : "text-ink-soft hover:bg-accent-wash hover:text-accent-strong"
         }`}
       >
-        {/* Dòng đang đứng: khối xanh đặc như cột đang mở ở trang chủ biên tập;
-            rê chuột thì đảo mực. */}
-        <Icon className={`h-4 w-4 shrink-0 transition-colors ${active ? "text-white" : "text-ink-faint group-hover:text-ink-invert"}`} />
+        {/* Dòng đang đứng: khối xanh đặc; rê chuột là nền xanh băng + chữ xanh
+            (trước là đảo mực đen - đọc như một app khác, không phải màu của app). */}
+        <Icon className={`h-4 w-4 shrink-0 transition-colors ${active ? "text-white" : "text-ink-faint group-hover:text-accent"}`} />
         <span className="flex-1 truncate">{isGame ? t.dataRest.appNavbar.gameKingdomLabel : navLabel}</span>
         {isKiemTra && hasPendingNewsQuiz && (
-          <span className={NAV_BADGE}>
-            <StatusDot />
+          <span className={NAV_BADGE_ENERGY}>
+            <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-energy motion-safe:animate-pulse" />
             {t.nav.badgeNews}
           </span>
         )}
@@ -654,11 +658,11 @@ export default function AppNavbar() {
             onClick={() => toggleSection(section.titleKey)}
             aria-expanded={!collapsed}
             aria-controls={panelId}
-            className="group flex w-full items-center gap-1.5 rounded-xs border-b border-stone-200 px-2.5 pb-1.5 pt-1 text-left transition-colors hover:text-ink-max dark:border-stone-800 cursor-pointer"
+            className="group flex w-full items-center gap-1.5 rounded-xs px-2.5 pb-1 pt-1 text-left transition-colors hover:text-accent-strong cursor-pointer"
           >
             <span
               className={`eyebrow flex-1 transition-colors flex items-center gap-1.5 ${
-                holdsCurrentPage ? "text-ink-max" : "text-ink-muted"
+                holdsCurrentPage ? "text-accent-strong" : "text-ink-muted"
               }`}
             >
               <SectionIcon className="h-3.5 w-3.5 shrink-0" strokeWidth={2.4} />
@@ -693,7 +697,7 @@ export default function AppNavbar() {
 
   return (
     <>
-      <aside className="hidden lg:flex fixed inset-y-0 left-0 z-40 w-64 bg-page dark:bg-stone-950 border-r border-line">
+      <aside className="hidden lg:flex fixed inset-y-0 left-0 z-40 w-64 bg-surface border-r border-line">
         {/* Cột biển chỉ đường vẽ tay từng đứng ở góc trái dưới. Đã gỡ: nó là
             hình trang trí nhiều màu, trái luật 2-3 của hệ thiết kế chung, và
             thanh đầu trang giới thiệu - thứ sidebar này soi theo - chỉ có giấy
@@ -716,7 +720,7 @@ export default function AppNavbar() {
           <button
             type="button"
             onClick={() => setSearchModalOpen(true)}
-            className="mt-3 flex items-center justify-between w-full px-3 py-2 rounded-sm bg-surface border border-line text-xs font-bold text-ink-muted hover:bg-surface-invert hover:text-ink-invert transition-colors cursor-pointer"
+            className="mt-3 flex items-center justify-between w-full px-3 py-2 rounded-control bg-surface-raised text-xs font-bold text-ink-muted hover:bg-accent-wash hover:text-accent-strong transition-colors cursor-pointer"
           >
             <span className="flex items-center gap-2">
               <Search className="w-3.5 h-3.5 text-ink-faint" />
@@ -738,12 +742,12 @@ export default function AppNavbar() {
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => setShowQuickShop(true)}
-                  className="flex flex-1 min-w-0 items-center justify-between rounded-sm border border-line-strong bg-white dark:bg-stone-900 px-3 py-2 text-xs font-bold text-ink-heading hover:border-line-firm transition-colors cursor-pointer"
+                  className="flex flex-1 min-w-0 items-center justify-between rounded-control bg-reward-soft px-3 py-2 text-xs font-bold text-ink-heading ring-1 ring-reward-line/60 hover:ring-reward transition-shadow cursor-pointer"
                   title={t.nav.coinBalanceTitle}
                 >
                   <span className="flex items-center gap-2">
                     <GoldCoinIcon className="w-4 h-4" />
-                    <span className="text-[11px] font-medium text-ink-muted">{t.nav.goldBag}</span>
+                    <span className="text-[11px] font-semibold text-reward-strong">{t.nav.goldBag}</span>
                   </span>
                   <span className="font-mono tabular-nums font-medium text-ink-max">{profile.coins ?? 0}</span>
                 </button>
@@ -760,7 +764,7 @@ export default function AppNavbar() {
                 <button
                   onClick={toggleProfileDropdown}
                   aria-expanded={dropdownOpen}
-                  className="flex w-full items-center gap-2.5 rounded-sm border border-line-strong bg-white px-3 py-2 text-left transition-colors hover:border-stone-400 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-600 cursor-pointer"
+                  className="flex w-full items-center gap-2.5 rounded-control bg-surface-raised px-3 py-2 text-left transition-colors hover:bg-accent-wash cursor-pointer"
                 >
                   {isValidAvatar(profile.avatar_url) ? (
                     <Image src={profile.avatar_url} alt={displayName} width={36} height={36} className="w-9 h-9 rounded-full object-cover shrink-0" />
@@ -844,7 +848,7 @@ export default function AppNavbar() {
           themselves to one screen subtract exactly this height on mobile
           (see APP_MOBILE_HEADER_H in app/(app)/kiem-tra/page.tsx). Keep the
           two in step. */}
-      <header className="lg:hidden h-14 shrink-0 border-b border-line sticky top-0 bg-page dark:bg-stone-950 z-50">
+      <header className="lg:hidden h-14 shrink-0 border-b border-line sticky top-0 bg-surface/95 backdrop-blur z-50">
         <div className="max-w-6xl mx-auto h-full px-3 sm:px-6 flex items-center justify-between gap-1.5 sm:gap-4 w-full overflow-hidden">
           <Link href="/dashboard" className="flex items-center gap-2 shrink-0">
             <Logo size={28} />
@@ -868,7 +872,7 @@ export default function AppNavbar() {
             {profile && (
               <button
                 onClick={() => setShowQuickShop(true)}
-                className="flex items-center gap-1 text-xs font-bold px-2 sm:px-2.5 py-1.5 sm:py-2 rounded-sm bg-white dark:bg-stone-900 border border-line-strong hover:border-line-firm transition-colors cursor-pointer whitespace-nowrap"
+                className="flex items-center gap-1 text-xs font-bold px-2 sm:px-2.5 py-1.5 sm:py-2 rounded-control bg-reward-soft ring-1 ring-reward-line/60 hover:ring-reward transition-shadow cursor-pointer whitespace-nowrap"
                 title={t.nav.coinBalanceTitle}
               >
                 <GoldCoinIcon className="w-4 h-4" />

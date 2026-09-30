@@ -77,7 +77,7 @@ export default function AnalyticsPage() {
       {/* Thanh định vị: liên kết về + mã khu, trên một đường kẻ 1px - cùng khuôn
           với đầu section của trang chủ, thay cho viên thuốc xanh. */}
       <div className="mx-auto flex w-full max-w-[1480px] items-center justify-between gap-4 px-5 pt-4 pb-4 sm:px-6">
-        <div className="flex w-full items-center justify-between gap-4 border-b border-line-strong pb-2">
+        <div className="flex w-full items-center justify-between gap-4 border-b border-line pb-2">
           <Link href="/dashboard" className={`${textLink} text-xs`}>
             {t.finalTwo.analyticsPage.backToDashboard}
           </Link>

@@ -387,7 +387,7 @@ export default function ProfilePage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-white dark:bg-stone-950 flex items-center justify-center">
+      <div className="min-h-screen bg-page flex items-center justify-center">
         <p className="text-ink-muted">{t.profile.loading}</p>
       </div>
     );

@@ -104,32 +104,33 @@ export default function FocusTimePanel({ userId }: { userId: string }) {
 
   const peak = Math.max(1, ...stats.days.map((d) => d.minutes));
 
-  const eyebrow = "text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted";
+  const eyebrow = "text-[11px] font-bold uppercase tracking-[0.08em] text-accent-strong";
 
   return (
     <section className={`${panel} p-4 sm:p-5`}>
       <SectionHead code={APP_SYS.focus} title={t.focusTime.cardTitle} sub={t.focusTime.cardSubtitle} size="sm" />
 
-      <dl className="mt-4 grid grid-cols-3 divide-x divide-stone-200 border-y border-line dark:divide-stone-800">
+      {/* Ba số: ô băng nhạt thay cho bảng chia đường kẻ xám. */}
+      <dl className="mt-4 grid grid-cols-3 gap-2">
         {[
           { label: t.focusTime.statTotal, value: format(t.focusTime.statTotalValue, { minutes: stats.totalMinutes }) },
           { label: t.focusTime.statSessions, value: String(stats.sessions) },
           { label: t.focusTime.statAverage, value: format(t.focusTime.statAverageValue, { minutes: stats.averageMinutes }) },
         ].map((s) => (
-          <div key={s.label} className="min-w-0 px-3 py-2 first:pl-0">
+          <div key={s.label} className="min-w-0 rounded-control bg-surface-raised px-3 py-2">
             <dt className="truncate text-[10.5px] font-bold uppercase tracking-[0.06em] text-ink-muted">{s.label}</dt>
-            <dd className="mt-0.5 font-mono text-lg font-medium tabular-nums text-ink-max">{s.value}</dd>
+            <dd className="mt-0.5 font-mono text-lg font-semibold tabular-nums text-ink-max">{s.value}</dd>
           </div>
         ))}
       </dl>
 
       <figure className="mt-4">
-        <figcaption className={`mb-1.5 border-b border-line pb-1.5 ${eyebrow}`}>{t.focusTime.last7DaysTitle}</figcaption>
+        <figcaption className={`mb-2 ${eyebrow}`}>{t.focusTime.last7DaysTitle}</figcaption>
         <div className="flex h-20 items-end gap-[3px]">
           {stats.days.map((d, i) => (
             <div key={d.key} className="flex h-full flex-1 flex-col items-center justify-end gap-1">
               <div
-                className={`w-full ${i === stats.days.length - 1 ? "bg-brand-700 dark:bg-brand-300" : "bg-brand-600/70 dark:bg-brand-400/70"}`}
+                className={`w-full rounded-t-[3px] ${i === stats.days.length - 1 ? "bg-brand-700 dark:bg-brand-300" : "bg-brand-300 dark:bg-brand-700"}`}
                 style={{ height: `${Math.max(2, (d.minutes / peak) * 100)}%` }}
                 title={format(t.focusTime.barTooltip, { day: d.key, minutes: d.minutes })}
               />
@@ -140,14 +141,14 @@ export default function FocusTimePanel({ userId }: { userId: string }) {
       </figure>
 
       <div className="mt-4">
-        <p className={`mb-1 border-b border-line pb-1.5 ${eyebrow}`}>{t.focusTime.whereSatTitle}</p>
-        <dl className="divide-y divide-stone-200 dark:divide-stone-800">
+        <p className={`mb-1 ${eyebrow}`}>{t.focusTime.whereSatTitle}</p>
+        <dl className="divide-y divide-line-soft">
           {stats.worlds.map((w) => (
             <div key={w.world} className="flex items-center gap-3 py-1.5 text-xs">
               <dt className="w-24 shrink-0 font-semibold text-ink-body">{WORLD_LABELS[w.world] ?? w.world}</dt>
-              <div className="h-1.5 flex-1 overflow-hidden rounded-xs bg-surface-sunken" aria-hidden>
+              <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-surface-sunken" aria-hidden>
                 <div
-                  className="h-full bg-brand-600 dark:bg-brand-500"
+                  className="h-full rounded-full bg-gradient-to-r from-brand-500 to-sky-400 dark:from-brand-400 dark:to-sky-300"
                   style={{ width: `${Math.round((w.minutes / Math.max(1, stats.totalMinutes)) * 100)}%` }}
                 />
               </div>

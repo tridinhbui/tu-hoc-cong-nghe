@@ -2,7 +2,8 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { BookOpen, ChevronDown, Clock, Folder, KeyRound, Loader2, Plus, Send, Trash2, WandSparkles, X } from "lucide-react";
-import ToolShell, { embedMissions, type ToolEmbed } from "@/components/tools/ToolShell";
+import ToolShell, { btnRun, embedMissions, type ToolEmbed } from "@/components/tools/ToolShell";
+import { IconTile, panel } from "@/components/ui/system";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 import {
@@ -263,8 +264,8 @@ export default function ApiSim({ embed }: { embed?: ToolEmbed }) {
   const tabBtn = (active: boolean) =>
     `relative px-3 py-2 text-xs font-bold transition-colors ${
       active
-        ? "text-ink after:absolute after:inset-x-2 after:-bottom-px after:h-0.5 after:rounded-full after:bg-brand-600"
-        : "text-ink-muted hover:text-ink"
+        ? "text-accent-strong after:absolute after:inset-x-2 after:-bottom-px after:h-0.5 after:rounded-full after:bg-accent"
+        : "text-ink-muted hover:text-accent-strong"
     }`;
 
   const inputCls =
@@ -280,11 +281,11 @@ export default function ApiSim({ embed }: { embed?: ToolEmbed }) {
       renderArtifact={renderArtifact}
       embed={embed}
     >
-      <div className="overflow-hidden rounded-2xl border border-line bg-white dark:bg-stone-900">
+      <div className={`${panel} overflow-hidden`}>
         <div className="grid md:grid-cols-[220px_minmax(0,1fr)]">
           {/* ------------------------------------------------ Sidebar */}
-          <aside className="border-b border-line bg-stone-50 dark:bg-stone-950/40 md:border-b-0 md:border-r">
-            <div className="flex border-b border-line">
+          <aside className="border-b border-line-soft bg-surface-raised md:border-b-0 md:border-r">
+            <div className="flex border-b border-line-soft">
               {(["collection", "history"] as const).map((tab) => (
                 <button
                   key={tab}
@@ -310,7 +311,7 @@ export default function ApiSim({ embed }: { embed?: ToolEmbed }) {
                         <button
                           type="button"
                           onClick={() => loadDraft(item.request)}
-                          className="flex w-full items-center gap-2 rounded-md py-1.5 pl-4 pr-2 text-left text-xs text-ink-body hover:bg-surface-raised"
+                          className="flex w-full items-center gap-2 rounded-control py-1.5 pl-4 pr-2 text-left text-xs text-ink-body transition-colors hover:bg-surface hover:text-accent-strong hover:shadow-card"
                         >
                           <span className={`w-11 shrink-0 font-mono text-[10px] font-black ${METHOD_COLOR[item.request.method]}`}>
                             {item.request.method}
@@ -331,7 +332,7 @@ export default function ApiSim({ embed }: { embed?: ToolEmbed }) {
                         <button
                           type="button"
                           onClick={() => loadDraft(draftFromRequest(h.request))}
-                          className="flex w-full items-center gap-2 rounded-md px-2 py-1.5 text-left text-xs hover:bg-surface-raised"
+                          className="flex w-full items-center gap-2 rounded-control px-2 py-1.5 text-left text-xs transition-colors hover:bg-surface hover:shadow-card"
                         >
                           <span className={`w-11 shrink-0 font-mono text-[10px] font-black ${METHOD_COLOR[h.request.method]}`}>
                             {h.request.method}
@@ -369,7 +370,7 @@ export default function ApiSim({ embed }: { embed?: ToolEmbed }) {
                 void send();
               }}
             >
-              <div className="flex min-w-0 flex-1 rounded-lg border border-line bg-white focus-within:border-brand-500 dark:bg-stone-950">
+              <div className="flex min-w-0 flex-1 rounded-control border border-line-strong bg-white transition-shadow focus-within:border-brand-500 focus-within:ring-2 focus-within:ring-brand-500/20 dark:bg-stone-950">
                 <div className="relative">
                   <button
                     type="button"
@@ -385,7 +386,7 @@ export default function ApiSim({ embed }: { embed?: ToolEmbed }) {
                     <button type="button" aria-hidden tabIndex={-1} className="fixed inset-0 z-10 cursor-default" onClick={() => setMethodOpen(false)} />
                   )}
                   {methodOpen && (
-                    <ul className="absolute left-0 top-full z-20 mt-1 w-32 overflow-hidden rounded-lg border border-line bg-white py-1 shadow-lg dark:bg-stone-900">
+                    <ul className="absolute left-0 top-full z-20 mt-1 w-32 overflow-hidden rounded-control border border-line-soft bg-surface py-1 shadow-lg">
                       {METHODS.map((m) => (
                         <li key={m}>
                           <button
@@ -394,7 +395,7 @@ export default function ApiSim({ embed }: { embed?: ToolEmbed }) {
                               update({ method: m });
                               setMethodOpen(false);
                             }}
-                            className={`block w-full px-3 py-1.5 text-left font-mono text-xs font-black hover:bg-surface-raised ${METHOD_COLOR[m]}`}
+                            className={`block w-full px-3 py-1.5 text-left font-mono text-xs font-black hover:bg-accent-wash ${METHOD_COLOR[m]}`}
                           >
                             {m}
                           </button>
@@ -415,7 +416,7 @@ export default function ApiSim({ embed }: { embed?: ToolEmbed }) {
               <button
                 type="submit"
                 disabled={sending}
-                className="inline-flex items-center justify-center gap-1.5 rounded-lg bg-brand-600 px-5 py-2 text-sm font-bold text-white hover:bg-brand-700 disabled:opacity-70"
+                className={`${btnRun} px-5 py-2`}
               >
                 {sending ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
                 {sending ? c.request.sending : c.request.send}
@@ -658,7 +659,7 @@ export default function ApiSim({ embed }: { embed?: ToolEmbed }) {
 
             {/* ------------------------------------------------ Response */}
             <div className="border-t border-line">
-              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 border-b border-line px-3 py-2">
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 border-b border-line-soft bg-surface-raised px-3 py-2">
                 <span className="text-xs font-black uppercase tracking-wider text-ink-muted">{c.response.title}</span>
                 {httpResult && !sending && (
                   <div className="ml-auto flex flex-wrap items-center gap-3 text-xs">
@@ -686,7 +687,9 @@ export default function ApiSim({ embed }: { embed?: ToolEmbed }) {
                 </div>
               ) : !result ? (
                 <div className="flex min-h-[220px] flex-col items-center justify-center gap-1 px-4 text-center">
-                  <Send className="h-6 w-6 text-ink-faint" />
+                  <IconTile className="mb-1 h-11 w-11">
+                    <Send className="h-5 w-5" />
+                  </IconTile>
                   <p className="text-sm font-bold text-ink">{c.response.empty}</p>
                   <p className="text-xs text-ink-muted">{c.response.emptyHint}</p>
                 </div>
@@ -783,16 +786,18 @@ export default function ApiSim({ embed }: { embed?: ToolEmbed }) {
       </div>
 
       {/* ------------------------------------------------ Cheat sheet */}
-      <details className="group mt-4 rounded-2xl border border-line bg-white p-4 dark:bg-stone-900">
+      <details className={`${panel} group mt-4 p-4`}>
         <summary className="flex cursor-pointer list-none items-center gap-2 text-sm font-black text-ink">
-          <BookOpen className="h-4 w-4 text-accent" />
+          <IconTile className="h-7 w-7">
+            <BookOpen className="h-3.5 w-3.5" />
+          </IconTile>
           {c.cheatSheet.title}
           <ChevronDown className="ml-auto h-4 w-4 text-ink-muted transition-transform group-open:rotate-180" />
         </summary>
         <p className="mt-2 text-xs text-ink-muted">{c.cheatSheet.subtitle}</p>
         <dl className="mt-3 grid gap-2 sm:grid-cols-2">
           {CHEAT_CODES.map((code) => (
-            <div key={code} className="flex gap-2 rounded-lg border border-line p-2">
+            <div key={code} className="flex gap-2 rounded-control bg-surface-raised p-2">
               <dt className={`h-fit shrink-0 rounded-md px-1.5 py-0.5 font-mono text-xs font-black ${statusTone(code)}`}>
                 {code}
               </dt>

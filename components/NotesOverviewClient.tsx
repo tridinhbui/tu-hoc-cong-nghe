@@ -205,7 +205,7 @@ export default function NotesOverviewClient({ lessonsById, userId, initialNotes,
 
   if (loading) {
     return (
-      <div className={embedded ? "flex items-center justify-center py-16" : "min-h-screen bg-white dark:bg-stone-950 flex items-center justify-center"}>
+      <div className={embedded ? "flex items-center justify-center py-16" : "min-h-screen bg-page flex items-center justify-center"}>
         <p className="text-ink-muted">{t.notes.loading}</p>
       </div>
     );
@@ -392,5 +392,5 @@ export default function NotesOverviewClient({ lessonsById, userId, initialNotes,
 
   if (embedded) return content;
 
-  return <div className="min-h-screen bg-white dark:bg-stone-950">{content}</div>;
+  return <div className="min-h-screen bg-page">{content}</div>;
 }

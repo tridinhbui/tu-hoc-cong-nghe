@@ -6,7 +6,7 @@ import { ArrowRight } from "lucide-react";
 import { getLeaderboardByMetric, type LeaderboardRow } from "@/lib/cloudflare-user";
 import RankTable from "@/components/analytics/RankTable";
 import { APP_SYS } from "@/components/analytics/system-codes";
-import { SectionHead, textLink } from "@/components/ui/system";
+import { SectionHead, panel, textLink } from "@/components/ui/system";
 import { useI18n } from "@/lib/i18n/context";
 
 /** Bảng xếp hạng thu nhỏ ở cột phải của Bảng tin.
@@ -51,7 +51,7 @@ export default function FeedLeaderboardCard() {
   if (rows === null || rows.length === 0) return null;
 
   return (
-    <section className="rounded-md border border-line-strong bg-white p-4 dark:border-stone-700 dark:bg-stone-900">
+    <section className={`${panel} p-4`}>
       <SectionHead code={APP_SYS.feedRank} title={t.feed.rankTitle} sub={t.feed.rankSub} size="sm" />
 
       {/* Hạng bằng SỐ trong rãnh mono; ba hạng đầu giữ chấm RankBadge nhỏ.

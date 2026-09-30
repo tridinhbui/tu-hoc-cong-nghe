@@ -7,13 +7,12 @@ import { createClient } from "@/lib/cloudflare";
 import { trackFeatureClick } from "@/lib/feature-events";
 import { toDownloadUrl } from "@/lib/storage-download";
 import { documentCategoriesOf, documentCategoryLabel } from "@/lib/document-categories";
-import EmptyState from "@/components/admin/EmptyState";
 import Modal from "@/components/admin/Modal";
 import CommunityUploadModal from "./CommunityUploadModal";
 import type { PublicDocument } from "./page";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
-import { StatusDot, btnPrimary, tabClass } from "@/components/ui/system";
+import { IconTile, StatusDot, btnPrimary, btnSecondary, chipAccent, panel, tabClass } from "@/components/ui/system";
 import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 
 function formatBytes(bytes: number) {
@@ -55,12 +54,13 @@ function UpcomingBanner() {
   const { t } = useI18n();
   const words = t.documentsList.typingWords;
   return (
-    <div className="mb-6 rounded-sm border border-line bg-white p-4 dark:bg-stone-900">
-      <p className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">
+    // Khối phụ: nền băng lõm, không viền - đứng lùi sau lưới tài liệu.
+    <div className="mb-6 rounded-card bg-surface-raised p-4">
+      <p className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.08em] text-accent-strong">
         <StatusDot />
         {t.documentsList.updatingLabel}
       </p>
-      <ul className="mt-2 divide-y divide-stone-200 dark:divide-stone-800">
+      <ul className="mt-2 divide-y divide-line">
         {words.map((w) => (
           <li key={w} className="py-1.5 text-xs font-semibold text-ink-body">
             {w}
@@ -111,7 +111,7 @@ export default function DocumentsList({ documents, currentUserId }: { documents:
         </div>
         <button
           onClick={() => setShowUpload(true)}
-          className="flex flex-shrink-0 items-center gap-1.5 rounded-sm border border-stone-400 px-3 py-1.5 text-xs font-bold text-ink transition-colors hover:border-stone-400 dark:border-stone-600 dark:hover:border-stone-200"
+          className={`${btnSecondary} flex-shrink-0 px-3 py-1.5 text-xs`}
         >
           <Plus className="w-3.5 h-3.5" />
           {t.documentsList.shareButton}
@@ -119,11 +119,15 @@ export default function DocumentsList({ documents, currentUserId }: { documents:
       </div>
 
       {filtered.length === 0 ? (
-        <EmptyState
-          icon={FileText}
-          title={t.documentsList.emptyTitle}
-          description={t.documentsList.emptyDescription}
-        />
+        // Trạng thái rỗng có chủ đích: ô icon xanh + chữ dịu trên thẻ trắng,
+        // thay cho hộp viền xám trống của EmptyState dùng chung bên admin.
+        <div className={`${panel} flex flex-col items-center justify-center px-6 py-14 text-center`}>
+          <IconTile className="mb-3 h-12 w-12">
+            <FileText className="w-6 h-6" aria-hidden />
+          </IconTile>
+          <p className="font-bold text-ink">{t.documentsList.emptyTitle}</p>
+          <p className="text-sm text-ink-muted mt-1 max-w-sm">{t.documentsList.emptyDescription}</p>
+        </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {filtered.map((doc) => {
@@ -136,11 +140,13 @@ export default function DocumentsList({ documents, currentUserId }: { documents:
                   setOpenDoc(doc);
                   trackFeatureClick("document_open", { label: doc.file_name });
                 }}
-                className="group overflow-hidden rounded-md border border-line-strong bg-white text-left transition-colors hover:border-stone-400 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-600"
+                // Thẻ trắng nổi trên canvas băng bằng bóng; rê chuột thì nổi
+                // thêm và viền ngả xanh - không còn viền xám đậm bao quanh.
+                className={`${panel} group overflow-hidden text-left transition-[transform,box-shadow,border-color] hover:border-accent-line hover:shadow-card-hover motion-safe:hover:-translate-y-0.5`}
               >
                 {/* Cover image or icon */}
                 {doc.image_url ? (
-                  <div className="relative w-full h-44 border-b border-line bg-surface-raised overflow-hidden">
+                  <div className="relative w-full h-44 bg-accent-wash overflow-hidden">
                     {/* Khung đã có kích thước cố định (h-48) và `relative`, nên
                         `fill` là dạng đúng ở đây - không phải đoán tỉ lệ. Ảnh
                         bìa nằm trong bucket "documents"; trang này là lưới thẻ
@@ -154,18 +160,18 @@ export default function DocumentsList({ documents, currentUserId }: { documents:
                     />
                   </div>
                 ) : (
-                  <div className="w-full h-44 border-b border-line bg-surface-raised dark:bg-stone-950 flex items-center justify-center">
-                    <Icon className="w-12 h-12 text-ink-faint" aria-hidden />
+                  <div className="w-full h-44 bg-accent-wash flex items-center justify-center">
+                    <Icon className="w-12 h-12 text-accent" aria-hidden />
                   </div>
                 )}
 
                 {/* Content */}
                 <div className="p-4">
                   <div className="flex items-center gap-2 mb-2 flex-wrap">
-                    <span className="rounded-sm border border-line px-1.5 py-0.5 text-[10.5px] font-bold uppercase tracking-[0.06em] text-ink-soft">
+                    <span className={`${chipAccent} text-[10.5px] uppercase tracking-[0.06em]`}>
                       {categoryLabel(doc.category, t)}
                     </span>
-                    <span className="flex items-center gap-1.5 rounded-sm border border-line px-1.5 py-0.5 text-[10.5px] font-bold uppercase tracking-[0.06em] text-ink-soft">
+                    <span className="flex items-center gap-1.5 rounded-full bg-surface-raised px-2 py-0.5 text-[10.5px] font-bold uppercase tracking-[0.06em] text-ink-soft">
                       <StatusDot />
                       {t.documentsList.freeBadge}
                     </span>
@@ -176,7 +182,7 @@ export default function DocumentsList({ documents, currentUserId }: { documents:
                     )}
                   </div>
 
-                  <h3 className="mb-2 line-clamp-2 text-base font-black tracking-tight text-ink-max">
+                  <h3 className="mb-2 line-clamp-2 text-base font-black tracking-tight text-ink-max transition-colors group-hover:text-accent-strong">
                     {doc.title}
                   </h3>
 
@@ -210,15 +216,15 @@ export default function DocumentsList({ documents, currentUserId }: { documents:
         {openDoc && (
           <div className="space-y-4">
             {openDoc.image_url ? (
-              <div className="relative w-full h-56 rounded-sm border border-line overflow-hidden bg-surface-raised">
+              <div className="relative w-full h-56 rounded-card overflow-hidden bg-accent-wash">
                 <Image src={openDoc.image_url} alt="" fill sizes="(max-width: 640px) 100vw, 560px" className="object-cover" />
               </div>
             ) : (
               (() => {
                 const Icon = iconFor(openDoc.file_name);
                 return (
-                  <div className="w-full h-40 rounded-sm border border-line bg-surface-raised dark:bg-stone-950 flex items-center justify-center">
-                    <Icon className="w-12 h-12 text-ink-faint" aria-hidden />
+                  <div className="w-full h-40 rounded-card bg-accent-wash flex items-center justify-center">
+                    <Icon className="w-12 h-12 text-accent" aria-hidden />
                   </div>
                 );
               })()

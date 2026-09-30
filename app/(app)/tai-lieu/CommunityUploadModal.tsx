@@ -60,7 +60,7 @@ export default function CommunityUploadModal({ open, onClose, loggedIn }: Commun
               name="title"
               required
               placeholder={t.communityUpload.titlePlaceholder}
-              className="w-full px-3 py-2 rounded-sm border border-line-strong bg-white dark:bg-stone-800 text-sm text-ink focus:border-brand-500 focus:outline-none"
+              className="w-full px-3 py-2 rounded-control border border-line-strong bg-white dark:bg-stone-800 text-sm text-ink focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-accent-soft"
             />
           </div>
           <div className="space-y-2">
@@ -69,7 +69,7 @@ export default function CommunityUploadModal({ open, onClose, loggedIn }: Commun
               name="description"
               rows={3}
               placeholder={t.communityUpload.descriptionPlaceholder}
-              className="w-full px-3 py-2 rounded-sm border border-line-strong bg-white dark:bg-stone-800 text-sm text-ink focus:border-brand-500 focus:outline-none resize-none"
+              className="w-full px-3 py-2 rounded-control border border-line-strong bg-white dark:bg-stone-800 text-sm text-ink focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-accent-soft resize-none"
             />
           </div>
           <div className="space-y-2">
@@ -77,7 +77,7 @@ export default function CommunityUploadModal({ open, onClose, loggedIn }: Commun
             <select
               name="category"
               defaultValue="khac"
-              className="w-full px-3 py-2 rounded-sm border border-line-strong bg-white dark:bg-stone-800 text-sm text-ink focus:border-brand-500 focus:outline-none"
+              className="w-full px-3 py-2 rounded-control border border-line-strong bg-white dark:bg-stone-800 text-sm text-ink focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-accent-soft"
             >
               {documentCategoriesOf(t).map((c) => (
                 <option key={c.value} value={c.value}>{c.label}</option>

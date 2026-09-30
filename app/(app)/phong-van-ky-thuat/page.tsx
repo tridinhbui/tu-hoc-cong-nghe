@@ -49,7 +49,7 @@ import { getInterviewCoverage, type InterviewCoverage } from "@/lib/interview-we
 import InterviewerStage from "@/components/InterviewerStage";
 import CoCoSays from "@/components/CoCoSays";
 import { useQuizKeys } from "@/lib/use-quiz-keys";
-import { btnPrimary, btnSecondary, panel, SectionHead, StatTable, Sys, tabClass, textLink } from "@/components/ui/system";
+import { btnEnergy, btnPrimary, btnSecondary, panel, panelFocus, ProgressBar, quizKey, quizOption, SectionHead, StatTable, Sys, tabClass, textLink, type QuizOptionState } from "@/components/ui/system";
 
 interface ChallengeQuestion {
   lessonId: number;
@@ -123,20 +123,35 @@ const SYS = {
 /* i18n-ignore-end */
 
 /** Ô chọn (nghề, độ khó, số câu, chủ đề). Đang chọn: viền 2px xanh + nền
- *  xanh nhạt + dấu tích - xanh ở đây là CHỨC NĂNG, không phải trang trí. Chưa
- *  chọn: không viền (viền 2px trong suốt để ô không nhảy kích thước), nền rất
- *  nhạt, chữ lùi - để ô đã chọn là thứ duy nhất nổi trong lưới. */
-function choiceClass(active: boolean) {
-  return `relative rounded-sm border-2 transition-colors cursor-pointer ${
+ *  băng + chữ xanh đậm + dấu tích + bóng xanh - xanh ở đây là CHỨC NĂNG, không
+ *  phải trang trí. Chưa chọn: thẻ trắng nổi trên canvas băng bằng bóng mảnh
+ *  (viền 2px trong suốt để ô không nhảy kích thước), rê chuột thì viền xanh
+ *  nhạt - để ô đã chọn là thứ duy nhất nổi trong lưới.
+ *
+ *  `tone = "energy"` chỉ cho mức "Khó": độ khó là thử thách, nên lúc chọn nó
+ *  đổi sang coral thay cho xanh (luật màu trong components/ui/system.tsx). */
+function choiceClass(active: boolean, tone: "accent" | "energy" = "accent") {
+  return `relative rounded-control border-2 transition-[background-color,border-color,color,box-shadow,transform] cursor-pointer ${
     active
-      ? "border-accent bg-accent-soft text-ink-max"
-      : "border-transparent bg-surface-raised/60 text-ink-soft hover:bg-surface-raised hover:text-ink"
+      ? tone === "energy"
+        ? "border-energy bg-energy-soft text-energy-strong shadow-card-hover"
+        : "border-accent bg-accent-wash text-accent-strong shadow-card-hover"
+      : "border-transparent bg-surface text-ink-body shadow-card hover:border-accent-line hover:text-ink-max motion-safe:hover:-translate-y-px"
   }`;
 }
 /** Dấu tích góc ô đang chọn - cặp với choiceClass. */
-function ChoiceCheck({ active }: { active: boolean }) {
+function ChoiceCheck({ active, tone = "accent" }: { active: boolean; tone?: "accent" | "energy" }) {
   if (!active) return null;
-  return <Check aria-hidden className="absolute right-1 top-1 w-3 h-3 text-accent" strokeWidth={3.2} />;
+  return (
+    <span
+      aria-hidden
+      className={`absolute right-1 top-1 flex h-4 w-4 items-center justify-center rounded-full text-white dark:text-[#07101f] ${
+        tone === "energy" ? "bg-energy" : "bg-accent"
+      }`}
+    >
+      <Check className="w-2.5 h-2.5" strokeWidth={3.6} />
+    </span>
+  );
 }
 const PASS_RATIO = 0.6;
 /** Bằng MIN_DIFFICULTY_POOL trong app/api/knowledge-challenge/route.ts: dưới
@@ -152,18 +167,19 @@ const ROUND_NAME_KEY: Record<QuizDifficulty, "roundScreen" | "roundAnalyst" | "r
   "tat-ca": "roundMixed",
 };
 
-/** Trạng thái của một bước thiết lập: đã chọn = cyan (tiến độ), đang chọn =
- *  brand (hành động), chưa tới = xám. */
+/** Trạng thái của một bước thiết lập: đã chọn = xanh nhạt (tiến độ đã đi),
+ *  đang chọn = xanh đậm (hành động), chưa tới = xám. Cả hai đều là xanh brand:
+ *  tiến độ học là nhận diện của app, không phải một màu riêng. */
 type StepStatus = "done" | "current" | "todo";
 type StepId = "role" | "difficulty" | "focus" | "interview";
 const STEP_BORDER: Record<StepStatus, string> = {
-  done: "border-cyan-600 dark:border-cyan-400",
-  current: "border-brand-600 dark:border-brand-400",
-  todo: "border-line",
+  done: "border-accent-line-mid",
+  current: "border-accent",
+  todo: "border-line-strong",
 };
 const STEP_TEXT: Record<StepStatus, string> = {
-  done: "text-cyan-700 dark:text-cyan-400",
-  current: "text-accent",
+  done: "text-accent",
+  current: "text-accent-strong",
   todo: "text-ink-faint",
 };
 
@@ -705,12 +721,12 @@ export default function TechnicalInterviewPage() {
   const cocoResultLines = !priority ? R.cocoPerfect : passed ? R.cocoPass : R.cocoFail;
 
   return (
-    <div className="h-[calc(100dvh-3.5rem)] lg:h-dvh overflow-hidden flex flex-col bg-page dark:bg-stone-950 font-sans">
+    <div className="h-[calc(100dvh-3.5rem)] lg:h-dvh overflow-hidden flex flex-col bg-page font-sans">
       {/* ─── 1. THANH TRÊN ───
           Trong buổi phỏng vấn thanh này chỉ còn ba thứ: nút thoát, đang ở câu
           nào của vị trí nào, và đồng hồ. Không có liên kết về dashboard, không
           có chip XP - người ngồi phòng phỏng vấn thật không nhìn thấy menu. */}
-      <div className="shrink-0 border-b border-line-strong bg-white dark:bg-stone-900">
+      <div className="shrink-0 border-b border-line-soft bg-surface shadow-card">
         {inSession ? (
           <div className="max-w-7xl mx-auto px-4 sm:px-6 py-2.5 flex items-center justify-between gap-4">
             <div className="flex min-w-0 items-center gap-3">
@@ -748,7 +764,7 @@ export default function TechnicalInterviewPage() {
                 <button
                   type="button"
                   onClick={exitToSetup}
-                  className="flex items-center justify-center w-9 h-9 rounded-sm text-ink-muted hover:bg-surface-raised hover:text-ink transition-colors cursor-pointer"
+                  className="flex items-center justify-center w-9 h-9 rounded-control text-ink-muted hover:bg-accent-wash hover:text-accent-strong transition-colors cursor-pointer"
                   aria-label={t.interview.back}
                 >
                   <ChevronLeft className="w-5 h-5" />
@@ -757,7 +773,7 @@ export default function TechnicalInterviewPage() {
                 <Link
                   href="/dashboard"
                   aria-label={t.interview.backToDashboard}
-                  className="flex items-center justify-center w-9 h-9 rounded-sm text-ink-muted hover:bg-surface-raised hover:text-ink transition-colors cursor-pointer"
+                  className="flex items-center justify-center w-9 h-9 rounded-control text-ink-muted hover:bg-accent-wash hover:text-accent-strong transition-colors cursor-pointer"
                 >
                   <ChevronLeft className="w-5 h-5" />
                 </Link>
@@ -767,7 +783,7 @@ export default function TechnicalInterviewPage() {
               </h1>
             </div>
 
-            <span className="inline-flex items-center text-xs font-bold tabular-nums text-warn-strong">
+            <span className="inline-flex items-center rounded-full bg-reward-soft px-2.5 py-1 text-xs font-bold tabular-nums text-reward-strong">
               {format(t.quizPage.xpPerQuestion, { xp: QUIZ_XP_PER_CORRECT[difficulty] })}
             </span>
           </div>
@@ -783,7 +799,7 @@ export default function TechnicalInterviewPage() {
                 Trước đây `mode` có đủ hai giá trị và `BehavioralPrepPanel`
                 được import, nhưng `setMode` không được gọi ở đâu cả - nên 121
                 thẻ luyện phỏng vấn hành vi không có đường nào mở ra được. */}
-            <div className="flex gap-6 border-b border-line-strong">
+            <div className="flex gap-6 border-b border-line">
               {([
                 { id: "technical" as Mode, label: t.interview.modeTechnical, sub: t.interview.modeTechnicalSub },
                 { id: "behavioral" as Mode, label: t.interview.modeBehavioral, sub: t.interview.modeBehavioralSub },
@@ -813,13 +829,11 @@ export default function TechnicalInterviewPage() {
                 <SectionHead code={SYS.interview} eyebrow={R.eyebrow} title={R.title} />
                 <CoCoSays lines={t.coco.interview} size={40} />
                 <div className="flex items-center gap-3">
-                  <div className="w-28 sm:w-36 h-1.5 rounded-xs bg-surface-sunken overflow-hidden">
-                    <div className="h-full bg-cyan-600 dark:bg-cyan-400" style={{ width: `${ibCoverage?.pct ?? 0}%` }} />
-                  </div>
-                  <span className="text-xs font-bold tabular-nums text-ink-soft">
+                  <ProgressBar value={ibCoverage?.pct ?? 0} className="h-1.5 w-28 sm:w-36" />
+                  <span className="text-xs font-bold tabular-nums text-accent-strong">
                     {format(R.coverage, { pct: ibCoverage?.pct ?? 0 })}
                   </span>
-                  <span className="text-xs font-bold tabular-nums text-warn-strong">
+                  <span className="rounded-full bg-reward-soft px-2 py-0.5 text-xs font-bold tabular-nums text-reward-strong">
                     {format(R.xpGain, { xp: ibXp })}
                   </span>
                 </div>
@@ -835,7 +849,7 @@ export default function TechnicalInterviewPage() {
                       type="button"
                       onClick={() => scrollToStep(s.id)}
                       aria-current={s.status === "current" ? "step" : undefined}
-                      className={`w-full min-w-0 pt-2 text-left cursor-pointer transition-colors ${s.status === "current" ? "border-t-[3px]" : "border-t-2"} ${STEP_BORDER[s.status]} ${s.status === "todo" ? "opacity-70 hover:opacity-100" : ""}`}
+                      className={`w-full min-w-0 pt-2 text-left cursor-pointer transition-colors ${s.status === "current" ? "border-t-[3px]" : "border-t-2"} ${STEP_BORDER[s.status]} ${s.status === "todo" ? "opacity-80 hover:opacity-100" : ""}`}
                     >
                       <span className="flex items-center gap-1.5">
                         <Sys className={STEP_TEXT[s.status]}>{SYS.step(i + 1)}</Sys>
@@ -902,7 +916,7 @@ export default function TechnicalInterviewPage() {
                   <button
                     type="button"
                     onClick={() => setRolePickerOpen(true)}
-                    className="p-2.5 rounded-sm border-2 border-dashed border-line text-ink-muted transition-colors hover:border-line-strong hover:text-ink cursor-pointer flex flex-col items-center justify-center min-h-[72px]"
+                    className="p-2.5 rounded-control border-2 border-dashed border-accent-line text-accent-strong transition-colors hover:border-accent hover:bg-accent-wash cursor-pointer flex flex-col items-center justify-center min-h-[72px]"
                   >
                     <span className="text-xs font-black block">{t.interview.seeMore}</span>
                     <span className="text-[10.5px] text-ink-muted font-bold mt-0.5">{t.interview.seeMoreCareers}</span>
@@ -932,11 +946,11 @@ export default function TechnicalInterviewPage() {
                           setDiffChosen(true);
                         }}
                         aria-pressed={isSelected}
-                        className={`${choiceClass(isSelected)} p-3 flex flex-col items-center justify-center text-center min-h-[68px]`}
+                        className={`${choiceClass(isSelected, id === "kho" ? "energy" : "accent")} p-3 flex flex-col items-center justify-center text-center min-h-[68px]`}
                       >
-                        <ChoiceCheck active={isSelected} />
+                        <ChoiceCheck active={isSelected} tone={id === "kho" ? "energy" : "accent"} />
                         <span className="text-xs font-black flex items-center gap-1">
-                          <item.Icon className="w-3.5 h-3.5 shrink-0" strokeWidth={2} /> {item.title}
+                          <item.Icon className={`w-3.5 h-3.5 shrink-0 ${id === "kho" ? "text-energy" : "text-accent"}`} strokeWidth={2} /> {item.title}
                         </span>
                         <span className="text-[10.5px] font-medium mt-0.5 text-ink-muted">
                           {item.sub}
@@ -1019,7 +1033,7 @@ export default function TechnicalInterviewPage() {
                       <button
                         type="button"
                         onClick={() => setTopicPickerOpen(true)}
-                        className="p-2.5 rounded-sm border-2 border-dashed border-line text-ink-muted transition-colors hover:border-line-strong hover:text-ink cursor-pointer flex flex-col items-center justify-center min-h-[68px]"
+                        className="p-2.5 rounded-control border-2 border-dashed border-accent-line text-accent-strong transition-colors hover:border-accent hover:bg-accent-wash cursor-pointer flex flex-col items-center justify-center min-h-[68px]"
                       >
                         <span className="text-xs font-black block">{t.interview.seeMore}</span>
                         <span className="text-[10.5px] text-ink-muted font-bold mt-0.5">
@@ -1034,11 +1048,11 @@ export default function TechnicalInterviewPage() {
               {/* 04 PHỎNG VẤN - buổi phỏng vấn các lựa chọn trên sẽ tạo ra, rồi
                   nút duy nhất để bắt đầu. Mọi con số ở đây tính từ chính kho câu
                   hỏi theo đúng luật của /api/knowledge-challenge, không ước lượng. */}
-              <section id="step-interview" className="scroll-mt-4 space-y-3">
+              <section id="step-interview" className={`${panelFocus} scroll-mt-4 space-y-3 p-4 sm:p-5`}>
                 <StepHead n={SYS.step(4)} label={R.stepInterview} hint={R.interviewHint} status={steps[3].status} statusLabel={stepStatusLabel(steps[3])} />
                 <dl className="grid grid-cols-1 sm:grid-cols-2 gap-x-6">
                   {envRows.map((row) => (
-                    <div key={row.label} className="flex items-baseline gap-3 border-b border-line-soft py-2">
+                    <div key={row.label} className="flex items-baseline gap-3 border-b border-accent-line/60 py-2">
                       <dt className="w-28 shrink-0 eyebrow text-ink-faint">{row.label}</dt>
                       <dd className="min-w-0 text-sm font-bold text-ink-max">{row.value}</dd>
                     </div>
@@ -1050,7 +1064,7 @@ export default function TechnicalInterviewPage() {
                 <button
                   type="button"
                   onClick={() => void startQuiz(difficulty, selectedSection)}
-                  className={`${btnPrimary} w-full !py-5 !text-base cursor-pointer`}
+                  className={`${btnEnergy} w-full !py-5 !text-base cursor-pointer`}
                 >
                   <Play className="w-5 h-5" strokeWidth={2.4} />
                   <span>{R.startCta}</span>
@@ -1061,28 +1075,26 @@ export default function TechnicalInterviewPage() {
             </div>
 
             {/* ────── CỘT PHẢI: TIẾN ĐỘ VÀ ĐIỂM YẾU ────── */}
-            <div className="lg:col-span-4 space-y-6 min-w-0 lg:border-l lg:border-line-soft lg:pl-5">
+            <div className="lg:col-span-4 space-y-6 min-w-0">
               {/* TIẾN ĐỘ CỦA BẠN */}
-              <div className="space-y-4">
-                <h3 className="eyebrow text-ink-faint">
+              <div className={`${panel} space-y-4 p-4`}>
+                <h3 className="eyebrow text-accent-strong">
                   {t.interview.progressTitle}
                 </h3>
 
                 <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 shrink-0 rounded-sm bg-surface-raised flex items-center justify-center">
-                    <span className="font-mono text-sm font-medium tabular-nums text-ink-soft">
+                  <div className="w-14 h-14 shrink-0 rounded-control bg-reward-soft flex items-center justify-center">
+                    <span className="font-mono text-sm font-bold tabular-nums text-reward-strong">
                       {SYS.level(totalXp === null ? "-" : String(getLevelByXp(totalXp).level))}
                     </span>
                   </div>
                   <div className="min-w-0 flex-1">
-                    <span className="font-mono text-xs tabular-nums text-warn-strong">
+                    <span className="font-mono text-xs font-bold tabular-nums text-reward-strong">
                       {totalXp === null
                         ? "-- XP"
                         : `${totalXp.toLocaleString(intlLocale(locale))} / ${(getNextLevel(getLevelByXp(totalXp).level)?.minXp ?? totalXp).toLocaleString(intlLocale(locale))} XP`}
                     </span>
-                    <div className="w-full h-1.5 rounded-xs bg-surface-sunken overflow-hidden mt-1.5">
-                      <div className="h-full bg-cyan-600 dark:bg-cyan-400 motion-safe:transition-[width] motion-safe:duration-500" style={{ width: `${totalXp === null ? 0 : getLevelProgress(totalXp)}%` }} />
-                    </div>
+                    <ProgressBar value={totalXp === null ? 0 : getLevelProgress(totalXp)} tone="reward" className="mt-1.5 h-1.5 w-full" />
                   </div>
                 </div>
 
@@ -1129,7 +1141,7 @@ export default function TechnicalInterviewPage() {
               onClick={(e) => e.stopPropagation()}
               className={`${panel} relative w-full max-w-xl max-h-[85vh] overflow-hidden p-6 space-y-4`}
             >
-              <div className="flex items-center justify-between border-b border-line-strong pb-3">
+              <div className="flex items-center justify-between border-b border-line pb-3">
                 <h3 className="text-base font-black text-ink-max">
                   {t.interview.pickerTitle}
                 </h3>
@@ -1137,7 +1149,7 @@ export default function TechnicalInterviewPage() {
                   type="button"
                   onClick={() => setRolePickerOpen(false)}
                   aria-label={t.interview.pickerClose}
-                  className="w-8 h-8 rounded-sm flex items-center justify-center text-ink-muted hover:bg-surface-raised hover:text-ink cursor-pointer"
+                  className="w-8 h-8 rounded-control flex items-center justify-center text-ink-muted hover:bg-accent-wash hover:text-accent-strong cursor-pointer"
                 >
                   <X className="w-4 h-4" />
                 </button>
@@ -1151,7 +1163,7 @@ export default function TechnicalInterviewPage() {
                   onChange={(e) => setRoleQuery(e.target.value)}
                   placeholder={t.interview.pickerPlaceholder}
                   aria-label={t.interview.pickerSearchLabel}
-                  className="w-full pl-9 pr-3 py-2 text-xs rounded-sm border border-line-strong bg-surface focus:border-brand-600 focus:outline-none"
+                  className="w-full pl-9 pr-3 py-2 text-xs rounded-control border border-line-strong bg-surface focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-500/20"
                 />
               </div>
 
@@ -1210,7 +1222,7 @@ export default function TechnicalInterviewPage() {
               onClick={(e) => e.stopPropagation()}
               className={`${panel} relative w-full max-w-xl max-h-[85vh] overflow-hidden p-6 space-y-4`}
             >
-              <div className="flex items-center justify-between border-b border-line-strong pb-3">
+              <div className="flex items-center justify-between border-b border-line pb-3">
                 <h3 className="text-base font-black text-ink-max">
                   {t.interview.topicPickerTitle}
                 </h3>
@@ -1218,7 +1230,7 @@ export default function TechnicalInterviewPage() {
                   type="button"
                   onClick={() => setTopicPickerOpen(false)}
                   aria-label={t.interview.pickerClose}
-                  className="w-8 h-8 rounded-sm flex items-center justify-center text-ink-muted hover:bg-surface-raised hover:text-ink cursor-pointer"
+                  className="w-8 h-8 rounded-control flex items-center justify-center text-ink-muted hover:bg-accent-wash hover:text-accent-strong cursor-pointer"
                 >
                   <X className="w-4 h-4" />
                 </button>
@@ -1232,7 +1244,7 @@ export default function TechnicalInterviewPage() {
                   onChange={(e) => setTopicQuery(e.target.value)}
                   placeholder={t.interview.topicPickerPlaceholder}
                   aria-label={t.interview.topicPickerSearchLabel}
-                  className="w-full pl-9 pr-3 py-2 text-xs rounded-sm border border-line-strong bg-surface focus:border-brand-600 focus:outline-none"
+                  className="w-full pl-9 pr-3 py-2 text-xs rounded-control border border-line-strong bg-surface focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-500/20"
                 />
               </div>
 
@@ -1317,8 +1329,11 @@ export default function TechnicalInterviewPage() {
               {/* CÂU HỎI DẠNG CHỮ THẬT, không chỉ trong bong bóng 3D: chọn/copy
                   được, trình đọc màn hình đọc được, và vẫn còn khi WebGL không
                   dựng được. Cảnh 3D ở trên là phần không khí. */}
+              {/* ĐIỂM NHẤN của buổi phỏng vấn: câu hỏi và các phương án nằm chung
+                  một khối panelFocus; mọi thứ khác trên màn yên lặng. */}
+              <div className={`${panelFocus} space-y-4 p-4 sm:p-5`}>
               <div>
-                <p className="eyebrow text-ink-faint">{R.interviewerQuestion}</p>
+                <p className="eyebrow text-accent-strong">{R.interviewerQuestion}</p>
                 <p className="mt-1 select-text text-lg font-extrabold leading-snug text-ink-max sm:text-xl">
                   {q.question}
                 </p>
@@ -1329,34 +1344,31 @@ export default function TechnicalInterviewPage() {
                 {q.options.map((opt, oi) => {
                   const isSelected = selected === oi;
                   const isCorrectOpt = oi === q.correct;
-                  let cls = "border-transparent bg-surface-raised/60 text-ink-body hover:bg-surface-raised hover:text-ink";
-                  let badgeCls = "border-line text-ink-muted";
-                  if (submitted) {
-                    if (isCorrectOpt) {
-                      cls = "border-cyan-600 dark:border-cyan-400 bg-cyan-50 dark:bg-cyan-950 text-ink-max font-bold";
-                      badgeCls = "border-cyan-600 bg-cyan-600 text-white dark:border-cyan-400 dark:bg-cyan-400 dark:text-stone-950";
-                    } else if (isSelected) {
-                      cls = "border-red-600 dark:border-red-400 bg-danger-soft text-ink-max font-bold";
-                      badgeCls = "border-red-600 bg-red-600 text-white dark:border-red-400 dark:bg-red-400 dark:text-stone-950";
-                    } else {
-                      cls = "border-transparent bg-surface text-ink-faint opacity-70";
-                      badgeCls = "border-line text-ink-faint";
-                    }
-                  } else if (isSelected) {
-                    cls = "border-accent bg-accent-soft text-ink-max font-bold";
-                    badgeCls = "border-accent bg-accent text-white dark:text-stone-950";
-                  }
+                  // Cùng trạng thái phương án với màn luyện /kiem-tra (quizOption /
+                  // quizKey trong components/ui/system.tsx), để "đã chọn", "đúng",
+                  // "sai" trông như nhau ở mọi nơi người học trả lời câu hỏi.
+                  const state: QuizOptionState = submitted
+                    ? isCorrectOpt
+                      ? "correct"
+                      : isSelected
+                        ? "wrong"
+                        : "dim"
+                    : isSelected
+                      ? "selected"
+                      : "idle";
                   return (
                     <button
                       key={oi}
                       disabled={submitted}
                       onClick={() => choose(oi)}
-                      className={`w-full text-left px-3.5 py-3 rounded-sm border-2 transition-colors cursor-pointer text-sm select-text font-medium flex items-center gap-3 ${cls}`}
+                      className={`${quizOption(state)} px-3.5 py-3 text-sm select-text flex items-center gap-3 ${
+                        state === "correct" || state === "wrong" || state === "selected" ? "font-bold" : "font-medium"
+                      }`}
                     >
                       {/* Huy hiệu A/B/C/D: người học nói "chọn C", và câu hỏi
                           tiếp theo của người phỏng vấn tham chiếu bằng chữ cái. */}
                       <span
-                        className={`shrink-0 w-7 h-7 rounded-xs border flex items-center justify-center font-mono text-xs font-medium ${badgeCls}`}
+                        className={quizKey(state)}
                       >
                         {optionLetter(oi)}
                       </span>
@@ -1371,10 +1383,11 @@ export default function TechnicalInterviewPage() {
                   );
                 })}
               </div>
+              </div>
 
               {submitted && (
                 <div
-                  className={`rounded-sm border border-l-2 p-3.5 flex items-start gap-3 ${
+                  className={`rounded-control border border-l-4 p-3.5 flex items-start gap-3 ${
                     results[activeQ]
                       ? "border-cyan-200 border-l-cyan-600 bg-cyan-50 dark:border-cyan-900 dark:border-l-cyan-400 dark:bg-cyan-950"
                       : "border-danger-line border-l-red-600 bg-danger-soft dark:border-l-red-400"
@@ -1436,7 +1449,7 @@ export default function TechnicalInterviewPage() {
               )}
             </div>
 
-            <aside className="lg:col-span-4 min-w-0 space-y-5 lg:sticky lg:top-0 lg:border-l lg:border-line-soft lg:pl-5">
+            <aside className={`${panel} lg:col-span-4 min-w-0 space-y-5 p-4 lg:sticky lg:top-0`}>
               {/* ĐỒNG HỒ + TIẾN ĐỘ BUỔI */}
               <div>
                 <p className="eyebrow text-ink-faint">{R.timerLabel}</p>
@@ -1455,12 +1468,12 @@ export default function TechnicalInterviewPage() {
                       : i === activeQ
                         ? "bg-brand-600 dark:bg-brand-500"
                         : "bg-surface-sunken";
-                    return <span key={i} className={`h-1.5 flex-1 rounded-xs motion-safe:transition-colors motion-safe:duration-300 ${tone}`} />;
+                    return <span key={i} className={`h-2 flex-1 rounded-full motion-safe:transition-colors motion-safe:duration-300 ${tone}`} />;
                   })}
                 </div>
                 <p className="mt-2 flex items-center justify-between text-xs font-bold">
                   <span className="text-ink-soft tabular-nums">{format(R.correctSoFar, { n: score, total: questions.length })}</span>
-                  <span className="tabular-nums text-warn-strong">
+                  <span className="rounded-full bg-reward-soft px-2 py-0.5 tabular-nums text-reward-strong">
                     {format(R.xpGain, { xp: score * QUIZ_XP_PER_CORRECT[difficulty] })}
                   </span>
                 </p>
@@ -1491,7 +1504,7 @@ export default function TechnicalInterviewPage() {
                   onChange={(e) => setNotes(e.target.value)}
                   rows={6}
                   placeholder={R.notesPlaceholder}
-                  className="mt-1.5 w-full resize-y rounded-sm border border-line-strong bg-surface px-3 py-2 text-sm leading-relaxed text-ink focus:border-brand-600 focus:outline-none"
+                  className="mt-1.5 w-full resize-y rounded-control border border-line-strong bg-surface-raised px-3 py-2 text-sm leading-relaxed text-ink focus:border-brand-600 focus:bg-surface focus:outline-none focus:ring-2 focus:ring-brand-500/20"
                 />
                 <p className="mt-1 text-[11px] text-ink-muted">{R.notesNote}</p>
               </div>
@@ -1508,10 +1521,10 @@ export default function TechnicalInterviewPage() {
               <div className="flex flex-wrap items-end justify-between gap-3">
                 <SectionHead code={SYS.result} title={R.resultTitle} />
                 <span
-                  className={`rounded-sm border px-2 py-1 font-mono text-xs font-medium ${
+                  className={`rounded-full border px-2.5 py-1 font-mono text-xs font-bold ${
                     passed
-                      ? "border-cyan-600 text-cyan-800 dark:border-cyan-400 dark:text-cyan-300"
-                      : "border-line-strong text-ink-muted"
+                      ? "border-reward-line bg-reward-soft text-reward-strong"
+                      : "border-line-strong bg-surface text-ink-muted"
                   }`}
                 >
                   {passed ? R.passBadge : R.failBadge}
@@ -1524,7 +1537,7 @@ export default function TechnicalInterviewPage() {
               />
             </div>
 
-            <dl className="grid grid-cols-2 sm:grid-cols-4 border-y border-line-strong divide-x divide-line-soft">
+            <dl className={`${panel} grid grid-cols-2 sm:grid-cols-4 divide-x divide-line-soft overflow-hidden`}>
               {[
                 { label: R.statScore, value: `${score}/${questions.length}`, tone: "text-ink-max" },
                 { label: R.statTime, value: elapsedLabel, tone: "text-ink-max" },
@@ -1532,19 +1545,19 @@ export default function TechnicalInterviewPage() {
                 {
                   label: R.statXp,
                   value: xpAwarded === null ? "..." : format(R.xpGain, { xp: xpAwarded }),
-                  tone: "text-warn-strong",
+                  tone: "text-reward-strong",
                 },
               ].map((s) => (
                 <div key={s.label} className="px-3 py-3">
                   <dt className="eyebrow text-ink-faint">{s.label}</dt>
-                  <dd className={`mt-1 font-mono text-lg font-medium tabular-nums ${s.tone}`}>{s.value}</dd>
+                  <dd className={`mt-1 font-mono text-lg font-bold tabular-nums ${s.tone}`}>{s.value}</dd>
                 </div>
               ))}
             </dl>
 
             {/* BỐN TRỤC */}
-            <div className="space-y-2">
-              <p className="eyebrow text-ink-soft border-b border-line-strong pb-2">{R.axesTitle}</p>
+            <div className={`${panel} space-y-2 p-4`}>
+              <p className="eyebrow text-accent-strong border-b border-line-soft pb-2">{R.axesTitle}</p>
               <ul className="divide-y divide-line-soft">
                 {axes.map((axis) => (
                   <li key={axis.id} className="py-3 grid grid-cols-1 sm:grid-cols-[10rem_1fr_3.5rem] gap-x-4 gap-y-1.5 items-center">
@@ -1554,9 +1567,7 @@ export default function TechnicalInterviewPage() {
                         <p className="text-xs leading-relaxed text-ink-muted">{axis.basis}</p>
                       ) : (
                         <>
-                          <div className="h-1.5 w-full rounded-xs bg-surface-sunken overflow-hidden">
-                            <div className="h-full bg-cyan-600 dark:bg-cyan-400" style={{ width: `${axis.pct}%` }} />
-                          </div>
+                          <ProgressBar value={axis.pct} className="h-1.5 w-full" />
                           <p className="mt-1 text-[11px] text-ink-muted">{axis.basis}</p>
                         </>
                       )}
@@ -1583,7 +1594,7 @@ export default function TechnicalInterviewPage() {
             </div>
 
             {/* KỸ NĂNG ƯU TIÊN - đúng MỘT: chủ đề sai nhiều nhất trong buổi. */}
-            <div className="border-l-2 border-brand-600 dark:border-brand-400 bg-accent-soft px-4 py-4 space-y-2">
+            <div className={`${panelFocus} border-l-4 border-l-accent px-4 py-4 space-y-2`}>
               <p className="eyebrow text-accent-strong">{R.priorityTitle}</p>
               {priority ? (
                 <>
@@ -1619,17 +1630,17 @@ export default function TechnicalInterviewPage() {
             </div>
 
             {/* TỪNG CÂU: đúng/sai, độ khó, thời gian */}
-            <div className="space-y-2">
-              <p className="eyebrow text-ink-soft border-b border-line-strong pb-2">{R.timelineTitle}</p>
+            <div className={`${panel} space-y-2 p-4`}>
+              <p className="eyebrow text-accent-strong border-b border-line-soft pb-2">{R.timelineTitle}</p>
               <div className="flex flex-wrap gap-1.5">
                 {perQuestion.map((d, i) => (
                   <div
                     key={i}
                     title={d.category}
-                    className={`min-w-12 rounded-xs border px-1.5 py-1 text-center ${
+                    className={`min-w-12 rounded-control border px-1.5 py-1 text-center ${
                       d.ok
-                        ? "border-cyan-600 dark:border-cyan-400"
-                        : "border-red-600 dark:border-red-400"
+                        ? "border-cyan-600 bg-cyan-50 dark:border-cyan-400 dark:bg-cyan-950/40"
+                        : "border-red-600 bg-danger-soft dark:border-red-400"
                     }`}
                   >
                     <span className={`flex items-center justify-center ${d.ok ? "text-cyan-700 dark:text-cyan-400" : "text-danger"}`}>
@@ -1652,7 +1663,7 @@ export default function TechnicalInterviewPage() {
                       key={label}
                       type="button"
                       onClick={() => void redrillSection(label)}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-sm border border-line-strong text-xs font-bold text-ink-body hover:border-line-firm transition-colors cursor-pointer"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-control border border-accent-line bg-surface text-xs font-bold text-ink-body shadow-card hover:bg-accent-wash hover:text-accent-strong transition-colors cursor-pointer"
                     >
                       <span>{label}</span>
                       <span className="text-danger">
@@ -1665,7 +1676,7 @@ export default function TechnicalInterviewPage() {
               </div>
             )}
 
-            <div className="flex flex-wrap items-center gap-3 border-t border-line-strong pt-4">
+            <div className="flex flex-wrap items-center gap-3 border-t border-line pt-4">
               <button onClick={exitToSetup} className={`${btnSecondary} cursor-pointer`}>
                 {t.interview.practiceAgain}
               </button>

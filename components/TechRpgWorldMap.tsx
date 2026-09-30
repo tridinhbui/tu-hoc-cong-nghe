@@ -414,8 +414,10 @@ export default function TechRpgWorldMap() {
 
   return (
     <div className="relative min-h-screen overflow-x-hidden bg-page p-3 font-sans text-ink sm:p-5 dark:bg-stone-950">
-      {/* Thanh trạng thái: avatar + cấp, tên hệ thống, online, số dư vàng. */}
-      <div className="relative z-30 mx-auto mb-3 max-w-6xl overflow-hidden rounded-lg border border-line-strong bg-white dark:border-stone-700 dark:bg-stone-900">
+      {/* Thanh trạng thái: avatar + cấp, tên hệ thống, online, số dư vàng.
+          Logic màu chung: vàng `reward` cho số dư, coral `energy` cho boss /
+          thử thách, xanh cho trạng thái hệ thống. */}
+      <div className="relative z-30 mx-auto mb-3 max-w-6xl overflow-hidden rounded-card border border-line-soft bg-surface shadow-card">
         <div className="flex flex-wrap items-center justify-between gap-3 p-2.5 sm:p-3">
           <div className="flex min-w-0 items-center gap-3">
             <div className="relative shrink-0">
@@ -429,8 +431,8 @@ export default function TechRpgWorldMap() {
             <div className="min-w-0">
               <div className="flex items-center gap-2">
                 <h2 className="truncate text-sm font-black text-ink-max sm:text-base">{t.revampGame.hud.title}</h2>
-                <span className="inline-flex shrink-0 items-center gap-1 rounded-full border border-cyan-300 bg-cyan-50 px-1.5 py-px text-[10px] font-bold text-cyan-700 dark:border-cyan-800 dark:bg-cyan-950 dark:text-cyan-300">
-                  <span className="h-1.5 w-1.5 rounded-full bg-cyan-500 thcn-blink" aria-hidden />
+                <span className="inline-flex shrink-0 items-center gap-1 rounded-full bg-accent-wash px-1.5 py-px text-[10px] font-bold text-accent-strong">
+                  <span className="h-1.5 w-1.5 rounded-full bg-accent thcn-blink" aria-hidden />
                   {t.worldMap.online}
                 </span>
               </div>
@@ -439,16 +441,16 @@ export default function TechRpgWorldMap() {
           </div>
 
           <div className="flex flex-wrap items-center gap-2">
-            <div className="flex items-center gap-2 rounded-md border border-amber-300 bg-amber-50 px-2.5 py-1.5 dark:border-amber-800 dark:bg-amber-950">
-              <Coins className="h-4 w-4 text-warn" aria-hidden />
+            <div className="flex items-center gap-2 rounded-control border border-reward-line bg-reward-soft px-2.5 py-1.5">
+              <Coins className="h-4 w-4 text-reward" aria-hidden />
               <div>
                 <p className="text-[10px] font-semibold leading-none text-ink-muted">{t.revampGame.hud.goldBalance}</p>
-                <p className="mt-0.5 font-mono text-sm font-medium tabular-nums leading-tight text-warn-ink">
+                <p className="mt-0.5 font-mono text-sm font-semibold tabular-nums leading-tight text-reward-strong">
                   {format(t.revampGame.hud.coins, { count: coins.toLocaleString() })}
                 </p>
               </div>
             </div>
-            <span className="hidden items-center gap-1 rounded-md border border-cyan-300 px-2 py-1.5 text-[11px] font-bold text-cyan-700 sm:inline-flex dark:border-cyan-800 dark:text-cyan-300">
+            <span className="hidden items-center gap-1 rounded-control bg-accent-wash px-2 py-1.5 text-[11px] font-bold text-accent-strong sm:inline-flex">
               <CheckCircle2 className="h-3.5 w-3.5" aria-hidden />
               {t.revampGame.hud.ready}
             </span>
@@ -465,7 +467,7 @@ export default function TechRpgWorldMap() {
 
         {/* Ticker: chỉ số thật - boss, người ra đòn, sát thương của bạn, node online. */}
         <div className="flex items-center overflow-hidden border-t border-stone-800 bg-stone-950 text-xs">
-          <span className="z-10 inline-flex shrink-0 items-center gap-1.5 bg-rose-600 px-3 py-1.5 font-black tracking-[0.06em] text-white">
+          <span className="z-10 inline-flex shrink-0 items-center gap-1.5 bg-energy px-3 py-1.5 font-black tracking-[0.06em] text-white">
             <Newspaper className="h-3.5 w-3.5" aria-hidden />
             {t.revampGame.ticker.label}
           </span>
@@ -733,7 +735,7 @@ function MapBuildingCard({
         }
       }}
       className={`group relative flex w-full cursor-pointer touch-manipulation gap-3 overflow-hidden rounded-lg border bg-white/95 p-2.5 text-left shadow-lg transition-all hover:-translate-y-0.5 dark:bg-stone-900/95 ${
-        isBoss ? "border-rose-400 ring-2 ring-rose-500/30 dark:border-rose-700" : "border-white/60 hover:border-brand-400 dark:border-stone-700"
+        isBoss ? "border-energy-line ring-2 ring-energy/30" : "border-white/60 hover:border-brand-400 dark:border-stone-700"
       }`}
     >
       <div className="relative h-[92px] w-[84px] shrink-0 overflow-hidden rounded-md bg-stone-900">
@@ -765,32 +767,32 @@ function MapBuildingCard({
         <div className="flex items-center gap-1.5">
           <span
             className={`truncate rounded-xs px-1.5 py-px text-[9px] font-black tracking-[0.06em] ${
-              isBoss ? "bg-rose-600 text-white" : "bg-brand-100 text-brand-700 dark:bg-brand-950 dark:text-brand-300"
+              isBoss ? "bg-energy text-white" : "bg-brand-100 text-brand-700 dark:bg-brand-950 dark:text-brand-300"
             }`}
           >
             {b.badge}
           </span>
           {b.id === "weekly-challenge" && (
-            <span className="rounded-xs border border-cyan-400 px-1 text-[9px] font-bold text-cyan-600 dark:text-cyan-400">{t.revampGame.hud.live}</span>
+            <span className="rounded-xs border border-energy-line bg-energy-soft px-1 text-[9px] font-bold text-energy-strong">{t.revampGame.hud.live}</span>
           )}
         </div>
         <h3 className="mt-1 truncate text-sm font-black text-ink-max">{b.name}</h3>
-        {copy && <p className={`truncate text-[11px] font-bold ${isBoss ? "text-alert" : "text-accent"}`}>{copy.tagline}</p>}
+        {copy && <p className={`truncate text-[11px] font-bold ${isBoss ? "text-energy" : "text-accent"}`}>{copy.tagline}</p>}
         <p className="mt-0.5 line-clamp-2 text-[11px] leading-snug text-ink-muted">{b.subtitle}</p>
 
         {isBoss && bossPercent !== null && discovered && (
           <div className="mt-1.5">
-            <div className="h-1.5 overflow-hidden rounded-full bg-rose-100 dark:bg-rose-950">
-              <div className="h-full bg-rose-600" style={{ width: `${bossPercent}%` }} />
+            <div className="h-1.5 overflow-hidden rounded-full bg-energy-soft">
+              <div className="h-full rounded-full bg-energy" style={{ width: `${bossPercent}%` }} />
             </div>
-            <p className="mt-0.5 font-mono text-[9px] font-medium tabular-nums text-alert">{format(t.revampGame.map.bossHp, { percent: bossPercent })}</p>
+            <p className="mt-0.5 font-mono text-[9px] font-medium tabular-nums text-energy-strong">{format(t.revampGame.map.bossHp, { percent: bossPercent })}</p>
           </div>
         )}
 
         <div className="mt-auto pt-1.5">
           {!discovered ? (
-            <span className="inline-flex items-center gap-1 text-[11px] font-bold text-warn-ink">
-              <Coins className="h-3.5 w-3.5 text-warn" aria-hidden />
+            <span className="inline-flex items-center gap-1 text-[11px] font-bold text-reward-strong">
+              <Coins className="h-3.5 w-3.5 text-reward" aria-hidden />
               {t.revampGame.services.connectHint}
             </span>
           ) : b.isUnderConstruction ? (
@@ -803,7 +805,7 @@ function MapBuildingCard({
           ) : (
             <span
               className={`inline-flex items-center gap-0.5 rounded-sm px-2 py-1 text-[11px] font-black text-white ${
-                isBoss ? "bg-rose-600 group-hover:bg-rose-500" : "bg-brand-600 group-hover:bg-brand-500"
+                isBoss ? "bg-energy group-hover:bg-energy-strong" : "bg-brand-600 group-hover:bg-brand-500"
               }`}
             >
               {copy?.cta}

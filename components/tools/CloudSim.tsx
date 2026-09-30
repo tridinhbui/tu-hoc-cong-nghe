@@ -19,7 +19,8 @@ import {
   Upload,
   X,
 } from "lucide-react";
-import ToolShell, { embedMissions, type ToolEmbed } from "@/components/tools/ToolShell";
+import ToolShell, { btnRun, embedMissions, type ToolEmbed } from "@/components/tools/ToolShell";
+import { panel } from "@/components/ui/system";
 import { useI18n } from "@/lib/i18n/context";
 import { format, intlLocale } from "@/lib/i18n";
 import {
@@ -149,13 +150,13 @@ function useMoney() {
   }, [t, locale]);
 }
 
-const card = "rounded-xl border border-line bg-white dark:bg-stone-900";
+// Thẻ trong bảng điều khiển: trắng, bóng mảnh, viền gần như không thấy.
+const card = panel;
 const input =
   "w-full rounded-lg border border-line bg-white px-2.5 py-1.5 text-sm text-ink outline-none focus:border-brand-500 dark:bg-stone-950";
-const btnPrimary =
-  "inline-flex items-center justify-center gap-1.5 rounded-lg bg-brand-600 px-3 py-1.5 text-sm font-bold text-white hover:bg-brand-700 disabled:opacity-50";
+const btnPrimary = `${btnRun} px-3 py-1.5`;
 const btnGhost =
-  "inline-flex items-center justify-center gap-1.5 rounded-lg border border-line px-2.5 py-1 text-xs font-bold text-ink hover:bg-surface-raised disabled:opacity-40";
+  "inline-flex items-center justify-center gap-1.5 rounded-control border border-accent-line bg-surface px-2.5 py-1 text-xs font-bold text-ink transition-colors hover:bg-accent-wash hover:text-accent-strong disabled:opacity-40";
 const btnDanger =
   "inline-flex items-center justify-center gap-1.5 rounded-lg border border-danger-line px-2.5 py-1 text-xs font-bold text-danger hover:bg-danger-soft disabled:opacity-40";
 const label = "mb-1 block text-xs font-bold text-ink-muted";
@@ -254,11 +255,11 @@ export default function CloudSim({ embed }: { embed?: ToolEmbed }) {
         setPage("overview");
       }}
     >
-      <div className="overflow-hidden rounded-2xl border border-line bg-white shadow-sm dark:bg-stone-900">
+      <div className={`${panel} overflow-hidden`}>
         {/* Thanh trên cùng */}
         <div className="flex flex-wrap items-center gap-x-4 gap-y-2 bg-stone-900 px-3 py-2 text-stone-100 dark:bg-stone-950">
           <div className="flex items-center gap-2">
-            <span className="flex h-7 w-7 items-center justify-center rounded-md bg-brand-600">
+            <span className="flex h-7 w-7 items-center justify-center rounded-control bg-gradient-to-b from-brand-500 to-brand-600 shadow-[inset_0_1px_0_rgb(255_255_255/0.2)]">
               <Cloud className="h-4 w-4 text-white" />
             </span>
             <span className="text-sm font-black tracking-tight">{c.brand}</span>
@@ -302,7 +303,7 @@ export default function CloudSim({ embed }: { embed?: ToolEmbed }) {
         </div>
 
         <div className="flex flex-col md:flex-row">
-          <nav className="flex gap-1 overflow-x-auto border-b border-line p-2 md:w-48 md:shrink-0 md:flex-col md:border-b-0 md:border-r">
+          <nav className="flex gap-1 overflow-x-auto border-b border-line-soft bg-surface-raised p-2 md:w-48 md:shrink-0 md:flex-col md:border-b-0 md:border-r">
             {NAV.map(({ id, icon: Icon }) => (
               <button
                 key={id}
@@ -311,8 +312,8 @@ export default function CloudSim({ embed }: { embed?: ToolEmbed }) {
                   setPage(id);
                   setNotice(null);
                 }}
-                className={`flex shrink-0 items-center gap-2 rounded-lg px-2.5 py-1.5 text-left text-sm font-bold ${
-                  page === id ? "bg-accent-soft text-accent" : "text-ink-muted hover:bg-surface-raised hover:text-ink"
+                className={`flex shrink-0 items-center gap-2 rounded-control px-2.5 py-1.5 text-left text-sm font-bold ${
+                  page === id ? "bg-surface text-accent-strong shadow-card" : "text-ink-muted hover:bg-accent-wash hover:text-accent-strong"
                 }`}
               >
                 <Icon className="h-4 w-4" />
@@ -548,7 +549,7 @@ function OverviewPage({ ctx }: { ctx: PageCtx }) {
           {REGION_IDS.map((r) => (
             <div
               key={r}
-              className={`rounded-lg border px-3 py-2 text-sm ${r === state.region ? "border-accent-line bg-accent-soft" : "border-line"}`}
+              className={`rounded-lg border px-3 py-2 text-sm ${r === state.region ? "border-accent bg-accent-wash ring-1 ring-accent" : "border-line"}`}
             >
               <p className="font-bold text-ink">{c.regions[r]}</p>
               <p className="font-mono text-[11px] text-ink-muted">{REGIONS[r].zone}</p>
@@ -751,7 +752,7 @@ function LaunchWizard({ ctx, onClose }: { ctx: PageCtx; onClose: () => void }) {
               key={id}
               type="button"
               onClick={() => setImage(id)}
-              className={`rounded-lg border p-2.5 text-left ${image === id ? "border-brand-500 bg-accent-soft" : "border-line hover:bg-surface-raised"}`}
+              className={`rounded-lg border p-2.5 text-left ${image === id ? "border-accent bg-accent-wash ring-1 ring-accent" : "border-line hover:border-accent-line hover:bg-accent-wash"}`}
             >
               <p className="text-sm font-bold text-ink">{c.images[id]}</p>
               <p className="text-[11px] text-ink-muted">{w.imageNotes[id]}</p>
@@ -768,7 +769,7 @@ function LaunchWizard({ ctx, onClose }: { ctx: PageCtx; onClose: () => void }) {
               key={id}
               type="button"
               onClick={() => setSize(id)}
-              className={`rounded-lg border p-2.5 text-left ${size === id ? "border-brand-500 bg-accent-soft" : "border-line hover:bg-surface-raised"}`}
+              className={`rounded-lg border p-2.5 text-left ${size === id ? "border-accent bg-accent-wash ring-1 ring-accent" : "border-line hover:border-accent-line hover:bg-accent-wash"}`}
             >
               <p className="font-mono text-sm font-bold text-ink">{id}</p>
               <p className="text-[11px] text-ink-muted">{format(c.specs, { cpu: VM_SIZES[id].vcpu, ram: VM_SIZES[id].ramGb })}</p>
@@ -909,7 +910,7 @@ function StoragePage({ ctx }: { ctx: PageCtx }) {
                   setSelected(b.name);
                   setPreview(false);
                 }}
-                className={`w-full rounded-lg border px-3 py-2 text-left ${b.name === selected ? "border-brand-500 bg-accent-soft" : "border-line hover:bg-surface-raised"}`}
+                className={`w-full rounded-lg border px-3 py-2 text-left ${b.name === selected ? "border-accent bg-accent-wash ring-1 ring-accent" : "border-line hover:border-accent-line hover:bg-accent-wash"}`}
               >
                 <p className="truncate font-mono text-sm font-bold text-ink">{b.name}</p>
                 <p className="text-[11px] text-ink-muted">
@@ -1112,7 +1113,7 @@ function DatabasePage({ ctx }: { ctx: PageCtx }) {
                   key={id}
                   type="button"
                   onClick={() => setSize(id)}
-                  className={`rounded-lg border p-2.5 text-left ${size === id ? "border-brand-500 bg-accent-soft" : "border-line hover:bg-surface-raised"}`}
+                  className={`rounded-lg border p-2.5 text-left ${size === id ? "border-accent bg-accent-wash ring-1 ring-accent" : "border-line hover:border-accent-line hover:bg-accent-wash"}`}
                 >
                   <p className="font-mono text-sm font-bold text-ink">{`db.${id}`}</p>
                   <p className="text-[11px] text-ink-muted">{format(c.specs, { cpu: DB_SIZES[id].vcpu, ram: DB_SIZES[id].ramGb })}</p>
@@ -1435,7 +1436,7 @@ function BillingPage({ ctx }: { ctx: PageCtx }) {
         <p className="text-xs font-bold text-ink-muted">{b.total}</p>
         <p className={`text-3xl font-black tabular-nums ${over ? "text-danger" : "text-ink"}`}>{money(total)}</p>
         <div className="mt-3 h-2.5 overflow-hidden rounded-full bg-surface-raised">
-          <div className={`h-full rounded-full transition-all ${over ? "bg-red-500" : "bg-brand-600"}`} style={{ width: `${pct}%` }} />
+          <div className={`h-full rounded-full transition-all ${over ? "bg-red-500" : "bg-gradient-to-r from-brand-500 to-sky-400"}`} style={{ width: `${pct}%` }} />
         </div>
         <p className={`mt-1 text-xs ${over ? "text-danger" : "text-ink-muted"}`}>
           {format(over ? b.overBudget : b.underBudget, { budget: money(BUDGET_LIMIT), left: money(Math.abs(BUDGET_LIMIT - total)) })}

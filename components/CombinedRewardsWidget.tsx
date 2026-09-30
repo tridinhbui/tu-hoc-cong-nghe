@@ -264,7 +264,7 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
       {/* Header - Always visible, permanently expanded */}
       <div className={`w-full flex items-center ${compact ? "px-4 py-3" : "px-3.5 py-2"}`}>
         <div className="flex items-center gap-2 min-w-0">
-          <Gift className="w-4.5 h-4.5 text-ink-muted" />
+          <Gift className="w-4.5 h-4.5 text-reward" />
           <span className={`${compact ? "text-sm" : "text-[15px]"} font-black tracking-tight text-ink-max`}>{t.rewards.title}</span>
           {chestCount > 0 && (
             <span className="text-[10px] font-bold text-ink-soft border border-line-strong px-1.5 py-0.5 rounded-sm">
@@ -390,7 +390,7 @@ export default function CombinedRewardsWidget({ userId, defaultExpanded = false,
                 <div className="space-y-3">
                   <div className="space-y-1.5">
                     <div className="flex justify-between items-center text-[10px] font-extrabold text-ink-body">
-                      <span className="flex items-center gap-1"><Flame className="w-3 h-3 text-warn" /> {t.rewards.streakQuest}</span>
+                      <span className="flex items-center gap-1"><Flame className="w-3 h-3 fill-current text-reward" /> {t.rewards.streakQuest}</span>
                       <span>{streakProgress}/5</span>
                     </div>
                     <div className="w-full h-1.5 bg-surface-sunken rounded-xs overflow-hidden">

@@ -4,6 +4,7 @@ import { useSyncExternalStore } from "react";
 import Link from "next/link";
 import { ArrowRight, Cloud, Code2, Database, Send, TerminalSquare, type LucideIcon } from "lucide-react";
 import CoCoSays from "@/components/CoCoSays";
+import { IconTile, ProgressBar, chipReward, panel } from "@/components/ui/system";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 import { TOOL_MISSION_COUNTS, type ToolId } from "@/components/tools/tool-registry";
@@ -41,58 +42,65 @@ export default function CongCuClient() {
   const done = TOOLS.reduce((n, { id }) => n + doneOf(id), 0);
 
   return (
-    <div className="min-h-screen bg-surface">
+    <div className="min-h-screen bg-page">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8">
         <p className="font-mono text-[11px] font-black uppercase tracking-widest text-accent-strong">{r.eyebrow}</p>
         <h1 className="mt-1 text-2xl font-black text-ink-max sm:text-3xl">{r.title}</h1>
         <CoCoSays lines={t.coco.tools} className="mt-4" />
 
-        <div className="mt-6 flex items-baseline justify-between gap-3 border-b border-line pb-2">
-          <p className="text-xs font-black uppercase tracking-wider text-ink-muted">{c.eyebrow}</p>
-          <p className="text-xs font-bold tabular-nums text-cyan-700 dark:text-cyan-400">
-            {format(r.overall, { done, total })}
-          </p>
+        {/* Đầu danh sách: tổng ticket là tiến độ học -> một thanh xanh ngay dưới. */}
+        <div className="mt-8">
+          <div className="flex items-baseline justify-between gap-3">
+            <p className="flex items-center gap-2 text-xs font-black uppercase tracking-wider text-accent-strong">
+              <span aria-hidden className="h-1 w-5 rounded-full bg-accent" />
+              {c.eyebrow}
+            </p>
+            <p className="text-xs font-bold tabular-nums text-ink">{format(r.overall, { done, total })}</p>
+          </div>
+          <ProgressBar value={total ? (done / total) * 100 : 0} className="mt-2" label={format(r.overall, { done, total })} />
         </div>
 
-        <ul className="divide-y divide-line">
+        {/* Mỗi công cụ là một thẻ trắng nổi trên canvas băng; rê chuột thì nhấc lên,
+            viền xanh và mũi tên "Bắt đầu" đậm hẳn. Công cụ đã xong cả ticket đổi
+            sang vàng (thành tích); không thẻ nào có nền màu. */}
+        <ul className="mt-4 space-y-3">
           {TOOLS.map(({ id, href, icon: Icon }) => {
             const copy = c.tools[id];
             const count = TOOL_MISSION_COUNTS[id];
             const d = doneOf(id);
-            const cta = d === 0 ? r.start : d >= count ? r.review : r.resume;
+            const finished = d >= count;
+            const cta = d === 0 ? r.start : finished ? r.review : r.resume;
             return (
               <li key={id}>
-                <Link href={href} className="group flex items-start gap-4 py-4">
-                  <span
-                    className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-md ${
-                      d > 0 ? "bg-stone-950 text-brand-300" : "bg-surface-raised text-ink-muted"
-                    }`}
-                  >
+                <Link
+                  href={href}
+                  className={`${panel} group flex items-start gap-4 p-4 transition-[transform,box-shadow,border-color] hover:border-accent-line hover:shadow-card-hover motion-safe:hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 sm:p-5`}
+                >
+                  <IconTile tone={finished ? "reward" : "accent"} className="h-11 w-11">
                     <Icon className="h-5 w-5" />
-                  </span>
+                  </IconTile>
                   <span className="min-w-0 flex-1">
                     <span className="flex flex-wrap items-baseline gap-x-2">
                       <span className="font-mono text-[11px] font-bold uppercase tracking-widest text-accent">{copy.name}</span>
-                      <span className="font-bold text-ink-max">{copy.title}</span>
+                      <span className="font-bold text-ink-max transition-colors group-hover:text-accent-strong">{copy.title}</span>
                     </span>
-                    <span className="mt-0.5 block text-sm leading-relaxed text-ink-muted">{copy.subtitle}</span>
-                    <span className="mt-2 flex items-center gap-2">
-                      <span className="h-1 w-24 overflow-hidden rounded-full bg-surface-raised">
-                        <span
-                          className="block h-full rounded-full bg-cyan-500"
-                          style={{ width: `${count ? (d / count) * 100 : 0}%` }}
-                        />
-                      </span>
-                      <span
-                        className={`text-xs font-bold tabular-nums ${
-                          d >= count ? "text-cyan-700 dark:text-cyan-400" : d > 0 ? "text-ink" : "text-ink-faint"
-                        }`}
-                      >
-                        {d >= count ? r.finished : format(r.ticketsDone, { done: d, total: count })}
-                      </span>
+                    <span className="mt-0.5 block text-sm leading-relaxed text-ink-soft">{copy.subtitle}</span>
+                    <span className="mt-3 flex items-center gap-3">
+                      <ProgressBar
+                        value={count ? (d / count) * 100 : 0}
+                        tone={finished ? "reward" : "accent"}
+                        className="h-1.5 w-28 sm:w-36"
+                      />
+                      {finished ? (
+                        <span className={chipReward}>{r.finished}</span>
+                      ) : (
+                        <span className={`text-xs font-bold tabular-nums ${d > 0 ? "text-ink" : "text-ink-faint"}`}>
+                          {format(r.ticketsDone, { done: d, total: count })}
+                        </span>
+                      )}
                     </span>
                   </span>
-                  <span className="mt-1 inline-flex shrink-0 items-center gap-1 text-sm font-bold text-accent-strong">
+                  <span className="mt-1 inline-flex shrink-0 items-center gap-1.5 rounded-control bg-accent-wash px-2.5 py-1.5 text-sm font-bold text-accent-strong transition-colors group-hover:bg-accent group-hover:text-white dark:group-hover:text-[#07101f]">
                     <span className="hidden sm:inline">{cta}</span>
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                   </span>
@@ -101,7 +109,7 @@ export default function CongCuClient() {
             );
           })}
         </ul>
-        <p className="mt-3 text-[11px] text-ink-faint">{done === 0 ? r.notStarted : r.localNote}</p>
+        <p className="mt-4 text-[11px] text-ink-faint">{done === 0 ? r.notStarted : r.localNote}</p>
       </div>
     </div>
   );

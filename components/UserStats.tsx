@@ -436,11 +436,11 @@ export default function UserStats({
               )}
             </span>
           </div>
-          {/* Thanh tiến độ là dữ liệu sống nên được tô xanh - nhưng phẳng: ô
-              vuông 2px, không gradient, không nhấp nháy. */}
-          <div className="w-full h-1.5 bg-surface-sunken rounded-xs overflow-hidden">
+          {/* Tiến độ CẤP là tiến trình phần thưởng (XP): vàng, theo logic màu
+              chung ở globals.css. Bản thanh bên nhạt hơn để không tranh chỗ. */}
+          <div className="w-full h-2 bg-reward-soft rounded-full overflow-hidden">
             <div
-              className={`h-full transition-[width] duration-500 ${sidebar ? "bg-accent-line-mid" : "bg-brand-600 dark:bg-brand-500"}`}
+              className={`h-full rounded-full transition-[width] duration-500 ${sidebar ? "bg-reward/70" : "bg-gradient-to-r from-amber-400 to-reward"}`}
               style={{ width: `${progress}%` }}
             />
           </div>
@@ -458,7 +458,7 @@ export default function UserStats({
                 </span>
               </div>
               <div className="flex items-center gap-2 text-[11px] sm:text-xs font-semibold text-ink-soft">
-                <Trophy className="w-3.5 h-3.5 shrink-0 text-ink-muted" aria-hidden />
+                <Trophy className="w-3.5 h-3.5 shrink-0 text-reward" aria-hidden />
                 <span>
                   {t.userStats.upcomingTitlePart1} <span className="font-extrabold text-ink-max">{t.levelTitles[nextLevel.level] ?? nextLevel.name}</span>
                 </span>
@@ -471,7 +471,7 @@ export default function UserStats({
       {!nextLevel && !quiet && (
         <div className="mt-2.5 pt-2.5 border-t border-line">
           <div className="p-3 bg-surface-raised dark:bg-stone-950 rounded-sm flex items-center gap-2 text-xs text-ink-body font-semibold">
-            <Crown className="w-4 h-4 shrink-0 text-ink-muted" aria-hidden /><span>{format(t.userStats.maxLevelReached, { name: t.levelTitles[currentLevel.level] ?? currentLevel.name })}</span>
+            <Crown className="w-4 h-4 shrink-0 text-reward" aria-hidden /><span>{format(t.userStats.maxLevelReached, { name: t.levelTitles[currentLevel.level] ?? currentLevel.name })}</span>
           </div>
         </div>
       )}

@@ -143,7 +143,7 @@ export default function DashboardStreakWidget({ userId, quiet = false }: { userI
                 </p>
               </div>
               <div className="text-right">
-                <span className="rounded-sm border border-amber-300 px-3 py-1.5 text-xs font-black text-warn dark:border-amber-800">
+                <span className="rounded-full bg-reward-soft px-3 py-1.5 text-xs font-black text-reward-strong">
                   <Flame className="inline w-3.5 h-3.5 -mt-0.5" aria-hidden /> {format(t.streakWidget.streakDaysSuffix, { count: streak })}
                 </span>
               </div>
@@ -211,7 +211,7 @@ export default function DashboardStreakWidget({ userId, quiet = false }: { userI
           title={t.streakWidget.cardTitle}
           aria-label={`${t.streakWidget.streakLabel}: ${format(t.streakWidget.streakDaysSuffix, { count: streak })}`}
         >
-          <Flame className={`h-3.5 w-3.5 ${streak > 0 ? "fill-current text-amber-500" : "text-ink-faint"}`} aria-hidden />
+          <Flame className={`h-3.5 w-3.5 ${streak > 0 ? "fill-current text-reward" : "text-ink-faint"}`} aria-hidden />
           <span className="tabular-nums">{format(t.streakWidget.streakDaysSuffix, { count: streak })}</span>
         </button>
         {modalContent}
@@ -227,7 +227,7 @@ export default function DashboardStreakWidget({ userId, quiet = false }: { userI
         className="flex items-center gap-2.5 rounded-sm border border-transparent px-2 py-1.5 transition-colors hover:border-line cursor-pointer group select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
         title={t.streakWidget.cardTitle}
       >
-        <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-sm ${streak > 0 ? "bg-amber-50 text-amber-500 dark:bg-amber-950/30" : "bg-surface-raised text-ink-faint dark:bg-stone-950"}`}>
+        <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-sm ${streak > 0 ? "bg-reward-soft text-reward" : "bg-surface-raised text-ink-faint"}`}>
           <Flame className={`h-4.5 w-4.5 ${streak > 0 ? "fill-current" : ""}`} />
         </div>
         <div className="min-w-0">

@@ -35,24 +35,30 @@ import { getUserAnalytics } from "@/lib/cloudflare-analytics";
 import type { LearningAnalytics as LearningAnalyticsType } from "@/lib/cloudflare-analytics";
 import LeaderboardSection from "@/components/analytics/LeaderboardSection";
 import { APP_SYS } from "@/components/analytics/system-codes";
-import { SectionHead, StatusDot, btnPrimary, btnSecondary, panel, tabClass, textLink } from "@/components/ui/system";
+import { IconTile, SectionHead, StatusDot, btnPrimary, btnSecondary, panel, panelFocus, tabClass, textLink } from "@/components/ui/system";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 import type { Dictionary } from "@/lib/i18n/dictionaries/vi";
 import { getCurrentUser } from "@/lib/current-user";
 
 /*
- * Cùng ngôn ngữ với trang chủ (xem components/ui/system.tsx): khung viền 1px,
- * không bóng, không dải gradient trang trí trên đầu thẻ. Số liệu đi bằng mono
- * tabular-nums; xanh chỉ tô dữ liệu chính trên biểu đồ và tab đang mở - các
- * chuỗi phụ đi bằng sắc độ đá (stone) thay cho cam/tím/vàng.
+ * Cùng ngôn ngữ với hệ thiết kế chung (xem components/ui/system.tsx): thẻ trắng
+ * nổi bằng bóng trên canvas băng, không viền xám bao quanh. Số liệu đi bằng
+ * mono tabular-nums. Logic màu: xanh cho dữ liệu chính, tiến độ và tab đang
+ * mở; vàng `reward` cho chuỗi ngày; coral `energy` chỉ cho mức "Khó". Điểm
+ * nhấn của màn là thẻ "nhịp học hiện tại" (panelFocus) - phần còn lại yên lặng.
  */
 
-/* Màu biểu đồ: brand-600 cho dữ liệu chính, hai sắc độ đá cho phần còn lại. */
+/* Màu biểu đồ: brand-600 cho dữ liệu chính, hai sắc độ xám-xanh (hợp canvas
+ * băng, thay cho đá ấm) cho phần còn lại. */
 const CHART_BRAND = "#417acd";
-const CHART_STONE = "#78716c";
-const CHART_STONE_LIGHT = "#a8a29e";
-const CHART_STONE_DARK = "#44403c";
+const CHART_BRAND_LIGHT = "#9fbfe9";
+const CHART_STONE = "#7a879b";
+const CHART_STONE_LIGHT = "#b4c1d3";
+const CHART_STONE_DARK = "#44526a";
+/* Coral `energy` - dành riêng cho độ khó cao nhất. */
+const CHART_ENERGY = "#e5484d";
+const CHART_GRID = "#dbe4f0";
 
 function formatHour(hour: number) {
   return `${hour.toString().padStart(2, "0")}:00`;
@@ -61,7 +67,8 @@ function formatHour(hour: number) {
 const panelClass = `min-w-0 overflow-hidden ${panel}`;
 type AnalyticsSection = "overview" | "knowledge" | "memory" | "competency" | "leaderboard";
 
-const eyebrowClass = "text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted";
+const eyebrowBase = "text-[11px] font-bold uppercase tracking-[0.08em]";
+const eyebrowClass = `${eyebrowBase} text-ink-muted`;
 
 /** Recharts truyền vào tooltip nhiều trường hơn ba trường dưới đây, nhưng đây
  *  là toàn bộ phần component này đọc - khai đúng phần dùng thì đổi phiên bản
@@ -87,7 +94,7 @@ const CustomTooltip = ({ active, payload, label, formatter, labelFormatter }: Cu
   if (active && payload && payload.length) {
     const formattedLabel = labelFormatter && label !== undefined ? labelFormatter(label) : label;
     return (
-      <div className="z-50 space-y-1 rounded-sm border border-line-strong bg-white p-2.5 text-xs dark:border-stone-700 dark:bg-stone-900">
+      <div className="z-50 space-y-1 rounded-control border border-line-soft bg-surface p-2.5 text-xs shadow-card-hover">
         {formattedLabel && (
           <p className="mb-1 border-b border-line pb-1 font-bold text-ink">
             {formattedLabel}
@@ -135,28 +142,52 @@ function insightFromAnalytics(analytics: LearningAnalyticsType, t: Dictionary) {
   return insights.slice(0, 3);
 }
 
-/** Ô số liệu: nhãn sans chữ hoa nhỏ, giá trị mono căn thẳng, gợi ý một dòng.
- *  Không dải màu trên đầu, không nhấc lên khi rê chuột. */
-function MetricCard({ icon, label, value, hint }: { icon: ReactNode; label: string; value: string; hint: string }) {
+/** Ô KPI: ô icon tô nhạt + nhãn nhỏ, rồi con số lớn. Màu ô icon theo logic
+ *  màu (`reward` cho chuỗi ngày, `accent` cho phần còn lại) - thay cho hộp viền
+ *  xám có đường kẻ dưới nhãn. */
+function MetricCard({
+  icon,
+  label,
+  value,
+  hint,
+  tone = "accent",
+}: {
+  icon: ReactNode;
+  label: string;
+  value: string;
+  hint: string;
+  tone?: "accent" | "reward";
+}) {
   return (
     <div className={`${panel} p-4`}>
-      <div className="flex items-center justify-between gap-3 border-b border-line pb-2">
-        <p className={eyebrowClass}>{label}</p>
-        <span className="shrink-0 text-ink-faint" aria-hidden>
+      <div className="flex items-center gap-2.5">
+        <IconTile tone={tone} className="h-8 w-8">
           {icon}
-        </span>
+        </IconTile>
+        <p className={`min-w-0 truncate ${eyebrowClass}`}>{label}</p>
       </div>
-      <p className="mt-3 font-mono text-2xl font-medium tabular-nums tracking-tight text-ink-max">{value}</p>
+      <p className="mt-3 font-mono text-2xl font-semibold tabular-nums tracking-tight text-ink-max sm:text-[1.7rem]">{value}</p>
       <p className="mt-1 truncate text-xs leading-5 text-ink-muted">{hint}</p>
+    </div>
+  );
+}
+
+/** Trạng thái rỗng có chủ đích: ô icon + chữ dịu trên nền băng lõm, thay cho
+ *  hộp viền gạch đứt trống trơn. */
+function EmptyNote({ icon, children, className = "" }: { icon: ReactNode; children: ReactNode; className?: string }) {
+  return (
+    <div className={`flex flex-col items-center justify-center gap-2.5 rounded-card bg-surface-raised px-5 py-8 text-center ${className}`}>
+      <IconTile>{icon}</IconTile>
+      <p className="max-w-xs text-xs leading-relaxed text-ink-muted">{children}</p>
     </div>
   );
 }
 
 function PanelHead({ eyebrow, title, sub, aside }: { eyebrow: string; title: string; sub?: string; aside?: ReactNode }) {
   return (
-    <div className="mb-5 flex items-start justify-between gap-4 border-b border-line pb-3">
+    <div className="mb-5 flex items-start justify-between gap-4">
       <div className="min-w-0">
-        <p className={eyebrowClass}>{eyebrow}</p>
+        <p className={`${eyebrowBase} text-accent-strong`}>{eyebrow}</p>
         <h3 className="mt-1 text-base font-black tracking-tight text-ink-max">{title}</h3>
         {sub && <p className="mt-1 text-xs text-ink-muted">{sub}</p>}
       </div>
@@ -175,7 +206,7 @@ function AnalyticsSkeleton() {
       </div>
       <div className="grid gap-4 md:grid-cols-2">
         {Array.from({ length: 4 }).map((_, index) => (
-          <div key={index} className="h-32 rounded-md border border-line bg-surface-sunken" />
+          <div key={index} className="h-32 rounded-card bg-surface-sunken" />
         ))}
       </div>
     </div>
@@ -230,9 +261,9 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
   const difficultyData = useMemo(() => {
     if (!analytics) return [];
     return [
-      { label: t.difficulty["Dễ"], value: analytics.lessonsByDifficulty.easy, color: CHART_STONE_LIGHT },
-      { label: t.difficulty["Trung bình"], value: analytics.lessonsByDifficulty.medium, color: CHART_STONE },
-      { label: t.difficulty["Khó"], value: analytics.lessonsByDifficulty.hard, color: CHART_STONE_DARK },
+      { label: t.difficulty["Dễ"], value: analytics.lessonsByDifficulty.easy, color: CHART_BRAND_LIGHT },
+      { label: t.difficulty["Trung bình"], value: analytics.lessonsByDifficulty.medium, color: CHART_BRAND },
+      { label: t.difficulty["Khó"], value: analytics.lessonsByDifficulty.hard, color: CHART_ENERGY },
     ];
   }, [analytics]);
 
@@ -249,7 +280,10 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
 
   if (!analytics) {
     return (
-      <div className={`${panel} p-6 text-center text-sm text-ink-muted sm:p-8`}>
+      <div className={`${panel} flex flex-col items-center gap-3 p-6 text-center text-sm text-ink-muted sm:p-8`}>
+        <IconTile>
+          <BarChart3 className="h-4 w-4" />
+        </IconTile>
         {t.analytics.noData}
       </div>
     );
@@ -257,16 +291,22 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
 
   const quickStats = [
     {
+      icon: <Flame className="h-4 w-4" />,
+      tone: "reward" as const,
       label: t.analytics.streakLabel,
       value: format(t.analytics.streakDays, { count: analytics.streakDays }),
       hint: format(t.analytics.streakRecord, { count: analytics.longestStreak }),
     },
     {
+      icon: <Target className="h-4 w-4" />,
+      tone: "accent" as const,
       label: t.analytics.quizScoreLabel,
       value: `${analytics.averageQuizScore}%`,
       hint: format(t.analytics.lessonCount, { count: analytics.totalLessonsCompleted }),
     },
     {
+      icon: <Clock3 className="h-4 w-4" />,
+      tone: "accent" as const,
       label: t.analytics.studyHourLabel,
       value: analytics.bestStudyHour !== null ? formatHour(analytics.bestStudyHour) : t.analytics.hourUnknown,
       hint: t.analytics.peakWindow[analytics.peakStudyWindow],
@@ -275,7 +315,8 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
 
   return (
     <div className="space-y-6">
-      <section className={`${panel} p-4 sm:p-5`}>
+      {/* ĐIỂM NHẤN của màn: nhịp học hiện tại + hàng KPI. */}
+      <section className={`${panelFocus} p-4 sm:p-5`}>
         <SectionHead code={APP_SYS.analytics} eyebrow={t.analytics.personal} title={t.analytics.currentRhythm} size="sm" />
 
         {insights.length > 0 && (
@@ -289,12 +330,16 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
           </ul>
         )}
 
-        {/* Ba số nhanh: một bảng ba cột chia bằng đường kẻ 1px. */}
-        <dl className="mt-4 grid grid-cols-3 divide-x divide-stone-200 border-y border-line dark:divide-stone-800">
+        {/* Ba số nhanh: một hàng KPI - ô icon tô nhạt + số lớn trên nền trắng
+            nổi khỏi nền băng của thẻ, không còn bảng chia đường kẻ xám. */}
+        <dl className="mt-4 grid grid-cols-3 gap-2 sm:gap-3">
           {quickStats.map((stat) => (
-            <div key={stat.label} className="min-w-0 px-2 py-2.5 first:pl-0 sm:px-3">
-              <dt className="truncate text-[10.5px] font-bold uppercase tracking-[0.06em] text-ink-muted">{stat.label}</dt>
-              <dd className="mt-1 whitespace-nowrap font-mono text-base font-medium tabular-nums text-ink-max sm:text-lg">
+            <div key={stat.label} className="min-w-0 rounded-control bg-surface p-2.5 shadow-card sm:p-3">
+              <IconTile tone={stat.tone} className="h-7 w-7 sm:h-8 sm:w-8">
+                {stat.icon}
+              </IconTile>
+              <dt className="mt-2 truncate text-[10.5px] font-bold uppercase tracking-[0.06em] text-ink-muted">{stat.label}</dt>
+              <dd className="mt-0.5 whitespace-nowrap font-mono text-lg font-semibold tabular-nums text-ink-max sm:text-xl">
                 {stat.value}
               </dd>
               <dd className="truncate text-[11px] text-ink-muted">{stat.hint}</dd>
@@ -332,6 +377,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
           <div className="grid grid-cols-2 gap-3">
             <MetricCard
               icon={<Flame className="h-4 w-4" />}
+              tone="reward"
               label={t.analytics.cardStreak}
               value={`${analytics.streakDays}`}
               hint={format(t.analytics.streakRecordHint, { count: analytics.longestStreak })}
@@ -370,7 +416,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
               <div className="h-[280px]">
                 <ResponsiveContainer width="100%" height="100%">
                   <AreaChart data={analytics.weeklyActivity} margin={{ left: -10, right: 0, top: 12, bottom: 0 }}>
-                    <CartesianGrid vertical={false} stroke="#e7e5e4" className="dark:stroke-stone-800" opacity={0.6} />
+                    <CartesianGrid vertical={false} stroke={CHART_GRID} className="dark:stroke-stone-800" opacity={0.8} />
                     <XAxis dataKey="label" tickLine={false} axisLine={false} tick={{ fontSize: 11, fill: CHART_STONE }} />
                     <YAxis tickLine={false} axisLine={false} tick={{ fontSize: 11, fill: CHART_STONE }} allowDecimals={false} />
                     <Tooltip
@@ -385,7 +431,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
                         />
                       }
                     />
-                    <Area type="linear" dataKey="lessonsCompleted" stroke={CHART_BRAND} strokeWidth={2} fill={CHART_BRAND} fillOpacity={0.08} />
+                    <Area type="linear" dataKey="lessonsCompleted" stroke={CHART_BRAND} strokeWidth={2} fill={CHART_BRAND} fillOpacity={0.14} />
                     <Area type="linear" dataKey="minutesSpent" stroke={CHART_STONE} strokeWidth={1.5} fillOpacity={0} />
                   </AreaChart>
                 </ResponsiveContainer>
@@ -395,14 +441,14 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
             <section className={panelClass + " p-4 sm:p-5"}>
               <PanelHead eyebrow={t.analytics.hoursEyebrow} title={t.analytics.hoursTitle} sub={t.analytics.hoursSub} />
               {studyHourData.length === 0 ? (
-                <div className="flex h-[240px] items-center justify-center rounded-sm border border-dashed border-line text-xs text-ink-faint">
+                <EmptyNote icon={<Clock3 className="h-4 w-4" />} className="h-[240px]">
                   {t.analytics.hoursEmpty}
-                </div>
+                </EmptyNote>
               ) : (
                 <div className="h-[280px]">
                   <ResponsiveContainer width="100%" height="100%">
                     <BarChart data={studyHourData} margin={{ left: -22, right: 0, top: 12, bottom: 0 }}>
-                      <CartesianGrid vertical={false} stroke="#e7e5e4" className="dark:stroke-stone-800" opacity={0.6} />
+                      <CartesianGrid vertical={false} stroke={CHART_GRID} className="dark:stroke-stone-800" opacity={0.8} />
                       <XAxis
                         dataKey="hour"
                         tickFormatter={(value) => `${value}h`}
@@ -419,11 +465,11 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
                           />
                         }
                       />
-                      <Bar dataKey="lessonsCompleted" radius={[2, 2, 0, 0]}>
+                      <Bar dataKey="lessonsCompleted" radius={[4, 4, 0, 0]}>
                         {studyHourData.map((entry) => (
                           <Cell
                             key={entry.hour}
-                            fill={entry.hour === analytics.bestStudyHour ? CHART_BRAND : CHART_STONE_LIGHT}
+                            fill={entry.hour === analytics.bestStudyHour ? CHART_BRAND : CHART_BRAND_LIGHT}
                           />
                         ))}
                       </Bar>
@@ -463,9 +509,9 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
             <section className={panelClass + " p-4 sm:p-5"}>
               <PanelHead eyebrow={t.analytics.trackEyebrow} title={t.analytics.trackTitle} />
               {trackPieData.length === 0 ? (
-                <div className="flex h-[220px] items-center justify-center rounded-sm border border-dashed border-line text-xs text-ink-faint">
+                <EmptyNote icon={<BarChart3 className="h-4 w-4" />} className="h-[220px]">
                   {t.analytics.trackEmpty}
-                </div>
+                </EmptyNote>
               ) : (
                 <div className="grid min-w-0 items-center gap-6 md:grid-cols-[1fr_1.1fr]">
                   <div className="relative flex h-[230px] items-center justify-center">
@@ -494,11 +540,11 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
                       </span>
                     </div>
                   </div>
-                  <dl className="divide-y divide-stone-200 border-y border-line dark:divide-stone-800">
+                  <dl className="divide-y divide-line">
                     {trackPieData.map((item) => (
                       <div key={item.name} className="flex items-center justify-between gap-3 py-2 text-sm">
                         <dt className="flex items-center gap-2.5">
-                          <span className="h-2.5 w-2.5 shrink-0 rounded-[1px]" style={{ backgroundColor: item.color }} aria-hidden />
+                          <span className="h-2.5 w-2.5 shrink-0 rounded-full" style={{ backgroundColor: item.color }} aria-hidden />
                           <span className="font-semibold text-ink-body">{item.name}</span>
                         </dt>
                         <dd className="font-mono tabular-nums text-ink-max">{format(t.analytics.lessonCount, { count: item.value })}</dd>
@@ -526,15 +572,15 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
                     <div key={item.label} className="text-xs">
                       <div className="mb-1.5 flex items-center justify-between">
                         <div className="flex items-center gap-2">
-                          <span className="h-2.5 w-2.5 rounded-[1px]" style={{ backgroundColor: item.color }} aria-hidden />
+                          <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: item.color }} aria-hidden />
                           <span className="font-semibold text-ink-body">{item.label}</span>
                         </div>
                         <span className="font-mono tabular-nums text-ink-max">
                           {format(t.analytics.lessonsWithPercent, { count: item.value, percent: Math.round(width) })}
                         </span>
                       </div>
-                      <div className="h-1.5 overflow-hidden rounded-xs bg-surface-sunken">
-                        <div className="h-full" style={{ width: `${width}%`, backgroundColor: item.color }} />
+                      <div className="h-2 overflow-hidden rounded-full bg-surface-sunken">
+                        <div className="h-full rounded-full" style={{ width: `${width}%`, backgroundColor: item.color }} />
                       </div>
                     </div>
                   );
@@ -582,16 +628,14 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
               />
 
               {analytics.notes.topLessons.length === 0 ? (
-                <div className="rounded-sm border border-dashed border-line px-5 py-8 text-center text-xs leading-relaxed text-ink-faint">
-                  {t.analytics.notesEmpty}
-                </div>
+                <EmptyNote icon={<NotebookPen className="h-4 w-4" />}>{t.analytics.notesEmpty}</EmptyNote>
               ) : (
-                <ol className="divide-y divide-stone-200 border-y border-line dark:divide-stone-800">
+                <ol className="divide-y divide-line">
                   {analytics.notes.topLessons.map((lesson, index) => (
                     <li key={lesson.lessonId}>
                       <Link
                         href={lesson.slug ? `/bai-hoc/${lesson.slug}` : "/ghi-chu"}
-                        className="group flex items-center justify-between gap-4 px-1 py-2.5 transition-colors hover:bg-surface-raised dark:hover:bg-stone-800/60"
+                        className="group -mx-1 flex items-center justify-between gap-4 rounded-control px-2 py-2.5 transition-colors hover:bg-accent-wash"
                       >
                         <div className="flex min-w-0 items-center gap-3">
                           <span className="w-6 shrink-0 text-center font-mono text-xs tabular-nums text-ink-faint">
@@ -615,7 +659,7 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
             <section className={panelClass + " p-4 sm:p-5"}>
               <PanelHead eyebrow={t.analytics.nextEyebrow} title={t.analytics.nextTitle} />
 
-              <ul className="divide-y divide-stone-200 border-y border-line text-sm dark:divide-stone-800">
+              <ul className="space-y-2 text-sm">
                 {[
                   {
                     icon: CheckCircle2,
@@ -637,8 +681,10 @@ export default function LearningAnalytics({ hideLeaderboardTab = false }: { hide
                 ].map((tip) => {
                   const Icon = tip.icon;
                   return (
-                    <li key={tip.title} className="flex items-start gap-2.5 py-3">
-                      <Icon className="mt-0.5 h-4 w-4 shrink-0 text-ink-faint" aria-hidden />
+                    <li key={tip.title} className="flex items-start gap-3 rounded-control bg-surface-raised p-3">
+                      <IconTile className="h-8 w-8">
+                        <Icon className="h-4 w-4" />
+                      </IconTile>
                       <div>
                         <p className="font-bold text-ink-max">{tip.title}</p>
                         <p className="mt-0.5 text-xs leading-relaxed text-ink-muted">{tip.body}</p>

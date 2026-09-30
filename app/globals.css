@@ -71,16 +71,20 @@
   /* Không đổ bóng: chiều sâu đến từ sắc độ nền và viền 1px. Chỉ `shadow-2xl`
    * (hộp thoại, menu nổi) còn một bóng rất nhạt - thứ nổi trên trang phải tách
    * khỏi trang, và viền thôi không đủ khi nó đè lên nội dung cùng màu. */
-  --shadow-2xs: 0 0 #0000;
-  --shadow-xs: 0 0 #0000;
-  --shadow-sm: 0 0 #0000;
-  --shadow: 0 0 #0000;
-  --shadow-md: 0 0 #0000;
-  --shadow-lg: 0 0 #0000;
-  --shadow-xl: 0 0 #0000;
-  --shadow-2xl: 0 16px 40px -24px rgba(15, 23, 42, 0.28);
-  --shadow-card: 0 0 #0000;
-  --shadow-card-hover: 0 0 #0000;
+  /* 2026-09-30: chiều sâu quay lại, nhưng NHẸ và ngả xanh navy chứ không đen -
+   * yêu cầu "bớt phẳng, bớt trắng": thứ bậc đến từ sắc nền + một bóng mảnh,
+   * thay cho viền xám bao quanh mọi thẻ. Giá trị viết qua biến để chế độ tối
+   * (bóng đen đậm hơn) đổi ở một chỗ. */
+  --shadow-2xs: 0 1px 1px var(--shade-1);
+  --shadow-xs: 0 1px 2px var(--shade-1);
+  --shadow-sm: 0 1px 2px var(--shade-1), 0 2px 6px -2px var(--shade-2);
+  --shadow: 0 1px 2px var(--shade-1), 0 4px 10px -4px var(--shade-2);
+  --shadow-md: 0 2px 4px -1px var(--shade-1), 0 8px 18px -8px var(--shade-3);
+  --shadow-lg: 0 4px 8px -2px var(--shade-1), 0 16px 32px -14px var(--shade-3);
+  --shadow-xl: 0 6px 12px -4px var(--shade-2), 0 24px 44px -20px var(--shade-3);
+  --shadow-2xl: 0 16px 40px -20px var(--shade-3);
+  --shadow-card: 0 1px 2px var(--shade-1), 0 3px 10px -6px var(--shade-2);
+  --shadow-card-hover: 0 2px 4px -1px var(--shade-1), 0 14px 28px -14px var(--shade-brand);
 
   /* ─────────────────────────────────────────────────────────────────────
      THANG MÀU THEO VAI TRÒ - một class cho CẢ HAI chế độ sáng/tối.
@@ -165,6 +169,22 @@
   --color-danger-line: var(--danger-line);  /* red-200 → red-900               */
   --color-accent-line: var(--accent-line);  /* brand-200 → brand-900       */
 
+  /* 2026-09-30 - LOGIC MÀU MỘT CHO CẢ APP:
+       xanh brand  = nhận diện: đang chọn, điều hướng, tiến độ, link, nút chính
+       coral       = năng lượng: thử thách, thi, độ khó, đấu, việc cần làm ngay
+       vàng        = phần thưởng: XP, vàng, chuỗi ngày, thành tích, lên cấp
+     Coral và vàng dùng DÈ - mỗi màn một hai điểm, không tô cả thẻ. */
+  --color-canvas: var(--page);
+  --color-energy: var(--energy);
+  --color-energy-strong: var(--energy-strong);
+  --color-energy-soft: var(--energy-soft);
+  --color-energy-line: var(--energy-line);
+  --color-reward: var(--reward);
+  --color-reward-strong: var(--reward-strong);
+  --color-reward-soft: var(--reward-soft);
+  --color-reward-line: var(--reward-line);
+  --color-accent-wash: var(--accent-wash);
+
   /* Đợt hai: các vai trò lộ ra sau khi gộp đợt một. Vẫn KHỚP CHÍNH XÁC sắc độ
      đang dùng, nên thêm chúng không đổi một pixel nào - chỉ là những vai trò
      mà đợt đầu chưa đặt tên, không phải sắc độ mới. */
@@ -237,20 +257,25 @@
   --accent-line-mid: #9fbfe9;
   --warn-ink: #953d00;
   --warn-line-mid: #ffd236;
-  --line-firm: #9a9a94;
-  --surface-deep: #d6d6d1;
+  --line-firm: #93a0b4;
+  --surface-deep: #cfd9e8;
   --line-invert: #1c1917;
-  --ink-max: #0d0e11;
-  --page: #ffffff;                             /* trong app: nền trắng 100% (trang chủ + login tự đặt giấy ngà) */                             /* nền gốc <body> - giấy ngà của trang giới thiệu */
-  --page-ink: #0d0e11;                         /* chữ gốc <body>          */
-  --ink: oklch(21.6% 0.006 56.043);            /* stone-900 */
-  --ink-body: oklch(37.4% 0.01 67.558);        /* stone-700 */
-  --ink-muted: oklch(55.3% 0.013 58.071);      /* stone-500 */
-  --ink-faint: oklch(70.9% 0.01 56.259);       /* stone-400 */
+  --ink-max: #0b1220;
+  /* 2026-09-30: nền app không còn trắng tinh mà là xanh băng rất nhạt, để thẻ
+     trắng (`bg-surface`) nổi lên thành lớp - "bớt trắng, bớt phẳng". Trang chủ
+     và cửa đăng nhập tự đặt nền riêng nên không đổi. */
+  --page: #edf2f9;
+  --page-ink: #0b1220;                         /* chữ gốc <body>          */
+  /* Chữ chuyển từ xám ấm (stone) sang xám lạnh ngả xanh, và đậm hơn một bậc:
+     giao diện cũ "nhạt, tương phản thấp" chủ yếu vì ink-muted/faint quá sáng. */
+  --ink: #111a2b;
+  --ink-body: #2c3a50;
+  --ink-muted: #56647a;
+  --ink-faint: #8391a7;
 
   --surface: #ffffff;
-  --surface-raised: #f7f7f5;                    /* thanh tiêu đề khung */
-  --surface-sunken: #ebebe8;
+  --surface-raised: #eef3fa;                    /* thanh tiêu đề khung - xanh băng */
+  --surface-sunken: #e2e9f3;
   --surface-invert: #0d0e11;                    /* mực */
   /* `#fff`, KHÔNG phải stone-100. Giá trị cũ chọn theo trực giác và token này
      chưa từng được dùng ở đâu (0 chỗ, trong khi `bg-surface-invert` có 76).
@@ -259,13 +284,26 @@
      78 nút đổi màu chữ. Đặt token theo call site, đừng bắt call site theo token. */
   --ink-invert: #fff;
 
-  --line: #ebebe7;
-  --line-soft: #f3f3f0;
+  --line: #e1e8f1;
+  --line-soft: #edf1f7;
   /* Từng là màu mực #0d0e11 (nét kẻ trang chủ). Giờ là xám nhạt: viền phân
      nhóm, không phải khung. Trạng thái đang làm dùng brand, không dùng viền. */
-  --line-strong: #d9d9d4;
+  --line-strong: #cdd7e5;
 
   --accent: var(--color-brand-600);
+  --accent-wash: #e8f0fb;
+  --energy: #e5484d;
+  --energy-strong: #c9383d;
+  --energy-soft: #fff0ef;
+  --energy-line: #fdc9c6;
+  --reward: #e38a06;
+  --reward-strong: #b86b00;
+  --reward-soft: #fff6e3;
+  --reward-line: #fbdc9f;
+  --shade-1: rgb(15 34 71 / 0.06);
+  --shade-2: rgb(15 34 71 / 0.08);
+  --shade-3: rgb(15 34 71 / 0.16);
+  --shade-brand: rgb(41 97 184 / 0.28);
   --accent-soft: var(--color-brand-50);
   --warn: oklch(66.6% 0.179 58.318);           /* amber-600   */
   --warn-soft: oklch(98.7% 0.022 95.277);      /* amber-50    */
@@ -273,9 +311,9 @@
   --danger-soft: oklch(97.1% 0.013 17.38);     /* red-50  */
   --danger-line: oklch(88.5% 0.062 18.334);    /* red-200 */
   --accent-line: var(--color-brand-200);
-  --ink-soft: oklch(44.4% 0.011 73.639);       /* stone-600 */
-  --ink-heading: oklch(26.8% 0.007 34.298);    /* stone-800 */
-  --line-mid: #ebebe7;
+  --ink-soft: #435168;
+  --ink-heading: #18233a;
+  --line-mid: #e1e8f1;
   --accent-strong: var(--color-brand-700);
   --warn-strong: oklch(55.5% 0.163 48.998);    /* amber-700 */
   --warn-line: oklch(92.4% 0.12 95.746);       /* amber-200 */
@@ -296,16 +334,16 @@
   --accent-line-mid: #1f427a;
   --warn-ink: #ffd236;
   --warn-line-mid: #953d00;
-  --line-firm: #57534d;
-  --surface-deep: #44403b;
+  --line-firm: #566175;
+  --surface-deep: #343c4b;
   --line-invert: #f5f5f4;
   --ink-max: #eeebe3;
   --page: #0c0d10;
   --page-ink: #eeebe3;
-  --ink: oklch(97% 0.001 106.424);             /* stone-100 */
-  --ink-body: oklch(86.9% 0.005 56.366);       /* stone-300 */
-  --ink-muted: oklch(70.9% 0.01 56.259);       /* stone-400 */
-  --ink-faint: oklch(55.3% 0.013 58.071);      /* stone-500 */
+  --ink: #eef2f8;
+  --ink-body: #cbd4e1;
+  --ink-muted: #9aa7ba;
+  --ink-faint: #6d7a8f;
 
   --surface: #15171c;
   --surface-raised: #1d2027;
@@ -319,18 +357,48 @@
 
   --accent: var(--color-brand-400);
   --accent-soft: var(--color-brand-950);
+  --accent-wash: #132441;
+  --energy: #ff7b72;
+  --energy-strong: #ff938b;
+  --energy-soft: #33161a;
+  --energy-line: #6e2a2d;
+  --reward: #f7b733;
+  --reward-strong: #fcc95a;
+  --reward-soft: #2e2109;
+  --reward-line: #5f4512;
+  --shade-1: rgb(0 0 0 / 0.3);
+  --shade-2: rgb(0 0 0 / 0.35);
+  --shade-3: rgb(0 0 0 / 0.5);
+  --shade-brand: rgb(65 122 205 / 0.35);
   --warn: oklch(82.8% 0.189 84.429);           /* amber-400   */
   --warn-soft: oklch(27.9% 0.077 45.635);      /* amber-950   */
   --danger: oklch(70.4% 0.191 22.216);         /* red-400 */
   --danger-soft: oklch(25.8% 0.092 26.042);    /* red-950 */
   --danger-line: oklch(39.6% 0.141 25.723);    /* red-900 */
   --accent-line: var(--color-brand-900);
-  --ink-soft: oklch(70.9% 0.01 56.259);        /* stone-400 */
-  --ink-heading: oklch(92.3% 0.003 48.717);    /* stone-200 */
-  --line-mid: oklch(37.4% 0.01 67.558);        /* stone-700 */
+  --ink-soft: #aab5c6;
+  --ink-heading: #e2e8f1;
+  --line-mid: #2e3440;
   --accent-strong: var(--color-brand-400);
   --warn-strong: oklch(82.8% 0.189 84.429);    /* amber-400 */
   --warn-line: oklch(41.4% 0.112 45.904);      /* amber-900 */
+}
+
+/* THẺ TỰ VIẾT TAY CŨNG CÓ CHIỀU SÂU (2026-09-30).
+   Khoảng 200 thẻ trong app viết thẳng `rounded-xl border border-line bg-white`
+   thay vì dùng `panel` trong components/ui/system.tsx, nên đổi `panel` không
+   tới được chúng. Quy tắc này cho mọi khối nền trắng + viền + bo góc lớn một
+   bóng mảnh ngả xanh - thứ tách thẻ khỏi canvas băng thay cho viền xám đậm.
+
+   Toàn bộ bộ chọn nằm trong `:where()` nên độ đặc hiệu bằng 0, và nó ở
+   `@layer components` - mọi utility (`shadow-none`, `shadow-lg`…) viết trên
+   thẻ vẫn thắng. Chỉ khối bố cục (div/section/article/li/aside), không bao
+   giờ input hay nút; chỉ bo từ `rounded-lg` trở lên, vì ô nhập liệu dùng
+   `rounded-sm`/`rounded-md`. */
+@layer components {
+  :where(div, section, article, li, aside, details):where(.bg-surface, .bg-white):where(.border):where(.rounded-card, .rounded-lg, .rounded-xl, .rounded-2xl, .rounded-3xl) {
+    box-shadow: var(--shadow-card);
+  }
 }
 
 /* Belt-and-suspenders against horizontal-overflow bugs like the mobile
@@ -835,6 +903,26 @@ html [data-sonner-toaster][data-sonner-theme='dark'] {
 }
 @media (prefers-reduced-motion: reduce) {
   .thcn-caret, .thcn-rise, .thcn-draw, .thcn-stamp, .thcn-glitch:hover { animation: none; }
+}
+
+/* Phản hồi đáp án ở /kiem-tra (quizOption trong components/ui/system.tsx):
+ * đúng thì nảy nhẹ một lần, sai thì lắc ngang một lần, XP vừa nhận thì bật lên.
+ * Chạy đúng một lần - phản hồi, không phải trang trí. */
+@keyframes thcn-pop { 0% { transform: scale(1); } 40% { transform: scale(1.015); } 100% { transform: scale(1); } }
+.thcn-pop { animation: thcn-pop 0.32s ease-out 1; }
+@keyframes thcn-shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-4px); } 40% { transform: translateX(4px); }
+  60% { transform: translateX(-2px); } 80% { transform: translateX(2px); }
+}
+.thcn-shake { animation: thcn-shake 0.36s ease-out 1; }
+@keyframes thcn-xp { 0% { opacity: 0; transform: translateY(4px) scale(0.9); } 60% { opacity: 1; transform: translateY(-1px) scale(1.06); } 100% { opacity: 1; transform: none; } }
+.thcn-xp { animation: thcn-xp 0.45s cubic-bezier(.2,.9,.3,1.2) both; }
+/* Nút chạy phiên được gọi tới (sau Daily Signal): vòng xanh loang ra hai lần. */
+@keyframes thcn-ping { 0% { box-shadow: 0 0 0 0 rgb(41 97 184 / 0.45); } 100% { box-shadow: 0 0 0 10px rgb(41 97 184 / 0); } }
+.thcn-ping { animation: thcn-ping 0.9s ease-out 2; }
+@media (prefers-reduced-motion: reduce) {
+  .thcn-pop, .thcn-shake, .thcn-xp, .thcn-ping { animation: none; }
 }
 
 /* Cơ Cơ lơ lửng nhẹ khi đang "nói" - components/CoCoAvatar.tsx (float). */

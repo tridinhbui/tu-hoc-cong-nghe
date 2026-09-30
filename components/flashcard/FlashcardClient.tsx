@@ -117,7 +117,7 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
 
   if (checking || !userId) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-surface">
+      <div className="min-h-screen flex items-center justify-center bg-page">
         <div className="w-8 h-8 border-2 border-stone-300 border-t-stone-900 dark:border-stone-700 dark:border-t-stone-100 rounded-full animate-spin" />
       </div>
     );
@@ -324,7 +324,7 @@ export default function FlashcardClient({ userId: propUserId, initialCards, embe
   const masteredCount = cards.filter((c) => c.repetitions >= 5).length;
 
   return (
-    <div className={embedded ? "w-full" : "min-h-screen bg-surface"}>
+    <div className={embedded ? "w-full" : "min-h-screen bg-page"}>
       <div className={embedded ? "w-full py-4" : "max-w-3xl mx-auto px-4 sm:px-6 py-8"}>
         {!embedded && (
           <Link

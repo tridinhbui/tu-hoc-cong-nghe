@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { BookOpen, Flame, Target, Gamepad2, ShieldCheck, Zap, Heart, type LucideIcon } from "lucide-react";
+import { BookOpen, Flame, Target, Gamepad2, ShieldCheck, Trophy, Zap, Heart, type LucideIcon } from "lucide-react";
 import {
   getLeaderboardByMetric,
   getMyLeaderboardRank,
@@ -17,7 +17,7 @@ import { getCombinedGameLeaderboard } from "@/lib/games";
 import MyRankRow from "@/components/leaderboard/MyRankRow";
 import RankTable from "@/components/analytics/RankTable";
 import { APP_SYS } from "@/components/analytics/system-codes";
-import { SectionHead, Sys, tabClass } from "@/components/ui/system";
+import { IconTile, SectionHead, Sys, panel, tabClass } from "@/components/ui/system";
 import { useI18n } from "@/lib/i18n/context";
 import type { Dictionary } from "@/lib/i18n";
 
@@ -147,7 +147,9 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
   const meInTop = !!userId && shown.some((e) => e.user_id === userId);
 
   return (
-    <section className="rounded-md border border-line-strong bg-white p-4 sm:p-5 dark:border-stone-700 dark:bg-stone-900">
+    // Thẻ trắng nổi bằng bóng (không viền xám đậm). Xanh trong bảng chỉ dành
+    // cho "bạn": tab đang mở, ô điểm tổng hợp của bạn và hàng của bạn.
+    <section className={`${panel} p-4 sm:p-5`}>
       <SectionHead
         code={APP_SYS.leaderboard}
         eyebrow={t.leaderboard[activeTab.labelKey]}
@@ -179,7 +181,7 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
       </div>
 
       {metric === "composite" && (
-        <div className="mt-4 border-b border-line pb-4">
+        <div className="mt-4">
           <p className="text-sm font-black text-ink-max">{t.leaderboard.compositeTitle}</p>
           <p className="mt-1 text-xs leading-5 text-ink-soft">
             {t.leaderboard.compositeDescPrefix} <strong className="font-mono tabular-nums">35%</strong>{" "}
@@ -189,16 +191,18 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
             {t.leaderboard.compositeDescStreak}
           </p>
           {myComposite && (
-            <dl className="mt-3 grid grid-cols-2 border-y border-line sm:grid-cols-4 sm:divide-x sm:divide-stone-200 dark:sm:divide-stone-800">
+            // Điểm thành phần CỦA BẠN: bốn ô băng xanh - số của mình, nên đi
+            // bằng màu nhận diện chứ không bằng bảng kẻ xám.
+            <dl className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4">
               {[
                 { label: t.leaderboard.compositeLearningXp, value: `${Math.round(myComposite.learningXp)}` },
                 { label: t.leaderboard.compositeExamPoints, value: `${Math.round(myComposite.examPoints)}/1400` },
                 { label: t.leaderboard.compositeAccuracy, value: `${Math.round(myComposite.accuracy)}%` },
                 { label: t.leaderboard.compositeStreak, value: `${Math.round(myComposite.streakDays)}` },
               ].map((item) => (
-                <div key={item.label} className="px-3 py-2 first:pl-0 sm:first:pl-3">
-                  <dt className="text-[11px] font-bold uppercase tracking-[0.06em] text-ink-muted">{item.label}</dt>
-                  <dd className="mt-0.5 font-mono text-sm font-medium tabular-nums text-ink-max">{item.value}</dd>
+                <div key={item.label} className="min-w-0 rounded-control bg-accent-wash px-3 py-2">
+                  <dt className="truncate text-[11px] font-bold uppercase tracking-[0.06em] text-ink-muted">{item.label}</dt>
+                  <dd className="mt-0.5 font-mono text-base font-semibold tabular-nums text-accent-strong">{item.value}</dd>
                 </div>
               ))}
             </dl>
@@ -211,7 +215,12 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
           {compact ? t.leaderboard.loadingCompact : t.leaderboard.loadingFull}
         </p>
       ) : entries.length === 0 ? (
-        <p className="py-10 text-center text-sm text-ink-muted">{t.leaderboard.empty}</p>
+        <div className="mt-4 flex flex-col items-center gap-2.5 rounded-card bg-surface-raised px-5 py-10 text-center">
+          <IconTile tone="reward">
+            <Trophy className="h-4 w-4" />
+          </IconTile>
+          <p className="text-sm text-ink-muted">{t.leaderboard.empty}</p>
+        </div>
       ) : (
         <div className={`mt-4 transition-opacity duration-150 ${switching ? "opacity-40" : "opacity-100"}`}>
           <div className="mb-1.5 flex items-center justify-between gap-3 px-2">

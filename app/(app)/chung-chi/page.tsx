@@ -28,7 +28,7 @@ export default async function ChungChiPage() {
   const { certs } = await loadCertProgress(locale);
 
   return (
-    <div className="min-h-full bg-surface font-sans text-ink">
+    <div className="min-h-full bg-page font-sans text-ink">
       <div className="relative overflow-hidden border-b border-line bg-brand-900 text-white">
         <Image
           src="/images/dashboard/mountains_panorama_banner.jpg"

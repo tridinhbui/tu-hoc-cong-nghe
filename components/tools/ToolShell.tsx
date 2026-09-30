@@ -7,6 +7,7 @@ import CoCoSays from "@/components/CoCoSays";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 import type { ToolId } from "@/components/tools/tool-registry";
+import { ProgressBar, btnPrimary, chipReward, panel, panelFocus } from "@/components/ui/system";
 
 export interface ToolCriterionView {
   id: string;
@@ -42,6 +43,12 @@ export interface ToolEmbed {
 export function embedMissions<T extends { id: string }>(missions: T[], embed: ToolEmbed | undefined): T[] {
   return embed ? missions.filter((m) => m.id === embed.missionId) : missions;
 }
+
+/** Nút "Chạy / Gửi" gọn của thanh công cụ trong vùng làm việc: cùng khối xanh
+ *  có chiều sâu với btnPrimary nhưng thấp hơn và không viết hoa, để nằm vừa
+ *  một thanh công cụ cao 32px. Kích thước (h-, px-) do chỗ dùng tự thêm. */
+export const btnRun =
+  "inline-flex items-center justify-center gap-1.5 rounded-control bg-gradient-to-b from-brand-500 to-brand-600 text-sm font-bold text-white shadow-[inset_0_1px_0_rgb(255_255_255/0.18),0_6px_14px_-8px_rgb(41_97_184/0.75)] transition-[transform,background-color] hover:from-brand-600 hover:to-brand-700 motion-safe:active:translate-y-px disabled:cursor-not-allowed disabled:opacity-60";
 
 type CocoEvent = { kind: "error" | "hint" | "done"; mission: string; n: number } | null;
 
@@ -169,11 +176,11 @@ export default function ToolShell({
       : null;
 
   return (
-    <div className="min-h-screen bg-surface">
+    <div className="min-h-screen bg-page">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-5">
         <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
           <div className="min-w-0">
-            <Link href="/cong-cu" className="inline-flex items-center gap-1 text-xs font-bold text-ink-muted hover:text-ink">
+            <Link href="/cong-cu" className="inline-flex items-center gap-1 text-xs font-bold text-ink-muted hover:text-accent-strong">
               <ArrowLeft className="h-3.5 w-3.5" />
               {c.back}
             </Link>
@@ -183,9 +190,9 @@ export default function ToolShell({
           </div>
           <p
             title={c.safeNote}
-            className="inline-flex items-center gap-1.5 font-mono text-[11px] font-bold uppercase tracking-widest text-ink-faint"
+            className="inline-flex items-center gap-1.5 rounded-full bg-surface px-2.5 py-1 font-mono text-[11px] font-bold uppercase tracking-widest text-ink-muted shadow-card"
           >
-            <ShieldCheck className="h-3.5 w-3.5" />
+            <ShieldCheck className="h-3.5 w-3.5 text-accent" />
             {r.shell.sandbox}
           </p>
         </div>
@@ -194,19 +201,18 @@ export default function ToolShell({
           <div className="min-w-0">{children}</div>
 
           <aside className="space-y-4 lg:sticky lg:top-4 lg:self-start">
-            {/* Ticket đang mở */}
+            {/* Ticket đang mở - ĐIỂM NHẤN của cột phải (panelFocus). Ticket đã đóng
+                đổi viền sang vàng: bàn giao xong là một thành tích. */}
             <section
               aria-labelledby="tool-ticket-title"
-              className={`rounded-lg border bg-white p-4 dark:bg-stone-900 ${
-                active.done ? "border-cyan-300 dark:border-cyan-800" : "border-accent-line-mid"
-              }`}
+              className={`p-4 ${active.done ? "rounded-card border border-reward-line bg-surface shadow-card-hover" : panelFocus}`}
             >
               <div className="flex items-center justify-between gap-2">
-                <p className="font-mono text-[11px] font-bold uppercase tracking-widest text-ink-muted">
+                <p className="font-mono text-[11px] font-bold uppercase tracking-widest text-accent-strong">
                   {format(r.shell.ticket, { n: index + 1, total })}
                 </p>
                 {active.done && (
-                  <span className="inline-flex items-center gap-1 font-mono text-[11px] font-black uppercase tracking-widest text-cyan-700 dark:text-cyan-400">
+                  <span className={`${chipReward} font-mono uppercase tracking-widest`}>
                     <CheckCircle2 className="h-3.5 w-3.5" />
                     {r.shell.passed}
                   </span>
@@ -220,10 +226,10 @@ export default function ToolShell({
               <h2 id="tool-ticket-title" className="mt-1 text-base font-black leading-snug text-ink-max">
                 {active.title}
               </h2>
-              {active.brief && <p className="mt-1.5 text-sm leading-relaxed text-ink">{active.brief}</p>}
+              {active.brief && <p className="mt-1.5 text-sm leading-relaxed text-ink-body">{active.brief}</p>}
 
               {active.criteria && active.criteria.length > 0 && (
-                <div className="mt-3">
+                <div className="mt-3 rounded-control bg-surface-raised p-3">
                   <p className="text-[11px] font-black uppercase tracking-wider text-ink-muted">{r.shell.criteria}</p>
                   <ul className="mt-1.5 space-y-1">
                     {active.criteria.map((cr) => {
@@ -231,11 +237,11 @@ export default function ToolShell({
                       return (
                         <li key={cr.id} className="flex items-start gap-2 text-sm">
                           {met ? (
-                            <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-cyan-600 dark:text-cyan-400" />
+                            <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
                           ) : (
                             <Circle className="mt-0.5 h-4 w-4 shrink-0 text-ink-faint" />
                           )}
-                          <span className={met ? "text-ink" : "text-ink-muted"}>{cr.label}</span>
+                          <span className={met ? "font-semibold text-ink" : "text-ink-muted"}>{cr.label}</span>
                         </li>
                       );
                     })}
@@ -248,7 +254,7 @@ export default function ToolShell({
                   type="button"
                   onClick={toggleHint}
                   aria-expanded={hintOpen}
-                  className="mt-3 inline-flex items-center gap-1.5 rounded-md border border-line px-2.5 py-1 text-xs font-bold text-ink-muted hover:border-brand-400 hover:text-accent-strong"
+                  className="mt-3 inline-flex items-center gap-1.5 rounded-control border border-accent-line bg-surface px-2.5 py-1 text-xs font-bold text-accent-strong transition-colors hover:bg-accent-wash"
                 >
                   <Lightbulb className="h-3.5 w-3.5" />
                   {hintOpen ? r.shell.hideHint : r.shell.hint}
@@ -268,7 +274,7 @@ export default function ToolShell({
               )}
 
               {active.done && renderArtifact && (
-                <div className="mt-3 border-t border-line pt-3">
+                <div className="mt-3 border-t border-line-soft pt-3">
                   <p className="text-[11px] font-black uppercase tracking-wider text-ink-muted">{r.shell.result}</p>
                   <div className="mt-1.5">{renderArtifact(active.id)}</div>
                 </div>
@@ -278,29 +284,24 @@ export default function ToolShell({
                 <button
                   type="button"
                   onClick={() => select(nextOpen.id)}
-                  className="mt-3 inline-flex w-full items-center justify-center gap-1.5 rounded-md bg-brand-600 px-3 py-2 text-sm font-bold text-white hover:bg-brand-700"
+                  className={`${btnPrimary} mt-3 w-full`}
                 >
                   {r.shell.nextTicket}
                   <ArrowRight className="h-4 w-4" />
                 </button>
               )}
-              {active.done && !nextOpen && <p className="mt-3 text-sm font-bold text-cyan-700 dark:text-cyan-400">{r.shell.allDone}</p>}
+              {active.done && !nextOpen && <p className="mt-3 text-sm font-bold text-reward-strong">{r.shell.allDone}</p>}
             </section>
 
-            {/* Hàng đợi thu gọn */}
-            <section className="rounded-lg border border-line bg-white p-3 dark:bg-stone-900">
+            {/* Hàng đợi thu gọn - thẻ trắng yên lặng, chỉ dòng đang mở tô xanh. */}
+            <section className={`${panel} p-3`}>
               <div className="mb-2 flex items-center justify-between">
                 <p className="text-[11px] font-black uppercase tracking-wider text-ink-muted">{r.shell.queue}</p>
-                <span className="text-xs font-bold tabular-nums text-cyan-700 dark:text-cyan-400">
+                <span className="text-xs font-bold tabular-nums text-accent-strong">
                   {format(r.shell.progress, { done, total })}
                 </span>
               </div>
-              <div className="mb-2 h-1 overflow-hidden rounded-full bg-surface-raised">
-                <div
-                  className="h-full rounded-full bg-cyan-500 transition-all"
-                  style={{ width: `${total ? (done / total) * 100 : 0}%` }}
-                />
-              </div>
+              <ProgressBar value={total ? (done / total) * 100 : 0} className="mb-2 h-1.5" />
               <ol className="space-y-0.5">
                 {missions.map((m, i) => {
                   const current = m.id === active.id;
@@ -312,12 +313,14 @@ export default function ToolShell({
                         aria-current={current ? "true" : undefined}
                         aria-label={format(r.shell.open, { n: i + 1, title: m.title })}
                         className={`flex w-full items-start gap-2 rounded-md px-2 py-1.5 text-left text-xs ${
-                          current ? "bg-brand-50 text-ink-max dark:bg-brand-950/40" : "text-ink-muted hover:bg-surface-raised hover:text-ink"
+                          current
+                            ? "bg-accent-wash text-accent-strong shadow-[inset_2px_0_0_var(--accent)]"
+                            : "text-ink-muted hover:bg-surface-raised hover:text-ink"
                         }`}
                       >
                         <span className="w-4 shrink-0 text-right font-mono tabular-nums text-ink-faint">{i + 1}</span>
                         {m.done ? (
-                          <CheckCircle2 className="mt-px h-3.5 w-3.5 shrink-0 text-cyan-600 dark:text-cyan-400" />
+                          <CheckCircle2 className="mt-px h-3.5 w-3.5 shrink-0 text-reward" />
                         ) : (
                           <Circle className={`mt-px h-3.5 w-3.5 shrink-0 ${current ? "text-accent" : "text-ink-faint"}`} />
                         )}
@@ -331,7 +334,7 @@ export default function ToolShell({
                 <button
                   type="button"
                   onClick={reset}
-                  className="mt-2 inline-flex items-center gap-1.5 px-2 text-xs font-bold text-ink-muted hover:text-ink"
+                  className="mt-2 inline-flex items-center gap-1.5 px-2 text-xs font-bold text-ink-muted hover:text-accent-strong"
                 >
                   <RotateCcw className="h-3.5 w-3.5" />
                   {c.reset}
