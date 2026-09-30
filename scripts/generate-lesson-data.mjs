@@ -9,7 +9,7 @@
 // Re-run this any time lib/lessons.ts changes.
 
 import ts from "typescript";
-import { readFileSync, writeFileSync, mkdirSync, readdirSync, unlinkSync, existsSync } from "fs";
+import { readFileSync, writeFileSync, mkdirSync, readdirSync, unlinkSync, existsSync, statSync } from "fs";
 import { fileURLToPath } from "url";
 import path from "path";
 import { createRequire } from "module";
@@ -22,9 +22,14 @@ const root = path.resolve(__dirname, "..");
 const nodeRequire = createRequire(import.meta.url);
 
 function resolveTsPath(p) {
-  if (existsSync(p)) return p;
+  if (existsSync(p) && statSync(p).isFile()) return p;
   if (existsSync(p + ".ts")) return p + ".ts";
   if (existsSync(p + ".tsx")) return p + ".tsx";
+  // `import "./ai-work-lessons"` trỏ vào một THƯ MỤC: TypeScript tự đọc
+  // index.ts bên trong, còn readFileSync trên thư mục thì ném EISDIR - và vì
+  // prebuild chạy script này, lỗi đó chặn cả `npm run dev` lẫn bản deploy.
+  if (existsSync(path.join(p, "index.ts"))) return path.join(p, "index.ts");
+  if (existsSync(path.join(p, "index.tsx"))) return path.join(p, "index.tsx");
   return p;
 }
 
