@@ -1,7 +1,13 @@
 // @vitest-environment jsdom
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { cleanup, configure, fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { I18nProvider } from "@/lib/i18n/context";
+
+// Bộ máy mô phỏng nạp lười, và cả bộ test chạy song song nhiều tệp: một lần nạp
+// chậm quá 1 giây (mặc định của findBy/waitFor) đã làm test đỏ trên bản checkout
+// sạch trong khi chạy riêng vẫn xanh. Đợi lâu hơn, vì đây là chờ nạp chứ không
+// phải chờ một hành vi có thể sai.
+configure({ asyncUtilTimeout: 8000 });
 
 vi.mock("next/navigation", () => ({ useRouter: () => ({ push: vi.fn(), refresh: vi.fn() }), usePathname: () => "/bai-hoc/x" }));
 
@@ -23,7 +29,7 @@ function mount(tool: "terminal" | "sql", mission: string, onPass: () => void) {
 // Khối `sim` nhúng một nhiệm vụ của công cụ /cong-cu: chấm bằng chính `check`
 // của nhiệm vụ, báo onPass đúng một lần, và không đụng tiến độ của trang công cụ.
 describe("SimBlock", () => {
-  it("terminal: gõ pwd thì đạt, onPass gọi đúng một lần kể cả sau Làm lại", async () => {
+  it("terminal: gõ pwd thì đạt, onPass gọi đúng một lần kể cả sau Làm lại", { timeout: 20000 }, async () => {
     const onPass = vi.fn();
     mount("terminal", "pwd", onPass);
     const input = await screen.findByLabelText("Dòng lệnh");
@@ -45,7 +51,7 @@ describe("SimBlock", () => {
     expect(window.localStorage.length).toBe(0);
   });
 
-  it("sql: câu sai chưa đạt, câu đúng thì đạt và onPass gọi một lần", async () => {
+  it("sql: câu sai chưa đạt, câu đúng thì đạt và onPass gọi một lần", { timeout: 20000 }, async () => {
     const onPass = vi.fn();
     const { container } = mount("sql", "where-city", onPass);
     await screen.findByRole("button", { name: /Chạy/ });
