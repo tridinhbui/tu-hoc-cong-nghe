@@ -308,7 +308,7 @@
  },
  "chat_messages": {
   "kind": "manual",
-  "reason": "khong co chinh sach RLS nao trong migration"
+  "reason": "dieu kien khong quy ve mot cot"
  },
  "leaderboard_cache": {
   "kind": "manual",

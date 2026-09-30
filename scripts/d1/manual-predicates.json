@@ -93,5 +93,11 @@
  "user_quest_completions": {
   "insert": "? = user_id and xp_earned = 0",
   "select": "? = user_id"
+ },
+ "chat_messages": {
+  "select": "user_id = ?",
+  "insert": "user_id = ? and sender = 'user'",
+  "update": "user_id = ? and sender = 'user'",
+  "delete": "user_id = ? and sender = 'user'"
  }
 }

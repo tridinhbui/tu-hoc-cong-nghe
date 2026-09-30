@@ -1438,5 +1438,41 @@
   "using": "true",
   "check": "",
   "file": "cloudflare/migrations/20260808_world_boss_raid.sql"
+ },
+ {
+  "table": "chat_messages",
+  "name": "Users can view own chat thread",
+  "cmd": "select",
+  "roles": "authenticated",
+  "using": "user_id = auth.uid()",
+  "check": "",
+  "file": "scripts/d1/rls-policies.json (viết tay 2026-09-29: bảng chưa từng có chính sách, nên mọi truy vấn của khung chat góp ý bị từ chối)"
+ },
+ {
+  "table": "chat_messages",
+  "name": "Users can send own chat messages",
+  "cmd": "insert",
+  "roles": "authenticated",
+  "using": "",
+  "check": "user_id = auth.uid() and sender = 'user'",
+  "file": "scripts/d1/rls-policies.json (viết tay 2026-09-29: bảng chưa từng có chính sách, nên mọi truy vấn của khung chat góp ý bị từ chối)"
+ },
+ {
+  "table": "chat_messages",
+  "name": "Users can edit own chat messages",
+  "cmd": "update",
+  "roles": "authenticated",
+  "using": "user_id = auth.uid() and sender = 'user'",
+  "check": "user_id = auth.uid() and sender = 'user'",
+  "file": "scripts/d1/rls-policies.json (viết tay 2026-09-29: bảng chưa từng có chính sách, nên mọi truy vấn của khung chat góp ý bị từ chối)"
+ },
+ {
+  "table": "chat_messages",
+  "name": "Users can recall own chat messages",
+  "cmd": "delete",
+  "roles": "authenticated",
+  "using": "user_id = auth.uid() and sender = 'user'",
+  "check": "",
+  "file": "scripts/d1/rls-policies.json (viết tay 2026-09-29: bảng chưa từng có chính sách, nên mọi truy vấn của khung chat góp ý bị từ chối)"
  }
 ]

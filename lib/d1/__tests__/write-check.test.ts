@@ -163,3 +163,60 @@ describe.skipIf(!hasLocalData)("WITH CHECK trên UPDATE", () => {
     ).resolves.toMatchObject({ error: expect.any(D1PolicyError) });
   });
 });
+
+/**
+ * Khung chat góp ý (chat_messages). Bảng này từng KHÔNG có chính sách nào, nên
+ * lớp chính sách từ chối mọi truy vấn của người dùng - khung chat mở ra trống
+ * và không gửi được tin nào, im lặng, suốt từ lúc chuyển sang D1. Chính sách
+ * giờ là: đọc luồng của mình; gửi, sửa, thu hồi tin do CHÍNH MÌNH viết
+ * (sender = 'user'). Tin trả lời của admin đi qua createAdminClient.
+ */
+describe.skipIf(!hasLocalData)("chat_messages: mỗi người một luồng", () => {
+  it("gửi tin của mình thì được, và đọc lại được", async () => {
+    const w = world();
+    const r = await w.as(ALICE).from("chat_messages").insert({ user_id: ALICE, sender: "user", content: "chào admin" });
+    expect(r.error).toBeNull();
+    const { data } = await w.as(ALICE).from("chat_messages").select("*");
+    expect((data as { content: string }[]).map((m) => m.content)).toEqual(["chào admin"]);
+  });
+
+  it("không đọc được luồng của người khác", async () => {
+    const w = world();
+    await w.as(ALICE).from("chat_messages").insert({ user_id: ALICE, sender: "user", content: "riêng tư" });
+    const { data } = await w.as(BOB).from("chat_messages").select("*").eq("user_id", ALICE);
+    expect(data).toEqual([]);
+  });
+
+  it("không gửi được tin vào luồng người khác", async () => {
+    const w = world();
+    const r = await w.as(BOB).from("chat_messages").insert({ user_id: ALICE, sender: "user", content: "giả danh" });
+    expect(r.error).toBeInstanceOf(D1PolicyError);
+    expect(w.count(`SELECT COUNT(*) n FROM chat_messages WHERE user_id = '${ALICE}'`)).toBe(0);
+  });
+
+  it("không tự viết được tin mang tên admin", async () => {
+    const w = world();
+    const r = await w.as(ALICE).from("chat_messages").insert({ user_id: ALICE, sender: "admin", content: "admin nói ok" });
+    expect(r.error).toBeInstanceOf(D1PolicyError);
+    expect(w.count(`SELECT COUNT(*) n FROM chat_messages WHERE user_id = '${ALICE}' AND sender = 'admin'`)).toBe(0);
+  });
+
+  it("sửa tin của mình được, nhưng không đổi được nó thành tin admin", async () => {
+    const w = world();
+    await w.as(ALICE).from("chat_messages").insert({ user_id: ALICE, sender: "user", content: "bản đầu" });
+    const ok = await w.as(ALICE).from("chat_messages").update({ content: "bản sửa" }).eq("user_id", ALICE);
+    expect(ok.error).toBeNull();
+    const bad = await w.as(ALICE).from("chat_messages").update({ sender: "admin" }).eq("user_id", ALICE);
+    expect(bad.error).toBeInstanceOf(D1PolicyError);
+    expect(w.count(`SELECT COUNT(*) n FROM chat_messages WHERE user_id = '${ALICE}' AND sender = 'user' AND content = 'bản sửa'`)).toBe(1);
+  });
+
+  it("thu hồi được tin của mình, không xoá được tin của người khác", async () => {
+    const w = world();
+    await w.as(ALICE).from("chat_messages").insert({ user_id: ALICE, sender: "user", content: "a" });
+    await w.as(BOB).from("chat_messages").delete().eq("user_id", ALICE);
+    expect(w.count(`SELECT COUNT(*) n FROM chat_messages WHERE user_id = '${ALICE}'`)).toBe(1);
+    await w.as(ALICE).from("chat_messages").delete().eq("user_id", ALICE);
+    expect(w.count(`SELECT COUNT(*) n FROM chat_messages WHERE user_id = '${ALICE}'`)).toBe(0);
+  });
+});

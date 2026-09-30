@@ -206,19 +206,19 @@ describe.skipIf(!hasLocalData)("chính sách truy cập - thứ thay cho RLS", (
     // Tám bảng thật sự không có chính sách RLS nào trong migration. Mặc định an
     // toàn là từ chối: bỏ sót thì hỏng tính năng và thấy ngay, cho qua thì lộ
     // dữ liệu và không ai thấy.
-    return expect(c().from("chat_messages").select("*").run()).resolves.toMatchObject({
+    return expect(c().from("leaderboard_cache").select("*").run()).resolves.toMatchObject({
       error: expect.any(D1PolicyError),
     });
   });
 
   it("lời khai suông không được chấp nhận", () => {
-    expect(() => c().from("chat_messages").select("*").unsafeManualPolicy("ok")).toThrow(D1PolicyError);
+    expect(() => c().from("leaderboard_cache").select("*").unsafeManualPolicy("ok")).toThrow(D1PolicyError);
   });
 
   it("bảng không vị từ chạy được sau khi khai đầy đủ lý do", async () => {
     if (!hasLocalData) return;
     const { error } = await c()
-      .from("chat_messages")
+      .from("leaderboard_cache")
       .select("*")
       .unsafeManualPolicy("Route quản trị, đã kiểm getAdminSession() trước khi gọi tới đây")
       .limit(1);
