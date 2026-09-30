@@ -12,6 +12,7 @@ import { getLearningGoalState, saveLearningGoal, type LearningGoalState } from "
 import { cleanLessonTitle } from "@/components/learning-flows/lesson-title";
 import { CapabilityFacts, effortLabel } from "@/components/learning-flows/capability";
 import { btnPrimary, textLink } from "@/components/ui/system";
+import MissionPicker from "@/components/learning-flows/MissionPicker";
 
 /** Công sức của từng lối: số bài và tổng phút, tính ở server từ meta bài. */
 export type FlowEffort = Partial<Record<FlowId, { count: number; minutes: number }>>;
@@ -47,7 +48,11 @@ export type FlowEffort = Partial<Record<FlowId, { count: number; minutes: number
  * ô); tông xanh của app (bản đầu dùng cam đất - người dùng yêu cầu về xanh).
  * /hoc-theo-nhu-cau vẫn dùng bản đầy đủ.
  */
-export default function LearningGoalCard({ id, effort, quiet = false, warm = false }: { id?: string; effort?: FlowEffort; quiet?: boolean; warm?: boolean } = {}) {
+/**
+ * `mission`: bản của /lo-trinh - bộ chọn dạng "chọn nhiệm vụ" (MissionPicker),
+ * output là nhân vật chính, bốn hướng cho người mới nổi lên trước.
+ */
+export default function LearningGoalCard({ id, effort, quiet = false, warm = false, mission = false }: { id?: string; effort?: FlowEffort; quiet?: boolean; warm?: boolean; mission?: boolean } = {}) {
   const { t, locale } = useI18n();
   const c = t.learningFlows.goalCard;
   const r = t.revampGoals;
@@ -86,6 +91,15 @@ export default function LearningGoalCard({ id, effort, quiet = false, warm = fal
     effortLabel(r, locale, effort?.[fid]?.count ?? state.progress[fid].total, effort?.[fid]?.minutes);
 
   const flow = state.goal ? getLearningFlow(state.goal) : undefined;
+
+  if (!flow && mission) {
+    return (
+      <section id={id} className="scroll-mt-6">
+        <MissionPicker state={state} effortOf={effortOf} pending={pending} onStart={(fid) => choose(fid)} />
+        {failed ? <p className="mt-3 text-sm font-bold text-red-600 dark:text-red-400">{c.saveFailed}</p> : null}
+      </section>
+    );
+  }
 
   if (!flow && warm) {
     const picked = candidate ? getLearningFlow(candidate) : undefined;

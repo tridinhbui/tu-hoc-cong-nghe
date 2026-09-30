@@ -183,7 +183,7 @@ export default function LearningPathClient({
       {/* Câu hỏi nhu cầu đứng TRƯỚC mục lục và mọi khối về track/nhịp: người
           non-tech biết mình muốn LÀM gì trước khi biết mình thuộc track nào.
           Xem lib/learning-flows.ts. */}
-      <LearningGoalCard id="goal" effort={flowEffort} />
+      <LearningGoalCard id="goal" effort={flowEffort} mission />
 
       {/* Cạnh các con số đọc hiểu (bài đã xong, quiz): bài tập tự viết mã. */}
       <ExercisePracticeCard />

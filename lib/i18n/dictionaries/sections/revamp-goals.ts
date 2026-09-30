@@ -26,6 +26,20 @@ export const revampGoalsVi = {
     firstLessonCta: "Làm thứ đầu tiên · {minutes} phút",
     goalOutput: "Đích đến",
     doneSoFar: "Đã xong {done} bài",
+    // Bộ chọn "chọn nhiệm vụ" trên /lo-trinh (components/learning-flows/MissionPicker.tsx).
+    mission: {
+      title: "Hôm nay bạn muốn build cái gì?",
+      hint: "Chọn một thứ bạn muốn làm ra. Mỗi hướng kết thúc bằng một sản phẩm thật của bạn.",
+      starterLabel: "Hợp cho người mới",
+      buildCta: "Bắt đầu xây",
+      continueCta: "Học tiếp",
+      viewPath: "Xem lộ trình",
+      advancedTitle: "Khi đã quen tay",
+      advancedHint: "Bốn hướng sâu hơn - dễ hơn nhiều nếu bạn đã đi xong một hướng ở trên.",
+      levels: ["Người mới", "Cơ bản", "Trung bình", "Nâng cao"],
+      levelAria: "Độ khó: {level}",
+      progress: "{done}/{total} bài",
+    },
     flows: {
       website: {
         skill: "Dựng, dàn trang và đưa một website lên mạng",
@@ -95,6 +109,19 @@ export const revampGoalsEn: typeof revampGoalsVi = {
     firstLessonCta: "Make the first thing · {minutes} min",
     goalOutput: "Where it ends",
     doneSoFar: "{done} lessons done",
+    mission: {
+      title: "What do you want to build today?",
+      hint: "Pick something you want to make. Every path ends with a real thing of your own.",
+      starterLabel: "Great for beginners",
+      buildCta: "Start building",
+      continueCta: "Keep going",
+      viewPath: "See the path",
+      advancedTitle: "Once you've got the hang of it",
+      advancedHint: "Four deeper paths - much easier once you've finished one of the paths above.",
+      levels: ["Beginner", "Basic", "Intermediate", "Advanced"],
+      levelAria: "Difficulty: {level}",
+      progress: "{done}/{total} lessons",
+    },
     flows: {
       website: {
         skill: "Build, lay out and publish a website",
