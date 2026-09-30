@@ -489,7 +489,7 @@ export default function StageSkipExamPanel({ userId, fullPage = false }: { userI
                             <div className="flex items-center gap-2">
                               <span className="relative flex h-2 w-2" aria-hidden>
                                 <span className="absolute inline-flex h-full w-full rounded-full bg-brand-500 opacity-60 motion-safe:animate-ping" />
-                                <span className="relative inline-flex h-2 w-2 rounded-full bg-brand-600 dark:bg-brand-400" />
+                                <span className="relative inline-flex h-2 w-2 rounded-full bg-brand-600 dark:bg-brand-500" />
                               </span>
                               <span className="text-[11px] font-black uppercase tracking-[0.08em] text-accent-strong">
                                 {t.stageSkip.currentStage}
@@ -572,7 +572,7 @@ export default function StageSkipExamPanel({ userId, fullPage = false }: { userI
                           {name}
                         </h4>
                         <div className="flex items-center gap-2.5">
-                          <div className="h-1 flex-1 rounded-[1px] bg-brand-600 dark:bg-brand-400" />
+                          <div className="h-1 flex-1 rounded-[1px] bg-brand-600 dark:bg-brand-500" />
                           <span className="text-[11px] font-bold tabular-nums text-accent-strong">
                             {format(t.stageSkip.lessonsProgress, { completed: s.completedCount, total: s.lessonCount })}
                           </span>

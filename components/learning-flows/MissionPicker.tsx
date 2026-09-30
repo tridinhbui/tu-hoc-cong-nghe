@@ -40,11 +40,11 @@ const TONES: Record<
   brand: {
     card: "bg-brand-50 hover:shadow-[0_18px_40px_-24px_rgba(41,97,184,0.75)] dark:bg-brand-950/50",
     stage: "bg-brand-100 dark:bg-brand-900/50",
-    ink: "text-brand-700 dark:text-brand-300",
+    ink: "text-accent-strong",
     soft: "bg-brand-300/70 dark:bg-brand-700/70",
     solid: "bg-brand-600 hover:bg-brand-700 dark:bg-brand-500 dark:hover:bg-brand-400",
     tile: "bg-brand-100 text-brand-700 dark:bg-brand-900/60 dark:text-brand-300",
-    bar: "bg-brand-600 dark:bg-brand-400",
+    bar: "bg-brand-600 dark:bg-brand-500",
   },
   sky: {
     card: "bg-sky-50 hover:shadow-[0_18px_40px_-24px_rgba(2,132,199,0.7)] dark:bg-sky-950/40",
@@ -362,7 +362,7 @@ function Preview({ id, tone }: { id: FlowId; tone: (typeof TONES)[Tone] }) {
           {Array.from({ length: 7 }, (_, n) => (
             <div
               key={n}
-              className={`h-10 rounded-md ${filled.includes(n) ? tone.bar : "bg-stone-100 dark:bg-stone-800"} ${n === 4 ? "opacity-100" : filled.includes(n) ? "opacity-60" : ""}`}
+              className={`h-10 rounded-md ${filled.includes(n) ? tone.bar : "bg-surface-raised"} ${n === 4 ? "opacity-100" : filled.includes(n) ? "opacity-60" : ""}`}
             />
           ))}
         </div>

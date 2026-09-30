@@ -189,7 +189,7 @@ export default function CoCoChatbot() {
           title={t.cocoChat.fabLabel}
           className="group fixed bottom-[5.25rem] right-4 sm:right-6 z-[45] flex h-12 items-center gap-2 rounded-full border border-brand-200 bg-white py-1 pl-1 pr-1 transition-all hover:border-brand-400 hover:pr-4 dark:border-brand-800 dark:bg-stone-900 dark:hover:border-brand-500 cursor-pointer select-none"
         >
-          <span className="relative flex h-10 w-10 items-center justify-center rounded-full bg-brand-50 dark:bg-brand-950">
+          <span className="relative flex h-10 w-10 items-center justify-center rounded-full bg-accent-soft">
             <CoCoAvatar size={34} float />
             <span className="absolute right-0 top-0 h-2.5 w-2.5 rounded-full border-2 border-white bg-emerald-500 dark:border-stone-900" />
           </span>
