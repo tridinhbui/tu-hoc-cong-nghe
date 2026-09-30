@@ -22,6 +22,11 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
       <AppNavbar />
       <XpFloatingPopup />
       {children}
+      {/* Điện thoại: nút ☰ (ConnectMenu) và avatar Cơ Cơ nổi ở góc dưới phải
+          che mất phần cuối mọi trang - "0 bằng chứng", "Bảng nhìn Gọn/Đầy đủ".
+          Một khoảng trống cuối trang để cuộn qua được chúng; từ lg trở lên
+          nút nằm cạnh nội dung rộng nên không cần. */}
+      <div aria-hidden className="h-28 lg:hidden" />
       {/* Renders nothing outside dark mode, and nothing at all until the
           learner turns a lamp on. Last in the tree so its fixed layers sit
           above page content without needing a larger z-index than the navbar. */}

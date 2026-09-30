@@ -2123,13 +2123,13 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
  <li
  key={stage.label}
  id={`stage-${stage.label}`}
- className="relative flex gap-3 sm:gap-4"
+ className="relative flex gap-2 sm:gap-4"
  >
  {/* Nút trên thanh dọc + đoạn nối xuống chặng sau */}
  <div className="flex shrink-0 flex-col items-center">
  <div
  aria-hidden
- className={`flex shrink-0 items-center justify-center rounded-sm ${isActive ? "h-10 w-10" : "mt-1 h-8 w-8"} ${
+ className={`flex shrink-0 items-center justify-center rounded-sm ${isActive ? "h-8 w-8 sm:h-10 sm:w-10" : "mt-1 h-7 w-7 sm:h-8 sm:w-8"} ${
  status === "mastered"
  ? "bg-surface-raised text-cyan-600 dark:text-cyan-400"
  : status === "active"
@@ -2158,7 +2158,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
  <div
  className={`rounded-sm transition-colors ${
  isActive
- ? "rounded-card bg-brand-50/80 p-4 sm:p-6 dark:bg-brand-950/35"
+ ? "rounded-card bg-brand-50/80 p-3 sm:p-6 dark:bg-brand-950/35"
  : stageOpen
  ? "rounded-card bg-surface-raised/70 px-3.5 py-3 sm:px-4 dark:bg-stone-900/60"
  : "px-3.5 py-2 hover:bg-surface-raised sm:px-4 dark:hover:bg-stone-900/60"
@@ -2392,7 +2392,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
  </button>
 
  {partOpen && (
- <div className={`ml-4 space-y-0.5 border-l pb-2 pl-2 ${partHasCurrent ? "border-accent-line-mid" : "border-line"}`}>
+ <div className={`ml-1.5 space-y-0.5 border-l pb-2 pl-1 sm:ml-4 sm:pl-2 ${partHasCurrent ? "border-accent-line-mid" : "border-line"}`}>
  {visiblePartLessons.map((lesson) => {
  const isDone = completed.includes(lesson.id);
  const isExamCredited = isDone && examCreditedIds.has(lesson.id);
@@ -2442,9 +2442,9 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
  : "border-transparent hover:border-line hover:bg-white dark:hover:bg-stone-900"
  }`}
  >
- <div className={`flex items-center gap-3 px-3 sm:px-4 ${isCurrentLesson && !isDone ? "py-3.5" : "py-2.5"}`}>
+ <div className={`flex items-center gap-2.5 px-3 sm:gap-3 sm:px-4 ${isCurrentLesson && !isDone ? "py-3.5" : "py-2.5"}`}>
  {/* Day number */}
- <span className={`w-10 shrink-0 text-center font-mono tabular-nums text-xs font-medium ${isCurrentLesson && !isDone ? "text-accent-strong" : "text-ink-faint"}`}>
+ <span className={`hidden w-10 shrink-0 text-center font-mono tabular-nums text-xs font-medium sm:inline-block ${isCurrentLesson && !isDone ? "text-accent-strong" : "text-ink-faint"}`}>
  {String(lessonOrdinal.get(lesson.id) ?? lesson.id).padStart(3, "0")}
  </span>
 
@@ -2504,6 +2504,11 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
  {format(t.dashboard.learnerCount, { count: lessonLearnerCounts!.get(lesson.id)! })}
  </div>
  )}
+ {/* Điện thoại: thời lượng xuống dưới tiêu đề. Ở cột phải nó cùng số
+     thứ tự và mũi tên ép tiêu đề còn ~70px - mỗi dòng một chữ. */}
+ <div className="mt-0.5 font-mono text-[11px] tabular-nums text-ink-faint sm:hidden">
+ {formatLessonTime(lesson, t.dashboard.minutesShort)}
+ </div>
  </Link>
 
  {flagSelectionMode && !isDone && (
@@ -2528,7 +2533,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
      học từng là một khung viền nữa lặp lại hàng chục lần - giờ là
      chữ nhạt, không khung. */}
  <div className="flex items-center gap-2.5 flex-shrink-0">
- <span className="font-mono text-[11px] tabular-nums text-ink-faint">
+ <span className="hidden font-mono text-[11px] tabular-nums text-ink-faint sm:inline">
  {formatLessonTime(lesson, t.dashboard.minutesShort)}
  </span>
  <span className={`hidden sm:inline-flex text-[11px] ${
@@ -2562,7 +2567,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
  )}
  </div>
 
- <ChevronRight className="h-4 w-4 shrink-0 text-ink-faint" aria-hidden />
+ <ChevronRight className="hidden h-4 w-4 shrink-0 text-ink-faint sm:block" aria-hidden />
  </div>
  </div>
  );
