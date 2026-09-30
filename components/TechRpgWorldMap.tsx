@@ -3,9 +3,17 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { useSearchParams } from "next/navigation";
 import { organicBuildingsOf, type OrganicBuilding } from "@/lib/rpg-buildings";
-import { motion } from "framer-motion";
+import { motion, animate, useMotionValue } from "framer-motion";
+import Image from "next/image";
+import { bossHpPercent } from "@/lib/world-boss";
 import {
-  ArrowRight,
+  CheckCircle2,
+  ChevronRight,
+  LocateFixed,
+  MapPin,
+  Minus,
+  Newspaper,
+  Plus,
   ArrowLeftRight,
   ChevronLeft,
   Coins,
@@ -27,7 +35,7 @@ import {
   CloudCog,
   type LucideIcon,
 } from "lucide-react";
-import { btnPrimary, btnSecondary, Sys, StatusDot } from "@/components/ui/system";
+import { btnPrimary, btnSecondary, Sys } from "@/components/ui/system";
 import { createClient } from "@/lib/cloudflare";
 import { getRequiredLevelForBuilding } from "@/lib/levels";
 import { normalizeBuildingId } from "@/lib/legacy-ids";
@@ -66,7 +74,6 @@ interface ProgressRow {
 const SYS = {
   kingdom: "THCN://SYSTEM/OPS",
   building: (id: string) => `THCN://SYSTEM/${id.toUpperCase()}`,
-  zones: (n: number) => `SERVICES ${n}`,
 };
 /* i18n-ignore-end */
 
@@ -88,22 +95,57 @@ const BUILDING_ICONS: Record<string, LucideIcon> = {
   "singapore-dock": ArrowLeftRight,
 };
 
-const BUILDING_AVATAR_POSITIONS: Record<string, { x: number; y: number }> = {
-  "world-boss": { x: 50, y: 8 },
-  pvp: { x: 18, y: 18 },
-  arcade: { x: 50, y: 28 },
-  "weekly-challenge": { x: 18, y: 38 },
-  cards: { x: 18, y: 50 },
-  shop: { x: 82, y: 50 },
-  "backbone-hub": { x: 50, y: 60 },
-  "silicon-bay": { x: 18, y: 70 },
-  "cloud-capital": { x: 82, y: 70 },
-  "resource-floor": { x: 18, y: 82 },
-  "data-haven": { x: 82, y: 82 },
-  "singapore-dock": { x: 50, y: 92 },
+// Bản đồ minh hoạ: toạ độ góc trên-trái của từng thẻ, tính theo % của khung
+// vẽ CANVAS_W x CANVAS_H. Ba hàng bốn cột, lệch nhẹ cho giống một thành phố
+// thay vì một bảng tính. Thứ tự ở đây cũng là số 01-12 in trên thẻ.
+const CANVAS_W = 1500;
+const CANVAS_H = 1080;
+const CARD_W_PCT = 18.5;
+const CARD_POS: Record<string, { x: number; y: number }> = {
+  pvp: { x: 3, y: 10 },
+  "world-boss": { x: 27.5, y: 5 },
+  arcade: { x: 52.5, y: 9 },
+  "weekly-challenge": { x: 77.5, y: 6 },
+  cards: { x: 5, y: 40 },
+  "capacity-lab": { x: 29, y: 43 },
+  "backbone-hub": { x: 53, y: 39 },
+  "silicon-bay": { x: 77, y: 42 },
+  "cloud-capital": { x: 3, y: 72 },
+  "resource-floor": { x: 27.5, y: 74 },
+  "data-haven": { x: 52, y: 71 },
+  "singapore-dock": { x: 77.5, y: 73 },
 };
+const MAP_ORDER = Object.keys(CARD_POS);
 
+// Tuyến nối giữa các khu (theo cặp id) - mỗi tuyến có một mốc vàng ở giữa.
+const ROUTES: [string, string][] = [
+  ["pvp", "world-boss"], ["world-boss", "arcade"], ["arcade", "weekly-challenge"],
+  ["pvp", "cards"], ["world-boss", "capacity-lab"], ["arcade", "backbone-hub"], ["weekly-challenge", "silicon-bay"],
+  ["cards", "capacity-lab"], ["capacity-lab", "backbone-hub"], ["backbone-hub", "silicon-bay"],
+  ["cards", "cloud-capital"], ["capacity-lab", "resource-floor"], ["backbone-hub", "data-haven"], ["silicon-bay", "singapore-dock"],
+  ["cloud-capital", "resource-floor"], ["resource-floor", "data-haven"], ["data-haven", "singapore-dock"],
+];
 
+function cardCenter(id: string) {
+  const p = CARD_POS[id] ?? { x: 50, y: 50 };
+  return { x: p.x + CARD_W_PCT / 2, y: p.y + 9 };
+}
+
+// Avatar đứng ngay trên mép thẻ đang chọn.
+const BUILDING_AVATAR_POSITIONS: Record<string, { x: number; y: number }> = Object.fromEntries(
+  Object.entries(CARD_POS).map(([id, p]) => [id, { x: p.x + CARD_W_PCT / 2, y: Math.max(2, p.y - 1) }]),
+);
+BUILDING_AVATAR_POSITIONS.shop = { x: 50, y: 50 };
+
+interface BossSummary {
+  name: string;
+  max_hp: number;
+  current_hp: number;
+}
+interface BossLeader {
+  userId?: string;
+  totalDamage: number;
+}
 
 function BuildingIcon({ id, className }: { id: string; className: string }) {
   const Icon = BUILDING_ICONS[id] ?? Server;
@@ -120,7 +162,6 @@ export default function TechRpgWorldMap() {
     () => organicBuildingsOf(t).map((b) => ({ ...b, ...(t.revampGame.buildings[b.id] ?? {}) })),
     [t],
   );
-  const MAP_BUILDINGS = useMemo(() => buildings.filter((b) => b.id !== "shop"), [buildings]);
   const searchParams = useSearchParams();
   const initialBuilding = normalizeBuildingId(searchParams.get("building"));
 
@@ -307,305 +348,290 @@ export default function TechRpgWorldMap() {
 
   const selected = selectedBuilding ? buildings.find((b) => b.id === selectedBuilding) : undefined;
 
+  // Bản tin sự cố: số thật từ /api/world-boss. Bảng xếp hạng giả ("mock-")
+  // mà route trả khi chưa có log thì không được đếm là người đã ra đòn.
+  const [boss, setBoss] = useState<BossSummary | null>(null);
+  const [leaders, setLeaders] = useState<BossLeader[]>([]);
+  const [bossReady, setBossReady] = useState(false);
+  useEffect(() => {
+    let alive = true;
+    fetch("/api/world-boss")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) => {
+        if (!alive || !data) return;
+        if (data.boss) setBoss({ name: data.boss.name, max_hp: data.boss.max_hp, current_hp: data.boss.current_hp });
+        const rows = (data.leaderboard ?? []) as BossLeader[];
+        setLeaders(rows.filter((r) => !String(r.userId ?? "").startsWith("mock-")));
+      })
+      .catch(() => undefined)
+      .finally(() => alive && setBossReady(true));
+    return () => {
+      alive = false;
+    };
+  }, []);
+  const bossPercent = boss ? bossHpPercent(boss.current_hp, boss.max_hp) : 0;
+  const myDamage = user?.id ? leaders.find((l) => l.userId === user.id)?.totalDamage ?? 0 : 0;
+
+  const tickerItems: string[] = bossReady
+    ? [
+        ...(boss
+          ? [format(t.revampGame.ticker.bossHp, { name: boss.name, current: boss.current_hp.toLocaleString(), max: boss.max_hp.toLocaleString() })]
+          : []),
+        format(t.revampGame.ticker.raiders, { count: leaders.length }),
+        myDamage > 0 ? format(t.revampGame.ticker.yourDamage, { damage: myDamage.toLocaleString() }) : t.revampGame.ticker.noDamage,
+        format(t.revampGame.ticker.nodes, { online: systemStatus.online, total: systemStatus.nodes.length }),
+        format(t.revampGame.ticker.lessons, { done: systemStatus.lessonsDone, total: systemStatus.lessonsTotal }),
+        ...(systemStatus.next ? [format(t.revampGame.ticker.next, { name: t.revampGame.systemMap.nodes[systemStatus.next.key].name })] : []),
+      ]
+    : [t.revampGame.ticker.loading];
+
+  // Pan + zoom của bản đồ minh hoạ.
+  const [zoom, setZoom] = useState(0.8);
+  const panX = useMotionValue(0);
+  const panY = useMotionValue(0);
+  const changeZoom = (delta: number) => setZoom((z) => Math.min(1.4, Math.max(0.5, Math.round((z + delta) * 10) / 10)));
+  const recenter = () => {
+    void animate(panX, 0, { type: "spring", stiffness: 120, damping: 20 });
+    void animate(panY, 0, { type: "spring", stiffness: 120, damping: 20 });
+    setZoom(0.8);
+  };
+  const halfW = (CANVAS_W * zoom) / 2;
+  const halfH = (CANVAS_H * zoom) / 2;
+
+  const cardProps = (id: string) => {
+    const b = buildings.find((x) => x.id === id)!;
+    const reqLevel = b.minLevel ?? getRequiredLevelForBuilding(b.id);
+    return {
+      building: b,
+      index: MAP_ORDER.indexOf(id) + 1,
+      discovered: discoveredBuildings.includes(id),
+      locked: level < reqLevel,
+      reqLevel,
+      bossPercent: id === "world-boss" && boss ? bossPercent : null,
+      onOpen: () => handleBuildingClick(id),
+    };
+  };
+
   return (
     <div className="relative min-h-screen overflow-x-hidden bg-page p-3 font-sans text-ink sm:p-5 dark:bg-stone-950">
-      {/* HUD: một thanh tiêu đề kiểu cửa sổ ứng dụng - mã định vị mono, cấp độ và
-          ngân sách là số thật đọc từ user_profiles. Không gradient, không kính mờ. */}
-      <div className="relative z-30 mx-auto mb-4 max-w-6xl overflow-hidden rounded-md border border-line-strong bg-white dark:border-stone-700 dark:bg-stone-900">
-        <div className="flex h-8 items-center justify-between gap-3 border-b border-stone-300 bg-surface-raised px-3 dark:border-stone-700 dark:bg-stone-950">
-          <Sys className="truncate text-ink-muted">{selected ? SYS.building(selected.id) : SYS.kingdom}</Sys>
-          <span className="inline-flex items-center gap-1.5">
-            <StatusDot />
-            <span className="text-[11px] font-semibold text-ink-muted">{t.worldMap.online}</span>
-          </span>
-        </div>
+      {/* Thanh trạng thái: avatar + cấp, tên hệ thống, online, số dư vàng. */}
+      <div className="relative z-30 mx-auto mb-3 max-w-6xl overflow-hidden rounded-lg border border-line-strong bg-white dark:border-stone-700 dark:bg-stone-900">
         <div className="flex flex-wrap items-center justify-between gap-3 p-2.5 sm:p-3">
-          <div className="flex items-center gap-3">
-            <div className="flex h-10 min-w-10 items-center justify-center rounded-sm bg-brand-600 px-1.5 font-mono text-xs font-medium tabular-nums text-white">
-              {format(t.worldMap.levelShort, { level })}
+          <div className="flex min-w-0 items-center gap-3">
+            <div className="relative shrink-0">
+              <div className="rounded-full border-2 border-brand-500 bg-white p-0.5">
+                <TechCharacterAvatar size="sm" level={level} equipments={equippedGear} />
+              </div>
+              <span className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-xs bg-brand-600 px-1 font-mono text-[9px] font-medium tabular-nums text-white">
+                {format(t.worldMap.levelShort, { level })}
+              </span>
             </div>
-            <div>
-              <h2 className="text-sm font-black text-ink-max">{t.revampGame.hud.title}</h2>
-              <p className="text-[11px] text-ink-muted">{t.revampGame.hud.sub}</p>
+            <div className="min-w-0">
+              <div className="flex items-center gap-2">
+                <h2 className="truncate text-sm font-black text-ink-max sm:text-base">{t.revampGame.hud.title}</h2>
+                <span className="inline-flex shrink-0 items-center gap-1 rounded-full border border-cyan-300 bg-cyan-50 px-1.5 py-px text-[10px] font-bold text-cyan-700 dark:border-cyan-800 dark:bg-cyan-950 dark:text-cyan-300">
+                  <span className="h-1.5 w-1.5 rounded-full bg-cyan-500 thcn-blink" aria-hidden />
+                  {t.worldMap.online}
+                </span>
+              </div>
+              <Sys className="block truncate text-ink-muted">{selected ? SYS.building(selected.id) : SYS.kingdom}</Sys>
             </div>
           </div>
 
-          <div className="flex items-center gap-3 sm:gap-5">
-            {/* Tiền tệ - chỗ duy nhất được giữ màu hổ phách. */}
-            <div className="flex items-center gap-2 border-l border-stone-300 pl-3 dark:border-stone-700">
+          <div className="flex flex-wrap items-center gap-2">
+            <div className="flex items-center gap-2 rounded-md border border-amber-300 bg-amber-50 px-2.5 py-1.5 dark:border-amber-800 dark:bg-amber-950">
               <Coins className="h-4 w-4 text-warn" aria-hidden />
               <div>
-                <p className="text-[10px] font-semibold text-ink-muted leading-none">{t.revampGame.hud.budget}</p>
+                <p className="text-[10px] font-semibold leading-none text-ink-muted">{t.revampGame.hud.goldBalance}</p>
                 <p className="mt-0.5 font-mono text-sm font-medium tabular-nums leading-tight text-warn-ink">
                   {format(t.revampGame.hud.coins, { count: coins.toLocaleString() })}
                 </p>
               </div>
             </div>
-          </div>
-
-          <div className="flex shrink-0 items-center gap-1.5">
-            <button
-              onClick={() => handleBuildingClick("shop")}
-              className={`${btnPrimary} px-3 py-1.5 text-xs`}
-              title={t.revampGame.hud.shopTitle}
-            >
+            <span className="hidden items-center gap-1 rounded-md border border-cyan-300 px-2 py-1.5 text-[11px] font-bold text-cyan-700 sm:inline-flex dark:border-cyan-800 dark:text-cyan-300">
+              <CheckCircle2 className="h-3.5 w-3.5" aria-hidden />
+              {t.revampGame.hud.ready}
+            </span>
+            <button onClick={() => handleBuildingClick("shop")} className={`${btnPrimary} px-3 py-1.5 text-xs`} title={t.revampGame.hud.shopTitle}>
               <ShoppingBag className="h-3.5 w-3.5" aria-hidden />
               <span className="hidden sm:inline">{t.revampGame.hud.shopShort}</span>
             </button>
-
-            <button
-              onClick={() => handleBuildingClick("cards")}
-              className={`${btnSecondary} px-3 py-1.5 text-xs`}
-              title={t.revampGame.hud.cardsTitle}
-            >
+            <button onClick={() => handleBuildingClick("cards")} className={`${btnSecondary} px-3 py-1.5 text-xs`} title={t.revampGame.hud.cardsTitle}>
               <Layers className="h-3.5 w-3.5" aria-hidden />
               <span className="hidden sm:inline">{t.revampGame.hud.cardsShort}</span>
             </button>
           </div>
         </div>
+
+        {/* Ticker: chỉ số thật - boss, người ra đòn, sát thương của bạn, node online. */}
+        <div className="flex items-center overflow-hidden border-t border-stone-800 bg-stone-950 text-xs">
+          <span className="z-10 inline-flex shrink-0 items-center gap-1.5 bg-rose-600 px-3 py-1.5 font-black tracking-[0.06em] text-white">
+            <Newspaper className="h-3.5 w-3.5" aria-hidden />
+            {t.revampGame.ticker.label}
+          </span>
+          <div className="relative min-w-0 flex-1 overflow-hidden">
+            <div className="thcn-marquee flex w-max whitespace-nowrap py-1.5">
+              {[0, 1].map((copy) => (
+                <div key={copy} className="flex shrink-0" aria-hidden={copy === 1}>
+                  {tickerItems.map((item, i) => (
+                    <span key={i} className="inline-flex items-center gap-2 px-5 font-semibold text-stone-200">
+                      <span className="h-1.5 w-1.5 rotate-45 bg-amber-400" aria-hidden />
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
 
-      {/* Dải tin chạy (uptime 99,95%, boss 850.000 HP, clan top #1) và thanh
-          "Năng lượng 100%" đã gỡ: toàn là số viết cứng, không đọc từ đâu, nhưng
-          trình bày như chỉ số trực tiếp. Số nào hiện trên màn hình phải là số thật. */}
-
-      {/* Main Content */}
       <div className="relative z-10 mx-auto max-w-6xl">
         {!selectedBuilding ? (
           <>
-          {/* Bản đồ hệ thống: tiến độ học thật (user_progress) hiện thành các
-              node lên mạng. Nằm trên cùng vì đây là "mục tiêu hiện tại" của trang. */}
+          {/* Tiến độ học thật (user_progress) thành các node lên mạng. */}
           <SystemMapPanel
             status={systemStatus}
             ready={progressReady}
             onOpenIncident={() => handleBuildingClick("world-boss")}
           />
 
-          {/* Các dịch vụ vận hành đứng trên một dải mực stone-950. Ảnh skyline
-              phía sau đã gỡ: đây là sơ đồ hạ tầng, không phải ảnh minh hoạ. */}
-          <div className="relative overflow-hidden rounded-md border border-stone-800 bg-stone-950">
-            <div className="relative z-10 flex items-center justify-between gap-4 border-b border-white/15 px-4 py-2.5">
-              <span className="inline-flex min-w-0 items-center gap-2 text-xs font-semibold text-stone-300">
-                <Server className="h-3.5 w-3.5 shrink-0 text-stone-500" aria-hidden />
-                <span className="shrink-0 font-bold text-white">{t.revampGame.services.heading}</span>
-                <span className="hidden truncate text-stone-400 md:inline">{t.revampGame.services.hint}</span>
-                <Move className="hidden h-3.5 w-3.5 shrink-0 text-stone-500 md:inline" aria-hidden />
-              </span>
-              <Sys className="shrink-0 text-stone-500">{SYS.zones(MAP_BUILDINGS.length)}</Sys>
-            </div>
-
-            {/* Mobile / Tablet View: Categorized District Grids */}
-            <div className="relative z-10 space-y-5 p-3 md:hidden">
-              {/* Nhóm theo đúng `badge` của từng toà (đã đi qua từ điển), thay vì
-                  một danh sách tên khu gõ tay - danh sách cũ có tên khu lỗi thời và
-                  so khớp theo từ thứ hai, nên nửa số toà
-                  không rơi vào khu nào và biến mất khỏi bản đồ di động. */}
-              {[...new Set(MAP_BUILDINGS.map((b) => b.badge))].map((districtBadge) => {
-                const districtBuildings = MAP_BUILDINGS.filter((b) => b.badge === districtBadge);
-                if (districtBuildings.length === 0) return null;
-                return (
-                  <div key={districtBadge} className="space-y-2">
-                    <div className="flex items-center gap-3">
-                      <span className="text-[11px] font-bold uppercase tracking-[0.06em] text-stone-400">
-                        {districtBadge}
-                      </span>
-                      <div className="h-px flex-1 bg-white/15" />
-                    </div>
-
-                    <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
-                      {districtBuildings.map((b) => {
-                        const isDiscovered = discoveredBuildings.includes(b.id);
-                        const reqLevel = b.minLevel ?? getRequiredLevelForBuilding(b.id);
-                        const isLocked = level < reqLevel;
-
-                        return (
-                          <div
-                            key={b.id}
-                            onClick={() => handleBuildingClick(b.id)}
-                            className="relative flex min-h-[80px] cursor-pointer touch-manipulation items-center gap-3 overflow-hidden rounded-md border border-stone-800 bg-stone-900 p-3 transition-colors hover:border-stone-500"
-                          >
-                            {!isDiscovered && (
-                              <div className="absolute inset-0 z-30 flex items-center gap-2 border border-dashed border-stone-600 bg-stone-950 px-3">
-                                <Unplug className="h-5 w-5 shrink-0 text-stone-500" strokeWidth={1.75} aria-hidden />
-                                <div>
-                                  <p className="font-mono text-[11px] font-bold text-stone-200">{t.revampGame.services.notConnected}</p>
-                                  <p className="text-[10px] font-semibold text-amber-300">{t.revampGame.services.connectHint}</p>
-                                </div>
-                              </div>
-                            )}
-
-                            {b.isUnderConstruction && isDiscovered && (
-                              <div className="absolute inset-0 z-25 flex items-center gap-2 border border-dashed border-stone-600 bg-stone-950 px-3">
-                                <Construction className="h-5 w-5 shrink-0 text-stone-500" strokeWidth={1.75} aria-hidden />
-                                <div>
-                                  <p className="font-mono text-[11px] font-bold uppercase text-stone-200">{t.revampGame.services.building}</p>
-                                  <p className="text-[10px] font-semibold text-stone-400">{format(t.revampGame.services.lockedLevel, { level: reqLevel })}</p>
-                                </div>
-                              </div>
-                            )}
-
-                            {isLocked && !b.isUnderConstruction && isDiscovered && (
-                              <div className="absolute inset-0 z-25 flex items-center gap-2 border border-dashed border-stone-600 bg-stone-950 px-3">
-                                <Lock className="h-4 w-4 shrink-0 text-stone-500" aria-hidden />
-                                <div>
-                                  <p className="font-mono text-[11px] font-medium tabular-nums text-stone-200">{format(t.revampGame.services.lockedShort, { level: reqLevel })}</p>
-                                  <p className="text-[10px] font-semibold text-stone-400">{t.revampGame.services.lockedNeedLessons}</p>
-                                </div>
-                              </div>
-                            )}
-
-                            <div className="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-sm border border-stone-700 bg-stone-950 text-stone-300">
-                              <BuildingIcon id={b.id} className="h-6 w-6" />
-                            </div>
-
-                            <div className="min-w-0 flex-1">
-                              <h3 className="truncate text-sm font-black text-white">{b.name}</h3>
-                              <p className="mt-0.5 truncate text-[11px] text-stone-400">{b.subtitle}</p>
-                            </div>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-
-            {/* Desktop map: vùng kéo thả, cố định khung nhìn. */}
-            <div className="relative z-10 hidden h-[720px] md:block sm:h-[780px]">
-              <button
-                type="button"
-                onClick={() => handleBuildingClick("shop")}
-                className="absolute right-4 top-4 z-[45] w-[230px] rounded-md border border-stone-700 bg-stone-950 p-3 text-left transition-colors hover:border-stone-400"
-                title={t.revampGame.services.gearOpenTitle}
-              >
+          {/* Mobile: danh sách thẻ có ảnh, nhóm theo khu. */}
+          <div className="space-y-5 md:hidden">
+            {[...new Set(MAP_ORDER.map((id) => buildings.find((b) => b.id === id)?.badge ?? ""))].map((districtBadge) => (
+              <div key={districtBadge} className="space-y-2">
                 <div className="flex items-center gap-3">
-                  <div className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-sm border border-stone-700 bg-stone-900">
-                    <ShoppingBag className="h-5 w-5 text-stone-300" aria-hidden />
-                    <span className="absolute -right-1.5 -top-1.5 flex h-4 min-w-4 items-center justify-center rounded-xs bg-brand-600 px-0.5 font-mono text-[9px] font-medium tabular-nums text-white">
-                      {Object.keys(equippedGear).length}
-                    </span>
-                  </div>
-                  <div className="min-w-0">
-                    <p className="text-[10px] font-semibold text-stone-400">{t.revampGame.services.gearEyebrow}</p>
-                    <h3 className="truncate text-sm font-black text-white">{t.revampGame.services.gearTitle}</h3>
-                    <p className="mt-0.5 truncate text-[11px] text-stone-400">{format(t.revampGame.services.gearSub, { count: Object.keys(equippedGear).length })}</p>
-                  </div>
+                  <span className="text-[11px] font-bold uppercase tracking-[0.06em] text-ink-muted">{districtBadge}</span>
+                  <div className="h-px flex-1 bg-line" />
                 </div>
-                <div className="mt-2.5 flex items-center justify-between border-t border-white/15 pt-2">
-                  <span className="text-[11px] font-bold text-white">{t.revampGame.services.gearCta}</span>
-                  <ArrowRight className="h-3.5 w-3.5 text-stone-400" aria-hidden />
+                <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+                  {MAP_ORDER.filter((id) => buildings.find((b) => b.id === id)?.badge === districtBadge).map((id) => (
+                    <MapBuildingCard key={id} {...cardProps(id)} />
+                  ))}
                 </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Desktop: bản đồ thành phố minh hoạ, kéo để di chuyển, nút zoom. */}
+          <div className="relative hidden h-[760px] overflow-hidden rounded-lg border border-stone-800 bg-stone-950 md:block">
+            <div className="absolute left-3 top-3 z-40 flex items-center gap-2 rounded-md border border-white/15 bg-stone-950/85 px-3 py-1.5 text-xs text-stone-200 backdrop-blur">
+              <Move className="h-3.5 w-3.5 text-stone-400" aria-hidden />
+              <span className="font-bold text-white">{t.revampGame.services.heading}</span>
+              <span className="hidden text-stone-400 lg:inline">{t.revampGame.services.hint}</span>
+            </div>
+            <div className="absolute bottom-3 right-3 z-40 flex items-center gap-1 rounded-md border border-white/15 bg-stone-950/85 p-1 text-white backdrop-blur">
+              <button type="button" onClick={() => changeZoom(-0.1)} className="flex h-7 w-7 items-center justify-center rounded-sm hover:bg-white/10" title={t.revampGame.map.zoomOut} aria-label={t.revampGame.map.zoomOut}>
+                <Minus className="h-4 w-4" aria-hidden />
               </button>
+              <span className="w-12 text-center font-mono text-xs tabular-nums">{Math.round(zoom * 100)}%</span>
+              <button type="button" onClick={() => changeZoom(0.1)} className="flex h-7 w-7 items-center justify-center rounded-sm hover:bg-white/10" title={t.revampGame.map.zoomIn} aria-label={t.revampGame.map.zoomIn}>
+                <Plus className="h-4 w-4" aria-hidden />
+              </button>
+              <button type="button" onClick={recenter} className="ml-1 inline-flex items-center gap-1 rounded-sm bg-brand-600 px-2 py-1 text-xs font-bold hover:bg-brand-500">
+                <LocateFixed className="h-3.5 w-3.5" aria-hidden />
+                {t.revampGame.map.center}
+              </button>
+            </div>
 
-              {/* Inner Draggable Canvas Container */}
+            <motion.div
+              drag
+              dragConstraints={{ left: -halfW, right: halfW, top: -halfH, bottom: halfH }}
+              dragElastic={0.06}
+              dragMomentum={false}
+              style={{ x: panX, y: panY, touchAction: "none" }}
+              className="absolute inset-0 cursor-grab select-none active:cursor-grabbing"
+            >
               <motion.div
-                drag
-                dragConstraints={{ left: -550, right: 550, top: -1150, bottom: 550 }}
-                dragElastic={0.08}
-                whileTap={{ cursor: "grabbing" }}
-                className="relative h-full w-full cursor-grab select-none p-6 active:cursor-grabbing sm:p-10"
-                style={{ touchAction: "none" }}
+                animate={{ scale: zoom }}
+                transition={{ type: "spring", stiffness: 160, damping: 24 }}
+                className="absolute left-1/2 top-1/2"
+                style={{ width: CANVAS_W, height: CANVAS_H, marginLeft: -CANVAS_W / 2, marginTop: -CANVAS_H / 2 }}
               >
-                {/* Lưới toạ độ 1px - nền của bản đồ, không phải chấm sáng trang trí. */}
-                <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.05)_1px,transparent_1px)] [background-size:36px_36px]" />
+                {/* Nền: skyline thành phố công nghệ, phủ một lớp lưới mạng mờ. */}
+                <Image src="/rpg/city_skyline.jpg" alt="" fill sizes="1500px" className="pointer-events-none object-cover" priority draggable={false} />
+                <Image src="/saigon-skyline.jpg" alt="" fill sizes="1500px" className="pointer-events-none object-cover opacity-30 mix-blend-screen" draggable={false} />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-stone-950/55 via-stone-950/25 to-stone-950/70" />
+                <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(125,211,252,0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(125,211,252,0.08)_1px,transparent_1px)] [background-size:60px_60px]" />
 
-                {/* Đường nối giữa các khu: nét đứt một màu, không phát sáng. */}
-                <svg className="pointer-events-none absolute inset-0 z-10 h-full w-full text-stone-600" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-                  <g fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeDasharray="3 4" vectorEffect="non-scaling-stroke">
-                    <path d="M50 18 C44 26 30 26 18 34" vectorEffect="non-scaling-stroke" />
-                    <path d="M18 34 C28 45 38 47 50 50" vectorEffect="non-scaling-stroke" />
-                    <path d="M50 18 C58 29 73 34 82 68" vectorEffect="non-scaling-stroke" />
-                    <path d="M50 50 C36 59 26 62 18 68" vectorEffect="non-scaling-stroke" />
-                    <path d="M50 50 C62 57 74 60 82 68" vectorEffect="non-scaling-stroke" />
-                    <path d="M18 68 C28 78 38 84 18 88" vectorEffect="non-scaling-stroke" />
-                    <path d="M82 68 C76 78 72 84 82 88" vectorEffect="non-scaling-stroke" />
+                {/* Tuyến cáp giữa các khu. */}
+                <svg className="pointer-events-none absolute inset-0 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                  <g fill="none" stroke="rgb(56 189 248 / 0.55)" strokeWidth="2" strokeDasharray="6 6" strokeLinecap="round">
+                    {ROUTES.map(([a, b]) => {
+                      const p = cardCenter(a);
+                      const q = cardCenter(b);
+                      return <line key={`${a}-${b}`} x1={p.x} y1={p.y} x2={q.x} y2={q.y} vectorEffect="non-scaling-stroke" />;
+                    })}
                   </g>
                 </svg>
 
-                {/* Nhân vật di chuyển giữa các khu (ảnh đại diện - được phép tròn). */}
+                {/* Mốc vàng giữa các khu. */}
+                {ROUTES.map(([a, b]) => {
+                  const p = cardCenter(a);
+                  const q = cardCenter(b);
+                  return (
+                    <span
+                      key={`m-${a}-${b}`}
+                      className="pointer-events-none absolute -ml-2 -mt-2 flex h-4 w-4 rotate-45 items-center justify-center rounded-xs border-2 border-amber-200 bg-amber-400 shadow-[0_0_12px_rgba(251,191,36,0.7)]"
+                      style={{ left: `${(p.x + q.x) / 2}%`, top: `${(p.y + q.y) / 2}%` }}
+                      aria-hidden
+                    />
+                  );
+                })}
+
+                {MAP_ORDER.map((id) => (
+                  <div
+                    key={id}
+                    className="absolute z-20"
+                    style={{ left: `${CARD_POS[id].x}%`, top: `${CARD_POS[id].y}%`, width: `${CARD_W_PCT}%` }}
+                    onMouseEnter={() => setAvatarPos(BUILDING_AVATAR_POSITIONS[id])}
+                  >
+                    <MapBuildingCard {...cardProps(id)} />
+                  </div>
+                ))}
+
+                {/* Nhân vật: "VỊ TRÍ CỦA BẠN". */}
                 <motion.div
-                  className="pointer-events-none absolute z-50 -ml-5 -mt-5"
-                  animate={{
-                    left: `${avatarPos.x}%`,
-                    top: `${avatarPos.y}%`,
-                  }}
+                  className="pointer-events-none absolute z-30 -ml-6 -mt-16"
+                  animate={{ left: `${avatarPos.x}%`, top: `${avatarPos.y}%` }}
                   transition={{ type: "spring", stiffness: 85, damping: 15 }}
                 >
-                  <div className="relative">
-                    <div className={`relative rounded-full border bg-white p-0.5 ${isMoving ? "border-brand-400" : "border-stone-400"}`}>
+                  <div className="flex flex-col items-center">
+                    <span className="mb-1 whitespace-nowrap rounded-sm bg-brand-600 px-1.5 py-0.5 text-[10px] font-black tracking-[0.06em] text-white shadow">
+                      {t.revampGame.map.youAreHere}
+                    </span>
+                    <div className={`relative rounded-full border-2 bg-white p-0.5 shadow-lg ${isMoving ? "border-amber-400" : "border-brand-500"}`}>
                       <TechCharacterAvatar size="sm" level={level} equipments={equippedGear} />
+                      <span className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-xs bg-brand-600 px-1 font-mono text-[8px] font-medium tabular-nums text-white">
+                        {format(t.worldMap.levelShort, { level })}
+                      </span>
                     </div>
-                    <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-xs border border-stone-700 bg-brand-600 px-1 py-px font-mono text-[8px] font-medium tabular-nums text-white">
-                      {format(t.worldMap.levelShort, { level })}
-                    </div>
+                    <MapPin className="-mt-0.5 h-4 w-4 text-brand-400" aria-hidden />
                   </div>
                 </motion.div>
-
-                {/* Lưới khu vực */}
-                <div className="relative grid grid-cols-2 gap-x-6 gap-y-7 lg:grid-cols-3">
-                  {MAP_BUILDINGS.map((b) => {
-                    const isDiscovered = discoveredBuildings.includes(b.id);
-                    const reqLevel = b.minLevel ?? getRequiredLevelForBuilding(b.id);
-                    const isLocked = level < reqLevel;
-                    const isCenter = b.id === "arcade";
-
-                    return (
-                      <div
-                        key={b.id}
-                        onClick={() => handleBuildingClick(b.id)}
-                        onMouseEnter={() => setAvatarPos(BUILDING_AVATAR_POSITIONS[b.id] ?? { x: 50, y: 50 })}
-                        className={`relative ${b.desktopClass} ${isCenter ? "md:col-span-2 lg:col-span-1" : ""} group z-20 flex min-h-[130px] w-full cursor-pointer items-center gap-4 overflow-hidden rounded-md border border-stone-700 bg-stone-900 p-5 transition-colors hover:border-stone-400`}
-                      >
-                        {b.id === "weekly-challenge" && (
-                          <span className="absolute right-2.5 top-2 z-30 rounded-xs border border-stone-600 px-1.5 py-px text-[9px] font-bold text-stone-300">
-                            {t.revampGame.hud.live}
-                          </span>
-                        )}
-
-                        {!isDiscovered && (
-                          <div className="absolute inset-0 z-30 flex flex-col items-center justify-center border border-dashed border-stone-600 bg-stone-950 p-2 text-center transition-colors group-hover:border-stone-400">
-                            <Unplug className="mb-1 h-6 w-6 text-stone-500" strokeWidth={1.75} aria-hidden />
-                            <span className="font-mono text-[11px] font-bold uppercase text-stone-200">{t.revampGame.services.notConnected}</span>
-                            <span className="mt-0.5 text-[10px] font-semibold text-amber-300">{t.revampGame.services.connectHint}</span>
-                          </div>
-                        )}
-
-                        {b.isUnderConstruction && isDiscovered && (
-                          <div className="absolute inset-0 z-25 flex flex-col items-center justify-center border border-dashed border-stone-600 bg-stone-950 p-2 text-center">
-                            <Construction className="mb-1 h-6 w-6 text-stone-500" strokeWidth={1.75} aria-hidden />
-                            <span className="font-mono text-xs font-bold uppercase text-stone-200">{t.revampGame.services.building}</span>
-                            <span className="mt-0.5 text-[10px] font-semibold text-stone-400">{format(t.revampGame.services.lockedLevel, { level: reqLevel })}</span>
-                          </div>
-                        )}
-
-                        {isLocked && !b.isUnderConstruction && isDiscovered && (
-                          <div className="absolute inset-0 z-25 flex flex-col items-center justify-center border border-dashed border-stone-600 bg-stone-950 p-2 text-center">
-                            <div className="flex items-center gap-1.5 text-stone-200">
-                              <Lock className="h-4 w-4 text-stone-500" aria-hidden />
-                              <span className="font-mono text-xs font-medium tabular-nums">{format(t.revampGame.services.lockedShort, { level: reqLevel })}</span>
-                            </div>
-                            <span className="mt-0.5 text-[10px] font-semibold text-stone-400">{t.revampGame.services.lockedNeedLessons}</span>
-                          </div>
-                        )}
-
-                        <div className="relative flex h-14 w-14 shrink-0 items-center justify-center rounded-sm border border-stone-700 bg-brand-600 text-stone-300 transition-colors group-hover:border-brand-500 group-hover:text-white">
-                          <BuildingIcon id={b.id} className="h-7 w-7" />
-                        </div>
-
-                        <div className="min-w-0 flex-1">
-                          <span className="mb-1 block max-w-full truncate text-[10px] font-bold uppercase tracking-[0.06em] text-stone-400">
-                            {b.badge}
-                          </span>
-                          <h3 className="truncate text-sm font-black text-white sm:text-base">{b.name}</h3>
-                          <p className="mt-0.5 truncate text-[11px] text-stone-400 sm:text-xs">{b.subtitle}</p>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
               </motion.div>
-            </div>
+            </motion.div>
+
+            {/* Kho thiết bị: thẻ nổi cố định góc phải trên. */}
+            <button
+              type="button"
+              onClick={() => handleBuildingClick("shop")}
+              className="absolute right-3 top-3 z-40 flex w-[240px] items-center gap-3 rounded-md border border-white/15 bg-stone-950/85 p-2.5 text-left backdrop-blur transition-colors hover:border-brand-400"
+              title={t.revampGame.services.gearOpenTitle}
+            >
+              <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded-sm border border-white/20">
+                <Image src="/rpg/city_skyline.jpg" alt="" fill sizes="44px" className="object-cover" />
+                <span className="absolute right-0.5 top-0.5 flex h-4 min-w-4 items-center justify-center rounded-xs bg-brand-600 px-0.5 font-mono text-[9px] font-medium tabular-nums text-white">
+                  {Object.keys(equippedGear).length}
+                </span>
+              </div>
+              <div className="min-w-0 flex-1">
+                <p className="text-[10px] font-semibold text-stone-400">{t.revampGame.services.gearEyebrow}</p>
+                <h3 className="truncate text-sm font-black text-white">{t.revampGame.services.gearTitle}</h3>
+                <p className="truncate text-[11px] text-stone-400">{format(t.revampGame.services.gearSub, { count: Object.keys(equippedGear).length })}</p>
+              </div>
+              <ChevronRight className="h-4 w-4 shrink-0 text-stone-400" aria-hidden />
+            </button>
           </div>
           </>
         ) : (
@@ -667,6 +693,124 @@ export default function TechRpgWorldMap() {
             )}
           </div>
         )}
+      </div>
+    </div>
+  );
+}
+
+/** Thẻ công trình trên bản đồ: ảnh bên trái, số thứ tự, chip khu, tên, phụ đề
+ *  màu, mô tả hai dòng và nút hành động. Chưa kết nối = ảnh mờ + khoá. */
+function MapBuildingCard({
+  building: b,
+  index,
+  discovered,
+  locked,
+  reqLevel,
+  bossPercent,
+  onOpen,
+}: {
+  building: OrganicBuilding;
+  index: number;
+  discovered: boolean;
+  locked: boolean;
+  reqLevel: number;
+  bossPercent: number | null;
+  onOpen: () => void;
+}) {
+  const { t } = useI18n();
+  const isBoss = b.id === "world-boss";
+  const copy = t.revampGame.mapCards[b.id];
+  const blocked = !discovered || b.isUnderConstruction || locked;
+  return (
+    <div
+      role="button"
+      tabIndex={0}
+      onClick={onOpen}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onOpen();
+        }
+      }}
+      className={`group relative flex w-full cursor-pointer touch-manipulation gap-3 overflow-hidden rounded-lg border bg-white/95 p-2.5 text-left shadow-lg transition-all hover:-translate-y-0.5 dark:bg-stone-900/95 ${
+        isBoss ? "border-rose-400 ring-2 ring-rose-500/30 dark:border-rose-700" : "border-white/60 hover:border-brand-400 dark:border-stone-700"
+      }`}
+    >
+      <div className="relative h-[92px] w-[84px] shrink-0 overflow-hidden rounded-md bg-stone-900">
+        {b.imageSrc ? (
+          <Image
+            src={b.imageSrc}
+            alt={b.name}
+            fill
+            sizes="84px"
+            draggable={false}
+            className={`object-cover transition-transform group-hover:scale-105 ${discovered ? "" : "blur-[2px] grayscale"}`}
+          />
+        ) : (
+          <div className="flex h-full w-full items-center justify-center text-stone-300">
+            <BuildingIcon id={b.id} className="h-8 w-8" />
+          </div>
+        )}
+        <span className="absolute left-1 top-1 rounded-xs bg-stone-950/80 px-1 font-mono text-[10px] font-bold tabular-nums text-white">
+          {String(index).padStart(2, "0")}
+        </span>
+        {blocked && (
+          <div className="absolute inset-0 flex items-center justify-center bg-stone-950/55">
+            {!discovered ? <Unplug className="h-6 w-6 text-white" aria-hidden /> : b.isUnderConstruction ? <Construction className="h-6 w-6 text-white" aria-hidden /> : <Lock className="h-5 w-5 text-white" aria-hidden />}
+          </div>
+        )}
+      </div>
+
+      <div className="flex min-w-0 flex-1 flex-col">
+        <div className="flex items-center gap-1.5">
+          <span
+            className={`truncate rounded-xs px-1.5 py-px text-[9px] font-black tracking-[0.06em] ${
+              isBoss ? "bg-rose-600 text-white" : "bg-brand-100 text-brand-700 dark:bg-brand-950 dark:text-brand-300"
+            }`}
+          >
+            {b.badge}
+          </span>
+          {b.id === "weekly-challenge" && (
+            <span className="rounded-xs border border-cyan-400 px-1 text-[9px] font-bold text-cyan-600 dark:text-cyan-400">{t.revampGame.hud.live}</span>
+          )}
+        </div>
+        <h3 className="mt-1 truncate text-sm font-black text-ink-max">{b.name}</h3>
+        {copy && <p className={`truncate text-[11px] font-bold ${isBoss ? "text-alert" : "text-accent"}`}>{copy.tagline}</p>}
+        <p className="mt-0.5 line-clamp-2 text-[11px] leading-snug text-ink-muted">{b.subtitle}</p>
+
+        {isBoss && bossPercent !== null && discovered && (
+          <div className="mt-1.5">
+            <div className="h-1.5 overflow-hidden rounded-full bg-rose-100 dark:bg-rose-950">
+              <div className="h-full bg-rose-600" style={{ width: `${bossPercent}%` }} />
+            </div>
+            <p className="mt-0.5 font-mono text-[9px] font-medium tabular-nums text-alert">{format(t.revampGame.map.bossHp, { percent: bossPercent })}</p>
+          </div>
+        )}
+
+        <div className="mt-auto pt-1.5">
+          {!discovered ? (
+            <span className="inline-flex items-center gap-1 text-[11px] font-bold text-warn-ink">
+              <Coins className="h-3.5 w-3.5 text-warn" aria-hidden />
+              {t.revampGame.services.connectHint}
+            </span>
+          ) : b.isUnderConstruction ? (
+            <span className="text-[11px] font-bold text-ink-muted">{format(t.revampGame.services.lockedLevel, { level: reqLevel })}</span>
+          ) : locked ? (
+            <span className="inline-flex items-center gap-1 text-[11px] font-bold text-ink-muted">
+              <Lock className="h-3 w-3" aria-hidden />
+              {format(t.revampGame.services.lockedShort, { level: reqLevel })}
+            </span>
+          ) : (
+            <span
+              className={`inline-flex items-center gap-0.5 rounded-sm px-2 py-1 text-[11px] font-black text-white ${
+                isBoss ? "bg-rose-600 group-hover:bg-rose-500" : "bg-brand-600 group-hover:bg-brand-500"
+              }`}
+            >
+              {copy?.cta}
+              <ChevronRight className="h-3.5 w-3.5" aria-hidden />
+            </span>
+          )}
+        </div>
       </div>
     </div>
   );
