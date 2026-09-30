@@ -638,6 +638,40 @@ renderers in `components/lesson-blocks/`, loaded lazily from `LessonSections.tsx
    block; a translated array of the wrong length falls back to Vietnamese
    whole (`lib/lesson-translations.js`).
 
+## Writing lessons in bulk (lib/ai-work-lessons/)
+
+740 lessons (ids 2000-2739, Chặng 30-66 of the personal track) were written by
+148 parallel agents, one 5-lesson file each (`s<stage>-<a-d>.ts`), from the
+curriculum in `scripts/curriculum/stage-NN.json`. What that run taught:
+
+1. **One writer per file.** The first batch had two agents appending to one
+   file: four lessons were written into the wrong file and one vanished. Give
+   every writer its own file, pre-created empty, and register it once.
+2. **Measure the batch, not the corpus.** `npm run audit:lessons` measures all
+   1,500 lessons, so a skewed batch of 20 passed while its correct answer was
+   the uniquely shortest option in 56% of questions. `scripts/check-lesson-batch.mjs
+   <file>` reads one file and measures that batch alone; it reads no generated
+   data, so many agents can run it at once. `audit:lessons` regenerates
+   `lib/lessons-data`, so never run it from parallel agents.
+3. **Every option-length field has its own gate.** `quiz`, `practicePrompt` and
+   `openingOptions` are measured separately, and `openingOptions` also per bucket
+   of longest-distractor length. A writer told "do not make the correct answer the
+   longest" overshoots in both directions: the batch came out at 58% longest in
+   `practicePrompt` and 49% in `openingOptions`. Tell writers the target
+   distribution (about a quarter each, rest in the middle) for ALL THREE fields
+   up front; fixing it afterwards cost four rewrite passes (~700 edits).
+4. **A stage is more than `track-stages.ts`.** Adding stages also needs entries
+   in: `lib/tracks.ts` (intro list), the `track-stages` dictionary (vi + en),
+   `lib/stage-topics.ts` + its dictionary, `STAGE_AREAS` in `lib/practical-skill.ts`,
+   and `revampDashboard.stages` (vi + en). `scripts/curriculum/apply-stages.py`
+   does the first two; the rest are caught by tests, not by `tsc`.
+5. **Lesson text must not cite internal ids** ("bài 2704"): refer to "bài 5" of
+   the stage. `stage-numbering.test.ts` enforces it.
+6. **A median is a claim.** The 740 new lessons are longer, which moved the median
+   lesson from 5 to 8 minutes and made `/lo-trinh` say something false until
+   `MEDIAN_LESSON_MINUTES` and the hero copy were updated. Other marketing copy
+   still says "5 phút một bài" (landing hero, sign-up panel) - review it.
+
 ## The content gates
 
 `scripts/audit-lesson-content.mjs` holds four per-lesson minimums, and each is

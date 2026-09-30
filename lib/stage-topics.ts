@@ -51,6 +51,15 @@ export type StageTopicId =
   // Bài không rơi vào chặng nào
   | "tech-foundations"
   | "advanced-tech"
+  // Track cá nhân, Chặng 30-66 (giáo trình AI thực tế cho công việc)
+  | "ai-work-people"
+  | "ai-work-service"
+  | "ai-work-ops"
+  | "ai-tools"
+  | "ai-automation"
+  | "ai-building"
+  | "ai-data"
+  | "ai-safe-foundations"
   | "bonus-cases";
 
 /** Câu khuyên đi kèm chủ đề. Sáu nhánh, đúng sáu nhánh của
@@ -98,6 +107,14 @@ export const TOPIC_ADVICE: Record<StageTopicId, TopicAdviceId> = {
   "tech-foundations": "generic",
   "advanced-tech": "generic",
   "bonus-cases": "generic",
+  "ai-work-people": "generic",
+  "ai-work-service": "generic",
+  "ai-work-ops": "generic",
+  "ai-tools": "generic",
+  "ai-automation": "generic",
+  "ai-building": "generic",
+  "ai-data": "generic",
+  "ai-safe-foundations": "generic",
 };
 
 /** Chủ đề học của một bài, suy ra từ chặng nó nằm trong.
@@ -152,6 +169,45 @@ const PERSONAL_STAGE_TOPIC: Record<string, StageTopicId> = {
   "Chặng 27": "personal-ops",
   "Chặng 28": "ai-products",
   "Chặng 29": "fraud-safety",
+  // Chặng 30-66: 12 chặng nghề chia ba chủ đề, còn lại theo cụm (công cụ, tự động hoá,
+  // làm sản phẩm, dữ liệu, an toàn) để không chủ đề nào vượt trần 1/4 của track.
+  "Chặng 30": "ai-work-people",
+  "Chặng 31": "ai-work-people",
+  "Chặng 32": "ai-work-people",
+  "Chặng 33": "ai-work-people",
+  "Chặng 34": "ai-work-service",
+  "Chặng 35": "ai-work-service",
+  "Chặng 36": "ai-work-service",
+  "Chặng 37": "ai-work-service",
+  "Chặng 38": "ai-work-ops",
+  "Chặng 39": "ai-work-ops",
+  "Chặng 40": "ai-work-ops",
+  "Chặng 41": "ai-work-ops",
+  "Chặng 42": "ai-tools",
+  "Chặng 43": "ai-tools",
+  "Chặng 44": "ai-tools",
+  "Chặng 45": "ai-tools",
+  "Chặng 46": "ai-tools",
+  "Chặng 47": "ai-tools",
+  "Chặng 48": "ai-tools",
+  "Chặng 49": "ai-tools",
+  "Chặng 50": "ai-tools",
+  "Chặng 51": "ai-automation",
+  "Chặng 52": "ai-automation",
+  "Chặng 53": "ai-automation",
+  "Chặng 54": "ai-automation",
+  "Chặng 55": "ai-automation",
+  "Chặng 56": "ai-building",
+  "Chặng 57": "ai-building",
+  "Chặng 58": "ai-building",
+  "Chặng 59": "ai-building",
+  "Chặng 60": "ai-building",
+  "Chặng 61": "ai-data",
+  "Chặng 62": "ai-data",
+  "Chặng 63": "ai-data",
+  "Chặng 64": "ai-safe-foundations",
+  "Chặng 65": "ai-safe-foundations",
+  "Chặng 66": "ai-safe-foundations",
 };
 
 /** Track chuyên ngành, 43 chặng, 16 chủ đề.

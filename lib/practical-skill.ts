@@ -183,6 +183,43 @@ export const STAGE_AREAS: Record<"personal" | "professional", Record<number, Ski
     27: "ai", // tự động hoá
     28: "ai",
     29: "security", // dùng AI an toàn
+    30: null, // nghề, không phải kỹ năng kỹ thuật
+    31: null, // nghề, không phải kỹ năng kỹ thuật
+    32: null, // nghề, không phải kỹ năng kỹ thuật
+    33: null, // nghề, không phải kỹ năng kỹ thuật
+    34: null, // nghề, không phải kỹ năng kỹ thuật
+    35: null, // nghề, không phải kỹ năng kỹ thuật
+    36: null, // nghề, không phải kỹ năng kỹ thuật
+    37: null, // nghề, không phải kỹ năng kỹ thuật
+    38: null, // nghề, không phải kỹ năng kỹ thuật
+    39: null, // nghề, không phải kỹ năng kỹ thuật
+    40: null, // nghề, không phải kỹ năng kỹ thuật
+    41: null, // nghề, không phải kỹ năng kỹ thuật
+    42: "ai", // công cụ AI
+    43: "ai", // công cụ AI
+    44: "ai", // công cụ AI
+    45: "ai", // công cụ AI
+    46: "ai", // công cụ AI
+    47: "ai", // công cụ AI
+    48: "ai", // công cụ AI
+    49: "ai", // công cụ AI
+    50: "ai", // công cụ AI
+    51: "ai", // tự động hoá với AI
+    52: "ai", // tự động hoá với AI
+    53: "ai", // tự động hoá với AI
+    54: "ai", // tự động hoá với AI
+    55: "ai", // tự động hoá với AI
+    56: "frontend", // trang web đầu tiên
+    57: "frontend", // công cụ nhỏ dựng cùng AI
+    58: "code", // đọc và sửa lỗi
+    59: "cloud", // xuất bản sản phẩm
+    60: "ai", // chatbot
+    61: "data", // dữ liệu, biểu đồ, đọc số
+    62: "data", // dữ liệu, biểu đồ, đọc số
+    63: "data", // dữ liệu, biểu đồ, đọc số
+    64: "security", // dùng AI có trách nhiệm
+    65: "security", // dữ liệu cá nhân
+    66: "cloud", // nền tảng: mạng, đám mây, mật khẩu
   },
   professional: {
     1: "data", // nền tảng dữ liệu

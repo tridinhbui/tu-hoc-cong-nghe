@@ -21,7 +21,7 @@ export const learningPathVi = {
 
     // Câu trả lời trước, giải thích sau.
     heroMinutes: "5 phút mỗi ngày",
-    heroBody: "Một bài học dài 5 phút, tính cả câu hỏi cuối bài. Không cần hơn.",
+    heroBody: "Một bài học dài khoảng 8 phút, tính cả câu hỏi cuối bài. Mỗi ngày một bài là đủ.",
     heroTodayLabel: "Hôm nay bạn học bài này",
     heroOpen: "Mở bài học",
     heroNoLesson: "Chọn một lộ trình ở dưới, rồi quay lại đây - chỗ này sẽ chỉ đúng bài bạn cần học hôm nay.",
@@ -127,7 +127,7 @@ export const learningPathEn: typeof learningPathVi = {
     subtitle: "This page answers three things: what to learn, how long a day, and what to do today.",
 
     heroMinutes: "5 minutes a day",
-    heroBody: "One lesson takes 5 minutes, including the question at the end. You don't need more.",
+    heroBody: "One lesson takes about 8 minutes, including the question at the end. One a day is enough.",
     heroTodayLabel: "Today, this is your lesson",
     heroOpen: "Open the lesson",
     heroNoLesson: "Pick a direction below, then come back - this spot will point at the exact lesson to do today.",

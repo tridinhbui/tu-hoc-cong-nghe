@@ -2,6 +2,7 @@ import { describe, it, expect, vi } from "vitest";
 import { renderToStaticMarkup } from "react-dom/server";
 import type { ReactElement } from "react";
 import { I18nProvider } from "@/lib/i18n/context";
+import { MEDIAN_LESSON_MINUTES } from "@/lib/learning-pace";
 
 // /lo-trinh nằm sau cổng đăng nhập, nên không mở được bằng mắt trong lúc phát
 // triển. Test này thay cho lần xem đó: nó dựng thật component và kiểm CHỮ hiện
@@ -108,8 +109,9 @@ describe("trang /lo-trinh dựng ra chữ gì", () => {
     const html = await markup("vi", { savedPace: { perDay: 2, daysPerWeek: 3 } });
     // 123 bài còn lại, 2 bài/ngày, 3 ngày/tuần = 6 bài/tuần -> 21 tuần.
     expect(html).toContain("21 tuần");
-    // 2 bài x 5 phút.
-    expect(html).toContain("10 phút");
+    // 2 bài x trung vị một bài. Lấy từ hằng số chứ không ghi cứng: con số này
+    // đã đổi từ 5 lên 8 khi kho thêm 740 bài dài hơn, và test này đỏ theo.
+    expect(html).toContain(`${2 * MEDIAN_LESSON_MINUTES} phút`);
   });
 
   it("thanh tiến độ nói được với trình đọc màn hình", async () => {
