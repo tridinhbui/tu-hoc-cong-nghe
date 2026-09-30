@@ -40,7 +40,8 @@ describe("StageSkipExamPanel (toàn trang)", () => {
     // Tên chặng đọc từ từ điển theo vị trí (t.trackStages), số chặng hiện "01".
     expect(await screen.findByText(/Máy tính đơn giản hơn bạn nghĩ/)).toBeTruthy();
     expect(screen.getByText("01")).toBeTruthy();
-    expect(screen.getByText("02")).toBeTruthy();
+    // "02" hiện hai lần: thẻ chặng 2 và dòng "Kế tiếp" trên thẻ chặng hiện tại.
+    expect(screen.getAllByText("02").length).toBeGreaterThan(0);
   });
 
   it("renders nothing without a user", () => {

@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { toast } from "sonner";
 import { Loader2, XCircle, ChevronLeft, Lock, Check, Trophy, Target, ArrowRight, Monitor, GitBranch, Code2, Globe, Braces, Layers, Server, Database, Cloud, type LucideIcon } from "lucide-react";
 import { recalculateUserStats } from "@/lib/cloudflare-user";
@@ -27,13 +27,29 @@ import { Sys, panel, btnPrimary, btnSecondary, tabClass } from "@/components/ui/
  *  mọi ô cùng một tông đá: xanh chỉ dành cho "đã xong" và "đang thi". */
 const STAGE_ICONS: LucideIcon[] = [Monitor, GitBranch, Code2, Globe, Braces, Layers, Server, Database, Cloud];
 
-function StageThemedIcon({ index }: { index: number }) {
+type StageTone = "active" | "done" | "idle" | "locked";
+
+const STAGE_ICON_TONE: Record<StageTone, string> = {
+  active: "bg-brand-600 text-white dark:bg-brand-400 dark:text-stone-950",
+  done: "bg-brand-100 text-brand-700 dark:bg-brand-900/60 dark:text-brand-300",
+  idle: "bg-surface-raised text-ink-soft",
+  locked: "bg-surface-sunken/60 text-ink-faint",
+};
+
+function StageThemedIcon({ index, tone, size = "sm" }: { index: number; tone: StageTone; size?: "sm" | "lg" }) {
   const Icon = STAGE_ICONS[index % STAGE_ICONS.length];
   return (
-    <div className="w-9 h-9 rounded-sm bg-surface-raised text-ink-soft flex items-center justify-center shrink-0">
-      <Icon className="w-5 h-5" strokeWidth={1.75} />
+    <div
+      className={`${size === "lg" ? "h-11 w-11" : "h-7 w-7"} ${STAGE_ICON_TONE[tone]} rounded-sm flex items-center justify-center shrink-0`}
+    >
+      <Icon className={size === "lg" ? "h-5 w-5" : "h-4 w-4"} strokeWidth={1.75} />
     </div>
   );
+}
+
+/** Đủ bài đã học thì chặng tính là đã vượt - cùng điều kiện server dùng. */
+function isStageCleared(s: StageExamEligibility) {
+  return s.lessonCount > 0 && s.completedCount >= s.lessonCount;
 }
 
 // "Thi vượt chặng" - one exam credits an entire chặng as complete, for
@@ -221,6 +237,31 @@ export default function StageSkipExamPanel({ userId, fullPage = false }: { userI
     }
   }
 
+  /* Cuộn khối thẻ tới một chặng. Tính tay trên CHÍNH vùng cuộn, không dùng
+     `scrollIntoView`: hàm đó cuộn cả những tổ tiên `overflow-hidden`, và khung
+     trang ở đây cố ý không cuộn - nó sẽ đẩy hero ra khỏi màn hình. */
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const scrollToStage = useCallback((label: string, onlyIfHidden = false) => {
+    const box = scrollRef.current;
+    const el = Array.from(box?.querySelectorAll<HTMLElement>("[data-stage]") ?? []).find((n) => n.dataset.stage === label);
+    if (!box || !el) return;
+    const boxRect = box.getBoundingClientRect();
+    const elRect = el.getBoundingClientRect();
+    if (onlyIfHidden && elRect.bottom <= boxRect.bottom) return;
+    const top = elRect.top - boxRect.top + box.scrollTop - 4;
+    if (onlyIfHidden || typeof box.scrollTo !== "function") box.scrollTop = top;
+    else box.scrollTo({ top, behavior: "smooth" });
+  }, []);
+
+  /* Chặng hiện tại luôn nằm trong khung lúc mở trang: với người đã vượt mười
+     chặng, nó ở dưới hàng thứ tư, và thứ đầu tiên họ thấy sẽ là những chặng
+     đã xong thay vì chặng đang chờ mình. */
+  useEffect(() => {
+    if (listLoading || view !== "pick") return;
+    const current = stages.find((s) => s.eligible && !isStageCleared(s));
+    if (current) scrollToStage(current.stageLabel, true);
+  }, [listLoading, stages, view, scrollToStage]);
+
   // 1-4 chọn phương án, Enter sang câu sau (câu cuối thì nộp). Gọi TRƯỚC mọi
   // `return` sớm: hook không được nằm sau một nhánh thoát.
   useQuizKeys({
@@ -262,9 +303,14 @@ export default function StageSkipExamPanel({ userId, fullPage = false }: { userI
   /** Số câu đề sẽ thực sự có: tối đa hằng số, nhưng ngắn hơn nếu chặng thiếu. */
   const examLength = (s: StageExamEligibility) => Math.min(STAGE_EXAM_QUESTION_COUNT, s.questionCount);
 
-  const clearedStages = stages.filter((s) => s.lessonCount > 0 && s.completedCount >= s.lessonCount).length;
+  const clearedStages = stages.filter(isStageCleared).length;
   /** Chặng thi được đầu tiên chưa xong - thứ duy nhất trên lưới được nổi xanh. */
-  const nextStageLabel = stages.find((s) => s.eligible && !(s.lessonCount > 0 && s.completedCount >= s.lessonCount))?.stageLabel;
+  const nextStageLabel = stages.find((s) => s.eligible && !isStageCleared(s))?.stageLabel;
+  const allCleared = stages.length > 0 && clearedStages === stages.length;
+  const campaignPercent = stages.length > 0 ? Math.round((clearedStages / stages.length) * 100) : 0;
+  /** Số chặng hai chữ số, lấy từ nhãn ("Chặng 3" -> "03"), rơi về vị trí. */
+  const stageNoOf = (s: StageExamEligibility, index: number) =>
+    (s.stageLabel.match(/\d+/)?.[0] ?? String(index + 1)).padStart(2, "0");
 
   return (
     // Nền khối vẫn trắng: màu ở đây luôn gắn với một TRẠNG THÁI chứ không tô
@@ -291,60 +337,88 @@ export default function StageSkipExamPanel({ userId, fullPage = false }: { userI
 
       {view === "pick" && (
         <>
-          {/* ── 1. HERO BANNER CARD ── */}
-          {/* Ảnh tranh màu nước "núi" từng chiếm 256px bên trái khối này. Nó
-              không nói gì về tiến độ, nên đã gỡ: khối giờ chỉ còn mốc đạt, số
-              chặng đã xong và thanh chặng. */}
-          <div className="relative flex flex-col gap-4 shrink-0">
+          {/* ── 1. MỐC TIẾN TRÌNH ──
+              Con số "đã vượt" và thanh chặng giờ đứng trên một mặt xanh rất
+              nhạt thay vì nằm trơn trên nền: đây là thứ người học quay lại
+              trang này để nhìn, nên nó cần đọc như một cột mốc chứ không như
+              một dòng thống kê. Mỗi đoạn của thanh là một nút - bấm vào là
+              cuộn tới đúng thẻ chặng đó. */}
+          <div className="relative flex flex-col gap-3 shrink-0">
+            <div>
+              {!fullPage && (
+                <h2 className="text-xl sm:text-2xl font-black leading-[1.15] text-ink-max tracking-tight">
+                  {t.stageSkip.title}
+                </h2>
+              )}
+              <p className="max-w-[68ch] text-sm text-ink-soft mt-1 leading-7">
+                {format(t.stageSkip.descriptionPart1, { questionCount: STAGE_EXAM_QUESTION_COUNT })}{" "}
+                {passPercent}
+                {t.stageSkip.descriptionPart2}
+              </p>
+            </div>
 
-            {/* Content & Progress Stats */}
-            <div className="flex-1 min-w-0 space-y-3 w-full">
-              <div>
-                {!fullPage && (
-                  <h2 className="text-xl sm:text-2xl font-black leading-[1.15] text-ink-max tracking-tight">
-                    {t.stageSkip.title}
-                  </h2>
-                )}
-                <p className="max-w-[68ch] text-sm text-ink-soft mt-1 leading-7">
-                  {format(t.stageSkip.descriptionPart1, { questionCount: STAGE_EXAM_QUESTION_COUNT })}{" "}
-                  {passPercent}
-                  {t.stageSkip.descriptionPart2}
-                </p>
-              </div>
-
-              {/* Progress Count & Pass Requirement */}
-              <div className="flex items-baseline justify-between gap-4 pt-1">
-                <div className="flex items-baseline gap-2">
-                  <span className="font-mono text-2xl sm:text-3xl font-medium text-ink-max tabular-nums leading-none">
+            <div className="rounded-card bg-accent-soft px-4 py-3.5 sm:px-5">
+              <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-2">
+                <div className="flex items-baseline gap-2.5">
+                  <span className="font-mono text-3xl sm:text-4xl font-medium tabular-nums leading-none tracking-tight">
                     {/* Tổng chặng chỉ hiện khi đã tải xong: trước đây là một
                         số 27 viết cứng làm giá trị chờ, tức một con số bịa
                         đứng thay cho con số thật trong lúc tải. */}
-                    {clearedStages}/{listLoading ? "–" : stages.length}
+                    <span className="text-accent-strong">{clearedStages}</span>
+                    <span className="text-ink-faint">/{listLoading ? "–" : stages.length}</span>
                   </span>
                   <span className="text-xs font-bold text-ink-soft">
                     {t.stageSkip.campaignLabel}
                   </span>
                 </div>
 
-                <span className="text-xs font-bold text-ink-muted tabular-nums">
-                  {format(t.stageSkip.passMark, { need: stageExamPassMark(STAGE_EXAM_QUESTION_COUNT), total: STAGE_EXAM_QUESTION_COUNT })}
-                </span>
+                <div className="flex items-center gap-4 text-xs font-bold tabular-nums">
+                  {!listLoading && stages.length > 0 && (
+                    <span className="text-accent-strong">
+                      {format(t.stageSkip.campaignPercent, { percent: campaignPercent })}
+                    </span>
+                  )}
+                  <span className="inline-flex items-center gap-1 text-ink-muted">
+                    <Target className="h-3 w-3" />
+                    {format(t.stageSkip.passMark, { need: stageExamPassMark(STAGE_EXAM_QUESTION_COUNT), total: STAGE_EXAM_QUESTION_COUNT })}
+                  </span>
+                </div>
               </div>
 
-              {/* Segmented Progress Track */}
-              <div className="flex gap-1 pt-0.5">
-                {stages.map((s) => {
-                  const cleared = s.lessonCount > 0 && s.completedCount >= s.lessonCount;
+              {/* Thanh chặng: đặc xanh là đã vượt, đoạn có viền và cao hơn là
+                  chặng hiện tại, xám là chưa tới, chìm hẳn là chưa đủ câu để thi. */}
+              <div className="mt-3.5 flex h-3 items-center gap-[3px]">
+                {stages.map((s, i) => {
+                  const cleared = isStageCleared(s);
+                  const current = s.stageLabel === nextStageLabel;
+                  const label = format(t.stageSkip.jumpToStage, { no: stageNoOf(s, i), name: stageNameOf(s, i) });
                   return (
-                    <span
+                    <button
                       key={s.stageLabel}
-                      className={`h-1.5 flex-1 rounded-[1px] motion-safe:transition-colors motion-safe:duration-500 ${
-                        cleared ? "bg-cyan-600 dark:bg-cyan-400" : "bg-surface-sunken"
+                      type="button"
+                      onClick={() => scrollToStage(s.stageLabel)}
+                      aria-label={label}
+                      title={label}
+                      aria-current={current ? "step" : undefined}
+                      className={`flex-1 rounded-[1px] cursor-pointer motion-safe:transition-colors motion-safe:duration-500 ${
+                        current
+                          ? "h-3 bg-brand-300 outline outline-2 outline-offset-1 outline-brand-600 dark:bg-brand-700 dark:outline-brand-400"
+                          : cleared
+                          ? "h-2 bg-brand-600 hover:bg-brand-700 dark:bg-brand-400"
+                          : s.eligible
+                          ? "h-2 bg-brand-100 hover:bg-brand-200 dark:bg-brand-900/70 dark:hover:bg-brand-800"
+                          : "h-1.5 bg-surface-sunken"
                       }`}
                     />
                   );
                 })}
               </div>
+              {allCleared && (
+                <p className="mt-2 inline-flex items-center gap-1.5 text-[11px] font-bold text-accent-strong">
+                  <Trophy className="h-3.5 w-3.5" />
+                  {t.stageSkip.allCleared}
+                </p>
+              )}
             </div>
           </div>
 
@@ -370,105 +444,208 @@ export default function StageSkipExamPanel({ userId, fullPage = false }: { userI
               Trước đây cả ba cùng nằm trong một vùng cuộn, nên cuộn xuống thẻ
               thứ mười là mất luôn con số 0/27 và cặp nút đổi hướng - hai thứ
               người ta quay lại đây để nhìn. */}
-          <div className={fullPage ? "flex-1 min-h-0 overflow-y-auto pr-1 [scrollbar-width:thin]" : ""}>
-            {/* ── 3. CHECKPOINT CARDS GRID (3x3) ── */}
+          <div ref={scrollRef} className={fullPage ? "flex-1 min-h-0 overflow-y-auto pr-1 [scrollbar-width:thin]" : ""}>
             {listLoading ? (
               <div className="py-16 flex flex-col items-center justify-center gap-3 text-ink-muted">
                 <Loader2 className="w-6 h-6 animate-spin text-ink-muted" />
                 <span className="text-xs font-bold">{t.stageSkip.loadingStages}</span>
               </div>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+              /* ── 3. CÁC CHẶNG ──
+                 Bốn trạng thái, bốn độ nổi khác nhau - không còn chín thẻ giống
+                 hệt nhau. Chặng hiện tại chiếm trọn một hàng ngay tại vị trí
+                 của nó trong lộ trình; chặng đã vượt nằm trên mặt xanh nhạt với
+                 dấu "Đã vượt"; chặng sắp tới là thẻ trắng viền mảnh với nút chữ;
+                 chặng chưa đủ câu lùi hẳn xuống nền xám. */
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2.5 pb-1">
                 {stages.map((s, i) => {
-                  /* Chỉ chặng thi được ĐẦU TIÊN mang nút xanh đặc và viền xanh:
-                     chín nút "Thi ngay" cùng nổi thì không nút nào là bước kế. */
-                  const isNext = s.stageLabel === nextStageLabel;
-                  const done = s.lessonCount > 0 && s.completedCount >= s.lessonCount;
-                  const stageNo = s.stageLabel.match(/\d+/)?.[0] ?? String(i + 1);
-                  const paddedNo = stageNo.padStart(2, "0");
+                  const isCurrent = s.stageLabel === nextStageLabel;
+                  const done = isStageCleared(s);
+                  const no = stageNoOf(s, i);
+                  const name = stageNameOf(s, i);
                   const remaining = Math.max(0, s.lessonCount - s.completedCount);
                   const pct = s.lessonCount > 0 ? Math.round((s.completedCount / s.lessonCount) * 100) : 0;
+
+                  if (isCurrent) {
+                    const upNext = stages[i + 1];
+                    return (
+                      <div
+                        key={s.stageLabel}
+                        data-stage={s.stageLabel}
+                        className="thcn-rise relative overflow-hidden rounded-card border-2 border-accent bg-accent-soft p-4 sm:p-5 md:col-span-2 lg:col-span-3"
+                      >
+                        {/* Số chặng cỡ lớn chìm vào nền: nhận diện "chặng 03"
+                            từ xa mà không thêm một hộp nào. Vẽ bằng CSS
+                            `content`, không phải chữ trong DOM - để trình đọc
+                            màn hình không đọc số chặng thêm lần nữa. */}
+                        <span
+                          aria-hidden
+                          data-no={no}
+                          className="pointer-events-none absolute -bottom-6 right-60 hidden select-none font-mono text-[8.5rem] font-medium leading-none tracking-tighter text-brand-600/[0.08] before:content-[attr(data-no)] md:block dark:text-brand-400/[0.1]"
+                        />
+
+                        <div className="relative flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between sm:gap-8">
+                          <div className="min-w-0 flex-1 space-y-3">
+                            <div className="flex items-center gap-2">
+                              <span className="relative flex h-2 w-2" aria-hidden>
+                                <span className="absolute inline-flex h-full w-full rounded-full bg-brand-500 opacity-60 motion-safe:animate-ping" />
+                                <span className="relative inline-flex h-2 w-2 rounded-full bg-brand-600 dark:bg-brand-400" />
+                              </span>
+                              <span className="text-[11px] font-black uppercase tracking-[0.08em] text-accent-strong">
+                                {t.stageSkip.currentStage}
+                              </span>
+                              <Sys className="tabular-nums">
+                                <span className="text-accent-strong">{no}</span>
+                                <span className="text-ink-faint">/{stageNoOf(stages[stages.length - 1], stages.length - 1)}</span>
+                              </Sys>
+                            </div>
+
+                            <div className="flex items-center gap-3">
+                              <StageThemedIcon index={i} tone="active" size="lg" />
+                              <h3 className="text-lg font-black leading-snug tracking-tight text-ink-max sm:text-xl">
+                                {name}
+                              </h3>
+                            </div>
+
+                            <div className="max-w-md space-y-1.5">
+                              <div className="flex items-center justify-between gap-3 text-[11px] font-bold tabular-nums">
+                                <span className="text-ink-muted">
+                                  {format(t.stageSkip.lessonsProgress, { completed: s.completedCount, total: s.lessonCount })}
+                                </span>
+                                {remaining > 0 && (
+                                  <span className="text-accent-strong">
+                                    {format(t.stageSkip.rewardLessons, { count: remaining })}
+                                  </span>
+                                )}
+                              </div>
+                              <div className="h-1.5 w-full overflow-hidden rounded-[1px] bg-surface dark:bg-stone-900">
+                                <div
+                                  className="h-full bg-brand-600 motion-safe:transition-all motion-safe:duration-500 dark:bg-brand-400"
+                                  style={{ width: `${pct}%` }}
+                                />
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="flex shrink-0 flex-col items-stretch gap-2 sm:items-end">
+                            <button
+                              onClick={() => void startExam(s)}
+                              className={`${btnPrimary} thcn-glitch px-6 py-3 text-sm cursor-pointer`}
+                            >
+                              <span>{t.stageSkip.takeExam}</span>
+                              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                            </button>
+                            <span className="text-center text-[11px] font-bold tabular-nums text-ink-muted sm:text-right">
+                              {format(t.stageSkip.examMeta, { count: examLength(s), need: stageExamPassMark(examLength(s)) })}
+                            </span>
+                            {upNext && (
+                              <span className="flex max-w-[16rem] items-center justify-center gap-1.5 text-[11px] font-semibold text-ink-soft sm:justify-end">
+                                <span className="shrink-0 text-ink-muted">{t.stageSkip.nextUp}</span>
+                                <Sys className="shrink-0 text-ink-faint">{stageNoOf(upNext, i + 1)}</Sys>
+                                <span className="truncate">{stageNameOf(upNext, i + 1)}</span>
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  }
+
+                  if (done) {
+                    return (
+                      <div
+                        key={s.stageLabel}
+                        data-stage={s.stageLabel}
+                        className="flex flex-col gap-2.5 rounded-card bg-accent-soft p-3.5"
+                      >
+                        <div className="flex items-center justify-between gap-3">
+                          <div className="flex items-center gap-2.5">
+                            <StageThemedIcon index={i} tone="done" />
+                            <Sys className="text-accent-strong tabular-nums">{no}</Sys>
+                          </div>
+                          <span className="inline-flex items-center gap-1 rounded-full bg-brand-600 py-0.5 pl-1.5 pr-2 text-[10.5px] font-black uppercase tracking-wide text-white dark:bg-brand-400 dark:text-stone-950">
+                            <Check className="h-3 w-3" strokeWidth={3} />
+                            {t.stageSkip.clearedLabel}
+                          </span>
+                        </div>
+                        <h4 className="line-clamp-2 min-h-[2.5rem] text-sm font-black leading-snug tracking-tight text-ink-max">
+                          {name}
+                        </h4>
+                        <div className="flex items-center gap-2.5">
+                          <div className="h-1 flex-1 rounded-[1px] bg-brand-600 dark:bg-brand-400" />
+                          <span className="text-[11px] font-bold tabular-nums text-accent-strong">
+                            {format(t.stageSkip.lessonsProgress, { completed: s.completedCount, total: s.lessonCount })}
+                          </span>
+                        </div>
+                      </div>
+                    );
+                  }
+
+                  if (!s.eligible) {
+                    /* KHÔNG mờ thẻ chưa mở. `opacity-60` chồng lên chữ nhạt
+                       trên nền xám cho ra khoảng 1,9:1 - dưới xa mức đọc được.
+                       Lùi bằng nền và cỡ chữ, không bằng độ trong suốt. */
+                    return (
+                      <div
+                        key={s.stageLabel}
+                        data-stage={s.stageLabel}
+                        className="flex flex-col gap-2.5 rounded-card bg-surface-raised/60 p-3.5"
+                      >
+                        <div className="flex items-center justify-between gap-3">
+                          <div className="flex items-center gap-2.5">
+                            <StageThemedIcon index={i} tone="locked" />
+                            <Sys className="text-ink-faint tabular-nums">{no}</Sys>
+                          </div>
+                          <Lock className="h-3.5 w-3.5 text-ink-faint" />
+                        </div>
+                        <h4 className="line-clamp-2 min-h-[2.5rem] text-sm font-bold leading-snug tracking-tight text-ink-soft">
+                          {name}
+                        </h4>
+                        <span className="text-[11px] font-bold text-ink-muted">
+                          {t.stageSkip.lockedLabel} · {t.stageSkip.notReadyHint}
+                        </span>
+                      </div>
+                    );
+                  }
 
                   return (
                     <div
                       key={s.stageLabel}
-                      /* KHÔNG mờ thẻ chưa mở. `opacity-60` chồng lên
-                         `text-stone-400` trên nền `bg-stone-100` cho ra khoảng
-                         1,9:1 - dưới xa mức đọc được, mà chữ bị mờ chính là
-                         dòng "còn thiếu mấy bài nữa". Ổ khoá đã nói đủ rằng thẻ
-                         chưa mở; độ mờ chỉ lấy đi thông tin. */
-                      className={`rounded-card p-4 relative overflow-hidden flex flex-col justify-between transition-colors ${
-                        isNext
-                          ? "border-2 border-accent bg-surface"
-                          : done
-                          ? "border border-line-soft bg-surface"
-                          : s.eligible
-                          ? "border border-line bg-surface hover:border-line-strong"
-                          : "border border-transparent bg-surface-raised/50"
-                      }`}
+                      data-stage={s.stageLabel}
+                      className="group/stage flex flex-col gap-2.5 rounded-card border border-line-soft bg-surface p-3.5 transition-colors hover:border-accent-line"
                     >
-                      {/* Top Content */}
-                      <div className="space-y-2.5">
-                        <div className="flex items-start justify-between gap-3">
-                          <StageThemedIcon index={i} />
-                          <Sys className="text-ink-muted tabular-nums">{paddedNo}</Sys>
+                      <div className="flex items-center justify-between gap-3">
+                        <div className="flex items-center gap-2.5">
+                          <StageThemedIcon index={i} tone="idle" />
+                          <Sys className="text-ink-muted tabular-nums">{no}</Sys>
                         </div>
-
-                        <div>
-                          <h4 className={`text-sm font-black tracking-tight line-clamp-2 ${s.eligible || done ? "text-ink-max" : "text-ink-soft"} leading-snug min-h-[2.4rem]`}>
-                            {stageNameOf(s, i)}
-                          </h4>
-                        </div>
-
-                        {/* Stats row */}
-                        <div className="flex items-center justify-between gap-2 text-[11px] font-bold tabular-nums">
-                          <span className="text-ink-muted">
-                            {format(t.stageSkip.lessonsProgress, { completed: s.completedCount, total: s.lessonCount })}
-                          </span>
-                          {!done && remaining > 0 && s.eligible && (
-                            <span className="text-warn-strong">
-                              {format(t.stageSkip.rewardLessons, { count: remaining })}
-                            </span>
-                          )}
-                          <span className="text-ink-faint">
-                            {format(t.stageSkip.questionsAvailable, { count: s.questionCount })}
-                          </span>
-                        </div>
-
-                        {/* Progress Bar */}
-                        <div className="h-1 w-full bg-surface-sunken overflow-hidden">
-                          <div
-                            className={`h-full motion-safe:transition-all motion-safe:duration-500 ${
-                              done || isNext ? "bg-cyan-600 dark:bg-cyan-400" : "bg-stone-400 dark:bg-stone-600"
-                            }`}
-                            style={{ width: `${pct}%` }}
-                          />
-                        </div>
-                      </div>
-
-                      {/* Bottom Action Row */}
-                      <div className="mt-3 pt-3 border-t border-line-soft flex items-center justify-between">
-                        {done ? (
-                          <span className="inline-flex items-center gap-1.5 text-xs font-bold text-cyan-700 dark:text-cyan-400">
-                            <Check className="w-3.5 h-3.5" />
-                            {t.stageSkip.done}
-                          </span>
-                        ) : s.eligible ? (
-                          <button
-                            onClick={() => void startExam(s)}
-                            className={isNext ? `${btnPrimary} px-3 py-1.5 text-xs cursor-pointer` : `${btnSecondary} px-3 py-1.5 text-xs cursor-pointer`}
-                          >
-                            <span>{t.stageSkip.takeExam}</span>
-                            <ArrowRight className="w-3.5 h-3.5" />
-                          </button>
-                        ) : (
-                          <span className="inline-flex items-center gap-1.5 text-xs font-bold text-ink-faint">
-                            <Lock className="w-3 h-3" />
-                            {t.stageSkip.lockedLabel}
+                        {remaining > 0 && (
+                          <span className="text-[11px] font-bold tabular-nums text-ink-muted">
+                            {format(t.stageSkip.rewardLessons, { count: remaining })}
                           </span>
                         )}
                       </div>
-
+                      <h4 className="line-clamp-2 min-h-[2.5rem] text-sm font-bold leading-snug tracking-tight text-ink-body">
+                        {name}
+                      </h4>
+                      <div className="h-1 w-full overflow-hidden rounded-[1px] bg-surface-sunken">
+                        <div
+                          className="h-full bg-stone-400 motion-safe:transition-all motion-safe:duration-500 dark:bg-stone-600"
+                          style={{ width: `${pct}%` }}
+                        />
+                      </div>
+                      <div className="flex items-center justify-between gap-3">
+                        <span className="text-[11px] font-bold tabular-nums text-ink-muted">
+                          {format(t.stageSkip.lessonsProgress, { completed: s.completedCount, total: s.lessonCount })}
+                        </span>
+                        <button
+                          onClick={() => void startExam(s)}
+                          className="-mr-1 inline-flex items-center gap-1 rounded-control px-1.5 py-1 text-xs font-bold text-ink-soft transition-colors cursor-pointer hover:bg-accent-soft hover:text-accent-strong group-hover/stage:text-accent-strong"
+                        >
+                          {t.stageSkip.takeExam}
+                          <ArrowRight className="h-3.5 w-3.5" />
+                        </button>
+                      </div>
                     </div>
                   );
                 })}
