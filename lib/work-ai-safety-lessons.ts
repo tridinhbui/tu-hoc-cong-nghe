@@ -1110,4 +1110,1047 @@ export const WORK_AI_SAFETY_LESSONS: Lesson[] = [
       },
     ],
   },
+  {
+    id: 1856,
+    slug: "lo-dan-nham-du-lieu-vao-ai-nam-buoc",
+    title: "Chặng 29, Bài 7: Lỡ dán nhầm dữ liệu vào AI - năm bước trong giờ đầu",
+    subtitle: "Không ai thu lại được thứ đã gửi, nhưng báo sớm thì thiệt hại nhỏ đi rất nhiều.",
+    duration: "10 phút",
+    difficulty: "Dễ",
+    emoji: "🚨",
+    track: "personal",
+    isFundamental: false,
+    whyItMatters:
+      "Bài 1 dạy cách không dán nhầm, nhưng ai làm việc đủ lâu cũng sẽ có một lần bấm Gửi rồi mới giật mình. Lúc đó điều quyết định thiệt hại lớn hay nhỏ không phải lỗi đã lỡ, mà là bạn làm gì trong giờ đầu tiên: giấu đi hay báo ngay.",
+    openingQuestion:
+      "Bạn vừa dán bảng lương 30 người, có họ tên và số tài khoản, vào một công cụ AI chưa được công ty duyệt, rồi mới nhận ra. Việc đầu tiên nên làm?",
+    openingOptions: [
+      "Dừng lại, chụp lại đã dán gì ở đâu, rồi báo người phụ trách",
+      "Xoá cuộc trò chuyện ngay để dữ liệu biến mất khỏi hệ thống của hãng",
+      "Im lặng vài ngày xem có chuyện gì không rồi tính",
+      "Tự đổi hết số tài khoản của 30 người bằng cách nhắn từng người",
+    ],
+    correctOption: 0,
+    explanation:
+      "Điều cần ngay là ghi lại sự việc (dán gì, lúc nào, ở công cụ nào) và báo người có quyền quyết định bước tiếp theo. Xoá cuộc trò chuyện chỉ xoá bản bạn nhìn thấy, không chứng minh được dữ liệu đã bị thu hồi, và làm mất bằng chứng cần cho việc đánh giá. Im lặng làm mất thời gian quý nhất. Tự nhắn 30 người là việc của bộ phận nhân sự và pháp chế, không phải của một cá nhân.",
+    diagram: [
+      { label: "Dừng: không dán thêm, không xoá gì vội", arrow: true },
+      { label: "Ghi lại: dán gì, lúc nào, công cụ nào, tài khoản nào", arrow: true },
+      { label: "Báo: người phụ trách, IT hoặc bảo mật trong giờ đầu", arrow: true },
+      { label: "Thu hẹp: gỡ chia sẻ, đổi thứ đổi được như mật khẩu, khoá", arrow: true },
+      { label: "Rút kinh nghiệm: sửa quy trình để lần sau khó lỡ hơn" },
+    ],
+    realWorldExample: {
+      company: "Tình huống minh hoạ",
+      description:
+        "Một nhân viên kế toán dán bảng lương tháng vào công cụ AI cá nhân để nhờ viết công thức. Ba phút sau cô nhận ra bảng có cột số tài khoản. Cô chụp màn hình cuộc trò chuyện, nhắn ngay cho kế toán trưởng và IT. Buổi chiều công ty quyết định bước tiếp theo cùng pháp chế, và tuần sau ban hành mẫu bảng lương ẩn danh. Người lỡ tay và người giấu tay giống nhau ở lỗi ban đầu, khác nhau hoàn toàn ở hậu quả.",
+    },
+    quiz: [
+      {
+        question: "Vì sao báo sớm quan trọng hơn việc tự xoá cuộc trò chuyện?",
+        options: [
+          "Để người có thẩm quyền quyết định bước xử lý khi còn kịp",
+          "Vì xoá cuộc trò chuyện là vi phạm quy định nên bị phạt nặng hơn nữa",
+          "Vì AI sẽ tự phát hiện bạn xoá rồi báo lại công ty",
+          "Vì khi báo rồi thì lỗi ban đầu của bạn sẽ được bỏ qua hoàn toàn",
+        ],
+        correct: 0,
+        explanation:
+          "Có những việc chỉ người phụ trách mới làm được: yêu cầu nhà cung cấp xoá dữ liệu, đổi khoá, thông báo người bị ảnh hưởng, hỏi pháp chế. Mỗi giờ chậm là mỗi giờ họ không làm được. Xoá không phải vi phạm, hệ thống không báo ai, và báo sớm không xoá lỗi mà chỉ giảm hậu quả.",
+      },
+      {
+        question: "Khi báo sự cố, thông tin nào bạn nên có sẵn?",
+        options: [
+          "Dán gì, lúc nào, vào công cụ và tài khoản nào",
+          "Tên người đã đưa bạn tệp đó, để họ cùng chịu trách nhiệm với bạn",
+          "Một bản đánh giá chắc chắn rằng dữ liệu đã bị lộ ra ngoài hay chưa",
+          "Kết luận về mức thiệt hại bằng tiền để công ty chuẩn bị ngân sách",
+        ],
+        correct: 0,
+        explanation:
+          "Bốn dữ kiện này là thứ người xử lý cần đầu tiên và bạn là người duy nhất biết. Bạn không thể kết luận thiệt hại bằng tiền hay lộ hay chưa; đó là việc đánh giá sau. Đổ lỗi cho người khác làm chậm việc xử lý.",
+      },
+      {
+        question: "Bạn vừa lỡ dán một khoá truy cập (API key) của công ty vào AI. Ngoài báo cáo, việc nào giảm rủi ro nhanh nhất?",
+        options: [
+          "Nhờ IT thu hồi khoá đó và cấp khoá mới",
+          "Xoá cuộc trò chuyện rồi tin là khoá không ai xem được nữa",
+          "Đợi xem khoá có bị dùng trái phép hay không rồi mới đổi",
+          "Đổi tên tệp chứa khoá cho khó đoán rồi để yên trong thư mục cũ",
+        ],
+        correct: 0,
+        explanation:
+          "Khoá, mật khẩu là loại dữ liệu đổi được: thu hồi và cấp khoá mới thì bản đã lộ vô dụng, bất kể nó nằm ở đâu. Chờ đến lúc bị dùng trái phép là quá muộn. Xoá cuộc trò chuyện hay đổi tên tệp không làm khoá cũ mất hiệu lực.",
+      },
+      {
+        question: "Vì sao nên thu hẹp thiệt hại bằng cách thay đổi được thứ gì đó, thay vì chỉ chờ?",
+        options: [
+          "Dữ liệu đã gửi thì không lấy lại được, nhưng thứ đi kèm thì đổi được",
+          "Vì công cụ AI luôn gửi thông báo cho chủ tài khoản sau đúng 24 giờ",
+          "Vì dữ liệu dán vào AI sẽ tự huỷ sau một khoảng thời gian cố định",
+          "Vì đổi mật khẩu là cách duy nhất để xoá dữ liệu khỏi máy chủ của hãng",
+        ],
+        correct: 0,
+        explanation:
+          "Bạn không kéo lại được nội dung, nhưng mật khẩu, khoá, liên kết chia sẻ, quyền truy cập thì đổi được, và đổi xong thì phần lộ ra mất giá trị. AI không tự huỷ dữ liệu theo giờ cố định, và đổi mật khẩu không xoá gì khỏi máy chủ.",
+      },
+      {
+        question: "Sau sự cố, bước nào giúp đồng nghiệp không lặp lại lỗi?",
+        options: [
+          "Sửa quy trình, như tạo mẫu dữ liệu ẩn danh có sẵn",
+          "Gửi email nhắc cả công ty ai dán nhầm sẽ bị kỷ luật",
+          "Chặn hẳn mọi công cụ AI trong công ty để không ai dùng được nữa",
+          "Yêu cầu người lỡ tay viết bản kiểm điểm để làm gương cho người khác",
+        ],
+        correct: 0,
+        explanation:
+          "Người lỡ tay thường là người muốn làm nhanh; nếu bị phạt nặng, lần sau người ta sẽ giấu. Sửa quy trình, như mẫu ẩn danh có sẵn, làm việc đúng thành việc dễ nhất. Chặn hết AI đẩy mọi người sang tài khoản cá nhân, nơi công ty không thấy gì.",
+      },
+    ],
+    keyTakeaways: [
+      "Lỡ dán nhầm là chuyện có thể xảy ra với bất kỳ ai; giấu đi mới là thứ biến nó thành sự cố lớn.",
+      "Năm bước: dừng, ghi lại, báo, thu hẹp, rút kinh nghiệm.",
+      "Xoá cuộc trò chuyện không phải là thu hồi dữ liệu.",
+      "Thứ đổi được (mật khẩu, khoá, liên kết chia sẻ) thì đổi ngay.",
+      "Có nhắc thông báo cho người bị ảnh hưởng hay cơ quan không là việc của pháp chế, không phải của một cá nhân.",
+    ],
+    practicePrompt: {
+      question:
+        "Đồng nghiệp thân của bạn thú nhận đã dán một hợp đồng khách hàng vào AI cá nhân và xin bạn đừng nói ai. Bạn nên làm gì?",
+      options: [
+        "Khuyên họ báo ngay; nếu họ không báo thì bạn báo người phụ trách",
+        "Giữ kín, vì hợp đồng này cũng không quá quan trọng với công ty",
+        "Bảo họ tự xoá cuộc trò chuyện, xong là coi như chưa từng có gì xảy ra",
+        "Nói qua với sếp trực tiếp bằng một câu bóng gió mà không nêu tên ai",
+      ],
+      correct: 0,
+      explanation:
+        "Bạn không có quyền quyết định hợp đồng nào là quan trọng; người phụ trách mới đánh giá được. Khuyên họ tự báo là cách tôn trọng và nhanh nhất, còn nếu họ từ chối thì để sự việc trôi là chọn cách cho thiệt hại lớn dần. Xoá cuộc trò chuyện hay bóng gió đều không cho người xử lý dữ kiện cần thiết.",
+    },
+    summary: {
+      keyIdea: "Lỡ tay thì không thể rút lại nội dung, nhưng giờ đầu tiên quyết định thiệt hại: dừng, ghi, báo, thu hẹp.",
+      formula: "Dừng → ghi lại → báo trong giờ đầu → đổi thứ đổi được → sửa quy trình.",
+      commonMistake: "Xoá cuộc trò chuyện rồi im lặng, tưởng là đã thu hồi được.",
+      action: "Viết ra tên và cách liên lạc người bạn sẽ báo nếu lỡ dán nhầm.",
+    },
+    application: {
+      title: "Làm trong 15 phút",
+      message:
+        "Tìm trong quy định của công ty hoặc hỏi sếp: nếu lỡ dán nhầm dữ liệu vào AI thì báo ai, qua kênh nào. Ghi tên và kênh đó vào ghi chú điện thoại của bạn, kèm ba dòng mẫu để báo: dán gì, lúc nào, công cụ nào.",
+      secondary: "Ngày mai có thẻ hỏi bạn đã có tên người để báo chưa. Nếu công ty chưa có quy định thì đó là bước đầu của bài dự án chính sách ở bài 5.",
+    },
+    sections: [
+      {
+        type: "lead",
+        text: "Chiều thứ Sáu, chị Hoa ở phòng kế toán dán cả bảng lương vào một ứng dụng AI để nhờ viết công thức. Bấm Gửi xong mới thấy cột số tài khoản. Tim đập nhanh, chị nghĩ ngay tới việc xoá đi và không nói với ai. Bài này là kịch bản cho đúng khoảnh khắc đó.",
+      },
+      {
+        type: "feynman",
+        title: "Xử lý dữ liệu dán nhầm đơn giản hơn bạn nghĩ",
+        intro:
+          "Dán nhầm giống bỏ nhầm một phong bì có chìa khoá nhà vào thùng thư của bưu điện sai địa chỉ. Bạn không giật lại được phong bì, nhưng vẫn làm được nhiều việc có ích.",
+        columns: ["Thành phần", "Bỏ nhầm phong bì", "Dán nhầm vào AI"],
+        rows: [
+          ["Đã gửi rồi", "Không lấy lại được ngay", "Nội dung đã rời khỏi công ty, không thu lại được bằng cách xoá bản của bạn"],
+          ["Việc làm ngay", "Gọi bưu cục, ghi lại giờ bỏ và địa chỉ", "Ghi lại dán gì, lúc nào, công cụ nào"],
+          ["Người quyết định", "Chủ nhà biết để tính chuyện đổi ổ khoá", "Người phụ trách, IT, pháp chế quyết định bước tiếp"],
+          ["Thu hẹp thiệt hại", "Đổi ổ khoá thì chìa lộ ra hết giá trị", "Đổi mật khẩu, khoá, liên kết thì phần lộ ra hết giá trị"],
+          ["Giấu đi", "Chủ nhà không biết để đổi khoá kịp", "Người xử lý mất thời gian quý nhất"],
+        ],
+        oneLiner: "Phong bì đã bỏ thì không lấy lại được; điều bạn làm được là để chủ nhà biết sớm và đổi ổ khoá.",
+      },
+      { type: "heading", text: "Năm bước trong giờ đầu" },
+      {
+        type: "flow",
+        title: "Từ lúc giật mình tới lúc xử lý xong",
+        steps: [
+          { label: "Dừng lại", detail: "Không dán thêm, không mở thêm cuộc trò chuyện mới để giải thích. Chưa xoá gì vội, vì bản ghi còn là bằng chứng cho người xử lý." },
+          { label: "Ghi lại", detail: "Chụp màn hình cuộc trò chuyện. Ghi ba điều: dán gì (loại dữ liệu, bao nhiêu người hoặc bao nhiêu dòng), lúc nào, vào công cụ nào và tài khoản nào." },
+          { label: "Báo người phụ trách", detail: "Nhắn người mà quy định của công ty chỉ định, thường là sếp trực tiếp cùng IT hoặc bảo mật. Nêu sự thật, không đoán mức thiệt hại." },
+          { label: "Thu hẹp thiệt hại", detail: "Cùng IT đổi thứ đổi được: mật khẩu, khoá truy cập, liên kết chia sẻ. Việc yêu cầu nhà cung cấp xoá dữ liệu là do công ty làm, không phải bạn." },
+          { label: "Rút kinh nghiệm", detail: "Hỏi vì sao lỡ được: thiếu mẫu ẩn danh, chưa có công cụ được duyệt, hay vì quá gấp. Sửa cái đó để lần sau khó lỡ hơn." },
+        ],
+      },
+      { type: "heading", text: "Vì sao báo sớm lại rẻ hơn" },
+      {
+        type: "comparison",
+        left: {
+          label: "Báo trong giờ đầu",
+          text: "Người phụ trách còn kịp thu hồi khoá, gỡ chia sẻ, liên hệ nhà cung cấp và hỏi pháp chế cần làm gì tiếp. Với bạn, đây là một cuộc nói chuyện khó xử vài phút.",
+        },
+        right: {
+          label: "Giấu, hoặc báo sau vài tuần",
+          text: "Khi bị phát hiện, công ty còn phải hỏi thêm vì sao bạn im lặng, và khoảng thời gian dữ liệu nằm ở ngoài đã dài hơn nhiều. Cùng một lỗi nhưng hậu quả nặng hơn.",
+        },
+      },
+      {
+        type: "aiLab",
+        mode: "spotError",
+        title: "Soát bản báo cáo sự cố do AI viết hộ",
+        task: "Bạn nhờ AI viết bản báo cáo sự cố ngắn để gửi sếp. Bạn chỉ cho biết: 14h20 thứ Sáu dán bảng lương 30 người (có họ tên và số tài khoản) vào một ứng dụng AI bằng tài khoản cá nhân; đã chụp màn hình; chưa xoá; chưa biết ứng dụng lưu hay không. Đánh dấu những đoạn AI tự thêm.",
+        segments: [
+          { text: "Lúc 14h20 thứ Sáu, tôi đã dán nhầm bảng lương 30 nhân viên vào một ứng dụng AI bằng tài khoản cá nhân." },
+          { text: "Bảng có họ tên và số tài khoản ngân hàng của từng người." },
+          {
+            text: "Dữ liệu đã được xoá hoàn toàn khỏi máy chủ của nhà cung cấp.",
+            error: "Bạn chưa biết dữ liệu có được lưu hay không, và cũng chưa xoá gì. AI tự viết một kết luận nghe trấn an nhưng chưa hề có cơ sở.",
+          },
+          {
+            text: "Không có nhân viên nào bị ảnh hưởng và không cần báo thêm cho ai.",
+            error: "Việc có bị ảnh hưởng hay cần thông báo thêm là do người phụ trách và pháp chế đánh giá, không phải điều người báo cáo được tuyên bố.",
+          },
+          { text: "Tôi đã chụp màn hình cuộc trò chuyện và giữ nguyên, chưa xoá gì, để người xử lý xem." },
+          {
+            text: "Tôi đã liên hệ nhà cung cấp và họ xác nhận không lưu dữ liệu.",
+            error: "Bạn chưa liên hệ ai. Đây là chi tiết bịa hoàn toàn; đưa vào báo cáo là đưa thông tin sai cho người đang cần sự thật để quyết định.",
+          },
+        ],
+      },
+      {
+        type: "scenario",
+        title: "Chị Hoa lỡ tay lúc 14h20",
+        start: "s1",
+        nodes: {
+          s1: {
+            text: "Chị Hoa vừa nhận ra bảng lương có cột số tài khoản đã bị dán vào AI cá nhân. Sếp đang họp tới 16h.",
+            choices: [
+              { label: "Xoá cuộc trò chuyện, coi như chưa có gì xảy ra", next: "bad_hide" },
+              { label: "Chụp màn hình, ghi lại giờ, nhắn kế toán trưởng và IT ngay", next: "s2" },
+            ],
+          },
+          bad_hide: {
+            text: "Hai tuần sau, công cụ bảo mật của công ty phát hiện tệp lạ đi ra ngoài. Không còn bằng chứng nào trong ứng dụng, và chị Hoa phải giải thích thêm vì sao im lặng suốt hai tuần.",
+            ending: "bad",
+          },
+          s2: {
+            text: "IT hỏi: \"Ngoài bảng lương, chị còn dán gì khác trong cuộc trò chuyện đó không? Tài khoản này có gắn email công ty không?\"",
+            choices: [
+              { label: "Trả lời đúng những gì chị biết, nói rõ chỗ chưa chắc", next: "s3" },
+              { label: "Nói là chắc chắn không có gì khác, cho IT yên tâm", next: "bad_certain" },
+            ],
+          },
+          bad_certain: {
+            text: "Chị nói chắc, nhưng thực ra tuần trước chị cũng dán hai hợp đồng ở cùng cuộc trò chuyện. IT chỉ xử lý phần bảng lương, và hai hợp đồng nằm ngoài tầm mắt cho tới khi bị phát hiện muộn.",
+            ending: "bad",
+          },
+          s3: {
+            text: "IT mở lại lịch sử cùng chị, thấy đúng một bảng lương và hai hợp đồng. Họ hỏi pháp chế và đưa danh sách việc cần làm.",
+            choices: [
+              { label: "Làm theo danh sách của IT và pháp chế, rồi góp ý làm mẫu bảng lương ẩn danh", next: "good" },
+              { label: "Tự nhắn cho 30 nhân viên để xin lỗi ngay trong nhóm chat chung", next: "bad_solo" },
+            ],
+          },
+          bad_solo: {
+            text: "Tin nhắn làm nhiều người hoang mang, còn pháp chế chưa kịp quyết định cần thông báo thế nào và cho ai. Công ty phải đính chính thêm một lần nữa.",
+            ending: "bad",
+          },
+          good: {
+            text: "Công ty xử lý trong ngày. Một tuần sau, cả phòng có mẫu bảng lương ẩn danh để nhờ AI viết công thức. Chị Hoa được cảm ơn vì đã báo sớm.",
+            ending: "good",
+          },
+        },
+      },
+      {
+        type: "callout",
+        label: "Không tự phán quyết",
+        text: "Dữ liệu này có phải thông báo cho người bị ảnh hưởng hay cho cơ quan nào không, và trong bao lâu, là câu hỏi pháp lý. Đưa cho pháp chế cùng bản ghi của bạn, không tự kết luận là có hay không.",
+      },
+      {
+        type: "closing",
+        lines: [
+          "Ai cũng có thể lỡ tay một lần; điều công ty nhớ là bạn báo hay giấu.",
+          "Bài sau: hình ảnh và văn bản do AI tạo ra - dùng thế nào để không dính rắc rối bản quyền.",
+        ],
+      },
+    ],
+  },
+  {
+    id: 1857,
+    slug: "ban-quyen-hinh-anh-van-ban-do-ai-tao",
+    title: "Chặng 29, Bài 8: Bản quyền - hình ảnh và văn bản do AI tạo",
+    subtitle: "Dùng cho nội bộ khác dùng cho quảng cáo; và khi phân vân thì hỏi pháp chế trước khi đăng.",
+    duration: "10 phút",
+    difficulty: "Trung bình",
+    emoji: "🖼️",
+    track: "personal",
+    isFundamental: false,
+    whyItMatters:
+      "Nhờ AI làm banner mất một phút, nhưng đăng nó lên trang bán hàng của công ty là hành động công khai mang tên công ty. Luật về sản phẩm do AI tạo ra còn thay đổi và khác nhau giữa các nước, nên thói quen quan trọng hơn thuộc luật: biết lúc nào cần dừng lại hỏi.",
+    openingQuestion:
+      "Bạn nhờ AI tạo hình banner cho khuyến mãi cuối tuần, kết quả rất đẹp. Bước nào nên làm trước khi đăng lên trang bán hàng của công ty?",
+    openingOptions: [
+      "Xem hình có giống logo, nhân vật hay người thật nào không, và công cụ có cho dùng thương mại không",
+      "Đăng ngay, vì hình do AI tạo ra thì không thuộc quyền của ai cả",
+      "Thêm chữ ký của bạn vào góc hình để chứng minh mình là tác giả",
+      "Đổi sang màu khác một chút để không bị coi là bản sao của ai",
+    ],
+    correctOption: 0,
+    explanation:
+      "Rủi ro thật với hình AI không phải là hình có phải của ai không, mà là nó có giống một thứ đã có chủ (logo, nhân vật, khuôn mặt) hay không, và điều khoản của công cụ có cho dùng cho mục đích thương mại hay không. Nói \"không thuộc quyền ai\" là một khẳng định pháp lý mà bạn không chắc. Chữ ký của bạn không tạo ra quyền. Đổi màu không làm một hình giống nhân vật có sẵn thành hình mới.",
+    diagram: [
+      { label: "Dùng ở đâu: nội bộ hay công khai, quảng cáo", arrow: true },
+      { label: "Nhìn kỹ: có giống logo, nhân vật, người thật, tác phẩm nào không", arrow: true },
+      { label: "Đọc điều khoản công cụ: cho dùng thương mại chưa", arrow: true },
+      { label: "Có ghi rõ do AI tạo không: theo quy định công ty và nơi đăng", arrow: true },
+      { label: "Phân vân: hỏi pháp chế trước khi đăng" },
+    ],
+    realWorldExample: {
+      company: "Tình huống minh hoạ",
+      description:
+        "Một cửa hàng nhờ AI tạo hình linh vật cho chiến dịch. Bản đẹp nhất có tai và màu áo rất giống một nhân vật hoạt hình nổi tiếng. Nhân viên thiết kế nhận ra khi xem kỹ, và đổi sang bản khác. Nếu đăng bản đầu, công ty có thể nhận thư yêu cầu gỡ, thậm chí nhiều hơn. Không cần biết luật chi tiết, chỉ cần thói quen nhìn kỹ trước khi đăng.",
+    },
+    quiz: [
+      {
+        question: "Yêu cầu nào cho AI vẽ hình dễ gây rắc rối nhất khi dùng để quảng cáo?",
+        options: [
+          "Vẽ theo phong cách của một hoạ sĩ còn sống, hoặc dùng nhân vật có sẵn",
+          "Vẽ một quầy cà phê nhỏ với ánh sáng buổi sáng, màu ấm và cây xanh",
+          "Vẽ biểu tượng chung của sự tăng trưởng, như một mũi tên đi lên",
+          "Vẽ nền màu đơn giản để đặt chữ khuyến mãi lên trên",
+        ],
+        correct: 0,
+        explanation:
+          "Bắt chước tác phẩm hay phong cách riêng của một người cụ thể, hoặc dùng nhân vật đã có chủ, là chỗ dễ bị khiếu nại nhất. Ba yêu cầu còn lại tả những thứ chung như cảnh, biểu tượng, nền, ít khả năng đụng tới ai.",
+      },
+      {
+        question: "Vì sao nói \"AI tạo ra nên không ai có quyền\" là câu không nên tin?",
+        options: [
+          "Luật khác nhau giữa các nước và còn thay đổi, nên không nên tự kết luận",
+          "Vì luật ở mọi nước đều đã quy định rõ chủ sở hữu là công ty làm ra AI",
+          "Vì mọi hình do AI tạo ra đều mặc định thuộc về người gõ yêu cầu",
+          "Vì hình AI luôn là bản sao nguyên vẹn của một tác phẩm đã có sẵn",
+        ],
+        correct: 0,
+        explanation:
+          "Câu trả lời pháp lý cho sản phẩm do AI tạo ra chưa thống nhất và còn đang thay đổi, nên đưa ra khẳng định chắc chắn theo hướng nào cũng nguy hiểm. Không đúng là luật đã chốt chủ là hãng AI, cũng không đúng là luôn thuộc người gõ, và hình AI thường không phải bản sao nguyên vẹn.",
+      },
+      {
+        question: "Điều khoản của công cụ tạo hình quy định gì mà bạn cần đọc trước khi dùng cho quảng cáo?",
+        options: [
+          "Có cho dùng cho mục đích thương mại không, và có điều kiện gì",
+          "Công cụ có ghi nhớ giọng văn viết của bạn cho lần sau hay không",
+          "Tốc độ tạo hình có nhanh hơn các công cụ khác trong cùng nhóm",
+          "Hình xuất ra có kèm tên của hãng ở góc để tránh hiểu nhầm không",
+        ],
+        correct: 0,
+        explanation:
+          "Mỗi công cụ, và mỗi gói miễn phí hay trả phí, có thể cho dùng thương mại khác nhau. Đây là điều đọc được trong vài phút và quyết định bạn có được đăng hay không. Tốc độ hay việc nhớ giọng văn không liên quan quyền sử dụng.",
+      },
+      {
+        question: "Bạn nhờ AI viết bài blog và thấy một đoạn có vẻ được sao nguyên văn từ báo. Nên làm gì?",
+        options: [
+          "Viết lại bằng lời của mình, hoặc trích dẫn có nguồn nếu cần",
+          "Đăng luôn, vì AI viết ra thì đoạn đó coi như văn bản mới của công ty",
+          "Đổi vài từ đồng nghĩa trong đoạn đó rồi đăng lên như bình thường",
+          "Bỏ nguồn đi vì AI đã nhận trách nhiệm về câu chữ",
+        ],
+        correct: 0,
+        explanation:
+          "AI thi thoảng lặp lại gần nguyên đoạn có sẵn, đặc biệt câu đặc trưng của một bài. Trích thì cần nguồn; không cần trích thì tự diễn đạt lại. Đổi vài từ đồng nghĩa vẫn là bản sao trá hình, và AI không nhận trách nhiệm thay bạn.",
+      },
+      {
+        question: "Khi nào nên nghĩ tới việc ghi rõ một nội dung do AI tạo ra?",
+        options: [
+          "Khi quy định của công ty hay nơi đăng yêu cầu, hoặc khi người xem dễ hiểu nhầm",
+          "Chỉ khi nội dung bị người dùng phát hiện ra là do máy làm và thắc mắc",
+          "Không bao giờ, vì ghi rõ luôn làm người xem đánh giá thấp nội dung",
+          "Luôn luôn, vì mọi nội dung có sự hỗ trợ của AI đều phải ghi ở cuối",
+        ],
+        correct: 0,
+        explanation:
+          "Quy định về việc ghi rõ khác nhau giữa công ty, nền tảng và quốc gia. Hai điều nên làm: theo đúng chính sách nơi đăng, và không để người xem hiểu nhầm, chẳng hạn hình trông như ảnh thật của sự kiện. Chờ bị hỏi mới nói là cách chậm nhất.",
+      },
+    ],
+    keyTakeaways: [
+      "Nội bộ và công khai là hai mức rủi ro khác nhau; quảng cáo là mức cao nhất.",
+      "Không yêu cầu AI bắt chước tác phẩm, nhân vật hay phong cách riêng của một người cụ thể.",
+      "Nhìn kỹ kết quả: có giống logo, nhân vật, người thật hay đoạn văn có sẵn không.",
+      "Đọc điều khoản dùng thương mại của công cụ, và theo quy định ghi rõ AI của nơi đăng.",
+      "Luật còn đổi và khác nhau giữa các nước: phân vân thì hỏi pháp chế trước khi đăng.",
+    ],
+    practicePrompt: {
+      question:
+        "Sếp muốn dùng hình AI làm ảnh đại diện trên trang tuyển dụng, trong đó có \"nhân viên mỉm cười\" trông rất thật. Việc nào hợp lý?",
+      options: [
+        "Cho sếp biết đây là hình AI, và hỏi pháp chế cùng nơi đăng về việc ghi rõ",
+        "Đăng luôn, vì hình đẹp và không phải của ai cả nên không có gì phải hỏi",
+        "Đặt tên nhân viên thật cho các gương mặt đó để trang trông đáng tin",
+        "Ghi chú nhỏ ở cuối trang nhưng cố ý dùng chữ mờ để khỏi ảnh hưởng thiết kế",
+      ],
+      correct: 0,
+      explanation:
+        "Trang tuyển dụng nói với ứng viên về con người thật của công ty; ảnh trông như người thật nhưng là AI có thể gây hiểu nhầm, nên cần theo quy định ghi rõ. Gán tên thật cho gương mặt không tồn tại là bịa. Ghi chú chữ mờ là cố tình để người xem không thấy.",
+    },
+    summary: {
+      keyIdea: "Không cần thuộc luật bản quyền: cần thói quen kiểm hình và chữ trước khi đăng, và hỏi pháp chế khi phân vân.",
+      formula: "Dùng ở đâu → nhìn kỹ có giống gì có sẵn không → đọc điều khoản thương mại → ghi rõ AI nếu cần → phân vân thì hỏi pháp chế.",
+      commonMistake: "Nghĩ hình AI tạo ra thì không thuộc quyền ai nên đăng thoải mái.",
+      action: "Chọn một hình AI bạn đã dùng và kiểm nó theo bốn câu hỏi của bài.",
+    },
+    application: {
+      title: "Làm trong 20 phút",
+      message:
+        "Lấy một hình hoặc một đoạn văn do AI làm mà bạn định đăng hay gửi ra ngoài. Đi qua bốn câu hỏi: dùng ở đâu, có giống logo hay nhân vật hay đoạn văn có sẵn không, điều khoản công cụ có cho dùng thương mại không, cần ghi rõ AI không. Ghi kết quả thành bốn dòng.",
+      secondary: "Nếu có câu nào bạn chưa chắc, ghi luôn câu hỏi đó để gửi pháp chế.",
+    },
+    sections: [
+      {
+        type: "lead",
+        text: "Chị Mai ở phòng marketing nhờ AI tạo hình cho bài đăng khuyến mãi cuối tuần. Kết quả đẹp hơn mong đợi, và chị định đăng luôn. Trước khi bấm, một đồng nghiệp hỏi: \"Hình này có giống nhân vật nào không?\" Câu hỏi đó là toàn bộ bài học.",
+      },
+      {
+        type: "feynman",
+        title: "Bản quyền của hình do AI tạo đơn giản hơn bạn nghĩ",
+        intro:
+          "Hình dung bạn thuê một hoạ sĩ đã xem hàng triệu bức tranh. Họ vẽ theo yêu cầu, không chép nguyên bức nào, nhưng đôi khi nét vẽ vô tình nhìn quen.",
+        columns: ["Thành phần", "Thuê hoạ sĩ", "Dùng AI vẽ hình"],
+        rows: [
+          ["Yêu cầu", "Nói rõ cần gì", "Prompt rõ: cảnh, màu, bố cục"],
+          ["Điều không nên nhờ", "Vẽ giống hệt nhân vật hay logo đã có chủ", "Không đưa tên nhân vật, thương hiệu, hoặc phong cách riêng của một người"],
+          ["Nhìn thành phẩm", "Kiểm xem có giống tác phẩm khác không", "Nhìn kỹ: có giống logo, nhân vật, người thật không"],
+          ["Hợp đồng", "Ghi ai được dùng và dùng vào việc gì", "Điều khoản công cụ: có cho dùng thương mại không"],
+          ["Ai chịu trách nhiệm khi đăng", "Công ty đăng thì công ty chịu", "Công ty đăng thì công ty chịu, dù hình do máy tạo"],
+        ],
+        oneLiner: "Hình AI giống bản vẽ của một hoạ sĩ vô hình: bạn vẫn là người kiểm và người đăng, nên bạn là người chịu trách nhiệm.",
+      },
+      { type: "heading", text: "Ba mức dùng, ba mức thận trọng" },
+      {
+        type: "conceptTable",
+        title: "Dùng hình và văn bản do AI làm",
+        subtitle: "Mức thận trọng tăng dần theo mức công khai",
+        concepts: [
+          { vi: "Nội bộ", en: "Internal", def: "Slide họp nhóm, tài liệu đào tạo trong công ty. Rủi ro thấp; vẫn tránh nhân vật và logo có sẵn." },
+          { vi: "Công khai", en: "Public", def: "Bài đăng mạng xã hội, blog, trang web. Cần nhìn kỹ và đọc điều khoản dùng thương mại của công cụ." },
+          { vi: "Quảng cáo, in ấn", en: "Advertising", def: "Banner, bao bì, tờ rơi. Mức cao nhất: tốn tiền và khó gỡ. Phân vân thì hỏi pháp chế trước." },
+        ],
+      },
+      {
+        type: "aiLab",
+        mode: "prompt",
+        title: "Nhờ AI tạo hình banner cuối tuần",
+        task: "Cửa hàng trà của bạn có khuyến mãi mua 2 tặng 1 cuối tuần. Lắp prompt để AI tạo hình banner.",
+        parts: [
+          {
+            id: "subject",
+            label: "Chủ đề",
+            options: [
+              { text: "Vẽ banner như phim hoạt hình nổi tiếng nhất năm nay, có nhân vật chính uống trà.", feedback: "Bạn vừa nhờ AI dùng nhân vật có chủ. Kết quả có thể đẹp nhưng không thể đăng công khai." },
+              { text: "Một ly trà đá cùng lát chanh trên bàn gỗ, ánh nắng buổi chiều, nền còn khoảng trống bên phải để đặt chữ.", good: true, feedback: "Tả cảnh, ánh sáng và bố cục chung: ít khả năng giống thứ đã có chủ, và có chỗ để đặt chữ khuyến mãi." },
+            ],
+          },
+          {
+            id: "style",
+            label: "Phong cách",
+            options: [
+              { text: "Theo đúng phong cách của một hoạ sĩ minh hoạ đang rất nổi tiếng hiện nay.", feedback: "Bắt chước phong cách riêng của một người còn sống là chỗ dễ bị khiếu nại nhất." },
+              { text: "Màu ấm, nét phẳng, tối giản, cảm giác thân thiện.", good: true, feedback: "Mô tả bằng đặc điểm thị giác chung thay vì bằng tên người." },
+            ],
+          },
+          {
+            id: "text",
+            label: "Chữ trên hình",
+            options: [
+              { text: "Yêu cầu AI viết luôn dòng chữ 'Mua 2 tặng 1 cuối tuần' vào trong hình.", feedback: "AI hay viết sai dấu tiếng Việt trong hình. Bạn sẽ mất thời gian sửa, hoặc lỡ đăng bản sai chính tả." },
+              { text: "Chỉ tạo hình nền, rồi tự thêm dòng chữ khuyến mãi bằng công cụ thiết kế.", good: true, feedback: "Chữ là thông tin bán hàng cần đúng từng dấu; tự thêm thì kiểm soát được." },
+            ],
+          },
+        ],
+        responses: [
+          {
+            requires: ["subject", "style", "text"],
+            text: "Bạn nhận về hình nền một ly trà đá, lát chanh, ánh nắng vàng, còn trống bên phải. Không có nhân vật hay logo nào; bạn thêm chữ 'Mua 2 tặng 1 cuối tuần' bằng công cụ thiết kế, đăng được sau khi đọc điều khoản dùng thương mại của công cụ.",
+          },
+          {
+            requires: ["subject"],
+            text: "Hình đẹp và đúng ý, nhưng khi chọn phong cách nổi tiếng hay để AI viết chữ thì bạn vẫn phải sửa: hình có nét rất giống một hoạ sĩ cụ thể và dòng chữ bị sai dấu, chưa dùng được ngay.",
+          },
+          {
+            text: "AI trả về một nhân vật rất giống nhân vật hoạt hình nổi tiếng đang cầm ly trà, dòng chữ viết sai dấu ('Mua 2 tăng 1'). Hình này không đăng được, cả về bản quyền lẫn chính tả.",
+          },
+        ],
+      },
+      { type: "heading", text: "Bốn câu hỏi trước khi đăng" },
+      {
+        type: "flow",
+        title: "Kiểm hình và văn bản do AI làm",
+        steps: [
+          { label: "Dùng ở đâu", detail: "Nội bộ, công khai hay quảng cáo. Càng công khai càng cần kiểm kỹ, và càng khó rút lại khi đã in hoặc chạy quảng cáo." },
+          { label: "Giống gì có sẵn không", detail: "Nhìn kỹ hình: có logo, nhân vật, khuôn mặt người thật, sản phẩm có nhãn hiệu không. Với văn bản: có đoạn nào nghe như trích từ một bài cụ thể không." },
+          { label: "Điều khoản công cụ", detail: "Đọc phần nói về dùng thương mại và quyền với kết quả. Mỗi công cụ, mỗi gói có thể khác. Ghi lại tên công cụ và ngày bạn tạo." },
+          { label: "Ghi rõ do AI khi cần", detail: "Theo chính sách công ty và nơi đăng. Đặc biệt khi hình có thể bị hiểu là ảnh thật của người hay sự kiện thật." },
+          { label: "Phân vân thì dừng", detail: "Gửi pháp chế cả hình lẫn bốn câu trả lời của bạn. Việc đó mất một ngày, còn gỡ chiến dịch đã chạy mất nhiều hơn." },
+        ],
+      },
+      {
+        type: "scenario",
+        title: "Banner cần đăng trong ngày",
+        start: "s1",
+        nodes: {
+          s1: {
+            text: "Bạn có hai bản banner do AI tạo. Bản A rất đẹp, nhưng linh vật trên đó trông giống một nhân vật hoạt hình quen thuộc. Bản B đơn giản hơn. Hạn đăng là 5 giờ chiều.",
+            choices: [
+              { label: "Đăng bản A vì đẹp hơn và hạn đã gần", next: "bad_a" },
+              { label: "Loại bản A, kiểm bản B theo bốn câu hỏi", next: "s2" },
+            ],
+          },
+          bad_a: {
+            text: "Bài đăng lan nhanh, và ba ngày sau công ty nhận thư yêu cầu gỡ vì nhân vật giống một sản phẩm đã có chủ. Chiến dịch phải tạm dừng và làm lại.",
+            ending: "bad",
+          },
+          s2: {
+            text: "Bản B không giống logo hay nhân vật nào. Còn điều khoản công cụ: bạn dùng gói miễn phí và không rõ có cho dùng thương mại không.",
+            choices: [
+              { label: "Đăng luôn vì hình không giống ai, khỏi đọc điều khoản", next: "bad_terms" },
+              { label: "Đọc điều khoản; chưa rõ thì gửi pháp chế kèm hình và hỏi trước 5 giờ", next: "good" },
+            ],
+          },
+          bad_terms: {
+            text: "Về sau công ty mới biết gói miễn phí không cho dùng cho quảng cáo. Bài đăng phải gỡ và làm lại bằng gói khác.",
+            ending: "bad",
+          },
+          good: {
+            text: "Pháp chế trả lời trong buổi chiều và yêu cầu dùng gói có quyền thương mại. Bạn đổi gói, tạo lại hình, đăng đúng giờ với một chú thích ngắn theo quy định của công ty.",
+            ending: "good",
+          },
+        },
+      },
+      {
+        type: "callout",
+        label: "Không phải tư vấn pháp lý",
+        text: "Bài này dạy thói quen kiểm tra, không kết luận ai có quyền gì. Luật khác nhau giữa các nước và còn thay đổi. Trước khi đăng công khai hay quảng cáo mà còn phân vân, hỏi bộ phận pháp chế.",
+      },
+      {
+        type: "closing",
+        lines: [
+          "Đăng lên nhân danh công ty thì công ty là người trả lời cho hình đó, dù máy vẽ.",
+          "Bài sau: khi AI được dùng để chọn hay đánh giá con người.",
+        ],
+      },
+    ],
+  },
+  {
+    id: 1858,
+    slug: "ai-va-quyet-dinh-ve-con-nguoi",
+    title: "Chặng 29, Bài 9: AI và quyết định về con người - vì sao người vẫn phải quyết",
+    subtitle: "Sàng CV, đánh giá nhân viên: AI học từ quá khứ nên mang theo cả những thiên lệch của quá khứ.",
+    duration: "10 phút",
+    difficulty: "Trung bình",
+    emoji: "⚖️",
+    track: "personal",
+    isFundamental: false,
+    whyItMatters:
+      "Việc nhờ AI xếp hạng 200 hồ sơ ứng viên nghe rất hợp lý, và nếu không cẩn thận, nó lặng lẽ loại một nhóm người mà không ai biết. Quyết định về con người ảnh hưởng đến việc làm và thu nhập của họ, nên người phải là người quyết, và phải giải thích được vì sao.",
+    openingQuestion:
+      "Bạn được giao 200 CV cho một vị trí. Cách dùng AI nào hợp lý nhất?",
+    openingOptions: [
+      "Nhờ AI tóm tắt từng CV theo cùng khung, rồi người đọc và quyết định",
+      "Để AI xếp hạng và loại hết CV ngoài 20 hồ sơ đầu, vì nó không mệt mỏi",
+      "Nhờ AI đoán ứng viên nào hợp văn hoá công ty dựa trên ảnh và tên",
+      "Dùng AI chấm điểm và tự động gửi thư từ chối cho những người bị loại",
+    ],
+    correctOption: 0,
+    explanation:
+      "Tóm tắt theo khung chung giúp người đọc nhanh hơn mà vẫn giữ quyết định trong tay người, và mỗi CV vẫn được xem. Xếp hạng rồi loại bằng máy là chỗ thiên lệch âm thầm chạy mà không ai kiểm được. Đoán văn hoá qua ảnh và tên là suy diễn không có cơ sở, dễ phân biệt đối xử. Gửi thư từ chối tự động là giao quyết định cuối cho máy.",
+    diagram: [
+      { label: "Dữ liệu quá khứ: ai từng được tuyển, ai từng được khen", arrow: true },
+      { label: "AI học ra mẫu: người giống người cũ thì điểm cao", arrow: true },
+      { label: "Thiên lệch cũ trở thành quy tắc mới, nhìn như khách quan", arrow: true },
+      { label: "Người kiểm: dùng AI để tóm tắt, không để nó loại; ghi lý do" },
+    ],
+    realWorldExample: {
+      company: "Amazon, công cụ tuyển dụng thử nghiệm (theo Reuters, 2018)",
+      description:
+        "Theo báo cáo của Reuters năm 2018, Amazon từng thử một công cụ AI chấm điểm hồ sơ ứng viên, được huấn luyện bằng các hồ sơ nộp trong nhiều năm trước, phần lớn từ nam giới. Công cụ học ra thói quen hạ điểm hồ sơ có những từ liên quan tới phụ nữ. Công ty đã sửa nhưng không tin rằng vấn đề được giải quyết hoàn toàn, và bỏ công cụ này. Bài học: dữ liệu quá khứ thiên lệch thì AI học đúng cái thiên lệch đó.",
+    },
+    quiz: [
+      {
+        question: "Vì sao AI xếp hạng CV có thể thiên lệch dù không ai cố tình?",
+        options: [
+          "Nó học từ những người đã được tuyển trước đây, kể cả thiên lệch của họ",
+          "Vì AI không biết đọc tiếng Việt nên chấm ngẫu nhiên theo độ dài của CV",
+          "Vì AI luôn ưu tiên ứng viên có ảnh đẹp hơn ứng viên không có ảnh",
+          "Vì mọi công ty đều cài sẵn ý muốn loại một nhóm người vào công cụ đó",
+        ],
+        correct: 0,
+        explanation:
+          "AI tìm mẫu trong dữ liệu quá khứ: nếu người được tuyển trước đây có đặc điểm chung nào đó, nó coi đó là dấu hiệu tốt. Không ai cần ý xấu; thiên lệch nằm trong dữ liệu. Nó không chấm ngẫu nhiên theo độ dài, và không có ưu tiên ảnh đẹp mặc định.",
+      },
+      {
+        question: "Việc nào trong tuyển dụng phù hợp để nhờ AI hỗ trợ?",
+        options: [
+          "Tóm tắt CV theo một khung chung để người đọc so sánh dễ hơn",
+          "Chọn ra ứng viên phù hợp nhất và tự động từ chối những người còn lại",
+          "Đoán tính cách ứng viên từ cách họ viết thư xin việc để khỏi phải phỏng vấn",
+          "Dự đoán ứng viên nào có kế hoạch sinh con để chọn người ổn định hơn",
+        ],
+        correct: 0,
+        explanation:
+          "Tóm tắt là việc chữ và kiểm được: người đọc đối chiếu với CV gốc. Chọn và từ chối tự động giao quyết định cho máy. Đoán tính cách từ thư xin việc là suy diễn không đáng tin, còn dự đoán kế hoạch sinh con là phân biệt đối xử không được chấp nhận.",
+      },
+      {
+        question: "AI viết nhận xét đánh giá nhân viên có câu \"thiếu nhiệt huyết\". Bạn nên làm gì?",
+        options: [
+          "Đối chiếu với sự việc cụ thể, bỏ nhận xét nào không có bằng chứng",
+          "Giữ nguyên câu đó, vì AI đọc nhiều đánh giá nên chắc có cơ sở",
+          "Đổi thành \"thiếu kỹ năng\" cho nghe khách quan hơn và cũng khó phản biện",
+          "Để nguyên nhưng gạch nhẹ chữ 'thiếu' để giọng văn ôn hoà hơn một chút",
+        ],
+        correct: 0,
+        explanation:
+          "\"Thiếu nhiệt huyết\" là cảm nhận không kèm sự việc. Đánh giá công bằng dựa vào những gì nhân viên đã làm, có ngày và ví dụ. AI viết những cụm nghe quen thuộc chứ không quan sát nhân viên của bạn. Đổi từ khác vẫn là nhận xét không có bằng chứng.",
+      },
+      {
+        question: "Vì sao người phải là người ra quyết định cuối cùng về việc tuyển, sa thải, thăng chức?",
+        options: [
+          "Người giải thích được lý do và chịu trách nhiệm với người bị ảnh hưởng",
+          "Vì luật cấm công ty dùng bất cứ công cụ AI nào trong mọi việc về nhân sự",
+          "Vì AI thường tính sai và cần có người tính lại từng con số trước khi chốt",
+          "Vì người ra quyết định luôn công bằng hơn máy trong mọi trường hợp",
+        ],
+        correct: 0,
+        explanation:
+          "Người bị từ chối hay bị đánh giá thấp có quyền được biết lý do, và \"máy chấm vậy\" không phải lý do. Người quyết định là người trả lời. Không phải luật cấm mọi dùng AI, không phải vì AI tính sai, và người cũng có thiên lệch, nên cần quy trình và ghi lý do.",
+      },
+      {
+        question: "Bạn nghi công cụ sàng CV của công ty loại nhiều ứng viên ở một nhóm tuổi. Bước nào hợp lý?",
+        options: [
+          "Báo nhân sự và pháp chế, đề nghị kiểm tra kết quả theo nhóm",
+          "Tự tắt công cụ mà không báo ai để tránh làm to chuyện lên trong phòng",
+          "Bỏ qua, vì công cụ do bộ phận IT mua nên chắc chắn đã được kiểm tra",
+          "Tự đổi cách chấm điểm trong công cụ cho đến khi thấy con số cân bằng",
+        ],
+        correct: 0,
+        explanation:
+          "Muốn biết có lệch thật hay không, cần so sánh kết quả theo nhóm, việc đó cần nhân sự và pháp chế cùng số liệu. Tự tắt hay tự chỉnh điểm mà không báo làm mất dấu vết, còn mua từ IT không đồng nghĩa đã được kiểm công bằng.",
+      },
+    ],
+    keyTakeaways: [
+      "AI học từ dữ liệu quá khứ; quá khứ thiên lệch thì AI mang theo thiên lệch đó, và trông rất khách quan.",
+      "AI được giúp tóm tắt, sắp xếp khung so sánh; người quyết định và ghi lý do.",
+      "Không dùng AI đoán tính cách, hoàn cảnh gia đình, sức khoẻ, tuổi hay giới tính của người khác.",
+      "Nhận xét về người phải gắn với sự việc cụ thể, có ngày và ví dụ.",
+      "Nghi ngờ công cụ lệch thì báo nhân sự và pháp chế, không tự sửa im lặng.",
+    ],
+    practicePrompt: {
+      question:
+        "Sếp muốn chọn 3 người để cắt giảm từ danh sách 40 nhân viên và hỏi bạn: \"Nhờ AI xếp hạng hiệu suất giúp anh.\" Bạn nên phản hồi?",
+      options: [
+        "Đề nghị dùng tiêu chí đã thống nhất, AI chỉ tổng hợp dữ liệu; người xem xét và ghi lý do",
+        "Cứ để AI xếp hạng và chốt luôn danh sách, vì như vậy công bằng hơn",
+        "Nhờ AI đoán ai sắp nghỉ việc để cắt những người đó trước cho khỏi mất công",
+        "Đưa AI toàn bộ tin nhắn cá nhân của nhân viên để có bức tranh đầy đủ",
+      ],
+      correct: 0,
+      explanation:
+        "Quyết định cắt giảm ảnh hưởng thu nhập của người thật, nên cần tiêu chí công bằng, có thể giải thích, và có người chịu trách nhiệm. AI hợp làm phần tổng hợp dữ liệu. \"Công bằng hơn\" là niềm tin chưa được kiểm; đoán ai sắp nghỉ và đọc tin nhắn cá nhân đều không có cơ sở và xâm phạm riêng tư.",
+    },
+    summary: {
+      keyIdea: "AI có thể giúp đọc nhanh, nhưng quyết định về con người phải do người đưa ra, có tiêu chí và có lý do ghi lại.",
+      formula: "Tiêu chí rõ → AI tóm tắt và sắp xếp → người xem và quyết → ghi lý do → kiểm kết quả theo nhóm.",
+      commonMistake: "Tin rằng máy chấm thì khách quan, nên bỏ qua việc kiểm.",
+      action: "Viết ra ba tiêu chí bạn dùng để đánh giá người, mỗi tiêu chí kèm một ví dụ việc cụ thể.",
+    },
+    application: {
+      title: "Làm trong 20 phút",
+      message:
+        "Chọn một quyết định về người bạn sắp đưa ra hoặc tham gia: tuyển, đánh giá, phân việc. Viết ba tiêu chí bạn dùng, mỗi tiêu chí kèm một sự việc cụ thể làm bằng chứng. Sau đó nhìn lại: tiêu chí nào có thể đang phụ thuộc vào ấn tượng hơn là sự việc?",
+      secondary: "Nếu công ty đang dùng công cụ AI cho nhân sự, hỏi ai kiểm nó và kiểm theo cách nào.",
+    },
+    sections: [
+      {
+        type: "lead",
+        text: "Chị Thảo ở phòng nhân sự có 200 CV cho một vị trí kế toán, và ba ngày để chọn 10 người phỏng vấn. Một công cụ AI hứa xếp hạng cả 200 hồ sơ trong 5 phút. Rất hấp dẫn. Bài này giúp chị (và bạn) biết chỗ nào dùng được, chỗ nào phải giữ trong tay người.",
+      },
+      {
+        type: "feynman",
+        title: "Thiên lệch của AI đơn giản hơn bạn nghĩ",
+        intro:
+          "Hình dung một học trò học chấm bài bằng cách xem điểm mà các giám khảo cũ đã chấm. Nếu giám khảo cũ hay chấm thấp bài viết tay nghiêng, học trò sẽ học luôn thói quen đó và tưởng đó là quy luật.",
+        columns: ["Thành phần", "Học trò chấm bài", "AI sàng hồ sơ"],
+        rows: [
+          ["Học từ đâu", "Điểm của giám khảo cũ", "Ai đã được tuyển hay được khen ở quá khứ"],
+          ["Thứ học được", "Cả tiêu chí thật lẫn thói quen thiên vị", "Cả dấu hiệu năng lực thật lẫn thiên lệch cũ"],
+          ["Nhìn từ ngoài", "Học trò chấm rất nhất quán, nên trông công bằng", "Kết quả có điểm số, nên trông khách quan"],
+          ["Ai phát hiện ra", "Người xem kết quả chấm theo nhóm", "Người kiểm kết quả theo nhóm ứng viên"],
+          ["Người chịu trách nhiệm", "Giáo viên ký tên vào bảng điểm", "Người ra quyết định ký tên vào quyết định"],
+        ],
+        oneLiner: "AI không tạo ra thiên lệch mới; nó học thiên lệch cũ, làm rất nhất quán, nên khó thấy hơn.",
+      },
+      { type: "heading", text: "Bốn việc, bốn mức" },
+      {
+        type: "comparison",
+        left: {
+          label: "AI làm được, người kiểm",
+          text: "Tóm tắt CV theo một khung chung. Nhóm câu trả lời phỏng vấn theo chủ đề. Soạn câu hỏi phỏng vấn theo tiêu chí bạn đã viết. Soát giọng văn thư mời. Người đọc lại bản gốc và vẫn là người quyết.",
+        },
+        right: {
+          label: "Không giao cho AI",
+          text: "Chọn hay loại người. Đoán tính cách, sức khoẻ, hoàn cảnh gia đình, khả năng nghỉ việc từ thông tin gián tiếp. Chấm điểm bằng ảnh, tên, tuổi hay giới tính. Gửi thư từ chối tự động mà không ai xem.",
+        },
+      },
+      { type: "heading", text: "Thiên lệch chạy thế nào" },
+      {
+        type: "flow",
+        title: "Từ quá khứ đến kết quả hôm nay",
+        steps: [
+          { label: "Dữ liệu quá khứ", detail: "Công cụ học từ hồ sơ những người từng được tuyển, hoặc từng được đánh giá cao. Nếu nhóm đó không đa dạng, dữ liệu đã nghiêng ngay từ đầu." },
+          { label: "AI tìm mẫu", detail: "Nó không hiểu công việc; nó tìm những đặc điểm hay đi kèm người đã được chọn: trường, từ ngữ, khoảng trống trong CV, thậm chí thứ ít liên quan." },
+          { label: "Ra điểm số", detail: "Mỗi hồ sơ nhận một điểm. Con số gọn gàng làm kết quả trông chính xác và khách quan." },
+          { label: "Người bấm theo", detail: "Khi 200 hồ sơ và ba ngày, người ta có xu hướng chỉ đọc 20 hồ sơ điểm cao nhất. Từ đó, 180 người còn lại gần như bị loại bởi máy." },
+          { label: "Người kiểm", detail: "Xem kết quả theo nhóm: nếu một nhóm bị loại nhiều hơn hẳn mà không có lý do liên quan công việc, đó là dấu hiệu lệch cần báo." },
+        ],
+      },
+      {
+        type: "aiLab",
+        mode: "spotError",
+        title: "Soát nhận xét đánh giá nhân viên do AI viết nháp",
+        task: "Bạn cung cấp cho AI ghi chép về anh Long trong quý: giao 8 trong 9 báo cáo đúng hạn, một báo cáo trễ 2 ngày vì chờ số liệu từ kho, được khách hàng Minh Phát khen một lần. Nhờ AI viết nhận xét. Đánh dấu những đoạn AI tự thêm.",
+        segments: [
+          { text: "Trong quý, anh Long giao 8 trong 9 báo cáo đúng hạn." },
+          { text: "Một báo cáo trễ 2 ngày do phải chờ số liệu từ kho." },
+          {
+            text: "Anh Long còn thiếu nhiệt huyết và ít chủ động so với đồng nghiệp.",
+            error: "Không có sự việc nào trong ghi chép của bạn nói tới nhiệt huyết hay chủ động. Đây là cụm quen thuộc AI hay thêm, và ghi vào hồ sơ đánh giá là gán nhãn không có bằng chứng.",
+          },
+          { text: "Khách hàng Minh Phát đã khen anh một lần về cách trình bày báo cáo." },
+          {
+            text: "Với tuổi và hoàn cảnh gia đình, anh khó nhận thêm dự án dài hạn.",
+            error: "Bạn chưa hề đưa thông tin tuổi hay gia đình. AI tự suy diễn, và dùng chúng để đánh giá là phân biệt đối xử.",
+          },
+          {
+            text: "Anh nằm trong nhóm 10% nhân viên hiệu suất thấp nhất phòng.",
+            error: "Bạn không cung cấp so sánh nào giữa các nhân viên. Con số này bị bịa, nhưng nghe rất giống dữ liệu thật.",
+          },
+        ],
+      },
+      {
+        type: "scenario",
+        title: "200 CV, ba ngày, một công cụ xếp hạng",
+        start: "s1",
+        nodes: {
+          s1: {
+            text: "Công cụ trả về danh sách 200 CV, kèm điểm. Sếp nói: \"Lấy 15 người đầu là đủ rồi.\"",
+            choices: [
+              { label: "Lấy 15 người điểm cao nhất, gửi thư từ chối tự động cho phần còn lại", next: "bad_auto" },
+              { label: "Nhờ AI tóm tắt cả 200 CV theo cùng khung, rồi tự đọc phần tóm tắt và chọn", next: "s2" },
+            ],
+          },
+          bad_auto: {
+            text: "Sau này bạn phát hiện toàn bộ 15 người đầu đến từ ba trường, còn ứng viên có khoảng nghỉ giữa các công việc gần như bị loại hết. Một ứng viên hỏi lý do bị từ chối và bạn không có gì để trả lời ngoài \"hệ thống chấm\".",
+            ending: "bad",
+          },
+          s2: {
+            text: "Bản tóm tắt gọn, mỗi CV bốn dòng cùng khung. Khi đọc, bạn thấy một ứng viên có hai năm nghỉ nên bị tóm tắt là \"kinh nghiệm không liên tục\", và bạn nhớ CV gốc nói rõ lý do là chăm con nhỏ.",
+            choices: [
+              { label: "Loại vì kinh nghiệm không liên tục, đúng như tóm tắt", next: "bad_gap" },
+              { label: "Mở CV gốc, đánh giá theo tiêu chí công việc rồi ghi lý do chọn", next: "s3" },
+            ],
+          },
+          bad_gap: {
+            text: "Bạn vừa loại một ứng viên vì một chi tiết không liên quan công việc, mà không hề nhận ra. Về sau khi người đó khiếu nại, công ty không có lý do hợp lệ ghi lại.",
+            ending: "bad",
+          },
+          s3: {
+            text: "Bạn chọn 12 người theo ba tiêu chí đã thống nhất từ đầu, ghi lý do ngắn cạnh mỗi người, và gửi nhân sự xem trước khi mời phỏng vấn.",
+            choices: [
+              { label: "Nhờ nhân sự xem thử kết quả có lệch theo nhóm nào không", next: "good" },
+              { label: "Không cần, vì tự đọc thì chắc chắn công bằng", next: "bad_blind" },
+            ],
+          },
+          bad_blind: {
+            text: "Bạn đọc kỹ, nhưng vẫn vô tình chọn nhiều người giống mình. Không có ai kiểm nên không ai biết.",
+            ending: "bad",
+          },
+          good: {
+            text: "Nhân sự nhận thấy danh sách khá đa dạng và bổ sung hai ứng viên mà tiêu chí vẫn khớp. Mọi người được mời đều có lý do ghi lại, và ai hỏi cũng được trả lời.",
+            ending: "good",
+          },
+        },
+      },
+      {
+        type: "callout",
+        label: "Hỏi bộ phận pháp chế và nhân sự",
+        text: "Việc dùng AI cho tuyển dụng và đánh giá có thể chịu quy định về phân biệt đối xử và dữ liệu cá nhân, khác nhau giữa các nước. Trước khi dùng công cụ như vậy, hỏi pháp chế và nhân sự; bài này không thay cho ý kiến của họ.",
+      },
+      {
+        type: "closing",
+        lines: [
+          "AI giúp đọc nhanh; người ký tên vào quyết định.",
+          "Bài cuối chặng nói về điện thoại cá nhân, tài khoản cá nhân và ranh giới với công cụ công ty đã duyệt.",
+        ],
+      },
+    ],
+  },
+  {
+    id: 1859,
+    slug: "ai-tren-dien-thoai-ca-nhan-va-cong-cu-cong-ty-duyet",
+    title: "Chặng 29, Bài 10: AI trên điện thoại cá nhân và công cụ công ty đã duyệt",
+    subtitle: "Ba vùng xanh, vàng, đỏ cho việc dùng AI ngoài tầm mắt công ty: ghi âm họp, bàn phím, ứng dụng miễn phí.",
+    duration: "10 phút",
+    difficulty: "Dễ",
+    emoji: "📱",
+    track: "personal",
+    isFundamental: false,
+    whyItMatters:
+      "Phần lớn việc dùng AI của nhân viên không xảy ra trên máy công ty mà trên điện thoại cá nhân: ghi âm cuộc họp, chụp bảng trắng, hỏi nhanh trên đường về. Tiện nhưng công ty không nhìn thấy, và thứ đi qua điện thoại cũng là dữ liệu của công ty.",
+    openingQuestion:
+      "Bạn muốn ghi âm cuộc họp bằng ứng dụng AI trên điện thoại cá nhân để có biên bản tự động. Cách nào đúng nhất?",
+    openingOptions: [
+      "Hỏi người tổ chức họp và IT, dùng công cụ công ty đã duyệt nếu có",
+      "Cứ bật, rồi sau họp xoá bản ghi trên điện thoại để giữ an toàn",
+      "Bật, vì ghi âm chỉ để bạn dùng riêng nên không cần hỏi ai cả",
+      "Bật cho cả buổi họp, nhưng chỉ dùng ứng dụng đã được nhiều người đánh giá tốt",
+    ],
+    correctOption: 0,
+    explanation:
+      "Cuộc họp chứa thông tin của nhiều người và của công ty, nên ghi âm cần người tổ chức đồng ý và một công cụ công ty biết và kiểm soát được. Xoá sau họp không thu hồi được thứ đã gửi lên máy chủ của ứng dụng. \"Chỉ dùng riêng\" không đúng khi bản ghi đi qua dịch vụ bên ngoài. Điểm đánh giá cao của ứng dụng nói về độ tiện dụng, không nói gì về việc công ty có cho dùng hay không.",
+    diagram: [
+      { label: "Xanh: công cụ công ty duyệt, tài khoản công ty", arrow: true },
+      { label: "Vàng: công cụ chưa duyệt, chỉ dùng dữ liệu công khai", arrow: true },
+      { label: "Đỏ: tài khoản cá nhân với dữ liệu công ty", arrow: true },
+      { label: "Muốn công cụ mới: xin duyệt thay vì tự dùng lén" },
+    ],
+    realWorldExample: {
+      company: "Tình huống minh hoạ",
+      description:
+        "Một nhóm bán hàng dùng ứng dụng ghi âm miễn phí trên điện thoại cá nhân để ghi các cuộc gọi với khách và nhờ AI tóm tắt. Bản ghi nằm trên máy chủ của ứng dụng, gắn với tài khoản cá nhân của từng người. Khi một nhân viên nghỉ việc, toàn bộ lịch sử cuộc gọi với khách đi theo họ, và công ty không biết những gì đã được ghi. Nhóm chỉ muốn tiện; hậu quả là dữ liệu khách nằm ở nơi không ai quản.",
+    },
+    quiz: [
+      {
+        question: "Tài khoản AI cá nhân khác tài khoản công ty cấp ở điểm quan trọng nào?",
+        options: [
+          "Công ty không quản lý được, không thu hồi được, và điều khoản dữ liệu khác",
+          "Tài khoản cá nhân luôn chậm hơn và có ít tính năng hơn tài khoản công ty",
+          "Tài khoản cá nhân bị cấm tuyệt đối trong mọi trường hợp và ở mọi nơi",
+          "Tài khoản công ty luôn tự xoá hết mọi cuộc trò chuyện sau bảy ngày sử dụng",
+        ],
+        correct: 0,
+        explanation:
+          "Sự khác biệt lớn nhất là ai kiểm soát: khi bạn nghỉ, công ty không lấy lại được gì từ tài khoản cá nhân, và điều khoản dữ liệu của hai loại tài khoản có thể khác nhau. Không phải mọi việc cá nhân đều bị cấm, tốc độ không phải điểm khác, và công ty không cài tự xoá theo bảy ngày.",
+      },
+      {
+        question: "Ở vùng vàng (công cụ chưa được duyệt), bạn có thể dùng AI cho việc nào?",
+        options: [
+          "Hỏi khái niệm chung, hoặc nhờ soạn nháp từ nội dung đã công khai",
+          "Nhờ tóm tắt một hợp đồng đang thương lượng, sau khi xoá tên các bên",
+          "Nhờ viết lại email cho khách có kèm giá chào riêng đã ẩn tên công ty",
+          "Nhờ viết công thức Excel dựa trên bảng khách hàng có đủ số điện thoại",
+        ],
+        correct: 0,
+        explanation:
+          "Công cụ chưa được duyệt chỉ hợp với thứ đã công khai hoặc kiến thức chung. Hợp đồng đang thương lượng, giá chào riêng và bảng khách hàng đều là dữ liệu công ty; xoá tên các bên chưa làm chúng ẩn danh vì nội dung ghép lại vẫn nhận ra được.",
+      },
+      {
+        question: "Bàn phím AI trên điện thoại hay gửi nội dung bạn gõ lên máy chủ. Rủi ro là gì?",
+        options: [
+          "Mọi thứ gõ, kể cả email công việc, có thể đi ra ngoài công ty",
+          "Bàn phím AI làm điện thoại nóng máy và hết pin nhanh hơn thường ngày",
+          "Bàn phím AI gõ sai chính tả tiếng Việt nhiều hơn",
+          "Bàn phím AI chỉ hoạt động khi có mạng công ty nên dễ mất kết nối",
+        ],
+        correct: 0,
+        explanation:
+          "Một số bàn phím thông minh gửi những gì bạn gõ để gợi ý; với tin nhắn, email công việc, đó là dữ liệu đi ra ngoài mà bạn không nhìn thấy. Pin, chính tả hay mạng công ty là chuyện tiện dụng, không phải rủi ro dữ liệu.",
+      },
+      {
+        question: "Khi muốn dùng một công cụ AI mới cho công việc, cách làm đúng là gì?",
+        options: [
+          "Gửi IT hoặc người phụ trách yêu cầu xin duyệt kèm mục đích và loại dữ liệu",
+          "Tự dùng thử trước vài tuần, có kết quả tốt rồi mới báo cho công ty biết",
+          "Nhờ đồng nghiệp đã dùng tạo tài khoản chung rồi cả nhóm cùng dùng chung",
+          "Đăng ký bằng email công ty vào mọi công cụ, vì như vậy coi như được duyệt",
+        ],
+        correct: 0,
+        explanation:
+          "Xin duyệt với mục đích và loại dữ liệu cụ thể giúp IT đánh giá nhanh và thường có câu trả lời rõ. Dùng thử trước làm dữ liệu đã đi ra ngoài rồi. Tài khoản chung mất khả năng biết ai làm gì, và đăng ký bằng email công ty không phải là được duyệt.",
+      },
+      {
+        question: "Bạn chụp bảng trắng sau buổi họp chiến lược bằng điện thoại cá nhân. Điều nào cần cân nhắc?",
+        options: [
+          "Ảnh nằm trong thư viện điện thoại, có thể đồng bộ lên đám mây cá nhân",
+          "Ảnh chụp bảng trắng luôn bị mờ nên không cần lo đến chuyện lộ nội dung",
+          "Ảnh chỉ đáng lo khi bạn gửi ngay cho ai đó ngoài công ty qua tin nhắn",
+          "Ảnh chụp không phải dữ liệu vì nó chỉ là hình chứ không phải văn bản",
+        ],
+        correct: 0,
+        explanation:
+          "Ảnh chụp bảng chiến lược là dữ liệu công ty, và nếu điện thoại tự sao lưu lên đám mây cá nhân thì nó đã ra khỏi công ty mà bạn không hề gửi cho ai. AI đọc được chữ trong ảnh, nên hình cũng là dữ liệu.",
+      },
+    ],
+    keyTakeaways: [
+      "Ba vùng: xanh (công cụ công ty duyệt), vàng (chưa duyệt, chỉ dữ liệu công khai), đỏ (tài khoản cá nhân với dữ liệu công ty).",
+      "Điện thoại cá nhân vẫn có thể chứa dữ liệu công ty: ghi âm, ảnh chụp, tin nhắn.",
+      "Bàn phím AI, ứng dụng ghi âm và trợ lý họp miễn phí là các cửa hay bị quên.",
+      "Muốn công cụ mới thì xin duyệt kèm mục đích và loại dữ liệu, không tự dùng lén.",
+      "Khi nghỉ việc, những gì nằm trong tài khoản cá nhân công ty không lấy lại được.",
+    ],
+    practicePrompt: {
+      question:
+        "Đang trên đường công tác, bạn cần soạn nhanh một email cho khách hàng lớn nhưng laptop công ty hết pin. Chỉ có điện thoại cá nhân với một ứng dụng AI. Nên làm gì?",
+      options: [
+        "Viết nội dung khung không có tên khách và giá, rồi ghép chi tiết khi có laptop",
+        "Dán nguyên thư khách gửi vào ứng dụng, vì chỉ dùng một lần lúc khẩn cấp",
+        "Nhắn nhờ một đồng nghiệp dán hộ vào công cụ công ty, kèm toàn bộ nội dung thư",
+        "Dùng ứng dụng nhưng chụp màn hình rồi xoá cuộc trò chuyện ngay sau đó",
+      ],
+      correct: 0,
+      explanation:
+        "Khung nội dung và giọng văn không cần dữ liệu thật; tên khách và giá thêm sau ở nơi được phép. Dùng một lần khẩn cấp vẫn gửi dữ liệu ra ngoài. Nhờ đồng nghiệp dán hộ chỉ chuyển rủi ro sang người khác, và xoá cuộc trò chuyện không thu hồi được gì.",
+    },
+    summary: {
+      keyIdea: "Điện thoại và tài khoản cá nhân là vùng công ty không nhìn thấy; đưa dữ liệu công ty vào đó là bỏ mất khả năng kiểm soát.",
+      formula: "Công cụ được duyệt → xanh. Chưa duyệt → chỉ dữ liệu công khai. Cá nhân + dữ liệu công ty → đỏ. Muốn mới → xin duyệt.",
+      commonMistake: "Nghĩ chỉ dùng cá nhân, chỉ một lần, hoặc đã xoá thì không tính.",
+      action: "Liệt kê ứng dụng AI trên điện thoại bạn từng dùng cho việc, và xếp từng cái vào xanh, vàng hay đỏ.",
+    },
+    application: {
+      title: "Làm trong 15 phút",
+      message:
+        "Mở điện thoại và liệt kê mọi ứng dụng có AI mà bạn từng dùng cho việc (ghi âm, dịch, bàn phím, trợ lý chat). Với mỗi cái, ghi nó thuộc vùng xanh, vàng hay đỏ. Chọn một cái ở vùng đỏ và viết ba dòng xin IT duyệt hoặc chuyển sang công cụ được duyệt.",
+      secondary: "Bạn đã đi hết chặng 29: dữ liệu, deepfake, lệnh ẩn, người duyệt, chính sách, tài khoản, sự cố, bản quyền, quyết định về người, và điện thoại.",
+    },
+    sections: [
+      {
+        type: "lead",
+        text: "Anh Sơn đi họp với khách xong, ngồi trên taxi và bật một ứng dụng AI trên điện thoại cá nhân để nhờ tóm tắt bản ghi âm buổi họp. Chưa đầy hai phút là có biên bản đẹp. Chiếc điện thoại tiện tới mức không ai nghĩ nó là một cánh cửa nữa.",
+      },
+      {
+        type: "feynman",
+        title: "Công cụ cá nhân và công ty duyệt đơn giản hơn bạn nghĩ",
+        intro:
+          "Dùng điện thoại cá nhân cho việc công ty giống chở hàng của công ty bằng xe máy nhà mình. Xe chạy được, nhưng công ty không có sổ theo dõi, bảo hiểm không cover, và khi bạn nghỉ, xe và hàng không cùng ở một nơi.",
+        columns: ["Thành phần", "Xe nhà chở hàng công ty", "AI cá nhân với dữ liệu công ty"],
+        rows: [
+          ["Ai kiểm soát", "Chủ xe, không phải công ty", "Chủ tài khoản, không phải công ty"],
+          ["Sổ theo dõi", "Không có ai ghi hàng đi đâu", "Công ty không thấy dữ liệu đã đi đâu"],
+          ["Khi có sự cố", "Bảo hiểm và trách nhiệm mờ mịt", "Không ai có khả năng thu hồi hay xoá cho công ty"],
+          ["Khi nghỉ việc", "Xe đi với người, hàng chưa chắc còn", "Tài khoản đi với người, lịch sử ở lại với nó"],
+          ["Cách làm đúng", "Dùng xe công ty hoặc xin phép rõ ràng", "Dùng công cụ được duyệt hoặc xin duyệt trước"],
+        ],
+        oneLiner: "Xe nhà chở việc nhà thì không sao; chở hàng công ty thì cần xe và sổ của công ty.",
+      },
+      { type: "heading", text: "Ba vùng" },
+      {
+        type: "conceptTable",
+        title: "Xanh, vàng, đỏ",
+        subtitle: "Công ty bạn có thể gọi tên khác, nhưng ranh giới gần như giống nhau",
+        concepts: [
+          { vi: "Vùng xanh", en: "Approved", def: "Công cụ công ty đã duyệt, đăng nhập bằng tài khoản công ty. Dùng được cho dữ liệu nội bộ theo quy định; dữ liệu mật vẫn theo mức cho phép riêng." },
+          { vi: "Vùng vàng", en: "Unapproved", def: "Công cụ chưa duyệt. Chỉ dùng với kiến thức chung hay nội dung đã công khai; không dán gì thuộc về công ty." },
+          { vi: "Vùng đỏ", en: "Personal + company data", def: "Tài khoản hay điện thoại cá nhân với dữ liệu công ty: ghi âm họp, ảnh bảng trắng, tin nhắn khách hàng. Không làm." },
+        ],
+      },
+      { type: "heading", text: "Những cửa hay bị quên" },
+      {
+        type: "list",
+        items: [
+          "Ứng dụng ghi âm và tóm tắt cuộc họp: bản ghi chứa lời của nhiều người, cần người tổ chức đồng ý.",
+          "Bàn phím thông minh: có loại gửi những gì bạn gõ lên máy chủ để gợi ý.",
+          "Ảnh chụp bảng trắng, màn hình, tài liệu: điện thoại có thể tự sao lưu lên đám mây cá nhân.",
+          "Ứng dụng dịch và ứng dụng chat miễn phí: nội dung bạn dán có thể được lưu theo điều khoản của họ.",
+          "Trợ lý cài sẵn trên điện thoại: bật quyền đọc thông báo hay tin nhắn là cho nó thấy cả tin nhắn công việc.",
+        ],
+      },
+      {
+        type: "flow",
+        title: "Muốn dùng một công cụ mới cho việc: xin duyệt",
+        steps: [
+          { label: "Nói việc cần làm", detail: "Một hai câu: bạn định dùng để làm gì, bao lâu một lần, có thay thế được bằng công cụ đã duyệt không." },
+          { label: "Nói loại dữ liệu", detail: "Sẽ đưa gì vào: công khai, nội bộ, mật hay dữ liệu cá nhân. Nếu có thể chỉ cần dữ liệu ẩn danh thì nói luôn." },
+          { label: "Gửi IT hoặc người phụ trách", detail: "Qua kênh mà công ty quy định. Đính kèm tên công cụ và đường dẫn tới điều khoản của nó nếu có." },
+          { label: "Chờ và dùng đúng phạm vi", detail: "Trong lúc chờ, không dùng thử với dữ liệu công ty. Khi được duyệt, ghi rõ phạm vi cho phép (loại dữ liệu, ai được dùng)." },
+        ],
+      },
+      {
+        type: "aiLab",
+        mode: "prompt",
+        title: "Nhờ AI soạn tin nhắn xin IT duyệt một ứng dụng",
+        task: "Bạn muốn dùng một ứng dụng ghi âm và tóm tắt để lập biên bản họp nhóm. Lắp prompt để AI soạn tin nhắn gửi IT.",
+        parts: [
+          {
+            id: "need",
+            label: "Việc cần làm",
+            options: [
+              { text: "Soạn tin nhắn xin IT cho dùng ứng dụng này.", feedback: "Thiếu mục đích, IT không biết bạn dùng làm gì nên sẽ hỏi lại và mất thêm thời gian." },
+              { text: "Nhóm 6 người họp giao ban mỗi tuần; muốn dùng ứng dụng ghi âm để lập biên bản, thay cho việc ghi tay.", good: true, feedback: "Nêu rõ việc, số người và tần suất: IT đánh giá được mức rủi ro và cần." },
+            ],
+          },
+          {
+            id: "data",
+            label: "Loại dữ liệu",
+            options: [
+              { text: "Không nhắc gì tới dữ liệu vì sợ IT từ chối.", feedback: "IT sẽ hỏi lại hoặc từ chối vì không đủ thông tin. Giấu loại dữ liệu là chỗ nguy hiểm nhất." },
+              { text: "Nội dung họp gồm số liệu nội bộ, chưa có hợp đồng hay dữ liệu khách; sẽ báo trước khi họp có dữ liệu mật.", good: true, feedback: "Nói thẳng loại dữ liệu và ranh giới bạn sẽ giữ, giúp IT duyệt nhanh hơn." },
+            ],
+          },
+          {
+            id: "ask",
+            label: "Điều muốn hỏi",
+            options: [
+              { text: "Hỏi IT: công cụ có được duyệt cho dữ liệu nội bộ không, dùng tài khoản nào, và có công cụ đã duyệt nào làm được việc tương tự không.", good: true, feedback: "Ba câu hỏi rõ ràng: có được không, dùng cách nào, có phương án thay thế không." },
+              { text: "Bảo IT là cả nhóm đã dùng rồi, chỉ cần xác nhận cho đủ thủ tục.", feedback: "Nói vậy là báo rằng bạn đã dùng trước khi được duyệt; IT có thể phải xử lý như một sự cố." },
+            ],
+          },
+        ],
+        responses: [
+          {
+            requires: ["need", "data", "ask"],
+            text: "Chào anh/chị IT,\n\nNhóm em (6 người) họp giao ban mỗi tuần và muốn dùng một ứng dụng ghi âm để lập biên bản thay cho ghi tay. Nội dung họp là số liệu nội bộ, chưa có hợp đồng hay dữ liệu khách hàng; nếu họp có dữ liệu mật, nhóm sẽ không dùng.\n\nAnh/chị cho em hỏi: ứng dụng này có được duyệt cho dữ liệu nội bộ không, nếu có thì dùng bằng tài khoản nào, và công ty có công cụ đã duyệt nào làm việc tương tự không?\n\nCảm ơn anh/chị.",
+          },
+          {
+            requires: ["need"],
+            text: "Chào anh/chị IT,\n\nNhóm em muốn dùng ứng dụng ghi âm để lập biên bản họp giao ban mỗi tuần. Anh/chị xem giúp em được không ạ?\n\n(Đủ lý do dùng, nhưng thiếu loại dữ liệu và câu hỏi cụ thể, IT sẽ phải hỏi lại.)",
+          },
+          {
+            text: "Chào anh/chị IT,\n\nCả nhóm đã dùng ứng dụng này mấy tuần nay và thấy rất tốt. Anh/chị xác nhận giúp để hoàn tất thủ tục ạ.\n\n(Tin nhắn nói rằng nhóm đã dùng trước khi được duyệt, và không nói gì về dữ liệu. IT sẽ coi đây là việc phải xử lý.)",
+          },
+        ],
+      },
+      {
+        type: "scenario",
+        title: "Trên taxi sau buổi họp với khách",
+        start: "s1",
+        nodes: {
+          s1: {
+            text: "Anh Sơn vừa họp xong với khách hàng lớn, có ghi âm bằng điện thoại cá nhân. Anh cần biên bản gửi sếp tối nay. Công ty có công cụ ghi âm đã duyệt cài trên laptop, nhưng laptop để ở văn phòng.",
+            choices: [
+              { label: "Đưa bản ghi vào ứng dụng AI miễn phí trên điện thoại để tóm tắt luôn", next: "bad_app" },
+              { label: "Ghi vài ý chính bằng tay, về văn phòng dùng công cụ đã duyệt để làm biên bản", next: "s2" },
+            ],
+          },
+          bad_app: {
+            text: "Biên bản có ngay, nhưng nội dung buổi họp (kể cả giá chào và tên khách) nằm trên máy chủ của ứng dụng lạ, gắn với tài khoản cá nhân của anh. Khi anh nghỉ việc, bản ghi đi theo anh.",
+            ending: "bad",
+          },
+          s2: {
+            text: "Bản ghi âm vẫn còn trong điện thoại cá nhân của anh. Về văn phòng, anh cần chuyển nó sang công cụ được duyệt.",
+            choices: [
+              { label: "Để bản ghi trên điện thoại cá nhân và đồng bộ đám mây cá nhân, dùng khi cần", next: "bad_keep" },
+              { label: "Chuyển bản ghi sang nơi lưu của công ty, xong xoá bản trên điện thoại", next: "good" },
+            ],
+          },
+          bad_keep: {
+            text: "Bản ghi cuộc họp với khách nằm mãi trên đám mây cá nhân của anh. Không ai biết có bản đó, và công ty không thể xoá hay thu hồi khi cần.",
+            ending: "bad",
+          },
+          good: {
+            text: "Biên bản hoàn thành trên công cụ được duyệt, bản ghi nằm ở nơi của công ty, và điện thoại cá nhân không còn giữ nội dung họp. Sếp nhận biên bản đúng giờ.",
+            ending: "good",
+          },
+        },
+      },
+      {
+        type: "callout",
+        label: "Cảnh báo cho cả chặng",
+        text: "Quy định cụ thể về ghi âm cuộc họp, dữ liệu khách hàng và thiết bị cá nhân khác nhau giữa các công ty. Khi không chắc, hỏi IT hoặc bộ phận pháp chế; đó là cách nhanh nhất để biết bạn đang ở vùng xanh, vàng hay đỏ.",
+      },
+      {
+        type: "closing",
+        lines: [
+          "Tiện lợi của điện thoại là thật; cách giữ nó là đưa công việc về công cụ được duyệt.",
+          "Hết chặng 29. Nếu bạn làm đủ mười bài, bạn có nền tảng để tự viết chính sách dùng AI cho phòng mình.",
+        ],
+      },
+    ],
+  },
 ];

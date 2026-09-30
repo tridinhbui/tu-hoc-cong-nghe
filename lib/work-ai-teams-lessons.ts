@@ -1246,4 +1246,1051 @@ export const WORK_AI_TEAMS_LESSONS: Lesson[] = [
       },
     ],
   },
+  {
+    id: 1846,
+    slug: "ai-xu-ly-khieu-nai-kho-doc-cam-xuc-xin-loi-dung-cho",
+    title: "Chặng 28, Bài 7: Xử lý khiếu nại khó - AI đọc cảm xúc, người quyết định đền bù",
+    subtitle: "AI tách cơn giận thành từng sự việc và nháp lời xin lỗi; mức bù và việc chuyển cấp trên là của người.",
+    duration: "10 phút",
+    difficulty: "Trung bình",
+    emoji: "🧯",
+    track: "personal",
+    isFundamental: false,
+    whyItMatters:
+      "Thư khiếu nại giận dữ làm ta phản ứng theo cảm xúc: hoặc cãi lại, hoặc xin lỗi rối rít rồi hứa bừa. Cả hai đều tốn kém. AI đọc bình tĩnh hơn người đang bị mắng: nó gom được khách đang giận về điều gì, đã chờ bao lâu, muốn gì. Nhưng quyền quyết định bù bao nhiêu và có chuyển cấp trên hay không phải ở người có thẩm quyền.",
+    openingQuestion:
+      "Sáng thứ Hai, khách nhắn lúc 6 giờ: \"Đơn trễ 5 ngày, tôi gọi 3 lần không ai nghe máy, tôi sẽ đăng lên mạng.\" Bạn dùng AI thế nào?",
+    openingOptions: [
+      "Nhờ AI tách cơn giận thành từng sự việc, soạn nháp xin lỗi, bạn duyệt",
+      "Nhờ AI viết thư xin lỗi dài và hứa đền gấp đôi để khách nguôi",
+      "Bỏ qua lời doạ, trả lời bằng mẫu chung như mọi yêu cầu bình thường khác",
+      "Nhờ AI cãi lại từng ý, chứng minh bên mình làm đúng quy trình",
+    ],
+    correctOption: 0,
+    explanation:
+      "Khách đang giận cần thấy mình được nghe: đơn trễ 5 ngày, gọi 3 lần không ai nhấc máy, và nỗi lo bị đăng lên mạng. AI tách được các sự việc đó và soạn nháp xin lỗi đúng từng điểm, còn bạn quyết định điều gì được hứa. Hứa đền gấp đôi là lời hứa không ai cho phép. Mẫu chung khiến khách thấy bị coi thường và càng muốn đăng. Cãi từng ý dù đúng quy trình cũng đổ thêm dầu vào lửa.",
+    diagram: [
+      { label: "Đọc thư: AI tách sự việc, cảm xúc, điều khách muốn", arrow: true },
+      { label: "Bạn kiểm sự việc với dữ liệu đơn hàng thật", arrow: true },
+      { label: "AI nháp xin lỗi đúng từng điểm, chưa hứa mức bù", arrow: true },
+      { label: "Người có thẩm quyền chọn phương án bù trong chính sách", arrow: true },
+      { label: "Ca doạ kiện, báo chí, thiệt hại lớn: chuyển cấp trên" },
+    ],
+    realWorldExample: {
+      company: "Tình huống minh hoạ",
+      description:
+        "Shop bán đồ gia dụng nhận thư của một khách có đơn giao trễ 5 ngày và không ai nghe máy. Nhân viên nhờ AI tóm tắt thư thành ba mục: sự việc, cảm xúc, điều khách muốn. Nhân viên đối chiếu với đơn thật, thấy khách nói đúng về ngày trễ, rồi nhờ AI nháp thư xin lỗi nêu đúng ngày trễ và số lần gọi nhỡ. Mức bù do chị trưởng nhóm chọn trong chính sách của shop.",
+    },
+    quiz: [
+      {
+        question: "Trước khi xin lỗi khách, bước nào bắt buộc phải làm sau khi AI tóm tắt thư khiếu nại?",
+        options: [
+          "Đối chiếu các sự việc với dữ liệu đơn hàng thật",
+          "Nhờ AI rút tóm tắt ngắn hơn nữa cho khách đọc nhanh",
+          "Gửi luôn bản tóm tắt cho khách xác nhận lại",
+          "Đếm số từ giận dữ trong thư để đoán mức độ nghiêm trọng",
+        ],
+        correct: 0,
+        explanation:
+          "AI chỉ biết những gì trong thư; khách có thể nhớ nhầm hoặc nói quá, và AI sẽ chép lại y như vậy. Ta xin lỗi đúng chỗ chỉ khi biết sự việc thật. Rút ngắn không kiểm được gì, gửi bản tóm tắt nội bộ cho khách là lộ ghi chú của mình, còn đếm từ giận dữ chỉ đo giọng văn chứ không đo mức thiệt hại.",
+      },
+      {
+        question: "Đâu là lời xin lỗi đúng chỗ?",
+        options: [
+          "\"Đơn của anh trễ 5 ngày và anh gọi 3 lần không ai nghe, chúng tôi xin lỗi.\"",
+          "\"Chúng tôi thành thật xin lỗi về mọi bất tiện có thể đã xảy ra với quý khách.\"",
+          "\"Chúng tôi xin lỗi nếu anh cảm thấy không hài lòng với dịch vụ của mình.\"",
+          "\"Xin lỗi anh, tuy nhiên bên tôi giao đúng hẹn với đơn vị vận chuyển rồi.\"",
+        ],
+        correct: 0,
+        explanation:
+          "Xin lỗi tốt gọi đúng tên sự việc: trễ bao lâu, nhỡ máy mấy lần. Câu chung chung như \"mọi bất tiện có thể đã xảy ra\" nghe như đọc mẫu. \"Nếu anh cảm thấy\" biến lỗi của mình thành cảm giác của khách. Câu có chữ \"tuy nhiên\" vừa xin lỗi vừa đổ lỗi cho người khác nên xoá luôn lời xin lỗi.",
+      },
+      {
+        question: "AI nháp thư có câu \"chúng tôi sẽ hoàn tiền toàn bộ và tặng voucher\". Chính sách chưa cho phép. Bạn làm gì?",
+        options: [
+          "Xoá câu đó, chỉ hứa điều chính sách cho phép",
+          "Giữ câu đó, khách hài lòng thì xin duyệt sau",
+          "Sửa \"sẽ\" thành \"có thể\" để lời hứa nhẹ đi",
+          "Hỏi lại AI xem chính sách của shop có cho phép không",
+        ],
+        correct: 0,
+        explanation:
+          "Lời hứa bù là quyết định của người có thẩm quyền, không phải của bản nháp. Hứa trước xin duyệt sau nghĩa là công ty bị ràng buộc bởi điều chưa ai đồng ý. \"Có thể\" vẫn tạo kỳ vọng. AI không đọc được chính sách nội bộ của bạn nếu bạn chưa dán vào, nên hỏi nó chỉ nhận về một câu đoán.",
+      },
+      {
+        question: "Trường hợp nào nên chuyển thẳng cho cấp trên hoặc pháp chế thay vì tự xử lý?",
+        options: [
+          "Khách doạ kiện hoặc gọi báo chí",
+          "Khách viết HOA và chấm than",
+          "Khách nhắn lần thứ hai trong cùng một ngày",
+          "Khách nói rõ sẽ không bao giờ mua ở shop nữa",
+        ],
+        correct: 0,
+        explanation:
+          "Doạ kiện hoặc báo chí có hệ quả pháp lý và danh tiếng, nên câu trả lời đầu tiên phải do người có thẩm quyền và bộ phận pháp chế cân nhắc. Viết hoa và chấm than chỉ là cảm xúc. Nhắn hai lần trong ngày thường chỉ là khách sốt ruột. Nói sẽ bỏ shop là mất khách, đáng lo nhưng vẫn nằm trong tầm tự xử lý.",
+      },
+      {
+        question: "Khi dán thư khiếu nại vào AI, bạn nên làm gì trước?",
+        options: [
+          "Xoá số điện thoại, địa chỉ và số đơn không cần thiết",
+          "Giữ nguyên toàn bộ để AI hiểu đủ ngữ cảnh của khách",
+          "Đổi tên khách thành tên bạn để AI viết gần gũi hơn",
+          "Cắt bớt phần khách chửi để AI khỏi bị ảnh hưởng",
+        ],
+        correct: 0,
+        explanation:
+          "Câu lệnh chỉ cần sự việc và cảm xúc, không cần số điện thoại hay địa chỉ; dữ liệu khách nên ở lại trong hệ thống của công ty. Giữ nguyên tất cả là đưa thông tin không cần thiết ra ngoài. Đổi tên khách thành tên bạn làm nháp lẫn lộn người. Cắt phần khách chửi thì mất đúng chỗ cho thấy khách đang giận điều gì.",
+      },
+    ],
+    keyTakeaways: [
+      "AI tách thư giận thành: sự việc, cảm xúc, điều khách muốn.",
+      "Đối chiếu sự việc với dữ liệu đơn thật trước khi xin lỗi.",
+      "Xin lỗi gọi đúng tên sự việc; không có chữ \"nếu\" và \"tuy nhiên\".",
+      "Mức bù do người có thẩm quyền chọn trong chính sách, AI không tự hứa.",
+      "Doạ kiện, báo chí, thiệt hại lớn: chuyển cấp trên, hỏi pháp chế.",
+    ],
+    practicePrompt: {
+      question:
+        "Thư khách: \"Áo giao sai màu, tôi nhắn hôm qua không ai trả lời.\" Đơn thật ghi đúng màu khách đặt. Nháp nào hợp lý?",
+      options: [
+        "Xin lỗi vì chưa trả lời kịp, nhờ khách gửi ảnh áo để kiểm tra",
+        "Khẳng định giao đúng màu theo đơn và mời khách xem lại đơn hàng",
+        "Xin lỗi vì giao sai màu và hứa đổi ngay chiếc áo mới cho khách",
+        "Không trả lời nữa vì đơn ghi đúng màu, khách nhầm là rõ ràng",
+      ],
+      correct: 0,
+      explanation:
+        "Điều chắc chắn đúng là khách nhắn mà chưa ai trả lời, nên xin lỗi điểm đó. Sự việc \"sai màu\" chưa được xác nhận nên cần ảnh để kiểm. Khẳng định ngay là khách sai làm mất thiện cảm khi chưa nhìn thấy hàng. Hứa đổi ngay là hứa dựa trên điều chưa kiểm. Im lặng thêm là lặp lại đúng lỗi khách đang phàn nàn.",
+    },
+    summary: {
+      keyIdea: "AI giúp bạn bình tĩnh đọc cơn giận; xin lỗi đúng chỗ và quyết định bù vẫn là việc của người.",
+      formula: "AI tách sự việc → bạn đối chiếu đơn thật → AI nháp xin lỗi → người có thẩm quyền chọn mức bù → gửi.",
+      commonMistake: "Để bản nháp hứa hoàn tiền hoặc voucher khi chưa ai có thẩm quyền đồng ý.",
+      action: "Lưu một câu lệnh tách khiếu nại thành sự việc, cảm xúc và điều khách muốn.",
+    },
+    application: {
+      title: "Làm ngay hôm nay",
+      message:
+        "Tìm một thư khiếu nại cũ (xoá thông tin cá nhân) và chạy câu lệnh tách thành sự việc, cảm xúc, điều khách muốn. Rồi ghi ra giấy ba mức bù mà chính sách của bạn cho phép và ai được duyệt từng mức.",
+      secondary: "Viết một dòng: khi nào bạn chuyển ca cho cấp trên, và chuyển cho ai.",
+    },
+    sections: [
+      {
+        type: "lead",
+        text: "Sáng thứ Hai, hộp thư có một tin viết hoa toàn bộ, lúc 6 giờ, có chữ \"đăng lên mạng\". Phản xạ tự nhiên là cãi hoặc xin lỗi thật nhiều rồi hứa bừa. Bài này dạy cách để AI giúp bạn bình tĩnh và đọc đúng, còn bạn giữ phần chỉ người mới làm được: quyết định.",
+      },
+      {
+        type: "feynman",
+        title: "Xử lý khiếu nại với AI đơn giản hơn bạn nghĩ",
+        intro: "Hình dung một phòng khám. Điều dưỡng ghi lại bệnh nhân đau ở đâu, từ khi nào, rồi mới đến bác sĩ quyết định chữa gì. AI làm việc của người điều dưỡng ghi lại.",
+        columns: ["Bước", "Ở phòng khám", "Khi xử lý khiếu nại"],
+        rows: [
+          ["Ghi triệu chứng", "Điều dưỡng hỏi và ghi: đau ở đâu, bao lâu", "AI tách thư thành sự việc, cảm xúc, điều khách muốn"],
+          ["Kiểm tra", "Đo huyết áp, xem hồ sơ cũ", "Bạn đối chiếu với đơn hàng và lịch sử liên hệ thật"],
+          ["Quyết định chữa", "Bác sĩ chọn thuốc, không phải điều dưỡng", "Người có thẩm quyền chọn mức bù trong chính sách"],
+          ["Ca nặng", "Chuyển bệnh viện tuyến trên", "Doạ kiện, báo chí, thiệt hại lớn: chuyển cấp trên và pháp chế"],
+        ],
+        oneLiner: "AI ghi bệnh án cho bạn; chọn cách chữa vẫn là việc của người có thẩm quyền.",
+      },
+      { type: "heading", text: "Khách giận thực ra muốn gì" },
+      {
+        type: "paragraph",
+        text: "Một thư giận dữ thường trộn ba thứ: sự việc (đơn trễ 5 ngày), cảm xúc (bực vì gọi 3 lần không ai nghe) và điều khách muốn (được trả lời, được giao hàng, hoặc được bù). Khi trộn lẫn, ta chỉ nghe thấy cảm xúc và phản ứng lại nó. Tách ra rồi, mỗi thứ có một cách đáp riêng: sự việc thì kiểm, cảm xúc thì nhận, điều khách muốn thì xem chính sách cho phép gì.",
+      },
+      {
+        type: "code",
+        language: "text",
+        caption: "Câu lệnh tách khiếu nại",
+        code: "Dưới đây là thư khiếu nại của một khách hàng (đã xoá thông tin cá nhân).\nTách thành ba mục:\n1. Sự việc khách nêu (mỗi ý một dòng, chỉ chép lại điều khách nói)\n2. Cảm xúc chính của khách và điều gì làm họ giận nhất\n3. Điều khách muốn (nếu khách chưa nói rõ, ghi \"chưa rõ\")\nKhông đề xuất mức đền bù. Không đoán thêm điều thư không nói.\n\n[dán thư]",
+      },
+      { type: "heading", text: "Lắp câu lệnh soạn thư xin lỗi" },
+      {
+        type: "aiLab",
+        mode: "prompt",
+        title: "Nhờ AI nháp thư xin lỗi cho đơn trễ 5 ngày",
+        task: "Đơn của anh Hải trễ 5 ngày, anh gọi 3 lần không ai nghe. Chính sách shop: được hoàn phí vận chuyển, mức bù cao hơn phải do trưởng nhóm duyệt. Lắp một câu lệnh để AI nháp thư.",
+        parts: [
+          {
+            id: "context",
+            label: "Bối cảnh",
+            options: [
+              { text: "Viết thư xin lỗi khách đang giận.", feedback: "AI không biết đơn nào, trễ bao lâu - nó sẽ viết lời xin lỗi chung chung." },
+              { text: "Đơn của anh Hải giao trễ 5 ngày; anh đã gọi 3 lần vào giờ làm việc mà không ai nghe máy.", good: true, feedback: "Có đủ sự việc để AI gọi đúng tên từng điểm khách bực." },
+            ],
+          },
+          {
+            id: "task",
+            label: "Việc cần làm",
+            options: [
+              { text: "Xin lỗi đúng hai điểm trên, báo sẽ hoàn phí vận chuyển, và nói trưởng nhóm sẽ liên hệ về phương án khác.", good: true, feedback: "Chỉ hứa điều chính sách cho phép và chỉ rõ ai quyết phần còn lại." },
+              { text: "Làm sao cho anh ấy hết giận và không đăng lên mạng.", feedback: "Mục tiêu mơ hồ - AI dễ hứa những thứ shop không có quyền hứa." },
+            ],
+          },
+          {
+            id: "format",
+            label: "Giọng và độ dài",
+            options: [
+              { text: "Thật chân thành và cảm động.", feedback: "Kiểu yêu cầu này sinh ra văn sáo rỗng, khách càng thấy giả." },
+              { text: "Dưới 100 chữ, xưng \"em\" - \"anh\", không dùng \"tuy nhiên\" hay \"nếu anh cảm thấy\".", good: true, feedback: "Giọng, độ dài và các cụm nên tránh đều rõ, bản nháp gần như dùng được ngay." },
+            ],
+          },
+        ],
+        responses: [
+          {
+            requires: ["context", "task", "format"],
+            text: "Chào anh Hải,\n\nEm xin lỗi vì đơn của anh giao trễ 5 ngày, và vì anh đã gọi 3 lần mà không ai nghe máy. Đó là lỗi của bên em.\n\nShop sẽ hoàn phí vận chuyển cho đơn này. Chị trưởng nhóm sẽ liên hệ anh trong hôm nay để trao đổi thêm.\n\nEm cảm ơn anh đã báo cho shop.",
+          },
+          {
+            requires: ["context"],
+            text: "Chào anh Hải,\n\nChúng tôi rất tiếc về sự việc và chân thành xin lỗi nếu anh cảm thấy không hài lòng. Chúng tôi luôn đặt khách hàng lên hàng đầu và sẽ cố gắng cải thiện...\n\n(Có nhắc đơn trễ nhưng dùng \"nếu anh cảm thấy\", không nói gì về 3 cuộc gọi nhỡ và không có bước tiếp theo.)",
+          },
+          {
+            text: "Kính gửi quý khách,\n\nChúng tôi thành thật xin lỗi về mọi bất tiện. Để bù đắp, shop xin hoàn tiền toàn bộ đơn hàng và tặng voucher 500.000đ...\n\n(AI không biết đơn nào, nên tự bịa mức bù mà shop chưa hề duyệt.)",
+          },
+        ],
+      },
+      { type: "heading", text: "Hai chỗ AI hay trượt" },
+      {
+        type: "list",
+        items: [
+          "Chữ \"nếu\": \"xin lỗi nếu anh cảm thấy\" biến lỗi của bạn thành cảm giác của khách. Xoá.",
+          "Chữ \"tuy nhiên\": xin lỗi xong đổ lỗi cho đơn vị vận chuyển là xoá luôn lời xin lỗi.",
+          "Hứa mức bù: AI viết \"hoàn toàn bộ, tặng voucher\" trôi chảy như viết điều đúng. Mức bù luôn do người có thẩm quyền duyệt.",
+          "Bịa sự việc: khách nói \"trễ 5 ngày\", AI có thể viết \"trễ gần một tuần\" hay \"trễ do thời tiết\" mà không ai nói vậy.",
+        ],
+      },
+      {
+        type: "flow",
+        title: "Từ thư giận dữ đến câu trả lời đầu tiên",
+        steps: [
+          { label: "AI tách thư", detail: "Bạn dán thư đã xoá thông tin cá nhân. AI trả ba mục: sự việc, cảm xúc, điều khách muốn." },
+          { label: "Bạn đối chiếu", detail: "Mở đơn hàng và lịch sử cuộc gọi. Sự việc nào khớp, sự việc nào khách nói quá hoặc nhớ nhầm?" },
+          { label: "AI nháp xin lỗi", detail: "Chỉ xin lỗi những điểm đã kiểm là đúng, gọi tên từng điểm. Chưa hứa mức bù." },
+          { label: "Chọn phương án bù", detail: "Người có thẩm quyền chọn trong những mức chính sách cho phép; vượt mức thì xin cấp trên." },
+          { label: "Bạn đọc lần cuối rồi gửi", detail: "Xoá chữ \"nếu\", \"tuy nhiên\", mọi lời hứa chưa được duyệt. Ghi lại ca vào hồ sơ khách." },
+        ],
+      },
+      {
+        type: "scenario",
+        title: "Khách doạ đăng lên mạng",
+        start: "s1",
+        nodes: {
+          s1: {
+            text: "Chị Mai nhắn: đơn trễ 5 ngày, gọi 3 lần không ai nghe, chị sẽ đăng lên mạng và nhờ luật sư. Bạn đã có bản AI tách sự việc.",
+            choices: [
+              { label: "Nhờ AI viết thư xin lỗi, hứa hoàn tiền toàn bộ để chị Mai yên tâm", next: "bad_promise" },
+              { label: "Đối chiếu sự việc với đơn thật, rồi báo cấp trên vì có chữ \"luật sư\"", next: "s2" },
+              { label: "Trả lời chị Mai rằng shop giao đúng quy trình và mời chị xem lại điều khoản", next: "bad_argue" },
+            ],
+          },
+          bad_promise: {
+            text: "Bản nháp hứa hoàn toàn bộ mà chưa ai duyệt. Chị Mai chụp màn hình lời hứa; sau đó shop bị buộc thực hiện điều nhân viên chưa có quyền hứa, và trưởng nhóm phải giải thích.",
+            ending: "bad",
+          },
+          bad_argue: {
+            text: "Chị Mai thấy mình bị cãi lại và đăng bài lên mạng, kèm ảnh chụp câu trả lời. Việc có luật sư giờ đã cộng thêm cả chuyện danh tiếng.",
+            ending: "bad",
+          },
+          s2: {
+            text: "Sự việc khớp: đơn trễ 5 ngày và có 3 cuộc gọi nhỡ. Cấp trên nhắn lại: \"Em nháp lời xin lỗi đúng hai điểm đó, anh sẽ chọn phương án bù và gọi chị Mai.\"",
+            choices: [
+              { label: "Nhờ AI nháp thư chỉ xin lỗi hai điểm đã kiểm, nêu rõ có người liên hệ hôm nay", next: "good" },
+              { label: "Chờ anh gọi xong mới trả lời chị Mai, không nhắn gì trước", next: "bad_silence" },
+            ],
+          },
+          good: {
+            text: "Chị Mai nhận thư xin lỗi đúng chỗ và biết ai sẽ liên hệ. Cấp trên gọi và chọn mức bù trong chính sách. Chị rút lại ý định đăng bài. Ca được ghi vào hồ sơ.",
+            ending: "good",
+          },
+          bad_silence: {
+            text: "Chị Mai chờ thêm cả buổi mà không thấy hồi âm nào - đúng cảm giác \"không ai nghe\" chị đang phàn nàn. Chị đăng bài lên trước khi anh kịp gọi.",
+            ending: "bad",
+          },
+        },
+      },
+      {
+        type: "callout",
+        label: "Việc nào của ai",
+        text: "AI làm được: tách thư, nháp xin lỗi, gợi ý câu hỏi cần xác minh. Người quyết định: mức bù, có nhận lỗi hay không, có chuyển cấp trên hay không. Mọi điều liên quan pháp lý (luật sư, khiếu nại chính thức) hỏi bộ phận pháp chế trước khi trả lời.",
+      },
+      {
+        type: "closing",
+        lines: [
+          "Xin lỗi đúng chỗ là kỹ năng; AI giúp bạn giữ bình tĩnh để làm được, không làm thay phần quyết định.",
+          "Bài sau: soạn follow-up sau báo giá, có mốc thời gian và không làm phiền khách.",
+        ],
+      },
+    ],
+  },
+  {
+    id: 1847,
+    slug: "ai-soan-follow-up-sau-bao-gia-va-demo-co-moc-thoi-gian",
+    title: "Chặng 28, Bài 8: Follow-up sau báo giá hoặc demo - có mốc thời gian, không làm phiền",
+    subtitle: "Chuỗi ba tin nhắc theo mốc ngày, mỗi tin thêm một giá trị; dừng khi khách nói không.",
+    duration: "8 phút",
+    difficulty: "Dễ",
+    emoji: "⏰",
+    track: "personal",
+    isFundamental: false,
+    whyItMatters:
+      "Báo giá gửi đi rồi im lặng là chỗ nhiều thương vụ chết dần, không phải vì khách từ chối mà vì không ai nhắc đúng lúc. Nhưng nhắc kém còn tệ hơn không nhắc: tin nào cũng chỉ hỏi \"anh xem chưa ạ\" thì khách thấy phiền, và tin doạ \"hết ưu đãi hôm nay\" khi không có ưu đãi thật thì mất lòng tin. AI soạn nhanh được cả chuỗi tin theo mốc; bạn giữ phần không được bịa.",
+    openingQuestion:
+      "Bốn ngày trước bạn gửi báo giá cho anh Hùng, chủ xưởng in. Anh chưa trả lời. Nhờ AI làm gì là hợp lý?",
+    openingOptions: [
+      "Soạn chuỗi 3 tin theo mốc ngày, mỗi tin thêm một điều có ích cho anh Hùng",
+      "Soạn một tin \"anh xem báo giá chưa ạ\" rồi gửi mỗi ngày đến khi anh trả lời",
+      "Viết tin nói hôm nay là hạn cuối giảm giá để anh Hùng quyết định nhanh hơn",
+      "Chờ hai tuần mà không nhắc gì vì hỏi sớm sẽ làm khách khó chịu hơn nhiều",
+    ],
+    correctOption: 0,
+    explanation:
+      "Nhắc hợp lý là có lịch và có lý do: ngày thứ ba một tin ngắn, ngày thứ bảy một tin kèm thông tin mới, ngày thứ mười bốn một tin đóng lại nhẹ nhàng. Mỗi tin cho khách thêm một thứ hữu ích. Nhắc mỗi ngày là làm phiền, khách chặn số. Hạn cuối giả là lời hứa bịa, mất tin cậy khi khách nhận ra. Chờ hai tuần thì khách đã quên và quyết định sang nhà cung cấp khác.",
+    diagram: [
+      { label: "Gửi báo giá hoặc demo xong, ghi ngày và người quyết định", arrow: true },
+      { label: "Ngày 3: tin ngắn, hỏi có cần làm rõ điều gì", arrow: true },
+      { label: "Ngày 7: tin thêm một giá trị mới (ví dụ, tài liệu, mẫu)", arrow: true },
+      { label: "Ngày 14: tin đóng nhẹ nhàng, để ngỏ cửa", arrow: true },
+      { label: "Khách nói không hoặc hẹn lại: dừng chuỗi, ghi vào CRM" },
+    ],
+    realWorldExample: {
+      company: "Tình huống minh hoạ",
+      description:
+        "Một nhân viên kinh doanh in ấn gửi báo giá cho một xưởng và không nhận được hồi âm. Thay vì nhắn mỗi ngày, anh nhờ AI soạn ba tin theo mốc ngày 3, 7 và 14, mỗi tin thêm một thứ: câu hỏi làm rõ, ảnh một mẫu in thật của xưởng, và một lời đóng chuỗi nhẹ nhàng. Anh đọc từng tin, xoá con số khuyến mãi AI tự thêm, rồi hẹn gửi theo lịch.",
+    },
+    quiz: [
+      {
+        question: "Vì sao mỗi tin follow-up nên thêm một điều mới cho khách?",
+        options: [
+          "Để khách có lý do đọc, không thấy bị nhắc suông",
+          "Để tin dài hơn, trông chuyên nghiệp hơn khi khách mở ra",
+          "Để khách không nhận ra đây là chuỗi nhắc tự động soạn sẵn",
+          "Để bù cho việc gửi tin dồn dập trong ít ngày",
+        ],
+        correct: 0,
+        explanation:
+          "Tin chỉ hỏi \"anh xem chưa ạ\" không cho khách gì ngoài áp lực. Một ví dụ, một mẫu, một câu trả lời cho thắc mắc thường gặp cho khách lý do mở tin. Độ dài không làm tin chuyên nghiệp hơn. Che việc mình soạn theo lịch không phải mục tiêu. Và gửi dồn dập chính là điều cần tránh, không phải điều cần bù.",
+      },
+      {
+        question: "AI nháp tin có câu \"ưu đãi chỉ áp dụng đến hết thứ Sáu\". Công ty không có ưu đãi này. Bạn làm gì?",
+        options: [
+          "Xoá câu đó, vì công ty không có ưu đãi như vậy",
+          "Giữ lại để tạo áp lực, khách sẽ quyết nhanh hơn",
+          "Đổi thành \"ưu đãi có thể kết thúc sớm\" cho mềm hơn",
+          "Hỏi AI nguồn ưu đãi rồi mới quyết giữ hay xoá",
+        ],
+        correct: 0,
+        explanation:
+          "Hạn cuối và ưu đãi chỉ được nêu khi chúng có thật trong chính sách của công ty. Hạn cuối bịa để ép khách là gieo lời hứa sai và mất lòng tin khi khách kiểm lại. Câu \"có thể kết thúc sớm\" vẫn là áp lực bịa. AI không có nguồn nào cho ưu đãi đó vì nó vừa nghĩ ra.",
+      },
+      {
+        question: "Khi nào nên dừng chuỗi follow-up?",
+        options: [
+          "Khi khách nói không cần hoặc hẹn lại vào ngày khác",
+          "Khi đã gửi được hai tin mà khách chưa mở tin nào cả",
+          "Khi đối thủ của bạn cũng vừa gửi báo giá cho khách đó",
+          "Khi sếp hỏi tiến độ vì thương vụ đã kéo dài quá lâu",
+        ],
+        correct: 0,
+        explanation:
+          "Khách nói không thì tiếp tục nhắc là làm phiền và có thể vi phạm sự tin cậy. Hẹn lại thì tôn trọng ngày khách đã hẹn. Chưa mở hai tin chưa chắc là từ chối. Đối thủ gửi báo giá là lý do để nhắc có giá trị hơn, không phải để dừng. Sếp hỏi tiến độ là nhu cầu của bạn, không phải của khách.",
+      },
+      {
+        question: "Bản nháp AI viết \"anh đã đồng ý với bản thiết kế hôm demo\". Bạn nên kiểm điều gì?",
+        options: [
+          "Ghi chú buổi demo có nói khách đồng ý không",
+          "Câu đó có hay và thuyết phục khách hay chưa",
+          "Tin có đủ ba ý chính theo mẫu bạn đã đưa hay chưa",
+          "Câu đó có giống văn phong các email cũ của bạn hay không",
+        ],
+        correct: 0,
+        explanation:
+          "Chỉ ghi chú thật của buổi demo mới cho biết khách có đồng ý hay không. AI hay viết điều khách chưa nói cho câu chữ trôi chảy. Hay hoặc thuyết phục không liên quan đến đúng sai. Đủ ba ý là kiểm cấu trúc, không kiểm sự thật. Giống văn phong cũ chỉ là kiểm giọng, không phải nội dung.",
+      },
+      {
+        question: "Khách đã nói \"tuần sau tôi mới họp ngân sách\". Chuỗi follow-up nên điều chỉnh thế nào?",
+        options: [
+          "Dời tin kế tiếp sang sau buổi họp của khách",
+          "Vẫn gửi đúng lịch cũ để không bị lệch kế hoạch",
+          "Gửi thêm một tin nhắc ngay trước buổi họp của khách",
+          "Đổi sang gọi điện mỗi ngày để khách nhớ tới mình",
+        ],
+        correct: 0,
+        explanation:
+          "Lịch nhắc phục vụ khách, không phải ngược lại. Khách đã cho biết mốc quyết định, nên nhắc sau mốc đó. Gửi đúng lịch cũ là nhắc khi khách chưa thể trả lời. Nhắc ngay trước họp làm phiền lúc khách bận nhất. Gọi mỗi ngày còn tệ hơn tin nhắn dồn dập.",
+      },
+    ],
+    keyTakeaways: [
+      "Chuỗi ngắn theo mốc: khoảng ngày 3, ngày 7, ngày 14; mỗi tin thêm một giá trị.",
+      "Không hạn cuối giả, không ưu đãi bịa: chỉ nêu điều có thật.",
+      "Đối chiếu mọi điều \"khách đã đồng ý\" với ghi chú buổi demo.",
+      "Khách nói không hoặc hẹn lại thì dừng và ghi vào CRM.",
+      "Lịch nhắc theo mốc của khách, không theo lịch của bạn.",
+    ],
+    practicePrompt: {
+      question:
+        "Khách xem demo, nói \"để tôi bàn với vợ tôi, cuối tuần sau báo lại\". Tin follow-up nào hợp lý?",
+      options: [
+        "Cảm ơn anh, gửi tài liệu tóm tắt, hẹn nhắn lại vào đầu tuần sau nữa",
+        "Nhắn ngay hôm sau hỏi anh bàn với chị xong chưa, có cần gì thêm không",
+        "Nhắn rằng gói này sắp hết chỗ để anh và chị quyết định trong tuần này",
+        "Không nhắn gì cho tới khi anh tự liên hệ vì anh đã nói sẽ báo lại rồi",
+      ],
+      correct: 0,
+      explanation:
+        "Khách đã cho mốc: cuối tuần sau. Một tin cảm ơn kèm tài liệu để anh và vợ tham khảo là có giá trị, và hẹn nhắn lại sau mốc là tôn trọng. Hỏi ngay hôm sau là bỏ qua mốc khách nói. \"Sắp hết chỗ\" là áp lực bịa. Không làm gì cũng bỏ mất cơ hội, vì khách có thể quên hoặc chuyển sang bên khác.",
+    },
+    summary: {
+      keyIdea: "Follow-up tốt là có lịch, có lý do và có điểm dừng; AI soạn nhanh, bạn giữ phần không được bịa.",
+      formula: "Ghi mốc → AI soạn chuỗi 3 tin → bạn xoá điều bịa → gửi đúng lịch → dừng khi khách nói không.",
+      commonMistake: "Để AI thêm hạn cuối hoặc ưu đãi mà công ty không có, rồi gửi đi nguyên văn.",
+      action: "Chọn một báo giá đang im lặng và soạn chuỗi ba tin cho nó.",
+    },
+    application: {
+      title: "Làm ngay hôm nay",
+      message:
+        "Chọn một báo giá bạn đã gửi mà chưa có phản hồi. Nhờ AI soạn ba tin theo mốc ngày 3, 7, 14, mỗi tin thêm một thứ có ích. Đọc từng tin, xoá mọi con số hoặc ưu đãi công ty không có, rồi đặt lịch nhắc để gửi.",
+      secondary: "Ghi vào CRM ngày bạn hẹn gửi tin kế tiếp.",
+    },
+    sections: [
+      {
+        type: "lead",
+        text: "Báo giá đã gửi. Ba ngày, rồi bốn ngày, hộp thư im lặng. Nhiều thương vụ nguội đi chính ở đoạn này, không phải vì khách từ chối mà vì không ai nhắc, hoặc nhắc dở đến mức khách chán. AI soạn được cả chuỗi tin trong vài phút; câu hỏi là chuỗi đó nên trông thế nào.",
+      },
+      {
+        type: "feynman",
+        title: "Follow-up đơn giản hơn bạn nghĩ",
+        intro: "Nhắc khách giống tưới một cây mới trồng. Tưới đúng lịch với lượng vừa phải thì cây lớn. Tưới dồn mỗi ngày thì úng và chết.",
+        columns: ["Trồng cây", "Nhắc khách", "AI giúp gì"],
+        rows: [
+          ["Tưới đều theo lịch", "Nhắc theo mốc ngày 3, 7, 14", "Soạn sẵn cả chuỗi để bạn không quên"],
+          ["Mỗi lần thêm nước hợp lượng", "Mỗi tin thêm một điều có ích", "Gợi ý ví dụ, mẫu, câu trả lời cho thắc mắc thường gặp"],
+          ["Đất ướt rồi thì dừng tưới", "Khách nói không hoặc hẹn lại thì dừng", "Không có: bạn phải nhớ dừng"],
+          ["Không tưới thuốc lạ", "Không hứa hạn cuối hay ưu đãi bịa", "AI có thể tự thêm; bạn phải xoá"],
+        ],
+        oneLiner: "Nhắc đúng lịch, đúng lượng, và biết lúc dừng - AI soạn, bạn giữ nhịp và giữ sự thật.",
+      },
+      { type: "heading", text: "Ba tin, ba mốc" },
+      {
+        type: "paragraph",
+        text: "Chuỗi đơn giản nhất chỉ có ba tin. Tin thứ nhất, khoảng ngày thứ ba: ngắn, hỏi khách có điều gì cần làm rõ trong báo giá không. Tin thứ hai, khoảng ngày thứ bảy: kèm một thứ khách chưa có, như một mẫu thật hay câu trả lời cho thắc mắc mà khách ngành đó hay hỏi. Tin thứ ba, khoảng ngày mười bốn: đóng chuỗi nhẹ nhàng, nói bạn sẽ không làm phiền thêm và để ngỏ cửa. Đây là mốc gợi ý, không phải luật; nếu khách đã nói ngày họp, lịch theo ngày của khách.",
+      },
+      {
+        type: "flow",
+        title: "Chuỗi follow-up từ ngày gửi báo giá",
+        steps: [
+          { label: "Ngày gửi: ghi mốc", detail: "Ghi vào CRM ngày gửi, người quyết định là ai, khách đã nói mốc nào (họp ngân sách, hạn chốt). Đó là cơ sở cho lịch nhắc." },
+          { label: "Ngày 3: hỏi có cần làm rõ", detail: "Tin ngắn, một câu hỏi mở: có điểm nào trong báo giá cần bạn giải thích thêm không. Chưa nhắc chuyện quyết định." },
+          { label: "Ngày 7: thêm giá trị", detail: "Gửi một thứ có ích thật: một mẫu, một ví dụ khách cùng ngành, hoặc câu trả lời cho thắc mắc hay gặp. Chỉ nêu điều có thật." },
+          { label: "Ngày 14: đóng nhẹ nhàng", detail: "Nói bạn sẽ không nhắc thêm, để ngỏ cửa nếu khách cần sau này. Nhiều khách trả lời chính ở tin này." },
+          { label: "Dừng và ghi lại", detail: "Khách trả lời không hoặc hẹn lại: dừng chuỗi, ghi vào CRM và ngày nên nhắc lại nếu có." },
+        ],
+      },
+      { type: "heading", text: "Kiểm bản nháp AI trước khi gửi" },
+      {
+        type: "aiLab",
+        mode: "spotError",
+        title: "Soát tin follow-up sau buổi demo",
+        task: "Ghi chú buổi demo chỉ có: anh Hùng xem bản demo, hỏi về thời gian in mẫu, chưa nói đồng ý hay không, hẹn họp ngân sách tuần sau. AI viết tin follow-up ngày thứ 3. Đánh dấu những đoạn AI tự thêm.",
+        segments: [
+          { text: "Chào anh Hùng, cảm ơn anh đã dành thời gian xem bản demo hôm thứ Ba." },
+          { text: "Em nhớ anh có hỏi về thời gian in mẫu, em gửi anh bảng thời gian dự kiến ở dưới ạ." },
+          { text: "Như anh đã đồng ý với bản thiết kế trong buổi demo, em sẽ chuẩn bị hợp đồng gửi anh ngay.", error: "Ghi chú nói anh Hùng chưa nói đồng ý hay không. AI tự điền \"đã đồng ý\" và bịa luôn việc soạn hợp đồng." },
+          { text: "Ưu đãi giảm 10% chỉ áp dụng cho đơn chốt đến hết thứ Sáu này.", error: "Ghi chú không nhắc ưu đãi nào. Hạn cuối bịa để ép khách quyết nhanh." },
+          { text: "Hơn 50 xưởng in trong khu vực đã dùng dịch vụ của chúng em.", error: "Con số 50 không có trong ghi chú và không có nguồn; đây là số liệu AI bịa để nghe thuyết phục." },
+          { text: "Tuần sau anh họp ngân sách, nếu anh cần thêm thông tin cho buổi đó, anh cứ nhắn em nhé." },
+        ],
+      },
+      {
+        type: "scenario",
+        title: "Khách im lặng sau báo giá",
+        start: "s1",
+        nodes: {
+          s1: {
+            text: "Sáu ngày sau khi gửi báo giá, chị Thu chưa trả lời. Bạn đã gửi tin ngày 3 và chưa được hồi âm. Bạn nhờ AI soạn tin thứ hai.",
+            choices: [
+              { label: "Gửi tin \"chị xem báo giá chưa ạ\" một lần nữa cho chắc", next: "s_bland" },
+              { label: "Gửi tin có ảnh một mẫu thật và trả lời một thắc mắc ngành hay hỏi", next: "s2" },
+              { label: "Gửi tin nói giá chỉ giữ đến hết tuần để chị Thu phải quyết", next: "bad_fake" },
+            ],
+          },
+          s_bland: {
+            text: "Chị Thu thấy tin thứ hai lặp lại tin thứ nhất, không có gì mới. Chị không đọc kỹ và tin thứ ba của bạn cũng bị bỏ qua.",
+            ending: "bad",
+          },
+          bad_fake: {
+            text: "Chị Thu hỏi lại nhà cung cấp khác và biết giá không có hạn nào. Chị nhận ra bạn tạo áp lực giả và không quay lại nữa.",
+            ending: "bad",
+          },
+          s2: {
+            text: "Chị Thu trả lời ngắn: \"Cảm ơn em, chị đang chờ họp ngân sách, khoảng 10 ngày nữa chị báo.\"",
+            choices: [
+              { label: "Ghi mốc vào CRM, hẹn nhắn lại sau ngày đó, không gửi thêm gì trước đó", next: "good" },
+              { label: "Vẫn gửi tin ngày 14 đúng lịch cũ vì kế hoạch đã đặt", next: "bad_ignore" },
+            ],
+          },
+          good: {
+            text: "Chị Thu thấy bạn tôn trọng thời gian của mình. Sau buổi họp, chị chủ động nhắn hỏi thêm về hợp đồng.",
+            ending: "good",
+          },
+          bad_ignore: {
+            text: "Tin ngày 14 đến khi chị Thu chưa họp, chị cảm thấy như bạn không nghe điều chị đã nói. Chị chậm trả lời và thương vụ nguội đi.",
+            ending: "bad",
+          },
+        },
+      },
+      {
+        type: "callout",
+        label: "Trước khi bấm gửi",
+        text: "Đọc từng tin và hỏi ba câu: con số này có trong ghi chú hoặc bảng giá không, điều \"khách đã đồng ý\" có trong ghi chú không, hạn cuối này có thật không. Không trả lời được thì xoá câu đó.",
+      },
+      {
+        type: "closing",
+        lines: [
+          "Ba tin đúng nhịp, mỗi tin có ích, và một điểm dừng rõ ràng thắng mười tin \"xem chưa ạ\".",
+          "Bài sau: dựng kho câu trả lời thường gặp cho cả đội, có người duyệt và ngày cập nhật.",
+        ],
+      },
+    ],
+  },
+  {
+    id: 1848,
+    slug: "ai-dung-kho-cau-tra-loi-thuong-gap-co-nguoi-duyet-va-ngay-cap-nhat",
+    title: "Chặng 28, Bài 9: Kho câu trả lời thường gặp cho cả đội - có người duyệt, có ngày cập nhật",
+    subtitle: "Một câu hỏi, một đáp án chuẩn, một người chịu trách nhiệm và một ngày kiểm lại.",
+    duration: "10 phút",
+    difficulty: "Trung bình",
+    emoji: "📚",
+    track: "personal",
+    isFundamental: false,
+    whyItMatters:
+      "Khi ba nhân viên trả lời cùng câu hỏi bằng ba cách, khách nhận ba đáp án và bắt đầu nghi ngờ cả ba. Một kho câu trả lời chung giải quyết chuyện đó, và AI dựng nháp nó rất nhanh. Nhưng kho chỉ đáng tin khi mỗi mục có người duyệt và có ngày kiểm lại; một kho cũ mà cả đội cứ chép theo thì tệ hơn không có kho.",
+    openingQuestion:
+      "Ba nhân viên chăm sóc khách hàng trả lời cùng câu \"đổi trả trong mấy ngày?\" theo ba cách khác nhau. Dùng AI thế nào để cả đội nói cùng một giọng?",
+    openingOptions: [
+      "Gom câu hỏi thật, nhờ AI nháp đáp án từ chính sách, người duyệt và ghi ngày",
+      "Nhờ AI tự viết đáp án cho mọi câu hỏi khách có thể hỏi rồi dán vào kho ngay",
+      "Chọn đáp án của người trả lời nhanh nhất trong đội và bắt cả đội chép theo",
+      "Nhờ AI trả lời trực tiếp từng khách mỗi lần, không cần lưu đáp án chuẩn nào",
+    ],
+    correctOption: 0,
+    explanation:
+      "Kho tốt bắt đầu từ câu hỏi khách thật sự hỏi, và đáp án phải từ chính sách thật của công ty; AI chỉ nháp giúp và người có trách nhiệm duyệt. Ghi ngày để biết khi nào kiểm lại. AI tự viết đáp án cho mọi câu hỏi sẽ điền cả những mục nó không biết. Chép theo người nhanh nhất chỉ nhân bản cách trả lời của một người, có thể sai. Để AI trả lời riêng từng khách thì mỗi khách lại nhận một đáp án khác.",
+    diagram: [
+      { label: "Gom câu khách hay hỏi từ tin nhắn thật", arrow: true },
+      { label: "AI nháp đáp án, chỉ dùng chính sách bạn dán vào", arrow: true },
+      { label: "Chủ mục duyệt từng đáp án", arrow: true },
+      { label: "Ghi ngày duyệt và ngày phải kiểm lại", arrow: true },
+      { label: "Chính sách đổi: sửa đáp án, cập nhật ngày, báo cả đội" },
+    ],
+    realWorldExample: {
+      company: "Tình huống minh hoạ",
+      description:
+        "Một shop có 3 nhân viên chăm sóc khách hàng thấy cùng câu hỏi về đổi trả nhận ba đáp án khác nhau. Chị trưởng nhóm gom 20 câu hỏi hay gặp từ tin nhắn tháng trước, dán chính sách đổi trả vào AI để nháp đáp án, rồi tự đọc và sửa từng mục. Mỗi mục ghi tên người duyệt và ngày phải kiểm lại; khi chính sách đổi, chị sửa mục liên quan và báo cả nhóm.",
+    },
+    quiz: [
+      {
+        question: "Câu lệnh nháp đáp án FAQ nên dặn AI điều gì khi chính sách bạn dán không nhắc tới câu hỏi?",
+        options: [
+          "Ghi \"cần hỏi người phụ trách\", không tự đoán đáp án",
+          "Trả lời theo cách các shop khác thường làm trên thị trường",
+          "Bỏ qua câu hỏi đó và chuyển sang câu tiếp theo cho nhanh",
+          "Viết đáp án chung chung sao cho không bao giờ bị sai",
+        ],
+        correct: 0,
+        explanation:
+          "Một đáp án sai trong kho được cả đội chép theo, nên chỗ trống an toàn hơn chỗ điền đoán. Ghi \"cần hỏi\" cho bạn biết đúng chỗ phải hỏi người phụ trách. Theo cách các shop khác là mượn chính sách của người khác. Bỏ qua thì kho có lỗ hổng mà không ai biết. Đáp án chung chung không sai nhưng cũng không giúp khách.",
+      },
+      {
+        question: "Mỗi mục trong kho FAQ tối thiểu nên có gì ngoài câu hỏi và đáp án?",
+        options: [
+          "Tên người duyệt và ngày duyệt hoặc ngày kiểm lại",
+          "Tên nhân viên đã viết mục đó đầu tiên trong đội",
+          "Số lần khách đã hỏi câu này trong ba tháng qua",
+          "Đường dẫn tới cuộc trò chuyện khách hàng gốc",
+        ],
+        correct: 0,
+        explanation:
+          "Người duyệt cho biết ai chịu trách nhiệm nếu đáp án sai; ngày cho biết đáp án còn mới hay đã cũ. Thiếu một trong hai là kho không kiểm soát được. Tên người viết đầu tiên không quyết định đáp án đúng. Số lần hỏi giúp ưu tiên nhưng không bảo đảm đúng. Đường dẫn cuộc trò chuyện gốc còn có nguy cơ lộ dữ liệu khách.",
+      },
+      {
+        question: "Chính sách đổi trả vừa đổi từ 7 ngày sang 10 ngày. Bạn làm gì với kho FAQ?",
+        options: [
+          "Sửa mọi mục nhắc tới chính sách, cập nhật ngày, báo cả đội",
+          "Để nguyên kho vì khách sẽ tự hỏi lại khi thấy chính sách mới",
+          "Chỉ sửa mục có chữ \"đổi trả\" trong tiêu đề câu hỏi mà thôi",
+          "Nhờ AI tự tìm và sửa các mục liên quan rồi lưu thẳng vào kho",
+        ],
+        correct: 0,
+        explanation:
+          "Chính sách thường xuất hiện trong nhiều mục: đổi trả, hoàn tiền, phí vận chuyển. Phải quét hết và ghi ngày mới để cả đội biết. Để nguyên kho là để cả đội nói sai với khách. Chỉ sửa theo tiêu đề sẽ sót các mục nhắc tới chính sách trong đáp án. Để AI sửa rồi lưu thẳng là bỏ bước người duyệt.",
+      },
+      {
+        question: "Ai nên duyệt đáp án về hoàn tiền và điều khoản pháp lý trong kho?",
+        options: [
+          "Người có thẩm quyền về chính sách, cùng pháp chế nếu có điều khoản",
+          "Nhân viên chăm sóc khách hàng nào trả lời nhiều ca nhất trong tháng",
+          "Chính AI đã nháp, vì nó đã đọc đầy đủ chính sách được dán vào",
+          "Bất cứ ai trong đội đọc thấy đáp án hợp lý là có thể duyệt",
+        ],
+        correct: 0,
+        explanation:
+          "Đáp án về tiền và pháp lý ràng buộc công ty, nên phải do người có thẩm quyền duyệt; điều khoản pháp lý hỏi pháp chế. Người trả lời nhiều ca biết khách nhưng không có thẩm quyền chính sách. AI nháp thì không thể tự duyệt chính mình. \"Nghe hợp lý\" không phải tiêu chí, vì AI cũng viết rất hợp lý những điều sai.",
+      },
+      {
+        question: "Vì sao kho FAQ nên ghi \"ngày kiểm lại\" thay vì chỉ ghi ngày viết?",
+        options: [
+          "Để biết khi nào phải xem đáp án còn đúng không",
+          "Để tính mục nào được dùng nhiều nhất hằng năm",
+          "Để sắp mục cũ xuống cuối cho khách tìm dễ hơn nữa",
+          "Để chứng minh với khách rằng đáp án luôn được cập nhật",
+        ],
+        correct: 0,
+        explanation:
+          "Ngày kiểm lại là lời nhắc cho người duyệt: đến ngày đó thì mở ra xem còn đúng không. Ngày viết không nói khi nào nên nghi ngờ. Tần suất dùng không cần ngày kiểm lại. Sắp xếp cho khách tìm là việc của bố cục. Chứng minh với khách là hệ quả nếu làm thật, không phải lý do của trường này.",
+      },
+    ],
+    keyTakeaways: [
+      "Bắt đầu từ câu khách thật hỏi, không phải câu bạn đoán.",
+      "AI nháp đáp án chỉ từ chính sách bạn dán; thiếu thì ghi \"cần hỏi\".",
+      "Mỗi mục: câu hỏi, đáp án, người duyệt, ngày duyệt, ngày kiểm lại.",
+      "Chính sách đổi thì quét và sửa mọi mục liên quan.",
+      "Mục về tiền và pháp lý do người có thẩm quyền duyệt.",
+    ],
+    practicePrompt: {
+      question:
+        "AI nháp: \"Phí vận chuyển đổi trả do khách chịu.\" Chính sách bạn dán chỉ nói \"đổi trả trong 10 ngày\". Bạn làm gì?",
+      options: [
+        "Đánh dấu câu phí vận chuyển là chưa có căn cứ và hỏi người phụ trách",
+        "Giữ câu đó vì phần lớn shop bắt khách chịu phí đổi trả như vậy",
+        "Xoá cả mục đáp án vì AI có vẻ đã nháp sai nhiều chỗ khác nữa",
+        "Sửa thành \"phí vận chuyển đổi trả do shop chịu\" để dễ bán hơn",
+      ],
+      correct: 0,
+      explanation:
+        "Chính sách chỉ nói về số ngày, còn phí vận chuyển là điều AI tự thêm. Việc cần làm là hỏi người phụ trách rồi ghi lại đáp án thật. Theo \"phần lớn shop\" là mượn chính sách của người khác. Xoá cả mục là bỏ luôn phần đúng. Đổi thành \"shop chịu\" chỉ là bịa theo chiều ngược lại.",
+    },
+    summary: {
+      keyIdea: "Kho FAQ đáng tin nhờ nguồn thật, người duyệt và ngày kiểm lại; AI chỉ nháp nhanh giúp.",
+      formula: "Gom câu hỏi thật → AI nháp từ chính sách → chủ mục duyệt → ghi ngày → kiểm lại theo lịch.",
+      commonMistake: "Để AI điền đáp án cho câu chính sách chưa nói, rồi cả đội chép theo.",
+      action: "Chọn 10 câu khách hỏi nhiều nhất và dựng bản nháp kho theo mẫu trong bài.",
+    },
+    application: {
+      title: "Làm ngay hôm nay",
+      message:
+        "Mở tin nhắn khách tuần qua và chọn 10 câu hỏi lặp lại nhiều nhất. Dán chính sách liên quan vào AI, nhờ nháp đáp án và ghi \"cần hỏi\" chỗ chưa có căn cứ. Sau đó ghi tên người sẽ duyệt và ngày kiểm lại cho từng mục.",
+      secondary: "Gửi bản nháp cho người có thẩm quyền chính sách để duyệt các mục về tiền.",
+    },
+    sections: [
+      {
+        type: "lead",
+        text: "Cùng một câu hỏi \"đổi trả trong mấy ngày\", ba nhân viên trả lời ba kiểu. Khách nhận ba đáp án, rồi bắt đầu nghi ngờ cả ba. Chuyện này giải quyết được bằng một kho câu trả lời chung. Bài này dạy cách dựng kho nhanh với AI mà không biến nó thành một kho sai mà cả đội tin.",
+      },
+      {
+        type: "feynman",
+        title: "Kho câu trả lời đơn giản hơn bạn nghĩ",
+        intro: "Nhà hàng có thực đơn: mỗi món có tên, giá, mô tả, và bếp trưởng duyệt trước khi in. Kho câu trả lời chính là thực đơn của đội chăm sóc khách hàng.",
+        columns: ["Thực đơn nhà hàng", "Kho câu trả lời", "AI giúp gì"],
+        rows: [
+          ["Món khách hay gọi", "Câu khách hay hỏi", "Gom và nhóm các câu hỏi từ tin nhắn thật"],
+          ["Mô tả món theo công thức thật", "Đáp án theo chính sách thật", "Nháp đáp án từ chính sách bạn dán vào"],
+          ["Bếp trưởng duyệt trước khi in", "Người có thẩm quyền duyệt", "Không thay được người duyệt"],
+          ["Ngày in thực đơn, in lại khi đổi giá", "Ngày duyệt, ngày kiểm lại", "Nhắc và quét các mục cần sửa khi chính sách đổi"],
+        ],
+        oneLiner: "Kho FAQ là thực đơn của đội: món đúng, giá đúng, có người ký duyệt và có ngày in.",
+      },
+      { type: "heading", text: "Bắt đầu từ câu hỏi thật" },
+      {
+        type: "paragraph",
+        text: "Đừng ngồi đoán khách sẽ hỏi gì. Mở tin nhắn tuần hoặc tháng qua, xoá thông tin cá nhân, và nhờ AI nhóm các câu hỏi giống nhau. Bạn sẽ thấy khoảng chục câu chiếm phần lớn khối lượng: đổi trả, phí vận chuyển, thời gian giao, cách đổi size. Đó là những mục đầu tiên của kho.",
+      },
+      {
+        type: "aiLab",
+        mode: "prompt",
+        title: "Nhờ AI nháp đáp án FAQ từ chính sách",
+        task: "Chính sách shop: đổi trả trong 10 ngày kể từ ngày nhận hàng, hàng còn tem, chưa nói gì về phí vận chuyển đổi trả. Lắp câu lệnh để AI nháp một mục FAQ.",
+        parts: [
+          {
+            id: "source",
+            label: "Nguồn",
+            options: [
+              { text: "Viết đáp án cho câu \"đổi trả trong mấy ngày\" như các shop thời trang thường làm.", feedback: "AI sẽ dùng thói quen chung của thị trường, không phải chính sách của shop bạn." },
+              { text: "Chỉ dùng đoạn chính sách sau: đổi trả trong 10 ngày kể từ ngày nhận, hàng còn tem.", good: true, feedback: "Giới hạn nguồn để mọi điều AI viết truy được về chính sách thật." },
+            ],
+          },
+          {
+            id: "gap",
+            label: "Khi thiếu thông tin",
+            options: [
+              { text: "Nếu chính sách không nói, ghi \"cần hỏi người phụ trách\" và không đoán.", good: true, feedback: "Chỗ trống lộ ra để bạn hỏi; đáp án bịa không lọt vào kho." },
+              { text: "Nếu chính sách không nói, tự bổ sung cho đáp án đầy đủ.", feedback: "AI sẽ bịa phí vận chuyển hoặc điều kiện, và cả đội sẽ chép theo." },
+            ],
+          },
+          {
+            id: "format",
+            label: "Khuôn mục",
+            options: [
+              { text: "Viết một đoạn văn thật hay về chính sách đổi trả.", feedback: "Đoạn văn tự do không tách được trường; không ai lọc hay kiểm được." },
+              { text: "Ghi mỗi mục: Câu hỏi | Đáp án ngắn dưới 40 chữ | Điều kiện | Cần hỏi (nếu có).", good: true, feedback: "Khuôn cố định giúp cả đội đọc giống nhau và thấy ngay chỗ còn thiếu." },
+            ],
+          },
+        ],
+        responses: [
+          {
+            requires: ["source", "gap", "format"],
+            text: "Câu hỏi: Đổi trả trong bao nhiêu ngày?\nĐáp án: Trong 10 ngày kể từ ngày bạn nhận hàng.\nĐiều kiện: Hàng còn tem.\nCần hỏi: Phí vận chuyển khi đổi trả do ai chịu - chính sách chưa nói.",
+          },
+          {
+            requires: ["source"],
+            text: "Câu hỏi: Đổi trả trong bao nhiêu ngày?\nĐáp án: Bạn có thể đổi trả trong 10 ngày kể từ ngày nhận hàng, miễn là hàng còn tem và phí vận chuyển đổi trả do khách chịu.\n\n(Đúng số ngày, nhưng AI tự thêm câu về phí vận chuyển mà chính sách không nói.)",
+          },
+          {
+            text: "Chào bạn! Hầu hết shop cho đổi trả trong 7 đến 14 ngày, còn shop chúng mình hoàn tiền 100% và miễn phí đổi size...\n\n(AI không có chính sách nên tự bịa \"hoàn 100%\" và \"miễn phí đổi size\".)",
+          },
+        ],
+      },
+      {
+        type: "chart",
+        title: "Kho FAQ tiết kiệm được bao nhiêu giờ mỗi tháng",
+        caption: "Số liệu minh hoạ, không phải thống kê thật. Kéo thanh trượt cho khớp với đội của bạn. Giờ tiết kiệm ròng đã trừ thời gian người duyệt và cập nhật kho mỗi tháng.",
+        kind: "line",
+        xLabel: "Tháng",
+        yLabel: "Giờ tiết kiệm ròng (cộng dồn)",
+        x: { from: 1, to: 12, step: 1 },
+        params: [
+          { id: "questions", label: "Số câu hỏi lặp lại mỗi tháng", min: 50, max: 1000, step: 50, value: 300, unit: "câu" },
+          { id: "minutes", label: "Phút tiết kiệm mỗi câu", min: 0, max: 5, step: 0.5, value: 1.5, unit: "phút" },
+          { id: "upkeep", label: "Giờ duyệt và cập nhật kho mỗi tháng", min: 0, max: 20, step: 1, value: 4, unit: "giờ" },
+        ],
+        series: [{ label: "Giờ tiết kiệm ròng cộng dồn", expr: "x * (questions * minutes / 60 - upkeep)" }],
+      },
+      { type: "heading", text: "Bảng mẫu một mục trong kho" },
+      {
+        type: "code",
+        language: "text",
+        caption: "Mẫu một mục FAQ",
+        code: "Câu hỏi: Đổi trả trong bao nhiêu ngày?\nĐáp án: Trong 10 ngày kể từ ngày bạn nhận hàng, hàng còn tem.\nNguồn: Chính sách đổi trả, mục 2\nNgười duyệt: [tên người có thẩm quyền]\nNgày duyệt: [ngày]\nNgày kiểm lại: [ngày, thường sau 3 tháng hoặc khi chính sách đổi]",
+      },
+      {
+        type: "scenario",
+        title: "Chính sách đổi mà kho chưa cập nhật",
+        start: "s1",
+        nodes: {
+          s1: {
+            text: "Công ty vừa kéo dài đổi trả từ 7 lên 10 ngày. Kho FAQ vẫn ghi 7 ngày và cả đội đang chép từ đó. Bạn là người giữ kho.",
+            choices: [
+              { label: "Để nguyên, khách nào hỏi lại thì sửa cho khách đó", next: "bad_wait" },
+              { label: "Quét mọi mục nhắc thời hạn, sửa, ghi ngày mới, báo cả đội", next: "s2" },
+            ],
+          },
+          bad_wait: {
+            text: "Suốt hai tuần nhân viên vẫn nói \"7 ngày\". Một khách bị từ chối đổi ở ngày thứ 8 dù chính sách mới cho phép, và khiếu nại lên cấp trên.",
+            ending: "bad",
+          },
+          s2: {
+            text: "Bạn tìm thấy 4 mục nhắc thời hạn đổi trả. Bạn nhờ AI đề xuất bản sửa để so sánh.",
+            choices: [
+              { label: "Để AI sửa rồi lưu thẳng vào kho cho nhanh", next: "bad_skip" },
+              { label: "Đọc bản sửa, đưa người có thẩm quyền duyệt, rồi cập nhật ngày và báo nhóm", next: "good" },
+            ],
+          },
+          bad_skip: {
+            text: "AI sửa cả một mục về hoàn tiền và ghi \"hoàn ngay trong ngày\", điều chính sách không nói. Cả đội chép theo cho tới khi khách hỏi cả tuần vì sao chưa nhận tiền.",
+            ending: "bad",
+          },
+          good: {
+            text: "Kho được cập nhật một lần, có người duyệt và ngày mới. Cả đội nói đúng \"10 ngày\" từ hôm sau. Ngày kiểm lại tiếp theo đã được ghi.",
+            ending: "good",
+          },
+        },
+      },
+      {
+        type: "callout",
+        label: "Kho cũ nguy hiểm hơn không có kho",
+        text: "Khi không có kho, mỗi người tự kiểm. Khi có kho cũ, cả đội tin và chép theo. Vì vậy ngày kiểm lại quan trọng ngang đáp án. Mục nào về tiền hoặc pháp lý: người có thẩm quyền duyệt, và hỏi pháp chế nếu có điều khoản.",
+      },
+      {
+        type: "closing",
+        lines: [
+          "Kho tốt là kho có nguồn thật, có người ký và có ngày kiểm lại; AI giúp dựng nhanh chứ không thay được ba thứ đó.",
+          "Bài cuối: viết mô tả sản phẩm cho shop online mà không hứa quá sự thật.",
+        ],
+      },
+    ],
+  },
+  {
+    id: 1849,
+    slug: "ai-viet-mo-ta-san-pham-shop-online-khong-hua-qua-su-that",
+    title: "Chặng 28, Bài 10: Viết mô tả sản phẩm và bài đăng cho shop online - không hứa quá sự thật",
+    subtitle: "AI viết hay; bạn giữ tờ nhãn: công dụng, xuất xứ, cam kết phải khớp hàng thật.",
+    duration: "10 phút",
+    difficulty: "Trung bình",
+    emoji: "🛍️",
+    track: "personal",
+    isFundamental: false,
+    whyItMatters:
+      "Chủ shop online viết hàng chục mô tả sản phẩm mỗi tuần, và AI viết nhanh, trôi, hấp dẫn. Nhưng chính vì trôi nên nó cũng hay thêm những điều hàng không có: \"da thật\", \"chống nước tuyệt đối\", \"bảo hành trọn đời\". Khách mua theo lời đó, thấy hàng khác thì đòi hoàn, đánh giá thấp, hoặc phản ánh. Mô tả đúng sự thật vừa giữ danh tiếng vừa tránh rắc rối.",
+    openingQuestion:
+      "Bạn dán thông tin túi xách (da PU, 3 màu, bảo hành 1 tháng) và nhờ AI viết bài đăng bán hàng. Làm sao giữ bài đăng đúng sự thật?",
+    openingOptions: [
+      "Chỉ cho AI dùng thông tin bạn dán, rồi soát từng câu về công dụng, xuất xứ, cam kết",
+      "Để AI tự bổ sung ưu điểm cho hấp dẫn, khách thấy đủ lý do mua thì sẽ mua ngay",
+      "Yêu cầu AI viết càng dài càng tốt vì bài đăng dài thì khách tin hơn bài đăng ngắn",
+      "Nhờ AI kiểm tra lại chính bài nó viết xem có câu nào sai sự thật hay không",
+    ],
+    correctOption: 0,
+    explanation:
+      "Mô tả phải khớp tờ nhãn của hàng: chất liệu, màu, thời gian bảo hành là những gì bạn dán vào. Việc của bạn là soát từng câu nói về công dụng, xuất xứ và cam kết, vì đó là nơi AI hay thêm. Để AI bổ sung ưu điểm là mời nó bịa \"da thật\" hay \"bảo hành trọn đời\". Dài hơn không làm bài đáng tin hơn, chỉ thêm chỗ cho câu sai. AI tự soát lại bài của nó không biết hàng thật của bạn ra sao.",
+    diagram: [
+      { label: "Gom thông tin thật: chất liệu, xuất xứ, kích thước, cam kết", arrow: true },
+      { label: "Dặn AI chỉ dùng thông tin đó, thiếu thì bỏ", arrow: true },
+      { label: "AI nháp mô tả và bài đăng", arrow: true },
+      { label: "Bạn soát từng câu về công dụng, xuất xứ, cam kết", arrow: true },
+      { label: "Nghi vấn pháp lý về quảng cáo: hỏi bộ phận pháp chế trước khi đăng" },
+    ],
+    realWorldExample: {
+      company: "Tình huống minh hoạ",
+      description:
+        "Một chủ shop túi xách nhập lô da PU và nhờ AI viết bài đăng. Bản đầu AI ghi \"da thật cao cấp, chống nước tuyệt đối, bảo hành trọn đời\" trong khi phiếu nhập chỉ ghi da PU và bảo hành một tháng. Chủ shop dán lại thông tin thật, dặn AI chỉ dùng thông tin đó và bỏ mục nào thiếu, rồi tự soát từng câu trước khi đăng.",
+    },
+    quiz: [
+      {
+        question: "Bài AI viết có câu \"chất liệu da cao cấp\", nhưng phiếu nhập chỉ ghi \"da PU\". Bạn làm gì?",
+        options: [
+          "Sửa thành \"da PU\" đúng theo phiếu nhập",
+          "Giữ lại vì \"cao cấp\" chỉ là lời khen chung",
+          "Đổi thành \"da tổng hợp cao cấp\" cho hay",
+          "Hỏi AI xem \"cao cấp\" có sai luật không",
+        ],
+        correct: 0,
+        explanation:
+          "Chất liệu là thông tin có thể kiểm, nên phải khớp phiếu nhập. \"Cao cấp\" đứng cạnh chất liệu khiến khách hiểu hàng tốt hơn thực tế. \"Da tổng hợp cao cấp\" vẫn giữ nguyên ý sai đó. AI không phải nơi để hỏi về luật quảng cáo; nghi vấn pháp lý thì hỏi bộ phận pháp chế.",
+      },
+      {
+        question: "Loại thông tin nào trong bài đăng cần bạn soát kỹ nhất?",
+        options: [
+          "Công dụng, xuất xứ và cam kết bảo hành",
+          "Cách xưng hô với khách và các biểu tượng cảm xúc",
+          "Số dòng của bài đăng và độ dài của từng đoạn",
+          "Thứ tự các màu sắc được liệt kê trong bài",
+        ],
+        correct: 0,
+        explanation:
+          "Công dụng, xuất xứ và cam kết là những điều khách dựa vào để mua và có thể đòi quyền lợi nếu sai. Đây cũng là chỗ AI hay bịa cho câu văn trôi. Xưng hô, biểu tượng, độ dài và thứ tự màu là chi tiết trình bày, sai ít gây hậu quả.",
+      },
+      {
+        question: "AI viết \"chống nước tuyệt đối\". Bạn chưa thử hàng. Cách xử lý nào đúng?",
+        options: [
+          "Xoá, hoặc chỉ ghi điều bạn đã kiểm như \"chịu được mưa nhẹ\"",
+          "Giữ lại vì mọi khách đều hiểu đó là cách nói quảng cáo",
+          "Đổi thành \"gần như chống nước\" để câu bớt chắc chắn hơn",
+          "Giữ lại và thêm dòng nhỏ \"không đảm bảo\" ở cuối bài đăng",
+        ],
+        correct: 0,
+        explanation:
+          "Chỉ nêu công dụng bạn đã kiểm được; chưa thử thì xoá. \"Tuyệt đối\" là lời khẳng định mạnh mà khách sẽ dựa vào. \"Gần như chống nước\" vẫn là điều chưa kiểm. Dòng nhỏ ở cuối không xoá được ấn tượng của câu lớn ở trên.",
+      },
+      {
+        question: "Bài đăng ghi \"nhập khẩu chính hãng\". Bạn cần có gì trước khi để câu đó lại?",
+        options: [
+          "Chứng từ nhập khẩu hoặc giấy tờ nguồn gốc của lô hàng",
+          "Sự đồng ý của một khách đã mua và hài lòng trước đó",
+          "Một câu AI xác nhận rằng cách nói này rất phổ biến",
+          "Số lượt xem của các bài đăng tương tự của shop khác",
+        ],
+        correct: 0,
+        explanation:
+          "Xuất xứ chỉ được nói khi có giấy tờ chứng minh. Một khách hài lòng chỉ nói về trải nghiệm, không chứng minh nguồn gốc. AI xác nhận rằng câu này \"phổ biến\" không kiểm được gì. Lượt xem bài khác không liên quan đến hàng của bạn.",
+      },
+      {
+        question: "Khi nào nên hỏi bộ phận pháp chế trước khi đăng bài?",
+        options: [
+          "Khi bài có cam kết bồi hoàn, so sánh đối thủ hoặc công dụng sức khoẻ",
+          "Khi bài đăng có nhiều hơn năm bức ảnh sản phẩm",
+          "Khi bài đăng lên nhiều nền tảng cùng một lúc",
+          "Khi bài đăng có dùng biểu tượng cảm xúc hay hashtag",
+        ],
+        correct: 0,
+        explanation:
+          "Cam kết bồi hoàn, so sánh trực tiếp với đối thủ và công dụng liên quan sức khoẻ là những chỗ quy định quảng cáo thường chặt, nên hỏi pháp chế trước. Số ảnh, số nền tảng, biểu tượng hay hashtag là trình bày, không tạo rủi ro pháp lý riêng.",
+      },
+    ],
+    keyTakeaways: [
+      "Dán thông tin thật (chất liệu, xuất xứ, cam kết); dặn AI chỉ dùng thông tin đó.",
+      "Soát kỹ nhất: công dụng, xuất xứ, cam kết bảo hành.",
+      "Chưa kiểm thì xoá: \"chống nước tuyệt đối\", \"chính hãng\" cần bằng chứng.",
+      "Cam kết bồi hoàn, so sánh đối thủ, công dụng sức khoẻ: hỏi pháp chế.",
+      "Nhiều câu văn trôi hơn không có nghĩa là bài đáng tin hơn.",
+    ],
+    practicePrompt: {
+      question:
+        "Thông tin thật: áo khoác 2 màu, vải dù, bảo hành đường chỉ 30 ngày. AI viết \"giữ ấm như lông vũ, bảo hành trọn đời\". Nên làm gì?",
+      options: [
+        "Xoá cả hai câu, chỉ ghi vải dù, 2 màu và bảo hành đường chỉ 30 ngày",
+        "Giữ câu giữ ấm vì đó là ưu điểm, chỉ sửa câu bảo hành thôi",
+        "Giữ cả hai câu và thêm chữ \"tuỳ điều kiện\" ở cuối bài đăng",
+        "Đổi thành \"giữ ấm tuyệt vời, bảo hành dài hạn\" cho bớt tuyệt đối",
+      ],
+      correct: 0,
+      explanation:
+        "\"Giữ ấm như lông vũ\" là so sánh chưa kiểm được, còn \"bảo hành trọn đời\" mâu thuẫn với 30 ngày thật. Cả hai đều không nằm trong thông tin bạn có. Chỉ sửa một câu là để lại lời hứa không có căn cứ. Thêm \"tuỳ điều kiện\" không xoá được ấn tượng của câu chính. \"Dài hạn\" vẫn quá xa so với 30 ngày.",
+    },
+    summary: {
+      keyIdea: "AI viết hay, nhưng mô tả phải khớp tờ nhãn của hàng thật; soát công dụng, xuất xứ, cam kết.",
+      formula: "Dán thông tin thật → dặn chỉ dùng thông tin đó → AI nháp → soát từng câu → xoá điều chưa kiểm → đăng.",
+      commonMistake: "Đăng bài AI viết mà không đối chiếu \"da thật\", \"chống nước\", \"bảo hành trọn đời\" với hàng và phiếu nhập.",
+      action: "Chọn một sản phẩm và dựng phiếu thông tin thật để dán vào AI mỗi lần viết bài.",
+    },
+    application: {
+      title: "Làm ngay hôm nay",
+      message:
+        "Chọn một sản phẩm bạn đang bán. Ghi ra phiếu thông tin thật: chất liệu, xuất xứ, kích thước, bảo hành. Dán vào AI để viết mô tả, rồi gạch chân mọi câu về công dụng, xuất xứ hoặc cam kết và đối chiếu với phiếu.",
+      secondary: "Lưu phiếu thông tin thành mẫu để dùng cho các sản phẩm sau.",
+    },
+    sections: [
+      {
+        type: "lead",
+        text: "Bạn nhập một lô túi xách, chụp ảnh xong, và cần mười bài đăng trước cuối tuần. AI viết được cả mười bài trong vài phút. Vấn đề là cả mười có thể ghi những điều túi không có. Bài này dạy cách dùng tốc độ của AI mà không cam kết quá sự thật.",
+      },
+      {
+        type: "feynman",
+        title: "Mô tả sản phẩm với AI đơn giản hơn bạn nghĩ",
+        intro: "Hình dung một người bán hàng ở chợ có giọng rất hay nhưng chưa cầm tờ nhãn của món hàng. Anh ta giới thiệu rất trôi, và chỗ nào không biết thì tự bịa cho hợp. AI y hệt: bạn đưa tờ nhãn thì nó nói đúng, không đưa thì nó nói hay mà không chắc đúng.",
+        columns: ["Ở chợ", "Với AI", "Việc của bạn"],
+        rows: [
+          ["Tờ nhãn trên món hàng", "Phiếu thông tin thật bạn dán vào", "Ghi chất liệu, xuất xứ, kích thước, bảo hành thật"],
+          ["Người bán giỏi ăn nói", "AI viết trôi và hấp dẫn", "Dặn chỉ dùng thông tin trong phiếu"],
+          ["Người bán tự thêm khi không biết", "AI bịa công dụng, xuất xứ, cam kết", "Soát từng câu và xoá điều chưa kiểm"],
+          ["Người mua đòi đổi khi hàng khác lời nói", "Khách hoàn đơn, đánh giá thấp, phản ánh", "Giữ mô tả khớp hàng thật"],
+        ],
+        oneLiner: "AI là người bán giỏi ăn nói nhưng chưa cầm tờ nhãn; bạn phải đưa tờ nhãn và kiểm lời anh ta nói.",
+      },
+      { type: "heading", text: "Ba chỗ AI hay nói quá" },
+      {
+        type: "list",
+        items: [
+          "Công dụng: \"chống nước tuyệt đối\", \"giữ ấm như lông vũ\", \"giảm đau tức thì\". Chỉ nêu điều bạn đã kiểm.",
+          "Xuất xứ: \"nhập khẩu\", \"chính hãng\", \"da thật\". Chỉ nêu khi có chứng từ.",
+          "Cam kết: \"bảo hành trọn đời\", \"hoàn tiền 100%\", \"đổi trả không điều kiện\". Chỉ nêu đúng chính sách của shop.",
+        ],
+      },
+      {
+        type: "aiLab",
+        mode: "prompt",
+        title: "Nhờ AI viết bài đăng cho túi da PU",
+        task: "Thông tin thật: túi da PU, 3 màu (đen, nâu, be), kích thước 28 x 20 cm, bảo hành đường chỉ 1 tháng. Lắp câu lệnh để AI viết bài đăng bán hàng.",
+        parts: [
+          {
+            id: "facts",
+            label: "Thông tin đưa cho AI",
+            options: [
+              { text: "Viết bài đăng bán một chiếc túi xách nữ thật hấp dẫn.", feedback: "AI không biết chất liệu hay bảo hành nên tự bịa chúng." },
+              { text: "Túi da PU, 3 màu (đen, nâu, be), 28 x 20 cm, bảo hành đường chỉ 1 tháng.", good: true, feedback: "Đủ thông tin thật để AI viết mà không phải đoán." },
+            ],
+          },
+          {
+            id: "limit",
+            label: "Giới hạn",
+            options: [
+              { text: "Chỉ dùng thông tin trên. Thiếu thì bỏ, không tự thêm công dụng, xuất xứ hay cam kết.", good: true, feedback: "Chặn đúng ba chỗ AI hay nói quá." },
+              { text: "Hãy thêm các ưu điểm khác để khách thấy đáng mua.", feedback: "AI sẽ tự thêm \"da thật\", \"chống nước\" - những điều túi không có." },
+            ],
+          },
+          {
+            id: "format",
+            label: "Khuôn bài",
+            options: [
+              { text: "Viết thật dài và thuyết phục.", feedback: "Càng dài càng nhiều chỗ cho câu sai và khó soát." },
+              { text: "Tiêu đề một dòng, 3 gạch đầu dòng về đặc điểm, một dòng bảo hành, dưới 100 chữ.", good: true, feedback: "Khuôn ngắn, dễ soát từng dòng với phiếu thông tin." },
+            ],
+          },
+        ],
+        responses: [
+          {
+            requires: ["facts", "limit", "format"],
+            text: "Túi xách da PU dáng gọn - 3 màu đen, nâu, be\n- Chất liệu da PU\n- Kích thước 28 x 20 cm\n- Ba màu: đen, nâu, be\nBảo hành đường chỉ 1 tháng.",
+          },
+          {
+            requires: ["facts"],
+            text: "Túi xách sang trọng, đẳng cấp, phù hợp mọi dịp! Da PU, 3 màu, 28 x 20 cm. Bảo hành 1 tháng, cam kết chính hãng nhập khẩu...\n\n(Đúng thông tin chính nhưng AI tự thêm \"chính hãng nhập khẩu\", điều phiếu thông tin không có.)",
+          },
+          {
+            text: "Túi da thật cao cấp nhập khẩu, chống nước tuyệt đối, bảo hành trọn đời. Nhiều khách đã đánh giá 5 sao...\n\n(AI không có thông tin nên bịa \"da thật\", \"chống nước\", \"trọn đời\" và cả đánh giá của khách.)",
+          },
+        ],
+      },
+      { type: "heading", text: "Soát bài trước khi đăng" },
+      {
+        type: "aiLab",
+        mode: "spotError",
+        title: "Soát bài đăng túi xách do AI viết",
+        task: "Thông tin thật: túi da PU, 3 màu, 28 x 20 cm, bảo hành đường chỉ 1 tháng. Đánh dấu những đoạn AI đã nói quá.",
+        segments: [
+          { text: "Túi xách dáng gọn, có 3 màu đen, nâu, be." },
+          { text: "Kích thước 28 x 20 cm, đựng vừa điện thoại, ví và chìa khoá." },
+          { text: "Làm từ da thật cao cấp, bền bỉ nhiều năm.", error: "Chất liệu thật là da PU. \"Da thật\" là sai sự thật, và \"bền nhiều năm\" chưa ai kiểm." },
+          { text: "Chống nước tuyệt đối, đi mưa thoải mái.", error: "Không có thông tin nào nói túi chống nước; câu này khách sẽ tin và có thể làm hỏng túi." },
+          { text: "Bảo hành đường chỉ 1 tháng." },
+          { text: "Hơn 1.000 khách đã tin dùng và đánh giá 5 sao.", error: "Con số 1.000 và đánh giá 5 sao không có trong phiếu thông tin - AI bịa để tăng lòng tin." },
+        ],
+      },
+      {
+        type: "flow",
+        title: "Từ phiếu thông tin đến bài đăng đúng sự thật",
+        steps: [
+          { label: "Lập phiếu thông tin thật", detail: "Ghi từ phiếu nhập và hàng thật: chất liệu, xuất xứ, kích thước, màu, bảo hành. Thiếu mục nào ghi \"chưa rõ\"." },
+          { label: "Dặn AI giới hạn", detail: "\"Chỉ dùng thông tin trong phiếu. Thiếu thì bỏ, không tự thêm công dụng, xuất xứ, cam kết.\"" },
+          { label: "Đọc từng câu, gạch ba loại", detail: "Gạch chân mọi câu về công dụng, xuất xứ, cam kết. Đó là những câu phải có bằng chứng." },
+          { label: "Đối chiếu và xoá", detail: "So từng câu gạch chân với phiếu và chứng từ. Không có căn cứ thì xoá, không sửa cho \"nhẹ hơn\"." },
+          { label: "Nghi vấn thì hỏi pháp chế", detail: "Cam kết bồi hoàn, so sánh đối thủ, công dụng sức khoẻ: hỏi pháp chế trước khi đăng. Không tự suy ra quy định." },
+        ],
+      },
+      {
+        type: "scenario",
+        title: "Bài đăng đêm trước đợt sale",
+        start: "s1",
+        nodes: {
+          s1: {
+            text: "10 giờ đêm, bạn cần đăng 5 bài cho đợt sale sáng mai. AI đã viết xong, có câu \"da thật cao cấp, bảo hành trọn đời\" trong mọi bài. Phiếu nhập ghi da PU, bảo hành 1 tháng.",
+            choices: [
+              { label: "Đăng luôn cho kịp đợt sale, khách mua nhiều thì tính sau", next: "bad_post" },
+              { label: "Dán lại phiếu thật, dặn AI chỉ dùng thông tin đó và viết lại", next: "s2" },
+            ],
+          },
+          bad_post: {
+            text: "Đợt sale bán tốt, rồi loạt khách nhận túi da PU đòi hoàn vì \"quảng cáo da thật\". Shop phải hoàn đơn, nhận đánh giá thấp và một khách phản ánh lên sàn.",
+            ending: "bad",
+          },
+          s2: {
+            text: "AI viết lại 5 bài đúng theo phiếu. Bạn đọc: một bài có thêm câu \"chống nước tốt\" mà phiếu không nhắc.",
+            choices: [
+              { label: "Xoá câu đó vì chưa kiểm, đăng 5 bài", next: "good" },
+              { label: "Giữ câu đó vì \"tốt\" nghe nhẹ hơn \"tuyệt đối\"", next: "bad_soft" },
+            ],
+          },
+          good: {
+            text: "Bài đăng ngắn hơn nhưng khớp túi thật. Đợt sale ít đơn hoàn hơn, và khách khen đúng như mô tả nên để lại đánh giá tốt.",
+            ending: "good",
+          },
+          bad_soft: {
+            text: "Một khách đi mưa, túi thấm nước, và khách viết đánh giá \"quảng cáo chống nước mà không đúng\". Câu \"tốt\" nhẹ hơn nhưng vẫn là điều chưa ai kiểm.",
+            ending: "bad",
+          },
+        },
+      },
+      {
+        type: "callout",
+        label: "Về quy định quảng cáo",
+        text: "Quy định về quảng cáo và ghi nhãn hàng hoá thay đổi và khác nhau theo ngành. Bài này không thay thế tư vấn pháp lý: có nghi vấn về cam kết, so sánh đối thủ hay công dụng sức khoẻ, hỏi bộ phận pháp chế của công ty trước khi đăng.",
+      },
+      {
+        type: "closing",
+        lines: [
+          "Viết nhanh là lợi thế của AI; viết đúng là trách nhiệm của bạn. Phiếu thông tin thật là thứ nối hai điều đó.",
+          "Hết chặng 28. Điểm chung của mọi phòng ban: AI làm phần chữ, người giữ phần sự thật và quyết định.",
+        ],
+      },
+    ],
+  },
 ];

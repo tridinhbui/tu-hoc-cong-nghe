@@ -1242,4 +1242,987 @@ Quy tắc:
       },
     ],
   },
+
+  // ── Bài 7 ────────────────────────────────────────────────────────────────
+  {
+    id: 1836,
+    slug: "nhac-khach-chua-thanh-toan-hoac-bo-gio-hang",
+    title: "Chặng 27, Bài 7: Nhắc khách chưa thanh toán hoặc bỏ giỏ hàng - đúng lúc, đúng giọng, và lúc nào không nên nhắn",
+    subtitle: "Tin nhắc tự động sinh lời khi nó giống một nhân viên tinh ý, và gây hại khi nó giống một cái loa.",
+    duration: "10 phút",
+    difficulty: "Trung bình",
+    emoji: "🔔",
+    track: "personal",
+    isFundamental: false,
+    whyItMatters:
+      "Chủ shop nhỏ thường mất đơn không phải vì khách chê hàng, mà vì khách bận rồi quên. Một tin nhắc đúng lúc kéo được đơn đó về. Nhưng nếu cài sai, tin nhắc tự động sẽ nhắn cho người đã trả tiền, nhắn giữa đêm, nhắn mười lần - và biến khách thành người chặn shop. Bài này dạy ba quy tắc: nhắn lúc nào, nói giọng nào, và khi nào phải im.",
+    openingQuestion:
+      "Chị Hoa bán mỹ phẩm online. Khách chọn chuyển khoản, đặt đơn lúc 21 giờ nhưng chưa chuyển tiền. Chị cài để hệ thống tự nhắn nhắc. Lần nhắc đầu tiên nên gửi lúc nào?",
+    openingOptions: [
+      "Sáng hôm sau, trong giờ làm việc, kèm thông tin đơn",
+      "Ngay lúc 21 giờ 05, khi khách còn nhớ rõ đơn hàng vừa đặt, để khách khỏi quên",
+      "Cứ mỗi 30 phút cho tới khi khách trả lời, để khách không có cơ hội quên",
+      "Sau đúng 7 ngày, để khách không thấy bị làm phiền",
+    ],
+    correctOption: 0,
+    explanation:
+      "Khách đặt đơn buổi tối thường đang tính chuyển khoản sau, nên nhắn ngay hoặc nhắn dồn dập chỉ tạo cảm giác bị săn đuổi và khách dễ chặn shop. Nhắn quá muộn, sau cả tuần, thì khách đã quên hoặc mua chỗ khác. Điểm cân bằng là một lần nhắc nhẹ vào lúc khách có thể đọc và làm - thường là sáng hôm sau, trong giờ làm việc - và trong tin có đủ mã đơn, số tiền, cách trả để khách khỏi phải tìm lại.",
+    diagram: [
+      { label: "Sự kiện: đơn tạo, chưa thấy tiền", arrow: true },
+      { label: "Chờ tới sáng hôm sau, trong giờ làm việc", arrow: true },
+      { label: "Kiểm tra lại: đã trả chưa? đã huỷ chưa?", arrow: true },
+      { label: "Gửi một tin nhắc nhẹ, ghi lại đã nhắc" },
+    ],
+    realWorldExample: {
+      company: "Tình huống minh hoạ",
+      description:
+        "Một shop bán đồ handmade có cài tin nhắc tự động: cứ đơn chưa trả sau 2 tiếng thì nhắn, sau 4 tiếng nhắn tiếp, sau 6 tiếng nhắn nữa. Một khách vừa chuyển khoản lúc 23 giờ thì nhận tin nhắc lúc 1 giờ sáng vì bảng đối soát chỉ cập nhật vào buổi sáng, và đăng lên trang shop một bình luận phàn nàn. Sau đó chủ shop đổi thành: một tin sáng hôm sau, một tin nữa sau hai ngày, và luôn kiểm tra trạng thái ngay trước khi gửi.",
+    },
+    quiz: [
+      {
+        question: "Trước khi tin nhắc đi, bước kiểm tra nào quan trọng nhất?",
+        options: [
+          "Đọc lại trạng thái thanh toán của đơn ngay lúc gửi",
+          "Đọc trạng thái thanh toán lúc đơn được tạo, vì lúc đó dữ liệu đầy đủ nhất",
+          "Đếm hôm nay đã gửi bao nhiêu tin nhắc để hệ thống không bị quá tải",
+          "Kiểm tra tên khách đã viết hoa đúng chưa để tin nhắn trông chuyên nghiệp",
+        ],
+        correct: 0,
+        explanation:
+          "Khách có thể đã chuyển tiền trong khoảng chờ, nên trạng thái phải được đọc lại đúng lúc gửi. Trạng thái lúc tạo đơn luôn là chưa trả nên vô ích. Đếm số tin hay soát chính tả đều tốt nhưng không ngăn được lỗi tệ nhất: nhắc người đã trả tiền.",
+      },
+      {
+        question: "Số lần nhắc hợp lý cho một đơn chưa thanh toán là bao nhiêu?",
+        options: [
+          "Tối đa hai lần, cách nhau ít nhất một ngày, rồi dừng",
+          "Mỗi ngày một lần tới khi khách trả, vì kiên trì mới chốt",
+          "Đúng một lần; nếu khách im lặng thì chắc chắn đã bỏ đơn",
+          "Tăng dần: nhẹ ngày đầu, ngày ba nói rõ đơn sẽ bị huỷ",
+        ],
+        correct: 0,
+        explanation:
+          "Một hai lần nhắc là nhắc nhở, nhiều hơn là làm phiền. Nhắc mỗi ngày không thời hạn khiến khách chặn shop. Một lần duy nhất bỏ sót người chỉ quên. Nhắc tăng dần bằng lời doạ huỷ thì đổi giọng từ hỏi han sang ép buộc, và chỉ nên dùng khi đơn thật sự có hạn giữ hàng do chính shop công bố.",
+      },
+      {
+        question: "Khách bỏ giỏ hàng, tin nhắc nào đúng giọng nhất?",
+        options: [
+          "Hỏi thăm, nhắc giỏ vẫn còn giữ, hỏi khách cần shop giúp gì",
+          "Ghi chỉ còn 1 sản phẩm, nhanh kẻo hết, dù kho còn nhiều",
+          "Nhắc khách đã bỏ quên đơn và nói việc này làm mất thời gian của shop",
+          "Tặng ngay giảm 30% cho mọi giỏ bị bỏ, không cần hỏi lý do khách rời đi",
+        ],
+        correct: 0,
+        explanation:
+          "Người bỏ giỏ thường còn phân vân về giá, ship hay kích cỡ, nên một lời hỏi thăm mở đường cho họ nói. Tạo khan hiếm giả là nói sai sự thật. Trách khách làm mất khách. Giảm giá cho mọi giỏ bỏ dạy khách thói quen bỏ giỏ để chờ mã giảm và cắt lợi nhuận của cả những người vốn sẽ mua.",
+      },
+      {
+        question: "Trường hợp nào tuyệt đối không nên để tin nhắc tự động gửi?",
+        options: [
+          "Khách vừa nhắn báo huỷ đơn hoặc đang phàn nàn về đơn",
+          "Khách mua lần đầu, vì họ chưa quen shop nên dễ thấy phiền",
+          "Ngày hôm đó là cuối tuần, vì không ai đọc tin nhắn cuối tuần cả",
+          "Đơn có giá trị nhỏ, vì nhắc đơn nhỏ không đáng công",
+        ],
+        correct: 0,
+        explanation:
+          "Khách đã báo huỷ hoặc đang khiếu nại cần một con người xử lý; nhận thêm tin nhắc đòi tiền lúc đó là chọc vào chỗ đau. Khách mới vẫn nên được nhắc nhẹ. Cuối tuần vẫn có người đọc, chỉ cần tránh giờ khuya. Đơn nhỏ tốn hệ thống gần như không gì, nên không có lý do bỏ.",
+      },
+      {
+        question: "Tin nhắc nhầm người đã trả tiền thì ai chịu trách nhiệm?",
+        options: [
+          "Chủ shop, nên phải có nhật ký và chỗ để khách phản hồi",
+          "Công cụ tự động hoá, vì chính nó là bên soạn và gửi tin",
+          "Khách hàng, vì họ nên báo lại nếu đã trả rồi",
+          "Không ai cả, vì đây là lỗi hiếm mà hệ thống nào cũng có",
+        ],
+        correct: 0,
+        explanation:
+          "Công cụ chỉ làm đúng điều chủ shop cài; tin đi dưới tên shop nên shop chịu. Vì vậy cần nhật ký để biết ai bị nhắn, và một câu như: nếu bạn đã thanh toán, trả lời tin này để shop kiểm tra. Đổ cho công cụ hay cho khách không giúp khách đã bị làm phiền, còn coi là lỗi hiếm thì lặp lại mãi.",
+      },
+    ],
+    keyTakeaways: [
+      "Nhắc một đến hai lần, cách nhau ít nhất một ngày, trong giờ làm việc, rồi dừng.",
+      "Luôn đọc lại trạng thái thanh toán ngay trước khi gửi, không dùng trạng thái cũ.",
+      "Giọng của tin nhắc là hỏi thăm và giúp, không phải trách móc, khan hiếm giả hay ép.",
+      "Không nhắn khi khách đã huỷ, đang khiếu nại, hoặc đã xin dừng nhận tin.",
+      "Tin nhắc nào cũng cần một câu cho khách đã trả rồi và một dòng nhật ký cho shop.",
+    ],
+    practicePrompt: {
+      question:
+        "Đơn của khách Lan đặt 20 giờ thứ Sáu, chưa trả. Quy tắc nào của chị Hoa hợp lý nhất?",
+      options: [
+        "Sáng thứ Bảy 9 giờ nhắc một lần; thứ Hai nhắc lần hai; cả hai lần đều kiểm tra trạng thái trước khi gửi",
+        "Nhắc lúc 20 giờ 10, 22 giờ và 0 giờ thứ Bảy, để chắc chắn khách nhìn thấy ít nhất một tin",
+        "Đợi tới thứ Ba tuần sau mới nhắc một lần, để khách không bao giờ thấy bị thúc giục",
+        "Nhắc mỗi sáng tới khi khách trả, và bỏ kiểm tra trạng thái vì việc kiểm tra làm chậm tin",
+      ],
+      correct: 0,
+      explanation:
+        "Hai tin trong giờ làm việc, cách nhau cuối tuần, kèm kiểm tra trạng thái ngay trước khi gửi là quy tắc đủ nhắc mà không phiền. Ba tin trong hai tiếng và giữa đêm là săn đuổi. Đợi tới thứ Ba thì đơn đã nguội. Bỏ kiểm tra để gửi nhanh thì sớm muộn cũng nhắn nhầm người đã trả.",
+    },
+    summary: {
+      keyIdea: "Tin nhắc tự động tốt là tin đúng lúc, đúng giọng, và biết khi nào không gửi.",
+      formula: "Chờ đủ lâu → kiểm tra lại trạng thái → một tin hỏi thăm → ghi nhật ký → tối đa hai lần rồi dừng.",
+      commonMistake: "Cài lịch nhắc dày mà không kiểm tra lại trạng thái, nên nhắn cả người đã trả tiền hoặc đã báo huỷ.",
+      action: "Viết ra ba điều kiện khiến shop của bạn không được nhắn cho khách.",
+    },
+    application: {
+      title: "Viết quy tắc nhắc cho shop của bạn",
+      message:
+        "Mở đơn hàng của tuần trước và tìm 3 đơn khách để dở, chưa thanh toán hoặc bỏ giỏ. Với mỗi đơn, ghi ra: khách có thể đã bận gì, bạn sẽ nhắn lúc nào và câu đầu tiên của tin là gì. Cuối cùng viết 3 trường hợp shop không bao giờ được nhắn. Khoảng 15 phút, ghi vào một tệp ghi chú.",
+      secondary: "Ngày mai bạn sẽ được hỏi: quy tắc nào bạn đã viết, và có đơn thật nào khớp với ba trường hợp không nhắn không.",
+    },
+    sections: [
+      {
+        type: "lead",
+        text: "Thứ Sáu 21 giờ, một khách đặt hai lọ kem chống nắng rồi tắt điện thoại đi ngủ, tiền chưa chuyển. Sáng thứ Bảy bạn quên không hỏi. Tới thứ Hai khách đã mua ở chỗ khác. Bài này dạy cách để một tin nhắc tự động làm việc của một nhân viên tinh ý thay vì của một cái loa.",
+      },
+      {
+        type: "feynman",
+        title: "Nhắc khách đơn giản hơn bạn nghĩ",
+        intro: "Hãy nghĩ tới người bán hàng khéo ở chợ: khách chọn hàng rồi bỏ đó đi xem chỗ khác.",
+        columns: ["Điều người bán khéo làm", "Người bán ở chợ", "Tin nhắc tự động"],
+        rows: [
+          ["Chờ một lúc rồi mới hỏi", "Đợi khách đi một vòng chứ không chạy theo ngay", "Đặt khoảng chờ vài tiếng tới sáng hôm sau"],
+          ["Nhìn xem khách còn đó không", "Liếc xem khách đã mua ở quầy khác chưa", "Kiểm tra lại trạng thái thanh toán trước khi gửi"],
+          ["Hỏi thăm chứ không ép", "Chị cần em giúp chọn size không?", "Tin nhắc có câu hỏi mở, không doạ, không khan hiếm giả"],
+          ["Biết lúc nào thôi", "Khách lắc đầu thì không nài nỉ nữa", "Tối đa hai lần, ai xin dừng thì dừng"],
+        ],
+        oneLiner: "Tin nhắc tự động chỉ là người bán khéo được viết thành quy tắc: chờ, nhìn lại, hỏi thăm, biết dừng.",
+      },
+      { type: "heading", text: "Ba quy tắc: lúc nào, giọng nào, khi nào im" },
+      {
+        type: "paragraph",
+        text: "Lúc nào: chờ đủ lâu để khách có cơ hội tự làm, nhưng không lâu tới mức họ quên. Với đơn đặt buổi tối thì sáng hôm sau trong giờ làm việc là hợp lý; tránh giờ khuya và giờ nghỉ. Giọng nào: hỏi thăm và giúp, có mã đơn, số tiền, cách trả ngay trong tin. Khi nào im: khách đã trả, đã huỷ, đang khiếu nại, hoặc đã xin dừng nhận tin. Nếu bạn nhắn cho khách vì mục đích quảng cáo chứ không chỉ về đơn họ đã đặt, hãy hỏi người phụ trách pháp lý về việc khách đã đồng ý nhận tin chưa.",
+      },
+      {
+        type: "flow",
+        title: "Một tin nhắc đi qua những chốt nào trước khi gửi",
+        steps: [
+          { label: "Đơn được tạo, chưa có tiền", detail: "Sự kiện làm quy tắc bắt đầu chạy. Hệ thống chỉ ghi lại rằng đơn này đang chờ, chưa gửi gì cả." },
+          { label: "Chờ tới sáng hôm sau", detail: "Khoảng chờ cho khách tự thanh toán. Tin không bao giờ đi trong đêm hay ngay sau khi vừa đặt." },
+          { label: "Đọc lại trạng thái", detail: "Ngay trước khi gửi, quy tắc kiểm tra lại: đơn đã được trả chưa, đã huỷ chưa, khách có ghi chú khiếu nại hay xin dừng nhắn không. Nếu có, dừng." },
+          { label: "Gửi tin hỏi thăm", detail: "Tin có mã đơn, số tiền, cách trả, và một câu cho người đã trả rồi: hãy trả lời tin này để shop kiểm tra." },
+          { label: "Ghi nhật ký, đếm lần nhắc", detail: "Ghi đơn nào, giờ nào, lần thứ mấy. Đủ hai lần thì đánh dấu đã nhắc xong để không bao giờ gửi lần ba." },
+        ],
+      },
+      {
+        type: "aiLab",
+        mode: "prompt",
+        title: "Nhờ AI soạn tin nhắc thanh toán",
+        task: "Khách Lan đặt đơn #1042 gồm 2 lọ kem chống nắng, tổng 450.000đ, chuyển khoản, shop giữ hàng tới hết thứ Hai. Lắp một yêu cầu để AI soạn nháp tin nhắc; bạn sẽ đọc lại trước khi cài vào công cụ.",
+        parts: [
+          {
+            id: "context",
+            label: "Bối cảnh",
+            options: [
+              { text: "Viết tin nhắn nhắc khách thanh toán.", feedback: "AI không biết đơn nào, bao nhiêu tiền, hạn giữ hàng - nó sẽ tự bịa những chi tiết đó." },
+              {
+                text: "Shop mỹ phẩm. Đơn #1042 của khách Lan: 2 lọ kem chống nắng, 450.000đ, chuyển khoản, shop giữ hàng tới hết thứ Hai.",
+                good: true,
+                feedback: "Có đủ mã đơn, số tiền, hạn giữ hàng do chính shop công bố - AI chỉ cần viết quanh những dữ kiện thật.",
+              },
+            ],
+          },
+          {
+            id: "tone",
+            label: "Giọng và điều cấm",
+            options: [
+              { text: "Viết thật thuyết phục để khách trả tiền ngay.", feedback: "Thuyết phục là mệnh lệnh mơ hồ - AI thường viết ép và thêm hạn chót, giảm giá không có thật." },
+              {
+                text: "Giọng thân thiện, hỏi thăm, không doạ, không nói hết hàng hay giảm giá nếu tôi không cho phép.",
+                good: true,
+                feedback: "Chặn sẵn hai lỗi hay gặp: ép khách và hứa những điều shop chưa nói.",
+              },
+            ],
+          },
+          {
+            id: "format",
+            label: "Độ dài và câu cho người đã trả",
+            options: [
+              { text: "Viết dài, đầy đủ để khách hiểu hết mọi chuyện.", feedback: "Tin dài trên điện thoại thường không được đọc tới đoạn cách trả tiền." },
+              {
+                text: "Dưới 50 chữ, có cách trả, và một câu: nếu bạn đã chuyển khoản rồi, hãy trả lời tin này để shop kiểm tra.",
+                good: true,
+                feedback: "Ngắn, có việc cần làm, và có lối thoát cho khách đã trả - nhắc nhầm cũng không thành sự cố.",
+              },
+            ],
+          },
+        ],
+        responses: [
+          {
+            requires: ["context", "tone", "format"],
+            text: "Chào chị Lan, shop nhắc nhẹ đơn #1042 (2 lọ kem chống nắng, 450.000đ) đang chờ chuyển khoản; shop giữ hàng tới hết thứ Hai ạ. Chị cần shop hỗ trợ gì cứ nhắn nhé. Nếu chị đã chuyển rồi, chị trả lời tin này để shop kiểm tra giúp.",
+          },
+          {
+            requires: ["context"],
+            text: "Chào chị Lan, đơn #1042 của chị (450.000đ) chưa được thanh toán. Rất mong chị sớm chuyển khoản để chúng tôi có thể xử lý đơn hàng của chị một cách nhanh chóng nhất, tránh ảnh hưởng tới quyền lợi của chị...\n\n(Đủ dữ kiện nhưng giọng nặng nề, không có lối thoát cho người đã trả.)",
+          },
+          {
+            text: "Chào bạn, hàng bên mình sắp hết rồi! Trả tiền trong 1 giờ tới để nhận ngay ưu đãi giảm 20% nhé!\n\n(Không có mã đơn nào, còn tự bịa hạn 1 giờ, ưu đãi 20% và tình trạng sắp hết hàng - những điều shop chưa từng nói.)",
+          },
+        ],
+      },
+      { type: "heading", text: "Bốn trường hợp cần một người, không cần máy" },
+      {
+        type: "list",
+        items: [
+          "Khách đã nhắn báo huỷ hoặc phàn nàn về đơn: chuyển cho người xử lý, dừng mọi tin nhắc.",
+          "Khách trả lời ngay sau tin nhắc bằng một câu hỏi: người trả lời, không để quy tắc gửi tiếp lần hai.",
+          "Đơn giá trị lớn hoặc khách quen lâu năm: một cuộc gọi hoặc tin nhắn tay từ chủ shop hiệu quả hơn tin tự động.",
+          "Khách nhắn dừng, không nhận tin nữa: ghi vào danh sách không nhắn và giữ vĩnh viễn.",
+        ],
+      },
+      {
+        type: "scenario",
+        title: "Cài quy tắc nhắc cho đơn 21 giờ",
+        start: "start",
+        nodes: {
+          start: {
+            text: "Khách đặt đơn lúc 21 giờ, chọn chuyển khoản, chưa trả. Bạn đang cài quy tắc nhắc đầu tiên trong công cụ tự động hoá.",
+            choices: [
+              { label: "Nhắn mỗi 30 phút cho tới khi khách trả lời", next: "spam" },
+              { label: "Nhắn một lần vào sáng hôm sau trong giờ làm việc", next: "morning" },
+            ],
+          },
+          spam: {
+            text: "Khách nhận sáu tin trong đêm, tắt thông báo và chặn shop. Bạn mất cả đơn hàng lẫn một khách quen.",
+            ending: "bad",
+          },
+          morning: {
+            text: "Sáng hôm sau quy tắc chạy. Nhưng đêm qua khách đã chuyển tiền lúc 23 giờ, còn bảng đối soát của bạn chỉ cập nhật vào 10 giờ. Bạn cần quyết định cách gửi.",
+            choices: [
+              { label: "Cứ gửi theo lịch 9 giờ, dữ liệu trong bảng chắc đúng rồi", next: "wrong" },
+              { label: "Đọc lại trạng thái ngay trước khi gửi và thêm câu: nếu đã chuyển rồi, hãy trả lời tin này", next: "good" },
+            ],
+          },
+          wrong: {
+            text: "Khách vừa trả tiền lại nhận tin nhắc đòi tiền lúc 9 giờ, thấy mình bị theo dõi kém và đăng phàn nàn. Bạn mất một buổi chiều xin lỗi.",
+            ending: "bad",
+          },
+          good: {
+            text: "Hệ thống thấy đơn đã trả nên tự bỏ qua tin nhắc; những đơn còn lại nhận một tin nhẹ nhàng với lối thoát cho người đã trả. Không ai bị làm phiền, bạn lấy lại được đơn của người thật sự quên.",
+            ending: "good",
+          },
+        },
+      },
+      {
+        type: "callout",
+        label: "Nhớ: tin đi dưới tên shop của bạn",
+        text: "Công cụ tự động hoá chỉ gửi đúng thứ bạn cài. Khách chỉ thấy tên shop, không thấy công cụ, nên mọi tin sai đều là tin sai của bạn. Vì vậy quy tắc phải có kiểm tra lại, giới hạn số lần, và một dòng nhật ký để bạn biết ai đã bị nhắn.",
+      },
+      {
+        type: "closing",
+        lines: [
+          "Chờ đủ lâu, nhìn lại một lần, hỏi thăm nhẹ, biết dừng - bốn việc của người bán khéo.",
+          "Bài sau: khách nhắn hỏi giá và còn hàng lúc nửa đêm - trả lời nửa tự động mà không hứa bừa.",
+        ],
+      },
+    ],
+  },
+
+  // ── Bài 8 ────────────────────────────────────────────────────────────────
+  {
+    id: 1837,
+    slug: "tra-loi-tin-nhan-hoi-gia-ton-kho-nua-tu-dong",
+    title: "Chặng 27, Bài 8: Trả lời tin nhắn hỏi giá và tồn kho nửa tự động - mẫu, người duyệt và ranh giới lời hứa",
+    subtitle: "Máy trả lời những gì bảng tính nói; người trả lời những gì cần cam kết.",
+    duration: "10 phút",
+    difficulty: "Trung bình",
+    emoji: "💬",
+    track: "personal",
+    isFundamental: false,
+    whyItMatters:
+      "Hai câu hỏi lặp lại nhiều nhất của khách online là giá bao nhiêu và còn hàng không. Trả lời chậm mất đơn, trả lời tự động bừa thì hứa những điều shop không làm. Nửa tự động nghĩa là chia đôi: máy điền những gì có trong bảng tính, còn lời hứa và mọi câu lạ đều qua tay người.",
+    openingQuestion:
+      "Chị Mai bán áo sơ mi. Lúc 22 giờ khách nhắn: áo này còn size M không, giá bao nhiêu? Cách tự động hoá nào an toàn nhất?",
+    openingOptions: [
+      "Điền giá và số tồn từ bảng tính vào mẫu; câu lạ chuyển cho người",
+      "Cho AI tự trả lời mọi tin, kể cả hứa ngày giao hoặc giảm giá để chốt nhanh hơn",
+      "Trả lời còn hàng cho mọi câu hỏi tồn kho để khách không bỏ đi",
+      "Chỉ bật một câu shop sẽ phản hồi sau cho mọi tin, rồi không cần xem lại tin nào nữa",
+    ],
+    correctOption: 0,
+    explanation:
+      "Giá và số tồn là dữ kiện có sẵn trong bảng tính, nên máy điền vào mẫu là an toàn và nhanh. Những câu ngoài mẫu - đổi trả, giao hàng gấp, giảm giá - là lời cam kết của shop, phải qua người. Cho AI tự trả lời mọi thứ sẽ có lúc nó bịa chính sách; trả lời còn hàng mà chưa kiểm sẽ bán hàng không có; còn chỉ gửi một câu hẹn rồi không xem lại thì khách đợi mãi, mất đơn như không có gì.",
+    diagram: [
+      { label: "Khách hỏi giá, hỏi còn hàng", arrow: true },
+      { label: "Máy điền giá và tồn từ bảng tính vào mẫu", arrow: true },
+      { label: "Câu ngoài mẫu: gửi cho người duyệt", arrow: true },
+      { label: "Người trả lời và cập nhật mẫu nếu câu hỏi lặp lại" },
+    ],
+    realWorldExample: {
+      company: "Tình huống minh hoạ",
+      description:
+        "Một shop nhỏ cài trả lời tự động cho tin hỏi giá. Bản đầu cho AI tự viết mọi câu trả lời; hai tuần sau chủ shop đọc lại thì thấy AI đã nhiều lần nhắn khách rằng đổi trả miễn phí trong 90 ngày, trong khi shop chỉ đổi trong 7 ngày. Bản sau chỉ cho máy điền giá và tồn vào một mẫu cố định, còn câu về đổi trả, giao hàng, giảm giá thì chuyển cho người.",
+    },
+    quiz: [
+      {
+        question: "Giá và số tồn trong tin trả lời tự động nên lấy từ đâu?",
+        options: [
+          "Bảng tính hiện hành của shop, đọc ngay lúc trả lời",
+          "Trí nhớ của AI về các cuộc trò chuyện trước, vì nó đã thấy giá nhiều lần",
+          "Tin trả lời hôm qua được lưu làm mẫu, chỉ cần sửa lại tên khách",
+          "Ước lượng của AI từ tên sản phẩm và giá phổ biến của các shop cùng loại",
+        ],
+        correct: 0,
+        explanation:
+          "Giá và tồn thay đổi hằng ngày; chỉ bảng tính hiện hành mới là nguồn đúng. AI không nhớ giá của shop bạn và sẽ đoán; tin cũ đã lỗi thời; giá của shop khác không phải giá của bạn. Mỗi lần dùng một nguồn ngoài bảng là một lần có thể báo sai giá cho khách.",
+      },
+      {
+        question: "Điều nào máy tuyệt đối không được tự hứa, nếu chưa có người duyệt?",
+        options: [
+          "Ngày giao, giảm giá, đổi trả và hoàn tiền",
+          "Chỉ tin giận dữ; lời hứa nhẹ thì tự gửi",
+          "Chỉ tin dài trên 5 dòng, vì tin ngắn ít cam kết",
+          "Chỉ tin cho khách cũ, khách mới chưa đòi được",
+        ],
+        correct: 0,
+        explanation:
+          "Những cam kết về ngày giao, giá, đổi trả, hoàn tiền ràng buộc shop, nên phải do người quyết. Một lời hứa nhẹ nhàng vẫn là lời hứa; tin ngắn như ok giao trong ngày cũng là cam kết; và khách mới đòi shop giữ lời cũng chính đáng như khách cũ. Câu về pháp lý hay hoàn tiền phức tạp hãy hỏi người phụ trách.",
+      },
+      {
+        question: "Bảng ghi size M còn 4, cập nhật sáng nay; khách hỏi chiều. Nên trả lời thế nào?",
+        options: [
+          "Theo cập nhật sáng nay còn 4 cái; mời khách chốt để shop xác nhận",
+          "Còn 4 cái ạ, shop giữ hàng cho chị đến hết ngày hôm nay nhé",
+          "Còn hàng ạ - bỏ con số, vì số có thể đã cũ và gây rắc rối",
+          "Hết hàng ạ, để chắc ăn vì bảng chưa cập nhật lại từ sáng tới giờ",
+        ],
+        correct: 0,
+        explanation:
+          "Nói rõ mốc thời gian của con số cho khách biết độ tin cậy và để shop xác nhận. Tự hứa giữ hàng là cam kết chưa được duyệt. Chỉ nói còn hàng khiến khách đặt cả 6 cái. Nói hết hàng để chắc ăn thì mất đơn không cần thiết chỉ vì bảng chưa cập nhật.",
+      },
+      {
+        question: "Khách hỏi shop có xuất hoá đơn đỏ không - câu không có trong mẫu nào. Máy nên làm gì?",
+        options: [
+          "Chuyển cho người, khách nhận tin shop sẽ trả lời trong giờ làm việc",
+          "Suy luận theo thông lệ ngành rồi trả lời, vì shop nào cũng có hoá đơn",
+          "Bỏ qua tin vì không có trong mẫu, người sẽ tự thấy nếu nó quan trọng",
+          "Trả lời bằng mẫu gần nhất, chắc khách sẽ tự hiểu ý và hỏi lại nếu cần",
+        ],
+        correct: 0,
+        explanation:
+          "Câu lạ là chỗ máy dễ bịa nhất; hoá đơn liên quan kế toán và thuế nên chỉ người phụ trách mới biết. Bỏ qua khiến khách bị bỏ rơi; trả lời mẫu gần nhất đưa thông tin không trả lời câu khách hỏi. Tin hẹn giờ cho khách biết đã có người nhận.",
+      },
+      {
+        question: "Sau hai tuần chạy, cách nào đánh giá trả lời nửa tự động tốt nhất?",
+        options: [
+          "Đọc lại các tin đã gửi và các tin khách phàn nàn hoặc hỏi lại",
+          "Đếm số tin đã gửi; càng nhiều tin tự động là hệ thống càng tốt",
+          "Chỉ xem có khách nào khen không; không ai khen là ổn",
+          "Chỉ xem doanh thu tuần đó tăng bao nhiêu so tuần trước",
+        ],
+        correct: 0,
+        explanation:
+          "Đọc tin thật và những lần khách hỏi lại hoặc phàn nàn cho thấy mẫu nào trả lời chưa đúng ý. Số tin gửi chỉ đo khối lượng; im lặng không có nghĩa là khách hài lòng; doanh thu chịu ảnh hưởng của quá nhiều thứ khác. Từ đó bạn sửa mẫu hoặc thêm câu vào danh sách phải qua người.",
+      },
+    ],
+    keyTakeaways: [
+      "Máy điền giá và tồn từ bảng tính vào mẫu; câu lạ và mọi lời hứa qua tay người.",
+      "Ghi mốc thời gian của số tồn, và dùng còn khoảng hoặc theo cập nhật lúc thay vì cam kết chắc chắn.",
+      "Ngày giao, giảm giá, đổi trả, hoàn tiền: luôn cần người duyệt.",
+      "Câu ngoài mẫu: chuyển cho người, khách được báo đã có người nhận.",
+      "Đọc lại tin thật mỗi hai tuần để sửa mẫu và thêm câu vào danh sách cần người.",
+    ],
+    practicePrompt: {
+      question:
+        "Khách hỏi: mua 20 cái thì có giảm không, và khi nào giao tới Đà Nẵng? Bảng chỉ có giá lẻ và tồn. Máy nên xử lý thế nào?",
+      options: [
+        "Chuyển cho người vì cả giảm giá và ngày giao đều là cam kết; máy chỉ báo giá lẻ và tồn nếu khách hỏi",
+        "Tự trả lời giảm 10% cho lô 20 cái và giao 3 ngày, vì đó là mức phổ biến của các shop",
+        "Bỏ qua phần khó, chỉ trả lời giá lẻ và im lặng về hai câu còn lại của khách",
+        "Trả lời shop sẽ tính giá tốt nhất cho khách và giao nhanh nhất có thể, không nêu con số nào",
+      ],
+      correct: 0,
+      explanation:
+        "Giảm giá theo số lượng và thời gian giao là cam kết, phải do người quyết. Tự đưa 10% hay 3 ngày là bịa. Im lặng với hai câu khó làm khách hiểu shop không quan tâm. Những câu tốt nhất và nhanh nhất là lời hứa mơ hồ, khách sẽ đòi shop giữ lời sau này.",
+    },
+    summary: {
+      keyIdea: "Nửa tự động là chia việc: máy điền dữ kiện trong bảng, người giữ mọi lời cam kết.",
+      formula: "Khách hỏi → máy điền giá/tồn vào mẫu → câu lạ hoặc có cam kết qua người → đọc lại sau hai tuần.",
+      commonMistake: "Để AI tự trả lời mọi thứ và tin rằng nó biết chính sách của shop, trong khi nó chỉ biết những gì bạn đã đưa.",
+      action: "Viết ra 5 điều shop bạn không bao giờ để máy tự hứa.",
+    },
+    application: {
+      title: "Viết mẫu trả lời và danh sách phải qua người",
+      message:
+        "Mở lịch sử tin nhắn của shop và chọn ra 5 câu khách hỏi lặp lại nhiều nhất. Với mỗi câu, ghi: dữ kiện nào lấy từ bảng tính, mẫu trả lời gồm những gì, và câu hỏi có cần người duyệt không. Cuối cùng viết danh sách 5 điều máy không được tự hứa. Khoảng 20 phút, ghi vào một tệp ghi chú.",
+      secondary: "Ngày mai bạn sẽ được hỏi: mẫu nào bạn muốn cho máy tự trả lời, và điều nào bạn để người quyết.",
+    },
+    sections: [
+      {
+        type: "lead",
+        text: "Tối muộn, điện thoại rung: áo này còn size M không, giá bao nhiêu? Bạn đang ăn cơm, nên khách chờ hai tiếng rồi mua chỗ khác. Bài này dạy cách để máy trả lời phần dễ ngay lập tức mà không bao giờ hứa thay bạn.",
+      },
+      {
+        type: "feynman",
+        title: "Trả lời nửa tự động đơn giản hơn bạn nghĩ",
+        intro: "Hãy nghĩ tới một quầy bán hàng có bảng giá dán tường và một nhân viên mới vào làm.",
+        columns: ["Việc", "Quầy hàng có nhân viên mới", "Trả lời nửa tự động"],
+        rows: [
+          ["Đọc giá", "Nhân viên mới đọc giá trên bảng dán tường", "Máy điền giá từ bảng tính vào mẫu"],
+          ["Xem còn hàng", "Nhìn kệ, hoặc đọc sổ tồn cập nhật lúc sáng", "Máy đọc số tồn và ghi kèm mốc cập nhật"],
+          ["Câu lạ", "Có thể giảm không? - nhân viên mới hỏi chủ", "Câu ngoài mẫu chuyển cho người"],
+          ["Lời hứa", "Chỉ chủ mới được nói giảm, giữ hàng, đổi trả", "Máy không tự hứa; người duyệt mọi cam kết"],
+        ],
+        oneLiner: "Máy là nhân viên mới có bảng giá: đọc đúng những gì dán trên tường, còn lời hứa thì hỏi chủ.",
+      },
+      { type: "heading", text: "Ba tầng của một tin trả lời" },
+      {
+        type: "paragraph",
+        text: "Tầng một là dữ kiện: giá, số tồn, size, màu, lấy nguyên từ bảng tính. Tầng hai là mẫu: lời chào, câu chốt, cách đặt hàng, viết một lần rồi dùng lại. Tầng ba là cam kết: ngày giao, giảm giá, đổi trả, hoàn tiền, giữ hàng, và mọi câu lạ. Máy được phép tự làm tầng một và hai; tầng ba luôn qua người. Nếu dùng AI để soạn nháp, nó chỉ soạn trong khuôn mẫu, và mọi con số vẫn lấy từ bảng tính chứ không từ trí nhớ của AI.",
+      },
+      {
+        type: "flow",
+        title: "Một tin hỏi giá đi qua đâu",
+        steps: [
+          { label: "Tin nhắn của khách tới", detail: "Công cụ tự động hoá nhận tin và tìm tên sản phẩm cùng loại câu hỏi: hỏi giá, hỏi tồn, hay câu khác." },
+          { label: "Tra bảng tính", detail: "Với câu hỏi giá và tồn, máy đọc đúng dòng sản phẩm trong bảng tính, lấy giá, số tồn và ngày cập nhật gần nhất." },
+          { label: "Điền vào mẫu", detail: "Mẫu ghi: giá là..., theo cập nhật lúc ... còn ... cái, mời chị chốt để shop xác nhận. Không có câu hứa nào trong mẫu." },
+          { label: "Câu ngoài mẫu đi sang người", detail: "Tin có chữ giảm, đổi, giao gấp, hoá đơn hay câu máy không hiểu được gửi sang người duyệt, khách nhận tin shop sẽ trả lời trong giờ làm việc." },
+          { label: "Người duyệt, sửa mẫu", detail: "Người trả lời tin. Nếu câu hỏi xuất hiện lại nhiều lần thì thêm vào mẫu, hoặc ghi vào danh sách chỉ người trả lời." },
+        ],
+      },
+      {
+        type: "aiLab",
+        mode: "spotError",
+        title: "Bản nháp AI viết cho khách hỏi áo",
+        task: "Bảng tính của shop chỉ ghi: áo sơ mi linen, giá 249.000đ, size M còn 4 cái (cập nhật sáng nay). Không có thông tin gì về ngày giao, giảm giá hay đổi trả. Bấm vào các đoạn AI đã bịa rồi nộp.",
+        segments: [
+          { text: "Chào chị, áo sơ mi linen giá 249.000đ ạ." },
+          { text: "Size M hiện còn 4 cái theo cập nhật sáng nay." },
+          { text: "Shop giao trong 2 giờ với mọi đơn nội thành.", error: "Bảng tính không có thông tin giao hàng. Thời gian giao là cam kết của shop, AI tự bịa ra." },
+          { text: "Chị đặt hôm nay được giảm thêm 10% nhé.", error: "Không có ưu đãi nào trong bảng. Đây là lời hứa giảm giá do AI tự nghĩ ra, người quản lý chưa hề duyệt." },
+          { text: "Shop đổi trả miễn phí trong 90 ngày.", error: "Chính sách đổi trả không có trong dữ liệu. Bịa chính sách là lỗi nặng vì khách sẽ đòi shop giữ đúng lời." },
+          { text: "Chị nhắn shop để chốt đơn, shop xác nhận lại ngay ạ." },
+        ],
+      },
+      { type: "heading", text: "Cái gì luôn qua người" },
+      {
+        type: "list",
+        items: [
+          "Mọi lời hứa: ngày giao, giữ hàng, giảm giá, tặng quà, hoàn tiền, đổi trả.",
+          "Câu về hoá đơn, thuế, hợp đồng: chuyển cho kế toán hoặc người phụ trách pháp lý.",
+          "Khách đang bực hoặc khiếu nại: người trả lời, không dùng mẫu.",
+          "Bất kỳ câu nào máy không chắc mình hiểu: tự nhận không biết còn hơn đoán.",
+        ],
+      },
+      {
+        type: "scenario",
+        title: "Khách hỏi lúc nửa đêm",
+        start: "start",
+        nodes: {
+          start: {
+            text: "22 giờ, khách hỏi: áo linen size M còn không, giá sao, mai giao được không? Bảng tính có giá và tồn, nhưng không có gì về giao hàng ngày mai. Bạn cài quy tắc nào cho câu trả lời tự động?",
+            choices: [
+              { label: "Trả lời giá và tồn từ bảng, còn câu giao ngày mai thì hẹn người trả lời", next: "split" },
+              { label: "Để AI trả lời hết, kể cả giao ngày mai, cho khách khỏi chờ", next: "invent" },
+            ],
+          },
+          invent: {
+            text: "AI trả lời giao ngày mai chắc chắn. Kho hôm sau không kịp đóng hàng, khách phàn nàn và đòi bồi thường vì đã hứa. Bạn phải xin lỗi và chịu phí ship nhanh.",
+            ending: "bad",
+          },
+          split: {
+            text: "Khách nhận tức thì giá, số tồn theo cập nhật sáng nay, và câu shop sẽ báo thời gian giao trong giờ làm việc. Sáng hôm sau bạn xem tin, kiểm tra kho và trả lời cụ thể. Bạn có thêm việc cập nhật mẫu?",
+            choices: [
+              { label: "Không cần, chuyện này chắc chỉ gặp một lần", next: "lost" },
+              { label: "Thêm mẫu giao hàng đã được duyệt cho lần sau, ghi rõ điều kiện", next: "learn" },
+            ],
+          },
+          lost: {
+            text: "Tuần sau ba khách khác hỏi cùng câu. Tin nào cũng phải chờ bạn, hai khách mua chỗ khác trong lúc chờ.",
+            ending: "bad",
+          },
+          learn: {
+            text: "Mẫu giao hàng do bạn duyệt được máy điền vào lần sau, các câu đơn giản có trả lời ngay, các ca đặc biệt vẫn chuyển cho người. Đơn về đều hơn và không ai bị hứa bừa.",
+            ending: "good",
+          },
+        },
+      },
+      {
+        type: "callout",
+        label: "Cẩn thận: bảng tính cũ là nói dối chậm",
+        text: "Nếu số tồn trong bảng không được cập nhật, tin trả lời tự động đúng công thức mà sai sự thật. Luôn ghi mốc cập nhật vào tin, và đừng để máy dùng chữ chắc chắn kiểu chắc chắn còn hàng.",
+      },
+      {
+        type: "closing",
+        lines: [
+          "Máy đọc bảng, người giữ lời hứa - hai vai rõ ràng thì khách nhận được câu trả lời nhanh mà vẫn đáng tin.",
+          "Bài sau: chính cái bảng tồn kho ấy - làm sao để nó tự báo khi sắp hết hàng.",
+        ],
+      },
+    ],
+  },
+
+  // ── Bài 9 ────────────────────────────────────────────────────────────────
+  {
+    id: 1838,
+    slug: "theo-doi-ton-kho-bang-tinh-canh-bao-sap-het-hang",
+    title: "Chặng 27, Bài 9: Theo dõi tồn kho trong bảng tính và cảnh báo sắp hết hàng - ngưỡng đặt lại",
+    subtitle: "Một cột cảnh báo đặt đúng ngưỡng còn đáng tin hơn trí nhớ của người bận rộn.",
+    duration: "10 phút",
+    difficulty: "Trung bình",
+    emoji: "📦",
+    track: "personal",
+    isFundamental: false,
+    whyItMatters:
+      "Hết hàng đúng lúc bán chạy là mất đơn; đặt hàng quá sớm thì ứ vốn. Chủ shop nhỏ thường quyết theo cảm giác. Một bảng tính có ngưỡng đặt lại và tự báo cho bạn biết khi tồn chạm ngưỡng làm phần việc nhớ hộ, để bạn dành trí tuệ cho việc đặt bao nhiêu, đặt của ai.",
+    openingQuestion:
+      "Anh Tuấn bán ốp lưng điện thoại. Loại A bán khoảng 6 cái mỗi ngày, nhà cung cấp giao sau 5 ngày kể từ lúc đặt. Anh nên đặt thêm hàng vào lúc nào?",
+    openingOptions: [
+      "Khi tồn còn khoảng 30 cái, cộng thêm ít dự phòng",
+      "Khi tồn về đúng 0, vì lúc đó mới chắc chắn là cần thêm hàng",
+      "Khi tồn còn 6 cái, tức đúng lượng bán trong một ngày (bỏ qua 5 ngày chờ giao)",
+      "Khi tồn còn 5 cái, ứng với 5 ngày giao (nhầm số ngày với số cái)",
+    ],
+    correctOption: 0,
+    explanation:
+      "Trong 5 ngày chờ hàng về, shop vẫn bán mỗi ngày 6 cái, tức 6 × 5 = 30 cái. Nếu chờ tới lúc còn đúng 30 mới đặt thì hàng về vừa lúc kho cạn, nên cần cộng thêm một ít dự phòng cho lúc bán nhanh hơn hoặc nhà cung cấp giao trễ. Đặt khi về 0 nghĩa là hết hàng suốt 5 ngày; còn 6 hoặc 5 cái là nhầm đơn vị: ngưỡng tính bằng số cái bán trong thời gian chờ, không phải một ngày hay số ngày.",
+    diagram: [
+      { label: "Bán mỗi ngày × số ngày chờ hàng", arrow: true },
+      { label: "Cộng dự phòng = ngưỡng đặt lại", arrow: true },
+      { label: "Tồn thực tế trong bảng tính", arrow: true },
+      { label: "Tồn chạm ngưỡng: bảng báo, người quyết đặt bao nhiêu" },
+    ],
+    realWorldExample: {
+      company: "Tình huống minh hoạ",
+      description:
+        "Một shop phụ kiện điện thoại nhớ tồn kho bằng đầu óc. Một tuần cao điểm, ốp lưng loại bán chạy nhất hết hàng ba ngày, khách quay sang mua ở shop khác. Sau đó chủ shop lập bảng: mỗi mặt hàng có cột số bán trung bình mỗi ngày, số ngày chờ hàng, dự phòng, và một cột báo ĐẶT HÀNG khi tồn chạm ngưỡng. Bảng không quyết định thay chủ shop, nhưng không còn mặt hàng nào cạn mà không ai hay.",
+    },
+    quiz: [
+      {
+        question: "Ngưỡng đặt lại hàng được tính thế nào?",
+        options: [
+          "Bán mỗi ngày nhân số ngày chờ hàng về, cộng dự phòng",
+          "Bán mỗi ngày cộng số ngày chờ hàng về, cộng dự phòng (cộng thay vì nhân)",
+          "Tổng bán tháng trước chia hai, bỏ qua số ngày chờ",
+          "Số tồn lúc mới nhập hàng chia cho ba, để lúc nào cũng còn một phần ba",
+        ],
+        correct: 0,
+        explanation:
+          "Mỗi ngày chờ hàng shop lại bán thêm một lượng, nên phải nhân số bán mỗi ngày với số ngày chờ. Cộng thay vì nhân mô tả sai hoàn toàn quan hệ. Bán cả tháng chia hai bỏ qua thời gian giao, còn chia ba tồn đầu kỳ không liên quan tốc độ bán.",
+      },
+      {
+        question: "Bán 8 cái mỗi ngày, giao sau 4 ngày, dự phòng 10 cái. Ngưỡng đặt lại là bao nhiêu?",
+        options: [
+          "42 cái",
+          "22 cái (= 8 + 4 + 10, cộng thay vì nhân số ngày chờ)",
+          "32 cái (= 8 × 4, quên cộng phần dự phòng)",
+          "112 cái (= 8 × (4 + 10), nhân cả dự phòng như số ngày)",
+        ],
+        correct: 0,
+        explanation:
+          "Đúng công thức là 8 × 4 + 10 = 42 cái: 32 cái sẽ bán trong lúc chờ hàng, cộng 10 cái dự phòng. 22 là cộng thay vì nhân; 32 quên dự phòng; 112 nhân dự phòng như thể nó cũng là số ngày.",
+      },
+      {
+        question: "Vì sao phải có phần dự phòng trong ngưỡng đặt lại?",
+        options: [
+          "Bán nhanh hơn dự kiến hoặc giao trễ đều có thể làm hết hàng",
+          "Để bảng tính không báo lỗi khi số tồn không chẵn",
+          "Để luôn đặt số hàng chẵn, dễ nhớ và dễ thanh toán",
+          "Vì nhà cung cấp thường tính thêm phí nếu đặt đúng bằng số cần",
+        ],
+        correct: 0,
+        explanation:
+          "Số bán mỗi ngày chỉ là trung bình; một ngày khuyến mãi hoặc một chuyến giao trễ đều rút ngắn thời gian còn hàng. Dự phòng là tấm đệm cho hai bất trắc đó. Nó không liên quan tới lỗi bảng tính, số chẵn hay phí nhà cung cấp.",
+      },
+      {
+        question: "Số tồn trong bảng lệch với số hàng đếm thật trên kệ. Xử lý thế nào?",
+        options: [
+          "Kiểm đếm kệ định kỳ và sửa bảng kèm ghi lý do lệch",
+          "Tin bảng vì có công thức nên chắc không sai",
+          "Chỉ kiểm khi khách khiếu nại hết hàng, vì kiểm thường xuyên tốn công",
+          "Xoá dòng bị lệch để cột cảnh báo khỏi hiện số sai gây rối",
+        ],
+        correct: 0,
+        explanation:
+          "Công thức chỉ tính đúng nếu số nhập vào đúng; hàng trả, hỏng, thất thoát đều làm lệch. Kiểm đếm định kỳ và ghi lý do cho biết lỗi từ đâu. Đợi khách khiếu nại là quá muộn, còn xoá dòng lệch chỉ giấu vấn đề khỏi cột cảnh báo.",
+      },
+      {
+        question: "Cảnh báo sắp hết hàng nên gửi cho chủ shop như thế nào?",
+        options: [
+          "Một tin cho mỗi mặt hàng khi vừa chạm ngưỡng, không gửi lại khi đã báo",
+          "Mỗi sáng gửi toàn bộ danh sách 200 mặt hàng kèm số tồn hiện tại",
+          "Một tin mỗi lần có đơn bán làm số tồn giảm đi, để luôn cập nhật",
+          "Chỉ gửi khi tồn về đúng 0, vì lúc đó mới thực sự cần đặt hàng",
+        ],
+        correct: 0,
+        explanation:
+          "Chỉ những mặt hàng chạm ngưỡng mới cần chú ý, và báo một lần là đủ để người ta hành động. Danh sách 200 dòng mỗi sáng chìm mất cảnh báo thật; tin mỗi đơn bán thành tiếng ồn; báo khi về 0 thì đã quá muộn để hàng kịp về.",
+      },
+    ],
+    keyTakeaways: [
+      "Ngưỡng đặt lại = bán mỗi ngày × số ngày chờ hàng + dự phòng.",
+      "Đặt khi tồn về 0 nghĩa là hết hàng suốt thời gian chờ nhà cung cấp giao.",
+      "Số bán trung bình mỗi ngày cần cập nhật theo tháng; hàng theo mùa đổi ngưỡng theo mùa.",
+      "Bảng tính chỉ đúng khi số nhập đúng: kiểm đếm kệ định kỳ và ghi lý do lệch.",
+      "Cảnh báo một lần cho mỗi mặt hàng chạm ngưỡng; người quyết đặt bao nhiêu.",
+    ],
+    practicePrompt: {
+      question:
+        "Loại B bán 5 cái mỗi ngày, giao sau 7 ngày, dự phòng 15 cái, tồn hiện tại 48. Bảng nên hiện gì?",
+      options: [
+        "Ngưỡng 50 (= 5 × 7 + 15); tồn 48 thấp hơn ngưỡng nên báo đặt hàng",
+        "Ngưỡng 27 (= 5 + 7 + 15, cộng thay vì nhân); tồn 48 còn xa ngưỡng nên chưa cần đặt",
+        "Ngưỡng 35 (= 5 × 7, bỏ dự phòng); tồn 48 cao hơn ngưỡng nên chưa cần đặt",
+        "Ngưỡng 105 (= 5 × (7 + 15), nhân cả dự phòng); tồn 48 báo đặt gấp và đặt số rất lớn",
+      ],
+      correct: 0,
+      explanation:
+        "Đúng: 5 × 7 + 15 = 50, tồn 48 đã dưới ngưỡng nên phải đặt. Các cách khác đều sai công thức và cho kết quả chưa cần đặt hoặc đặt quá tay. Người vẫn quyết định số lượng đặt dựa trên khoảng cách tới lần đặt tiếp theo.",
+    },
+    summary: {
+      keyIdea: "Ngưỡng đặt lại biến trí nhớ thành một con số mà bảng tính có thể canh hộ bạn.",
+      formula: "Ngưỡng = bán mỗi ngày × số ngày chờ hàng + dự phòng; tồn chạm ngưỡng thì báo đặt hàng.",
+      commonMistake: "Đợi tới khi hết hàng mới đặt, hoặc tin số trong bảng mà không bao giờ đếm lại kệ.",
+      action: "Tính ngưỡng đặt lại cho ba mặt hàng bán chạy nhất của bạn.",
+    },
+    application: {
+      title: "Tính ngưỡng cho ba mặt hàng",
+      message:
+        "Chọn 3 mặt hàng bạn bán chạy nhất. Với mỗi mặt hàng ghi ba số: số bán trung bình mỗi ngày (xem đơn 2 tuần gần nhất), số ngày nhà cung cấp giao, và dự phòng bạn muốn giữ. Tính ngưỡng, rồi đối chiếu với số tồn hôm nay: mặt hàng nào đã dưới ngưỡng? Khoảng 15 phút trong bảng tính.",
+      secondary: "Ngày mai bạn sẽ được hỏi: mặt hàng nào đã chạm ngưỡng, và bạn định đặt bao nhiêu.",
+    },
+    sections: [
+      {
+        type: "lead",
+        text: "Tuần khuyến mãi, mặt hàng bán chạy nhất của bạn hết veo sau hai ngày. Nhà cung cấp hẹn giao sau 5 ngày. Suốt 5 ngày đó khách vào hỏi, bạn chỉ nói hết rồi. Bài này dạy cách để bảng tính nhắc bạn đặt hàng trước khi chuyện ấy xảy ra.",
+      },
+      {
+        type: "feynman",
+        title: "Cảnh báo sắp hết hàng đơn giản hơn bạn nghĩ",
+        intro: "Nghĩ tới bình gas trong bếp nhà bạn: bạn không chờ tới khi bếp tắt giữa lúc nấu mới gọi đại lý.",
+        columns: ["Việc", "Bình gas ở nhà", "Tồn kho trong bảng tính"],
+        rows: [
+          ["Mức dùng", "Nấu mỗi ngày dùng chừng một phần bình", "Bán trung bình mỗi ngày"],
+          ["Thời gian chờ", "Đại lý giao sau khoảng 1 ngày", "Nhà cung cấp giao sau vài ngày"],
+          ["Lúc gọi", "Gọi khi gas còn đủ nấu tới lúc bình mới về", "Ngưỡng đặt lại = bán mỗi ngày × số ngày chờ"],
+          ["Đệm an toàn", "Nhà có khách nên gọi sớm hơn một chút", "Cộng thêm dự phòng cho ngày bán nhanh"],
+        ],
+        oneLiner: "Ngưỡng đặt lại là lúc gọi đại lý: còn đủ dùng cho tới khi hàng mới về, cộng một ít cho chắc.",
+      },
+      { type: "heading", text: "Bảng tính có gì mà tự cảnh báo được" },
+      {
+        type: "paragraph",
+        text: "Mỗi hàng là một mặt hàng. Các cột: tên, tồn hiện tại, số bán trung bình mỗi ngày, số ngày nhà cung cấp giao, dự phòng, ngưỡng đặt lại (cột tính), và một cột trạng thái cho biết tồn đã chạm ngưỡng chưa. Công cụ tự động hoá hoặc chính bảng tính có thể gửi bạn một tin khi trạng thái chuyển sang cần đặt. Bạn không cần biết công thức chi tiết của từng công cụ; điều quan trọng là bạn hiểu ngưỡng nghĩa là gì và biết kiểm nó.",
+      },
+      {
+        type: "chart",
+        title: "Tồn giảm dần và ngưỡng đặt lại",
+        caption:
+          "Số liệu minh hoạ, không phải thống kê thật. Kéo thanh trượt cho khớp mặt hàng của bạn: đường xanh là tồn còn lại theo ngày nếu không đặt thêm, đường ngang là ngưỡng đặt lại. Ngày nào đường tồn cắt xuống dưới đường ngưỡng là ngày bạn nên đặt hàng.",
+        kind: "line",
+        xLabel: "Số ngày kể từ hôm nay",
+        yLabel: "Số cái",
+        x: { from: 0, to: 30, step: 1 },
+        params: [
+          { id: "ton", label: "Tồn hiện tại", min: 0, max: 300, step: 5, value: 120, unit: "cái" },
+          { id: "ban", label: "Bán mỗi ngày", min: 1, max: 20, step: 1, value: 6, unit: "cái" },
+          { id: "giao", label: "Ngày chờ hàng về", min: 1, max: 14, step: 1, value: 5, unit: "ngày" },
+          { id: "duphong", label: "Dự phòng", min: 0, max: 60, step: 5, value: 10, unit: "cái" },
+        ],
+        series: [
+          { label: "Tồn còn lại (nếu không đặt thêm)", expr: "max(ton - ban * x, 0)" },
+          { label: "Ngưỡng đặt lại", expr: "ban * giao + duphong" },
+        ],
+      },
+      {
+        type: "flow",
+        title: "Từ đơn bán tới cảnh báo",
+        steps: [
+          { label: "Có đơn bán", detail: "Mỗi đơn hoàn tất làm cột tồn của mặt hàng giảm đi đúng số lượng đã bán. Nếu bảng nhập tay thì đây là bước dễ sai nhất." },
+          { label: "Tính lại ngưỡng", detail: "Cột ngưỡng tính từ số bán trung bình, số ngày chờ hàng và dự phòng. Cập nhật số bán trung bình mỗi tháng." },
+          { label: "So tồn với ngưỡng", detail: "Cột trạng thái chuyển sang cần đặt khi tồn nhỏ hơn hoặc bằng ngưỡng, và về bình thường khi hàng mới về." },
+          { label: "Gửi một tin cảnh báo", detail: "Công cụ tự động hoá gửi chủ shop một tin cho mặt hàng vừa chạm ngưỡng, ghi tên, số tồn và ngưỡng. Không gửi lại mỗi ngày." },
+          { label: "Người quyết đặt bao nhiêu", detail: "Số lượng đặt phụ thuộc mùa, tiền vốn và khuyến mãi sắp tới - việc của người, không phải của bảng." },
+        ],
+      },
+      {
+        type: "scenario",
+        title: "Cột cảnh báo chuyển sang đỏ",
+        start: "start",
+        nodes: {
+          start: {
+            text: "Sáng nay, cột cảnh báo của ốp lưng loại A chuyển sang đỏ: tồn 28 cái, ngưỡng 30. Bạn đang định đặt hàng.",
+            choices: [
+              { label: "Đặt ngay số lượng giống lần trước vì bảng đã báo", next: "blind" },
+              { label: "Đếm nhanh số ốp lưng thật trên kệ rồi mới đặt", next: "count" },
+              { label: "Đợi tới khi tồn về 10 cho chắc rồi mới đặt", next: "late" },
+            ],
+          },
+          blind: {
+            text: "Lần trước bạn đặt số lớn vì đang khuyến mãi. Lần này không có khuyến mãi nên hàng về dư hơn 100 cái, vốn nằm im trên kệ nhiều tuần.",
+            ending: "bad",
+          },
+          late: {
+            text: "Hàng về sau 5 ngày, nhưng tồn đã cạn từ ngày thứ ba. Bạn hết hàng hai ngày đúng lúc khách hỏi nhiều nhất.",
+            ending: "bad",
+          },
+          count: {
+            text: "Trên kệ thật chỉ còn 22 cái: bảng lệch 6 vì hàng khách trả về chưa được cộng lại vào tồn. Bạn xử lý thế nào?",
+            choices: [
+              { label: "Giữ số trong bảng, 6 cái là nhỏ, không cần sửa", next: "ignore" },
+              { label: "Sửa tồn thành 22, ghi lý do lệch, và thêm bước cộng tồn khi nhận hàng trả", next: "fix" },
+            ],
+          },
+          ignore: {
+            text: "Tuần sau cột cảnh báo vẫn nghĩ tồn nhiều hơn thật, báo muộn 6 cái, và lỗi lặp lại mỗi lần có hàng trả.",
+            ending: "bad",
+          },
+          fix: {
+            text: "Bạn đặt hàng với số lượng hợp lý theo mùa, bảng khớp với kệ, và từ nay hàng trả cũng được ghi vào tồn. Cột cảnh báo đáng tin hơn từng tuần.",
+            ending: "good",
+          },
+        },
+      },
+      {
+        type: "callout",
+        label: "Bảng chỉ đúng khi số bạn nhập đúng",
+        text: "Cột cảnh báo là công thức, nó không biết hàng nào bị trả, hỏng hay mất. Mỗi tháng đếm thật một vài mặt hàng, so với bảng, và ghi lại lý do khi lệch. Một bảng lệch vẫn báo rất tự tin.",
+      },
+      {
+        type: "closing",
+        lines: [
+          "Ngưỡng là một con số tính được, bảng canh giúp bạn, còn quyết định đặt bao nhiêu vẫn là của người.",
+          "Bài cuối: báo cáo doanh thu cuối ngày tự gửi - và cách kiểm để nó không im lặng sai.",
+        ],
+      },
+    ],
+  },
+
+  // ── Bài 10 ───────────────────────────────────────────────────────────────
+  {
+    id: 1839,
+    slug: "bao-cao-doanh-thu-cuoi-ngay-tu-gui-va-cach-kiem",
+    title: "Chặng 27, Bài 10: Báo cáo doanh thu cuối ngày tự gửi - và cách kiểm để báo cáo không im lặng sai",
+    subtitle: "Một báo cáo không báo lỗi vẫn có thể sai; vài dòng kiểm cuối báo cáo giúp bạn biết khi nào.",
+    duration: "10 phút",
+    difficulty: "Trung bình",
+    emoji: "📊",
+    track: "personal",
+    isFundamental: false,
+    whyItMatters:
+      "Bài trước về workflow hỏng dạy cách phát hiện khi workflow ngừng chạy. Báo cáo tự gửi có một dạng lỗi khó hơn: nó vẫn chạy đúng giờ, vẫn gửi con số nhìn rất hợp lý, nhưng con số thiếu đơn cuối ngày, đếm trùng hoặc lẫn ngày. Chủ shop tin số đó để nhập hàng và chạy quảng cáo, nên bài này dạy cách cài vài chốt để báo cáo tự cho bạn biết mình đáng tin đến đâu.",
+    openingQuestion:
+      "Báo cáo doanh thu tự gửi mỗi 18 giờ. Hôm nay báo cáo ghi 4,2 triệu, thấp lạ dù shop bận cả chiều. Cách kiểm nhanh nhất là gì?",
+    openingOptions: [
+      "Đối chiếu số đơn và tổng tiền với danh sách đơn gốc trong ngày",
+      "Tin báo cáo vì tự động nên không thể sai, chắc chỉ ế khách",
+      "Tắt báo cáo tự động và quay lại làm tay mãi, vì không thể tin được nữa",
+      "Chờ tới cuối tuần xem tổng tuần có bù lại số hôm nay không rồi mới xét",
+    ],
+    correctOption: 0,
+    explanation:
+      "Cách nhanh nhất là đếm lại từ nguồn gốc: danh sách đơn của ngày hôm nay có bao nhiêu đơn, tổng bao nhiêu, và so với con số trên báo cáo. Nếu khớp thì hôm nay thật sự ế; nếu lệch, bạn thấy ngay lệch ở đâu, thường là đơn tới sau giờ chạy hoặc bị đếm nhầm ngày. Coi báo cáo là không thể sai sẽ bỏ lỡ lỗi; tắt hẳn là bỏ đi công cụ tốt chỉ vì một lỗi; chờ cuối tuần là để lỗi lan sang cả tuần.",
+    diagram: [
+      { label: "Lấy đơn của ngày từ nguồn gốc", arrow: true },
+      { label: "Cộng và tính báo cáo", arrow: true },
+      { label: "Gắn dòng kiểm: số đơn, mốc giờ, đối chiếu", arrow: true },
+      { label: "Gửi chủ shop; mỗi tuần đếm tay một ngày" },
+    ],
+    realWorldExample: {
+      company: "Tình huống minh hoạ",
+      description:
+        "Một shop cài báo cáo doanh thu chạy lúc 18 giờ. Vài tuần liền con số hôm nào cũng thấp hơn cảm giác của chủ shop chút ít. Khi đối chiếu một ngày với danh sách đơn gốc, chủ shop phát hiện những đơn đặt từ 17 giờ 40 trở đi chưa kịp đồng bộ khi báo cáo chạy nên chưa được tính. Lỗi không bao giờ hiện ra vì báo cáo chưa bao giờ báo thất bại. Sau đó báo cáo dời giờ chạy và ghi dòng số liệu tính đến mấy giờ.",
+    },
+    quiz: [
+      {
+        question: "Dòng kiểm cuối báo cáo nên có gì?",
+        options: [
+          "Số đơn, mốc giờ cắt dữ liệu và tổng đối chiếu với nguồn gốc",
+          "Chỉ tổng doanh thu in đậm thật lớn để chủ shop nhìn thấy ngay số đó",
+          "Tên người dựng báo cáo và ngày dựng, để biết cần hỏi ai khi có lỗi",
+          "Lời chúc cuối ngày vui vẻ để báo cáo có giọng thân thiện",
+        ],
+        correct: 0,
+        explanation:
+          "Số đơn, mốc giờ và tổng đối chiếu cho chủ shop biết báo cáo tính từ đâu và đủ chưa; ba thứ đó tự phát hiện được nhiều lỗi. Chỉ một con số lớn là dễ tin mà khó kiểm; tên người dựng có ích nhưng không cho biết số đúng hay sai; lời chúc chỉ trang trí.",
+      },
+      {
+        question: "Báo cáo chạy 18 giờ nhưng đơn 17 giờ 58 chưa đồng bộ vào bảng. Cách xử lý đúng?",
+        options: [
+          "Ghi rõ dữ liệu tính tới lúc nào, hoặc dời giờ chạy sau giờ chốt",
+          "Yêu cầu khách đặt trước 17 giờ để đơn kịp lịch báo cáo",
+          "Cộng tay những đơn thiếu vào báo cáo mỗi tối",
+          "Chạy báo cáo mỗi 5 phút để chắc chắn sớm muộn cũng đủ đơn",
+        ],
+        correct: 0,
+        explanation:
+          "Mốc giờ cắt dữ liệu hoặc dời giờ chạy giải đúng nguyên nhân: báo cáo chạy trước khi dữ liệu về đủ. Ép khách đổi giờ mua là đổi kinh doanh vì công cụ; cộng tay hằng tối là làm lại việc đã tự động; chạy mỗi 5 phút gửi hàng chục báo cáo trùng và vẫn không nói được số nào là chốt.",
+      },
+      {
+        question: "AI viết thêm nhờ chiến dịch quảng cáo hôm qua, doanh thu hôm nay tăng 35%. Vì sao không nên tin câu này?",
+        options: [
+          "Dữ liệu chỉ có con số, không có nguyên nhân; đó là suy đoán",
+          "Quảng cáo luôn là nguyên nhân chính nên câu đó thừa",
+          "AI chỉ hay sai khi phần trăm tăng lớn hơn 50%, còn 35% thì đáng tin",
+          "Câu đó chỉ đáng tin nếu AI viết bằng giọng chắc chắn và có con số kèm theo",
+        ],
+        correct: 0,
+        explanation:
+          "Con số 35% tính được từ dữ liệu, nhưng nguyên nhân thì dữ liệu không nói. AI thấy hai sự việc gần nhau nên nối chúng lại. Không phải mọi tăng là do quảng cáo, mức phần trăm không quyết định độ tin cậy, và giọng chắc chắn không chứng minh gì.",
+      },
+      {
+        question: "Cách nào kiểm báo cáo tự động bền nhất?",
+        options: [
+          "Mỗi tuần chọn một ngày, đếm tay số đơn và tổng, so với báo cáo",
+          "Chỉ kiểm khi số liệu trông lạ, vì lúc thường báo cáo là đúng",
+          "Kiểm mỗi ngày toàn bộ đơn bằng tay để chắc chắn, như hồi chưa tự động",
+          "So báo cáo hôm nay với hôm qua; hai số gần nhau là chắc đúng",
+        ],
+        correct: 0,
+        explanation:
+          "Chọn ngẫu nhiên một ngày mỗi tuần vừa nhẹ vừa bắt được lỗi hệ thống. Chỉ kiểm khi lạ bỏ sót lỗi làm số thấp đều đặn nhìn rất bình thường. Kiểm hằng ngày bằng tay là bỏ công tự động hoá. Hai ngày gần nhau có thể cùng thiếu đơn cuối ngày.",
+      },
+      {
+        question: "Đơn huỷ và đơn hoàn tiền cần xử lý thế nào trong báo cáo doanh thu?",
+        options: [
+          "Chọn một quy tắc cho cả hai và ghi vào báo cáo",
+          "Cứ tính hết vào doanh thu, chủ shop sẽ tự nhớ mà trừ ra sau",
+          "Loại bỏ mọi đơn có bất kỳ ghi chú nào, vì ghi chú nghĩa là có vấn đề",
+          "Để công cụ tự quyết vì nó luôn có mặc định hợp lý cho mọi loại shop",
+        ],
+        correct: 0,
+        explanation:
+          "Quy tắc rõ và ghi trong báo cáo giúp mọi người đọc cùng một nghĩa. Tính hết rồi nhờ chủ shop nhớ trừ sẽ sai khi có nhiều đơn huỷ. Loại mọi đơn có ghi chú xoá cả đơn bình thường. Mặc định của công cụ có thể không khớp sổ sách. Nếu số dùng cho sổ sách hoặc thuế, hỏi kế toán trưởng trước khi chốt quy tắc.",
+      },
+    ],
+    keyTakeaways: [
+      "Báo cáo tự gửi có thể sai mà không báo lỗi: thiếu đơn cuối ngày, trùng đơn, lẫn ngày.",
+      "Gắn dòng kiểm cuối báo cáo: số đơn, mốc giờ cắt dữ liệu, tổng đối chiếu nguồn gốc.",
+      "Mỗi tuần chọn một ngày, đếm tay số đơn và tổng để so với báo cáo.",
+      "AI chỉ tóm tắt số có trong dữ liệu; nguyên nhân là phần người phải kiểm.",
+      "Quy tắc đơn huỷ, hoàn tiền cần một câu ghi rõ; số cho sổ sách hỏi kế toán trưởng.",
+    ],
+    practicePrompt: {
+      question:
+        "Báo cáo hôm nay ghi 46 đơn, 18,4 triệu. Danh sách gốc có 49 đơn. Bước hợp lý nhất tiếp theo là gì?",
+      options: [
+        "Tìm 3 đơn lệch trong danh sách gốc và xem chúng đến trước hay sau giờ báo cáo chạy",
+        "Bỏ qua, 3 đơn chỉ chiếm chưa tới 7% nên không đáng để công tìm hiểu",
+        "Cộng tay 3 đơn vào tổng rồi gửi cho chủ shop mà không cần điều tra thêm",
+        "Chạy lại báo cáo cho tới khi ra đúng 49 đơn mà không cần hiểu lý do",
+      ],
+      correct: 0,
+      explanation:
+        "Tìm đúng 3 đơn lệch cho thấy nguyên nhân: đến sau giờ chạy, trùng, hoặc lẫn ngày; từ đó sửa gốc. Bỏ qua để lỗi lặp mỗi ngày; cộng tay che vấn đề; chạy lại nhiều lần không hiểu lý do thì lần sau lỗi vẫn còn.",
+    },
+    summary: {
+      keyIdea: "Báo cáo tự gửi đáng tin khi nó tự nói mình tính từ đâu và được đối chiếu với nguồn gốc.",
+      formula: "Số đơn + mốc giờ + tổng đối chiếu = dòng kiểm; cộng một lần đếm tay mỗi tuần.",
+      commonMistake: "Tin báo cáo chỉ vì nó chạy đúng giờ và ra con số nhìn hợp lý.",
+      action: "Chọn một ngày gần đây, đếm tay số đơn và tổng rồi so với báo cáo.",
+    },
+    application: {
+      title: "Đếm tay một ngày và so với báo cáo",
+      message:
+        "Chọn một ngày gần đây và lấy danh sách đơn gốc của ngày đó. Đếm số đơn, cộng tổng tiền, rồi so với báo cáo doanh thu của cùng ngày. Nếu lệch, ghi rõ lệch bao nhiêu đơn và bạn nghĩ nguyên nhân là gì (giờ cắt, trùng, huỷ). Nếu khớp, ghi lại để biết báo cáo đáng tin ở mức nào. Khoảng 15 phút.",
+      secondary: "Ngày mai bạn sẽ được hỏi: báo cáo của bạn khớp hay lệch, và bạn định thêm dòng kiểm nào.",
+    },
+    sections: [
+      {
+        type: "lead",
+        text: "Sáu giờ chiều, báo cáo doanh thu tự đến hộp thư. Nó luôn đúng giờ, luôn có con số, chưa bao giờ báo lỗi. Bạn dùng con số đó để quyết định nhập hàng ngày mai. Bài này hỏi một câu khó chịu: con số đó đúng không, và bạn biết bằng cách nào?",
+      },
+      {
+        type: "feynman",
+        title: "Kiểm báo cáo đơn giản hơn bạn nghĩ",
+        intro: "Hãy nghĩ tới thu ngân chốt ca ở quầy: máy in ra tổng, nhưng thu ngân vẫn đếm tiền trong két.",
+        columns: ["Việc", "Thu ngân chốt ca", "Báo cáo tự gửi"],
+        rows: [
+          ["Số máy in ra", "Máy tính tổng doanh thu ca", "Báo cáo tính tổng doanh thu ngày"],
+          ["Đếm thật", "Đếm tiền trong két so với tổng trên máy", "Đếm số đơn và tổng trong danh sách gốc"],
+          ["Ghi mốc", "Ca từ 14 giờ đến 22 giờ", "Dữ liệu tính đến 18 giờ"],
+          ["Lệch thì hỏi", "Lệch mười nghìn cũng tìm ra vì sao", "Lệch ba đơn cũng tìm ra ba đơn nào"],
+        ],
+        oneLiner: "Máy in tổng, người vẫn đếm két một lần: báo cáo tự động cũng cần một lần đối chiếu.",
+      },
+      { type: "heading", text: "Ba kiểu sai thầm lặng" },
+      {
+        type: "paragraph",
+        text: "Báo cáo vẫn chạy nhưng sai theo ba cách hay gặp. Thứ nhất, chạy trước khi dữ liệu về đủ: đơn cuối ngày chưa kịp vào bảng. Thứ hai, đếm sai: một đơn bị ghi hai lần hoặc lẫn sang ngày khác do lệch giờ. Thứ ba, quy tắc mơ hồ: đơn huỷ, hoàn tiền, hay đơn giảm giá có tính hay không mà không ai ghi lại. Cả ba đều cho ra con số nhìn rất bình thường. Điểm khác so với bài về workflow hỏng: lỗi ở đây không làm workflow dừng, nên không có thông báo lỗi nào để bật sẵn.",
+      },
+      {
+        type: "flow",
+        title: "Một báo cáo có dòng kiểm đi qua các bước nào",
+        steps: [
+          { label: "Lấy đơn của ngày", detail: "Công cụ đọc danh sách đơn từ nguồn gốc, lọc đúng ngày theo giờ Việt Nam, và ghi lại giờ đơn cuối cùng đã nhận được." },
+          { label: "Cộng theo quy tắc", detail: "Tính tổng theo quy tắc đã ghi: đơn huỷ loại ra, đơn hoàn tiền trừ đi. Quy tắc này cũng nằm trong báo cáo." },
+          { label: "Tính dòng kiểm", detail: "Đếm số đơn, ghi mốc giờ cắt dữ liệu, và tính lại tổng bằng một cách khác (ví dụ từ tệp thanh toán) để so sánh." },
+          { label: "Gửi báo cáo kèm dòng kiểm", detail: "Chủ shop nhận con số cùng dòng: 46 đơn, dữ liệu tới 18:00, tổng đối chiếu khớp hoặc lệch bao nhiêu." },
+          { label: "Đếm tay mỗi tuần một ngày", detail: "Mỗi tuần chọn một ngày ngẫu nhiên, đếm tay số đơn và tổng rồi so với báo cáo để bắt lỗi mà dòng kiểm bỏ sót." },
+        ],
+      },
+      {
+        type: "aiLab",
+        mode: "spotError",
+        title: "Bản tóm tắt AI viết dưới báo cáo",
+        task: "Dữ liệu duy nhất bạn đưa cho AI: hôm nay 46 đơn, tổng 18,4 triệu đồng; hôm qua 13,6 triệu; 2 đơn huỷ. Không có dữ liệu về sản phẩm hay quảng cáo. Bấm vào các đoạn AI đã bịa hoặc suy đoán rồi nộp.",
+        segments: [
+          { text: "Hôm nay shop có 46 đơn với tổng doanh thu 18,4 triệu đồng." },
+          { text: "So với hôm qua (13,6 triệu), doanh thu tăng khoảng 35%." },
+          { text: "Có 2 đơn huỷ trong tổng số 46 đơn." },
+          { text: "Kem chống nắng là sản phẩm bán chạy nhất, chiếm 60% doanh thu.", error: "Dữ liệu không có thông tin theo sản phẩm. AI tự bịa tên sản phẩm và tỷ lệ 60%." },
+          { text: "Mức tăng đến từ chiến dịch quảng cáo triển khai hôm qua.", error: "Dữ liệu không hề nói tới quảng cáo hay nguyên nhân của mức tăng; đây là suy đoán trình bày như sự thật." },
+        ],
+      },
+      { type: "heading", text: "Chốt kiểm tối thiểu" },
+      {
+        type: "list",
+        items: [
+          "Dòng kiểm cuối báo cáo: số đơn, mốc giờ cắt dữ liệu, tổng đối chiếu.",
+          "Quy tắc đơn huỷ, hoàn tiền và giảm giá ghi thành một câu trong báo cáo.",
+          "Mỗi tuần đếm tay một ngày ngẫu nhiên và so với báo cáo.",
+          "Nếu số dùng cho sổ sách hoặc thuế, hỏi kế toán trưởng về quy tắc trước khi tin.",
+        ],
+      },
+      {
+        type: "scenario",
+        title: "Báo cáo báo 46 đơn, danh sách gốc có 49",
+        start: "start",
+        nodes: {
+          start: {
+            text: "Bạn đếm tay ngày hôm nay và thấy 49 đơn, nhưng báo cáo ghi 46 đơn. Con số doanh thu nhìn vẫn bình thường.",
+            choices: [
+              { label: "Bỏ qua, chênh 3 đơn chỉ là chuyện nhỏ", next: "ignore" },
+              { label: "Tìm ba đơn bị thiếu và xem chúng khác gì so với các đơn còn lại", next: "find" },
+            ],
+          },
+          ignore: {
+            text: "Tuần sau bạn nhập hàng theo báo cáo thấp hơn thực tế vài chục đơn mỗi tuần. Hàng thiếu đúng lúc bán chạy mà không ai biết vì sao.",
+            ending: "bad",
+          },
+          find: {
+            text: "Cả ba đơn đến sau 17 giờ 50 nên chưa kịp có trong bảng khi báo cáo chạy lúc 18 giờ. Bạn xử lý thế nào?",
+            choices: [
+              { label: "Mỗi tối tự cộng tay ba đơn thiếu vào báo cáo", next: "manual" },
+              { label: "Dời giờ chạy sau giờ chốt và thêm dòng dữ liệu tính đến mấy giờ", next: "fixed" },
+            ],
+          },
+          manual: {
+            text: "Bạn cộng tay được vài hôm rồi quên một hôm; báo cáo lại lệch mà không ai hay. Công cụ làm nửa việc còn bạn làm nửa còn lại, sớm muộn lại có ngày bỏ sót.",
+            ending: "bad",
+          },
+          fixed: {
+            text: "Báo cáo chạy sau giờ chốt, ghi rõ 49 đơn, dữ liệu tính đến 18:15, tổng đối chiếu khớp. Chủ shop biết mình đang nhìn số nào, tuần sau đếm tay vẫn khớp.",
+            ending: "good",
+          },
+        },
+      },
+      {
+        type: "callout",
+        label: "Nhớ: khớp một ngày không chứng minh mọi ngày",
+        text: "Một lần đếm tay khớp chỉ cho biết ngày đó đúng. Điều bạn tìm là thói quen đếm, mỗi tuần một ngày khác nhau, để nếu báo cáo bắt đầu lệch thì bạn phát hiện trong vài ngày chứ không phải vài tháng.",
+      },
+      {
+        type: "closing",
+        lines: [
+          "Báo cáo tự gửi tiện, nhưng người đọc chỉ nên tin khi nó tự nói mình tính từ đâu và đã được đối chiếu.",
+          "Bạn vừa đi hết chuỗi việc nhỏ của một shop: nhắc khách, trả lời tin nhắn, canh tồn kho, và kiểm báo cáo.",
+        ],
+      },
+    ],
+  },
 ];

@@ -394,7 +394,7 @@ export const TRACK_PERSONAL = {
       isNew: true,
       parts: [
         { name: "Hiểu AI và giao việc cho nó", days: [1810, 1812] as [number, number] },
-        { name: "Nghiên cứu, kiểm chứng và dùng chung", days: [1813, 1815] as [number, number] },
+        { name: "Nghiên cứu, kiểm chứng và dùng chung", days: [1813, 1819] as [number, number] },
       ],
     },
     {
@@ -405,7 +405,7 @@ export const TRACK_PERSONAL = {
       isNew: true,
       parts: [
         { name: "Dữ liệu sạch, câu hỏi đúng, công thức đúng", days: [1820, 1822] as [number, number] },
-        { name: "Phân tích biến động và kể chuyện bằng số", days: [1823, 1825] as [number, number] },
+        { name: "Phân tích biến động và kể chuyện bằng số", days: [1823, 1829] as [number, number] },
       ],
     },
     {
@@ -416,7 +416,7 @@ export const TRACK_PERSONAL = {
       isNew: true,
       parts: [
         { name: "Workflow đầu tiên và khi nó hỏng", days: [1830, 1833] as [number, number] },
-        { name: "Dự án: báo cáo tháng và dashboard tự làm mới", days: [1834, 1835] as [number, number] },
+        { name: "Dự án: báo cáo tháng và dashboard tự làm mới", days: [1834, 1839] as [number, number] },
       ],
     },
     {
@@ -427,7 +427,7 @@ export const TRACK_PERSONAL = {
       isNew: true,
       parts: [
         { name: "Bán hàng và chăm sóc khách hàng", days: [1840, 1842] as [number, number] },
-        { name: "Vận hành, tài liệu nội bộ và đo giá trị", days: [1843, 1845] as [number, number] },
+        { name: "Vận hành, tài liệu nội bộ và đo giá trị", days: [1843, 1849] as [number, number] },
       ],
     },
     {
@@ -438,7 +438,7 @@ export const TRACK_PERSONAL = {
       isNew: true,
       parts: [
         { name: "Dữ liệu, deepfake và câu lệnh ẩn", days: [1850, 1852] as [number, number] },
-        { name: "Người duyệt, chính sách và tài khoản", days: [1853, 1855] as [number, number] },
+        { name: "Người duyệt, chính sách và tài khoản", days: [1853, 1859] as [number, number] },
       ],
     },
   ] satisfies Stage[],

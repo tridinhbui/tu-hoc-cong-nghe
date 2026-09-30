@@ -1433,4 +1433,1060 @@ VÍ DỤ ĐẦU RA TỐT: [dán một email đã gửi và được khách phả
       },
     ],
   },
+  {
+    id: 1816,
+    slug: "tra-loi-email-hang-loat-giu-giong-cua-ban",
+    title: "Chặng 25, Bài 7: Trả lời email hàng loạt mà vẫn giữ giọng của bạn",
+    subtitle: "Một mẫu thư có chỗ trống, một danh sách đã kiểm - và mỗi người nhận vẫn đọc ra tên mình.",
+    duration: "10 phút",
+    difficulty: "Trung bình",
+    emoji: "✉️",
+    track: "personal",
+    isFundamental: false,
+    whyItMatters:
+      "Cuối tháng bạn phải gửi 40 email na ná nhau: nhắc thanh toán, xác nhận lịch, cảm ơn khách. Viết tay từng cái thì mất cả buổi chiều, còn nhờ AI viết một lèo thì rủi ro là nhầm tên, nhầm số tiền, hoặc giọng văn xa lạ khiến khách tưởng thư tự động. Cách làm đúng vừa nhanh vừa kiểm được từng thư.",
+    openingQuestion:
+      "Sáng thứ Hai bạn có 30 email nhắc khách thanh toán, cùng nội dung nhưng khác tên, số hoá đơn và số tiền. Cách làm nào an toàn nhất?",
+    openingOptions: [
+      "Viết một mẫu có chỗ trống, điền dữ liệu từ bảng rồi soát từng thư",
+      "Dán cả 30 dòng vào AI và nhờ nó viết luôn 30 email hoàn chỉnh",
+      "Nhờ AI viết một email chung rồi gửi cho cả 30 người như nhau",
+      "Viết tay 30 email từ đầu, vì AI không thể giữ giọng của bạn",
+    ],
+    correctOption: 0,
+    explanation:
+      "Phần giống nhau (lời chào, lý do nhắc, cách thanh toán) viết một lần cho hay, phần khác nhau (tên, số hoá đơn, số tiền) là chỗ trống lấy thẳng từ bảng của bạn. Như vậy con số không đi qua đoạn AI đoán chữ nên không bị bịa. Dán 30 dòng cho AI viết cả loạt thì dễ lẫn tên và số tiền giữa các dòng. Gửi một email chung thì mất chỗ cá nhân. Viết tay hết thì bỏ phí phần AI làm tốt: viết mẫu và đổi cách nói.",
+    diagram: [
+      { label: "Viết một mẫu thư hay, có {chỗ trống}", arrow: true },
+      { label: "AI tạo vài biến thể theo từng nhóm khách", arrow: true },
+      { label: "Điền tên, số, ngày từ bảng gốc của bạn", arrow: true },
+      { label: "Soát mẫu thư, gửi thử cho chính bạn rồi mới gửi loạt" },
+    ],
+    realWorldExample: {
+      company: "Tình huống minh hoạ",
+      description:
+        "Tình huống minh hoạ: một nhân viên kế toán công nợ có bảng 35 khách chậm thanh toán. Cô nhờ AI dựng mẫu thư có ba chỗ trống là tên, số hoá đơn và số tiền, rồi tự điền từ bảng Excel. Trước khi gửi, cô gửi thử ba thư cho chính mình và đối chiếu từng con số với bảng. Nhờ vậy cô bắt được một khách bị ghi nhầm số hoá đơn.",
+    },
+    quiz: [
+      {
+        question: "Vì sao nên để tên và số tiền là chỗ trống trong mẫu thư thay vì để AI tự viết?",
+        options: [
+          "Vì số liệu lấy từ bảng gốc thì không bị AI đoán sai",
+          "Vì AI không viết được số nên phải chừa chỗ trống",
+          "Vì chỗ trống làm thư ngắn hơn và khách đọc nhanh hơn nhiều",
+          "Vì tên khách là thông tin mật nên AI luôn từ chối viết ra",
+        ],
+        correct: 0,
+        explanation:
+          "AI dự đoán chữ nghe hợp lý, nên con số nó tự viết có thể lệch mà vẫn trông đúng. Điền từ bảng gốc thì số đi thẳng từ nguồn tới thư. AI viết được chữ có số, nó chỉ không đáng tin ở chỗ đó; độ dài thư không đổi; và tên khách không bị AI từ chối chỉ vì là tên riêng.",
+      },
+      {
+        question: "Cách nào giúp AI viết đúng giọng của bạn nhất?",
+        options: [
+          "Dán 2-3 email bạn đã viết ưng ý làm mẫu rồi nhờ viết theo",
+          "Ghi 'viết giọng thân thiện, chuyên nghiệp, cuốn hút' vào yêu cầu",
+          "Nhờ AI tự chọn giọng phù hợp nhất với từng khách hàng một",
+          "Chọn công cụ AI đắt nhất vì nó tự học ra giọng của bạn ngay",
+        ],
+        correct: 0,
+        explanation:
+          "Ví dụ thật của chính bạn cho AI thấy độ dài câu, cách xưng hô, cách mở đầu và kết thư. Tính từ như 'thân thiện, chuyên nghiệp' ai hiểu cũng khác nhau nên ra giọng chung chung. AI tự chọn thì thành giọng trung bình của mọi người, và công cụ đắt hơn không biết bạn đã viết thế nào nếu bạn không đưa mẫu.",
+      },
+      {
+        question: "Trước khi gửi 30 email đã điền xong, bước kiểm nào đáng làm nhất?",
+        options: [
+          "Gửi thử vài thư cho chính mình, đối chiếu tên và số với bảng",
+          "Đọc kỹ đúng thư đầu tiên, vì 29 thư còn lại chắc chắn giống nó",
+          "Nhờ AI đọc lại cả 30 thư và cho biết có sai sót nào không",
+          "Gửi luôn, khách nào thấy sai sẽ tự phản hồi và mình sửa sau",
+        ],
+        correct: 0,
+        explanation:
+          "Lỗi nằm ở chỗ điền: nhầm dòng, lệch cột, thiếu dấu phẩy trong số tiền. Thư đầu đúng không bảo đảm thư thứ 17 đúng. Nhờ AI đọc lại thì nó không có bảng gốc để so, và để khách phát hiện thì lỗi số tiền đã ảnh hưởng tới uy tín và có thể cả dòng tiền.",
+      },
+      {
+        question: "Một khách đang khiếu nại gay gắt. Nên xử lý email trả lời thế nào?",
+        options: [
+          "Viết riêng, có thể nhờ AI góp ý giọng văn nhưng bạn duyệt từng câu",
+          "Dùng chung mẫu nhắc thanh toán cho đồng bộ với các khách còn lại",
+          "Nhờ AI viết thật dài và trang trọng để khách thấy được coi trọng",
+          "Để AI trả lời tự động, vì nó luôn bình tĩnh hơn người đang bực",
+        ],
+        correct: 0,
+        explanation:
+          "Trường hợp nhạy cảm cần đọc kỹ điều khách nói, mà mẫu hàng loạt thì không làm được việc đó. AI có thể giúp gọt câu chữ, nhưng cam kết trong thư là của bạn. Thư dài và trang trọng thường làm khách bực hơn, còn trả lời tự động một khiếu nại mà không ai đọc là cách nhanh nhất để mất khách.",
+      },
+      {
+        question: "Danh sách khách và số tiền có nên dán thẳng vào công cụ AI chưa được công ty duyệt?",
+        options: [
+          "Không, dữ liệu khách hàng chỉ đưa vào công cụ đã được duyệt",
+          "Có, vì email nào rồi cũng gửi cho chính các khách đó thôi",
+          "Có, nếu đã bôi đen số điện thoại còn tên và số tiền thì để nguyên",
+          "Không cần lo, vì công cụ AI nào cũng tự xoá dữ liệu sau khi trả lời",
+        ],
+        correct: 0,
+        explanation:
+          "Gửi email cho khách khác với gửi danh sách toàn bộ khách và công nợ cho một bên thứ ba. Chỉ che số điện thoại thì tên cộng số tiền vẫn là dữ liệu kinh doanh. Việc công cụ có xoá dữ liệu hay không tuỳ chính sách từng bản; bạn hỏi IT chứ không đoán. Cách gọn là đưa AI mẫu và dữ liệu giả để dựng mẫu thư.",
+      },
+    ],
+    keyTakeaways: [
+      "Phần giống nhau viết một lần thành mẫu; phần khác nhau là chỗ trống lấy từ bảng.",
+      "Giọng của bạn nằm trong vài email bạn đã viết ưng ý - hãy đưa chúng làm mẫu.",
+      "Con số và tên đi thẳng từ bảng gốc, không để AI viết.",
+      "Gửi thử cho chính mình trước khi gửi loạt.",
+      "Email nhạy cảm (khiếu nại, xin lỗi lớn) không đi hàng loạt.",
+    ],
+    practicePrompt: {
+      question:
+        "Anh Hùng cần gửi 25 email xác nhận lịch hẹn cho khách. Anh nhờ AI viết mẫu, điền tên và giờ từ bảng, rồi gửi luôn. Bước nào còn thiếu?",
+      options: [
+        "Gửi thử vài thư cho chính mình và đối chiếu tên, giờ với bảng",
+        "Nhờ AI viết lại mẫu thêm một lần nữa cho chắc là hay nhất",
+        "Thêm một đoạn giới thiệu công ty dài để thư trông trang trọng",
+        "Gửi cho từng khách riêng lẻ trong nhiều ngày để khỏi trùng thư",
+      ],
+      correct: 0,
+      explanation:
+        "Mẫu và điền từ bảng là đúng, nhưng lỗi vẫn có thể nằm ở lúc điền, nên thiếu bước soát. Viết lại mẫu không tìm ra lỗi điền. Đoạn giới thiệu dài làm thư khó đọc, không làm nó đúng hơn. Rải thư ra nhiều ngày làm khách nhận lịch hẹn muộn mà không giảm nguy cơ sai.",
+    },
+    summary: {
+      keyIdea: "Hàng loạt mà vẫn cá nhân: một mẫu hay, dữ liệu lấy từ bảng, và một bước soát.",
+      formula: "Mẫu thư (AI giúp viết) + {chỗ trống} điền từ bảng gốc + gửi thử = thư đúng giọng, đúng số.",
+      commonMistake: "Dán cả danh sách cho AI viết luôn từng thư, rồi tin rằng nó không nhầm dòng.",
+      action: "Chọn một loại email bạn gửi lặp lại mỗi tuần và dựng mẫu có chỗ trống cho nó.",
+    },
+    application: {
+      title: "Làm ngay trong 20 phút",
+      message:
+        "Tìm 3 email cùng loại bạn đã gửi tuần này (nhắc việc, xác nhận, cảm ơn). Dán chúng làm mẫu giọng, nhờ AI dựng một mẫu thư có ba chỗ trống, rồi điền thử cho 2 người thật từ bảng của bạn. Đối chiếu từng tên và số với bảng, chưa cần gửi.",
+      secondary: "Ghi lại giọng nào AI làm chưa giống bạn để lần sau đưa thêm ví dụ.",
+    },
+    sections: [
+      {
+        type: "lead",
+        text: "Email hàng loạt là nơi AI tiết kiệm nhiều giờ nhất - và cũng là nơi một lỗi nhỏ bị nhân lên 30 lần. Bài này dạy cách dựng mẫu để vừa nhanh vừa kiểm được từng thư.",
+      },
+      {
+        type: "feynman",
+        title: "Email hàng loạt đơn giản hơn bạn nghĩ",
+        intro: "Hãy nghĩ tới tấm thiệp mời in sẵn: chữ chung được in một lần cho đẹp, còn tên khách thì viết tay vào chỗ trống. AI giúp bạn làm tấm thiệp đó nhanh và hay hơn, còn tên và số vẫn do bạn viết vào.",
+        columns: ["Thành phần", "Thiệp mời in sẵn", "Mẫu email hàng loạt"],
+        rows: [
+          ["Phần in một lần", "Lời mời, địa điểm, giờ", "Lời chào, lý do gửi, cách thanh toán"],
+          ["Chỗ trống", "Tên khách viết tay", "Tên, số hoá đơn, số tiền lấy từ bảng"],
+          ["Ai lo phần đẹp", "Người thiết kế", "AI viết và đổi cách nói"],
+          ["Kiểm tra", "Đọc lại tên trước khi đưa khách", "Gửi thử cho mình, đối chiếu với bảng"],
+        ],
+        oneLiner: "Viết phần chung một lần cho thật tốt, phần riêng lấy từ bảng của bạn - AI giúp phần đầu, không đụng phần sau.",
+      },
+      { type: "heading", text: "Vấn đề: 30 thư giống nhau, 90 chỗ dễ nhầm" },
+      {
+        type: "paragraph",
+        text: "Ba mươi email, mỗi email có tên, số hoá đơn và số tiền: đó là 90 chỗ có thể nhầm. Nhờ AI viết cả loạt từ một danh sách dán vào, nó có thể lẫn số tiền của khách này sang khách khác mà câu chữ vẫn trơn tru. Vì vậy ta tách việc: AI lo chữ, bảng của bạn lo số.",
+      },
+      {
+        type: "flow",
+        title: "Từ một mẫu tới 30 thư đã soát",
+        steps: [
+          { label: "Đưa AI vài email ưng ý của bạn", detail: "Dán 2-3 email bạn đã viết và thấy đúng giọng mình. AI nhìn thấy độ dài câu, cách xưng hô, cách mở và kết thư." },
+          { label: "Nhờ AI dựng mẫu có chỗ trống", detail: "Yêu cầu ghi rõ: dùng {ten}, {so_hoa_don}, {so_tien} ở các chỗ thay đổi và không tự điền bất cứ giá trị nào." },
+          { label: "Nhờ thêm biến thể nếu cần", detail: "Khách quá hạn 3 ngày cần giọng khác khách quá hạn 30 ngày. Xin 2-3 biến thể, bạn chọn biến thể cho từng nhóm." },
+          { label: "Điền từ bảng gốc", detail: "Dùng chức năng ghép thư của bảng tính hoặc phần mềm email, hoặc tự điền. Số đi từ bảng, không đi qua AI." },
+          { label: "Gửi thử và soát", detail: "Gửi 3 thư cho chính bạn, đối chiếu từng tên và số với bảng, xong mới gửi loạt." },
+        ],
+      },
+      {
+        type: "aiLab",
+        mode: "prompt",
+        title: "Dựng mẫu thư nhắc thanh toán",
+        task: "Bạn có 30 khách chậm thanh toán từ 3 đến 10 ngày. Lắp prompt để AI dựng một mẫu thư có chỗ trống, đúng giọng bạn.",
+        parts: [
+          {
+            id: "voice",
+            label: "Giọng của bạn",
+            options: [
+              { text: "Viết giọng chuyên nghiệp và thân thiện.", feedback: "Hai tính từ ai đọc cũng hiểu khác nhau - AI ra một giọng trung bình, thư nghe như thư của mọi công ty." },
+              { text: "Đây là 2 email tôi từng gửi: (dán). Viết theo đúng giọng này: ngắn, xưng em - anh/chị, không dùng từ 'kính mong'.", good: true, feedback: "Có ví dụ thật và luật cụ thể - AI bắt chước được độ dài và cách xưng hô." },
+            ],
+          },
+          {
+            id: "blank",
+            label: "Chỗ thay đổi",
+            options: [
+              { text: "Tên khách là Minh Phát, hoá đơn 0245, số tiền 12.500.000 đồng.", feedback: "Đưa dữ liệu thật vào mẫu thì mẫu chỉ dùng được cho một khách, và số liệu đi qua AI." },
+              { text: "Dùng {ten}, {so_hoa_don}, {so_tien}, {ngay_den_han} ở chỗ thay đổi; không tự điền giá trị nào.", good: true, feedback: "Chỗ trống rõ ràng - bạn điền từ bảng và AI không có cơ hội bịa số." },
+            ],
+          },
+          {
+            id: "limit",
+            label: "Giới hạn",
+            options: [
+              { text: "Viết đủ ý, càng chi tiết càng tốt.", feedback: "Không giới hạn thì AI thêm cả đoạn hứa ưu đãi, phí phạt hay hạn chót mà công ty chưa quyết." },
+              { text: "Dưới 90 chữ, chỉ nhắc và hỏi ngày dự kiến thanh toán; không nhắc phí phạt hay ưu đãi.", good: true, feedback: "Độ dài và phạm vi rõ - AI không hứa thay công ty những điều chưa được duyệt." },
+            ],
+          },
+        ],
+        responses: [
+          {
+            requires: ["voice", "blank", "limit"],
+            text: "Chào anh/chị {ten},\n\nEm nhắc nhẹ hoá đơn {so_hoa_don} với số tiền {so_tien}, đến hạn ngày {ngay_den_han}. Anh/chị cho em biết ngày dự kiến thanh toán để em ghi nhận nhé.\n\nCảm ơn anh/chị.",
+          },
+          {
+            requires: ["voice"],
+            text: "Chào {ten},\n\nEm nhắc hoá đơn {so_hoa_don}, số tiền {so_tien}. Nếu thanh toán trễ thêm, công ty có thể áp dụng phí phạt 2% mỗi tuần...\n\n(Giọng đúng nhưng AI tự thêm phí phạt mà công ty chưa hề quy định.)",
+          },
+          {
+            text: "Kính gửi Quý khách Minh Phát,\n\nChúng tôi trân trọng nhắc Quý khách thanh toán hoá đơn 0245 với số tiền 12.500.000 đồng và rất mong nhận được sự hợp tác quý báu từ phía Quý khách...\n\n(Số liệu bị cố định cho một khách, giọng xa lạ và cứng nhắc.)",
+          },
+        ],
+      },
+      {
+        type: "comparison",
+        left: {
+          label: "Làm theo mẫu có chỗ trống",
+          text: "Số và tên đi thẳng từ bảng gốc. Sửa mẫu một lần là cả loạt đổi theo. Bạn kiểm mẫu một lần rồi soát vài thư mẫu. Giọng thống nhất và đúng của bạn.",
+        },
+        right: {
+          label: "Dán danh sách cho AI viết cả loạt",
+          text: "Số đi qua đoạn AI đoán chữ nên có thể lẫn dòng. Mỗi thư là một văn bản riêng cần đọc lại từng cái. Dễ ra 30 thư với 30 giọng hơi khác nhau. Danh sách khách cũng bị đưa ra ngoài.",
+        },
+      },
+      {
+        type: "callout",
+        label: "Không phải email nào cũng đi hàng loạt",
+        text: "Khiếu nại, xin lỗi vì sự cố lớn, thông báo chấm dứt hợp tác: viết riêng, đọc kỹ điều người kia nói. AI có thể góp ý câu chữ, nhưng cam kết trong thư là của bạn. Điều gì liên quan tới phí phạt hay điều khoản, hỏi bộ phận pháp chế hoặc kế toán trưởng trước khi đưa vào mẫu.",
+      },
+      {
+        type: "scenario",
+        title: "Sáng thứ Hai, 30 email nhắc thanh toán",
+        start: "s1",
+        nodes: {
+          s1: {
+            text: "Bạn có bảng 30 khách chậm thanh toán trong Excel và một tiếng trước khi phải gửi. Bạn đã có mẫu thư có chỗ trống AI dựng sẵn.",
+            choices: [
+              { label: "Dán cả bảng vào AI và bảo viết luôn 30 thư hoàn chỉnh", next: "bad_mix" },
+              { label: "Dùng mẫu, ghép dữ liệu từ bảng Excel vào chỗ trống", next: "s2" },
+            ],
+          },
+          bad_mix: {
+            text: "Thư ra trơn tru. Nhưng ở dòng 17, AI lấy số tiền của khách bên cạnh. Một khách nhận thư đòi 48 triệu trong khi họ nợ 4,8 triệu và gọi điện phàn nàn với giám đốc.",
+            ending: "bad",
+          },
+          s2: {
+            text: "30 thư đã ghép xong. Còn 25 phút.",
+            choices: [
+              { label: "Gửi luôn vì dữ liệu đi thẳng từ bảng, chắc chắn đúng", next: "bad_blank" },
+              { label: "Gửi thử 3 thư cho chính mình, đối chiếu tên và số với bảng", next: "s3" },
+            ],
+          },
+          bad_blank: {
+            text: "Cột 'số hoá đơn' trong bảng bị lệch một dòng từ tuần trước. Chín khách nhận thư ghi sai số hoá đơn và phải gọi lại hỏi, mất nửa ngày để giải thích.",
+            ending: "bad",
+          },
+          s3: {
+            text: "Thư thứ hai cho thấy số hoá đơn không khớp với bảng gốc. Bạn kiểm ra cột bị lệch một dòng.",
+            choices: [
+              { label: "Sửa cột trong bảng, ghép lại, gửi thử lần nữa rồi gửi loạt", next: "good" },
+              { label: "Gửi loạt trước, rồi nhắn riêng từng khách bị sai để đính chính", next: "bad_late" },
+            ],
+          },
+          bad_late: {
+            text: "Chín khách đã nhận thư sai và phải đọc thêm thư đính chính; ấn tượng về sự cẩn thận của bạn giảm rõ rệt.",
+            ending: "bad",
+          },
+          good: {
+            text: "Bạn gửi loạt lúc 9 giờ 55. Không khách nào phải hỏi lại, và mẫu thư được lưu sẵn cho lần sau.",
+            ending: "good",
+          },
+        },
+      },
+      {
+        type: "list",
+        items: [
+          "Bước 1 - Chọn một loại email bạn gửi lặp lại và tìm 2-3 bản đã ưng ý.",
+          "Bước 2 - Nhờ AI dựng mẫu có chỗ trống, cấm tự điền giá trị.",
+          "Bước 3 - Điền từ bảng gốc, không qua AI.",
+          "Bước 4 - Gửi thử cho chính mình và đối chiếu, rồi mới gửi loạt.",
+        ],
+      },
+      {
+        type: "closing",
+        lines: [
+          "Mẫu do AI giúp, số do bảng của bạn, soát do chính bạn.",
+          "Bài sau: biến ghi chú lộn xộn thành bản đề xuất một trang.",
+        ],
+      },
+    ],
+  },
+  {
+    id: 1817,
+    slug: "ghi-chu-thanh-de-xuat-mot-trang",
+    title: "Chặng 25, Bài 8: Biến ghi chú lộn xộn thành bản đề xuất một trang",
+    subtitle: "Dựng khung nhà trước, xây tường sau: dàn ý được duyệt rồi mới để AI viết nội dung.",
+    duration: "10 phút",
+    difficulty: "Trung bình",
+    emoji: "📝",
+    track: "personal",
+    isFundamental: false,
+    whyItMatters:
+      "Bạn có ba trang ghi chú họp, vài tin nhắn Zalo và một bảng số, và sếp cần một trang đề xuất trước 4 giờ chiều. Dán hết cho AI bảo viết luôn thì nhận về một văn bản trôi chảy nhưng có thể lệch ý bạn, còn phải sửa cả trang. Đi từng bước - dàn ý trước, nội dung sau - giúp bạn bắt lỗi khi còn rẻ.",
+    openingQuestion:
+      "Bạn dán một đống ghi chú họp vào AI và gõ: 'Viết bản đề xuất đi.' Nó trả về ba trang chữ đẹp nhưng lệch ý bạn. Lần sau nên đổi gì đầu tiên?",
+    openingOptions: [
+      "Bảo AI lập dàn ý trước, duyệt dàn ý rồi mới viết từng phần",
+      "Xin AI viết lại ba trang đó, lần này 'thật hay và thuyết phục'",
+      "Chuyển sang công cụ AI khác xem bản nào ưng ý hơn",
+      "Xoá bớt ghi chú cho AI đỡ rối rồi bảo viết bản đề xuất ngắn hơn",
+    ],
+    correctOption: 0,
+    explanation:
+      "Lỗi lệch ý nằm ở chỗ AI phải tự quyết định cái gì quan trọng, và sai một quyết định là sai cả trang. Dàn ý chỉ vài dòng nên bạn sửa trong một phút: bỏ ý không cần, đổi thứ tự, thêm ý còn thiếu. Viết lại lần nữa với yêu cầu 'hay hơn' không sửa được lệch ý. Đổi công cụ vẫn cho AI tự quyết. Xoá ghi chú thì mất luôn chi tiết bạn cần đưa vào.",
+    diagram: [
+      { label: "Gom ghi chú thô và mục tiêu của bản đề xuất", arrow: true },
+      { label: "AI lập dàn ý 4-5 dòng, bạn sửa và duyệt", arrow: true },
+      { label: "AI viết từng phần theo dàn ý, chỉ dùng ghi chú của bạn", arrow: true },
+      { label: "Bạn đối chiếu con số và cam kết với nguồn rồi gửi" },
+    ],
+    realWorldExample: {
+      company: "Tình huống minh hoạ",
+      description:
+        "Tình huống minh hoạ: một nhân viên hành chính cần đề xuất mua thêm 5 chiếc ghế công thái học cho phòng. Cô dán ghi chú (số ghế, báo giá hai nhà cung cấp, lý do đau lưng) và xin dàn ý trước. Cô bỏ một ý không cần, chuyển phần chi phí lên đầu vì sếp quan tâm chi phí nhất, rồi mới cho AI viết. Bản nháp ra đúng thứ tự sếp muốn đọc.",
+    },
+    quiz: [
+      {
+        question: "Vì sao nên xin dàn ý trước khi xin bản đề xuất đầy đủ?",
+        options: [
+          "Sửa dàn ý vài dòng rẻ hơn sửa cả trang đã viết sai hướng",
+          "Vì AI chỉ viết được văn bản dài khi đã có dàn ý được duyệt",
+          "Vì dàn ý ngắn nên ít khi chứa số liệu bị AI bịa ra như bản đầy đủ",
+          "Vì sếp thường chỉ đọc dàn ý và không cần xem bản đầy đủ nữa",
+        ],
+        correct: 0,
+        explanation:
+          "Dàn ý là chỗ rẻ nhất để sửa hướng: bạn thấy ngay thiếu ý gì, thừa ý gì. AI viết được văn bản dài mà không cần dàn ý. Dàn ý vẫn có thể chứa số bịa nếu bạn không đưa số thật. Và sếp thường vẫn cần bản đầy đủ khi ra quyết định.",
+      },
+      {
+        question: "Ghi chú của bạn ghi 'báo giá A: 4,2 triệu/ghế', không có báo giá B. Bản nháp AI viết thêm 'báo giá B: 3,8 triệu/ghế'. Đây là gì?",
+        options: [
+          "Số AI tự thêm cho đủ ý, cần xoá hoặc thay bằng số thật",
+          "Số AI lấy từ giá thị trường nên có thể giữ lại",
+          "Số AI suy ra từ báo giá A nên độ chính xác gần như chắc chắn",
+          "Lỗi định dạng của công cụ, mở lại cuộc trò chuyện là hết",
+        ],
+        correct: 0,
+        explanation:
+          "Không có trong ghi chú của bạn thì đó là AI bịa để văn bản đầy đủ. AI không tra thị trường khi chưa bật tìm kiếm, và nếu có tra thì bạn vẫn phải mở nguồn. Suy từ giá A ra giá B là đoán, không phải tính. Mở lại cuộc trò chuyện cũng không làm số đó có thật.",
+      },
+      {
+        question: "Câu nào trong yêu cầu giúp AI dùng đúng ghi chú của bạn, không thêm ý ngoài?",
+        options: [
+          "Chỉ dùng thông tin trong ghi chú; thiếu thì ghi [cần bổ sung]",
+          "Hãy viết thật chi tiết, đầy đủ mọi khía cạnh cần cân nhắc",
+          "Viết như một chuyên gia có nhiều năm kinh nghiệm trong ngành",
+          "Nếu thiếu thông tin, hãy tự bổ sung cho hợp lý nhất có thể",
+        ],
+        correct: 0,
+        explanation:
+          "Giới hạn nguồn và chỉ cho AI chỗ đánh dấu khi thiếu giúp bạn thấy ngay chỗ hổng. Yêu cầu 'đầy đủ mọi khía cạnh' khuyến khích AI thêm ý. Vai 'chuyên gia' làm giọng chắc hơn nhưng không thêm sự thật. Còn bảo 'tự bổ sung' là mở cửa cho bịa.",
+      },
+      {
+        question: "Sếp chỉ có 2 phút đọc. Cấu trúc nào của bản đề xuất một trang hợp lý nhất?",
+        options: [
+          "Đề xuất và chi phí nằm ngay đầu, lý do và phương án ở sau",
+          "Kể bối cảnh và lịch sử vấn đề trước, phần đề xuất để cuối trang",
+          "Liệt kê mọi phương án đã cân nhắc rồi mới nêu lựa chọn ở cuối",
+          "Để AI tự chọn cấu trúc vì nó biết sếp nào cũng thích thứ tự nào",
+        ],
+        correct: 0,
+        explanation:
+          "Người ra quyết định cần biết 'xin gì, tốn bao nhiêu' trước rồi mới đọc lý do. Kể lịch sử trước làm họ đọc hết trang mới thấy điều mình cần. Liệt kê mọi phương án tốn diện tích trang. AI không biết sếp bạn thích gì; đó là thứ chỉ bạn biết.",
+      },
+      {
+        question: "Sau khi AI viết xong bản đề xuất, việc nào không thể bỏ?",
+        options: [
+          "Đối chiếu từng con số, tên và cam kết với ghi chú và nguồn",
+          "Nhờ AI tự chấm điểm bản đề xuất và sửa lần nữa cho tới khi 10/10",
+          "Đọc lướt câu đầu mỗi đoạn để xem giọng văn có nhất quán không",
+          "Gửi luôn cho sếp và xin sếp góp ý những chỗ cần sửa lại",
+        ],
+        correct: 0,
+        explanation:
+          "Sai ở số và cam kết là loại sai gây hậu quả, và chỉ người có nguồn mới kiểm được. AI tự chấm điểm bản của chính nó không có bảng gốc để so. Đọc câu đầu chỉ kiểm giọng văn. Gửi sếp mà chưa kiểm thì bạn đang nhờ sếp làm phần việc của mình.",
+      },
+    ],
+    keyTakeaways: [
+      "Dàn ý trước, nội dung sau: sửa hướng khi còn rẻ.",
+      "Chỉ cho AI dùng ghi chú của bạn; thiếu thì đánh dấu [cần bổ sung].",
+      "Bản một trang: đề xuất và chi phí lên đầu, lý do phía sau.",
+      "Số và cam kết trong bản nháp phải đối chiếu với nguồn.",
+      "Mọi thứ AI thêm mà không có trong ghi chú đều là nghi vấn.",
+    ],
+    practicePrompt: {
+      question:
+        "Chị Mai gom ghi chú họp và bảo AI: 'Viết bản đề xuất tăng ngân sách đào tạo.' Bản nháp có câu 'giúp giảm 30% nhân viên nghỉ việc'. Ghi chú không hề có số này. Chị nên làm gì?",
+      options: [
+        "Xoá câu đó hoặc thay bằng số thật có nguồn, rồi soát các số còn lại",
+        "Giữ câu đó vì con số 30% nghe hợp lý với ngành nhân sự",
+        "Nhờ AI cho biết nó lấy 30% từ đâu rồi tin theo lời giải thích",
+        "Đổi thành 'giảm đáng kể' để khỏi phải dẫn nguồn cho con số",
+      ],
+      correct: 0,
+      explanation:
+        "Số không có trong ghi chú là số AI bịa cho nghe chắc chắn; nghe hợp lý không phải bằng chứng. Hỏi lại AI nguồn thì nó có thể bịa luôn nguồn. Đổi thành 'giảm đáng kể' vẫn là một khẳng định không có căn cứ, chỉ mờ hơn.",
+    },
+    summary: {
+      keyIdea: "AI viết nội dung nhanh, nhưng hướng đi của bản đề xuất là quyết định của bạn - hãy chốt nó ở dàn ý.",
+      formula: "Ghi chú thô → dàn ý được bạn duyệt → nội dung từng phần chỉ từ ghi chú → đối chiếu số và cam kết.",
+      commonMistake: "Dán ghi chú và bảo 'viết đi', rồi mất nửa tiếng sửa một trang đi sai hướng.",
+      action: "Lần tới cần viết đề xuất, xin dàn ý 5 dòng và sửa nó trước khi xin nội dung.",
+    },
+    application: {
+      title: "Làm ngay trong 20 phút",
+      message:
+        "Lấy ghi chú của một việc bạn cần đề xuất (mua sắm, đổi quy trình, xin thêm người). Nhờ AI lập dàn ý 5 dòng, sửa nó theo thứ tự sếp muốn đọc, rồi cho viết từng phần chỉ dựa trên ghi chú. Đánh dấu mọi con số và cam kết AI thêm mà ghi chú không có.",
+      secondary: "Đếm xem AI thêm bao nhiêu ý ngoài ghi chú - đó là số ý bạn cần duyệt lần sau.",
+    },
+    sections: [
+      {
+        type: "lead",
+        text: "Ghi chú rời rạc thành một trang đề xuất là việc AI làm rất nhanh - nếu bạn giữ quyền quyết định hướng đi. Bài này dạy cách chốt hướng ở dàn ý để không phải sửa cả trang.",
+      },
+      {
+        type: "feynman",
+        title: "Viết đề xuất bằng AI đơn giản hơn bạn nghĩ",
+        intro: "Không ai xây nhà bằng cách đổ bê tông trước rồi mới hỏi phòng ngủ ở đâu. Người ta vẽ bản phác mặt bằng, chủ nhà xem và sửa, rồi mới xây tường. Dàn ý chính là bản phác đó.",
+        columns: ["Thành phần", "Xây nhà", "Viết đề xuất bằng AI"],
+        rows: [
+          ["Bản phác", "Mặt bằng vẽ tay vài nét", "Dàn ý 4-5 dòng"],
+          ["Ai duyệt", "Chủ nhà", "Bạn - người biết sếp cần đọc gì"],
+          ["Xây tường", "Thợ xây theo bản vẽ đã duyệt", "AI viết từng phần theo dàn ý"],
+          ["Nghiệm thu", "Đo lại kích thước thực tế", "Đối chiếu số và cam kết với nguồn"],
+        ],
+        oneLiner: "Duyệt bản phác khi còn rẻ: sửa một dòng dàn ý dễ hơn đập đi xây lại một trang.",
+      },
+      { type: "heading", text: "Vấn đề: bản nháp đẹp nhưng không phải điều bạn muốn nói" },
+      {
+        type: "paragraph",
+        text: "Khi bạn dán ghi chú thô và bảo 'viết đề xuất', AI phải tự quyết định ý nào quan trọng, xếp thứ tự ra sao và chỗ nào còn thiếu thì lấp gì vào. Nó quyết rất trôi chảy, nên bạn khó thấy chỗ nó đã quyết khác bạn. Chia làm hai bước để bạn giữ quyết định quan trọng nhất: cái gì đứng đầu trang.",
+      },
+      {
+        type: "flow",
+        title: "Từ ghi chú thô tới một trang đề xuất",
+        steps: [
+          { label: "Nói mục tiêu và người đọc", detail: "Một câu: 'Đề xuất mua 5 ghế cho phòng, người đọc là giám đốc, chỉ có 2 phút.' AI cần biết ai đọc và họ quyết định gì." },
+          { label: "Xin dàn ý, chưa xin nội dung", detail: "Yêu cầu 4-5 dòng: xin gì, tốn bao nhiêu, vì sao, rủi ro nếu không làm, bước tiếp theo. Bạn sửa thứ tự và bỏ ý không cần." },
+          { label: "Cho viết từng phần", detail: "Mỗi phần chỉ dùng thông tin trong ghi chú; thiếu thì ghi [cần bổ sung] thay vì tự điền." },
+          { label: "Đối chiếu số và cam kết", detail: "Mọi con số, ngày và lời hứa trong bản nháp phải khớp ghi chú hoặc nguồn của bạn. Cái nào không có nguồn thì xoá." },
+          { label: "Đọc như sếp", detail: "Đọc một lần như người có 2 phút: câu đầu tiên đã nói xin gì chưa? Nếu chưa, sửa trước khi gửi." },
+        ],
+      },
+      {
+        type: "aiLab",
+        mode: "prompt",
+        title: "Yêu cầu AI dựng dàn ý đề xuất",
+        task: "Bạn cần đề xuất mua 5 ghế công thái học cho phòng; ghi chú có báo giá 4,2 triệu/ghế của nhà cung cấp A và lý do nhân viên hay đau lưng. Lắp prompt để AI lập dàn ý.",
+        parts: [
+          {
+            id: "goal",
+            label: "Mục tiêu và người đọc",
+            options: [
+              { text: "Viết bản đề xuất cho hay.", feedback: "Không biết ai đọc, xin gì - AI đoán và thường dồn vào phần mở đầu chung chung." },
+              { text: "Đề xuất mua 5 ghế cho phòng; người đọc là giám đốc, có 2 phút, cần biết chi phí trước.", good: true, feedback: "AI biết ai đọc, xin gì, họ cần gì trước - dàn ý sẽ đặt chi phí lên đầu." },
+            ],
+          },
+          {
+            id: "source",
+            label: "Nguồn thông tin",
+            options: [
+              { text: "Tự bổ sung thêm số liệu cho thuyết phục.", feedback: "Đây là lệnh bịa: AI sẽ chèn số liệu nghe hợp lý mà ghi chú của bạn không có." },
+              { text: "Chỉ dùng ghi chú dán bên dưới; thiếu gì ghi [cần bổ sung], không tự điền.", good: true, feedback: "Chỗ hổng hiện ra thành dấu [cần bổ sung] để bạn xử lý, thay vì bị lấp bằng số bịa." },
+            ],
+          },
+          {
+            id: "form",
+            label: "Hình thức đầu ra",
+            options: [
+              { text: "Viết luôn cả bản đề xuất.", feedback: "Bỏ qua bước duyệt dàn ý - sai hướng là phải sửa cả trang." },
+              { text: "Chỉ lập dàn ý 5 dòng, mỗi dòng dưới 12 chữ; chưa viết nội dung.", good: true, feedback: "Dàn ý ngắn để bạn sửa trong một phút trước khi tốn công viết nội dung." },
+            ],
+          },
+        ],
+        responses: [
+          {
+            requires: ["goal", "source", "form"],
+            text: "1. Đề xuất: mua 5 ghế công thái học\n2. Chi phí: 4,2 triệu/ghế (nhà cung cấp A); báo giá B [cần bổ sung]\n3. Lý do: nhân viên hay đau lưng khi ngồi lâu\n4. Rủi ro nếu không làm: [cần bổ sung]\n5. Bước tiếp theo: xin duyệt trước cuối tháng",
+          },
+          {
+            requires: ["goal"],
+            text: "1. Đề xuất mua 5 ghế\n2. Chi phí: khoảng 21 triệu, thấp hơn 15% so với mặt bằng thị trường\n3. Lợi ích: tăng năng suất 20%\n\n(Dàn ý đúng hướng nhưng AI tự thêm '15%' và '20%' mà ghi chú không có.)",
+          },
+          {
+            text: "Giới thiệu chung về tầm quan trọng của môi trường làm việc hiện đại. Lịch sử phát triển của ghế văn phòng. Xu hướng ngành nội thất... (Sau đó là bản đề xuất dài ba trang mà chi phí chỉ xuất hiện ở trang thứ hai.)",
+          },
+        ],
+      },
+      {
+        type: "comparison",
+        left: {
+          label: "Dàn ý trước, nội dung sau",
+          text: "Sai hướng bị bắt ngay ở 5 dòng. Bạn quyết thứ tự theo điều sếp cần đọc. Mỗi phần AI viết đều có neo là dòng dàn ý đã duyệt. Tổng thời gian thường ngắn hơn.",
+        },
+        right: {
+          label: "Viết cả bản một lượt",
+          text: "Sai hướng chỉ lộ ra sau khi đọc hết. AI tự quyết ý nào quan trọng. Sửa một ý kéo theo sửa nhiều đoạn quanh nó. Dễ mất nửa tiếng sửa lại một bản đi sai từ đầu.",
+        },
+      },
+      {
+        type: "aiLab",
+        mode: "spotError",
+        title: "Soát bản đề xuất AI vừa viết",
+        task: "Ghi chú của bạn chỉ có: cần 5 ghế, báo giá A 4,2 triệu/ghế, nhân viên hay đau lưng, muốn mua trong quý này. Đánh dấu những câu AI tự thêm.",
+        segments: [
+          { text: "Phòng đề xuất mua 5 ghế công thái học trong quý này." },
+          { text: "Tổng chi phí dự kiến là 21 triệu đồng theo báo giá của nhà cung cấp A." },
+          { text: "Nhà cung cấp B chào giá 3,8 triệu/ghế nên có thể tiết kiệm 2 triệu.", error: "Ghi chú không có báo giá B. AI bịa cả giá lẫn khoản tiết kiệm để so sánh nghe hợp lý." },
+          { text: "Nhiều nhân viên hay đau lưng khi ngồi làm việc lâu." },
+          { text: "Theo khảo sát ngành, ghế công thái học giúp tăng năng suất 20%.", error: "Không có khảo sát nào trong ghi chú. Con số 20% và 'khảo sát ngành' là AI tự thêm, không có nguồn để kiểm." },
+          { text: "Đề nghị giám đốc duyệt để phòng kịp mua trong quý này." },
+        ],
+      },
+      {
+        type: "callout",
+        label: "Chỗ trống tốt hơn số bịa",
+        text: "Một bản đề xuất có hai chỗ ghi [cần bổ sung] còn hơn một bản đầy đủ mà một con số là bịa. Dấu chỗ trống nói cho bạn biết cần đi hỏi gì; số bịa thì nằm im tới khi sếp hỏi nguồn. Việc gì liên quan tới hợp đồng hay thuế, hỏi bộ phận pháp chế hoặc kế toán trưởng trước khi đưa vào đề xuất.",
+      },
+      {
+        type: "list",
+        items: [
+          "Bước 1 - Viết một câu: xin gì, ai đọc, họ có bao lâu.",
+          "Bước 2 - Dán ghi chú và xin dàn ý 5 dòng; sửa thứ tự cho hợp người đọc.",
+          "Bước 3 - Cho viết từng phần, chỉ dựa trên ghi chú.",
+          "Bước 4 - Đối chiếu số, ngày, cam kết rồi mới gửi.",
+        ],
+      },
+      {
+        type: "closing",
+        lines: [
+          "Chốt hướng ở dàn ý, để AI viết phần còn lại, và tự tay kiểm phần số.",
+          "Bài sau: dịch và viết lại tài liệu tiếng Anh mà không sai nghĩa.",
+        ],
+      },
+    ],
+  },
+  {
+    id: 1818,
+    slug: "dich-va-viet-lai-tai-lieu-tieng-anh",
+    title: "Chặng 25, Bài 9: Dịch và viết lại tài liệu tiếng Anh cho đồng nghiệp mà không sai nghĩa",
+    subtitle: "AI dịch trôi chảy rất nhanh - phần bạn giữ là thuật ngữ, con số và tên riêng.",
+    duration: "10 phút",
+    difficulty: "Trung bình",
+    emoji: "🌐",
+    track: "personal",
+    isFundamental: false,
+    whyItMatters:
+      "Nhà cung cấp gửi bản hướng dẫn tiếng Anh 8 trang, đồng nghiệp cần đọc trong chiều nay. AI dịch xong trong một phút, nhưng một chữ 'không' bị mất, một con số bị làm tròn hoặc một tên sản phẩm bị dịch nghĩa đen là đủ để cả phòng làm sai. Biết chỗ nào phải soát giúp bạn dịch nhanh mà vẫn đáng tin.",
+    openingQuestion:
+      "AI dịch xong bản hướng dẫn tiếng Anh sang tiếng Việt, đọc rất mượt. Bạn không giỏi tiếng Anh. Điều nào nên soát trước khi gửi đồng nghiệp?",
+    openingOptions: [
+      "Con số, đơn vị, tên riêng và các chữ phủ định như not hay never",
+      "Độ mượt của câu văn, vì bản dịch tự nhiên thì chắc chắn đúng nghĩa",
+      "Số lượng đoạn văn, vì AI hay bỏ sót nguyên đoạn khi dịch tài liệu dài",
+      "Định dạng chữ đậm, chữ nghiêng, vì đó là lỗi AI hay mắc khi dịch",
+    ],
+    correctOption: 0,
+    explanation:
+      "Lỗi dịch nguy hiểm nhất là lỗi mà câu vẫn mượt: mất một chữ phủ định làm ngược nghĩa, 1,5 thành 15 khi bị đổi dấu phẩy, tên sản phẩm bị dịch nghĩa đen thành một từ thông thường. Câu mượt không chứng minh đúng nghĩa. Đếm đoạn và định dạng chỉ là chuyện hình thức, và AI ít khi bỏ cả đoạn khi tài liệu có thể chia nhỏ để dịch.",
+    diagram: [
+      { label: "Chia tài liệu thành từng phần nhỏ", arrow: true },
+      { label: "Đưa AI bảng thuật ngữ và tên riêng giữ nguyên", arrow: true },
+      { label: "AI dịch, bạn dịch ngược một đoạn để thử nghĩa", arrow: true },
+      { label: "Soát số, đơn vị, phủ định, tên riêng rồi gửi" },
+    ],
+    realWorldExample: {
+      company: "Tình huống minh hoạ",
+      description:
+        "Tình huống minh hoạ: một nhân viên mua hàng nhận hướng dẫn bảo quản hàng bằng tiếng Anh có câu 'Do not stack more than 3 layers'. Bản dịch cẩu thả bỏ mất chữ 'not' sẽ khiến kho xếp chồng cao lên và làm hỏng hàng. Vì vậy bước soát các chữ phủ định và con số quan trọng hơn việc câu dịch có hay hay không.",
+    },
+    quiz: [
+      {
+        question: "Bản dịch nào của 'Do not stack more than 3 layers' nguy hiểm nhất khi bị AI dịch sai?",
+        options: [
+          "Bản bỏ mất chữ 'không', thành 'nên xếp chồng quá 3 lớp'",
+          "Bản dịch 'lớp' thành 'tầng' nên câu có phần hơi khác cách nói quen",
+          "Bản dịch 'xếp chồng' thành 'chất lên nhau' làm câu dài thêm vài chữ",
+          "Bản dùng chữ 'ba' thay cho số 3 ở giữa câu hướng dẫn kho hàng",
+        ],
+        correct: 0,
+        explanation:
+          "Mất chữ phủ định đảo ngược ý và người đọc làm theo là hỏng hàng. 'Tầng' thay 'lớp', 'chất lên nhau' thay 'xếp chồng' chỉ đổi cách nói mà ý vẫn đúng, và 'ba' thay '3' không đổi số. Vì vậy soát phủ định quan trọng hơn soát chữ đẹp.",
+      },
+      {
+        question: "Tài liệu có nhiều từ chuyên ngành, mỗi lần AI dịch một kiểu. Cách sửa gọn nhất là gì?",
+        options: [
+          "Đưa bảng thuật ngữ cố định và yêu cầu dùng đúng theo bảng",
+          "Bảo AI dịch 'thật chuyên nghiệp và nhất quán' rồi tin nó tự nhớ",
+          "Dịch từng câu riêng lẻ, AI khỏi bị câu trước ảnh hưởng",
+          "Bỏ hết thuật ngữ, thay bằng từ thông dụng để ai cũng dễ hiểu",
+        ],
+        correct: 0,
+        explanation:
+          "Bảng thuật ngữ cho AI đúng một cách dịch cho mỗi từ. Chữ 'nhất quán' không nói dùng từ nào. Dịch từng câu riêng làm nó mất ngữ cảnh và càng dịch mỗi kiểu, còn thay bằng từ thông dụng thì đồng nghiệp không còn thấy thuật ngữ họ quen trong ngành.",
+      },
+      {
+        question: "Cách nào kiểm nhanh nhất một bản dịch khi bạn không đọc thạo tiếng Anh?",
+        options: [
+          "Nhờ một phiên AI mới dịch ngược đoạn đó về tiếng Anh rồi so với gốc",
+          "Đọc bản dịch xem có mượt không, vì dịch sai thì câu sẽ đọc vấp",
+          "Hỏi chính AI vừa dịch 'có chính xác không' rồi tin nó",
+          "Dịch lại đoạn đó lần nữa trong chính cuộc trò chuyện đó",
+        ],
+        correct: 0,
+        explanation:
+          "Dịch ngược trong phiên mới cho bạn một bản tiếng Anh để so với gốc: nếu nghĩa lệch, chỗ lệch lộ ra. Câu mượt không loại trừ lỗi. Hỏi lại AI vừa dịch thì nó dễ khẳng định luôn điều nó vừa viết, và dịch lại trong cùng cuộc trò chuyện thường lặp lại đúng cách hiểu cũ.",
+      },
+      {
+        question: "Trong tài liệu có tên sản phẩm 'Smart Flow'. Nên dặn AI thế nào?",
+        options: [
+          "Giữ nguyên tên riêng và tên sản phẩm, không dịch nghĩa",
+          "Dịch tất cả cho đồng nhất, kể cả tên, để tài liệu toàn tiếng Việt",
+          "Để AI tự quyết định tên nào dịch và tên nào giữ theo ngữ cảnh",
+          "Dịch tên sang tiếng Việt và ghi tên gốc trong ngoặc ở mọi lần xuất hiện",
+        ],
+        correct: 0,
+        explanation:
+          "Tên sản phẩm là nhãn để tìm và đặt hàng, dịch nghĩa thì đồng nghiệp tra không ra. Dịch hết cho đồng nhất làm mất nhãn đó. Để AI tự quyết dẫn tới chỗ dịch chỗ giữ. Ghi ngoặc mọi lần thì được nhưng làm tài liệu rối, nên chỉ ghi lần đầu nếu cần.",
+      },
+      {
+        question: "Tài liệu là hợp đồng có điều khoản phạt. Bản dịch AI nên được dùng thế nào?",
+        options: [
+          "Chỉ để tham khảo nhanh; bản dùng ký kết phải qua pháp chế hoặc dịch giả",
+          "Dùng làm bản chính vì AI dịch chính xác hơn người khi đã có bảng thuật ngữ",
+          "Dùng làm bản chính nếu đã dịch ngược một lần và thấy nghĩa khớp với gốc",
+          "Dùng làm bản chính vì cả hai bên đều đọc được nghĩa đại ý của điều khoản",
+        ],
+        correct: 0,
+        explanation:
+          "Điều khoản ràng buộc cần từng chữ chính xác và người chịu trách nhiệm pháp lý; đó là việc của pháp chế hoặc dịch giả. Bảng thuật ngữ và dịch ngược giảm lỗi nhưng không thay được người chịu trách nhiệm, và 'đại ý' không đủ cho điều khoản phạt.",
+      },
+    ],
+    keyTakeaways: [
+      "Câu dịch mượt không chứng minh đúng nghĩa.",
+      "Soát bốn thứ: số, đơn vị, chữ phủ định, tên riêng.",
+      "Đưa bảng thuật ngữ để AI dùng một cách dịch cho một từ.",
+      "Dịch ngược một đoạn trong phiên mới để thử nghĩa.",
+      "Tài liệu có tính ràng buộc pháp lý: hỏi pháp chế, không tự dùng bản AI.",
+    ],
+    practicePrompt: {
+      question:
+        "Chị Thu nhờ AI dịch email nhà cung cấp: 'Payment is due within 30 days; late fees will not apply before day 45.' Bản dịch ghi 'Thanh toán trong 30 ngày; phí trễ hạn áp dụng từ ngày 45'. Chị nên làm gì?",
+      options: [
+        "So lại với gốc: bản dịch mất chữ 'không', nên phải sửa thành không áp dụng trước ngày 45",
+        "Giữ nguyên, vì ngày 30 và 45 đều đã khớp với bản gốc",
+        "Nhờ AI làm cho câu dịch thêm mượt để khỏi thấy vấn đề nữa",
+        "Gửi luôn, nếu ai thắc mắc thì hỏi lại nhà cung cấp sau",
+      ],
+      correct: 0,
+      explanation:
+        "Gốc nói phí trễ hạn không áp dụng trước ngày 45; bản dịch nói áp dụng từ ngày 45, gần giống nhưng đã đổi ý: nó mất phần cho phép trễ tới hết ngày 44 rõ ràng. Số khớp không đủ khi phủ định bị mất. Làm câu mượt hơn không sửa được nghĩa, và gửi rồi mới hỏi thì hậu quả đã tới đồng nghiệp.",
+    },
+    summary: {
+      keyIdea: "AI dịch nhanh và mượt; bạn bảo đảm nghĩa bằng cách soát số, phủ định, thuật ngữ và tên riêng.",
+      formula: "Chia nhỏ + bảng thuật ngữ + dịch ngược một đoạn + soát bốn thứ = bản dịch dùng được.",
+      commonMistake: "Thấy bản dịch mượt là tin, rồi bỏ qua chữ 'not' bị mất.",
+      action: "Lần tới nhận tài liệu tiếng Anh, lập bảng 10 thuật ngữ và tên riêng trước khi nhờ AI dịch.",
+    },
+    application: {
+      title: "Làm ngay trong 20 phút",
+      message:
+        "Chọn một đoạn tiếng Anh ngắn (một email nhà cung cấp hoặc một trang hướng dẫn, đã che thông tin mật). Lập bảng 5-10 thuật ngữ và tên riêng, nhờ AI dịch theo bảng, rồi mở một phiên mới dịch ngược đoạn đó. Gạch chân mọi số, đơn vị, chữ phủ định và so với gốc.",
+      secondary: "Ghi lại chỗ nào AI dịch lệch để lần sau đưa vào bảng thuật ngữ.",
+    },
+    sections: [
+      {
+        type: "lead",
+        text: "Dịch là việc AI làm nhanh nhất và cũng dễ khiến bạn chủ quan nhất, vì lỗi dịch không làm câu vấp. Bài này dạy bốn chỗ cần soát và một cách thử nghĩa ngay cả khi bạn không giỏi tiếng Anh.",
+      },
+      {
+        type: "feynman",
+        title: "Dịch bằng AI đơn giản hơn bạn nghĩ",
+        intro: "Hãy nghĩ AI là một phiên dịch viên giỏi ngoại ngữ nhưng mới vào ngành của bạn. Chị dịch mượt, nhanh, nhưng chưa biết chữ 'lead time' trong kho nghĩa là gì, nên có thể chọn nghĩa thông thường thay vì nghĩa ngành. Bạn là người biết ngành nên duyệt.",
+        columns: ["Thành phần", "Phiên dịch viên mới vào ngành", "AI dịch tài liệu"],
+        rows: [
+          ["Điểm mạnh", "Ngoại ngữ tốt, dịch nhanh", "Dịch trôi chảy, tự nhiên"],
+          ["Điểm yếu", "Chưa rõ thuật ngữ riêng của công ty", "Chọn nghĩa thông dụng cho từ chuyên ngành"],
+          ["Cách hỗ trợ", "Đưa bảng thuật ngữ trước khi dịch", "Đưa bảng thuật ngữ và tên riêng trong yêu cầu"],
+          ["Cách duyệt", "Người trong ngành đọc lại", "Dịch ngược đoạn quan trọng và soát số, phủ định"],
+        ],
+        oneLiner: "AI dịch giỏi nhưng chưa biết ngành của bạn - đưa bảng thuật ngữ và soát những chỗ sai nghĩa mà câu vẫn mượt.",
+      },
+      { type: "heading", text: "Vấn đề: lỗi dịch không làm câu vấp" },
+      {
+        type: "paragraph",
+        text: "Sai chính tả thì mắt thấy. Sai nghĩa thì không: 'do not' thành 'do', 1,5 thành 15, tên 'Smart Flow' thành 'dòng chảy thông minh'. Câu vẫn mượt, bạn đọc lướt và tin. Vì vậy phần soát phải tập trung vào bốn thứ mà lỗi dịch hay nằm ở đó.",
+      },
+      {
+        type: "comparison",
+        left: {
+          label: "Bốn thứ luôn soát",
+          text: "Con số và đơn vị (dấu phẩy, dấu chấm, kg hay lb). Chữ phủ định (not, never, unless, except). Tên riêng, tên sản phẩm, chức danh. Thuật ngữ ngành nghĩa khác từ thông dụng.",
+        },
+        right: {
+          label: "Thứ ít cần lo hơn",
+          text: "Lỗi chính tả. Ngữ pháp câu tiếng Việt. Độ dài câu. Những chỗ này AI làm tốt và nếu có lệch thì mắt thấy ngay.",
+        },
+      },
+      {
+        type: "flow",
+        title: "Quy trình dịch một tài liệu 8 trang",
+        steps: [
+          { label: "Chia nhỏ tài liệu", detail: "Dịch từng phần 1-2 trang thay vì dán cả 8 trang, để AI giữ được chi tiết và bạn soát từng phần dễ hơn." },
+          { label: "Lập bảng thuật ngữ và tên riêng", detail: "Liệt kê 5-10 từ: cách dịch mong muốn hoặc 'giữ nguyên'. Đưa bảng này ở đầu mỗi lần nhờ dịch." },
+          { label: "Nhờ dịch kèm ghi chú chỗ chưa chắc", detail: "Yêu cầu AI đánh dấu chỗ nó không chắc nghĩa, thay vì đoán rồi viết như chắc chắn." },
+          { label: "Dịch ngược để thử nghĩa", detail: "Mở một phiên mới, dán bản dịch tiếng Việt và nhờ dịch ngược về tiếng Anh. So với gốc: chỗ nào lệch nghĩa là chỗ cần xem lại." },
+          { label: "Soát bốn thứ và gửi", detail: "Đối chiếu số, đơn vị, phủ định, tên riêng với gốc. Xong mới gửi đồng nghiệp." },
+        ],
+      },
+      {
+        type: "aiLab",
+        mode: "spotError",
+        title: "Soát bản dịch hướng dẫn bảo quản",
+        task: "Bản gốc tiếng Anh: 'Store below 25 degrees. Do not stack more than 3 layers. Product name: Smart Flow. Shelf life: 18 months.' Đánh dấu những đoạn bản dịch AI làm sai nghĩa.",
+        segments: [
+          { text: "Bảo quản dưới 25 độ." },
+          { text: "Nên xếp chồng nhiều hơn 3 lớp để tiết kiệm diện tích.", error: "Gốc là 'Do not stack more than 3 layers' - không xếp quá 3 lớp. Bản dịch mất chữ 'not' nên đảo ngược ý." },
+          { text: "Tên sản phẩm: Smart Flow." },
+          { text: "Hạn sử dụng: 8 tháng.", error: "Gốc là 18 tháng. Bản dịch làm rơi chữ số 1 nên hạn sử dụng ngắn đi hơn một nửa." },
+          { text: "Tránh để gần nguồn nhiệt.", error: "Câu này không có trong bản gốc. AI tự thêm cho đầy đủ - tài liệu thật của nhà cung cấp không nói vậy." },
+        ],
+      },
+      {
+        type: "scenario",
+        title: "Bản hướng dẫn nhà cung cấp cần dịch trước 3 giờ chiều",
+        start: "s1",
+        nodes: {
+          s1: {
+            text: "Kho cần bản hướng dẫn bảo quản hàng mới của nhà cung cấp bằng tiếng Anh, 3 giờ chiều nhận hàng. Bạn không giỏi tiếng Anh và có công cụ AI công ty duyệt.",
+            choices: [
+              { label: "Dán cả tài liệu, nhận bản dịch mượt và gửi thẳng cho kho", next: "bad_send" },
+              { label: "Lập bảng thuật ngữ, dịch từng phần, rồi soát", next: "s2" },
+            ],
+          },
+          bad_send: {
+            text: "Bản dịch mất chữ 'not' ở dòng xếp chồng. Kho xếp cao 5 lớp và cả lô hàng bị móp thùng.",
+            ending: "bad",
+          },
+          s2: {
+            text: "AI dịch xong ba phần. Bạn còn 40 phút và có hai cách kiểm.",
+            choices: [
+              { label: "Mở phiên mới dịch ngược các đoạn có số và phủ định, rồi so với gốc", next: "good" },
+              { label: "Hỏi chính AI: 'Bản dịch này chính xác chứ?' và tin nếu nó trả lời có", next: "bad_ask" },
+            ],
+          },
+          bad_ask: {
+            text: "AI khẳng định bản dịch chính xác - vì với nó, bản dịch đó nghe hợp lý. Lỗi về hạn sử dụng vẫn nằm trong bản gửi kho.",
+            ending: "bad",
+          },
+          good: {
+            text: "Bản dịch ngược cho thấy một chỗ 'không xếp quá 3 lớp' quay về 'có thể xếp chồng'. Bạn sửa chỗ đó, soát lại các số, và gửi kho lúc 2 giờ 30.",
+            ending: "good",
+          },
+        },
+      },
+      {
+        type: "callout",
+        label: "Tài liệu ràng buộc thì khác",
+        text: "Hợp đồng, điều khoản phạt, tài liệu tuân thủ: bản AI chỉ dùng để đọc nhanh. Bản dùng để ký hoặc làm căn cứ cần bộ phận pháp chế hoặc dịch giả có trách nhiệm xem. Và như mọi bài trong chặng này, đừng dán tài liệu mật vào công cụ công ty chưa duyệt.",
+      },
+      {
+        type: "list",
+        items: [
+          "Bước 1 - Chia tài liệu thành phần nhỏ và lập bảng thuật ngữ, tên riêng.",
+          "Bước 2 - Nhờ dịch theo bảng, kèm đánh dấu chỗ chưa chắc.",
+          "Bước 3 - Dịch ngược các đoạn có số và phủ định trong một phiên mới.",
+          "Bước 4 - Soát số, đơn vị, phủ định, tên riêng; hợp đồng thì chuyển pháp chế.",
+        ],
+      },
+      {
+        type: "closing",
+        lines: [
+          "Dịch mượt chưa phải dịch đúng: soát số, phủ định, thuật ngữ và tên riêng.",
+          "Bài sau: dùng AI để học nhanh một mảng việc mới khi mới vào công ty.",
+        ],
+      },
+    ],
+  },
+  {
+    id: 1819,
+    slug: "hoc-nhanh-mang-viec-moi-bang-ai",
+    title: "Chặng 25, Bài 10: Dùng AI để học nhanh một mảng việc mới khi mới vào công ty",
+    subtitle: "Đừng hỏi AI 'giải thích giúp tôi' - hãy giải thích lại cho nó nghe và để nó bắt lỗi bạn.",
+    duration: "10 phút",
+    difficulty: "Trung bình",
+    emoji: "🎓",
+    track: "personal",
+    isFundamental: false,
+    whyItMatters:
+      "Tuần đầu ở công ty mới, ai cũng nói 'PO', 'đối soát', 'SLA' như thể bạn đã biết. Đọc giải thích của AI thì thấy hiểu, nhưng tới lúc làm mới thấy chưa hiểu gì. Cách học bằng AI hiệu quả là hỏi ngược và tự kiểm bằng ví dụ, để biết chỗ nào mình chưa nắm trước khi sếp giao việc thật.",
+    openingQuestion:
+      "Bạn mới vào phòng mua hàng và nghe mọi người nói 'đối soát công nợ'. Cách nào dùng AI để thật sự hiểu chứ không chỉ thấy quen?",
+    openingOptions: [
+      "Tự giải thích lại bằng lời mình cho AI nghe và nhờ nó chỉ chỗ sai",
+      "Xin AI giải thích thật chi tiết rồi đọc lại đến khi thấy thuộc",
+      "Nhờ AI viết một bản tóm tắt ngắn và lưu vào máy để mở lại khi cần",
+      "Hỏi AI thật nhiều thuật ngữ cùng lúc để có danh sách đầy đủ ngay",
+    ],
+    correctOption: 0,
+    explanation:
+      "Đọc giải thích tạo cảm giác hiểu, nhưng cảm giác đó chưa phải là hiểu; chỉ khi bạn tự nói lại bằng lời mình, chỗ hổng mới lộ ra. Cho AI đóng vai người hướng dẫn: bạn giải thích, nó chỉ chỗ thiếu hoặc sai. Đọc lại nhiều lần chỉ tăng độ quen mắt. Tóm tắt lưu máy là tài liệu để tra chứ không phải học. Hỏi thật nhiều thuật ngữ một lúc thì nhớ ít và hiểu nông.",
+    diagram: [
+      { label: "Hỏi AI giải thích bằng ví dụ đời thường", arrow: true },
+      { label: "Bạn nói lại bằng lời mình, nhờ AI chỉ chỗ sai", arrow: true },
+      { label: "AI ra 3 tình huống nhỏ để bạn tự làm thử", arrow: true },
+      { label: "Đối chiếu quy trình thật với đồng nghiệp hoặc tài liệu công ty" },
+    ],
+    realWorldExample: {
+      company: "Tình huống minh hoạ",
+      description:
+        "Tình huống minh hoạ: một bạn mới vào phòng kế toán nghe 'đối soát công nợ' và nhờ AI giải thích. Sau đó bạn tự nói lại: 'là so số khách nợ của mình với số khách ghi' rồi nhờ AI bắt lỗi. AI chỉ ra bạn đang thiếu bước xử lý chênh lệch. Cuối cùng bạn hỏi đồng nghiệp quy trình thật ở công ty vì mỗi nơi làm một kiểu.",
+    },
+    quiz: [
+      {
+        question: "Vì sao 'đọc xong thấy hiểu' chưa đủ để dùng được kiến thức trong công việc?",
+        options: [
+          "Vì cảm giác quen mắt dễ nhầm với hiểu, chỉ tự nói lại mới lộ chỗ hổng",
+          "Vì AI giải thích thiếu nên luôn phải hỏi thêm vài lần",
+          "Vì kiến thức đọc trên máy tính kém bền hơn sách giấy",
+          "Vì đọc nhanh làm bạn quên ngay, đọc chậm lại gấp đôi thì sẽ nhớ được",
+        ],
+        correct: 0,
+        explanation:
+          "Đọc lại làm nội dung quen mắt và ta tưởng là hiểu. Chỉ khi phải tự diễn đạt hay áp dụng, chỗ hổng mới hiện ra. Số lần hỏi AI không quyết định mức hiểu; giấy hay máy không khác nhau ở điểm này; và đọc chậm gấp đôi vẫn là đọc thụ động.",
+      },
+      {
+        question: "Yêu cầu nào giúp AI đóng vai người kiểm tra hiểu biết của bạn tốt nhất?",
+        options: [
+          "Đây là cách tôi hiểu: (nói lại). Chỉ ra chỗ sai hoặc thiếu, chưa đưa đáp án",
+          "Hãy giải thích lại đầy đủ hơn để tôi đọc và ghi nhớ nội dung này",
+          "Hãy cho tôi biết tôi đã hiểu đúng chưa, trả lời ngắn bằng có hoặc không",
+          "Hãy tóm tắt lại cho tôi các ý chính trong hai câu để tôi dễ nhớ hơn",
+        ],
+        correct: 0,
+        explanation:
+          "Bạn nói lại bằng lời mình và xin chỉ chỗ sai, nên phải huy động kiến thức thay vì đọc. Xin giải thích thêm hay tóm tắt lại là thụ động. Trả lời có hoặc không không chỉ ra thiếu gì, và AI hay đồng ý với người hỏi nên câu 'có' thường không đáng tin.",
+      },
+      {
+        question: "AI giải thích quy trình 'đối soát công nợ' rất mạch lạc. Vì sao vẫn phải hỏi đồng nghiệp?",
+        options: [
+          "Vì quy trình cụ thể của công ty bạn mà AI chưa từng thấy",
+          "Vì AI luôn giải thích sai các thuật ngữ về kế toán và mua hàng",
+          "Vì AI chỉ giải thích đúng cho công ty lớn",
+          "Vì hỏi đồng nghiệp chỉ là phép lịch sự khi mới vào",
+        ],
+        correct: 0,
+        explanation:
+          "AI biết khái niệm chung nhưng không biết mẫu biểu, phần mềm, người duyệt hay hạn chót ở công ty bạn. Nó không luôn sai thuật ngữ, và quy mô công ty không phải lý do chính. Hỏi đồng nghiệp là bước kiểm nguồn, không chỉ là phép lịch sự.",
+      },
+      {
+        question: "Sau khi hiểu khái niệm, cách nào kiểm tra hiệu quả nhất trước khi làm việc thật?",
+        options: [
+          "Nhờ AI ra 3 tình huống nhỏ có số liệu rồi tự làm, sau đó mới xem đáp án",
+          "Đọc lại lời giải thích của AI thêm một lần nữa để chắc chắn đã nhớ",
+          "Nhờ AI hỏi 3 câu có sẵn đáp án và xem ngay đáp án bên dưới câu hỏi",
+          "Chép lời giải thích vào sổ tay và đọc lại vào cuối tuần nếu còn thời gian",
+        ],
+        correct: 0,
+        explanation:
+          "Tự giải tình huống rồi mới xem đáp án buộc bạn dùng kiến thức và cho thấy chỗ sai cụ thể. Đọc lại chỉ tăng độ quen mắt, xem đáp án ngay dưới câu hỏi làm bạn không phải nghĩ, còn chép sổ tay là lưu trữ chứ không phải kiểm tra.",
+      },
+      {
+        question: "AI đưa ra một số 'chuẩn ngành' như 'công nợ quá hạn không nên vượt 5%'. Bạn nên xử lý thế nào?",
+        options: [
+          "Coi là một gợi ý cần kiểm, hỏi trưởng phòng ngưỡng thực tế của công ty",
+          "Dùng luôn làm ngưỡng cảnh báo vì AI đã tổng hợp nhiều tài liệu",
+          "Ghi vào báo cáo và ghi nguồn là 'theo AI' cho khỏi bị hỏi thêm",
+          "Bỏ qua mọi con số AI đưa ra vì AI không bao giờ nói đúng số liệu",
+        ],
+        correct: 0,
+        explanation:
+          "'Chuẩn ngành' AI đưa có thể là số nghe hợp lý chứ không phải thống kê đã kiểm. Ngưỡng dùng trong công ty do công ty quy định. 'Theo AI' không phải nguồn. Bỏ qua mọi con số thì thái quá: bạn chỉ cần biết số nào cần kiểm bằng nguồn thật.",
+      },
+    ],
+    keyTakeaways: [
+      "Hiểu là tự nói lại và tự làm được, không phải đọc thấy quen.",
+      "Giải thích cho AI nghe và nhờ nó chỉ chỗ sai, chưa cho đáp án.",
+      "Xin tình huống nhỏ có số liệu, tự làm rồi mới xem đáp án.",
+      "AI biết khái niệm chung, không biết quy trình riêng của công ty bạn.",
+      "Con số 'chuẩn ngành' do AI đưa là gợi ý cần kiểm, không phải sự thật.",
+    ],
+    practicePrompt: {
+      question:
+        "Bạn mới vào phòng nhân sự và cần hiểu 'onboarding'. AI giải thích rất rõ, bạn đọc hai lần. Bước nào tiếp theo giúp bạn thật sự nắm được?",
+      options: [
+        "Tự tóm lại bằng lời mình cho AI và nhờ nó chỉ chỗ sai hoặc thiếu",
+        "Đọc thêm lần thứ ba để chắc chắn không bỏ sót ý nào trong bản giải thích",
+        "Hỏi AI thêm 10 thuật ngữ khác trong phòng nhân sự để có danh sách đầy đủ",
+        "Lưu đoạn giải thích vào ghi chú cá nhân để tra lại khi cần dùng",
+      ],
+      correct: 0,
+      explanation:
+        "Tự nói lại là cách nhanh nhất để lộ chỗ chưa hiểu. Đọc lần ba chỉ tăng độ quen. Thêm 10 thuật ngữ làm loãng chú ý khi chưa nắm cái đầu tiên. Lưu ghi chú là tra cứu về sau, chưa phải bước học.",
+    },
+    summary: {
+      keyIdea: "Học bằng AI hiệu quả khi bạn nói và làm, còn AI hỏi và chỉ lỗi - chứ không phải khi bạn đọc.",
+      formula: "Giải thích bằng ví dụ + tự nói lại + tình huống tự làm + hỏi người trong công ty = học xong.",
+      commonMistake: "Đọc lời giải thích thấy quen rồi tin là đã hiểu, và tin luôn số 'chuẩn ngành' AI đưa ra.",
+      action: "Chọn một thuật ngữ bạn vừa nghe hôm nay và tự giải thích lại cho AI nghe.",
+    },
+    application: {
+      title: "Làm ngay trong 20 phút",
+      message:
+        "Chọn một thuật ngữ hoặc quy trình bạn nghe ở chỗ làm tuần này mà chưa rõ. Nhờ AI giải thích bằng ví dụ đời thường, rồi viết lại bằng lời mình 4-5 câu và nhờ AI chỉ chỗ sai. Sau đó ghi ra 2 câu hỏi để hỏi đồng nghiệp về cách công ty mình thực tế làm.",
+      secondary: "Xin AI 3 tình huống nhỏ về chủ đề đó và tự làm trước khi xem đáp án.",
+    },
+    sections: [
+      {
+        type: "lead",
+        text: "Mỗi lần đổi việc hoặc đổi phòng, bạn phải học một mảng mới thật nhanh. AI là người kèm rất kiên nhẫn - nếu bạn dùng nó để bị hỏi, thay vì chỉ để nghe giảng.",
+      },
+      {
+        type: "feynman",
+        title: "Học nhanh bằng AI đơn giản hơn bạn nghĩ",
+        intro: "Người học nghề giỏi không ngồi nghe sư phụ nói cả ngày. Họ làm thử, nói lại cho sư phụ nghe và để sư phụ sửa. AI có thể là sư phụ kiên nhẫn đó - chỉ có điều nó chưa biết cách làm riêng ở xưởng của bạn.",
+        columns: ["Thành phần", "Học nghề với sư phụ", "Học một mảng mới bằng AI"],
+        rows: [
+          ["Nghe giảng", "Sư phụ giải thích cách làm", "AI giải thích bằng ví dụ đời thường"],
+          ["Nói lại", "Bạn kể lại cho sư phụ", "Bạn nói lại bằng lời mình, AI chỉ chỗ sai"],
+          ["Làm thử", "Làm một mẻ nhỏ", "Tự giải 3 tình huống nhỏ do AI ra"],
+          ["Cách làm riêng của xưởng", "Sư phụ biết rõ", "AI không biết: hỏi đồng nghiệp hoặc tài liệu công ty"],
+        ],
+        oneLiner: "Học là nói lại và làm thử, AI kèm cặp giúp bạn - còn cách làm riêng của công ty thì phải hỏi người trong công ty.",
+      },
+      { type: "heading", text: "Vấn đề: hiểu trong lúc đọc, quên khi làm" },
+      {
+        type: "paragraph",
+        text: "Khi nhờ AI giải thích, bạn đọc và gật gù: rất rõ. Hôm sau sếp giao một việc thật và bạn không biết bắt đầu từ đâu. Sự khác biệt là đọc thì thụ động, còn làm việc cần bạn tự nhớ ra và áp dụng. Vì vậy ta đổi vai: để AI hỏi, còn bạn trả lời.",
+      },
+      {
+        type: "flow",
+        title: "Năm bước học một mảng mới",
+        steps: [
+          { label: "Xin giải thích bằng ví dụ đời thường", detail: "Nói rõ bạn mới vào ngành: 'Giải thích đối soát công nợ cho người chưa từng làm kế toán, dùng ví dụ một cửa hàng tạp hoá.'" },
+          { label: "Tự nói lại bằng lời mình", detail: "Viết 4-5 câu theo cách bạn hiểu, chưa xem lại lời giải thích. Đây là bước lộ chỗ hổng." },
+          { label: "Nhờ AI chỉ chỗ sai hoặc thiếu", detail: "Dặn nó: chỉ ra chỗ sai và chỗ thiếu, chưa viết lại đáp án hoàn chỉnh, để bạn tự sửa." },
+          { label: "Tự làm 3 tình huống nhỏ", detail: "Xin AI ra 3 tình huống có số liệu nhỏ. Tự giải trước, rồi xem đáp án và so." },
+          { label: "Hỏi người trong công ty", detail: "Ghi 2 câu hỏi về cách công ty làm thật (mẫu biểu, hạn, người duyệt) và hỏi đồng nghiệp hoặc tìm trong tài liệu nội bộ." },
+        ],
+      },
+      {
+        type: "aiLab",
+        mode: "prompt",
+        title: "Nhờ AI kiểm hiểu biết về 'đối soát công nợ'",
+        task: "Bạn vừa nghe khái niệm này và đã viết lại bằng lời mình. Lắp prompt để AI giúp bạn thấy chỗ chưa hiểu.",
+        parts: [
+          {
+            id: "role",
+            label: "Vai của AI",
+            options: [
+              { text: "Giải thích đối soát công nợ thật chi tiết cho tôi.", feedback: "Bạn lại thành người nghe - đọc xong thấy hiểu mà chưa biết mình sai chỗ nào." },
+              { text: "Bạn là người hướng dẫn kiên nhẫn; tôi mới vào ngành, sẽ giải thích lại theo cách hiểu của tôi.", good: true, feedback: "AI đóng vai người chấm bài nói lại của bạn - đúng chỗ bạn cần được kiểm." },
+            ],
+          },
+          {
+            id: "action",
+            label: "Việc AI cần làm",
+            options: [
+              { text: "Cho tôi biết tôi đã hiểu đúng chưa, trả lời có hoặc không.", feedback: "Câu có hoặc không không chỉ ra chỗ hổng, và AI hay dễ dãi với người hỏi." },
+              { text: "Chỉ ra chỗ tôi nói sai hoặc thiếu; chưa đưa đáp án hoàn chỉnh, để tôi tự sửa.", good: true, feedback: "Bạn được chỉ đúng chỗ hổng nhưng vẫn phải tự sửa - đó mới là học." },
+            ],
+          },
+          {
+            id: "limit",
+            label: "Giới hạn kiến thức",
+            options: [
+              { text: "Nếu cần, cứ theo quy trình chuẩn của mọi công ty.", feedback: "AI sẽ nói như mọi công ty đều làm một kiểu - bạn dễ áp dụng sai vào công ty của mình." },
+              { text: "Nói rõ đâu là khái niệm chung, đâu là chỗ mỗi công ty làm khác nhau để tôi đi hỏi.", good: true, feedback: "Bạn nhận về danh sách câu hỏi cần hỏi đồng nghiệp thay vì tưởng quy trình chung là quy trình công ty." },
+            ],
+          },
+        ],
+        responses: [
+          {
+            requires: ["role", "action", "limit"],
+            text: "Bạn nói đúng ý chính: so số hai bên. Nhưng còn thiếu: (1) chưa nói bước xử lý chênh lệch khi hai bên không khớp; (2) chưa nói đối soát theo kỳ nào. Đây là chỗ mỗi công ty làm khác nhau, bạn nên hỏi: công ty đối soát theo tháng hay theo quý, và ai duyệt chênh lệch?",
+          },
+          {
+            requires: ["role"],
+            text: "Bạn hiểu đúng rồi! Đối soát công nợ là so sánh số liệu công nợ hai bên. Quy trình chuẩn thường: đối soát cuối tháng, chênh lệch dưới 1% thì bỏ qua...\n\n(Trả lời quá dễ dãi và tự thêm ngưỡng '1%' không có căn cứ, không chỉ ra chỗ bạn thiếu.)",
+          },
+          {
+            text: "Đối soát công nợ là quá trình đối chiếu số dư công nợ giữa hai bên nhằm bảo đảm tính chính xác của sổ sách kế toán. Quy trình gồm nhiều bước như thu thập chứng từ, đối chiếu, lập biên bản...\n\n(Giải thích dài như sách giáo khoa; bạn đọc thấy quen nhưng vẫn không biết mình hiểu sai chỗ nào.)",
+          },
+        ],
+      },
+      {
+        type: "comparison",
+        left: {
+          label: "Học chủ động với AI",
+          text: "Bạn nói lại bằng lời mình và nhờ AI chỉ chỗ sai. Bạn tự giải tình huống rồi mới xem đáp án. Bạn biết chỗ nào cần hỏi đồng nghiệp. Sau 30 phút bạn làm được việc nhỏ.",
+        },
+        right: {
+          label: "Đọc giải thích thụ động",
+          text: "Bạn đọc, thấy hợp lý, gật đầu. Không biết chỗ nào chưa hiểu tới lúc làm thật. Dễ tưởng quy trình chung là quy trình công ty. Sau 30 phút bạn thấy quen nhưng chưa làm được.",
+        },
+      },
+      {
+        type: "callout",
+        label: "AI không biết công ty của bạn",
+        text: "AI biết khái niệm chung, không biết mẫu biểu, phần mềm, người duyệt hay hạn chót ở công ty bạn. Con số 'chuẩn ngành' nó đưa ra có thể chỉ là số nghe hợp lý. Việc gì liên quan tới quy định hay thuế, hỏi bộ phận pháp chế hoặc kế toán trưởng.",
+      },
+      {
+        type: "scenario",
+        title: "Tuần đầu ở phòng mua hàng",
+        start: "s1",
+        nodes: {
+          s1: {
+            text: "Trưởng phòng nhờ bạn kiểm 'đối soát công nợ' với nhà cung cấp X vào chiều mai. Bạn chưa từng làm. Còn buổi tối để học.",
+            choices: [
+              { label: "Nhờ AI giải thích chi tiết, đọc kỹ hai lần rồi đi làm", next: "bad_read" },
+              { label: "Nhờ AI giải thích bằng ví dụ, rồi tự nói lại và nhờ nó chỉ chỗ sai", next: "s2" },
+            ],
+          },
+          bad_read: {
+            text: "Bạn thấy mình hiểu hết. Chiều hôm sau, khi số hai bên lệch nhau, bạn không biết bước tiếp theo và phải hỏi trưởng phòng ngay giữa buổi họp.",
+            ending: "bad",
+          },
+          s2: {
+            text: "AI chỉ ra bạn thiếu bước xử lý chênh lệch. Nó cũng nói mỗi công ty làm khác nhau.",
+            choices: [
+              { label: "Ghi hai câu hỏi và hỏi đồng nghiệp cách công ty mình xử lý chênh lệch", next: "good" },
+              { label: "Theo luôn quy trình AI mô tả vì nó nghe rất chuyên nghiệp", next: "bad_ai" },
+            ],
+          },
+          bad_ai: {
+            text: "Bạn áp dụng ngưỡng bỏ qua chênh lệch mà AI nói là phổ biến. Công ty bạn không có quy định đó và trưởng phòng phải nhờ làm lại từ đầu.",
+            ending: "bad",
+          },
+          good: {
+            text: "Đồng nghiệp cho bạn xem biểu mẫu thật và nói chênh lệch phải báo trưởng phòng. Chiều hôm sau bạn làm đúng và nhanh.",
+            ending: "good",
+          },
+        },
+      },
+      {
+        type: "list",
+        items: [
+          "Bước 1 - Xin giải thích bằng ví dụ đời thường, nói rõ bạn mới vào ngành.",
+          "Bước 2 - Tự nói lại bằng lời mình, chưa xem lại bản giải thích.",
+          "Bước 3 - Nhờ AI chỉ chỗ sai hoặc thiếu, rồi tự sửa.",
+          "Bước 4 - Tự giải 3 tình huống nhỏ, sau đó hỏi đồng nghiệp cách công ty làm thật.",
+        ],
+      },
+      {
+        type: "closing",
+        lines: [
+          "Hiểu là nói lại và làm được - để AI hỏi bạn, đừng chỉ nghe nó giảng.",
+          "Khái niệm chung thì hỏi AI, cách làm riêng của công ty thì hỏi người trong công ty.",
+        ],
+      },
+    ],
+  },
 ];
