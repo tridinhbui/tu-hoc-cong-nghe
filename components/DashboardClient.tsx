@@ -27,6 +27,7 @@ import FloatingStudyGroupChat from "@/components/FloatingStudyGroupChat";
 import LessonAppealModal from "@/components/LessonAppealModal";
 import OnboardingFlow from "@/components/OnboardingFlow";
 import ResumeLearningButton from "@/components/ResumeLearningButton";
+import YesterdayTaskCard from "@/components/YesterdayTaskCard";
 import LearningFocusHero from "@/components/LearningFocusHero";
 import StreakReminderManager from "@/components/StreakReminderManager";
 import AnnouncementBanner from "@/components/AnnouncementBanner";
@@ -1227,6 +1228,10 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                     1. Học tiếp hôm nay (thẻ duy nhất nổi màu), 2. tiến độ gọn,
                     3. một khu lộ trình. Mọi thứ phụ sang cột phải. */}
                 <div className="min-w-0 space-y-10">
+                  {/* Hỏi lại việc "Làm ngay" của bài hôm qua TRƯỚC khi mời học
+                      bài mới - xem components/YesterdayTaskCard.tsx. Tự ẩn
+                      khi không có việc nào trong cửa sổ 6-72 giờ. */}
+                  <YesterdayTaskCard />
                   <div data-tour="resume-learning">
                     <ResumeLearningButton
                       activeTrack={activeTrack}

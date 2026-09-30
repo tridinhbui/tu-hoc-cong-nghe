@@ -17,6 +17,18 @@ type StageOutcome = { tag: string; headline: string; outcome: string };
 
 export const revampDashboardVi = {
   revampDashboard: {
+    /** Thẻ "Hôm qua bạn thử chưa?" - components/YesterdayTaskCard.tsx. */
+    yesterdayTask: {
+      eyebrow: "Việc hôm qua",
+      title: "Hôm qua bạn thử chưa?",
+      fromLesson: "Từ bài: {title}",
+      tried: "Mình thử rồi",
+      notYet: "Chưa kịp",
+      triedReply: "Tuyệt! Làm thêm một lần nữa trong tuần là nó thành thói quen. Giờ sang bài tiếp nhé.",
+      notYetReply: "Không sao. Việc này chỉ mất vài phút - thử ngay bây giờ rồi hẵng học bài mới, bạn sẽ nhớ lâu hơn nhiều.",
+      next: "Học tiếp: {title}",
+      reopen: "Mở lại bài",
+    },
     // ── Dashboard: trung tâm chỉ huy kỹ năng ─────────────────────────────
     commandEyebrow: "TRUNG TÂM KỸ NĂNG",
     currentLevelLabel: "CẤP HIỆN TẠI",
@@ -160,6 +172,17 @@ export const revampDashboardVi = {
 
 export const revampDashboardEn: typeof revampDashboardVi = {
   revampDashboard: {
+    yesterdayTask: {
+      eyebrow: "Yesterday's task",
+      title: "Did you try it yesterday?",
+      fromLesson: "From: {title}",
+      tried: "I tried it",
+      notYet: "Not yet",
+      triedReply: "Great! Do it once more this week and it becomes a habit. On to the next lesson.",
+      notYetReply: "No problem. It only takes a few minutes - try it now before the next lesson and it will stick much better.",
+      next: "Continue: {title}",
+      reopen: "Reopen the lesson",
+    },
     commandEyebrow: "SKILL COMMAND CENTER",
     currentLevelLabel: "CURRENT LEVEL",
     levelOfTotal: "LV{level} / {total}",

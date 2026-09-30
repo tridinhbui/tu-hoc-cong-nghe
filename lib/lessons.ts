@@ -49178,6 +49178,44 @@ export const lessons: Lesson[] = [
         "text": "Có một câu hỏi mà gần như không ai đặt ra trước khi học lập trình: khi bạn bấm chạy một chương trình, ai là người thật sự chạy nó? Câu trả lời không phải là \"máy tính\" - quá chung chung để hữu ích. Câu trả lời là hệ điều hành, và cụ thể hơn là một phần lõi của nó tên là nhân (kernel)."
       },
       {
+        "type": "feynman",
+        "title": "Hệ điều hành đơn giản hơn bạn nghĩ",
+        "intro": "Hệ điều hành giống ban quản lý một chung cư đông người: thang máy, điện nước có hạn, nên ban quản lý chia cho từng hộ theo lượt và không để hộ này vào nhà hộ kia.",
+        "columns": [
+          "Thành phần",
+          "Trong đời thường",
+          "Trên máy tính"
+        ],
+        "rows": [
+          [
+            "Hệ điều hành",
+            "Ban quản lý chung cư",
+            "Phần mềm chia tài nguyên cho mọi chương trình"
+          ],
+          [
+            "Tiến trình",
+            "Một hộ gia đình có căn hộ riêng",
+            "Một chương trình đang chạy, có vùng nhớ riêng"
+          ],
+          [
+            "Luồng",
+            "Các thành viên trong cùng một hộ, dùng chung đồ đạc",
+            "Các mạch việc trong một chương trình, dùng chung bộ nhớ"
+          ],
+          [
+            "Lõi bộ xử lý",
+            "Một buồng thang máy",
+            "Một bộ phận chạy lệnh; máy có vài lõi mà hàng trăm chương trình"
+          ],
+          [
+            "Bộ lập lịch",
+            "Người điều phối thang máy cho từng hộ đi một lượt ngắn",
+            "Phần chia thời gian thành lát vài mili giây cho từng tiến trình"
+          ]
+        ],
+        "oneLiner": "Hệ điều hành là ban quản lý chia bộ xử lý, bộ nhớ và phần cứng cho các chương trình theo lượt, và không cho chương trình nào tự ý đụng vào phần của người khác."
+      },
+      {
         "type": "heading",
         "text": "Ba việc hệ điều hành làm"
       },
@@ -49403,6 +49441,44 @@ export const lessons: Lesson[] = [
       {
         "type": "lead",
         "text": "Trong buổi học lập trình đầu tiên, thứ làm người ta bỏ cuộc thường không phải cú pháp. Đó là một dòng chữ đỏ: no such file or directory. Tệp rõ ràng đang nằm đó, nhìn thấy bằng mắt, mà chương trình bảo không có. Nguyên nhân gần như luôn là một hiểu lầm về đường dẫn."
+      },
+      {
+        "type": "feynman",
+        "title": "Đường dẫn đơn giản hơn bạn nghĩ",
+        "intro": "Đường dẫn giống địa chỉ nhà: tỉnh, quận, phường, số nhà, đi từ lớn đến nhỏ. Còn đường dẫn tương đối giống câu chỉ đường \"từ chỗ bạn đứng, rẽ trái hai nhà\" - chỉ đúng khi biết người nghe đang đứng ở đâu.",
+        "columns": [
+          "Thành phần",
+          "Trong đời thường",
+          "Trên máy tính"
+        ],
+        "rows": [
+          [
+            "Thư mục",
+            "Tỉnh, quận, phường lồng vào nhau",
+            "Ngăn chứa tệp, lồng thành cây"
+          ],
+          [
+            "Tệp",
+            "Một ngôi nhà cụ thể",
+            "Một tài liệu, ảnh hay chương trình"
+          ],
+          [
+            "Đường dẫn tuyệt đối",
+            "Địa chỉ đầy đủ từ tên tỉnh",
+            "Đường đi từ gốc, ví dụ /home/ban/bao-cao.txt"
+          ],
+          [
+            "Đường dẫn tương đối",
+            "\"Rẽ trái hai nhà\" tính từ chỗ đang đứng",
+            "Đường đi tính từ thư mục làm việc hiện tại"
+          ],
+          [
+            "Thư mục làm việc hiện tại",
+            "Chỗ bạn đang đứng khi hỏi đường",
+            "Thư mục chương trình đứng lúc được chạy"
+          ]
+        ],
+        "oneLiner": "Đường dẫn là địa chỉ của tệp: viết đủ từ gốc thì đúng ở mọi nơi, viết tương đối thì chỉ đúng khi bạn đứng đúng chỗ."
       },
       {
         "type": "heading",
@@ -49640,6 +49716,44 @@ export const lessons: Lesson[] = [
         "text": "Dòng lệnh trông đáng sợ vì nó không gợi ý gì cả: một cửa sổ trống với con trỏ nhấp nháy, không nút bấm, không menu. Nhưng chính sự trống trải đó là điểm mạnh của nó. Giao diện đồ hoạ chỉ cho bạn làm những gì ai đó đã nghĩ trước và vẽ sẵn một cái nút; dòng lệnh cho bạn ghép các mảnh nhỏ thành thao tác chưa ai nghĩ tới."
       },
       {
+        "type": "feynman",
+        "title": "Dòng lệnh đơn giản hơn bạn nghĩ",
+        "intro": "Dùng chuột giống chỉ vào ảnh trên thực đơn: chỉ gọi được món có ảnh. Dòng lệnh giống gọi món bằng lời - không có gì để chỉ, nhưng nói đúng tên thì gọi được cả món không in trong thực đơn, và viết ra giấy để lần sau gọi y hệt.",
+        "columns": [
+          "Thành phần",
+          "Trong đời thường",
+          "Trên máy tính"
+        ],
+        "rows": [
+          [
+            "Giao diện đồ hoạ",
+            "Chỉ vào ảnh món ăn trên thực đơn",
+            "Bấm nút, chọn menu bằng chuột"
+          ],
+          [
+            "Dòng lệnh",
+            "Gọi món bằng lời với người phục vụ",
+            "Gõ lệnh bằng chữ vào cửa sổ Terminal"
+          ],
+          [
+            "Tên lệnh",
+            "Tên món",
+            "Chương trình sẽ chạy, ví dụ ls"
+          ],
+          [
+            "Tuỳ chọn",
+            "\"Ít cay, thêm hành\"",
+            "Chữ bắt đầu bằng dấu gạch, ví dụ -la"
+          ],
+          [
+            "Tham số",
+            "\"Cho bàn số 5\"",
+            "Thứ lệnh làm việc với, thường là một đường dẫn"
+          ]
+        ],
+        "oneLiner": "Dòng lệnh là gọi món bằng lời: câu gọi viết ra được, gửi được cho người khác và lặp lại y hệt về sau."
+      },
+      {
         "type": "heading",
         "text": "Vì sao mọi tài liệu đều đưa lệnh chứ không chỉ nút bấm"
       },
@@ -49856,6 +49970,44 @@ export const lessons: Lesson[] = [
       {
         "type": "lead",
         "text": "Bốn lệnh ở bài trước chỉ đọc: chúng nhìn ổ đĩa và kể lại. Năm lệnh trong bài này thì viết - chúng thay đổi ổ đĩa thật. Sự khác biệt đó đáng được nói rõ, vì dòng lệnh không có hộp thoại xác nhận và cũng không có thùng rác."
+      },
+      {
+        "type": "feynman",
+        "title": "Tạo, chép, xoá tệp đơn giản hơn bạn nghĩ",
+        "intro": "Làm việc với tệp ở dòng lệnh giống sắp xếp giấy tờ trên bàn, chỉ khác một điều: xoá ở đây là xé giấy luôn, không bỏ qua thùng rác để nhặt lại.",
+        "columns": [
+          "Thành phần",
+          "Trong đời thường",
+          "Trên máy tính"
+        ],
+        "rows": [
+          [
+            "mkdir",
+            "Lấy thêm một bìa hồ sơ mới",
+            "Tạo thư mục"
+          ],
+          [
+            "touch",
+            "Đặt một tờ giấy trắng vào bìa",
+            "Tạo tệp rỗng"
+          ],
+          [
+            "cp",
+            "Photo một bản, tốn thêm giấy",
+            "Tạo bản sao độc lập, chiếm thêm dung lượng"
+          ],
+          [
+            "mv",
+            "Chuyển tờ giấy sang bìa khác hoặc sửa nhãn",
+            "Di chuyển hoặc đổi tên, không chép dữ liệu"
+          ],
+          [
+            "rm",
+            "Xé giấy, không qua thùng rác",
+            "Xoá hẳn, không có bước hoàn tác"
+          ]
+        ],
+        "oneLiner": "Tạo, chép và di chuyển tệp là sắp giấy tờ quen thuộc, còn rm là xé bỏ không lấy lại được, nên luôn xem trước bằng ls."
       },
       {
         "type": "heading",
@@ -50091,6 +50243,44 @@ export const lessons: Lesson[] = [
       {
         "type": "lead",
         "text": "Có hai thông báo lỗi mà người mới học gặp nhiều hơn mọi thứ khác cộng lại. Thứ nhất là no such file or directory, đã xử lý ở bài về đường dẫn. Thứ hai là permission denied, và phản xạ phổ biến nhất với nó - thêm sudo vào đầu lệnh cho tới khi chạy được - là một thói quen tạo ra nhiều vấn đề hơn nó giải quyết."
+      },
+      {
+        "type": "feynman",
+        "title": "Quyền truy cập tệp đơn giản hơn bạn nghĩ",
+        "intro": "Quyền truy cập giống thẻ từ trong một toà chung cư: thẻ của bạn mở cửa nhà bạn, thẻ của hộ khác thì không, và ban quản lý giữ một thẻ mở được mọi cửa nhưng chỉ nên dùng khi thật cần.",
+        "columns": [
+          "Thành phần",
+          "Trong đời thường",
+          "Trên máy tính"
+        ],
+        "rows": [
+          [
+            "Chủ sở hữu",
+            "Chủ căn hộ",
+            "Người dùng sở hữu tệp"
+          ],
+          [
+            "Nhóm",
+            "Các hộ cùng tầng dùng chung phòng sinh hoạt",
+            "Nhóm người dùng được cấp chung một cụm quyền"
+          ],
+          [
+            "Người còn lại",
+            "Khách lạ đi ngang hành lang",
+            "Mọi tài khoản khác trên máy"
+          ],
+          [
+            "r, w, x",
+            "Được nhìn vào, được sửa đồ, được vào ở",
+            "Quyền đọc, ghi và thực thi"
+          ],
+          [
+            "root và sudo",
+            "Thẻ vạn năng của ban quản lý, mượn cho một lần mở cửa",
+            "Tài khoản toàn quyền; sudo mượn quyền đó cho đúng một lệnh"
+          ]
+        ],
+        "oneLiner": "Mỗi tệp có chủ và một bộ thẻ từ quy định ai được đọc, sửa hay chạy nó, còn sudo là mượn thẻ vạn năng cho đúng một lần."
       },
       {
         "type": "heading",
