@@ -53,9 +53,14 @@ function keywords(text: string): string[] {
 // title/subtitle - previously this just used lessonId % pool.length, which
 // picks tips arbitrarily within a Chặng's pool and often surfaces a tip about
 // a completely different lesson in the same Chặng (e.g. a Git tip under a
-// networking lesson). Falls back to the old modulo when no
-// tip shares any keyword, so every lesson still gets a tip.
-function getTip(t: Dictionary, lessonId: number, lessonTitle: string): string {
+// networking lesson).
+//
+// No keyword in common means NO tip, not the old modulo pick. That fallback
+// is how "Hệ điều hành làm gì" opened with a tip about restoring backups: the
+// banner sits at the very top of the lesson, and an unrelated first sentence
+// from "Cơ Cơ · mẹo cho bài này" tells a newcomer the whole page is generated
+// filler before they have read a line of it.
+function getTip(t: Dictionary, lessonId: number, lessonTitle: string): string | null {
   const stageTips = stageTipsOf(t);
   const match = findStageLabel(lessonId);
   const tips = match ? stageTips[`${match.track}-${match.label}`] : undefined;
@@ -76,7 +81,7 @@ function getTip(t: Dictionary, lessonId: number, lessonTitle: string): string {
     if (bestIndex >= 0) return pool[bestIndex];
   }
 
-  return pool[lessonId % pool.length];
+  return null;
 }
 
 interface Props {
@@ -87,6 +92,12 @@ interface Props {
 export default function StageTipsBanner({ lessonId, lessonTitle }: Props) {
   const { t } = useI18n();
   const tip = getTip(t, lessonId, lessonTitle);
+  if (!tip) return null;
+  return <TipBanner tip={tip} />;
+}
+
+function TipBanner({ tip }: { tip: string }) {
+  const { t } = useI18n();
   const [displayed, setDisplayed] = useState("");
   const [phase, setPhase] = useState<"waiting" | "typing" | "done">("waiting");
 

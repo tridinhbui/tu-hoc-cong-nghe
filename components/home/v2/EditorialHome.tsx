@@ -95,6 +95,13 @@ export function EditorialHero({
   const v = t.home.v2;
   const reduce = useReducedMotion();
   const { ref, pos } = useCrosshair<HTMLElement>();
+  const stats = (
+    [
+      [v.statLearners, learners],
+      [v.statLessons, lessons],
+      [v.statCompleted, completed],
+    ] as const
+  ).filter(([, value]) => value > 0);
 
   return (
     <section ref={ref} data-dbg="section#hero" className={`relative overflow-hidden border-b-2 ${RULE} ${PAPER} ${INK}`}>
@@ -130,8 +137,12 @@ export function EditorialHero({
           <div className="min-w-0 lg:col-span-5 lg:col-start-1">
             <p className="max-w-md text-[16px] leading-7">{format(v.heroSub, { count: lessonCount })}</p>
             <div className="mt-7 flex flex-wrap items-stretch gap-0">
+              {/* Nút chính cuộn xuống "Bắt đầu từ việc bạn muốn làm" thay vì
+                  mở form đăng ký: người mới được thử một bài trước, và thẻ cuối
+                  bài mới là chỗ mời tạo tài khoản để lưu tiến độ. Đăng ký vẫn
+                  ở nút "Vào học ngay" trên thanh điều hướng. */}
               <Link
-                href="/login?mode=signup"
+                href="#bat-dau"
                 className="thcn-glitch group inline-flex items-center gap-3 bg-brand-600 px-6 py-4 text-[15px] font-black uppercase tracking-wide text-white transition-colors hover:bg-[#0d0e11] dark:hover:bg-brand-400 dark:hover:text-[#0d0e11]"
               >
                 {v.ctaPrimary}
@@ -150,15 +161,14 @@ export function EditorialHero({
 
           <div className="flex flex-col gap-4 lg:col-span-6 lg:col-start-7">
             <BootTerminal lessonCount={lessonCount} />
-            {/* Ba con số thật, xếp như bảng thông số cuối bản vẽ. */}
-            <dl className={`grid grid-cols-3 border-2 ${RULE}`}>
-              {(
-                [
-                  [v.statLearners, learners],
-                  [v.statLessons, lessons],
-                  [v.statCompleted, completed],
-                ] as const
-              ).map(([label, value], i) => (
+            {/* Ba con số thật, xếp như bảng thông số cuối bản vẽ.
+                Ô nào đang là 0 thì không hiện: các con số chỉ được ghi đè khi
+                truy vấn trả về số khác 0, nên 0 ở đây nghĩa là "chưa tải
+                được", không phải "chưa ai học" - nhưng người mới đọc "NGƯỜI
+                HỌC 0+" theo nghĩa thứ hai và rời trang. */}
+            {stats.length > 0 && (
+            <dl className={`grid border-2 ${RULE}`} style={{ gridTemplateColumns: `repeat(${stats.length}, minmax(0, 1fr))` }}>
+              {stats.map(([label, value], i) => (
                 <div key={label} className={`min-w-0 p-3 sm:p-4 ${i > 0 ? `border-l ${RULE}` : ""}`}>
                   <dt>
                     <Mono className="opacity-60">{label}</Mono>
@@ -169,6 +179,7 @@ export function EditorialHero({
                 </div>
               ))}
             </dl>
+            )}
           </div>
         </div>
       </div>

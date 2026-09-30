@@ -54,7 +54,7 @@ type MetaphorId =
   | "cache"
   | "api"
   | "debug"
-  | "fallback";
+  | "operatingSystem";
 
 /** Chủ đề nào thì hiện câu ví von nào, đoán từ tiêu đề bài.
  *
@@ -63,8 +63,9 @@ type MetaphorId =
  *  bộ nhớ đệm, nên nhánh hẹp hơn phải đứng trước. Mỗi nhánh mang cả từ khoá
  *  tiếng Việt lẫn tiếng Anh vì tiêu đề bài trộn hai thứ tiếng - "Big-O",
  *  "commit", "API" không có bản Việt nào được dùng thật. */
-function getMetaphorForLesson(title: string): MetaphorId {
+function getMetaphorForLesson(title: string): MetaphorId | null {
   const t = title.toLowerCase();
+  if (t.includes("hệ điều hành") || t.includes("operating system")) return "operatingSystem";
   if (t.includes("dòng lệnh") || t.includes("terminal") || t.includes("shell")) return "commandLine";
   if (t.includes("thư mục") || t.includes("đường dẫn") || t.includes("tệp") || t.includes("directory") || t.includes("path"))
     return "fileSystem";
@@ -80,7 +81,24 @@ function getMetaphorForLesson(title: string): MetaphorId {
   // includes, riêng từ này thì không.
   if (/\bapi\b/.test(t) || t.includes("endpoint") || t.includes("http")) return "api";
   if (t.includes("gỡ lỗi") || t.includes("debug") || t.includes("kiểm thử") || t.includes("test")) return "debug";
-  return "fallback";
+  // Không khớp gì thì KHÔNG có câu ví von. Từng có một câu dự phòng - "giống
+  // như học đi xe đạp" - và nó rơi vào mọi bài không trúng từ khoá nào, kể cả
+  // bài hệ điều hành. Người mới đọc thấy một phép so sánh chẳng dính gì tới
+  // bài là biết ngay đây là khuôn đúc sẵn, và mất luôn lòng tin vào phần còn
+  // lại của thẻ. Thà không ví von còn hơn ví von sai.
+  return null;
+}
+
+/** Câu ví von cho thẻ Feynman: lấy từ khối `feynman` của CHÍNH bài nếu có -
+ *  người viết bài chọn nó cho đúng nội dung này - rồi mới tới bộ dò theo
+ *  tiêu đề. */
+function metaphorOf(lesson: Props["lesson"], metaphors: Record<MetaphorId, string>): { text: string; ownSentence: boolean } | null {
+  const block = (lesson.sections ?? []).find((s) => s.type === "feynman");
+  if (block && "intro" in block && typeof block.intro === "string" && block.intro) {
+    return { text: block.intro, ownSentence: true };
+  }
+  const id = getMetaphorForLesson(lesson.title);
+  return id ? { text: `${metaphors[id]}.`, ownSentence: false } : null;
 }
 
 export default function LessonPageClient({ lesson, nextLesson }: Props) {
@@ -91,6 +109,7 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
   // warning fade in - instead of the whole card appearing at once.
   const [metaphorTyped, setMetaphorTyped] = useState(false);
   const lessonLabel = getLessonDisplayLabel(lesson, t.lessonLabel);
+  const metaphor = metaphorOf(lesson, t.lessonPage.metaphors);
 
   // Đầu phễu bài học.
   //
@@ -219,22 +238,39 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
             </div>
           </div>
           <div className="max-w-[68ch] space-y-3 text-sm leading-7 text-ink-body">
-            <p>
-              {t.lessonPage.feynmanIntroPart1} <strong>&quot;{lesson.title}&quot;</strong> {t.lessonPage.feynmanIntroPart2}
-            </p>
-            <div className="rounded-sm bg-surface p-3.5 font-semibold text-ink-max">
-              {t.lessonPage.feynmanMetaphorLeadIn}{" "}
-              <TypingText text={`${t.lessonPage.metaphors[getMetaphorForLesson(lesson.title)]}.`} onDone={() => setMetaphorTyped(true)} />
-            </div>
-            {metaphorTyped && (
+            {/* Câu dẫn hứa "một phép so sánh", nên nó chỉ đứng đó khi có. */}
+            {metaphor && (
+              <p>
+                {t.lessonPage.feynmanIntroPart1} <strong>&quot;{lesson.title}&quot;</strong> {t.lessonPage.feynmanIntroPart2}
+              </p>
+            )}
+            {metaphor && (
+              <div className="rounded-sm bg-surface p-3.5 font-semibold text-ink-max">
+                {!metaphor.ownSentence && <>{t.lessonPage.feynmanMetaphorLeadIn} </>}
+                <TypingText text={metaphor.text} onDone={() => setMetaphorTyped(true)} />
+              </div>
+            )}
+            {(metaphorTyped || !metaphor) && (
               <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} className="space-y-3">
                 <p className="font-bold text-ink-max">{t.lessonPage.feynmanTakeawaysTitle}</p>
                 <ul className="list-disc pl-4 space-y-1.5 text-ink-body">
-                  {(lesson.keyTakeaways ?? []).slice(0, 3).map((takeaway: string, idx: number) => (
-                    <li key={idx}>
-                      <strong>{takeaway.split(" - ")[0]}</strong>: {takeaway.split(" - ")[1] || takeaway}
-                    </li>
-                  ))}
+                  {(lesson.keyTakeaways ?? []).slice(0, 3).map((takeaway: string, idx: number) => {
+                    /* "Ý chính - giải thích" thì in đậm vế đầu. Ý không có
+                       dấu gạch thì in nguyên câu: bản cũ in `vế đầu: cả câu`,
+                       tức cùng một câu hai lần liền nhau. */
+                    const [head, ...rest] = takeaway.split(" - ");
+                    return (
+                      <li key={idx}>
+                        {rest.length > 0 ? (
+                          <>
+                            <strong>{head}</strong>: {rest.join(" - ")}
+                          </>
+                        ) : (
+                          takeaway
+                        )}
+                      </li>
+                    );
+                  })}
                 </ul>
                 {lesson.summary?.commonMistake && (
                   <p className="border-l-2 border-red-500 pl-3 text-sm font-semibold text-danger">

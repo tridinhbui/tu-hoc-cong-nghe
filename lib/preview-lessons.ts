@@ -1,3 +1,5 @@
+import { LEARNING_FLOWS } from "@/lib/learning-flows";
+
 /** Những bài học đọc được khi CHƯA đăng nhập.
  *
  *  proxy.ts chặn mặc định mọi đường dẫn, nên trước đây `/bai-hoc/*` nằm sau
@@ -11,16 +13,32 @@
  *  chúng ở đây mà không đổi bên kia thì lời hứa gãy lại - có bài test giữ hai
  *  danh sách khớp nhau.
  *
- *  Bốn bài, không nhiều hơn: đủ để một người đọc thật và tự quyết định, chưa
- *  đủ để thay thế việc có tài khoản. Cả bốn đều là bài dữ liệu (không có trang
- *  viết tay trong app/bai-hoc/<slug>/), nên chúng đi qua LessonPageLayout và
- *  nhận được phần xử lý "khách chưa đăng nhập" ở đó. */
-export const PREVIEW_LESSON_SLUGS = [
+ *  Bốn bài gốc, cộng bài "chiến thắng đầu tiên" của mỗi hành trình học theo
+ *  nhu cầu. Trang /hoc-theo-nhu-cau/<flow> là trang công khai và hứa ngay dưới
+ *  tiêu đề "Làm thứ đầu tiên · 8 phút - bài đầu ngắn và dễ" - rồi cái nút ấy
+ *  đá khách về /login. Đi thử như một người chưa biết gì (2026-09-29) thì đây
+ *  là chỗ muốn bỏ đi nhất: lời hứa "ngắn và dễ" vấp tường đăng nhập ngay ở
+ *  bước đầu tiên. Làm xong bài đầu rồi mới hỏi tài khoản ("lưu lại để mai học
+ *  tiếp") - thẻ mời đăng ký ở cuối bài trong LessonPageLayout làm đúng việc đó.
+ *
+ *  Lấy thẳng từ LEARNING_FLOWS thay vì chép tay: đổi `firstWinSlug` của một
+ *  hành trình mà quên danh sách này thì nút lại trỏ vào một bài bị khoá.
+ *
+ *  Vẫn chỉ là một nắm bài trên hơn 700: đủ để thử thật, chưa đủ thay cho việc
+ *  có tài khoản. Cả loạt đều là bài dữ liệu (không có trang viết tay trong
+ *  app/bai-hoc/<slug>/), nên chúng đi qua LessonPageLayout và nhận được phần
+ *  xử lý "khách chưa đăng nhập" ở đó - lib/__tests__/preview-lessons.test.ts
+ *  giữ điều đó cho từng slug. */
+const CORE_PREVIEW_SLUGS = [
   "he-dieu-hanh-lam-gi", // TRACKS.personal.previewSlug
   "do-phuc-tap-va-ky-hieu-o-lon", // TRACKS.professional.previewSlug
   "chuong-trinh-la-gi",
   "bien-va-phep-gan",
 ] as const;
+
+export const PREVIEW_LESSON_SLUGS: readonly string[] = [
+  ...new Set([...CORE_PREVIEW_SLUGS, ...LEARNING_FLOWS.map((flow) => flow.firstWinSlug)]),
+];
 
 const PREVIEW_SET: ReadonlySet<string> = new Set(PREVIEW_LESSON_SLUGS);
 

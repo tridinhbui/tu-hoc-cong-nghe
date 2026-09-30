@@ -3,6 +3,7 @@ import path from "node:path";
 import { describe, expect, it } from "vitest";
 import { PREVIEW_LESSON_SLUGS, isPreviewLessonPath, isPreviewLessonSlug } from "@/lib/preview-lessons";
 import { TRACKS } from "@/lib/tracks";
+import { LEARNING_FLOWS } from "@/lib/learning-flows";
 
 /** Bài học xem thử cho khách chưa đăng nhập.
  *
@@ -22,7 +23,7 @@ import { TRACKS } from "@/lib/tracks";
 const repoRoot = path.resolve(__dirname, "..", "..");
 
 describe("đường dẫn bài xem thử", () => {
-  it("nhận đúng bốn slug, và chỉ chúng", () => {
+  it("nhận đúng các slug trong danh sách, và chỉ chúng", () => {
     for (const slug of PREVIEW_LESSON_SLUGS) {
       expect(isPreviewLessonPath(`/bai-hoc/${slug}`), slug).toBe(true);
     }
@@ -96,8 +97,19 @@ describe("bài xem thử phải học được thật", () => {
     expect(PREVIEW_LESSON_SLUGS).toContain(TRACKS.professional.previewSlug);
   });
 
+  it("mở bài đầu tiên của mọi hành trình học theo nhu cầu", () => {
+    // Trang hành trình công khai và hứa "Làm thứ đầu tiên · 8 phút". Bài ấy
+    // mà bị khoá thì lời hứa đầu tiên người mới nhận được dẫn vào /login.
+    for (const flow of LEARNING_FLOWS) {
+      expect(isPreviewLessonSlug(flow.firstWinSlug), flow.id).toBe(true);
+    }
+  });
+
   it("đủ ít để vẫn còn lý do tạo tài khoản", () => {
+    // Bốn bài gốc cộng một bài mở đầu cho mỗi hành trình. Trần này không phải
+    // con số thiêng: nó ở đây để việc mở thêm bài là một quyết định có chủ ý,
+    // không phải một dòng lặng lẽ thêm vào danh sách.
     expect(PREVIEW_LESSON_SLUGS.length).toBeGreaterThanOrEqual(3);
-    expect(PREVIEW_LESSON_SLUGS.length).toBeLessThanOrEqual(5);
+    expect(PREVIEW_LESSON_SLUGS.length).toBeLessThanOrEqual(4 + LEARNING_FLOWS.length);
   });
 });

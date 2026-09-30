@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, type Dispatch, type SetStateAction } from "react";
+import { useEffect, useState, type Dispatch, type SetStateAction } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, PlayCircle } from "lucide-react";
 import { TRACKS, type TrackId } from "@/lib/tracks";
@@ -20,9 +20,15 @@ interface TrackPreviewPanelProps {
 export default function TrackPreviewPanel({ previewTrack, setPreviewTrack, compact = false }: TrackPreviewPanelProps) {
   const { t } = useI18n();
   const track = TRACKS[previewTrack];
-  
+  /* Tự xoay tab chỉ tới khi người xem chạm vào khung, rồi dừng hẳn.
+     Bản cũ xoay mãi mỗi 5-6 giây, kể cả lúc con trỏ đang nằm trên nút "Xem
+     thử": người mới đọc Track 1 "không cần kiến thức ngành", đưa chuột tới
+     nút, tab đổi ngay dưới tay, và cú bấm mở ra Bài 251 về ký hiệu O lớn của
+     track chuyên sâu. Thứ người ta định bấm không được đổi dưới tay họ. */
+  const [userEngaged, setUserEngaged] = useState(false);
 
   useEffect(() => {
+    if (userEngaged) return;
     let cancelled = false;
     const timer = window.setInterval(() => {
       if (cancelled) return;
@@ -36,13 +42,17 @@ export default function TrackPreviewPanel({ previewTrack, setPreviewTrack, compa
       cancelled = true;
       window.clearInterval(timer);
     };
-  }, [compact, setPreviewTrack]);
+  }, [compact, setPreviewTrack, userEngaged]);
 
   // Khuôn thanh tab của khung soạn thảo ở trang chủ: tab đang mở nền trắng
   // liền với thân, tab khác nằm trên nền thanh tiêu đề #f3f1ec, gạch xanh 2px
   // đánh dấu tab đang mở (xanh là chức năng). Không bóng, không viên thuốc.
   return (
-    <div className={`${panel} overflow-hidden ${compact ? "mb-8" : ""}`}>
+    <div
+      className={`${panel} overflow-hidden ${compact ? "mb-8" : ""}`}
+      onPointerEnter={() => setUserEngaged(true)}
+      onFocus={() => setUserEngaged(true)}
+    >
       <div
         className={`grid ${TRACK_IDS.length === 3 ? "grid-cols-3" : "grid-cols-2"} divide-x divide-stone-300 border-b border-stone-300 bg-surface-raised dark:divide-stone-700 dark:border-stone-700 dark:bg-stone-950`}
       >

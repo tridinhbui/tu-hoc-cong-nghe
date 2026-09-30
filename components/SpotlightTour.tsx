@@ -172,6 +172,20 @@ export default function SpotlightTour({ steps, storageKey, userId, remoteKey }: 
     };
   }, [stepIndex, steps]);
 
+  // Escape đóng tour: lớp phủ chặn mọi cú bấm ngoài khung, nên phím thoát là
+  // lối ra duy nhất không cần tìm thấy nút "Bỏ qua".
+  useEffect(() => {
+    if (stepIndex < 0 || stepIndex >= steps.length) return;
+    function onKey(e: KeyboardEvent) {
+      if (e.key !== "Escape") return;
+      markSeen();
+      setStepIndex(steps.length);
+    }
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [stepIndex, steps.length]);
+
   if (stepIndex < 0 || stepIndex >= steps.length || !rect || viewport.width === 0) return null;
 
   const step = steps[stepIndex];
@@ -199,9 +213,20 @@ export default function SpotlightTour({ steps, storageKey, userId, remoteKey }: 
 
   // Tooltip position: below the highlighted element, or above if it would
   // overflow the bottom of the viewport.
+  //
+  // Unless the element has left the screen. Page scroll is deliberately NOT
+  // locked (see trackScroll), so a learner who scrolls on while the tour is
+  // up takes the target - and a tooltip glued to it - with them, while the
+  // full-screen overlay stays and swallows every click. Seen on a guest's
+  // first lesson: the screen went dark, nothing responded, and the only way
+  // out ("Bỏ qua") sat 1,200px above the viewport. Dock it to the bottom of
+  // the screen instead, so the way out is always in view.
+  const targetOffscreen = rect.bottom < 0 || rect.top > viewport.height;
   const spaceBelow = viewport.height - (rect.bottom + padding);
-  const tooltipBelow = spaceBelow > 200;
-  const tooltipTop = tooltipBelow
+  const tooltipBelow = !targetOffscreen && spaceBelow > 200;
+  const tooltipTop = targetOffscreen
+    ? viewport.height - 16
+    : tooltipBelow
     ? Math.min(rect.bottom + padding + 12, viewport.height - 24)
     : Math.max(12, rect.top - padding - 12);
 

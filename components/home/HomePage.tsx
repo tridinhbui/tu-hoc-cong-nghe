@@ -5,8 +5,9 @@ import { ArrowUpRight, Users, X } from "lucide-react";
 import { getTotalUserCount, getTotalCompletedLessonsCount } from "@/lib/cloudflare-user";
 import { roundedLessonCount } from "@/lib/track-totals";
 import { animateCountTo } from "@/lib/animate-count";
-import { TRACKS } from "@/lib/tracks";
+import { LEARNING_FLOWS } from "@/lib/learning-flows";
 import { EditorialHero, EditorialMarquee, EditorialWorlds, EditorialOS } from "@/components/home/v2/EditorialHome";
+import { EditorialNeeds } from "@/components/home/v2/EditorialNeeds";
 import {
   EditorialNav,
   EditorialCommunity,
@@ -29,6 +30,14 @@ import {
  * từ D1, dải cam kết) và thứ tự các tờ. Ngôn ngữ thiết kế và từng section nằm
  * trong components/home/v2/ - đọc kit.tsx trước khi thêm một section mới.
  */
+
+/* "Đọc thử một bài" mở bài đầu của hành trình "Dùng AI làm việc nhanh hơn",
+ * không phải previewSlug của Track 1. Bài kia ("Hệ điều hành làm gì khi bạn
+ * không nhìn") là Chặng 1 Bài 2 và mở đầu bằng lõi CPU, tiến trình, luồng -
+ * đúng cái người chưa biết gì bấm vào để xem mình có theo nổi không. Bài này
+ * nói về email, biên bản họp và việc văn phòng, và là bài xem thử công khai
+ * (lib/preview-lessons.ts mở bài đầu của mọi hành trình). */
+const FIRST_LESSON_HREF = `/bai-hoc/${LEARNING_FLOWS.find((f) => f.id === "ai-assistant")!.firstWinSlug}`;
 
 export default function HomePage() {
   const { t } = useI18n();
@@ -167,8 +176,9 @@ export default function HomePage() {
           learners={displayedUserCount}
           lessons={displayedLessonCount}
           completed={displayedCompletedCount}
-          previewHref={`/bai-hoc/${TRACKS.personal.previewSlug}`}
+          previewHref={FIRST_LESSON_HREF}
         />
+        <EditorialNeeds />
         <EditorialMarquee />
         <EditorialWorlds />
         <EditorialOS />

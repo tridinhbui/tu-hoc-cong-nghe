@@ -26,8 +26,8 @@ export const lessonAdminVi = {
         "ô cửa nhỏ ở quầy tiếp tân: bạn không được vào trong phòng, chỉ đưa phiếu qua ô cửa rồi nhận lại kết quả - hai bên không cần biết bên kia sắp xếp thế nào",
       debug:
         "tìm chỗ dột trên trần: vệt nước hiện ra giữa phòng nhưng lỗ thủng thường nằm lệch đi một quãng, nên phải lần ngược theo đường nước chảy chứ không vá ngay chỗ ướt",
-      fallback:
-        "học đi xe đạp: đọc bao nhiêu hướng dẫn cũng không thay được lần đầu tự giữ thăng bằng",
+      operatingSystem:
+        "người quản lý một toà chung cư: chia thang máy, điện nước cho từng căn hộ theo lượt, và không căn nào được tự đục tường sang nhà bên - muốn gì cũng phải qua ban quản lý",
     },
 
     whyItMattersTitle: "Vì sao bài này quan trọng",
@@ -90,8 +90,8 @@ export const lessonAdminEn: typeof lessonAdminVi = {
         "the small hatch at a reception desk: you never enter the room, you pass a slip through the hatch and take back the result - neither side needs to know how the other is arranged",
       debug:
         "tracing a leak in the ceiling: the stain shows in the middle of the room but the hole is usually offset, so you follow the water back rather than patching where it is wet",
-      fallback:
-        "learning to ride a bicycle: no amount of reading replaces the first time you hold the balance yourself",
+      operatingSystem:
+        "the manager of an apartment block: lifts, power and water are shared out to each flat in turns, and no flat may knock through a wall into the next one - everything goes through the management office",
     },
 
     whyItMattersTitle: "Why this lesson matters",

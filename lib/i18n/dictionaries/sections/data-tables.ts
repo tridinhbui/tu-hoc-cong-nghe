@@ -194,7 +194,7 @@ export const dataTablesVi = {
           title: "Lộ trình được thiết kế dành riêng cho bạn",
           subtitle: "Dù bạn bắt đầu từ con số 0 hay cần chuẩn hóa kiến thức chuyên sâu.",
           items: [
-            { title: "Người mới bắt đầu", tag: "Nền tảng", desc: "Dành cho ai muốn viết được chương trình đầu tiên và hiểu máy tính." },
+            { title: "Người mới bắt đầu", tag: "Nền tảng", desc: "Người đi làm chưa biết gì về công nghệ - muốn dùng AI và công cụ số cho việc hằng ngày, không cần học code." },
             { title: "Người thi chứng chỉ", tag: "Candidates", desc: "Cần nạp nền tảng kiến thức chắc chắn và phản xạ lý thuyết." },
             { title: "Kỹ sư chuyển ngành", tag: "Tư vấn", desc: "Chuẩn hóa khung tư duy thiết kế hệ thống bài bản." },
             { title: "Người tự học", tag: "Thực chiến", desc: "Nắm vững cách đọc chỉ số hệ thống và bóc tách một dự án thật." },
@@ -394,7 +394,7 @@ export const dataTablesEn: typeof dataTablesVi = {
           title: "A path designed around who you are",
           subtitle: "Whether you're starting from zero or need to formalize deep expertise.",
           items: [
-            { title: "Complete beginners", tag: "Foundations", desc: "For anyone who wants to write their first program and understand the machine." },
+            { title: "Complete beginners", tag: "Foundations", desc: "People at work who know nothing about tech yet - and want AI and digital tools for everyday tasks, no coding required." },
             { title: "Certification candidates", tag: "Candidates", desc: "For building a solid theoretical foundation and sharp recall of it." },
             { title: "Career switchers", tag: "Advisory", desc: "For formalizing a rigorous system-design framework." },
             { title: "Self-taught developers", tag: "In practice", desc: "For mastering how to read system metrics and dissect a real project." },
