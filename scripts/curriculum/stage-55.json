@@ -1,0 +1,209 @@
+{
+ "stage": 55,
+ "label": "Chặng 55",
+ "name": {
+  "vi": "Quy trình có AI và người duyệt",
+  "en": "Workflows with AI and a human reviewer"
+ },
+ "idStart": 2500,
+ "parts": [
+  {
+   "vi": "Chọn bước nào để AI làm",
+   "en": "Choosing which step AI takes"
+  },
+  {
+   "vi": "Cổng duyệt và ghi nhật ký",
+   "en": "Review gates and logging"
+  },
+  {
+   "vi": "Khi có lỗi thì sao",
+   "en": "When things go wrong"
+  },
+  {
+   "vi": "Đo hiệu quả và agent đơn giản",
+   "en": "Measuring impact and simple agents"
+  }
+ ],
+ "lessons": [
+  {
+   "id": 2500,
+   "slug": "chia-quy-trinh-thanh-buoc-nho-truoc",
+   "title": "Quy trình xử lý yêu cầu khách: chia ra từng bước trước khi nhắc tới AI",
+   "part": 0,
+   "brief": "Bạn vẽ lại cách phòng mình xử lý một yêu cầu, từ lúc nhận đến lúc đóng, và gạch dưới các bước tốn thời gian nhất.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2501,
+   "slug": "buoc-nao-hop-de-ai-phan-loai",
+   "title": "Phân loại yêu cầu đến: bước AI làm tốt và bước nó không nên đụng",
+   "part": 0,
+   "brief": "Với 15 yêu cầu mẫu đã xoá tên, bạn nhờ AI gán loại và so với cách bạn tự gán để xem AI sai ở đâu.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2502,
+   "slug": "ai-tom-tat-thay-nguoi-doc-dai",
+   "title": "Tóm tắt thư dài thành ba dòng để người duyệt đọc nhanh",
+   "part": 0,
+   "brief": "Chuỗi thư 30 tin nhắn; bạn nhờ AI tóm tắt và đối chiếu với bản gốc để bắt chỗ nó bỏ sót hoặc thêm.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2503,
+   "slug": "ai-soan-nhap-nguoi-gui-di",
+   "title": "AI soạn nháp, người ký gửi: ranh giới rõ ràng",
+   "part": 0,
+   "brief": "Bạn viết quy tắc: loại thư nào AI được soạn, loại nào bắt buộc người viết từ đầu, và vì sao.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2504,
+   "slug": "du-an-nho-quy-trinh-mot-trang-co-ba-buoc-ai",
+   "title": "Dự án nhỏ: vẽ quy trình một trang có đúng ba bước dùng AI",
+   "part": 0,
+   "brief": "Chọn một việc lặp lại của bạn, đánh dấu ba bước giao cho AI, còn lại người làm; ghi lý do từng lựa chọn.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2505,
+   "slug": "cong-duyet-khi-nao-bat-buoc-co-nguoi",
+   "title": "Cổng duyệt: những thứ không bao giờ đi ra ngoài khi chưa ai xem",
+   "part": 1,
+   "brief": "Bạn liệt kê loại đầu ra nào (tiền, cam kết, dữ liệu khách) phải qua người duyệt và ai là người duyệt.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2506,
+   "slug": "phieu-duyet-nguoi-xem-can-nhin-thay-gi",
+   "title": "Phiếu duyệt tốt: người xem cần thấy gì trong 30 giây",
+   "part": 1,
+   "brief": "Bạn thiết kế phiếu gồm đầu vào gốc, bản AI soạn, điểm cần kiểm; nhờ AI dựng mẫu rồi bạn cắt bớt.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2507,
+   "slug": "nguoi-duyet-met-va-bam-dong-y-mai",
+   "title": "Người duyệt bấm 'đồng ý' mà không đọc: dấu hiệu và cách chữa",
+   "part": 1,
+   "brief": "Xem nhật ký duyệt giả định, phát hiện người duyệt đồng ý trong 2 giây mỗi phiếu và đề xuất cách thiết kế lại.",
+   "practice": "aiLab-spotError",
+   "visual": "chart:thời gian duyệt mỗi phiếu theo số phiếu trong ngày"
+  },
+  {
+   "id": 2508,
+   "slug": "ghi-nhat-ky-de-sau-nay-tra-lai-duoc",
+   "title": "Ghi nhật ký: ai duyệt gì, lúc nào, dựa trên bản nào",
+   "part": 1,
+   "brief": "Bạn chọn bốn cột tối thiểu cho nhật ký quy trình và hình dung một lần cần tra lại sau ba tháng.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2509,
+   "slug": "du-an-nho-mau-nhat-ky-va-phieu-duyet",
+   "title": "Dự án nhỏ: bộ phiếu duyệt và nhật ký cho quy trình của bạn",
+   "part": 1,
+   "brief": "Dựng một bảng nhật ký và một phiếu duyệt, chạy thử với năm yêu cầu mẫu và ghi lại chỗ vướng.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2510,
+   "slug": "khi-ai-tra-loi-sai-hay-bo-trong",
+   "title": "Khi AI trả lời sai hoặc bỏ trống: bước dự phòng là gì",
+   "part": 2,
+   "brief": "Bạn quy định: nếu kết quả rỗng hoặc lạ thì chuyển cho người, không đoán; kiểm tra với ba ví dụ hỏng.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2511,
+   "slug": "quy-trinh-dung-giua-chung-ai-biet",
+   "title": "Quy trình dừng giữa chừng: làm sao biết và ai nhận thông báo",
+   "part": 2,
+   "brief": "Một yêu cầu nằm im ba ngày không ai thấy; bạn thiết kế thông báo lỗi gửi đúng người, đúng lúc.",
+   "practice": "scenario",
+   "visual": "chart:số yêu cầu bị kẹt theo số ngày chờ"
+  },
+  {
+   "id": 2512,
+   "slug": "thu-lai-mot-lan-hay-tu-tay-lam",
+   "title": "Thử lại tự động hay chuyển cho người: chọn theo loại lỗi",
+   "part": 2,
+   "brief": "Phân biệt lỗi tạm thời (mạng chậm) với lỗi nội dung (thiếu thông tin) và quyết định cách xử lý từng loại.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2513,
+   "slug": "du-lieu-nhay-cam-khong-dua-cho-ai",
+   "title": "Thứ không dán vào công cụ AI trong quy trình",
+   "part": 2,
+   "brief": "Rà một quy trình của bạn để chỉ ra cột dữ liệu nào phải che hoặc bỏ trước khi đưa vào AI; hỏi bộ phận bảo mật của công ty về quy định.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2514,
+   "slug": "du-an-nho-ke-hoach-xu-ly-loi-mot-trang",
+   "title": "Dự án nhỏ: kế hoạch xử lý lỗi một trang cho quy trình của bạn",
+   "part": 2,
+   "brief": "Viết năm tình huống hỏng và người làm gì ở mỗi tình huống, rồi diễn tập bằng giấy với đồng nghiệp.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2515,
+   "slug": "do-hieu-qua-truoc-va-sau-co-ai",
+   "title": "Đo trước và sau: quy trình nhanh hơn thật hay chỉ cảm giác",
+   "part": 3,
+   "brief": "Bạn ghi thời gian xử lý 10 yêu cầu bằng cách cũ, rồi 10 yêu cầu có AI, và so sánh cả chất lượng.",
+   "practice": "aiLab-prompt",
+   "visual": "chart:phút xử lý mỗi yêu cầu, trước và sau"
+  },
+  {
+   "id": 2516,
+   "slug": "chi-phi-thoi-gian-sua-lai-bi-quen-tinh",
+   "title": "Thời gian sửa lại kết quả AI: khoản chi bị quên tính",
+   "part": 3,
+   "brief": "Bạn tính tổng thời gian tiết kiệm trừ thời gian duyệt và sửa để thấy quy trình có lời không.",
+   "practice": "aiLab-spotError",
+   "visual": "chart:giờ tiết kiệm trừ giờ sửa theo số yêu cầu"
+  },
+  {
+   "id": 2517,
+   "slug": "agent-don-gian-la-quy-trinh-tu-chon-buoc",
+   "title": "Agent đơn giản: khi AI tự chọn bước tiếp theo, bạn giữ gì trong tay",
+   "part": 3,
+   "brief": "Bạn mô tả một trợ lý được phép tra bảng và soạn nháp nhưng không được gửi hay trả tiền, và viết danh sách việc nó không được làm.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2518,
+   "slug": "dat-tran-cho-agent-so-lan-va-quyen",
+   "title": "Đặt trần cho agent: số bước, số việc và quyền được phép",
+   "part": 3,
+   "brief": "Bạn chọn giới hạn số lần thử và loại hành động cần người bấm duyệt; cần đọc tài liệu chính thức của công cụ agent đang dùng để xác nhận cách đặt giới hạn.",
+   "practice": "aiLab-prompt",
+   "visual": "chart:số bước tối đa theo số việc mỗi ngày"
+  },
+  {
+   "id": 2519,
+   "slug": "tong-ket-quy-trinh-ai-co-nguoi-duyet-hoan-chinh",
+   "title": "Tổng kết: quy trình hoàn chỉnh có AI, người duyệt, nhật ký và số đo",
+   "part": 3,
+   "brief": "Ghép các phần thành một quy trình chạy thử cho một việc thật của bạn và trình bày cho người quản lý bằng một trang.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  }
+ ]
+}

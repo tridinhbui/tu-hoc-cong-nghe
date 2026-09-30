@@ -1,0 +1,209 @@
+{
+ "stage": 47,
+ "label": "Chặng 47",
+ "name": {
+  "vi": "AI cho âm thanh, họp và giọng nói",
+  "en": "AI for audio, meetings and voice"
+ },
+ "idStart": 2340,
+ "parts": [
+  {
+   "vi": "Ghi âm và bản chép lời",
+   "en": "Recording and transcripts"
+  },
+  {
+   "vi": "Biên bản và tóm tắt họp",
+   "en": "Minutes and meeting summaries"
+  },
+  {
+   "vi": "Dịch trực tiếp và giọng đọc",
+   "en": "Live translation and voice"
+  },
+  {
+   "vi": "Riêng tư, lưu trữ và chất lượng",
+   "en": "Privacy, retention and quality"
+  }
+ ],
+ "lessons": [
+  {
+   "id": 2340,
+   "slug": "ghi-am-cuoc-hop-nho-xin-phep-truoc",
+   "title": "Ghi âm cuộc họp: xin phép trước khi bấm nút",
+   "part": 0,
+   "brief": "Bạn định ghi âm buổi họp nhóm. Bạn soạn câu xin phép, nói rõ ghi để làm gì, lưu ở đâu, ai được nghe.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2341,
+   "slug": "ban-chep-loi-tu-ai-doc-lai-va-danh-dau-nghi-ngo",
+   "title": "Bản chép lời từ AI: đọc lại và đánh dấu chỗ nghi ngờ",
+   "part": 0,
+   "brief": "Bạn nhận bản phiên âm 20 phút. Bạn nghe lại đoạn có số, tên riêng và sửa.",
+   "practice": "aiLab-spotError",
+   "visual": "chart:tỷ lệ chỗ cần sửa theo chất lượng âm thanh"
+  },
+  {
+   "id": 2342,
+   "slug": "am-thanh-tot-hon-truoc-khi-nho-ai-nghe",
+   "title": "Âm thanh tốt hơn: ba việc làm trước khi ghi",
+   "part": 0,
+   "brief": "Bạn thử chỗ ngồi, khoảng cách micro, tiếng ồn nền và so bản chép của hai lần ghi.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2343,
+   "slug": "tieng-viet-giong-vung-mien-ten-rieng-hay-bi-sai",
+   "title": "Giọng vùng miền, tên riêng, thuật ngữ: chỗ AI hay nghe sai",
+   "part": 0,
+   "brief": "Bạn lập danh sách từ hay bị sai của phòng mình (tên khách, mã hàng) để sửa nhanh.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2344,
+   "slug": "du-an-nho-bien-ban-mot-cuoc-hop-15-phut",
+   "title": "Dự án nhỏ: biên bản một cuộc họp 15 phút",
+   "part": 0,
+   "brief": "Bạn đi từ bản chép lời sang biên bản có quyết định, việc, người phụ trách, hạn.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2345,
+   "slug": "bien-ban-tu-dong-doc-ky-truoc-khi-gui",
+   "title": "Biên bản tự động: đọc kỹ trước khi gửi cả nhóm",
+   "part": 1,
+   "brief": "AI ghi 'anh Nam làm báo cáo' trong khi người nhận việc là người khác. Bạn đối chiếu từng việc với bản chép.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2346,
+   "slug": "tach-viec-can-lam-tu-bai-noi-lan-man",
+   "title": "Tách việc cần làm từ một bài nói lan man",
+   "part": 1,
+   "brief": "Bạn nhận một bản chép dài và trích ra danh sách việc, kèm người, hạn, và các dòng cần hỏi lại.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2347,
+   "slug": "tom-tat-hop-theo-nguoi-doc-sep-va-nhom",
+   "title": "Một cuộc họp, hai bản tóm tắt: cho sếp và cho nhóm",
+   "part": 1,
+   "brief": "Bạn viết tóm tắt hai dòng cho sếp và bản đầy đủ cho nhóm từ cùng một bản chép.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2348,
+   "slug": "hop-co-noi-dung-nhay-cam-khong-dua-ai-nghe",
+   "title": "Họp có chuyện nhạy cảm: phần nào không đưa cho AI",
+   "part": 1,
+   "brief": "Bạn xét một buổi họp có lương và khách hàng, quyết định đưa gì, ẩn gì, hỏi chính sách công ty trước.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2349,
+   "slug": "du-an-nho-quy-trinh-hop-moi-tuan-co-ghi-chep",
+   "title": "Dự án nhỏ: quy trình họp tuần có ghi chép",
+   "part": 1,
+   "brief": "Bạn dựng quy trình 4 bước từ xin phép, ghi, kiểm bản chép, gửi biên bản.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2350,
+   "slug": "dich-truc-tiep-cuoc-goi-voi-doi-tac-nuoc-ngoai",
+   "title": "Dịch trực tiếp cuộc gọi với đối tác nước ngoài",
+   "part": 2,
+   "brief": "Bạn chuẩn bị cuộc gọi. Bạn kiểm câu dịch quan trọng bằng cách dịch ngược và hỏi lại người kia (xem tài liệu chính thức về ngôn ngữ được hỗ trợ).",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2351,
+   "slug": "dich-mot-doan-hoi-thoai-kiem-so-va-don-vi",
+   "title": "Dịch hội thoại: kiểm số, đơn vị, ngày tháng",
+   "part": 2,
+   "brief": "Bản dịch ghi '1.500' còn bản gốc là 1,5. Bạn kiểm dấu phân cách và đơn vị tiền.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2352,
+   "slug": "giong-doc-tao-bang-ai-cho-ban-tin-noi-bo",
+   "title": "Giọng đọc AI cho bản tin nội bộ: khi nào hợp",
+   "part": 2,
+   "brief": "Bạn tạo bản đọc 1 phút, nghe lại phát âm tên, số và thêm dấu ngắt.",
+   "practice": "aiLab-prompt",
+   "visual": "chart:thời lượng đọc theo số chữ"
+  },
+  {
+   "id": 2353,
+   "slug": "giong-doc-viet-phat-am-so-ten-viet-tat-sua-thanh-van-ban",
+   "title": "Sửa văn bản cho giọng đọc: số, tên, chữ viết tắt",
+   "part": 2,
+   "brief": "Bạn viết lại chữ viết tắt thành từ đọc được và so bản nghe trước và sau.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2354,
+   "slug": "du-an-nho-huong-dan-nghe-cho-nhan-vien-moi",
+   "title": "Dự án nhỏ: bản hướng dẫn dạng âm thanh cho nhân viên mới",
+   "part": 2,
+   "brief": "Bạn viết kịch bản 2 phút, tạo giọng đọc và kiểm nghe từng câu.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2355,
+   "slug": "giong-noi-cua-nguoi-that-khong-tao-khong-nhai",
+   "title": "Giọng của người thật: không tạo, không nhại nếu chưa được đồng ý",
+   "part": 3,
+   "brief": "Bạn nhận yêu cầu 'làm giọng sếp đọc thông báo'. Bạn giải thích rủi ro và đề xuất giọng đọc chung.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2356,
+   "slug": "luu-tru-ghi-am-ai-giu-bao-lau-ai-duoc-nghe",
+   "title": "Lưu trữ ghi âm: giữ bao lâu, ai được nghe, xoá thế nào",
+   "part": 3,
+   "brief": "Bạn viết quy tắc lưu ba dòng và hỏi bộ phận pháp chế những điều chưa chắc.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2357,
+   "slug": "tro-ly-ai-trong-cuoc-goi-khach-hang-luu-y",
+   "title": "Trợ lý AI nghe cuộc gọi khách hàng: điều cần thông báo",
+   "part": 3,
+   "brief": "Bạn soạn lời thông báo đầu cuộc gọi và kiểm cuộc gọi mẫu xem tóm tắt có làm sai lời khách không.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2358,
+   "slug": "kiem-tra-chat-luong-ban-chep-bang-mau-nho",
+   "title": "Đo chất lượng bản chép bằng một mẫu nhỏ",
+   "part": 3,
+   "brief": "Bạn chọn 5 phút ngẫu nhiên, đếm lỗi và quyết định có dùng tự động hay phải kiểm tay.",
+   "practice": "aiLab-prompt",
+   "visual": "chart:số lỗi theo số phút kiểm mẫu"
+  },
+  {
+   "id": 2359,
+   "slug": "bai-tong-ket-quy-trinh-am-thanh-cho-mot-phong",
+   "title": "Tổng kết: quy trình âm thanh cho phòng của bạn",
+   "part": 3,
+   "brief": "Bạn làm một tờ hướng dẫn từ xin phép, ghi, phiên âm, biên bản, lưu trữ, xoá.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  }
+ ]
+}

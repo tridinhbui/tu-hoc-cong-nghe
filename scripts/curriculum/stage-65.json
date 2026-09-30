@@ -1,0 +1,209 @@
+{
+ "stage": 65,
+ "label": "Chặng 65",
+ "name": {
+  "vi": "Quyền riêng tư và dữ liệu cá nhân trong công việc",
+  "en": "Privacy and personal data at work"
+ },
+ "idStart": 2700,
+ "parts": [
+  {
+   "vi": "Dữ liệu cá nhân là gì",
+   "en": "What personal data is"
+  },
+  {
+   "vi": "Thu ít, dùng đúng",
+   "en": "Collect less, use right"
+  },
+  {
+   "vi": "Ẩn danh, lưu và xoá",
+   "en": "Anonymise, keep and delete"
+  },
+  {
+   "vi": "Khách hàng, nhân viên và người bên ngoài",
+   "en": "Customers, staff and outsiders"
+  }
+ ],
+ "lessons": [
+  {
+   "id": 2700,
+   "slug": "bang-tinh-danh-sach-khach-chua-nhung-gi-ban-khong-nghi-toi",
+   "title": "Bảng tính danh sách khách chứa những gì bạn không nghĩ tới",
+   "part": 0,
+   "brief": "Bạn rà một bảng thật và đánh dấu cột nào nhận ra được một con người, kể cả khi ghép lại.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2701,
+   "slug": "tach-ten-so-dien-thoai-ma-khach-du-lieu-nao-ghep-lai-duoc",
+   "title": "Bỏ tên vẫn nhận ra người: các mảnh dữ liệu ghép lại",
+   "part": 0,
+   "brief": "Bạn thử ghép ngày sinh, khu vực, chức danh để thấy một người bị nhận ra thế nào.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2702,
+   "slug": "hoi-truoc-khi-dan-ba-cau-cho-moi-tai-lieu-co-ten-nguoi",
+   "title": "Ba câu hỏi trước khi dán tài liệu có tên người vào công cụ",
+   "part": 0,
+   "brief": "Bạn tập một thói quen: cần gì, ai bị nhắc tới, công cụ có được phép cho loại này không.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2703,
+   "slug": "nguyen-tac-chung-tren-mot-trang-thu-gon-dung-muc-dich",
+   "title": "Nguyên tắc chung trên một trang: thu gọn, đúng mục đích, có thời hạn",
+   "part": 0,
+   "brief": "Bạn diễn đạt các nguyên tắc chính bằng lời thường, luôn ghi 'quy định cụ thể hỏi pháp chế'.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2704,
+   "slug": "mini-ban-do-du-lieu-ca-nhan-cua-mot-quy-trinh-cua-ban",
+   "title": "Mini: bản đồ dữ liệu cá nhân của một quy trình bạn làm",
+   "part": 0,
+   "brief": "Bạn vẽ luồng: dữ liệu vào từ đâu, ai xem, để ở đâu, đi đâu tiếp.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2705,
+   "slug": "bieu-mau-dang-ky-hoi-dung-nhung-thu-can-va-bo-thu-tien-tay",
+   "title": "Biểu mẫu đăng ký: chỉ hỏi những thứ thật cần",
+   "part": 1,
+   "brief": "Form thu cả ngày sinh và địa chỉ nhà mà chỉ cần email; bạn cắt bớt và giải thích từng trường.",
+   "practice": "aiLab-spotError",
+   "visual": "chart:số trường dữ liệu thu thập theo tỷ lệ người bỏ dở biểu mẫu"
+  },
+  {
+   "id": 2706,
+   "slug": "dong-y-la-gi-trong-doi-thuong-va-dong-y-cho-viec-nao",
+   "title": "Đồng ý cho việc nào: 'tick vào ô' chưa phải tất cả",
+   "part": 1,
+   "brief": "Bạn viết lại câu xin đồng ý cho rõ mục đích, dễ rút lại, không gộp nhiều việc một ô.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2707,
+   "slug": "dung-du-lieu-cho-muc-dich-khac-voi-luc-thu-thap",
+   "title": "Dùng dữ liệu vào việc khác với lúc thu",
+   "part": 1,
+   "brief": "Số điện thoại thu để giao hàng, marketing muốn nhắn khuyến mãi; bạn xử lý theo nguyên tắc mục đích.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2708,
+   "slug": "mini-viet-cau-thong-bao-ngan-cho-nguoi-cho-du-lieu",
+   "title": "Mini: viết thông báo ngắn cho người cho dữ liệu",
+   "part": 1,
+   "brief": "Bạn viết vài dòng nói rõ thu gì, để làm gì, giữ bao lâu, liên hệ ai.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2709,
+   "slug": "chuyen-tep-khach-hang-qua-zalo-email-ca-nhan-vi-sao-la-diem-ro",
+   "title": "Gửi tệp khách hàng qua kênh cá nhân: điểm rò rỉ quen thuộc",
+   "part": 1,
+   "brief": "Bạn đi qua ba kênh hay dùng và chọn cách chia sẻ có kiểm soát ai xem.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2710,
+   "slug": "an-danh-that-va-an-danh-gia-thay-ten-bang-so-co-du-khong",
+   "title": "Ẩn danh thật và ẩn danh giả: thay tên bằng mã có đủ không",
+   "part": 2,
+   "brief": "Bạn kiểm một bảng đã đổi tên thành mã và chỉ ra chỗ vẫn nhận ra người.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2711,
+   "slug": "lam-mo-du-lieu-truoc-khi-dua-vao-ai-cong-thuc-lam-tay",
+   "title": "Làm mờ dữ liệu trước khi đưa vào AI: cách làm tay an toàn",
+   "part": 2,
+   "brief": "Bạn thay tên, số, địa chỉ bằng nhãn chung mà câu hỏi vẫn còn nghĩa.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2712,
+   "slug": "nhom-nho-bao-cao-thong-ke-khi-mot-o-chi-co-hai-nguoi",
+   "title": "Nhóm quá nhỏ: báo cáo thống kê khi một ô chỉ có hai người",
+   "part": 2,
+   "brief": "Bảng theo phòng, chức danh làm lộ lương một người; bạn gộp nhóm đến mức không đoán ra ai.",
+   "practice": "scenario",
+   "visual": "chart:khả năng nhận ra một người theo cỡ nhóm"
+  },
+  {
+   "id": 2713,
+   "slug": "mini-lam-sach-mot-bang-mau-truoc-khi-gui-doi-tac",
+   "title": "Mini: làm sạch một bảng mẫu trước khi gửi đối tác",
+   "part": 2,
+   "brief": "Bạn giữ cột đối tác cần, xoá hoặc gộp cột còn lại và ghi lại lý do từng cột.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2714,
+   "slug": "giu-bao-lau-la-lau-lich-luu-tru-cho-tep-mot-phong",
+   "title": "Giữ bao lâu là lâu: lịch lưu trữ cho các tệp của một phòng",
+   "part": 2,
+   "brief": "Bạn liệt kê loại tệp có dữ liệu cá nhân, ghi mục đích giữ và mốc xem lại; thời hạn pháp lý hỏi pháp chế.",
+   "practice": "aiLab-prompt",
+   "visual": "chart:khối lượng dữ liệu tồn theo số năm giữ"
+  },
+  {
+   "id": 2715,
+   "slug": "xoa-that-su-ban-sao-trong-thu-muc-email-va-thung-rac",
+   "title": "Xoá thật sự: bản sao trong thư mục, email và thùng rác",
+   "part": 3,
+   "brief": "Bạn tìm mọi chỗ một tệp còn nằm lại sau khi 'đã xoá' và lập danh sách việc cần làm.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2716,
+   "slug": "nhan-vien-nghi-viec-tai-khoan-tep-va-du-lieu-con-lai",
+   "title": "Nhân viên nghỉ việc: tài khoản, tệp và dữ liệu còn lại",
+   "part": 3,
+   "brief": "Bạn lập danh sách thu hồi quyền và xử lý tệp có dữ liệu cá nhân, phối hợp nhân sự và IT.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2717,
+   "slug": "khach-yeu-cau-xem-hoac-xoa-du-lieu-cua-ho-ban-lam-gi-hom-nay",
+   "title": "Khách hỏi dữ liệu của họ đang ở đâu hoặc xin xoá: bạn làm gì hôm nay",
+   "part": 3,
+   "brief": "Bạn soạn câu trả lời tạm, chuyển đúng người, và ghi thời điểm nhận; thủ tục cụ thể do pháp chế xác nhận.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2718,
+   "slug": "giam-sat-nhan-vien-khi-nao-thanh-xam-pham-cau-hoi-can-hoi",
+   "title": "Giám sát nhân viên: khi nào thành xâm phạm, câu hỏi cần hỏi",
+   "part": 3,
+   "brief": "Sếp muốn xem lịch sử duyệt web; bạn nêu câu hỏi về mục đích, mức độ và thông báo trước cho người bị theo dõi.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2719,
+   "slug": "capstone-bo-quy-tac-va-lo-trinh-du-lieu-ca-nhan-cho-nhom-cua-ban",
+   "title": "Capstone: bộ quy tắc và danh sách việc về dữ liệu cá nhân cho nhóm bạn",
+   "part": 3,
+   "brief": "Bạn ghép bản đồ dữ liệu, quy tắc chia sẻ, lịch giữ và xoá, và danh sách câu hỏi mang tới pháp chế.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  }
+ ]
+}

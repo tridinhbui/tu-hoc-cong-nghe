@@ -1,0 +1,209 @@
+{
+ "stage": 32,
+ "label": "Chặng 32",
+ "name": {
+  "vi": "Quản lý dự án và điều phối",
+  "en": "Project management and coordination"
+ },
+ "idStart": 2040,
+ "parts": [
+  {
+   "vi": "Khởi động và lập kế hoạch",
+   "en": "Kickoff and planning"
+  },
+  {
+   "vi": "Họp và biên bản",
+   "en": "Meetings and minutes"
+  },
+  {
+   "vi": "Theo dõi tiến độ và rủi ro",
+   "en": "Tracking progress and risks"
+  },
+  {
+   "vi": "Nhiều bên và báo cáo cho sếp",
+   "en": "Many parties and reporting up"
+  }
+ ],
+ "lessons": [
+  {
+   "id": 2040,
+   "slug": "mot-trang-pham-vi-truoc-khi-bat-dau",
+   "title": "Một trang phạm vi trước khi ai đó bắt đầu làm",
+   "part": 0,
+   "brief": "Khách nói 'làm cho tôi cái website', ba người hiểu ba kiểu. Bạn dùng AI viết trang phạm vi và soi chỗ mơ hồ.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2041,
+   "slug": "chia-viec-lon-thanh-viec-nho-co-nguoi-nhan",
+   "title": "Chia việc lớn thành việc nhỏ có người nhận, có ngày xong",
+   "part": 0,
+   "brief": "Kế hoạch hiện chỉ có 'triển khai'. Bạn nhờ AI tách thành việc dưới hai ngày và tự kiểm thứ tự phụ thuộc.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2042,
+   "slug": "uoc-luong-thoi-gian-va-cai-bay-lac-quan",
+   "title": "Ước lượng thời gian và cái bẫy lạc quan",
+   "part": 0,
+   "brief": "Đội nói việc này ba ngày, lần trước cũng nói vậy mà mất chín. Bạn lấy số liệu cũ để hiệu chỉnh.",
+   "practice": "scenario",
+   "visual": "chart:số ngày ước lượng và số ngày thực tế"
+  },
+  {
+   "id": 2043,
+   "slug": "soat-ke-hoach-ai-viet-tim-buoc-thieu",
+   "title": "Soát kế hoạch do AI viết để tìm bước bị thiếu",
+   "part": 0,
+   "brief": "Kế hoạch trông trơn tru nhưng quên khâu duyệt của khách. Bạn tập đọc từ cuối lên đầu.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2044,
+   "slug": "mini-project-ke-hoach-mot-trang-cho-du-an-nho",
+   "title": "Mini project: kế hoạch một trang cho một dự án nhỏ",
+   "part": 0,
+   "brief": "Trong 20 phút làm phạm vi, danh sách việc, mốc và người chịu trách nhiệm cho một việc thật của bạn.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2045,
+   "slug": "chuan-bi-cuoc-hop-co-muc-tieu-va-ket-qua",
+   "title": "Chuẩn bị cuộc họp có mục tiêu và kết quả cần có",
+   "part": 1,
+   "brief": "Họp tuần nào cũng kéo dài. Bạn viết chương trình, mục tiêu và điều cần quyết định, rồi cắt bớt người không cần.",
+   "practice": "aiLab-prompt",
+   "visual": "chart:số người dự họp và chi phí giờ công"
+  },
+  {
+   "id": 2046,
+   "slug": "bien-ban-hop-tu-ban-ghi-chu-roi",
+   "title": "Biên bản họp từ bản ghi chú rối",
+   "part": 1,
+   "brief": "Bạn có ghi chú viết vội sau buổi họp. AI giúp lập biên bản có quyết định, việc, người, hạn.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2047,
+   "slug": "bat-loi-bien-ban-hop-ai-tom-tat",
+   "title": "Bắt lỗi trong biên bản họp do AI tóm tắt",
+   "part": 1,
+   "brief": "Biên bản ghi 'A sẽ gửi báo giá thứ Sáu' nhưng A chưa hề nhận. Bạn tập đối chiếu với ghi chú gốc.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2048,
+   "slug": "theo-doi-viec-sau-hop-khong-de-roi",
+   "title": "Theo dõi việc sau họp để không rơi rụng",
+   "part": 1,
+   "brief": "Ba việc từ tuần trước không ai làm. Bạn soạn tin nhắc việc lịch sự và một nhịp kiểm ngắn.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2049,
+   "slug": "mini-project-goi-hop-tuan-dau-cuoi",
+   "title": "Mini project: gói họp tuần, từ chương trình đến biên bản mẫu",
+   "part": 1,
+   "brief": "Dựng mẫu chương trình, mẫu biên bản và tin nhắc việc dùng lại được hằng tuần.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2050,
+   "slug": "bang-theo-doi-tien-do-mot-nhin-la-hieu",
+   "title": "Bảng theo dõi tiến độ mà sếp nhìn một lần là hiểu",
+   "part": 2,
+   "brief": "Bảng hiện có 60 dòng, không ai đọc. Bạn thu về mười dòng với trạng thái xanh vàng đỏ có tiêu chí rõ.",
+   "practice": "scenario",
+   "visual": "chart:phần trăm việc xong theo tuần"
+  },
+  {
+   "id": 2051,
+   "slug": "nhan-ra-tre-tien-do-som-tu-du-lieu",
+   "title": "Nhận ra trễ tiến độ sớm từ dữ liệu bạn đã có",
+   "part": 2,
+   "brief": "Thứ Tư mà chưa có việc nào xong là dấu hiệu. Bạn nhờ AI đọc bảng việc và chỉ ra mẫu hình đáng lo.",
+   "practice": "aiLab-prompt",
+   "visual": "chart:việc mở và việc đóng theo ngày"
+  },
+  {
+   "id": 2052,
+   "slug": "dang-ky-rui-ro-ngan-dung-tri-tuong-tuong",
+   "title": "Đăng ký rủi ro ngắn, đừng chép cả sách vào",
+   "part": 2,
+   "brief": "AI liệt kê 40 rủi ro chung chung. Bạn chọn năm cái thật sự của dự án này, có người theo dõi và dấu hiệu báo.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2053,
+   "slug": "tinh-huong-khach-doi-them-viec-giua-chung",
+   "title": "Tình huống khách đòi thêm việc giữa chừng",
+   "part": 2,
+   "brief": "Khách nhắn 'thêm cái nhỏ thôi'. Bạn viết phản hồi nêu rõ tác động tới thời gian và chi phí, để người có thẩm quyền quyết.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2054,
+   "slug": "mini-project-bang-tien-do-va-rui-ro-mot-trang",
+   "title": "Mini project: một trang tiến độ và rủi ro cho dự án đang chạy",
+   "part": 2,
+   "brief": "Từ dữ liệu thật của bạn làm một trang duy nhất: trạng thái, ba rủi ro, quyết định cần từ sếp.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2055,
+   "slug": "email-gui-nhieu-ben-moi-ben-mot-nhu-cau",
+   "title": "Email gửi nhiều bên: mỗi bên cần thấy điều của riêng họ",
+   "part": 3,
+   "brief": "Cùng một tin dự án gửi cho kỹ thuật, kế toán và khách. Bạn viết ba phiên bản đúng mối quan tâm.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2056,
+   "slug": "hop-voi-ben-ngoai-khong-cung-mot-ngon-ngu",
+   "title": "Họp với bên ngoài không cùng ngôn ngữ chuyên môn",
+   "part": 3,
+   "brief": "Nhà thầu nói thuật ngữ của họ, bạn cần bản dịch sang việc và ngày. Bạn học cách hỏi lại và ghi xác nhận.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2057,
+   "slug": "bao-cao-tuan-cho-sep-viet-dieu-can-quyet",
+   "title": "Báo cáo tuần cho sếp: viết điều cần quyết trước điều đã làm",
+   "part": 3,
+   "brief": "Sếp chỉ đọc hai dòng đầu. Bạn đảo thứ tự báo cáo để quyết định nằm trên cùng.",
+   "practice": "aiLab-spotError",
+   "visual": "chart:số việc theo trạng thái mỗi tuần"
+  },
+  {
+   "id": 2058,
+   "slug": "bao-tin-xau-som-va-co-phuong-an",
+   "title": "Báo tin xấu sớm và đi kèm phương án",
+   "part": 3,
+   "brief": "Dự án sẽ trễ hai tuần. Bạn soạn tin nhắn nêu sự thật, nguyên nhân đã biết và ba lựa chọn.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2059,
+   "slug": "capstone-dieu-phoi-mot-du-an-nho-tu-a-den-z",
+   "title": "Capstone: điều phối một dự án nhỏ từ phạm vi đến tổng kết bài học",
+   "part": 3,
+   "brief": "Chọn một dự án thật hoặc giả định, làm đủ bộ: kế hoạch, họp, tiến độ, rủi ro, báo cáo, bài học không đổ lỗi, và nêu chỗ AI không được thay bạn.",
+   "practice": "scenario",
+   "visual": "flow"
+  }
+ ]
+}

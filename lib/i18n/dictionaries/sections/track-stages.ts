@@ -260,6 +260,191 @@ export const trackStagesVi = {
           name: "Dùng AI an toàn ở nơi làm việc",
           parts: ["Dữ liệu, deepfake và câu lệnh ẩn", "Người duyệt, chính sách và tài khoản"],
         },
+        {
+          label: "Chặng 30",
+          name: "Nhân sự và tuyển dụng",
+          parts: ["Tin tuyển dụng và lọc hồ sơ", "Phỏng vấn và đánh giá ứng viên", "Nhân viên mới và thư từ nhân sự", "Đánh giá, số liệu và giữ người"],
+        },
+        {
+          label: "Chặng 31",
+          name: "Giáo viên và người làm đào tạo",
+          parts: ["Giáo án và học liệu", "Đề kiểm tra và phản hồi", "Từng học viên một", "Trung thực học thuật và đạo đức"],
+        },
+        {
+          label: "Chặng 32",
+          name: "Quản lý dự án và điều phối",
+          parts: ["Khởi động và lập kế hoạch", "Họp và biên bản", "Theo dõi tiến độ và rủi ro", "Nhiều bên và báo cáo cho sếp"],
+        },
+        {
+          label: "Chặng 33",
+          name: "Quản lý nhóm và người dẫn dắt",
+          parts: ["Giao việc rõ ràng ngay từ tuần đầu", "Phản hồi và trò chuyện 1-1", "Mục tiêu và quyết định của nhóm", "Truyền đạt thay đổi và dẫn dắt cả nhóm"],
+        },
+        {
+          label: "Chặng 34",
+          name: "Nhà hàng, quán cà phê và F&B",
+          parts: ["Menu và lời giới thiệu món", "Khách góp ý và đánh giá", "Ca làm, nhập hàng và giá vốn món", "Quảng bá quán và vận hành cả tuần"],
+        },
+        {
+          label: "Chặng 35",
+          name: "Du lịch, khách sạn và dịch vụ",
+          parts: ["Trả lời khách nhanh và đúng", "Lịch trình và khách nước ngoài", "Giá phòng, giá tour và đánh giá", "Tình huống khó và vận hành mùa cao điểm"],
+        },
+        {
+          label: "Chặng 36",
+          name: "Bất động sản và môi giới",
+          parts: ["Tin đăng và chăm khách", "Khu vực và so sánh", "Buổi xem nhà và hồ sơ", "Nói đúng, không hứa quá"],
+        },
+        {
+          label: "Chặng 37",
+          name: "Logistics, kho vận và mua hàng",
+          parts: ["Báo giá và đơn hàng", "Tồn kho và nhà cung cấp", "Giao hàng và sự cố", "Chứng từ và cải tiến"],
+        },
+        {
+          label: "Chặng 38",
+          name: "Sản xuất và vận hành nhà máy",
+          parts: ["Quy trình và báo cáo ca", "Số liệu chuyền và chất lượng", "Sự cố và bảo trì", "An toàn và cải tiến"],
+        },
+        {
+          label: "Chặng 39",
+          name: "Phòng khám và hành chính y tế",
+          parts: ["Lịch hẹn và tin nhắn hằng ngày", "Hướng dẫn và giấy tờ cho người bệnh", "Quầy thuốc, kho và điều phối", "Riêng tư, quy trình và dự án cuối"],
+        },
+        {
+          label: "Chặng 40",
+          name: "Viết, biên tập và truyền thông nội bộ",
+          parts: ["Viết nhanh và sửa cho sạch", "Giọng thương hiệu và bản tin", "Kiểm chứng và làm việc đa kênh", "Chiến dịch truyền thông trọn vẹn"],
+        },
+        {
+          label: "Chặng 41",
+          name: "Freelancer, thiết kế và sáng tạo",
+          parts: ["Nhận việc và hiểu yêu cầu", "Báo giá và hợp đồng", "Portfolio và chăm khách", "Thời gian, thu nhập và dự án cuối"],
+        },
+        {
+          label: "Chặng 42",
+          name: "Chọn và so sánh công cụ AI",
+          parts: ["Thử cùng một việc, hai công cụ", "Nó nhớ được bao nhiêu", "Tài liệu, web và dự án", "Chọn cho mình và cho nhóm"],
+        },
+        {
+          label: "Chặng 43",
+          name: "AI trong Word, Excel, PowerPoint và Google Workspace",
+          parts: ["Văn bản và thư", "Bảng tính", "Bài trình bày và họp", "Cả tuần làm việc"],
+        },
+        {
+          label: "Chặng 44",
+          name: "Trợ lý đọc tài liệu như NotebookLM",
+          parts: ["Hỏi tài liệu của mình", "Trích dẫn và kiểm chứng", "Nhiều tài liệu, âm thanh", "An toàn và cách dùng lâu dài"],
+        },
+        {
+          label: "Chặng 45",
+          name: "AI tìm kiếm và nghiên cứu",
+          parts: ["Hỏi cho ra câu trả lời có nguồn", "Kiểm nguồn và bắt lỗi bịa", "Nghiên cứu sâu và báo cáo dài", "Nguồn mâu thuẫn và làm việc có trách nhiệm"],
+        },
+        {
+          label: "Chặng 46",
+          name: "AI cho hình ảnh, thiết kế và video",
+          parts: ["Tạo và sửa ảnh cho việc thật", "Slide và biểu đồ", "Logo, banner và video ngắn", "Bản quyền, ảnh giả và thương hiệu"],
+        },
+        {
+          label: "Chặng 47",
+          name: "AI cho âm thanh, họp và giọng nói",
+          parts: ["Ghi âm và bản chép lời", "Biên bản và tóm tắt họp", "Dịch trực tiếp và giọng đọc", "Riêng tư, lưu trữ và chất lượng"],
+        },
+        {
+          label: "Chặng 48",
+          name: "Trợ lý AI tuỳ chỉnh cho phòng bạn",
+          parts: ["Câu dặn dò cố định", "Cho trợ lý tài liệu nền", "Thử, sửa và chia sẻ", "Nuôi trợ lý lâu dài"],
+        },
+        {
+          label: "Chặng 49",
+          name: "AI trên điện thoại và làm việc di động",
+          parts: ["Nói và chụp thay vì gõ", "Dịch và ghi chú khi đi đường", "An toàn cho điện thoại làm việc", "Quy trình di động cả ngày"],
+        },
+        {
+          label: "Chặng 50",
+          name: "Theo kịp công cụ AI mới mà không mệt",
+          parts: ["Nghe tin mà không cuống", "Thử trong ba mươi phút", "Cân nhắc trước khi dùng thật", "Quyết định, ghi chép và chia sẻ"],
+        },
+        {
+          label: "Chặng 51",
+          name: "Tự động hoá không cần code: kích hoạt và hành động",
+          parts: ["Khi này thì làm kia", "Dữ liệu đi qua từng bước", "Rẽ nhánh, thử và bật", "Giữ cho nó an toàn và bền"],
+        },
+        {
+          label: "Chặng 52",
+          name: "Google Sheets, Apps Script và biểu mẫu",
+          parts: ["Biểu mẫu vào bảng", "Công thức làm thay bạn", "Kịch bản nhỏ do AI viết, bạn kiểm", "Chạy đều đặn và an toàn"],
+        },
+        {
+          label: "Chặng 53",
+          name: "Power Automate và tự động hoá Office",
+          parts: ["Luồng việc trong hệ Microsoft", "Phê duyệt và thông báo", "Tệp, thư mục và Excel", "Thử, giám sát và bàn giao"],
+        },
+        {
+          label: "Chặng 54",
+          name: "Tự động hoá email, lịch và tin nhắn",
+          parts: ["Dọn hộp thư trước", "Trả lời nhanh mà vẫn có hồn", "Lịch họp và nhắc việc", "Tin nhắn khách hàng đúng lúc, đúng mức"],
+        },
+        {
+          label: "Chặng 55",
+          name: "Quy trình có AI và người duyệt",
+          parts: ["Chọn bước nào để AI làm", "Cổng duyệt và ghi nhật ký", "Khi có lỗi thì sao", "Đo hiệu quả và agent đơn giản"],
+        },
+        {
+          label: "Chặng 56",
+          name: "Làm trang web đầu tiên cùng AI",
+          parts: ["Trang của bạn nói gì", "Dựng từng bước", "Sửa và làm cho đẹp", "Nội dung thật và đưa cho người khác xem"],
+        },
+        {
+          label: "Chặng 57",
+          name: "Làm công cụ nhỏ cho công việc",
+          parts: ["Từ một việc lặp lại tới công cụ đầu tiên", "Biểu mẫu, máy tính và bảng theo dõi", "Dữ liệu lưu ở đâu và ai xem được", "Thử với người dùng thật và bàn giao"],
+        },
+        {
+          label: "Chặng 58",
+          name: "Đọc và sửa lỗi cùng AI",
+          parts: ["Đọc thông báo lỗi như đọc một lá thư", "Hỏi AI đúng cách", "Thử từng thay đổi và quay lại bản cũ", "Lỗi khó và biết lúc cần người"],
+        },
+        {
+          label: "Chặng 59",
+          name: "Đưa sản phẩm lên mạng an toàn",
+          parts: ["Địa chỉ và nơi đặt sản phẩm", "Bí mật và mật khẩu", "Sao lưu, theo dõi và cập nhật", "Chi phí và một lần ra mắt trọn vẹn"],
+        },
+        {
+          label: "Chặng 60",
+          name: "Chatbot và bot hỏi-đáp cho doanh nghiệp nhỏ",
+          parts: ["Bot đầu tiên từ câu hỏi khách hay hỏi", "Cho bot đọc tài liệu của shop", "Giới hạn, chuyển cho người, kiểm thử câu khó", "Đo chất lượng và giữ bot luôn mới"],
+        },
+        {
+          label: "Chặng 61",
+          name: "Bảng tính nâng cao với AI",
+          parts: ["Bảng tính sạch trước khi làm gì khác", "Tra cứu và ghép bảng", "Tổng hợp nhiều bảng bằng pivot", "Kiểm công thức AI viết và làm mẫu tái dùng"],
+        },
+        {
+          label: "Chặng 62",
+          name: "Biểu đồ và dashboard cho người không làm dữ liệu",
+          parts: ["Một biểu đồ, một câu hỏi", "Biểu đồ đánh lừa và cách nhận ra", "Bảng điều khiển gọn cho một người xem", "Kể chuyện bằng số và bàn giao"],
+        },
+        {
+          label: "Chặng 63",
+          name: "Đọc số liệu có kiểm chứng",
+          parts: ["Con số đầu tiên", "So sánh cho công bằng", "Mẫu nhỏ, thử và nhân quả", "Hỏi lại báo cáo"],
+        },
+        {
+          label: "Chặng 64",
+          name: "Dùng AI có trách nhiệm trong tổ chức",
+          parts: ["Vì sao cần quy tắc", "Rủi ro và công cụ được duyệt", "Đào tạo và nhật ký", "Sự cố và đo lợi ích"],
+        },
+        {
+          label: "Chặng 65",
+          name: "Quyền riêng tư và dữ liệu cá nhân trong công việc",
+          parts: ["Dữ liệu cá nhân là gì", "Thu ít, dùng đúng", "Ẩn danh, lưu và xoá", "Khách hàng, nhân viên và người bên ngoài"],
+        },
+        {
+          label: "Chặng 66",
+          name: "Nền tảng công nghệ cho người đi làm",
+          parts: ["Chiếc máy tính bạn đang dùng", "Mạng và Wi-Fi ở chỗ làm", "Đám mây, mật khẩu và lừa đảo", "Sao lưu, cập nhật và đọc lỗi"],
+        },
       ],
     },
     professional: {
@@ -812,6 +997,191 @@ export const trackStagesEn: typeof trackStagesVi = {
           label: "Stage 29",
           name: "Using AI safely at work",
           parts: ["Data, deepfakes and hidden instructions", "Reviewers, policy and accounts"],
+        },
+        {
+          label: "Stage 30",
+          name: "HR and recruiting",
+          parts: ["Job posts and screening", "Interviewing and assessing candidates", "New hires and HR correspondence", "Reviews, metrics and retention"],
+        },
+        {
+          label: "Stage 31",
+          name: "Teachers and trainers",
+          parts: ["Lesson plans and materials", "Tests and feedback", "Every learner", "Integrity and ethics"],
+        },
+        {
+          label: "Stage 32",
+          name: "Project management and coordination",
+          parts: ["Kickoff and planning", "Meetings and minutes", "Tracking progress and risks", "Many parties and reporting up"],
+        },
+        {
+          label: "Stage 33",
+          name: "Team leads and managers",
+          parts: ["Assigning work clearly", "Feedback and one-on-ones", "Team goals and decisions", "Communicating change and leading the team"],
+        },
+        {
+          label: "Stage 34",
+          name: "Restaurants, cafes and F&B",
+          parts: ["Menu and dish descriptions", "Customer feedback and reviews", "Shifts, purchasing and dish costs", "Promoting the venue and running the week"],
+        },
+        {
+          label: "Stage 35",
+          name: "Travel, hospitality and services",
+          parts: ["Answering guests fast and accurately", "Itineraries and international guests", "Room rates, tour prices and reviews", "Difficult situations and peak season"],
+        },
+        {
+          label: "Stage 36",
+          name: "Real estate and brokerage",
+          parts: ["Listings and client care", "Areas and comparisons", "Viewings and paperwork", "Honest claims, no overpromising"],
+        },
+        {
+          label: "Stage 37",
+          name: "Logistics, warehousing and procurement",
+          parts: ["Quotes and orders", "Stock and suppliers", "Delivery and incidents", "Documents and improvement"],
+        },
+        {
+          label: "Stage 38",
+          name: "Manufacturing and plant operations",
+          parts: ["Procedures and shift reports", "Line data and quality", "Incidents and maintenance", "Safety and improvement"],
+        },
+        {
+          label: "Stage 39",
+          name: "Clinics and health administration",
+          parts: ["Daily appointments and messages", "Patient guides and paperwork", "Pharmacy counter, stock and coordination", "Privacy, procedures and final project"],
+        },
+        {
+          label: "Stage 40",
+          name: "Writing, editing and internal comms",
+          parts: ["Write fast and edit clean", "Brand voice and newsletters", "Fact-checking and multichannel work", "A complete comms campaign"],
+        },
+        {
+          label: "Stage 41",
+          name: "Freelancers, designers and creatives",
+          parts: ["Winning work and understanding briefs", "Quotes and contracts", "Portfolio and client care", "Time, income and final project"],
+        },
+        {
+          label: "Stage 42",
+          name: "Choosing and comparing AI tools",
+          parts: ["One task, two tools", "How much it remembers", "Files, web and projects", "Choosing for you and your team"],
+        },
+        {
+          label: "Stage 43",
+          name: "AI in Office and Google Workspace",
+          parts: ["Documents and mail", "Spreadsheets", "Slides and meetings", "The whole work week"],
+        },
+        {
+          label: "Stage 44",
+          name: "Document assistants like NotebookLM",
+          parts: ["Asking your own documents", "Citations and checking", "Many sources, audio", "Safety and long-term use"],
+        },
+        {
+          label: "Stage 45",
+          name: "AI search and research",
+          parts: ["Asking questions that get sourced answers", "Checking sources and catching fabrications", "Deep research and long reports", "Conflicting sources and responsible practice"],
+        },
+        {
+          label: "Stage 46",
+          name: "AI for images, design and video",
+          parts: ["Making and editing images for real work", "Slides and charts", "Logos, banners and short video", "Copyright, fake images and brand"],
+        },
+        {
+          label: "Stage 47",
+          name: "AI for audio, meetings and voice",
+          parts: ["Recording and transcripts", "Minutes and meeting summaries", "Live translation and voice", "Privacy, retention and quality"],
+        },
+        {
+          label: "Stage 48",
+          name: "Custom AI assistants for your team",
+          parts: ["A standing set of instructions", "Giving the assistant background documents", "Test, fix and share", "Keeping the assistant healthy"],
+        },
+        {
+          label: "Stage 49",
+          name: "AI on your phone and mobile work",
+          parts: ["Speak and snap instead of typing", "Translating and note-taking on the go", "Keeping a work phone safe", "A mobile workflow for the whole day"],
+        },
+        {
+          label: "Stage 50",
+          name: "Keeping up with new AI tools",
+          parts: ["Hearing the news without panic", "A thirty-minute trial", "Weighing up before real use", "Decide, record and share"],
+        },
+        {
+          label: "Stage 51",
+          name: "No-code automation: triggers and actions",
+          parts: ["When this happens, do that", "Data through each step", "Branches, testing and switching on", "Keeping it safe and durable"],
+        },
+        {
+          label: "Stage 52",
+          name: "Google Sheets, Apps Script and forms",
+          parts: ["Forms into sheets", "Formulas that do the work", "Small scripts AI writes and you check", "Running steadily and safely"],
+        },
+        {
+          label: "Stage 53",
+          name: "Power Automate and Office automation",
+          parts: ["Workflows in the Microsoft world", "Approvals and notifications", "Files, folders and Excel", "Testing, monitoring and handover"],
+        },
+        {
+          label: "Stage 54",
+          name: "Automating email, calendar and messages",
+          parts: ["Tidy the inbox first", "Fast replies with a human touch", "Calendar and reminders", "Customer messages, right time, right amount"],
+        },
+        {
+          label: "Stage 55",
+          name: "Workflows with AI and a human reviewer",
+          parts: ["Choosing which step AI takes", "Review gates and logging", "When things go wrong", "Measuring impact and simple agents"],
+        },
+        {
+          label: "Stage 56",
+          name: "Your first website with AI",
+          parts: ["What your page says", "Building step by step", "Fixing and polishing", "Real content and showing others"],
+        },
+        {
+          label: "Stage 57",
+          name: "Small tools for your own work",
+          parts: ["From a repeated chore to your first tool", "Forms, calculators and trackers", "Where data lives and who can see it", "Testing with real users and handover"],
+        },
+        {
+          label: "Stage 58",
+          name: "Reading and fixing errors with AI",
+          parts: ["Reading an error message like a letter", "Asking AI the right way", "One change at a time, and going back", "Hard errors and knowing when to ask a person"],
+        },
+        {
+          label: "Stage 59",
+          name: "Publishing your product safely",
+          parts: ["The address and where it lives", "Secrets and passwords", "Backups, monitoring and updates", "Costs and a full launch"],
+        },
+        {
+          label: "Stage 60",
+          name: "Chatbots and Q&A bots for small business",
+          parts: ["The first bot from real customer questions", "Letting the bot read your shop's documents", "Limits, handover to a human, hard-question tests", "Measuring quality and keeping the bot current"],
+        },
+        {
+          label: "Stage 61",
+          name: "Advanced spreadsheets with AI",
+          parts: ["A clean sheet before anything else", "Lookups and joining tables", "Combining many tables with pivots", "Auditing AI formulas and building reusable templates"],
+        },
+        {
+          label: "Stage 62",
+          name: "Charts and dashboards for non-analysts",
+          parts: ["One chart, one question", "Misleading charts and how to spot them", "A tidy dashboard for one viewer", "Telling the story with numbers and handing over"],
+        },
+        {
+          label: "Stage 63",
+          name: "Reading numbers with care",
+          parts: ["The first number", "Fair comparisons", "Small samples, tests and cause", "Questioning the report"],
+        },
+        {
+          label: "Stage 64",
+          name: "Responsible AI use in organisations",
+          parts: ["Why rules matter", "Risk and approved tools", "Training and logging", "Incidents and measuring benefit"],
+        },
+        {
+          label: "Stage 65",
+          name: "Privacy and personal data at work",
+          parts: ["What personal data is", "Collect less, use right", "Anonymise, keep and delete", "Customers, staff and outsiders"],
+        },
+        {
+          label: "Stage 66",
+          name: "Tech foundations for working adults",
+          parts: ["The computer you use every day", "Networks and Wi-Fi at work", "The cloud, passwords and scams", "Backups, updates and reading errors"],
         },
       ],
     },

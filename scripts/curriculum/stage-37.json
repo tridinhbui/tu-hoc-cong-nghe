@@ -1,0 +1,209 @@
+{
+ "stage": 37,
+ "label": "Chặng 37",
+ "name": {
+  "vi": "Logistics, kho vận và mua hàng",
+  "en": "Logistics, warehousing and procurement"
+ },
+ "idStart": 2140,
+ "parts": [
+  {
+   "vi": "Báo giá và đơn hàng",
+   "en": "Quotes and orders"
+  },
+  {
+   "vi": "Tồn kho và nhà cung cấp",
+   "en": "Stock and suppliers"
+  },
+  {
+   "vi": "Giao hàng và sự cố",
+   "en": "Delivery and incidents"
+  },
+  {
+   "vi": "Chứng từ và cải tiến",
+   "en": "Documents and improvement"
+  }
+ ],
+ "lessons": [
+  {
+   "id": 2140,
+   "slug": "doc-nhanh-ba-bao-gia-khac-cach-trinh-bay",
+   "title": "Đọc nhanh ba báo giá trình bày mỗi nơi một kiểu",
+   "part": 0,
+   "brief": "Ba nhà cung cấp gửi báo giá PDF, Excel và tin nhắn. Bạn nhờ AI đưa về cùng một bảng và tự kiểm các đơn vị tính.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2141,
+   "slug": "hoi-lai-nha-cung-cap-dieu-bao-gia-chua-noi",
+   "title": "Hỏi lại nhà cung cấp những điều báo giá chưa nói",
+   "part": 0,
+   "brief": "Báo giá ghi giá nhưng thiếu phí vận chuyển và thời hạn hiệu lực. Bạn soạn được email hỏi bổ sung ngắn gọn, lịch sự.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2142,
+   "slug": "bat-loi-bang-so-sanh-bao-gia-do-ai-lap",
+   "title": "Bắt lỗi trong bảng so sánh báo giá do AI lập",
+   "part": 0,
+   "brief": "AI cộng nhầm thuế vào một dòng và bỏ sót một dòng. Bạn học đối chiếu từng cột với file gốc.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2143,
+   "slug": "tinh-tong-chi-phi-mua-hang-that-su",
+   "title": "Tính tổng chi phí mua hàng thật sự, không chỉ đơn giá",
+   "part": 0,
+   "brief": "Giá rẻ hơn nhưng giao xa, đặt tối thiểu lớn. Bạn kéo thanh trượt số lượng để thấy điểm hai nhà cung cấp hoà giá.",
+   "practice": "scenario",
+   "visual": "chart:tổng chi phí theo số lượng đặt"
+  },
+  {
+   "id": 2144,
+   "slug": "soan-email-dat-hang-ro-rang-mot-lan-la-xong",
+   "title": "Soạn email đặt hàng rõ đến mức không cần hỏi lại",
+   "part": 0,
+   "brief": "Đơn hàng thiếu mã hàng khiến kho giao sai. Bạn nhờ AI dựng mẫu đặt hàng gồm mã, số lượng, địa điểm, ngày cần.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2145,
+   "slug": "mini-bo-ba-bao-gia-mot-bang-so-sanh",
+   "title": "Mini-dự án: từ ba báo giá tới bảng so sánh gửi sếp duyệt",
+   "part": 1,
+   "brief": "Bạn làm trọn từ thu báo giá, so sánh, tới một đoạn đề xuất ngắn, ghi rõ chỗ mình chưa chắc.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2146,
+   "slug": "doc-bang-ton-kho-cuoi-tuan-tim-mat-hang-sap-het",
+   "title": "Đọc bảng tồn kho cuối tuần, tìm mặt hàng sắp hết",
+   "part": 1,
+   "brief": "Bảng tồn kho dài 300 dòng. Bạn nhờ AI lọc mặt hàng dưới mức an toàn, rồi tự kiểm vài dòng mẫu với số đếm thật.",
+   "practice": "aiLab-prompt",
+   "visual": "chart:số ngày hàng còn đủ bán theo tốc độ bán mỗi ngày"
+  },
+  {
+   "id": 2147,
+   "slug": "du-tru-dat-hang-tu-lich-su-ban-don-gian",
+   "title": "Dự trù lượng đặt từ lịch sử bán, không cần công thức cao siêu",
+   "part": 1,
+   "brief": "Bạn có số bán 12 tuần. Bạn kéo thanh trượt hệ số dự phòng để thấy đặt thừa và đặt thiếu khác nhau ra sao.",
+   "practice": "scenario",
+   "visual": "chart:lượng hàng cần đặt theo mức dự phòng"
+  },
+  {
+   "id": 2148,
+   "slug": "nhan-ra-dong-ton-kho-do-ai-nhap-sai-don-vi",
+   "title": "Nhận ra dòng tồn kho AI đọc sai đơn vị thùng và cái",
+   "part": 1,
+   "brief": "AI đọc 'thùng 24' thành 24 thùng. Bạn học soi các đơn vị và quy đổi hay nhầm.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2149,
+   "slug": "cham-diem-nha-cung-cap-bang-tieu-chi-cua-ban",
+   "title": "Chấm điểm nhà cung cấp theo tiêu chí bạn tự đặt",
+   "part": 1,
+   "brief": "Bạn có ba nhà cung cấp lâu năm, chưa từng chấm điểm. Bạn đặt tiêu chí giao đúng hẹn, lỗi hàng, phản hồi và nhờ AI dựng bảng điểm.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2150,
+   "slug": "mini-bao-cao-ton-kho-va-de-xuat-dat-hang",
+   "title": "Mini-dự án: báo cáo tồn kho một trang kèm đề xuất đặt hàng",
+   "part": 2,
+   "brief": "Bạn làm trọn từ bảng tồn, hàng sắp hết, tới đề xuất đặt hàng có ghi giả định.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2151,
+   "slug": "nhan-tin-bao-khach-hang-giao-tre-lam-sao-cho-khoi-mat-long-tin",
+   "title": "Báo khách biết đơn giao trễ mà không mất lòng tin",
+   "part": 2,
+   "brief": "Xe hỏng giữa đường, đơn trễ hai ngày. Bạn soạn tin báo trung thực: chuyện gì, khi nào tới, bù đắp ra sao.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2152,
+   "slug": "dieu-phoi-xe-khi-hai-don-gap-cung-luc",
+   "title": "Điều phối khi hai đơn gấp giành cùng một chiếc xe",
+   "part": 2,
+   "brief": "Hai khách quan trọng cùng cần giao trước trưa. Bạn phân tích lựa chọn và hậu quả, nhờ AI liệt kê phương án, rồi tự quyết.",
+   "practice": "scenario",
+   "visual": "chart:thời gian giao và số điểm dừng của mỗi tuyến"
+  },
+  {
+   "id": 2153,
+   "slug": "bat-loi-lich-giao-hang-ai-sap-xep",
+   "title": "Bắt lỗi lịch giao hàng do AI sắp xếp",
+   "part": 2,
+   "brief": "AI xếp giao vào chủ nhật kho không làm việc và quên giờ cấm tải. Bạn học rà điều kiện thực tế.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2154,
+   "slug": "ghi-bien-ban-hang-hu-hong-khi-nhan-hang",
+   "title": "Ghi biên bản khi nhận hàng bị hư hỏng",
+   "part": 2,
+   "brief": "Thùng móp, hàng vỡ và tài xế đang chờ ký. Bạn lập nhanh mẫu ghi nhận có ảnh, số lượng, giờ, người chứng kiến.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2155,
+   "slug": "mini-bo-thu-xu-ly-mot-don-giao-tre",
+   "title": "Mini-dự án: bộ thư xử lý một đơn giao trễ từ đầu tới cuối",
+   "part": 3,
+   "brief": "Bạn viết thư cho khách, thư hỏi nhà vận chuyển và ghi chú nội bộ, giữ nhất quán thông tin ở cả ba.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2156,
+   "slug": "doi-chieu-hoa-don-phieu-giao-don-dat-hang",
+   "title": "Đối chiếu ba chứng từ: đơn đặt, phiếu giao, hoá đơn",
+   "part": 3,
+   "brief": "Số lượng trên ba tờ lệch nhau. Bạn nhờ AI lập bảng đối chiếu, tự khoanh những dòng lệch cần hỏi kế toán.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2157,
+   "slug": "khong-dua-chung-tu-that-vao-cong-cu-ai-ben-ngoai",
+   "title": "Chứng từ nào không được đưa vào công cụ AI bên ngoài",
+   "part": 3,
+   "brief": "Bạn tính chụp hợp đồng có giá riêng dán vào AI. Bạn học phân loại tài liệu và che dữ liệu nhạy cảm trước.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2158,
+   "slug": "ke-hoach-cai-tien-mot-quy-trinh-mua-hang-nho",
+   "title": "Cải tiến một quy trình mua hàng nhỏ trong hai tuần",
+   "part": 3,
+   "brief": "Bạn chọn một việc lặp lại như xin duyệt đơn. Bạn nhờ AI vẽ lại các bước và tìm chỗ nghẽn, rồi tự thử nhỏ.",
+   "practice": "scenario",
+   "visual": "chart:số ngày từ lúc đề nghị đến lúc duyệt"
+  },
+  {
+   "id": 2159,
+   "slug": "bo-mau-lam-viec-ai-cho-nguoi-mua-hang-va-kho-van",
+   "title": "Bộ mẫu làm việc với AI cho người mua hàng và kho vận",
+   "part": 3,
+   "brief": "Capstone: bạn gom các mẫu yêu cầu, danh sách kiểm và quy tắc dữ liệu đã dùng thành một tập dùng lâu dài.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  }
+ ]
+}

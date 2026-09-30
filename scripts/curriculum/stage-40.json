@@ -1,0 +1,209 @@
+{
+ "stage": 40,
+ "label": "Chặng 40",
+ "name": {
+  "vi": "Viết, biên tập và truyền thông nội bộ",
+  "en": "Writing, editing and internal comms"
+ },
+ "idStart": 2200,
+ "parts": [
+  {
+   "vi": "Viết nhanh và sửa cho sạch",
+   "en": "Write fast and edit clean"
+  },
+  {
+   "vi": "Giọng thương hiệu và bản tin",
+   "en": "Brand voice and newsletters"
+  },
+  {
+   "vi": "Kiểm chứng và làm việc đa kênh",
+   "en": "Fact-checking and multichannel work"
+  },
+  {
+   "vi": "Chiến dịch truyền thông trọn vẹn",
+   "en": "A complete comms campaign"
+  }
+ ],
+ "lessons": [
+  {
+   "id": 2200,
+   "slug": "bien-tap-cat-ban-tin-dai-thanh-ba-cau",
+   "title": "Cắt bản tin dài dòng còn ba câu người đọc chịu đọc",
+   "part": 0,
+   "brief": "Sếp gửi đoạn thông báo 400 chữ; bạn nhờ AI rút còn ba câu rồi tự soát ngày giờ, tên người, con số không bị đổi.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2201,
+   "slug": "bien-tap-sua-loi-chinh-ta-va-giu-y-nguoi-viet",
+   "title": "Sửa lỗi câu chữ mà vẫn giữ ý và giọng người viết",
+   "part": 0,
+   "brief": "Đồng nghiệp viết vội bản nháp; bạn dặn AI chỉ sửa lỗi và đánh dấu chỗ đã đổi để so lại, không viết lại cả bài.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2202,
+   "slug": "bien-tap-tieu-de-nhieu-phuong-an-de-chon",
+   "title": "Nghĩ nhiều tiêu đề rồi chọn một cái trung thực",
+   "part": 0,
+   "brief": "Bạn cần tiêu đề cho email toàn công ty; nhờ AI ra mười phương án, loại những cái giật gân hoặc hứa quá so với nội dung thật.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2203,
+   "slug": "bien-tap-viet-lai-cung-y-cho-tung-doi-tuong",
+   "title": "Viết lại một thông báo cho nhân viên, quản lý và khách",
+   "part": 0,
+   "brief": "Cùng một tin dời lịch họp cần ba cách nói khác nhau; bạn dặn rõ người nhận và điều họ cần làm để AI đổi giọng chứ không đổi sự thật.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2204,
+   "slug": "bien-tap-du-an-nho-mau-email-noi-bo-mot-trang",
+   "title": "Dự án nhỏ: mẫu email nội bộ một trang dùng lại được",
+   "part": 0,
+   "brief": "Gom cách mở, ý chính, việc cần làm, hạn chót thành khung; thử với hai tin thật và ghi lại chỗ AI hay viết thừa.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2205,
+   "slug": "truyen-thong-viet-cam-nang-giong-thuong-hieu",
+   "title": "Viết một trang mô tả giọng văn của công ty từ ví dụ thật",
+   "part": 1,
+   "brief": "Bạn có ba bài đã đăng được khen; nhờ AI rút đặc điểm giọng văn, rồi bạn sửa lại cho đúng, vì AI dễ tả chung chung.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2206,
+   "slug": "truyen-thong-kiem-tra-ban-nhap-co-hop-giong-khong",
+   "title": "Đo bản nháp có hợp giọng thương hiệu hay không",
+   "part": 1,
+   "brief": "Có bản nháp từ freelancer; bạn tạo bảng chấm ngắn theo cẩm nang và nhờ AI chỉ ra câu lệch giọng để tự quyết sửa.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2207,
+   "slug": "truyen-thong-ban-tin-noi-bo-hang-thang",
+   "title": "Dựng bản tin nội bộ hàng tháng từ ghi chú rời rạc",
+   "part": 1,
+   "brief": "Các phòng gửi vài dòng mỗi người; bạn nhờ AI ghép thành bản tin có mục rõ ràng, còn bạn xác nhận từng thông tin với phòng gửi.",
+   "practice": "aiLab-spotError",
+   "visual": "chart:thời gian dựng bản tin theo số phòng đóng góp"
+  },
+  {
+   "id": 2208,
+   "slug": "truyen-thong-tom-tat-cuoc-hop-thanh-tin-toan-cong-ty",
+   "title": "Biến biên bản họp dài thành tin cho toàn công ty",
+   "part": 1,
+   "brief": "Biên bản họp ban lãnh đạo có phần nhạy cảm; bạn chọn phần được phép công bố, nhờ AI viết lại, và để người chủ trì duyệt.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2209,
+   "slug": "truyen-thong-du-an-nho-bo-ban-tin-ba-so",
+   "title": "Dự án nhỏ: dựng ba số bản tin nội bộ với cùng một khung",
+   "part": 1,
+   "brief": "Làm ba số liên tiếp theo khung cố định, ghi lại việc nào giao AI, việc nào bạn giữ (kiểm chứng, duyệt).",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2210,
+   "slug": "kiem-chung-danh-dau-con-so-va-ten-rieng-can-soat",
+   "title": "Đánh dấu mọi con số và tên riêng cần soát trước khi đăng",
+   "part": 2,
+   "brief": "Bài của bạn có 12 con số; bạn nhờ AI liệt kê chúng cùng câu chứa số, rồi từng con số bạn đối chiếu với nguồn của công ty.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2211,
+   "slug": "kiem-chung-hoi-ai-nguon-va-khong-tin-nguon-do-ai-bia",
+   "title": "Đòi nguồn từ AI và vì sao phải tự mở nguồn đọc",
+   "part": 2,
+   "brief": "AI trả lời kèm 'nguồn' nghe rất đúng; bạn luyện thói quen mở trang gốc, thấy nó không tồn tại hoặc không nói điều đó.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2212,
+   "slug": "kiem-chung-tim-cau-khang-dinh-qua-muc-trong-bai",
+   "title": "Tìm câu khẳng định quá mạnh trong bài của chính mình",
+   "part": 2,
+   "brief": "Bài có chữ 'số một', 'chắc chắn'; bạn nhờ AI liệt kê các câu tuyệt đối, và bạn chỉ giữ những câu có bằng chứng của công ty.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2213,
+   "slug": "kiem-chung-viet-thong-cao-bao-chi-tu-du-lieu-that",
+   "title": "Soạn thông cáo báo chí từ sự kiện thật của công ty",
+   "part": 2,
+   "brief": "Công ty ký hợp tác; bạn đưa AI đúng dữ kiện (ai, gì, khi nào) và cấm nó thêm câu trích dẫn của người thật vì chưa ai nói.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2214,
+   "slug": "kiem-chung-du-an-nho-bang-soat-su-that-truoc-khi-dang",
+   "title": "Dự án nhỏ: bảng soát sự thật một trang cho mọi bài",
+   "part": 2,
+   "brief": "Lập bảng: con số, nguồn, người xác nhận, ngày; dùng thử với một bài sắp đăng và ghi chỗ suýt sai.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2215,
+   "slug": "da-kenh-mot-tin-ba-kenh-khong-sao-chep",
+   "title": "Từ một tin thành bài web, bài mạng xã hội và email",
+   "part": 3,
+   "brief": "Ra mắt dịch vụ mới; bạn viết một nguồn sự thật rồi nhờ AI chuyển thể theo từng kênh, kiểm lại không kênh nào nói khác nhau.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2216,
+   "slug": "da-kenh-lich-dang-bai-thang-tu-muc-tieu",
+   "title": "Lập lịch đăng bài tháng từ mục tiêu và nguồn lực thật",
+   "part": 3,
+   "brief": "Bạn chỉ có hai người và ba giờ mỗi tuần; nhờ AI dàn lịch vừa sức, sau đó bạn cắt bớt cho khả thi.",
+   "practice": "aiLab-spotError",
+   "visual": "chart:số bài đăng được theo giờ làm mỗi tuần"
+  },
+  {
+   "id": 2217,
+   "slug": "da-kenh-tra-loi-binh-luan-xau-ma-khong-cai-nhau",
+   "title": "Trả lời bình luận chê và việc phải chuyển lên quản lý",
+   "part": 3,
+   "brief": "Khách chê dịch vụ công khai; bạn nhờ AI soạn ba cách trả lời bình tĩnh, chọn một, và biết khi nào không trả lời mà chuyển cho người có thẩm quyền.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2218,
+   "slug": "da-kenh-do-hieu-qua-bai-viet-bang-so-nho",
+   "title": "Đo bài viết có ích không bằng vài con số đơn giản",
+   "part": 3,
+   "brief": "Bạn có lượt mở email và bấm; nhờ AI đọc bảng số, nhưng bạn tự phân biệt số cho thấy điều gì và điều gì chỉ là đoán.",
+   "practice": "aiLab-prompt",
+   "visual": "chart:tỷ lệ mở email theo nhóm người nhận"
+  },
+  {
+   "id": 2219,
+   "slug": "truyen-thong-du-an-cuoi-chien-dich-noi-bo-tron-mot-thang",
+   "title": "Dự án cuối: chiến dịch truyền thông nội bộ trọn một tháng",
+   "part": 3,
+   "brief": "Ghép giọng thương hiệu, bản tin, bảng soát sự thật, lịch đa kênh và cách đo thành một kế hoạch một trang cho công ty bạn.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  }
+ ]
+}

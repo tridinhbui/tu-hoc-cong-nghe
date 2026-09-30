@@ -1,0 +1,209 @@
+{
+ "stage": 31,
+ "label": "Chặng 31",
+ "name": {
+  "vi": "Giáo viên và người làm đào tạo",
+  "en": "Teachers and trainers"
+ },
+ "idStart": 2020,
+ "parts": [
+  {
+   "vi": "Giáo án và học liệu",
+   "en": "Lesson plans and materials"
+  },
+  {
+   "vi": "Đề kiểm tra và phản hồi",
+   "en": "Tests and feedback"
+  },
+  {
+   "vi": "Từng học viên một",
+   "en": "Every learner"
+  },
+  {
+   "vi": "Trung thực học thuật và đạo đức",
+   "en": "Integrity and ethics"
+  }
+ ],
+ "lessons": [
+  {
+   "id": 2020,
+   "slug": "giao-an-45-phut-tu-mot-muc-tieu",
+   "title": "Giáo án 45 phút chỉ từ một mục tiêu bài học",
+   "part": 0,
+   "brief": "Tối nay bạn phải soạn tiết mai. Bạn đưa mục tiêu, thời lượng và sĩ số, nhờ AI đề xuất các bước và tự chọn bước phù hợp.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2021,
+   "slug": "vi-du-doi-thuong-cho-khai-niem-kho",
+   "title": "Tìm ví dụ đời thường cho khái niệm học sinh hay quên",
+   "part": 0,
+   "brief": "Cả lớp không hiểu vì sao phải quy đồng mẫu số. Bạn nhờ AI đưa năm ví dụ rồi chọn cái đúng với lứa tuổi.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2022,
+   "slug": "bat-loi-kien-thuc-trong-bai-giang-ai-viet",
+   "title": "Bắt lỗi kiến thức trong bài giảng do AI viết",
+   "part": 0,
+   "brief": "AI viết bản giải thích tự tin nhưng sai một công thức. Bạn tập đối chiếu với sách giáo khoa trước khi phát.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2023,
+   "slug": "chinh-do-kho-cua-bai-doc-theo-trinh-do",
+   "title": "Chỉnh độ khó của một bài đọc cho ba nhóm trình độ",
+   "part": 0,
+   "brief": "Cùng một bài đọc, trong lớp có em đọc nhanh, có em đọc chậm. Bạn tạo ba phiên bản và kiểm chúng vẫn dạy cùng ý.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2024,
+   "slug": "mini-project-goi-tai-lieu-mot-tiet-hoc",
+   "title": "Mini project: gói tài liệu cho một tiết học",
+   "part": 0,
+   "brief": "Trong 20 phút làm giáo án, phiếu bài tập và ba câu hỏi khởi động cho một tiết thật.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2025,
+   "slug": "soan-de-kiem-tra-bam-sat-muc-tieu",
+   "title": "Soạn đề kiểm tra bám sát mục tiêu, không chỉ hỏi cho có",
+   "part": 1,
+   "brief": "Đề cũ chỉ kiểm được trí nhớ. Bạn lập bảng ma trận nhỏ để mỗi câu ứng với một mục tiêu.",
+   "practice": "aiLab-prompt",
+   "visual": "chart:số câu theo mức độ nhận thức"
+  },
+  {
+   "id": 2026,
+   "slug": "kiem-dap-an-de-thi-ai-tao-ra",
+   "title": "Kiểm đáp án và phương án nhiễu của đề AI tạo ra",
+   "part": 1,
+   "brief": "AI tạo trắc nghiệm nhưng hai đáp án cùng đúng. Bạn học cách thử tự làm đề trước khi phát.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2027,
+   "slug": "rubric-cham-bai-viet-de-hoc-sinh-hieu",
+   "title": "Viết rubric chấm bài để học sinh hiểu vì sao được điểm đó",
+   "part": 1,
+   "brief": "Học sinh hỏi 'sao em chỉ được 6'. Bạn dựng rubric bốn mức bằng lời dễ hiểu.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2028,
+   "slug": "phan-hoi-bai-lam-nhanh-ma-van-cu-the",
+   "title": "Phản hồi bài làm nhanh mà vẫn cụ thể",
+   "part": 1,
+   "brief": "Bạn có 40 bài tự luận. AI gợi ý nhận xét nhưng nghe giống nhau. Bạn dùng nó để nháp và tự thêm một chi tiết riêng.",
+   "practice": "aiLab-prompt",
+   "visual": "chart:thời gian chấm theo số bài"
+  },
+  {
+   "id": 2029,
+   "slug": "mini-project-bo-de-va-rubric-mot-don-vi",
+   "title": "Mini project: một đề kiểm tra, một rubric, một bộ nhận xét mẫu",
+   "part": 1,
+   "brief": "Ghép đề, rubric và nhận xét mẫu cho một đơn vị bài học trong 20 phút.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2030,
+   "slug": "nhan-xet-ai-viet-cho-hoc-sinh-dung-hay-sai-giong",
+   "title": "Nhận xét do AI viết: khi nào nghe đúng mà sai với em này",
+   "part": 2,
+   "brief": "Một nhận xét mẫu khen 'tiến bộ' cho em vừa tụt điểm. Bạn tập soát nhận xét theo hồ sơ thật.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2031,
+   "slug": "ke-hoach-on-tap-cho-nhom-yeu-mot-chu-de",
+   "title": "Kế hoạch ôn tập cho nhóm học yếu một chủ đề",
+   "part": 2,
+   "brief": "Sau bài kiểm tra có 8 em dưới trung bình cùng một dạng. Bạn dựng kế hoạch ôn ba buổi ngắn.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2032,
+   "slug": "giai-thich-lai-theo-cach-thu-hai",
+   "title": "Giải thích lại theo cách thứ hai khi cách đầu không thông",
+   "part": 2,
+   "brief": "Một em vẫn không hiểu sau hai lần giảng. Bạn nhờ AI đề xuất cách tiếp cận khác và chọn thử một cách.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2033,
+   "slug": "bai-tap-phan-hoa-ma-khong-gan-nhan-hoc-sinh",
+   "title": "Bài tập phân hoá mà không gắn nhãn học sinh",
+   "part": 2,
+   "brief": "Bạn muốn giao bài khác nhau nhưng sợ các em thấy mình bị xếp loại. Bạn thiết kế lựa chọn ai cũng chọn được.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2034,
+   "slug": "mini-project-goi-ho-tro-ba-hoc-sinh",
+   "title": "Mini project: gói hỗ trợ cho ba học sinh ở ba tình huống",
+   "part": 2,
+   "brief": "Chọn ba em có nhu cầu khác nhau và làm cho mỗi em một trang hỗ trợ ngắn trong 20 phút.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2035,
+   "slug": "dau-hieu-bai-lam-do-ai-viet-va-gioi-han-cua-may-do",
+   "title": "Dấu hiệu bài làm do AI viết và giới hạn của máy dò",
+   "part": 3,
+   "brief": "Máy dò báo 90% do AI viết với bài của một em bạn tin tưởng. Bạn học cách nói chuyện thay vì kết tội.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2036,
+   "slug": "quy-dinh-dung-ai-trong-lop-em-nao-cung-hieu",
+   "title": "Viết quy định dùng AI trong lớp mà em nào cũng hiểu",
+   "part": 3,
+   "brief": "Lớp chưa có luật dùng AI. Bạn cùng học sinh soạn một trang, có ví dụ được và không được.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2037,
+   "slug": "thiet-ke-bai-tap-kho-nho-ai-ho",
+   "title": "Thiết kế bài tập mà nhờ AI làm hộ cũng không xong",
+   "part": 3,
+   "brief": "Bài luận cũ ai cũng nộp bản giống nhau. Bạn đổi đề để cần ý riêng, quá trình và trình bày miệng.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2038,
+   "slug": "bao-ve-du-lieu-hoc-sinh-truoc-khi-hoi-ai",
+   "title": "Bảo vệ dữ liệu học sinh: cái gì không bao giờ dán vào công cụ AI",
+   "part": 3,
+   "brief": "Bạn muốn AI giúp viết học bạ và định dán bảng điểm có tên. Bạn tập ẩn danh trước và hỏi nhà trường về quy định.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2039,
+   "slug": "capstone-mot-hoc-ky-day-hoc-co-ai-co-nguyen-tac",
+   "title": "Capstone: kế hoạch một học kỳ dạy học có AI, có nguyên tắc",
+   "part": 3,
+   "brief": "Chọn một môn, quyết định chỗ dùng AI, chỗ tuyệt đối không, và viết thành một trang cho đồng nghiệp.",
+   "practice": "scenario",
+   "visual": "flow"
+  }
+ ]
+}

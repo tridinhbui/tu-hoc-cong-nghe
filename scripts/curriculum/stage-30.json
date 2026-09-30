@@ -1,0 +1,209 @@
+{
+ "stage": 30,
+ "label": "Chặng 30",
+ "name": {
+  "vi": "Nhân sự và tuyển dụng",
+  "en": "HR and recruiting"
+ },
+ "idStart": 2000,
+ "parts": [
+  {
+   "vi": "Tin tuyển dụng và lọc hồ sơ",
+   "en": "Job posts and screening"
+  },
+  {
+   "vi": "Phỏng vấn và đánh giá ứng viên",
+   "en": "Interviewing and assessing candidates"
+  },
+  {
+   "vi": "Nhân viên mới và thư từ nhân sự",
+   "en": "New hires and HR correspondence"
+  },
+  {
+   "vi": "Đánh giá, số liệu và giữ người",
+   "en": "Reviews, metrics and retention"
+  }
+ ],
+ "lessons": [
+  {
+   "id": 2000,
+   "slug": "viet-lai-mo-ta-cong-viec-cho-de-hieu",
+   "title": "Viết lại mô tả công việc để người ngoài ngành cũng hiểu",
+   "part": 0,
+   "brief": "Trưởng phòng gửi bản mô tả công việc toàn từ chuyên môn, ứng viên đọc không hiểu. Bạn nhờ AI viết lại theo việc hằng ngày và biết cần giữ lại điều kiện thật nào.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2001,
+   "slug": "bo-tu-ngu-loai-nguoi-khoi-tin-tuyen-dung",
+   "title": "Bắt lỗi từ ngữ vô tình loại người khỏi tin tuyển dụng",
+   "part": 0,
+   "brief": "Một tin tuyển dụng ghi 'nam, dưới 30 tuổi, ngoại hình ưa nhìn' bị góp ý. Bạn dùng AI soát từng dòng và tự quyết dòng nào phải sửa.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2002,
+   "slug": "tra-loi-ung-vien-hoi-luong-va-che-do",
+   "title": "Trả lời ứng viên hỏi về lương và chế độ mà không hứa lố",
+   "part": 0,
+   "brief": "Ứng viên nhắn hỏi khoảng lương và thưởng. Bạn soạn câu trả lời thật, đúng phạm vi đã được duyệt, và không cam kết thay sếp.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2003,
+   "slug": "lap-tieu-chi-cham-cv-truoc-khi-doc-cv",
+   "title": "Lập tiêu chí chấm CV trước khi đọc CV đầu tiên",
+   "part": 0,
+   "brief": "Có 80 hồ sơ cho một vị trí, mỗi người chấm một kiểu. Bạn cùng AI viết bảng tiêu chí ba mức để chấm nhất quán.",
+   "practice": "aiLab-prompt",
+   "visual": "chart:thời gian sàng lọc theo số hồ sơ"
+  },
+  {
+   "id": 2004,
+   "slug": "mini-project-bo-tin-tuyen-dung-mot-trang",
+   "title": "Mini project: bộ tin tuyển dụng và bảng tiêu chí cho một vị trí",
+   "part": 0,
+   "brief": "Bạn có một vị trí đang thiếu người. Trong 20 phút làm ra tin đăng, bảng tiêu chí và ba câu trả lời mẫu cho ứng viên.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2005,
+   "slug": "ai-loc-cv-va-thien-lech-ban-khong-thay",
+   "title": "Khi AI xếp hạng CV: thiên lệch mà bạn không nhìn thấy",
+   "part": 1,
+   "brief": "AI xếp hạng 50 CV và nhóm đứng đầu giống nhau một cách đáng ngờ. Bạn học cách kiểm bằng cách đổi thông tin và so kết quả.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2006,
+   "slug": "che-ten-va-thong-tin-ca-nhan-truoc-khi-dan-cv",
+   "title": "Che thông tin cá nhân trước khi dán CV vào công cụ AI",
+   "part": 1,
+   "brief": "Bạn định dán CV có số căn cước, địa chỉ nhà. Bạn tập liệt kê trường nào bỏ được mà vẫn chấm được.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2007,
+   "slug": "soan-bo-cau-hoi-phong-van-theo-tinh-huong",
+   "title": "Soạn bộ câu hỏi phỏng vấn theo tình huống thật của vị trí",
+   "part": 1,
+   "brief": "Mọi buổi phỏng vấn cứ hỏi 'điểm mạnh điểm yếu'. Bạn nhờ AI đổi thành câu hỏi từ tình huống thật của phòng.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2008,
+   "slug": "cham-diem-phong-van-khong-bi-anh-huong-cam-tinh",
+   "title": "Chấm điểm phỏng vấn mà không bị ấn tượng đầu chi phối",
+   "part": 1,
+   "brief": "Sau ba ứng viên bạn nhớ người nói chuyện duyên nhất. Bạn dựng phiếu chấm để ghi bằng chứng trước, kết luận sau.",
+   "practice": "aiLab-spotError",
+   "visual": "chart:điểm ứng viên theo từng tiêu chí"
+  },
+  {
+   "id": 2009,
+   "slug": "mini-project-phieu-phong-van-mot-vi-tri",
+   "title": "Mini project: phiếu phỏng vấn hoàn chỉnh cho một vị trí",
+   "part": 1,
+   "brief": "Chuẩn bị buổi phỏng vấn thứ hai: câu hỏi, phiếu chấm, và mẫu ghi chú sau buổi trong 20 phút.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2010,
+   "slug": "ghi-chu-phong-van-bang-ai-doc-lai-cho-dung",
+   "title": "Ghi chú phỏng vấn do AI tóm tắt: đọc lại cho đúng lời ứng viên",
+   "part": 2,
+   "brief": "AI tóm tắt buổi phỏng vấn nhưng thêm một kinh nghiệm ứng viên chưa hề nói. Bạn tập bắt lỗi thêm bớt.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2011,
+   "slug": "thu-moi-phong-van-va-thu-cam-on-ung-vien",
+   "title": "Thư mời phỏng vấn và thư từ chối lịch sự, đủ rõ",
+   "part": 2,
+   "brief": "Bạn phải gửi 30 thư trả lời, một nửa là từ chối. Soạn mẫu tử tế và tự sửa cho từng người.",
+   "practice": "aiLab-prompt",
+   "visual": "chart:số thư cần gửi và thời gian soạn"
+  },
+  {
+   "id": 2012,
+   "slug": "hoi-nguoi-gioi-luat-ve-hop-dong-thu-viec",
+   "title": "Chuẩn bị hỏi chuyên viên pháp lý về hợp đồng thử việc",
+   "part": 2,
+   "brief": "Bạn không được phép tự giải thích điều khoản. Bạn chuẩn bị danh sách câu hỏi và tóm tắt cho người có chuyên môn xem.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2013,
+   "slug": "soan-thu-chao-mung-va-lich-tuan-dau",
+   "title": "Soạn thư chào mừng và lịch tuần đầu cho nhân viên mới",
+   "part": 2,
+   "brief": "Nhân viên mới vào thứ Hai chưa biết gì. Bạn dựng thư chào mừng và lịch tuần đầu rõ giờ, rõ người gặp.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2014,
+   "slug": "mini-project-goi-onboarding-nguoi-moi",
+   "title": "Mini project: gói onboarding cho người mới, từ thư đến lịch 30 ngày",
+   "part": 2,
+   "brief": "Ghép thư chào mừng, danh sách việc theo người phụ trách và lịch 30 ngày thành một gói dùng lại được cho mọi người mới.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2015,
+   "slug": "tra-loi-cau-hoi-thuong-gap-cua-nhan-vien",
+   "title": "Trả lời câu hỏi thường gặp của nhân viên: phép năm, giờ làm, quy trình",
+   "part": 3,
+   "brief": "Một câu hỏi về phép năm lặp lại hằng tuần. Bạn viết bản trả lời đúng theo quy định công ty, và ghi rõ chỗ phải hỏi lại.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2016,
+   "slug": "thong-bao-thay-doi-chinh-sach-de-khong-gay-hoang-mang",
+   "title": "Thông báo thay đổi chính sách để nhân viên không hoang mang",
+   "part": 3,
+   "brief": "Công ty đổi cách tính phép, dự thảo đầu nghe như cắt quyền lợi. Bạn viết lại rõ điều gì đổi, điều gì không.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2017,
+   "slug": "viet-nhan-xet-danh-gia-cuoi-nam-cu-the",
+   "title": "Viết nhận xét đánh giá cuối năm bằng ví dụ cụ thể",
+   "part": 3,
+   "brief": "Quản lý gửi nhận xét chung chung 'làm tốt'. Bạn cùng họ đổi thành nhận xét có sự việc và tác động.",
+   "practice": "aiLab-prompt",
+   "visual": "chart:số nhận xét cần viết theo quy mô nhóm"
+  },
+  {
+   "id": 2018,
+   "slug": "doc-so-lieu-nghi-viec-va-hoi-dung-cau",
+   "title": "Đọc số liệu nghỉ việc và hỏi đúng câu trước khi kết luận",
+   "part": 3,
+   "brief": "Tháng này nghỉ việc tăng, sếp hỏi vì sao. Bạn dùng AI xử lý bảng số và tách được điều đã biết với điều mới đoán.",
+   "practice": "scenario",
+   "visual": "chart:tỷ lệ nghỉ việc theo tháng"
+  },
+  {
+   "id": 2019,
+   "slug": "capstone-nam-viec-nhan-su-cua-mot-cong-ty-nho",
+   "title": "Capstone: một năm việc nhân sự của một công ty nhỏ, từ tuyển tới giữ người",
+   "part": 3,
+   "brief": "Bạn nhận nhiệm vụ: chọn ba việc lặp lại nhiều nhất, làm quy trình có AI và có điểm người duyệt, trình bày cho sếp.",
+   "practice": "scenario",
+   "visual": "flow"
+  }
+ ]
+}

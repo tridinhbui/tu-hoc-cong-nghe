@@ -1,0 +1,409 @@
+[
+ {
+  "stage": 30,
+  "cluster": "work",
+  "name": {
+   "vi": "Nhân sự và tuyển dụng",
+   "en": "HR and recruiting"
+  },
+  "theme": "nhân viên nhân sự, chuyên viên tuyển dụng, C&B: JD, lọc CV có kiểm thiên lệch, phỏng vấn, onboarding, đánh giá, thư từ nhân sự, số liệu nhân sự",
+  "idStart": 2000,
+  "lessons": 20
+ },
+ {
+  "stage": 31,
+  "cluster": "work",
+  "name": {
+   "vi": "Giáo viên và người làm đào tạo",
+   "en": "Teachers and trainers"
+  },
+  "theme": "giáo viên, giảng viên, người làm đào tạo nội bộ: giáo án, đề kiểm tra, phản hồi bài làm, học liệu, cá nhân hoá, chống đạo văn/gian lận, đạo đức",
+  "idStart": 2020,
+  "lessons": 20
+ },
+ {
+  "stage": 32,
+  "cluster": "work",
+  "name": {
+   "vi": "Quản lý dự án và điều phối",
+   "en": "Project management and coordination"
+  },
+  "theme": "PM, điều phối viên: kế hoạch, rủi ro, họp và biên bản, theo dõi tiến độ, báo cáo cho sếp, làm việc với nhiều bên",
+  "idStart": 2040,
+  "lessons": 20
+ },
+ {
+  "stage": 33,
+  "cluster": "work",
+  "name": {
+   "vi": "Quản lý nhóm và người dẫn dắt",
+   "en": "Team leads and managers"
+  },
+  "theme": "trưởng nhóm, quản lý: giao việc, phản hồi, 1-1, mục tiêu, quyết định, truyền đạt thay đổi, quản lý thời gian bản thân",
+  "idStart": 2060,
+  "lessons": 20
+ },
+ {
+  "stage": 34,
+  "cluster": "work",
+  "name": {
+   "vi": "Nhà hàng, quán cà phê và F&B",
+   "en": "Restaurants, cafes and F&B"
+  },
+  "theme": "chủ quán, quản lý ca: thực đơn, đánh giá khách, lịch ca, nhập hàng, chi phí món, marketing quán, xử lý phản hồi",
+  "idStart": 2080,
+  "lessons": 20
+ },
+ {
+  "stage": 35,
+  "cluster": "work",
+  "name": {
+   "vi": "Du lịch, khách sạn và dịch vụ",
+   "en": "Travel, hospitality and services"
+  },
+  "theme": "lễ tân, sale tour, homestay: lịch trình, trả lời khách nhiều ngôn ngữ, đánh giá, giá phòng, tình huống khách khó",
+  "idStart": 2100,
+  "lessons": 20
+ },
+ {
+  "stage": 36,
+  "cluster": "work",
+  "name": {
+   "vi": "Bất động sản và môi giới",
+   "en": "Real estate and brokerage"
+  },
+  "theme": "môi giới, sale dự án: mô tả tin đăng, chăm khách, so sánh khu vực, chuẩn bị buổi xem nhà, hồ sơ, lưu ý không hứa quá",
+  "idStart": 2120,
+  "lessons": 20
+ },
+ {
+  "stage": 37,
+  "cluster": "work",
+  "name": {
+   "vi": "Logistics, kho vận và mua hàng",
+   "en": "Logistics, warehousing and procurement"
+  },
+  "theme": "điều phối kho vận, nhân viên mua hàng: báo giá, đơn hàng, tồn kho, so sánh nhà cung cấp, giao hàng trễ, chứng từ",
+  "idStart": 2140,
+  "lessons": 20
+ },
+ {
+  "stage": 38,
+  "cluster": "work",
+  "name": {
+   "vi": "Sản xuất và vận hành nhà máy",
+   "en": "Manufacturing and plant operations"
+  },
+  "theme": "tổ trưởng, kế hoạch sản xuất, QC: quy trình SOP, báo cáo ca, sự cố, bảo trì, an toàn lao động, đọc số liệu chuyền",
+  "idStart": 2160,
+  "lessons": 20
+ },
+ {
+  "stage": 39,
+  "cluster": "work",
+  "name": {
+   "vi": "Phòng khám và hành chính y tế",
+   "en": "Clinics and health administration"
+  },
+  "theme": "lễ tân phòng khám, hành chính bệnh viện, nhà thuốc: lịch hẹn, tin nhắn bệnh nhân, tài liệu hướng dẫn, quy định riêng tư; TUYỆT ĐỐI không chẩn đoán, không tư vấn y khoa",
+  "idStart": 2180,
+  "lessons": 20
+ },
+ {
+  "stage": 40,
+  "cluster": "work",
+  "name": {
+   "vi": "Viết, biên tập và truyền thông nội bộ",
+   "en": "Writing, editing and internal comms"
+  },
+  "theme": "biên tập viên, truyền thông nội bộ, PR: bản tin, thông cáo, bài blog, giọng thương hiệu, kiểm chứng, sửa bài, đa kênh",
+  "idStart": 2200,
+  "lessons": 20
+ },
+ {
+  "stage": 41,
+  "cluster": "work",
+  "name": {
+   "vi": "Freelancer, thiết kế và sáng tạo",
+   "en": "Freelancers, designers and creatives"
+  },
+  "theme": "freelancer, designer, người làm nội dung: nhận việc, báo giá, brief, hợp đồng (hỏi luật sư), portfolio, chăm khách, quản lý thời gian",
+  "idStart": 2220,
+  "lessons": 20
+ },
+ {
+  "stage": 42,
+  "cluster": "tools",
+  "name": {
+   "vi": "Chọn và so sánh công cụ AI",
+   "en": "Choosing and comparing AI tools"
+  },
+  "theme": "khái niệm bền để chọn ChatGPT/Claude/Gemini/Copilot: cửa sổ ngữ cảnh, bộ nhớ, tệp đính kèm, tìm kiếm web, dự án, gói cá nhân vs doanh nghiệp, chi phí, thử cùng một việc trên nhiều công cụ",
+  "idStart": 2240,
+  "lessons": 20
+ },
+ {
+  "stage": 43,
+  "cluster": "tools",
+  "name": {
+   "vi": "AI trong Word, Excel, PowerPoint và Google Workspace",
+   "en": "AI in Office and Google Workspace"
+  },
+  "theme": "trợ lý AI ngay trong Word/Docs, Excel/Sheets, PowerPoint/Slides, Gmail/Outlook, Meet/Teams: dùng làm gì, kiểm gì, giới hạn",
+  "idStart": 2260,
+  "lessons": 20
+ },
+ {
+  "stage": 44,
+  "cluster": "tools",
+  "name": {
+   "vi": "Trợ lý đọc tài liệu như NotebookLM",
+   "en": "Document assistants like NotebookLM"
+  },
+  "theme": "hỏi đáp trên tài liệu của mình, trích dẫn nguồn, tổng hợp nhiều tài liệu, tóm tắt âm thanh, kiểm tra trích dẫn, giới hạn kích thước, bảo mật tài liệu",
+  "idStart": 2280,
+  "lessons": 20
+ },
+ {
+  "stage": 45,
+  "cluster": "tools",
+  "name": {
+   "vi": "AI tìm kiếm và nghiên cứu",
+   "en": "AI search and research"
+  },
+  "theme": "tìm kiếm có AI, nghiên cứu sâu, đọc nguồn, kiểm chứng, so sánh nguồn, lập báo cáo có trích dẫn, tránh nguồn giả, câu hỏi tốt",
+  "idStart": 2300,
+  "lessons": 20
+ },
+ {
+  "stage": 46,
+  "cluster": "tools",
+  "name": {
+   "vi": "AI cho hình ảnh, thiết kế và video",
+   "en": "AI for images, design and video"
+  },
+  "theme": "tạo ảnh, sửa ảnh, Canva AI, slide, video ngắn, ảnh sản phẩm, logo, bản quyền và ghi nguồn, ảnh giả, thương hiệu nhất quán",
+  "idStart": 2320,
+  "lessons": 20
+ },
+ {
+  "stage": 47,
+  "cluster": "tools",
+  "name": {
+   "vi": "AI cho âm thanh, họp và giọng nói",
+   "en": "AI for audio, meetings and voice"
+  },
+  "theme": "ghi âm và phiên âm họp, biên bản tự động, dịch trực tiếp, tạo giọng đọc, xin phép ghi âm, tiếng Việt và giọng vùng miền, kiểm bản chép",
+  "idStart": 2340,
+  "lessons": 20
+ },
+ {
+  "stage": 48,
+  "cluster": "tools",
+  "name": {
+   "vi": "Trợ lý AI tuỳ chỉnh cho phòng bạn",
+   "en": "Custom AI assistants for your team"
+  },
+  "theme": "Projects/GPTs/Gems-kiểu: hướng dẫn hệ thống, tài liệu nền, mẫu câu, chia sẻ trong nhóm, kiểm thử trợ lý, bảo trì, ranh giới dữ liệu",
+  "idStart": 2360,
+  "lessons": 20
+ },
+ {
+  "stage": 49,
+  "cluster": "tools",
+  "name": {
+   "vi": "AI trên điện thoại và làm việc di động",
+   "en": "AI on your phone and mobile work"
+  },
+  "theme": "giọng nói, camera, dịch, ghi chú, làm việc khi đi đường, bảo mật điện thoại, thông báo, khi nào không nên dùng",
+  "idStart": 2380,
+  "lessons": 20
+ },
+ {
+  "stage": 50,
+  "cluster": "tools",
+  "name": {
+   "vi": "Theo kịp công cụ AI mới mà không mệt",
+   "en": "Keeping up with new AI tools"
+  },
+  "theme": "cách theo dõi công cụ mới, thử trong 30 phút, checklist đánh giá, thí điểm nhỏ, chi phí, dữ liệu, quyết định dùng/bỏ, ghi chép, chia sẻ cho phòng",
+  "idStart": 2400,
+  "lessons": 20
+ },
+ {
+  "stage": 51,
+  "cluster": "auto",
+  "name": {
+   "vi": "Tự động hoá không cần code: kích hoạt và hành động",
+   "en": "No-code automation: triggers and actions"
+  },
+  "theme": "khái niệm Zapier/Make/n8n-kiểu bằng ví dụ đời thường: kích hoạt, điều kiện, hành động, dữ liệu qua từng bước, thử và bật, giới hạn",
+  "idStart": 2420,
+  "lessons": 20
+ },
+ {
+  "stage": 52,
+  "cluster": "auto",
+  "name": {
+   "vi": "Google Sheets, Apps Script và biểu mẫu",
+   "en": "Google Sheets, Apps Script and forms"
+  },
+  "theme": "biểu mẫu vào bảng, công thức tự động, kịch bản nhỏ do AI viết và bạn kiểm, gửi email từ bảng, lịch, sao lưu",
+  "idStart": 2440,
+  "lessons": 20
+ },
+ {
+  "stage": 53,
+  "cluster": "auto",
+  "name": {
+   "vi": "Power Automate và tự động hoá Office",
+   "en": "Power Automate and Office automation"
+  },
+  "theme": "luồng việc trong hệ Microsoft, phê duyệt, thông báo, tệp và thư mục, Excel tự động, cách thử và giám sát",
+  "idStart": 2460,
+  "lessons": 20
+ },
+ {
+  "stage": 54,
+  "cluster": "auto",
+  "name": {
+   "vi": "Tự động hoá email, lịch và tin nhắn",
+   "en": "Automating email, calendar and messages"
+  },
+  "theme": "quy tắc hộp thư, nhãn, trả lời mẫu, lịch họp, nhắc việc, tin nhắn khách hàng, giờ yên tĩnh, tránh spam",
+  "idStart": 2480,
+  "lessons": 20
+ },
+ {
+  "stage": 55,
+  "cluster": "auto",
+  "name": {
+   "vi": "Quy trình có AI và người duyệt",
+   "en": "Workflows with AI and a human reviewer"
+  },
+  "theme": "bước AI trong quy trình: phân loại, tóm tắt, soạn nháp; cổng duyệt; ghi nhật ký; xử lý lỗi; đo hiệu quả; agent đơn giản",
+  "idStart": 2500,
+  "lessons": 20
+ },
+ {
+  "stage": 56,
+  "cluster": "build",
+  "name": {
+   "vi": "Làm trang web đầu tiên cùng AI",
+   "en": "Your first website with AI"
+  },
+  "theme": "người không lập trình dựng trang giới thiệu: mô tả, dựng, sửa từng bước, xem trước, nội dung thật, hình ảnh",
+  "idStart": 2520,
+  "lessons": 20
+ },
+ {
+  "stage": 57,
+  "cluster": "build",
+  "name": {
+   "vi": "Làm công cụ nhỏ cho công việc",
+   "en": "Small tools for your own work"
+  },
+  "theme": "biểu mẫu, máy tính, bảng theo dõi, trang quản lý đơn giản dựng cùng AI; dữ liệu lưu ở đâu; thử với người dùng thật",
+  "idStart": 2540,
+  "lessons": 20
+ },
+ {
+  "stage": 58,
+  "cluster": "build",
+  "name": {
+   "vi": "Đọc và sửa lỗi cùng AI",
+   "en": "Reading and fixing errors with AI"
+  },
+  "theme": "đọc thông báo lỗi, tìm nguyên nhân, hỏi AI đúng cách, thử từng thay đổi, quay lại bản cũ, biết lúc nào cần người",
+  "idStart": 2560,
+  "lessons": 20
+ },
+ {
+  "stage": 59,
+  "cluster": "build",
+  "name": {
+   "vi": "Đưa sản phẩm lên mạng an toàn",
+   "en": "Publishing your product safely"
+  },
+  "theme": "tên miền, lưu trữ, HTTPS, mật khẩu và khoá bí mật, sao lưu, theo dõi, cập nhật, chi phí",
+  "idStart": 2580,
+  "lessons": 20
+ },
+ {
+  "stage": 60,
+  "cluster": "build",
+  "name": {
+   "vi": "Chatbot và bot hỏi-đáp cho doanh nghiệp nhỏ",
+   "en": "Chatbots and Q&A bots for small business"
+  },
+  "theme": "bot trả lời từ tài liệu của shop, giới hạn, chuyển cho người, kiểm thử câu hỏi khó, đo chất lượng, cập nhật nội dung",
+  "idStart": 2600,
+  "lessons": 20
+ },
+ {
+  "stage": 61,
+  "cluster": "data",
+  "name": {
+   "vi": "Bảng tính nâng cao với AI",
+   "en": "Advanced spreadsheets with AI"
+  },
+  "theme": "công thức tra cứu, pivot, làm sạch, tổng hợp nhiều bảng, kiểm công thức AI viết, mẫu báo cáo tái sử dụng",
+  "idStart": 2620,
+  "lessons": 20
+ },
+ {
+  "stage": 62,
+  "cluster": "data",
+  "name": {
+   "vi": "Biểu đồ và dashboard cho người không làm dữ liệu",
+   "en": "Charts and dashboards for non-analysts"
+  },
+  "theme": "chọn biểu đồ đúng, Looker Studio/Power BI-kiểu, bảng điều khiển gọn, kể chuyện bằng số, tránh biểu đồ đánh lừa",
+  "idStart": 2640,
+  "lessons": 20
+ },
+ {
+  "stage": 63,
+  "cluster": "data",
+  "name": {
+   "vi": "Đọc số liệu có kiểm chứng",
+   "en": "Reading numbers with care"
+  },
+  "theme": "trung bình và trung vị, tỷ lệ, so sánh công bằng, mẫu nhỏ, thử A/B đơn giản, tương quan không phải nhân quả, câu hỏi khi nhận báo cáo",
+  "idStart": 2660,
+  "lessons": 20
+ },
+ {
+  "stage": 64,
+  "cluster": "safe",
+  "name": {
+   "vi": "Dùng AI có trách nhiệm trong tổ chức",
+   "en": "Responsible AI use in organisations"
+  },
+  "theme": "chính sách, đánh giá rủi ro, danh sách công cụ được duyệt, đào tạo nhân viên, nhật ký sử dụng, khi có sự cố, đo lường lợi ích",
+  "idStart": 2680,
+  "lessons": 20
+ },
+ {
+  "stage": 65,
+  "cluster": "safe",
+  "name": {
+   "vi": "Quyền riêng tư và dữ liệu cá nhân trong công việc",
+   "en": "Privacy and personal data at work"
+  },
+  "theme": "nguyên tắc dữ liệu cá nhân, đồng ý, tối thiểu hoá, ẩn danh, lưu và xoá, dữ liệu khách hàng và nhân viên; nêu nguyên tắc, luôn hỏi pháp chế cho quy định cụ thể",
+  "idStart": 2700,
+  "lessons": 20
+ },
+ {
+  "stage": 66,
+  "cluster": "base",
+  "name": {
+   "vi": "Nền tảng công nghệ cho người đi làm",
+   "en": "Tech foundations for working adults"
+  },
+  "theme": "máy tính và lưu trữ, mạng và Wi-Fi, đám mây là gì, mật khẩu và xác thực hai lớp, lừa đảo, sao lưu, phần mềm và cập nhật, đọc thông báo lỗi",
+  "idStart": 2720,
+  "lessons": 20
+ }
+]

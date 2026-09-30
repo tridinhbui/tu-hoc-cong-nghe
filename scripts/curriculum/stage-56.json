@@ -1,0 +1,209 @@
+{
+ "stage": 56,
+ "label": "Chặng 56",
+ "name": {
+  "vi": "Làm trang web đầu tiên cùng AI",
+  "en": "Your first website with AI"
+ },
+ "idStart": 2520,
+ "parts": [
+  {
+   "vi": "Trang của bạn nói gì",
+   "en": "What your page says"
+  },
+  {
+   "vi": "Dựng từng bước",
+   "en": "Building step by step"
+  },
+  {
+   "vi": "Sửa và làm cho đẹp",
+   "en": "Fixing and polishing"
+  },
+  {
+   "vi": "Nội dung thật và đưa cho người khác xem",
+   "en": "Real content and showing others"
+  }
+ ],
+ "lessons": [
+  {
+   "id": 2520,
+   "slug": "trang-gioi-thieu-dau-tien-cho-ai",
+   "title": "Bạn cần một trang giới thiệu cho ai, để họ làm gì",
+   "part": 0,
+   "brief": "Bạn viết ba câu: người xem là ai, họ cần biết gì, họ nên bấm nút nào, trước khi nhờ AI dựng gì cả.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2521,
+   "slug": "mo-ta-trang-bang-loi-thuong",
+   "title": "Mô tả trang bằng lời thường: từ trên xuống dưới",
+   "part": 0,
+   "brief": "Bạn liệt kê các phần của trang theo thứ tự cuộn và nhờ AI đề xuất bố cục, rồi bạn gạch bớt.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2522,
+   "slug": "chon-noi-dung-that-truoc-khi-dung",
+   "title": "Gom nội dung thật trước: ảnh, giá, số điện thoại, giờ mở cửa",
+   "part": 0,
+   "brief": "AI không biết cửa hàng của bạn mở lúc mấy giờ; bạn chuẩn bị bảng thông tin thật để không phải sửa chữ giả về sau.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2523,
+   "slug": "xem-truoc-trang-lan-dau-trong-trinh-duyet",
+   "title": "Xem trang lần đầu trong trình duyệt và biết mình đang nhìn gì",
+   "part": 0,
+   "brief": "Bạn mở trang AI dựng, so từng phần với bản mô tả và ghi chỗ khác biệt; dùng trình mô phỏng soạn thảo để thử một chỉnh sửa nhỏ.",
+   "practice": "sim:editor:change-heading",
+   "visual": "flow"
+  },
+  {
+   "id": 2524,
+   "slug": "du-an-nho-ban-nhap-giay-cua-trang",
+   "title": "Dự án nhỏ: bản phác giấy của trang trước khi nhờ AI",
+   "part": 0,
+   "brief": "Vẽ tay bố cục, ghi chữ thật vào từng khung và chụp lại để làm đề bài cho AI ở bài sau.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2525,
+   "slug": "dua-ban-phac-cho-ai-de-dung-phan-dau",
+   "title": "Đưa bản phác cho AI dựng phần đầu trang",
+   "part": 1,
+   "brief": "Bạn giao đúng một phần (tiêu đề và nút chính), nêu rõ chữ, màu chủ đạo và điều không được thêm.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2526,
+   "slug": "dung-tung-phan-mot-khong-dung-ca-trang",
+   "title": "Dựng từng phần một, xem kết quả rồi mới làm tiếp",
+   "part": 1,
+   "brief": "Bạn thấy vì sao dựng cả trang một lần khó sửa, và tập nhịp: nhờ một phần, xem, ghi nhận xét, nhờ tiếp.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2527,
+   "slug": "them-phan-gioi-thieu-va-dich-vu",
+   "title": "Thêm phần giới thiệu và dịch vụ bằng chữ của chính bạn",
+   "part": 1,
+   "brief": "Bạn dán đoạn giới thiệu bạn viết, nhờ AI chỉ chỉnh chính tả và ngắt đoạn mà không đổi ý.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2528,
+   "slug": "phan-lien-he-va-nut-goi-nhan-tin",
+   "title": "Phần liên hệ: nút gọi, nhắn tin và bản đồ có thật sự chạy",
+   "part": 1,
+   "brief": "Bạn thử từng nút trên điện thoại của mình và ghi nút nào dẫn sai chỗ.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2529,
+   "slug": "du-an-nho-trang-co-bon-phan-chay-duoc",
+   "title": "Dự án nhỏ: trang có bốn phần chạy được trên máy bạn",
+   "part": 1,
+   "brief": "Ghép các phần đã dựng thành một trang, mở trên máy tính và điện thoại, ghi năm điều muốn sửa.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2530,
+   "slug": "sua-mot-cho-khong-lam-hong-cho-khac",
+   "title": "Sửa một chỗ mà không làm hỏng chỗ khác",
+   "part": 2,
+   "brief": "Bạn học cách nói với AI 'chỉ đổi dòng này, giữ nguyên phần còn lại' và kiểm lại toàn trang sau mỗi lần.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2531,
+   "slug": "xem-tren-dien-thoai-truoc-vi-khach-xem-o-do",
+   "title": "Xem trên điện thoại trước: khách của bạn thường xem ở đó",
+   "part": 2,
+   "brief": "Bạn duyệt trang trên màn hình nhỏ, tìm chữ quá bé, nút quá sát, ảnh tràn và mô tả lại cho AI.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2532,
+   "slug": "chon-mau-va-chu-de-doc-khong-moi-mat",
+   "title": "Chọn màu và chữ để đọc dễ, không cần là nhà thiết kế",
+   "part": 2,
+   "brief": "Bạn giới hạn hai màu và một kiểu chữ, nhờ AI đề xuất ba phương án và chọn theo độ dễ đọc.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2533,
+   "slug": "hinh-anh-that-nhe-va-co-chu-thich",
+   "title": "Hình ảnh thật: chọn, thu nhỏ và viết chú thích thay thế",
+   "part": 2,
+   "brief": "Ảnh nặng làm trang tải chậm; bạn xem ảnh nặng bao nhiêu thì khách chờ bao lâu và viết mô tả cho người không nhìn được ảnh.",
+   "practice": "scenario",
+   "visual": "chart:thời gian tải theo dung lượng ảnh"
+  },
+  {
+   "id": 2534,
+   "slug": "du-an-nho-trang-dep-hon-tren-ca-hai-man-hinh",
+   "title": "Dự án nhỏ: trang ổn trên cả điện thoại lẫn máy tính",
+   "part": 2,
+   "brief": "Chạy danh sách kiểm sáu mục (chữ, nút, ảnh, màu, liên hệ, tốc độ) và sửa các mục chưa đạt.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2535,
+   "slug": "thay-chu-mau-bang-noi-dung-that-cua-ban",
+   "title": "Thay hết chữ mẫu bằng nội dung thật, không sót chữ 'Lorem'",
+   "part": 3,
+   "brief": "Tìm mọi chỗ còn chữ giả, số điện thoại mẫu, tên tạm; đọc to từng dòng như khách đọc.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2536,
+   "slug": "nho-nguoi-khac-xem-va-ghi-lai-ho-vap-o-dau",
+   "title": "Nhờ một người xem thử và im lặng ghi lại họ vấp ở đâu",
+   "part": 3,
+   "brief": "Bạn đưa trang cho một người quen, giao một việc (tìm giờ mở cửa) và đếm thời gian họ mất.",
+   "practice": "scenario",
+   "visual": "chart:giây để người xem tìm ra thông tin theo số lần sửa"
+  },
+  {
+   "id": 2537,
+   "slug": "dua-trang-len-mang-can-nhac-gi-truoc",
+   "title": "Trước khi cho người lạ thấy trang: rà thông tin cá nhân và quyền dùng ảnh",
+   "part": 3,
+   "brief": "Bạn rà xem trang có lộ địa chỉ nhà, số điện thoại riêng, ảnh của người khác chưa xin phép; cần đọc hướng dẫn chính thức của nơi đăng trang để biết cách bật, tắt hiển thị.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2538,
+   "slug": "cap-nhat-trang-khi-gia-hoac-gio-doi",
+   "title": "Cập nhật trang khi giá hoặc giờ mở cửa đổi",
+   "part": 3,
+   "brief": "Bạn lập quy trình nhỏ: ai sửa, sửa ở đâu, kiểm lại bằng cách nào và ghi ngày sửa.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2539,
+   "slug": "tong-ket-trang-web-dau-tien-cua-ban",
+   "title": "Tổng kết: trang đầu tiên của bạn, từ bản phác đến người xem thật",
+   "part": 3,
+   "brief": "Bạn trình bày trang trong hai phút: nó phục vụ ai, đã sửa những gì qua các vòng và bước tiếp theo.",
+   "practice": "sim:editor:about-page",
+   "visual": "flow"
+  }
+ ]
+}

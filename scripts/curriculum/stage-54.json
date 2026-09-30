@@ -1,0 +1,209 @@
+{
+ "stage": 54,
+ "label": "Chặng 54",
+ "name": {
+  "vi": "Tự động hoá email, lịch và tin nhắn",
+  "en": "Automating email, calendar and messages"
+ },
+ "idStart": 2480,
+ "parts": [
+  {
+   "vi": "Dọn hộp thư trước",
+   "en": "Tidy the inbox first"
+  },
+  {
+   "vi": "Trả lời nhanh mà vẫn có hồn",
+   "en": "Fast replies with a human touch"
+  },
+  {
+   "vi": "Lịch họp và nhắc việc",
+   "en": "Calendar and reminders"
+  },
+  {
+   "vi": "Tin nhắn khách hàng đúng lúc, đúng mức",
+   "en": "Customer messages, right time, right amount"
+  }
+ ],
+ "lessons": [
+  {
+   "id": 2480,
+   "slug": "hop-thu-dau-tuan-loc-ra-viec-that",
+   "title": "Sáng thứ Hai 200 email chưa đọc: lọc ra việc thật bằng một câu lệnh",
+   "part": 0,
+   "brief": "Mở hộp thư sau kỳ nghỉ thấy 200 email; bạn nhờ AI phân nhóm 20 tiêu đề (đã xoá tên người) thành cần làm, chỉ để biết, có thể bỏ.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2481,
+   "slug": "quy-tac-hop-thu-tu-cau-noi-thuong",
+   "title": "Viết quy tắc hộp thư bằng câu nói thường rồi kiểm tra từng dòng",
+   "part": 0,
+   "brief": "Bạn mô tả 'thư báo giá đưa vào thư mục riêng' cho AI viết thành điều kiện, rồi tự đọc xem điều kiện có bắt nhầm thư nào không.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2482,
+   "slug": "nhan-mau-cho-email-de-nhin-la-biet",
+   "title": "Ba màu nhãn đủ cho cả tuần làm việc",
+   "part": 0,
+   "brief": "Bạn chọn ba nhãn (gấp, chờ người khác, đọc sau) và nhờ AI đề xuất từ khoá tiêu đề để gắn nhãn tự động cho thư của mình.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2483,
+   "slug": "thu-bao-tu-he-thong-gom-lai-mot-cho",
+   "title": "Thư thông báo tự động mỗi ngày mười cái: gom lại đọc một lần",
+   "part": 0,
+   "brief": "Hộp thư ngập thông báo của phần mềm; bạn quyết định cái nào nên chuyển thành bản tóm tắt cuối ngày và cái nào phải nổi lên ngay.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2484,
+   "slug": "du-an-nho-hop-thu-gon-trong-mot-buoi",
+   "title": "Dự án nhỏ: một hộp thư gọn với năm quy tắc bạn tự tin",
+   "part": 0,
+   "brief": "Bạn lập bộ năm quy tắc cho hộp thư của mình, thử trên 30 thư cũ và ghi lại quy tắc nào bắt nhầm.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2485,
+   "slug": "tra-loi-mau-cho-cau-hoi-hay-gap",
+   "title": "Bộ trả lời mẫu cho năm câu hỏi khách hỏi đi hỏi lại",
+   "part": 1,
+   "brief": "Đếm xem tuần qua mình gõ lại cùng một câu bao nhiêu lần, rồi nhờ AI soạn mẫu có chỗ trống để điền tên và ngày.",
+   "practice": "aiLab-prompt",
+   "visual": "chart:giờ gõ lại mỗi tuần theo số câu hỏi lặp"
+  },
+  {
+   "id": 2486,
+   "slug": "mau-tra-loi-khong-nghe-nhu-may",
+   "title": "Mẫu trả lời nghe như người viết, không như máy",
+   "part": 1,
+   "brief": "Đọc ba bản trả lời AI soạn và chỉ ra chỗ nào khách sẽ thấy lạnh hoặc sáo rỗng, rồi sửa giọng cho hợp cách bạn nói.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2487,
+   "slug": "email-tu-choi-lich-su-khong-mat-quan-he",
+   "title": "Email từ chối khéo: nói không mà vẫn giữ được khách",
+   "part": 1,
+   "brief": "Một khách xin giảm giá quá mức; bạn nhờ AI viết ba cách từ chối và chọn cách hợp tình huống nhất.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2488,
+   "slug": "nhac-lai-khi-doi-tac-im-lang",
+   "title": "Nhắc lại khi đối tác im lặng ba ngày",
+   "part": 1,
+   "brief": "Bạn soạn chuỗi hai email nhắc, cách nhau vài ngày, đủ rõ việc cần làm mà không gây khó chịu.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2489,
+   "slug": "du-an-nho-bo-mau-tra-loi-cua-rieng-ban",
+   "title": "Dự án nhỏ: bộ mẫu trả lời của riêng bạn, có dòng cấm sửa",
+   "part": 1,
+   "brief": "Gom năm mẫu trả lời, đánh dấu chỗ phải người thật điền (số tiền, ngày, tên) và chỗ không được để AI tự thêm.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2490,
+   "slug": "dat-lich-hop-khong-qua-lai-mot-tuan",
+   "title": "Hẹn họp khỏi email qua lại mười lượt",
+   "part": 2,
+   "brief": "Ba người bận khác giờ; bạn nhờ AI đề xuất ba khung giờ từ danh sách rảnh bận bạn tự gõ và soạn thư mời gọn.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2491,
+   "slug": "nhac-viec-truoc-han-hai-buoc",
+   "title": "Nhắc việc hai bước: một tuần trước và một ngày trước",
+   "part": 2,
+   "brief": "Với hạn nộp báo cáo hàng tháng, bạn thiết kế hai lần nhắc và nội dung mỗi lần nhắc để không bị bỏ qua.",
+   "practice": "scenario",
+   "visual": "chart:thời gian còn lại theo số ngày trước hạn"
+  },
+  {
+   "id": 2492,
+   "slug": "bien-ban-hop-thanh-viec-co-ten-nguoi",
+   "title": "Biên bản họp thành việc có tên người và ngày",
+   "part": 2,
+   "brief": "Từ ghi chú họp lộn xộn bạn tự gõ, nhờ AI tách ra ai làm gì đến khi nào, rồi kiểm tra xem có ai bị gán nhầm việc.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2493,
+   "slug": "lich-tuan-chan-gio-lam-viec-sau",
+   "title": "Chặn giờ làm sâu trên lịch để họp không nuốt hết ngày",
+   "part": 2,
+   "brief": "Bạn nhìn lịch tuần, đếm giờ họp so với giờ làm việc thật, rồi đặt hai khung không nhận họp.",
+   "practice": "scenario",
+   "visual": "chart:giờ họp so với giờ làm sâu mỗi tuần"
+  },
+  {
+   "id": 2494,
+   "slug": "du-an-nho-tuan-lam-viec-co-nhip",
+   "title": "Dự án nhỏ: một tuần có nhịp, từ lịch đến nhắc việc",
+   "part": 2,
+   "brief": "Lập lịch một tuần mẫu gồm khung làm sâu, giờ trả email và hai lời nhắc; chạy thử một tuần và ghi lại điều chỉnh.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2495,
+   "slug": "tin-nhan-xac-nhan-don-cho-khach",
+   "title": "Tin nhắn xác nhận đơn: ngắn, đủ ba thông tin",
+   "part": 3,
+   "brief": "Khách đặt hàng qua tin nhắn; bạn soạn mẫu xác nhận có tên hàng, số tiền, ngày giao và chỗ để người thật kiểm trước khi gửi.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2496,
+   "slug": "gio-yen-tinh-khong-nhan-tin-ban-dem",
+   "title": "Giờ yên tĩnh: khi nào tin nhắn không được gửi đi",
+   "part": 3,
+   "brief": "Khách nhận thông báo lúc 23 giờ và phàn nàn; bạn đặt khung giờ được gửi và quy tắc hoãn sang sáng hôm sau.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2497,
+   "slug": "tranh-bi-danh-dau-thu-rac-khi-gui-hang-loat",
+   "title": "Gửi cho nhiều người mà không bị coi là thư rác",
+   "part": 3,
+   "brief": "Bạn soát một bản thư gửi 100 khách xem chỗ nào dễ bị bộ lọc thư rác nghi ngờ; cần tra hướng dẫn chính thức của dịch vụ thư đang dùng để kiểm chứng.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2498,
+   "slug": "dong-y-nhan-tin-va-cach-ngung",
+   "title": "Khách đồng ý nhận tin thế nào, và cách họ ngừng nhận",
+   "part": 3,
+   "brief": "Bạn viết dòng xin đồng ý và dòng huỷ đăng ký rõ ràng, rồi kiểm tra danh sách xem có ai đã từ chối mà vẫn nằm trong đó; không nêu điều luật, chỉ hỏi bộ phận pháp chế khi cần.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2499,
+   "slug": "tong-ket-he-thong-nhan-tin-mot-trang",
+   "title": "Tổng kết: một trang mô tả hộp thư, lịch và tin nhắn của bạn chạy thế nào",
+   "part": 3,
+   "brief": "Bạn viết sơ đồ một trang: thư nào tự xử lý, thư nào người thật duyệt, lịch nhắc nào, giờ yên tĩnh; đo bằng số giờ tiết kiệm mỗi tuần.",
+   "practice": "aiLab-prompt",
+   "visual": "chart:giờ tiết kiệm mỗi tuần theo số thư tự xử lý"
+  }
+ ]
+}

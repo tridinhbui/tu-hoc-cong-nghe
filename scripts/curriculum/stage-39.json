@@ -1,0 +1,209 @@
+{
+ "stage": 39,
+ "label": "Chặng 39",
+ "name": {
+  "vi": "Phòng khám và hành chính y tế",
+  "en": "Clinics and health administration"
+ },
+ "idStart": 2180,
+ "parts": [
+  {
+   "vi": "Lịch hẹn và tin nhắn hằng ngày",
+   "en": "Daily appointments and messages"
+  },
+  {
+   "vi": "Hướng dẫn và giấy tờ cho người bệnh",
+   "en": "Patient guides and paperwork"
+  },
+  {
+   "vi": "Quầy thuốc, kho và điều phối",
+   "en": "Pharmacy counter, stock and coordination"
+  },
+  {
+   "vi": "Riêng tư, quy trình và dự án cuối",
+   "en": "Privacy, procedures and final project"
+  }
+ ],
+ "lessons": [
+  {
+   "id": 2180,
+   "slug": "phong-kham-nhac-lich-hen-de-thuong",
+   "title": "Nhắn nhắc lịch hẹn ngắn gọn, không lộ bệnh",
+   "part": 0,
+   "brief": "Sáng thứ Hai lễ tân phải nhắn nhắc 30 người hẹn khám; bạn nhờ AI viết mẫu tin nhắn chỉ có giờ, địa điểm, cách đổi lịch, tuyệt đối không ghi lý do khám.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2181,
+   "slug": "phong-kham-tra-loi-hoi-gio-mo-cua",
+   "title": "Trả lời câu hỏi giờ mở cửa và cách đặt hẹn",
+   "part": 0,
+   "brief": "Điện thoại và Zalo của phòng khám lặp đi lặp lại vài câu hỏi giống nhau; bạn soạn bộ trả lời mẫu từ thông tin thật của phòng khám, chỉ dùng thông tin bạn đưa vào.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2182,
+   "slug": "phong-kham-doc-ra-tin-nhan-benh-nhan-kho-hieu",
+   "title": "Đọc ra ý chính trong tin nhắn dài dòng của người bệnh",
+   "part": 0,
+   "brief": "Một người nhắn ba đoạn lộn xộn; bạn nhờ AI tóm việc hành chính cần làm (đổi lịch, hỏi giá, xin giấy) và chuyển câu hỏi y khoa cho nhân viên chuyên môn, không nhờ AI trả lời.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2183,
+   "slug": "phong-kham-tin-nhan-xin-loi-khi-tre-lich",
+   "title": "Xin lỗi khi bác sĩ trễ giờ mà không hứa quá lời",
+   "part": 0,
+   "brief": "Phòng chờ đông vì lịch bị dồn; bạn viết tin xin lỗi chân thành, nêu mốc giờ đã xác nhận với bác sĩ, không đoán thời gian.",
+   "practice": "aiLab-prompt",
+   "visual": "chart:thời gian chờ trung bình (phút) theo số ca trễ trong buổi"
+  },
+  {
+   "id": 2184,
+   "slug": "phong-kham-du-an-nho-bo-tin-mau-tuan",
+   "title": "Dự án nhỏ: bộ 6 tin mẫu dùng cả tuần cho quầy lễ tân",
+   "part": 0,
+   "brief": "Gom nhắc lịch, đổi lịch, xin lỗi, hỏi giờ thành một tệp mẫu có chỗ trống điền tên và giờ; kiểm lại từng mẫu không chứa thông tin sức khỏe.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2185,
+   "slug": "phong-kham-to-roi-huong-dan-chuan-bi-truoc-kham",
+   "title": "Tờ hướng dẫn giấy tờ cần mang khi đến khám",
+   "part": 1,
+   "brief": "Người bệnh hay quên thẻ, giấy chuyển tuyến; bạn viết tờ một trang liệt kê giấy tờ theo thông tin phòng khám cung cấp, để bác sĩ hoặc quản lý duyệt trước khi in.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2186,
+   "slug": "phong-kham-doi-chu-kho-thanh-cach-noi-de-hieu",
+   "title": "Đổi câu chữ hành chính khó thành lời dễ hiểu",
+   "part": 1,
+   "brief": "Biểu mẫu có câu dài như văn bản cơ quan; bạn nhờ AI viết lại thành câu ngắn, rồi tự đối chiếu để nghĩa không đổi, nhất là các mục người bệnh phải ký.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2187,
+   "slug": "phong-kham-bang-gia-dich-vu-de-doc",
+   "title": "Trình bày bảng giá dịch vụ để người bệnh khỏi hỏi lại",
+   "part": 1,
+   "brief": "Bảng giá hiện là một khối chữ dày; bạn nhờ AI dàn thành bảng gọn theo số liệu giá bạn dán vào, rồi so từng dòng với bản gốc để không lệch số.",
+   "practice": "aiLab-spotError",
+   "visual": "chart:số cuộc gọi hỏi giá theo độ rõ của bảng giá"
+  },
+  {
+   "id": 2188,
+   "slug": "phong-kham-dich-tam-to-huong-dan-cho-khach-nuoc-ngoai",
+   "title": "Dịch tờ hướng dẫn cho khách nước ngoài và cách kiểm lại",
+   "part": 1,
+   "brief": "Phòng khám có khách ít nói tiếng Việt; bạn dịch tờ hành chính rồi nhờ người biết ngôn ngữ đó đọc lại, không tin bản dịch tự động cho phần dặn dò chuyên môn.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2189,
+   "slug": "phong-kham-du-an-nho-bo-to-huong-dan-ba-trang",
+   "title": "Dự án nhỏ: bộ ba tờ hướng dẫn được người có chuyên môn duyệt",
+   "part": 1,
+   "brief": "Làm ba tờ hành chính (giấy tờ, thanh toán, đổi lịch), gắn nhãn bản nháp chờ duyệt và ghi rõ ai duyệt, ngày nào.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2190,
+   "slug": "nha-thuoc-viet-loi-dan-tu-thong-tin-tren-hop",
+   "title": "Soạn lời dặn khách từ tờ hướng dẫn in sẵn trong hộp",
+   "part": 2,
+   "brief": "Khách hỏi cách dùng; bạn chỉ dùng chữ trên tờ hướng dẫn chính hãng dược sĩ đã xác nhận để viết bản dễ đọc, không tự thêm liều hay chỉ định.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2191,
+   "slug": "nha-thuoc-chuyen-cau-hoi-suc-khoe-cho-duoc-si",
+   "title": "Nhận biết câu hỏi phải chuyển cho dược sĩ, bác sĩ",
+   "part": 2,
+   "brief": "Khách hỏi 'uống chung được không'; bạn luyện phân loại tin nhắn nào là hành chính, tin nào phải chuyển ngay cho người có chuyên môn và soạn câu chuyển tiếp lịch sự.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2192,
+   "slug": "nha-thuoc-kiem-ton-kho-hang-thang-bang-bang-tinh",
+   "title": "Đối chiếu tồn kho cuối tháng giữa sổ và bảng tính",
+   "part": 2,
+   "brief": "Số trên sổ và số đếm thực tế lệch; bạn nhờ AI chỉ ra dòng lệch, rồi tự đi đếm lại kệ trước khi kết luận nguyên nhân.",
+   "practice": "aiLab-prompt",
+   "visual": "chart:số lượng chênh lệch theo tuần kiểm kho"
+  },
+  {
+   "id": 2193,
+   "slug": "nha-thuoc-nhac-han-dung-va-ke-hang-can-date",
+   "title": "Lập danh sách hàng sắp hết hạn để xếp lại kệ",
+   "part": 2,
+   "brief": "Cuối tuần bạn có 40 dòng hạn dùng; nhờ AI sắp theo ngày, sau đó tự soát đủ mọi dòng vì AI dễ bỏ sót hoặc đọc nhầm ngày.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2194,
+   "slug": "nha-thuoc-du-an-nho-quy-trinh-mot-trang-cho-ca-moi",
+   "title": "Dự án nhỏ: quy trình một trang cho nhân viên ca mới",
+   "part": 2,
+   "brief": "Viết quy trình mở quầy, tiếp khách, chuyển câu hỏi chuyên môn, đóng quầy từ ghi chú của chị quản lý, để chị xác nhận từng bước.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2195,
+   "slug": "phong-kham-khong-dan-ho-so-benh-nhan-vao-ai",
+   "title": "Không dán hồ sơ người bệnh vào AI: ba tình huống suýt lộ",
+   "part": 3,
+   "brief": "Nhân viên muốn 'nhờ AI tóm ca này cho nhanh'; bạn nhận ra tên, số điện thoại, mã hồ sơ, ảnh chụp đơn thuốc đều là thông tin không được dán.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2196,
+   "slug": "phong-kham-thay-ten-that-bang-ma-truoc-khi-nho-ai",
+   "title": "Ẩn danh tài liệu trước khi nhờ AI giúp phần hành chính",
+   "part": 3,
+   "brief": "Bạn cần AI sắp xếp một bảng lịch hẹn; bạn thay tên, số điện thoại bằng mã ngẫu nhiên rồi mới dán, và hiểu vì sao cách này vẫn cần hỏi quy định nội bộ.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2197,
+   "slug": "phong-kham-hoi-quan-ly-truoc-khi-dung-ai-ve-quy-dinh",
+   "title": "Hỏi quản lý và bộ phận pháp chế trước khi dùng AI",
+   "part": 3,
+   "brief": "Bạn soạn ba câu hỏi ngắn gửi quản lý: được dùng công cụ nào, được đưa dữ liệu loại nào, ai duyệt; không trích điều luật, chỉ hỏi người có trách nhiệm.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2198,
+   "slug": "phong-kham-nhat-ky-loi-sai-va-cach-bao-cao-noi-bo",
+   "title": "Ghi nhật ký lỗi nhỏ và báo nội bộ mà không đổ lỗi",
+   "part": 3,
+   "brief": "Một tin nhắn nhầm người nhận; bạn viết bản báo cáo sự việc ngắn: chuyện gì xảy ra, ai biết, đã làm gì, để quản lý quyết định bước tiếp theo.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2199,
+   "slug": "phong-kham-du-an-cuoi-bo-quy-trinh-hanh-chinh-co-ai-ho-tro",
+   "title": "Dự án cuối: bộ quy trình hành chính có AI hỗ trợ và có người duyệt",
+   "part": 3,
+   "brief": "Ghép tin mẫu, tờ hướng dẫn, quy trình ca, danh sách việc không được làm với AI thành một bộ gọn cho phòng khám của bạn, ghi rõ ai duyệt trước khi dùng.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  }
+ ]
+}

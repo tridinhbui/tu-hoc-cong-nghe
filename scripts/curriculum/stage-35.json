@@ -1,0 +1,209 @@
+{
+ "stage": 35,
+ "label": "Chặng 35",
+ "name": {
+  "vi": "Du lịch, khách sạn và dịch vụ",
+  "en": "Travel, hospitality and services"
+ },
+ "idStart": 2100,
+ "parts": [
+  {
+   "vi": "Trả lời khách nhanh và đúng",
+   "en": "Answering guests fast and accurately"
+  },
+  {
+   "vi": "Lịch trình và khách nước ngoài",
+   "en": "Itineraries and international guests"
+  },
+  {
+   "vi": "Giá phòng, giá tour và đánh giá",
+   "en": "Room rates, tour prices and reviews"
+  },
+  {
+   "vi": "Tình huống khó và vận hành mùa cao điểm",
+   "en": "Difficult situations and peak season"
+  }
+ ],
+ "lessons": [
+  {
+   "id": 2100,
+   "slug": "tra-loi-tin-nhan-dat-phong-luc-nua-dem",
+   "title": "Trả lời tin nhắn hỏi đặt phòng lúc nửa đêm",
+   "part": 0,
+   "brief": "Khách nhắn hỏi phòng vào lúc quầy đã đóng. Bạn nhờ AI soạn câu trả lời mẫu nêu rõ điều bạn chắc chắn và điều cần xác nhận sáng mai.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2101,
+   "slug": "soat-cau-tra-loi-hua-qua-tay",
+   "title": "Câu trả lời khách này hứa điều quầy chưa chắc làm được",
+   "part": 0,
+   "brief": "Bạn xem một câu trả lời AI viết hứa nhận phòng sớm và đón sân bay miễn phí. Bạn tập gạch những lời hứa cần hỏi lại trước.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2102,
+   "slug": "khach-den-som-phong-chua-don-xong",
+   "title": "Khách đến sớm hơn giờ nhận phòng trong khi phòng chưa sẵn sàng",
+   "part": 0,
+   "brief": "Gia đình khách đã đứng ở quầy với hành lý. Qua tình huống, bạn chọn cách nói và cách đề xuất để khách vẫn thấy được đón tiếp.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2103,
+   "slug": "bo-cau-hoi-thuong-gap-cho-homestay",
+   "title": "Gom bộ câu hỏi thường gặp của homestay",
+   "part": 0,
+   "brief": "Khách hay hỏi giờ nhận phòng, đường đi, chỗ để xe. Bạn nhờ AI gom từ tin nhắn cũ thành mục hỏi đáp, rồi tự kiểm tra từng thông tin.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2104,
+   "slug": "mini-du-an-tin-nhan-mau-truoc-chuyen-di",
+   "title": "Mini-dự án: chuỗi tin nhắn mẫu từ lúc đặt đến khi khách đến",
+   "part": 0,
+   "brief": "Bạn soạn ba tin nhắn mẫu: xác nhận đặt, dặn trước ngày đến, chào ngày nhận phòng. Dùng được luôn cho khách kế tiếp.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2105,
+   "slug": "lam-lich-trinh-ba-ngay-cho-mot-nhom",
+   "title": "Làm lịch trình ba ngày cho một đoàn khách",
+   "part": 1,
+   "brief": "Nhóm khách có trẻ nhỏ và một người lớn tuổi. Bạn nhờ AI dựng lịch trình theo nhịp thoải mái rồi đối chiếu thời gian di chuyển thực tế.",
+   "practice": "aiLab-prompt",
+   "visual": "chart:thời gian di chuyển theo số điểm dừng trong ngày"
+  },
+  {
+   "id": 2106,
+   "slug": "bat-loi-trong-lich-trinh-ai-viet",
+   "title": "Lịch trình AI viết có điểm đóng cửa và đường đi vô lý",
+   "part": 1,
+   "brief": "Bạn nhận một lịch trình có điểm tham quan nghỉ ngày đó và hai điểm cách nhau nửa ngày đường. Bạn tập soát từng chặng và xác minh từ nguồn chính thức.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2107,
+   "slug": "khach-nuoc-ngoai-nhan-tin-bang-ngon-ngu-la",
+   "title": "Khách nhắn bằng ngôn ngữ bạn không rành",
+   "part": 1,
+   "brief": "Một khách nhắn tiếng nước ngoài. Bạn nhờ AI dịch và soạn trả lời, rồi học cách kiểm tra bản dịch bằng dịch ngược trước khi gửi.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2108,
+   "slug": "hieu-nham-vi-cau-dich-o-quay",
+   "title": "Một câu dịch sai và khách tưởng được hoàn tiền",
+   "part": 1,
+   "brief": "Có hiểu lầm vì bản dịch quá thoáng. Qua tình huống, bạn tập xác nhận lại bằng lời đơn giản, có chữ số và ngày cụ thể.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2109,
+   "slug": "mini-du-an-so-tay-cau-mau-da-ngon-ngu",
+   "title": "Mini-dự án: sổ tay câu mẫu cho quầy",
+   "part": 1,
+   "brief": "Bạn soạn mười câu hay dùng ở quầy như chào, giờ nhận phòng, hướng dẫn đường, xin lỗi, rồi nhờ người biết ngoại ngữ kiểm tra lại.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2110,
+   "slug": "dat-gia-phong-theo-mua-vu",
+   "title": "Cân nhắc giá phòng khi mùa vắng và mùa đông",
+   "part": 2,
+   "brief": "Bạn có số đêm bán và giá cũ. Bạn nhờ AI dựng bảng thử vài mức giá, tự xem doanh thu và tỷ lệ lấp đầy thay đổi ra sao.",
+   "practice": "aiLab-prompt",
+   "visual": "chart:doanh thu theo giá phòng và tỷ lệ lấp đầy"
+  },
+  {
+   "id": 2111,
+   "slug": "soat-bang-tinh-gia-tour",
+   "title": "Bảng tính giá tour có dòng chi phí bị bỏ sót",
+   "part": 2,
+   "brief": "Bạn rà bảng tính giá tour AI tạo, tìm khoản như phí vào cổng, tiền tip hay xe đón bị thiếu, rồi tính lại lãi.",
+   "practice": "aiLab-spotError",
+   "visual": "chart:giá vốn tour theo số khách"
+  },
+  {
+   "id": 2112,
+   "slug": "khach-doi-gia-vi-thay-noi-khac-re-hon",
+   "title": "Khách đòi giảm vì thấy nơi khác rẻ hơn",
+   "part": 2,
+   "brief": "Khách gửi ảnh chụp giá bên khác. Qua tình huống, bạn tập cách trả lời không hạ giá vội và nêu giá trị thật đi kèm.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2113,
+   "slug": "doc-danh-gia-khach-san-de-tim-viec-can-sua",
+   "title": "Đọc đánh giá của khách để tìm việc cần sửa trước",
+   "part": 2,
+   "brief": "Bạn nhờ AI gom hàng chục đánh giá theo chủ đề, rồi chọn ba việc sửa được trong tuần và bỏ qua những chuyện ngoài tầm.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2114,
+   "slug": "mini-du-an-bang-gia-phong-mot-mua",
+   "title": "Mini-dự án: bảng giá phòng cho một mùa",
+   "part": 2,
+   "brief": "Bạn dựng bảng giá cho ngày thường, cuối tuần và lễ từ số liệu của mình, kèm ghi chú khi nào xét lại. Số thật do bạn nhập.",
+   "practice": "aiLab-prompt",
+   "visual": "chart:giá phòng theo mức lấp đầy dự kiến"
+  },
+  {
+   "id": 2115,
+   "slug": "khach-khieu-nai-phong-o-ngay-dem-dau",
+   "title": "Khách khiếu nại về phòng ngay đêm đầu tiên",
+   "part": 3,
+   "brief": "Điều hoà ồn và khách muốn đổi phòng lúc khuya. Qua tình huống, bạn chọn cách xin lỗi, đề xuất phương án và ghi lại sự việc.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2116,
+   "slug": "khach-yeu-cau-viec-ngoai-quy-dinh",
+   "title": "Khách yêu cầu điều trái quy định của cơ sở",
+   "part": 3,
+   "brief": "Khách xin thêm người ở mà không đăng ký. Bạn tập từ chối lịch sự, giải thích và đưa lựa chọn khác, nhờ AI chỉnh giọng nhưng không thay quy định.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2117,
+   "slug": "soat-thu-xin-loi-co-that-long",
+   "title": "Thư xin lỗi khách này nghe có thật lòng không",
+   "part": 3,
+   "brief": "Bạn xem thư xin lỗi do AI viết nghe khuôn mẫu, không nêu việc cụ thể. Bạn tập sửa để có sự việc, việc đã làm và điều sẽ đổi.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2118,
+   "slug": "mini-du-an-checklist-mua-cao-diem",
+   "title": "Mini-dự án: checklist cho tuần đông khách nhất",
+   "part": 3,
+   "brief": "Bạn lập checklist trước, trong và sau mùa cao điểm: phòng, nhân sự, câu trả lời mẫu, phương án khi quá tải, rồi nhờ AI đóng khách khó thử lại.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2119,
+   "slug": "de-an-cuoi-mot-ngay-lam-viec-tron-ven",
+   "title": "Capstone: một ngày làm việc trọn vẹn ở quầy",
+   "part": 3,
+   "brief": "Bạn đi trọn một ngày: tin nhắn buổi sáng, lịch trình cho khách, đổi giá và một khiếu nại chiều muộn. Bạn tự làm bằng bộ mẫu đã dựng ở các bài trước.",
+   "practice": "scenario",
+   "visual": "flow"
+  }
+ ]
+}

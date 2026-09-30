@@ -1,0 +1,209 @@
+{
+ "stage": 33,
+ "label": "Chặng 33",
+ "name": {
+  "vi": "Quản lý nhóm và người dẫn dắt",
+  "en": "Team leads and managers"
+ },
+ "idStart": 2060,
+ "parts": [
+  {
+   "vi": "Giao việc rõ ràng ngay từ tuần đầu",
+   "en": "Assigning work clearly"
+  },
+  {
+   "vi": "Phản hồi và trò chuyện 1-1",
+   "en": "Feedback and one-on-ones"
+  },
+  {
+   "vi": "Mục tiêu và quyết định của nhóm",
+   "en": "Team goals and decisions"
+  },
+  {
+   "vi": "Truyền đạt thay đổi và dẫn dắt cả nhóm",
+   "en": "Communicating change and leading the team"
+  }
+ ],
+ "lessons": [
+  {
+   "id": 2060,
+   "slug": "giao-viec-mot-trang-cho-nguoi-moi",
+   "title": "Giao một việc bằng một trang giấy",
+   "part": 0,
+   "brief": "Sáng thứ Hai bạn giao việc miệng và chiều thứ Năm nhận về thứ không như ý. Sau bài, bạn nhờ AI viết một trang giao việc: kết quả cần, hạn, mức chất lượng, ai quyết định.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2061,
+   "slug": "kiem-tra-loi-giao-viec-mo-ho",
+   "title": "Tìm chỗ mơ hồ trong tin nhắn giao việc",
+   "part": 0,
+   "brief": "Bạn dán tin nhắn giao việc đã gửi vào AI và nhờ chỉ ra những chỗ người nhận có thể hiểu sai. Sau bài, bạn soát được một tin nhắn trong 5 phút trước khi gửi.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2062,
+   "slug": "nhan-viec-gap-luc-dang-ban",
+   "title": "Sếp ném việc gấp khi nhóm đã kín lịch",
+   "part": 0,
+   "brief": "Sếp nhắn việc gấp lúc cả nhóm đang bận. Bạn tập cân nhắc nên đẩy việc nào, nhờ ai, và nói với sếp ra sao, qua một tình huống chọn hướng xử lý.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2063,
+   "slug": "chia-viec-lon-thanh-viec-nho",
+   "title": "Bẻ một việc to thành các việc nhỏ có người nhận",
+   "part": 0,
+   "brief": "Bạn có một việc lớn kéo dài cả tháng. Bạn nhờ AI tách thành các bước nhỏ và kiểm tra mỗi bước có chủ và hạn rõ chưa.",
+   "practice": "aiLab-prompt",
+   "visual": "chart:số giờ còn lại theo số người nhận việc"
+  },
+  {
+   "id": 2064,
+   "slug": "mini-du-an-bang-giao-viec-tuan",
+   "title": "Mini-dự án: bảng giao việc cho cả tuần",
+   "part": 0,
+   "brief": "Bạn gom các việc đang có của nhóm thành một bảng giao việc một tuần, có người nhận, hạn và điều kiện xong. Kết quả là bảng thật dùng ngay thứ Hai.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2065,
+   "slug": "chuan-bi-cuoc-1-1-dau-tien",
+   "title": "Chuẩn bị cuộc 1-1 đầu tiên với một bạn trong nhóm",
+   "part": 1,
+   "brief": "Bạn sắp ngồi 1-1 lần đầu và không biết hỏi gì ngoài chuyện công việc. Bạn nhờ AI gợi ý câu hỏi mở và một khung 30 phút gọn.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2066,
+   "slug": "phan-hoi-thang-ma-khong-gay",
+   "title": "Viết lại lời phản hồi thẳng nhưng không làm người ta xẹp",
+   "part": 1,
+   "brief": "Bạn cần nói với một bạn rằng báo cáo hay trễ hạn. Bạn nhờ AI viết lại theo hướng nêu sự việc, ảnh hưởng và đề nghị, rồi đọc lại xem còn chỗ nào nặng lời.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2067,
+   "slug": "bat-loi-trong-ban-phan-hoi-nhap",
+   "title": "Bản phản hồi nháp này sai ở đâu",
+   "part": 1,
+   "brief": "Bạn xem một lời phản hồi do AI viết, có chỗ đánh giá tính cách thay vì nêu hành vi, và tập chỉ ra từng chỗ cần sửa.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2068,
+   "slug": "nguoi-gioi-nhung-hay-lam-thay-viec",
+   "title": "Bạn giỏi nhất nhóm nhưng cứ ôm việc và làm thay người khác",
+   "part": 1,
+   "brief": "Một bạn giỏi hay làm thay đồng nghiệp rồi kiệt sức. Qua tình huống, bạn tập chọn cách trao đổi và chia lại việc mà vẫn giữ được chất lượng.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2069,
+   "slug": "mini-du-an-so-tay-1-1-cho-ca-nhom",
+   "title": "Mini-dự án: sổ tay 1-1 cho từng người trong nhóm",
+   "part": 1,
+   "brief": "Bạn dựng một mẫu ghi chú 1-1 gồm việc đã hứa, vướng mắc và điều cần hỗ trợ, và điền thử cho một cuộc gặp gần nhất. Không dán thông tin nhạy cảm về sức khoẻ hay gia đình vào công cụ.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2070,
+   "slug": "dat-muc-tieu-nhom-tu-viec-dang-lam",
+   "title": "Đặt mục tiêu quý từ những việc nhóm đang làm",
+   "part": 2,
+   "brief": "Đến hạn nộp mục tiêu quý mà bạn chỉ có một danh sách việc. Bạn nhờ AI gom việc thành vài mục tiêu có thể đo và kiểm tra xem con số có thật không.",
+   "practice": "aiLab-prompt",
+   "visual": "chart:số việc hoàn thành theo tuần"
+  },
+  {
+   "id": 2071,
+   "slug": "so-sanh-hai-huong-truoc-khi-quyet",
+   "title": "So sánh hai hướng đi trước khi chốt",
+   "part": 2,
+   "brief": "Nhóm đang phân vân giữa hai cách làm. Bạn nhờ AI lập bảng được và mất, rồi tự đánh dấu điều AI không thể biết về hoàn cảnh nhóm.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2072,
+   "slug": "bat-loi-trong-bang-so-sanh-cua-ai",
+   "title": "Bảng so sánh của AI có chỗ bịa số",
+   "part": 2,
+   "brief": "Bạn nhận một bảng so sánh có vài con số không ai cung cấp. Bạn tập soát từng số, hỏi nguồn ở đâu và gạch những gì chưa kiểm chứng.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2073,
+   "slug": "khi-hai-nguoi-trong-nhom-bat-dong",
+   "title": "Hai bạn trong nhóm bất đồng và cùng tìm đến bạn",
+   "part": 2,
+   "brief": "Hai người nhắn riêng cho bạn, mỗi người một phiên bản. Qua tình huống, bạn tập nghe hai phía, hỏi dữ kiện và chọn bước tiếp theo. Chuyện cá nhân không đưa vào công cụ AI.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2074,
+   "slug": "mini-du-an-nhat-ky-quyet-dinh",
+   "title": "Mini-dự án: nhật ký quyết định của nhóm",
+   "part": 2,
+   "brief": "Bạn lập một nhật ký ngắn cho các quyết định gần đây gồm bối cảnh, phương án, lý do chọn và ngày xem lại, dùng AI để gọn lại lời văn.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2075,
+   "slug": "thong-bao-thay-doi-de-nguoi-ta-doc-het",
+   "title": "Thông báo một thay đổi để cả nhóm đọc và hiểu",
+   "part": 3,
+   "brief": "Quy trình sắp đổi, bạn cần báo cả nhóm. Bạn nhờ AI viết bản ngắn: điều gì đổi, từ khi nào, ảnh hưởng ai, hỏi ai khi vướng.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2076,
+   "slug": "doc-lai-thong-bao-truoc-khi-gui",
+   "title": "Đọc lại thông báo dưới con mắt người bị ảnh hưởng",
+   "part": 3,
+   "brief": "Bạn có một thông báo AI viết trơn tru nhưng bỏ sót điều người nhận quan tâm nhất. Bạn tập soát bằng bốn câu hỏi của người đọc.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2077,
+   "slug": "tra-loi-khi-nhom-lo-lang-ve-thay-doi",
+   "title": "Cả nhóm lo lắng sau một thay đổi và ai cũng hỏi bạn",
+   "part": 3,
+   "brief": "Sau thông báo, nhiều câu hỏi dồn về. Qua tình huống, bạn tập phân biệt điều đã biết, chưa biết và không được hứa, rồi soạn câu trả lời thật thà.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2078,
+   "slug": "giu-ba-gio-tap-trung-moi-tuan",
+   "title": "Tìm ba giờ tập trung mỗi tuần khi lịch kín họp",
+   "part": 3,
+   "brief": "Bạn tính xem thời gian đi đâu và nhờ AI đề xuất lịch chặn giờ, việc nào có thể bỏ hoặc gộp.",
+   "practice": "aiLab-prompt",
+   "visual": "chart:giờ họp theo ngày trong tuần"
+  },
+  {
+   "id": 2079,
+   "slug": "mini-du-an-ke-hoach-cua-nguoi-dan-dat",
+   "title": "Mini-dự án: kế hoạch một quý cho vai trò dẫn dắt của bạn",
+   "part": 3,
+   "brief": "Bạn ghép mọi thứ: giao việc, 1-1, mục tiêu, nhật ký quyết định và lịch tập trung thành một kế hoạch một trang cho quý tới, rồi cho AI đóng vai sếp chất vấn.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  }
+ ]
+}

@@ -1,0 +1,209 @@
+{
+ "stage": 38,
+ "label": "Chặng 38",
+ "name": {
+  "vi": "Sản xuất và vận hành nhà máy",
+  "en": "Manufacturing and plant operations"
+ },
+ "idStart": 2160,
+ "parts": [
+  {
+   "vi": "Quy trình và báo cáo ca",
+   "en": "Procedures and shift reports"
+  },
+  {
+   "vi": "Số liệu chuyền và chất lượng",
+   "en": "Line data and quality"
+  },
+  {
+   "vi": "Sự cố và bảo trì",
+   "en": "Incidents and maintenance"
+  },
+  {
+   "vi": "An toàn và cải tiến",
+   "en": "Safety and improvement"
+  }
+ ],
+ "lessons": [
+  {
+   "id": 2160,
+   "slug": "viet-lai-sop-tu-loi-giai-thich-cua-tho-lanh-nghe",
+   "title": "Viết lại SOP từ lời thợ lành nghề kể miệng",
+   "part": 0,
+   "brief": "Anh thợ giỏi làm được nhưng chưa từng viết ra. Bạn ghi lời kể, nhờ AI dựng các bước, rồi cho anh kiểm lại từng bước.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2161,
+   "slug": "ban-giao-ca-khong-sot-viec-bang-mot-trang",
+   "title": "Bàn giao ca không sót việc bằng một trang",
+   "part": 0,
+   "brief": "Ca đêm nhận máy mà không biết ca ngày đã chỉnh gì. Bạn dựng mẫu bàn giao ngắn gồm máy, sự cố, việc dở.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2162,
+   "slug": "bat-loi-buoc-thieu-trong-sop-do-ai-soan",
+   "title": "Bắt lỗi bước thiếu trong SOP do AI soạn",
+   "part": 0,
+   "brief": "AI viết đủ bước đẹp nhưng bỏ bước khóa nguồn trước khi vệ sinh. Bạn học đối chiếu SOP với thao tác thật tại máy.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2163,
+   "slug": "bao-cao-ca-tu-ghi-chu-roi-thanh-ban-gon",
+   "title": "Biến ghi chú lộn xộn cuối ca thành báo cáo gọn",
+   "part": 0,
+   "brief": "Cuối ca bạn chỉ có vài dòng và sản lượng. Bạn nhờ AI dựng báo cáo, giữ đúng con số bạn cung cấp.",
+   "practice": "aiLab-prompt",
+   "visual": "chart:sản lượng thực tế so với kế hoạch từng giờ"
+  },
+  {
+   "id": 2164,
+   "slug": "mini-mot-sop-va-mot-mau-ban-giao-ca",
+   "title": "Mini-dự án: một SOP ngắn kèm mẫu bàn giao ca",
+   "part": 0,
+   "brief": "Bạn chọn một công đoạn quen, làm SOP một trang và mẫu bàn giao, thử với đồng nghiệp ca kế.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2165,
+   "slug": "doc-so-lieu-chuyen-tim-gio-nang-suat-tut",
+   "title": "Đọc số liệu chuyền tìm giờ năng suất tụt",
+   "part": 1,
+   "brief": "Bảng sản lượng theo giờ có một khung tụt. Bạn nhờ AI mô tả xu hướng rồi tự đối chiếu với nhật ký ca.",
+   "practice": "aiLab-prompt",
+   "visual": "chart:sản lượng theo giờ trong ca"
+  },
+  {
+   "id": 2166,
+   "slug": "ty-le-loi-la-bao-nhieu-va-vi-sao-so-nho-van-dang-lo",
+   "title": "Tỷ lệ lỗi 2% nghe nhỏ nhưng tốn bao nhiêu",
+   "part": 1,
+   "brief": "Bạn kéo thanh trượt tỷ lệ lỗi và sản lượng để thấy số sản phẩm phế và chi phí làm lại mỗi tuần.",
+   "practice": "scenario",
+   "visual": "chart:số sản phẩm lỗi mỗi tuần theo tỷ lệ lỗi"
+  },
+  {
+   "id": 2167,
+   "slug": "bat-loi-ket-luan-ai-rut-ra-tu-bang-loi",
+   "title": "Bắt lỗi kết luận AI rút ra từ bảng lỗi",
+   "part": 1,
+   "brief": "AI kết luận máy B lỗi nhiều nhất trong khi máy B chạy gấp ba số giờ. Bạn học so tỷ lệ chứ không so số đếm.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2168,
+   "slug": "ghi-phieu-kiem-tra-chat-luong-de-ai-doc-duoc",
+   "title": "Ghi phiếu kiểm tra chất lượng để sau này còn tra được",
+   "part": 1,
+   "brief": "Phiếu QC viết tắt mỗi người một kiểu. Bạn thống nhất cách ghi và nhờ AI kiểm tra tính nhất quán của mẫu.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2169,
+   "slug": "mini-tuan-nay-chuyen-nao-dang-yeu-nhat",
+   "title": "Mini-dự án: đọc số liệu một tuần và chỉ ra chuyền yếu nhất",
+   "part": 1,
+   "brief": "Bạn có số liệu bảy ngày, làm một trang: chuyền nào yếu, bằng chứng gì, còn thiếu dữ liệu gì.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2170,
+   "slug": "mo-ta-su-co-may-dung-cho-ky-thuat-vien-de-hieu",
+   "title": "Mô tả sự cố máy dừng để kỹ thuật viên hiểu ngay",
+   "part": 2,
+   "brief": "Bạn báo 'máy hư' rồi kỹ thuật viên phải hỏi mười câu. Bạn nhờ AI dựng mẫu báo sự cố: hiện tượng, thời điểm, việc đã thử.",
+   "practice": "aiLab-prompt",
+   "visual": "chart:thời gian máy dừng tính theo phút mỗi ca"
+  },
+  {
+   "id": 2171,
+   "slug": "lap-lich-bao-tri-phong-ngua-tu-so-gio-chay",
+   "title": "Lập lịch bảo trì phòng ngừa từ số giờ chạy máy",
+   "part": 2,
+   "brief": "Bạn kéo thanh trượt số giờ giữa hai lần bảo trì để thấy đánh đổi giữa dừng máy chủ động và hỏng đột xuất.",
+   "practice": "scenario",
+   "visual": "chart:chi phí dừng máy theo khoảng cách giữa hai lần bảo trì"
+  },
+  {
+   "id": 2172,
+   "slug": "bat-loi-nguyen-nhan-goc-do-ai-de-xuat",
+   "title": "Bắt lỗi nguyên nhân gốc do AI đề xuất",
+   "part": 2,
+   "brief": "AI kết luận 'do thao tác viên' ngay từ dòng đầu. Bạn học hỏi 'vì sao' nhiều lớp và đòi bằng chứng.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2173,
+   "slug": "viet-bao-cao-su-co-khong-quy-loi-cho-ai",
+   "title": "Viết báo cáo sự cố nói việc, không quy lỗi cho người",
+   "part": 2,
+   "brief": "Cuối buổi họp sự cố, bạn phải viết báo cáo. Bạn nhờ AI dựng theo trình tự sự việc, giữ ngôn ngữ trung tính.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2174,
+   "slug": "mini-ho-so-mot-su-co-tu-bao-den-khac-phuc",
+   "title": "Mini-dự án: hồ sơ một sự cố từ lúc báo đến lúc khắc phục",
+   "part": 2,
+   "brief": "Bạn ghép mẫu báo sự cố, chuỗi nguyên nhân, và hành động khắc phục thành một hồ sơ để cả ca đọc được.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2175,
+   "slug": "soan-buoi-noi-an-toan-dau-ca-5-phut-khong-nham",
+   "title": "Soạn buổi nói an toàn đầu ca 5 phút không nhàm",
+   "part": 3,
+   "brief": "Buổi họp đầu ca năm nào cũng nhắc lại một bài. Bạn nhờ AI đổi bài theo tình huống thực tế mới xảy ra ở xưởng.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2176,
+   "slug": "ai-khong-thay-the-nguoi-kiem-tra-an-toan",
+   "title": "Ranh giới: việc an toàn nào AI không được quyết thay bạn",
+   "part": 3,
+   "brief": "Bạn cân nhắc hỏi AI xem có cần khóa máy hay không. Bạn học phân biệt gợi ý soạn tài liệu với quyết định an toàn thuộc về người có trách nhiệm.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2177,
+   "slug": "de-xuat-cai-tien-nho-co-so-lieu-truoc-sau",
+   "title": "Đề xuất một cải tiến nhỏ có số liệu trước và sau",
+   "part": 3,
+   "brief": "Bạn thấy công nhân đi lại thừa để lấy vật tư. Bạn ghi thời gian trước và dự kiến sau, nhờ AI trình bày rõ cho quản đốc.",
+   "practice": "scenario",
+   "visual": "chart:số phút đi lại mỗi ca trước và sau khi dời kệ"
+  },
+  {
+   "id": 2178,
+   "slug": "giu-bi-mat-cong-thuc-va-ban-ve-khi-dung-ai",
+   "title": "Giữ bí mật công thức và bản vẽ khi dùng AI",
+   "part": 3,
+   "brief": "Bạn muốn nhờ AI tóm tắt bản vẽ có thông số riêng. Bạn học che thông số, nhờ AI theo cấu trúc chứ không theo nội dung mật.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2179,
+   "slug": "tap-mau-ai-cho-to-truong-va-qc-capstone",
+   "title": "Tập mẫu làm việc với AI cho tổ trưởng và QC",
+   "part": 3,
+   "brief": "Capstone: bạn gom SOP, báo cáo ca, phiếu sự cố, buổi nói an toàn thành bộ mẫu dùng lâu dài cho tổ mình.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  }
+ ]
+}

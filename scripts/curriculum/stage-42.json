@@ -1,0 +1,209 @@
+{
+ "stage": 42,
+ "label": "Chặng 42",
+ "name": {
+  "vi": "Chọn và so sánh công cụ AI",
+  "en": "Choosing and comparing AI tools"
+ },
+ "idStart": 2240,
+ "parts": [
+  {
+   "vi": "Thử cùng một việc, hai công cụ",
+   "en": "One task, two tools"
+  },
+  {
+   "vi": "Nó nhớ được bao nhiêu",
+   "en": "How much it remembers"
+  },
+  {
+   "vi": "Tài liệu, web và dự án",
+   "en": "Files, web and projects"
+  },
+  {
+   "vi": "Chọn cho mình và cho nhóm",
+   "en": "Choosing for you and your team"
+  }
+ ],
+ "lessons": [
+  {
+   "id": 2240,
+   "slug": "thu-mot-viec-tren-hai-cong-cu",
+   "title": "Thử một việc thật trên hai công cụ AI",
+   "part": 0,
+   "brief": "Bạn có một email khó viết và đang phân vân dùng công cụ nào; bạn dán cùng một yêu cầu vào hai công cụ rồi đặt cạnh nhau.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2241,
+   "slug": "cham-diem-cau-tra-loi-bang-bang-tieu-chi",
+   "title": "Chấm điểm hai câu trả lời bằng bảng tiêu chí",
+   "part": 0,
+   "brief": "Sếp hỏi vì sao chọn công cụ này; bạn lập bảng 4 tiêu chí đơn giản và chấm ngay trên hai câu trả lời vừa có.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2242,
+   "slug": "cung-cau-hoi-khac-ket-qua-vi-sao",
+   "title": "Cùng một câu hỏi, sao mỗi lần một kết quả",
+   "part": 0,
+   "brief": "Bạn hỏi lại lần hai và câu trả lời khác hẳn; bài giúp bạn hiểu chuyện này bình thường và cách chốt kết quả cần dùng.",
+   "practice": "aiLab-spotError",
+   "visual": "chart:số lần hỏi lại so với mức khác biệt của câu trả lời"
+  },
+  {
+   "id": 2243,
+   "slug": "cong-cu-noi-tu-tin-nhung-sai",
+   "title": "Khi công cụ nói rất tự tin mà lại sai",
+   "part": 0,
+   "brief": "Một con số trong bản trả lời nghe rất chắc chắn; bạn học cách nhận ra dấu hiệu và tự kiểm tra trong 3 phút.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2244,
+   "slug": "du-an-nho-so-sanh-ba-cau-tra-loi",
+   "title": "Dự án nhỏ: so sánh ba câu trả lời cho một việc của bạn",
+   "part": 0,
+   "brief": "Bạn chọn một việc lặp lại trong tuần, cho hai công cụ làm và ghi lại nên dùng cái nào cho việc này.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2245,
+   "slug": "cua-so-ngu-canh-la-mot-cai-ban",
+   "title": "Cửa sổ ngữ cảnh: chiếc bàn có hạn",
+   "part": 1,
+   "brief": "Bạn dán một tập báo cáo dài và phần đầu bị quên; bài dùng hình ảnh chiếc bàn để hiểu vì sao và cách chia nhỏ việc.",
+   "practice": "scenario",
+   "visual": "chart:độ dài tài liệu dán vào so với phần được nhớ"
+  },
+  {
+   "id": 2246,
+   "slug": "cuoc-tro-chuyen-dai-va-viec-bi-quen",
+   "title": "Cuộc trò chuyện quá dài thì nên mở cuộc mới khi nào",
+   "part": 1,
+   "brief": "Sau nhiều giờ trò chuyện công cụ bắt đầu lặp lại và lẫn ý; bạn học dấu hiệu và cách tóm tắt để chuyển sang cuộc mới.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2247,
+   "slug": "bo-nho-cua-cong-cu-nho-gi-ve-ban",
+   "title": "Bộ nhớ của công cụ: nó nhớ gì về bạn",
+   "part": 1,
+   "brief": "Bạn nhận ra công cụ nhắc lại chuyện cũ mà bạn quên đã kể; bài dạy xem, xoá và quyết định điều nên và không nên để nó nhớ. Người viết cần kiểm chứng tài liệu chính thức của từng công cụ về tính năng bộ nhớ.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2248,
+   "slug": "ghi-chu-ve-ban-de-tra-loi-dung-giong",
+   "title": "Viết vài dòng giới thiệu về bạn để câu trả lời đúng giọng",
+   "part": 1,
+   "brief": "Bạn mệt vì lần nào cũng phải nói lại mình làm nghề gì; bạn soạn 5 dòng giới thiệu ngắn, không chứa thông tin nhạy cảm. Người viết kiểm chứng tài liệu chính thức về phần cài đặt cá nhân hoá.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2249,
+   "slug": "du-an-nho-bo-nho-va-cuoc-tro-chuyen-cua-tuan",
+   "title": "Dự án nhỏ: một cuộc trò chuyện chạy xuyên cả tuần",
+   "part": 1,
+   "brief": "Bạn theo dõi một dự án nhỏ suốt tuần và thử giữ mạch bằng bản tóm tắt cuối ngày, rồi xem nó có đỡ mất ý không.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2250,
+   "slug": "dinh-kem-tep-nen-cho-cong-cu-doc-gi",
+   "title": "Đính kèm tệp: công cụ đọc được gì và bỏ sót gì",
+   "part": 2,
+   "brief": "Bạn gửi một bảng tính và một bản scan; kết quả khác nhau rõ, bài chỉ ra loại tệp nào đọc chắc, loại nào dễ sai.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2251,
+   "slug": "tim-kiem-web-ket-qua-co-nguon-hay-khong",
+   "title": "Tìm kiếm trên web: câu trả lời có dẫn nguồn hay tự nghĩ ra",
+   "part": 2,
+   "brief": "Bạn cần thông tin mới trong tuần này; bạn học cách bật tìm kiếm, bấm vào nguồn và phân biệt câu có nguồn thật với câu chỉ trông có nguồn.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2252,
+   "slug": "khong-gian-du-an-gom-tai-lieu-mot-cho",
+   "title": "Không gian dự án: gom tài liệu và dặn dò một lần",
+   "part": 2,
+   "brief": "Bạn muốn một chỗ chứa bộ tài liệu và cách trả lời của một khách hàng; bài dạy cách gom và dặn thế nào để khỏi lặp lại. Người viết kiểm chứng tài liệu chính thức về khái niệm dự án ở từng công cụ.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2253,
+   "slug": "cung-mot-bang-tinh-hoi-ba-cach",
+   "title": "Cùng một bảng số, hỏi ba cách khác nhau",
+   "part": 2,
+   "brief": "Bạn nhờ công cụ tóm tắt bảng doanh thu và đối chiếu ba cách hỏi; bạn thấy cách hỏi nào làm lộ ra con số sai.",
+   "practice": "scenario",
+   "visual": "chart:số dòng dữ liệu so với số lỗi công cụ bỏ sót"
+  },
+  {
+   "id": 2254,
+   "slug": "du-an-nho-bo-tai-lieu-mot-khach-hang",
+   "title": "Dự án nhỏ: dựng bộ tài liệu cho một khách hàng",
+   "part": 2,
+   "brief": "Bạn chọn 3 tài liệu của một khách hàng, gom vào một chỗ, đặt 3 câu hỏi và kiểm xem trả lời có bám tài liệu không.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2255,
+   "slug": "goi-ca-nhan-hay-goi-doanh-nghiep-cau-hoi-can-hoi",
+   "title": "Gói cá nhân hay gói doanh nghiệp: những câu cần hỏi trước khi trả tiền",
+   "part": 3,
+   "brief": "Công ty bạn định mua công cụ cho cả phòng; bạn lập danh sách câu hỏi về dữ liệu, quyền truy cập và người quản trị, không nêu giá. Người viết kiểm chứng điều khoản chính thức.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2256,
+   "slug": "chi-phi-that-cua-mot-cong-cu-ai",
+   "title": "Tính chi phí thật: tiền, thời gian và rủi ro",
+   "part": 3,
+   "brief": "Bạn cần thuyết phục sếp; bạn tính bằng số của chính mình việc tiết kiệm bao nhiêu phút mỗi tuần so với chi phí và thời gian kiểm lại.",
+   "practice": "aiLab-prompt",
+   "visual": "chart:số phút tiết kiệm mỗi tuần so với chi phí và thời gian kiểm lại"
+  },
+  {
+   "id": 2257,
+   "slug": "du-lieu-cua-ban-co-dung-de-huan-luyen-khong",
+   "title": "Dữ liệu của bạn có bị dùng để huấn luyện không",
+   "part": 3,
+   "brief": "Bạn định dán hợp đồng vào công cụ; bạn học tìm đúng trang điều khoản và cài đặt về dữ liệu, và điều gì tuyệt đối không dán. Người viết kiểm chứng chính sách chính thức từng công cụ.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2258,
+   "slug": "quy-tac-chon-cong-cu-theo-viec-mot-trang",
+   "title": "Quy tắc chọn công cụ theo loại việc trong một trang",
+   "part": 3,
+   "brief": "Bạn tổng hợp những gì đã thử thành một trang: việc nào dùng công cụ nào và vì sao, để đồng nghiệp làm theo.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2259,
+   "slug": "capstone-bao-cao-de-xuat-cong-cu-cho-nhom",
+   "title": "Tổng kết: báo cáo đề xuất công cụ AI cho nhóm của bạn",
+   "part": 3,
+   "brief": "Bạn thử ba việc thật của nhóm, chấm bằng bảng tiêu chí, ghi rõ rủi ro dữ liệu và đề xuất một lựa chọn kèm cách kiểm lại sau một tháng.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  }
+ ]
+}

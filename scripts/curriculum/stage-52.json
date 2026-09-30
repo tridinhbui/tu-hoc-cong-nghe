@@ -1,0 +1,209 @@
+{
+ "stage": 52,
+ "label": "Chặng 52",
+ "name": {
+  "vi": "Google Sheets, Apps Script và biểu mẫu",
+  "en": "Google Sheets, Apps Script and forms"
+ },
+ "idStart": 2440,
+ "parts": [
+  {
+   "vi": "Biểu mẫu vào bảng",
+   "en": "Forms into sheets"
+  },
+  {
+   "vi": "Công thức làm thay bạn",
+   "en": "Formulas that do the work"
+  },
+  {
+   "vi": "Kịch bản nhỏ do AI viết, bạn kiểm",
+   "en": "Small scripts AI writes and you check"
+  },
+  {
+   "vi": "Chạy đều đặn và an toàn",
+   "en": "Running steadily and safely"
+  }
+ ],
+ "lessons": [
+  {
+   "id": 2440,
+   "slug": "bieu-mau-dang-ky-cho-cau-lac-bo-cua-ban",
+   "title": "Biểu mẫu đăng ký cho lớp hoặc nhóm: mỗi câu hỏi thành một cột",
+   "part": 0,
+   "brief": "Bạn cần thu tên, email, buổi tham dự của 40 người; bạn thiết kế các câu hỏi để mỗi câu ra đúng một cột sạch.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2441,
+   "slug": "cau-hoi-lua-chon-de-bang-khong-lan-lon",
+   "title": "Câu hỏi lựa chọn giúp bảng không lẫn lộn 'Hà Nội', 'HN', 'ha noi'",
+   "part": 0,
+   "brief": "Ba người viết một địa danh theo ba cách; bạn đổi câu hỏi mở thành lựa chọn để đếm được.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2442,
+   "slug": "doc-bang-tra-loi-va-dem-nhanh-theo-nhom",
+   "title": "Đọc bảng trả lời: đếm nhanh theo nhóm mà không lọc tay",
+   "part": 0,
+   "brief": "Bạn có 120 dòng phản hồi; bạn nhờ AI gợi ý cách đếm theo nhóm và tự kiểm ba con số.",
+   "practice": "scenario",
+   "visual": "chart:số phản hồi theo từng nhóm"
+  },
+  {
+   "id": 2443,
+   "slug": "loc-ban-ghi-trung-do-nguoi-dien-hai-lan",
+   "title": "Lọc bản ghi trùng do người điền hai lần",
+   "part": 0,
+   "brief": "Một người gửi biểu mẫu hai lần; bạn học cách tìm và giữ đúng một dòng có ghi lại lý do.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2444,
+   "slug": "mini-du-an-bang-diem-danh-tu-bieu-mau",
+   "title": "Mini dự án: bảng điểm danh tự điền từ một biểu mẫu",
+   "part": 0,
+   "brief": "Bạn nối biểu mẫu vào bảng, thêm cột trạng thái, và tự thử với năm dòng điểm danh giả.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2445,
+   "slug": "cong-thuc-tinh-tong-theo-dieu-kien-cho-thu-chi",
+   "title": "Công thức tính tổng theo điều kiện cho bảng thu chi cá nhân",
+   "part": 1,
+   "brief": "Bạn muốn biết tháng này tiêu bao nhiêu cho ăn uống; bạn nhờ AI viết công thức và giải thích từng phần.",
+   "practice": "aiLab-prompt",
+   "visual": "chart:tổng chi theo hạng mục trong tháng"
+  },
+  {
+   "id": 2446,
+   "slug": "cong-thuc-tra-cuu-gia-tu-bang-san-pham",
+   "title": "Công thức tra cứu giá từ bảng sản phẩm sang bảng đơn hàng",
+   "part": 1,
+   "brief": "Bạn nhập mã hàng và giá tự hiện; bạn kiểm ba mã, gồm một mã không tồn tại.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2447,
+   "slug": "cong-thuc-lan-lon-kieu-so-va-chu-trong-o",
+   "title": "Công thức sai vì ô chứa chữ trông như số",
+   "part": 1,
+   "brief": "Tổng cộng lệch 3 triệu do vài ô là chữ; bạn nhận ra dấu hiệu và cách làm sạch.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2448,
+   "slug": "dinh-dang-co-dieu-kien-de-thay-han-qua-han",
+   "title": "Tô màu tự động để thấy ngay việc quá hạn",
+   "part": 1,
+   "brief": "Bạn đặt quy tắc tô đỏ hạn nộp đã qua và tô vàng hạn trong ba ngày tới, rồi thử với ngày giả.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2449,
+   "slug": "mini-du-an-bang-tinh-cong-no-nho-tu-cap-nhat",
+   "title": "Mini dự án: bảng công nợ nhỏ tự cộng, tự tô màu quá hạn",
+   "part": 1,
+   "brief": "Bạn ghép công thức tổng, tra cứu và tô màu thành một bảng mà người khác nhập vẫn chạy đúng.",
+   "practice": "aiLab-prompt",
+   "visual": "chart:tổng công nợ theo số ngày quá hạn"
+  },
+  {
+   "id": 2450,
+   "slug": "nho-ai-viet-kich-ban-apps-script-dau-tien",
+   "title": "Nhờ AI viết kịch bản Apps Script đầu tiên: bạn mô tả việc, không mô tả code",
+   "part": 2,
+   "brief": "Bạn viết yêu cầu 'khi bảng có dòng mới thì làm gì' bằng lời và học đọc kịch bản AI trả về ở mức hiểu nó định làm gì.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2451,
+   "slug": "doc-kich-ban-ai-viet-truoc-khi-bam-chay",
+   "title": "Đọc kịch bản AI viết trước khi bấm chạy: năm câu hỏi cần trả lời",
+   "part": 2,
+   "brief": "Kịch bản có thể xoá dòng hoặc gửi email; bạn dùng danh sách năm câu để nhận ra hành động có rủi ro.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2452,
+   "slug": "cap-quyen-cho-kich-ban-va-nhung-quyen-nen-tu-choi",
+   "title": "Cấp quyền cho kịch bản: quyền nào nên cho, quyền nào nên từ chối",
+   "part": 2,
+   "brief": "Công cụ hỏi quyền đọc thư và mọi tệp Drive; bạn chọn mức quyền hẹp nhất đủ dùng. Người viết đối chiếu tài liệu Google chính thức về quyền của Apps Script.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2453,
+   "slug": "chay-thu-tren-ban-sao-truoc-khi-cham-vao-bang-that",
+   "title": "Chạy thử trên bản sao, không chạm vào bảng thật",
+   "part": 2,
+   "brief": "Bạn tạo bản sao bảng, chạy kịch bản và so sánh trước sau trước khi cho phép nó chạy trên bản thật.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2454,
+   "slug": "mini-du-an-kich-ban-them-ngay-gio-vao-dong-moi",
+   "title": "Mini dự án: kịch bản tự ghi ngày giờ khi một dòng đổi trạng thái",
+   "part": 2,
+   "brief": "Bạn nhờ AI viết, đọc lại, thử trên bản sao và ghi lại điều kiện để nó chỉ ghi khi đổi trạng thái.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2455,
+   "slug": "gui-email-nhac-han-tu-bang-theo-lo-nho",
+   "title": "Gửi email nhắc hạn từ bảng theo lô nhỏ, không gửi hàng loạt một lần",
+   "part": 3,
+   "brief": "Bạn có 30 người quá hạn; bạn đặt giới hạn số email mỗi lần chạy và thử gửi vào email của chính mình.",
+   "practice": "aiLab-spotError",
+   "visual": "chart:số email gửi mỗi lần chạy theo giới hạn hằng ngày"
+  },
+  {
+   "id": 2456,
+   "slug": "dat-lich-chay-dinh-ky-va-nhat-ky-ket-qua",
+   "title": "Đặt lịch chạy định kỳ và ghi nhật ký kết quả vào một tab riêng",
+   "part": 3,
+   "brief": "Bạn cho kịch bản chạy 8 giờ sáng và ghi mỗi lần chạy vào tab nhật ký để nhìn lại được.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2457,
+   "slug": "kich-ban-chay-cham-hoac-het-han-muc-cua-ngay",
+   "title": "Kịch bản chạy chậm hoặc dừng giữa chừng vì hết hạn mức trong ngày",
+   "part": 3,
+   "brief": "Bảng có 2.000 dòng và kịch bản dừng ở dòng 900; bạn học chia việc theo lô và ghi dòng đã xử lý để chạy tiếp. Người viết đối chiếu tài liệu Google chính thức về hạn mức.",
+   "practice": "aiLab-spotError",
+   "visual": "chart:số dòng xử lý mỗi lần chạy theo thời gian tối đa"
+  },
+  {
+   "id": 2458,
+   "slug": "sao-luu-bang-moi-tuan-va-cach-khoi-phuc-ban-cu",
+   "title": "Sao lưu bảng mỗi tuần và cách quay lại bản cũ khi lỡ tay",
+   "part": 3,
+   "brief": "Ai đó xoá nhầm một cột; bạn dựng thói quen sao lưu có tên ngày và tập khôi phục một dòng.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2459,
+   "slug": "capstone-bang-tinh-quan-ly-viec-tu-dong-hoan-chinh",
+   "title": "Tổng kết: bảng quản lý việc tự nhận biểu mẫu, tự nhắc hạn, tự sao lưu",
+   "part": 3,
+   "brief": "Bạn ghép biểu mẫu, công thức, kịch bản nhắc và sao lưu thành một hệ nhỏ và viết trang hướng dẫn cho đồng nghiệp.",
+   "practice": "scenario",
+   "visual": "flow"
+  }
+ ]
+}

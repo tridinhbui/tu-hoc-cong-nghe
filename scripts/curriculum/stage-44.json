@@ -1,0 +1,209 @@
+{
+ "stage": 44,
+ "label": "Chặng 44",
+ "name": {
+  "vi": "Trợ lý đọc tài liệu như NotebookLM",
+  "en": "Document assistants like NotebookLM"
+ },
+ "idStart": 2280,
+ "parts": [
+  {
+   "vi": "Hỏi tài liệu của mình",
+   "en": "Asking your own documents"
+  },
+  {
+   "vi": "Trích dẫn và kiểm chứng",
+   "en": "Citations and checking"
+  },
+  {
+   "vi": "Nhiều tài liệu, âm thanh",
+   "en": "Many sources, audio"
+  },
+  {
+   "vi": "An toàn và cách dùng lâu dài",
+   "en": "Safety and long-term use"
+  }
+ ],
+ "lessons": [
+  {
+   "id": 2280,
+   "slug": "hoi-mot-tai-lieu-thay-vi-doc-het-30-trang",
+   "title": "Hỏi một tài liệu thay vì đọc hết 30 trang",
+   "part": 0,
+   "brief": "Bạn có bản quy trình dài và chỉ cần biết một bước; bạn tải lên trợ lý đọc tài liệu và hỏi thẳng, rồi mở đúng trang xác nhận. Người viết kiểm chứng tài liệu chính thức về công cụ như NotebookLM.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2281,
+   "slug": "tro-ly-doc-tai-lieu-khac-chat-thuong-cho-nao",
+   "title": "Trợ lý đọc tài liệu khác trò chuyện thường ở chỗ nào",
+   "part": 0,
+   "brief": "Bạn thắc mắc vì sao cùng câu hỏi mà hai nơi trả lời khác; bài cho thấy điểm khác cốt lõi là câu trả lời bám vào nguồn bạn đưa.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2282,
+   "slug": "cau-hoi-tot-cho-tai-lieu-cu-the-thay-vi-chung-chung",
+   "title": "Câu hỏi tốt cho tài liệu: cụ thể thay vì chung chung",
+   "part": 0,
+   "brief": "Câu hỏi 'tóm tắt giúp tôi' cho ra thứ nhạt; bạn viết lại thành ba câu hỏi nhắm đúng việc mình cần.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2283,
+   "slug": "cau-tra-loi-khong-co-trong-tai-lieu",
+   "title": "Khi câu trả lời không hề có trong tài liệu",
+   "part": 0,
+   "brief": "Bạn hỏi điều mà tài liệu không nói và xem công cụ có dám nói không biết hay bịa; bạn học cách thử.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2284,
+   "slug": "du-an-nho-bo-cau-hoi-cho-mot-tai-lieu-cong-viec",
+   "title": "Dự án nhỏ: bộ câu hỏi cho một tài liệu công việc của bạn",
+   "part": 0,
+   "brief": "Bạn chọn một tài liệu thật, viết 5 câu hỏi, chấm mỗi câu trả lời đúng hay sai theo trang gốc.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2285,
+   "slug": "bam-vao-trich-dan-de-ve-trang-goc",
+   "title": "Bấm vào trích dẫn để về đúng trang gốc",
+   "part": 1,
+   "brief": "Trợ lý đưa ra câu trả lời kèm số nhỏ; bạn tập bấm vào từng số và xem đoạn gốc có thật sự nói vậy không.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2286,
+   "slug": "trich-dan-dung-cho-nhung-y-tra-loi-sai",
+   "title": "Trích dẫn đúng chỗ nhưng ý trả lời vẫn sai",
+   "part": 1,
+   "brief": "Đoạn được trích có thật nhưng bị hiểu ngược; bạn học cách nhận ra khi trích dẫn chỉ tạo cảm giác yên tâm.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2287,
+   "slug": "kiem-so-lieu-trong-cau-tra-loi-voi-bang-goc",
+   "title": "Kiểm số liệu trong câu trả lời với bảng gốc",
+   "part": 1,
+   "brief": "Câu trả lời nêu một con số; bạn đối chiếu với bảng gốc và ghi lại nơi lệch.",
+   "practice": "scenario",
+   "visual": "chart:số con số kiểm tra so với số lệch phát hiện"
+  },
+  {
+   "id": 2288,
+   "slug": "tai-lieu-scan-anh-chup-va-pdf-xau-doc-duoc-den-dau",
+   "title": "Tài liệu scan, ảnh chụp, PDF xấu: đọc được đến đâu",
+   "part": 1,
+   "brief": "Bạn có hợp đồng scan lệch và nhoè; bạn thử hỏi và kiểm xem công cụ đọc đúng phần nào.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2289,
+   "slug": "du-an-nho-kiem-tra-mot-cau-tra-loi-den-tan-goc",
+   "title": "Dự án nhỏ: kiểm một câu trả lời đến tận nguồn",
+   "part": 1,
+   "brief": "Bạn chọn 5 câu trả lời quan trọng, lần theo trích dẫn và lập bảng đúng, sai một phần, sai.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2290,
+   "slug": "tong-hop-ba-tai-lieu-thanh-mot-ban-tom-tat",
+   "title": "Tổng hợp ba tài liệu thành một bản tóm tắt",
+   "part": 2,
+   "brief": "Bạn có ba báo cáo của ba phòng ban; bạn nhờ tổng hợp điểm chung và điểm mâu thuẫn, rồi kiểm nguồn.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2291,
+   "slug": "hai-tai-lieu-noi-nguoc-nhau-ai-dung",
+   "title": "Hai tài liệu nói ngược nhau: ai đúng",
+   "part": 2,
+   "brief": "Bản quy định cũ và mới khác nhau; bạn nhờ công cụ chỉ ra chỗ khác và tự quyết định nguồn nào là chuẩn.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2292,
+   "slug": "gioi-han-kich-thuoc-va-so-luong-tai-lieu-khi-dua-vao",
+   "title": "Giới hạn kích thước và số lượng tài liệu",
+   "part": 2,
+   "brief": "Bạn tải lên cả thư mục và công cụ từ chối hoặc bỏ sót; bạn học cách chia nhỏ. Người viết kiểm chứng giới hạn chính thức của công cụ.",
+   "practice": "scenario",
+   "visual": "chart:số trang tải lên so với phần công cụ đọc được"
+  },
+  {
+   "id": 2293,
+   "slug": "tom-tat-dang-am-thanh-nghe-de-lam-gi-va-nghe-khong-du",
+   "title": "Tóm tắt dạng âm thanh: nghe để làm gì và vì sao chưa đủ",
+   "part": 2,
+   "brief": "Bạn nghe bản tóm tắt trên đường đi làm; bạn học cách dùng nó để làm quen rồi vẫn đọc nguồn cho việc quan trọng. Người viết kiểm chứng tài liệu chính thức về tóm tắt âm thanh.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2294,
+   "slug": "du-an-nho-bo-tai-lieu-hoc-cho-mot-chu-de-moi",
+   "title": "Dự án nhỏ: bộ tài liệu tự học một chủ đề mới",
+   "part": 2,
+   "brief": "Bạn cần nắm nhanh một lĩnh vực mới cho công việc; bạn gom 4 tài liệu tin cậy, hỏi và tự kiểm tra kiến thức.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2295,
+   "slug": "tai-lieu-nao-khong-bao-gio-nen-tai-len",
+   "title": "Tài liệu nào tuyệt đối không nên tải lên",
+   "part": 3,
+   "brief": "Bạn có bảng lương, hợp đồng khách hàng, hồ sơ cá nhân; bạn phân loại theo mức nhạy cảm và xem chính sách công ty trước.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2296,
+   "slug": "che-thong-tin-nhay-cam-truoc-khi-dua-vao-cong-cu",
+   "title": "Che thông tin nhạy cảm trước khi đưa vào công cụ",
+   "part": 3,
+   "brief": "Bạn vẫn cần hỏi về một hợp đồng mà không lộ tên và số; bạn tập thay bằng ký hiệu và kiểm tệp trước khi tải.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2297,
+   "slug": "chia-se-so-tay-voi-dong-nghiep-an-toan",
+   "title": "Chia sẻ sổ tay tài liệu với đồng nghiệp an toàn",
+   "part": 3,
+   "brief": "Bạn muốn cả nhóm dùng chung một bộ tài liệu; bạn học cân nhắc ai được xem, ai được sửa và điều cần hỏi bộ phận công nghệ thông tin.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2298,
+   "slug": "thoi-quen-kiem-tra-truoc-khi-dua-cau-tra-loi-vao-bao-cao",
+   "title": "Thói quen kiểm trước khi đưa câu trả lời vào báo cáo",
+   "part": 3,
+   "brief": "Bạn lập danh sách kiểm ngắn gồm nguồn, số liệu, ngữ cảnh để dùng mỗi lần.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2299,
+   "slug": "capstone-thu-vien-tai-lieu-cho-mot-mang-viec-cua-ban",
+   "title": "Tổng kết: thư viện tài liệu cho một mảng việc của bạn",
+   "part": 3,
+   "brief": "Bạn dựng bộ tài liệu, bộ câu hỏi và danh sách kiểm cho một mảng việc, để người khác dùng lại được.",
+   "practice": "scenario",
+   "visual": "flow"
+  }
+ ]
+}

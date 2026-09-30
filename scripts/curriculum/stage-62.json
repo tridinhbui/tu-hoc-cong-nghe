@@ -1,0 +1,209 @@
+{
+ "stage": 62,
+ "label": "Chặng 62",
+ "name": {
+  "vi": "Biểu đồ và dashboard cho người không làm dữ liệu",
+  "en": "Charts and dashboards for non-analysts"
+ },
+ "idStart": 2640,
+ "parts": [
+  {
+   "vi": "Một biểu đồ, một câu hỏi",
+   "en": "One chart, one question"
+  },
+  {
+   "vi": "Biểu đồ đánh lừa và cách nhận ra",
+   "en": "Misleading charts and how to spot them"
+  },
+  {
+   "vi": "Bảng điều khiển gọn cho một người xem",
+   "en": "A tidy dashboard for one viewer"
+  },
+  {
+   "vi": "Kể chuyện bằng số và bàn giao",
+   "en": "Telling the story with numbers and handing over"
+  }
+ ],
+ "lessons": [
+  {
+   "id": 2640,
+   "slug": "truoc-khi-ve-viet-cau-hoi-ma-sep-can-tra-loi",
+   "title": "Trước khi vẽ: viết câu hỏi mà người xem cần trả lời",
+   "part": 0,
+   "brief": "Bạn có bảng doanh thu và chưa biết vẽ gì; bạn viết một câu hỏi của người xem rồi mới chọn số cần cho vào.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2641,
+   "slug": "chon-cot-duong-hay-tron-theo-cau-hoi-khong-theo-so-thich",
+   "title": "Chọn cột, đường hay tròn theo câu hỏi, không theo sở thích",
+   "part": 0,
+   "brief": "Bạn ghép ba câu hỏi thật ở chỗ làm (so sánh, theo thời gian, tỷ trọng) với loại biểu đồ hợp.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2642,
+   "slug": "nhoi-ba-loai-so-lieu-vao-mot-bieu-do-nho-lai-con-mot",
+   "title": "Nhồi ba loại số vào một biểu đồ: bỏ bớt để người xem hiểu",
+   "part": 0,
+   "brief": "Một biểu đồ có tám đường chồng nhau; bạn quyết định giữ đường nào và nhờ AI đề xuất cách tách.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2643,
+   "slug": "dat-ten-tieu-de-noi-luon-ket-luan-thay-vi-ten-bang",
+   "title": "Tiêu đề nói luôn kết luận thay vì chỉ ghi tên bảng",
+   "part": 0,
+   "brief": "Bạn viết lại năm tiêu đề biểu đồ từ 'Doanh thu Q3' thành câu nói điều người xem nên thấy.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2644,
+   "slug": "du-an-nho-mot-bieu-do-tu-bang-cua-ban-kem-mot-cau-ket-luan",
+   "title": "Dự án nhỏ: một biểu đồ từ bảng của bạn kèm một câu kết luận",
+   "part": 0,
+   "brief": "Bạn làm một biểu đồ thật từ số ở chỗ làm, cho đồng nghiệp xem 30 giây và hỏi họ hiểu gì.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2645,
+   "slug": "truc-tung-khong-bat-dau-tu-0-cot-cao-gap-ba-lan-that",
+   "title": "Trục tung không bắt đầu từ 0: cột cao gấp ba lần thực tế",
+   "part": 1,
+   "brief": "Bạn so hai biểu đồ cùng số liệu và tính mức chênh thật giữa hai cột so với mức chênh nhìn thấy.",
+   "practice": "aiLab-spotError",
+   "visual": "chart:phần trăm chênh thật và chênh nhìn thấy theo điểm bắt đầu của trục"
+  },
+  {
+   "id": 2646,
+   "slug": "bieu-do-tron-mot-tam-lat-nhieu-lat-nho-doc-khong-noi",
+   "title": "Biểu đồ tròn mười hai lát: đọc không ra, thay bằng gì",
+   "part": 1,
+   "brief": "Bạn có mười hai nhóm chi phí; bạn thử xếp thành thanh ngang có thứ tự và so hai cách đọc.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2647,
+   "slug": "hai-truc-tung-khac-thang-do-de-tao-tuong-quan-gia",
+   "title": "Hai trục tung khác thang đo: dễ làm ra mối liên hệ không có",
+   "part": 1,
+   "brief": "Bạn thấy đường chi phí quảng cáo và đường doanh thu 'đi cùng nhau' và kiểm lại khi đưa chúng về cùng thang.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2648,
+   "slug": "chi-cat-mot-doan-thoi-gian-thuan-loi-cho-cau-chuyen",
+   "title": "Chỉ cắt một đoạn thời gian thuận lợi cho câu chuyện",
+   "part": 1,
+   "brief": "Một biểu đồ chỉ hiển thị ba tháng tăng; bạn hỏi số liệu cả năm và quyết định khung thời gian trung thực.",
+   "practice": "scenario",
+   "visual": "chart:doanh thu theo tháng trên cả năm so với chỉ ba tháng"
+  },
+  {
+   "id": 2649,
+   "slug": "du-an-nho-sua-ba-bieu-do-lam-tuong-thanh-ba-bieu-do-trung-thuc",
+   "title": "Dự án nhỏ: sửa ba biểu đồ dễ làm hiểu lầm thành ba biểu đồ trung thực",
+   "part": 1,
+   "brief": "Bạn lấy ba biểu đồ từ báo cáo cũ của công ty, ghi chỗ đánh lừa và vẽ lại.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2650,
+   "slug": "mot-dashboard-cho-mot-nguoi-xem-viet-nguoi-do-la-ai",
+   "title": "Một dashboard cho một người xem: viết trước người đó là ai",
+   "part": 2,
+   "brief": "Bạn chọn một người thật (chủ quán, trưởng nhóm) và viết ba quyết định mà họ đưa ra hàng tuần.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2651,
+   "slug": "chon-nam-con-so-quan-trong-nhat-cho-trang-dau",
+   "title": "Chọn năm con số quan trọng nhất cho trang đầu",
+   "part": 2,
+   "brief": "Bạn có 30 chỉ số và chỉ được giữ năm; bạn giải thích với AI quyết định nào mỗi số giúp.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2652,
+   "slug": "so-hom-nay-so-voi-tuan-truoc-de-thay-tot-hay-xau",
+   "title": "Số hôm nay so với tuần trước để thấy tốt hay xấu",
+   "part": 2,
+   "brief": "Một con số một mình không nói gì; bạn thêm mốc so sánh và ngưỡng màu, có kiểm việc màu không gây báo động giả.",
+   "practice": "aiLab-prompt",
+   "visual": "chart:doanh thu hôm nay so với cùng ngày tuần trước"
+  },
+  {
+   "id": 2653,
+   "slug": "dashboard-day-hai-muoi-o-chi-so-tim-o-nao-khong-ai-dung",
+   "title": "Dashboard hai mươi ô chỉ số: tìm những ô không ai dùng",
+   "part": 2,
+   "brief": "Bạn đọc bố cục một dashboard rối và chỉ ra ô nào không dẫn tới quyết định nào.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2654,
+   "slug": "du-an-nho-bang-dieu-khien-mot-trang-cho-viec-cua-ban",
+   "title": "Dự án nhỏ: bảng điều khiển một trang cho việc của bạn",
+   "part": 2,
+   "brief": "Bạn phác bố cục trên giấy rồi dựng bản đầu bằng công cụ bạn có, chỉ với năm ô.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2655,
+   "slug": "doc-bieu-do-thanh-loi-ke-chuyen-co-dau-co-giua-co-cuoi",
+   "title": "Biến biểu đồ thành lời kể: có đầu, có giữa, có kết",
+   "part": 3,
+   "brief": "Bạn viết ba câu cho buổi họp ngắn: điều đang xảy ra, vì sao đáng chú ý, cần làm gì.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2656,
+   "slug": "nhan-ra-so-lieu-thieu-gia-thich-truoc-khi-noi-nguyen-nhan",
+   "title": "Số tụt nhưng chưa biết vì sao: viết điều chưa biết thay vì đoán",
+   "part": 3,
+   "brief": "Doanh thu giảm và sếp đòi lý do; bạn tách điều số liệu cho thấy và điều còn phải hỏi thêm.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2657,
+   "slug": "ai-viet-nhan-xet-duoi-bieu-do-doi-chieu-tung-con-so",
+   "title": "AI viết nhận xét dưới biểu đồ: đối chiếu từng con số",
+   "part": 3,
+   "brief": "Bạn dán số liệu và nhận xét AI viết, đánh dấu câu bịa hoặc làm tròn lệch.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2658,
+   "slug": "giao-dashboard-cho-dong-nghiep-ghi-nguon-ngay-cap-nhat-va-gioi-han",
+   "title": "Giao dashboard cho đồng nghiệp: ghi nguồn, ngày cập nhật, giới hạn",
+   "part": 3,
+   "brief": "Bạn viết một ghi chú ngắn để người nhận biết số từ đâu, cập nhật khi nào và không nên dùng vào việc gì.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2659,
+   "slug": "du-an-cuoi-bo-bao-cao-mot-trang-co-bieu-do-kem-loi-ke-cho-cuoc-hop",
+   "title": "Dự án cuối: báo cáo một trang có biểu đồ kèm lời kể cho cuộc họp",
+   "part": 3,
+   "brief": "Bạn dựng dashboard nhỏ, biểu đồ trung thực và ba câu kể để trình bày 3 phút, sau đó thử với một đồng nghiệp.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  }
+ ]
+}

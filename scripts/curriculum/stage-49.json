@@ -1,0 +1,209 @@
+{
+ "stage": 49,
+ "label": "Chặng 49",
+ "name": {
+  "vi": "AI trên điện thoại và làm việc di động",
+  "en": "AI on your phone and mobile work"
+ },
+ "idStart": 2380,
+ "parts": [
+  {
+   "vi": "Nói và chụp thay vì gõ",
+   "en": "Speak and snap instead of typing"
+  },
+  {
+   "vi": "Dịch và ghi chú khi đi đường",
+   "en": "Translating and note-taking on the go"
+  },
+  {
+   "vi": "An toàn cho điện thoại làm việc",
+   "en": "Keeping a work phone safe"
+  },
+  {
+   "vi": "Quy trình di động cả ngày",
+   "en": "A mobile workflow for the whole day"
+  }
+ ],
+ "lessons": [
+  {
+   "id": 2380,
+   "slug": "noi-vao-dien-thoai-mot-phut-thanh-email-gon",
+   "title": "Nói vào điện thoại một phút, ra một email gọn",
+   "part": 0,
+   "brief": "Bạn vừa ra khỏi buổi gặp khách và muốn gửi thư cảm ơn ngay trên taxi. Bạn nói ý chính rồi nhờ AI thành email ba câu, đọc lại trước khi gửi.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2381,
+   "slug": "chup-danh-thiep-va-bien-nhan-thanh-danh-sach",
+   "title": "Chụp danh thiếp và biên nhận thành một danh sách",
+   "part": 0,
+   "brief": "Cuối buổi hội thảo bạn có mười tấm danh thiếp trong túi áo. Bạn chụp và nhờ AI chép thành bảng, rồi soát lại từng số điện thoại.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2382,
+   "slug": "chup-bang-trang-sau-hop-thanh-viec-can-lam",
+   "title": "Chụp bảng trắng sau họp thành danh sách việc",
+   "part": 0,
+   "brief": "Bảng trắng đầy mũi tên và chữ viết tay sắp bị lau. Bạn chụp và nhờ AI chép lại, rồi sửa những chỗ đọc sai chữ.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2383,
+   "slug": "giong-noi-tieng-viet-va-cach-noi-de-may-nghe-dung",
+   "title": "Tiếng Việt, giọng vùng miền và cách nói để máy nghe đúng",
+   "part": 0,
+   "brief": "Điện thoại chép nhầm tên khách và địa danh khi bạn nói nhanh. Bạn thử nói chậm, đọc số từng chữ và đối chiếu bản chép.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2384,
+   "slug": "du-an-bo-ba-thoi-quen-nhap-lieu-bang-giong-noi",
+   "title": "Mini dự án: ba thói quen nhập liệu bằng giọng nói",
+   "part": 0,
+   "brief": "Bạn chọn ba việc lặp lại như ghi nhắc việc, nhật ký khách và nháp tin nhắn để làm bằng miệng cả tuần. Cuối bài bạn đếm phút tiết kiệm được.",
+   "practice": "aiLab-prompt",
+   "visual": "chart:số phút gõ so với số phút nói cho cùng một việc"
+  },
+  {
+   "id": 2385,
+   "slug": "dich-cuoc-tro-chuyen-voi-doi-tac-nuoc-ngoai-tai-cho",
+   "title": "Dịch cuộc trò chuyện với đối tác nước ngoài ngay tại chỗ",
+   "part": 1,
+   "brief": "Nhà cung cấp Hàn Quốc ghé thăm và hai bên chỉ có vài câu tiếng Anh. Bạn dùng dịch trực tiếp có mức cẩn thận vừa phải và biết chỗ nào phải hỏi lại.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2386,
+   "slug": "dich-bien-bao-thuc-don-va-huong-dan-khi-di-cong-tac",
+   "title": "Dịch biển báo, thực đơn và hướng dẫn khi đi công tác",
+   "part": 1,
+   "brief": "Bạn đứng trước máy bán vé toàn chữ lạ ở sân bay. Bạn chụp và dịch, rồi xét khi nào bản dịch đủ tin để bấm nút.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2387,
+   "slug": "ban-dich-nghe-tron-nhung-sai-nghia-mot-tu",
+   "title": "Bản dịch nghe trơn nhưng sai nghĩa một từ",
+   "part": 1,
+   "brief": "Bản dịch điều khoản giao hàng đọc rất tự nhiên nhưng đổi 'trước' thành 'sau'. Bạn thực hành dịch ngược để bắt lỗi nghĩa.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2388,
+   "slug": "ghi-chu-cong-viec-nhanh-tren-duong-va-gom-lai-cuoi-ngay",
+   "title": "Ghi chú nhanh trên đường và gom lại cuối ngày",
+   "part": 1,
+   "brief": "Cả ngày bạn rải ghi chú ở tin nhắn, ảnh và ghi âm. Bạn nhờ AI gom thành một danh sách việc cho ngày mai và giữ lại nguyên văn lời hẹn.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2389,
+   "slug": "du-an-quy-trinh-di-cong-tac-mot-ngay-tren-dien-thoai",
+   "title": "Mini dự án: một ngày đi gặp khách chỉ bằng điện thoại",
+   "part": 1,
+   "brief": "Bạn vạch một chuyến gặp khách từ chuẩn bị, ghi chép tới thư cảm ơn, tất cả làm trên điện thoại. Cuối bài bạn có quy trình năm bước.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2390,
+   "slug": "thong-bao-nhay-cam-hien-tren-man-hinh-khoa",
+   "title": "Thông báo nhạy cảm hiện trên màn hình khoá",
+   "part": 2,
+   "brief": "Tin nhắn có tên khách và số tiền bật lên khi bạn đặt điện thoại trên bàn họp. Bạn kiểm cách ẩn nội dung thông báo và ai nhìn thấy gì.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2391,
+   "slug": "ung-dung-tro-ly-ai-xin-quyen-gi-tren-may-ban",
+   "title": "Ứng dụng trợ lý AI xin quyền gì trên máy bạn",
+   "part": 2,
+   "brief": "Bạn vừa cài một ứng dụng AI mới và nó đòi quyền micro, ảnh, danh bạ. Bạn học đọc từng quyền và chỉ mở đúng phần việc cần.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2392,
+   "slug": "mang-wifi-cong-cong-va-tai-lieu-khach-hang-tren-dien-thoai",
+   "title": "Wi-Fi công cộng và tài liệu khách hàng trên điện thoại",
+   "part": 2,
+   "brief": "Bạn ngồi quán cà phê, cần gửi hợp đồng nháp qua ứng dụng AI. Bạn cân giữa mạng dữ liệu, mạng quán và việc hoãn gửi.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2393,
+   "slug": "dien-thoai-ca-nhan-va-tai-khoan-cong-ty-tach-nhu-the-nao",
+   "title": "Điện thoại cá nhân và tài khoản công ty: tách thế nào",
+   "part": 2,
+   "brief": "Ảnh gia đình và ảnh hoá đơn nằm chung một thư viện. Bạn tách tài khoản, thư mục và biết hỏi phòng công nghệ thông tin điều gì trước khi dùng AI cho việc công ty.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2394,
+   "slug": "du-an-tu-kiem-tra-quyen-va-thong-bao-tren-may-ban",
+   "title": "Mini dự án: rà quyền và thông báo trên máy bạn",
+   "part": 2,
+   "brief": "Bạn đi qua từng ứng dụng AI đã cài và ghi việc nó làm, quyền nó có, ai thấy thông báo. Cuối bài bạn có bảng gọn cho chính máy mình.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2395,
+   "slug": "luc-nao-khong-nen-rut-dien-thoai-ra-hoi-ai",
+   "title": "Lúc nào không nên rút điện thoại ra hỏi AI",
+   "part": 3,
+   "brief": "Bạn đang họp với khách và muốn tra nhanh một con số trên điện thoại. Bạn học cách phân biệt lúc hỏi ổn và lúc gây mất lòng tin.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2396,
+   "slug": "tra-cuu-so-lieu-nhanh-tren-duong-va-rui-ro-tin-so-sai",
+   "title": "Tra số liệu nhanh trên đường và rủi ro tin số sai",
+   "part": 3,
+   "brief": "Trên đường tới buổi báo giá bạn hỏi AI về giá thị trường và nhận một con số tròn trĩa. Bạn học tìm nguồn hoặc gọi đồng nghiệp trước khi dùng.",
+   "practice": "aiLab-spotError",
+   "visual": "chart:độ chênh giữa con số AI nêu và số trong tài liệu gốc"
+  },
+  {
+   "id": 2397,
+   "slug": "mot-buoi-sang-di-lai-nhung-viec-nen-lam-bang-giong-noi",
+   "title": "Buổi sáng di chuyển: việc nên làm bằng giọng nói",
+   "part": 3,
+   "brief": "Bốn mươi phút ngồi xe buýt đầu ngày có thể xử lý thư và lịch. Bạn sắp lịch việc hợp với giọng nói và việc chỉ ra tay khi ngồi tại bàn.",
+   "practice": "aiLab-prompt",
+   "visual": "chart:số phút di chuyển mỗi ngày so với số việc xử lý được"
+  },
+  {
+   "id": 2398,
+   "slug": "dien-thoai-mat-hoac-hong-giua-chuyen-cong-tac-ban-con-gi",
+   "title": "Điện thoại mất hoặc hỏng giữa chuyến công tác: bạn còn gì",
+   "part": 3,
+   "brief": "Máy rơi mất ở sân bay cùng ghi chú và ảnh hoá đơn của cả tuần. Bạn kiểm xem bản sao nằm đâu, khoá từ xa thế nào và ai cần được báo ngay.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2399,
+   "slug": "du-an-quy-trinh-di-dong-ca-tuan-va-bo-quy-tac-ca-nhan",
+   "title": "Dự án tổng kết: quy trình di động cả tuần và bộ quy tắc của bạn",
+   "part": 3,
+   "brief": "Bạn ghép các thói quen giọng nói, camera, dịch và ghi chú thành một tuần làm việc. Cuối bài bạn có bộ năm quy tắc cho chính mình.",
+   "practice": "scenario",
+   "visual": "flow"
+  }
+ ]
+}

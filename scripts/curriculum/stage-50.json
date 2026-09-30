@@ -1,0 +1,209 @@
+{
+ "stage": 50,
+ "label": "Chặng 50",
+ "name": {
+  "vi": "Theo kịp công cụ AI mới mà không mệt",
+  "en": "Keeping up with new AI tools"
+ },
+ "idStart": 2400,
+ "parts": [
+  {
+   "vi": "Nghe tin mà không cuống",
+   "en": "Hearing the news without panic"
+  },
+  {
+   "vi": "Thử trong ba mươi phút",
+   "en": "A thirty-minute trial"
+  },
+  {
+   "vi": "Cân nhắc trước khi dùng thật",
+   "en": "Weighing up before real use"
+  },
+  {
+   "vi": "Quyết định, ghi chép và chia sẻ",
+   "en": "Decide, record and share"
+  }
+ ],
+ "lessons": [
+  {
+   "id": 2400,
+   "slug": "dong-nghiep-khoe-cong-cu-moi-ban-co-can-chay-theo",
+   "title": "Đồng nghiệp khoe công cụ mới, bạn có cần chạy theo",
+   "part": 0,
+   "brief": "Sáng thứ hai cả nhóm chat rộ lên về một công cụ AI vừa ra. Bạn tự hỏi ba câu để quyết định bỏ qua, xem sau hay thử ngay.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2401,
+   "slug": "chon-hai-nguon-tin-ve-ai-va-bo-phan-con-lai",
+   "title": "Chọn hai nguồn tin về AI và bỏ phần còn lại",
+   "part": 0,
+   "brief": "Hộp thư bạn có mười bản tin AI mỗi tuần và bạn chưa đọc cái nào. Bạn chọn hai nguồn đáng tin và giờ đọc cố định.",
+   "practice": "aiLab-prompt",
+   "visual": "chart:số bản tin nhận mỗi tuần so với số bản tin thật sự đọc"
+  },
+  {
+   "id": 2402,
+   "slug": "tieu-de-giat-gan-va-cau-noi-tang-ai-tang-nang-suat-gap-may-lan",
+   "title": "Tiêu đề giật gân và lời hứa năng suất gấp nhiều lần",
+   "part": 0,
+   "brief": "Một quảng cáo hứa cắt nửa thời gian làm báo cáo mà không nêu cách đo. Bạn tập gạch chân điều kiện bị giấu và những chỗ thiếu bằng chứng.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2403,
+   "slug": "cong-cu-moi-ra-hay-chi-doi-ten-cong-cu-cu",
+   "title": "Công cụ 'mới' hay chỉ là công cụ cũ đổi tên",
+   "part": 0,
+   "brief": "Ba công cụ trong bảng quảng cáo đều ghi 'trợ lý viết' và bạn không rõ khác gì cái đang dùng. Bạn so theo việc mình làm, không theo tên.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2404,
+   "slug": "du-an-so-tay-viec-toi-can-ai-lam-ho-tuan-nay",
+   "title": "Mini dự án: sổ tay 'việc tôi cần AI làm hộ' tuần này",
+   "part": 0,
+   "brief": "Trước khi thử công cụ nào, bạn liệt kê năm việc mất nhiều thời gian nhất tuần này. Cuối bài bạn có danh sách để mọi lần thử đều bám vào việc thật.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2405,
+   "slug": "thu-mot-cong-cu-trong-ba-muoi-phut-bang-mot-viec-that",
+   "title": "Thử một công cụ trong ba mươi phút bằng một việc thật",
+   "part": 1,
+   "brief": "Bạn cầm một biên bản họp cũ và thử một công cụ chưa từng dùng. Bạn đặt đồng hồ, dùng cùng tài liệu và ghi kết quả ba dòng.",
+   "practice": "aiLab-prompt",
+   "visual": "chart:số phút hoàn thành cùng một việc bằng cách cũ và cách mới"
+  },
+  {
+   "id": 2406,
+   "slug": "thu-hai-cong-cu-cung-mot-viec-va-so-ket-qua-cach-nhau",
+   "title": "Thử hai công cụ cùng một việc và so cạnh nhau",
+   "part": 1,
+   "brief": "Bạn đưa cùng một email khiếu nại cho hai công cụ và muốn chọn bản tốt hơn. Bạn cho điểm theo các tiêu chí đặt trước, không theo cảm giác.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2407,
+   "slug": "dung-du-lieu-that-hay-du-lieu-gia-khi-thu",
+   "title": "Thử bằng dữ liệu thật hay dữ liệu giả",
+   "part": 1,
+   "brief": "Bạn muốn thử công cụ mới trên hợp đồng khách hàng thật. Bạn tạo bản giả từ bản thật và biết phần nào che, phần nào giữ để phép thử vẫn công bằng.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2408,
+   "slug": "thu-chi-tiet-bang-cau-hoi-co-dap-an-biet-truoc",
+   "title": "Thử bằng những câu bạn đã biết đáp án",
+   "part": 1,
+   "brief": "Cách nhanh nhất để biết công cụ đọc tài liệu có đáng tin là hỏi điều bạn đã biết. Bạn chuẩn bị năm câu như thế và chấm thẳng tay.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2409,
+   "slug": "du-an-phieu-thu-mot-trang-cho-moi-cong-cu-moi",
+   "title": "Mini dự án: phiếu thử một trang cho mọi công cụ mới",
+   "part": 1,
+   "brief": "Bạn thiết kế mẫu phiếu gồm việc thử, thời gian, chất lượng, điều làm bạn khó chịu. Cuối bài bạn điền thử một phiếu bằng công cụ vừa xem.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2410,
+   "slug": "checklist-danh-gia-ba-cau-hoi-truoc-khi-dua-du-lieu-vao",
+   "title": "Ba câu hỏi trước khi đưa dữ liệu công ty vào công cụ mới",
+   "part": 2,
+   "brief": "Bạn định dán bảng doanh số vào một công cụ lạ. Bạn hỏi: dữ liệu đi đâu, có dùng để huấn luyện không, ai trong công ty đã duyệt, và tìm câu trả lời trong chính sách chính thức của nhà cung cấp.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2411,
+   "slug": "goi-mien-phi-goi-ca-nhan-goi-doanh-nghiep-khac-nhau-o-dau",
+   "title": "Gói miễn phí, cá nhân, doanh nghiệp: khác nhau ở đâu",
+   "part": 2,
+   "brief": "Bạn muốn dùng công cụ cho cả phòng nhưng chỉ đăng ký gói cá nhân. Bạn học đọc trang gói của nhà cung cấp theo dữ liệu, chia sẻ, quản trị, và ghi lại điều đã đối chiếu.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2412,
+   "slug": "tinh-chi-phi-that-cua-mot-cong-cu-dung-cho-ca-phong",
+   "title": "Tính chi phí thật của một công cụ dùng cho cả phòng",
+   "part": 2,
+   "brief": "Báo giá ghi theo người dùng mỗi tháng nhưng phòng có tám người, chỉ ba người dùng nhiều. Bạn tính tổng theo cách dùng thật và cả thời gian đào tạo.",
+   "practice": "aiLab-prompt",
+   "visual": "chart:chi phí hằng tháng theo số người dùng công cụ"
+  },
+  {
+   "id": 2413,
+   "slug": "cong-cu-dung-mot-tuan-roi-bo-vi-sao-thoi-quen-khong-bam",
+   "title": "Công cụ dùng một tuần rồi bỏ: vì sao thói quen không bám",
+   "part": 2,
+   "brief": "Cả phòng hào hứng tuần đầu rồi ai cũng quay lại cách cũ. Bạn tìm nguyên nhân thường gặp và xem cách gắn công cụ vào một việc có sẵn.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2414,
+   "slug": "du-an-thi-diem-nho-hai-tuan-hai-nguoi-mot-viec",
+   "title": "Mini dự án: thí điểm nhỏ hai tuần, hai người, một việc",
+   "part": 2,
+   "brief": "Bạn đề xuất với sếp một thí điểm giới hạn thay vì mua cho cả phòng. Cuối bài bạn có kế hoạch: việc, người, mốc dừng và cách đo.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2415,
+   "slug": "quyet-dinh-dung-bo-hay-cho-them-thoi-gian-bang-ba-dau-hieu",
+   "title": "Dùng, bỏ hay cho thêm thời gian: ba dấu hiệu",
+   "part": 3,
+   "brief": "Sau hai tuần thí điểm, số liệu chưa rõ ràng và mỗi người nói một kiểu. Bạn đặt ngưỡng trước khi thử để quyết định không dựa vào ai nói to.",
+   "practice": "scenario",
+   "visual": "chart:phút tiết kiệm mỗi việc và số lỗi phải sửa theo tuần thí điểm"
+  },
+  {
+   "id": 2416,
+   "slug": "so-nhat-ky-cong-cu-da-thu-vi-sao-chon-vi-sao-bo",
+   "title": "Sổ nhật ký công cụ đã thử: vì sao chọn, vì sao bỏ",
+   "part": 3,
+   "brief": "Một năm sau sếp mới hỏi 'sao không dùng công cụ X' mà không ai nhớ. Bạn lập sổ một dòng cho mỗi công cụ để khỏi thử lại từ đầu.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2417,
+   "slug": "viet-mot-trang-de-xuat-cong-cu-ma-sep-doc-duoc-trong-ba-phut",
+   "title": "Viết một trang đề xuất công cụ mà sếp đọc trong ba phút",
+   "part": 3,
+   "brief": "Bạn muốn xin dùng chính thức một công cụ và cần lời rõ việc, kết quả thử, chi phí, rủi ro dữ liệu. Bạn viết thử rồi bắt lỗi chỗ nào còn lời khoe.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2418,
+   "slug": "chia-se-phat-hien-cho-phong-khong-thanh-buoi-quang-cao",
+   "title": "Chia sẻ phát hiện cho phòng mà không thành buổi quảng cáo",
+   "part": 3,
+   "brief": "Bạn vừa thử xong và định trình bày mười lăm phút cho đồng nghiệp. Bạn dựng buổi chia sẻ theo việc, kết quả, hạn chế và bước tiếp theo.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2419,
+   "slug": "du-an-quy-trinh-theo-doi-cong-cu-ai-moi-mot-gio-moi-thang",
+   "title": "Dự án tổng kết: quy trình một giờ mỗi tháng để theo kịp AI",
+   "part": 3,
+   "brief": "Bạn ghép nguồn tin, phiếu thử, checklist dữ liệu, thí điểm và sổ nhật ký thành lịch một giờ mỗi tháng. Cuối bài bạn có lịch cho chính bạn và cho phòng.",
+   "practice": "scenario",
+   "visual": "flow"
+  }
+ ]
+}

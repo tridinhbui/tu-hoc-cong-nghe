@@ -1,0 +1,209 @@
+{
+ "stage": 46,
+ "label": "Chặng 46",
+ "name": {
+  "vi": "AI cho hình ảnh, thiết kế và video",
+  "en": "AI for images, design and video"
+ },
+ "idStart": 2320,
+ "parts": [
+  {
+   "vi": "Tạo và sửa ảnh cho việc thật",
+   "en": "Making and editing images for real work"
+  },
+  {
+   "vi": "Slide và biểu đồ",
+   "en": "Slides and charts"
+  },
+  {
+   "vi": "Logo, banner và video ngắn",
+   "en": "Logos, banners and short video"
+  },
+  {
+   "vi": "Bản quyền, ảnh giả và thương hiệu",
+   "en": "Copyright, fake images and brand"
+  }
+ ],
+ "lessons": [
+  {
+   "id": 2320,
+   "slug": "anh-cho-ban-tin-noi-bo-mo-ta-truoc-khi-tao",
+   "title": "Cần một ảnh cho bản tin nội bộ: mô tả trước khi tạo",
+   "part": 0,
+   "brief": "Bạn cần ảnh minh hoạ cho bản tin phòng. Bạn viết mô tả gồm chủ thể, bối cảnh, phong cách, rồi so ba bản.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2321,
+   "slug": "sua-anh-chup-dien-thoai-de-dung-duoc",
+   "title": "Ảnh chụp vội bằng điện thoại: sửa cho dùng được",
+   "part": 0,
+   "brief": "Ảnh sản phẩm tối và lệch. Bạn nêu việc cần sửa từng bước và kiểm ảnh sau sửa có làm sai sản phẩm không.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2322,
+   "slug": "nhan-ra-anh-do-ai-tao-dau-hieu-co-ban",
+   "title": "Nhận ra ảnh do AI tạo: những dấu hiệu cơ bản",
+   "part": 0,
+   "brief": "Khách gửi một ảnh 'hiện trường'. Bạn kiểm ngón tay, chữ, bóng đổ, chi tiết nền và tìm nguồn gốc ảnh.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2323,
+   "slug": "ai-de-lam-anh-cua-hang-so-khi-nao-khong-nen",
+   "title": "Khi nào ảnh AI làm mất lòng tin của khách",
+   "part": 0,
+   "brief": "Bạn cân nhắc dùng ảnh AI làm ảnh sản phẩm thật. Bạn phân biệt ảnh minh hoạ, ảnh sản phẩm và ảnh có người thật.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2324,
+   "slug": "du-an-nho-bo-ba-anh-cho-mot-bai-dang",
+   "title": "Dự án nhỏ: bộ ba ảnh cho một bài đăng",
+   "part": 0,
+   "brief": "Bạn tạo và chọn ba ảnh cùng phong cách cho một thông báo, ghi lại mô tả đã dùng.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2325,
+   "slug": "mau-mau-phong-cach-de-anh-nhat-quan",
+   "title": "Ghi lại màu, phong cách để mọi ảnh trông cùng một nhà",
+   "part": 1,
+   "brief": "Bạn viết một đoạn 'chuẩn thương hiệu' ngắn và dán vào đầu mọi yêu cầu tạo ảnh.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2326,
+   "slug": "slide-tu-dan-y-den-ban-nhap-bang-ai",
+   "title": "Từ dàn ý tới bản nháp slide trong một buổi chiều",
+   "part": 1,
+   "brief": "Bạn có buổi báo cáo sáng mai. Bạn đưa dàn ý và số liệu để AI dựng khung slide, rồi cắt bớt chữ.",
+   "practice": "aiLab-prompt",
+   "visual": "chart:số slide theo số phút trình bày"
+  },
+  {
+   "id": 2327,
+   "slug": "slide-day-chu-cach-bo-bot-cho-nguoi-nghe",
+   "title": "Slide dày chữ: cách bỏ bớt cho người nghe",
+   "part": 1,
+   "brief": "Bạn nhận slide 12 dòng chữ mỗi trang và rút mỗi trang còn một ý, phần còn lại chuyển sang ghi chú người nói.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2328,
+   "slug": "bieu-do-tren-slide-ai-ve-sai-cho-nao",
+   "title": "Biểu đồ AI vẽ trên slide: kiểm số và trục",
+   "part": 1,
+   "brief": "Bạn nhận biểu đồ trong slide và so từng cột với bảng số gốc, xem trục có bị cắt không.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2329,
+   "slug": "du-an-nho-slide-nam-trang-cho-mot-de-xuat",
+   "title": "Dự án nhỏ: năm slide cho một đề xuất",
+   "part": 1,
+   "brief": "Bạn làm năm slide có vấn đề, giải pháp, chi phí, rủi ro, việc cần sếp quyết định.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2330,
+   "slug": "logo-va-bieu-tuong-nen-tu-lam-hay-thue",
+   "title": "Logo và biểu tượng: khi nào tự làm bằng AI, khi nào thuê",
+   "part": 2,
+   "brief": "Bạn cần logo cho một nhóm dự án nội bộ. Bạn thử vài hướng và biết chỗ cần người thiết kế thật, kể cả việc kiểm tra trùng lặp.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2331,
+   "slug": "banner-mang-xa-hoi-nhieu-kich-thuoc",
+   "title": "Một banner, ba kích thước: đừng làm lại từ đầu",
+   "part": 2,
+   "brief": "Bạn cần cùng một thông báo cho ba nơi đăng. Bạn giữ chữ, màu và bố cục khi đổi kích thước.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2332,
+   "slug": "chu-tren-anh-ai-viet-sai-tieng-viet",
+   "title": "Chữ tiếng Việt trên ảnh AI hay sai dấu",
+   "part": 2,
+   "brief": "Bạn kiểm chữ trên ảnh AI tạo, thấy lỗi dấu, và học cách thêm chữ bằng công cụ thiết kế thay vì nhờ AI vẽ chữ.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2333,
+   "slug": "video-ngan-tu-kich-ban-mot-phut",
+   "title": "Video ngắn một phút: kịch bản trước, dựng sau",
+   "part": 2,
+   "brief": "Bạn cần video giới thiệu quy trình mới. Bạn viết kịch bản theo cảnh và ước lượng thời lượng (tính năng cụ thể xem tài liệu chính thức của công cụ).",
+   "practice": "aiLab-spotError",
+   "visual": "chart:thời lượng video theo số cảnh"
+  },
+  {
+   "id": 2334,
+   "slug": "du-an-nho-anh-tinh-thanh-video-huong-dan",
+   "title": "Dự án nhỏ: biến năm ảnh chụp màn hình thành video hướng dẫn",
+   "part": 2,
+   "brief": "Bạn ghép ảnh, lời dẫn và chữ phụ thành một video hướng dẫn thao tác ngắn.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2335,
+   "slug": "ban-quyen-anh-va-nhac-nen-dung-ai-tao-hay-thu-vien",
+   "title": "Ảnh, nhạc nền: nguồn nào dùng được cho công việc",
+   "part": 3,
+   "brief": "Bạn chuẩn bị bài đăng công khai và ghi lại nguồn, điều kiện sử dụng của từng ảnh, nhạc; điều còn mơ hồ thì hỏi bộ phận pháp chế.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2336,
+   "slug": "hinh-nguoi-that-khuon-mat-va-su-dong-y",
+   "title": "Ảnh có người thật: xin phép và những điều không làm",
+   "part": 3,
+   "brief": "Bạn muốn ghép ảnh đồng nghiệp vào ấn phẩm. Bạn soạn lời xin phép và nêu việc tuyệt đối không tạo giả người thật.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2337,
+   "slug": "ghi-chu-ai-da-dung-trong-anh-va-video",
+   "title": "Ghi chú 'có dùng AI' ở đâu và bằng lời nào",
+   "part": 3,
+   "brief": "Bạn soạn dòng ghi chú ngắn cho ấn phẩm và một quy ước chung của phòng.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2338,
+   "slug": "cuoc-kiem-tra-truoc-khi-dang-mot-ban-thiet-ke",
+   "title": "Danh sách kiểm trước khi đăng bản thiết kế",
+   "part": 3,
+   "brief": "Bạn kiểm chữ, số, logo, bản quyền, ảnh người, và tính nhất quán bằng một danh sách ngắn.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2339,
+   "slug": "bai-tong-ket-bo-an-pham-cho-mot-su-kien-nho",
+   "title": "Tổng kết: bộ ấn phẩm cho một sự kiện nhỏ của phòng",
+   "part": 3,
+   "brief": "Bạn làm một bộ gồm banner, năm slide và một video ngắn cùng chuẩn thương hiệu, có kiểm bản quyền.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  }
+ ]
+}

@@ -1,0 +1,209 @@
+{
+ "stage": 53,
+ "label": "Chặng 53",
+ "name": {
+  "vi": "Power Automate và tự động hoá Office",
+  "en": "Power Automate and Office automation"
+ },
+ "idStart": 2460,
+ "parts": [
+  {
+   "vi": "Luồng việc trong hệ Microsoft",
+   "en": "Workflows in the Microsoft world"
+  },
+  {
+   "vi": "Phê duyệt và thông báo",
+   "en": "Approvals and notifications"
+  },
+  {
+   "vi": "Tệp, thư mục và Excel",
+   "en": "Files, folders and Excel"
+  },
+  {
+   "vi": "Thử, giám sát và bàn giao",
+   "en": "Testing, monitoring and handover"
+  }
+ ],
+ "lessons": [
+  {
+   "id": 2460,
+   "slug": "email-dinh-kem-tu-luu-vao-sharepoint-hay-onedrive",
+   "title": "Email có tệp đính kèm về, tệp tự vào đúng thư mục chung",
+   "part": 0,
+   "brief": "Bạn nhận báo giá qua email mỗi ngày; bạn mô tả luồng lưu tệp có đặt tên theo ngày và người gửi.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2461,
+   "slug": "luong-tu-dong-so-voi-macro-va-nhac-viec",
+   "title": "Luồng tự động, macro hay nhắc việc: chọn cái nào cho việc của bạn",
+   "part": 0,
+   "brief": "Bạn phân loại ba việc thật của mình vào ba cách làm dựa trên nơi nó chạy và ai cần dùng.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2462,
+   "slug": "ba-phan-cua-mot-luong-kich-hoat-dieu-kien-hanh-dong",
+   "title": "Ba phần của một luồng: kích hoạt, điều kiện, hành động, qua ví dụ văn phòng",
+   "part": 0,
+   "brief": "Bạn tách việc 'báo trưởng phòng khi có đơn xin nghỉ' thành ba phần và gọi tên từng phần.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2463,
+   "slug": "quyen-tai-khoan-cong-viec-va-gioi-han-cua-to-chuc",
+   "title": "Tài khoản công việc và giới hạn của tổ chức: hỏi ai trước khi dựng luồng",
+   "part": 0,
+   "brief": "Luồng của bạn có thể đụng dữ liệu công ty; bạn soạn câu hỏi gửi bộ phận CNTT trước khi làm. Người viết kiểm tài liệu Microsoft chính thức về chính sách và loại giấy phép.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2464,
+   "slug": "mini-du-an-bao-nhom-khi-co-tep-moi-trong-thu-muc",
+   "title": "Mini dự án: báo cả nhóm khi có tệp mới trong thư mục chung",
+   "part": 0,
+   "brief": "Bạn dựng luồng gửi một tin nhắn ngắn có tên tệp và người tải lên, và thử với một tệp giả.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2465,
+   "slug": "luong-phe-duyet-don-xin-nghi-mot-cap",
+   "title": "Luồng phê duyệt đơn xin nghỉ một cấp: ai được hỏi, chờ bao lâu",
+   "part": 1,
+   "brief": "Đơn xin nghỉ đi từ nhân viên đến quản lý; bạn quyết định thời hạn chờ và việc xảy ra khi quá hạn.",
+   "practice": "scenario",
+   "visual": "chart:số ngày chờ phê duyệt theo số đơn tồn"
+  },
+  {
+   "id": 2466,
+   "slug": "phe-duyet-nhieu-cap-va-truong-hop-nguoi-duyet-di-vang",
+   "title": "Phê duyệt nhiều cấp và trường hợp người duyệt đi vắng",
+   "part": 1,
+   "brief": "Quản lý nghỉ phép hai tuần; bạn thiết kế người thay thế để đơn không nằm mãi.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2467,
+   "slug": "noi-dung-thong-bao-tu-dong-de-nguoi-nhan-hanh-dong-duoc",
+   "title": "Nội dung thông báo tự động để người nhận biết ngay việc cần làm",
+   "part": 1,
+   "brief": "Thông báo cũ chỉ ghi 'có yêu cầu mới'; bạn viết lại để có ai, việc gì, hạn nào, bấm đâu, và nhờ AI thử ba bản.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2468,
+   "slug": "thong-bao-qua-nhieu-khien-nguoi-ta-tat-tieng",
+   "title": "Thông báo quá nhiều khiến mọi người tắt tiếng: gộp và hạn chế",
+   "part": 1,
+   "brief": "Nhóm nhận 60 thông báo mỗi ngày; bạn đề xuất gộp thành một bản tóm tắt buổi sáng.",
+   "practice": "aiLab-spotError",
+   "visual": "chart:số thông báo mỗi người mỗi ngày"
+  },
+  {
+   "id": 2469,
+   "slug": "mini-du-an-luong-de-nghi-mua-sam-co-duyet-va-ghi-so",
+   "title": "Mini dự án: đề nghị mua sắm có duyệt và tự ghi vào sổ",
+   "part": 1,
+   "brief": "Bạn nối biểu mẫu, phê duyệt và một dòng ghi vào bảng, và viết ba ca thử.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2470,
+   "slug": "dat-ten-tep-tu-dong-de-ba-thang-sau-van-tim-ra",
+   "title": "Đặt tên tệp tự động để ba tháng sau vẫn tìm ra",
+   "part": 2,
+   "brief": "Tệp 'bao gia final 2' làm bạn mất nửa giờ; bạn xây quy ước tên có ngày, đối tác, loại.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2471,
+   "slug": "chuyen-va-sap-xep-tep-vao-thu-muc-theo-quy-tac",
+   "title": "Chuyển tệp vào thư mục theo quy tắc, và quy tắc nào dễ làm mất tệp",
+   "part": 2,
+   "brief": "Bạn tự sắp xếp tệp theo tháng; bạn tìm điểm mà quy tắc ghi đè lên tệp trùng tên.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2472,
+   "slug": "excel-tu-cap-nhat-tu-nhieu-file-nho",
+   "title": "Excel tự gom số từ nhiều tệp nhỏ của từng chi nhánh",
+   "part": 2,
+   "brief": "Năm chi nhánh gửi năm tệp; bạn mô tả cách gom về một bảng và kiểm tổng bằng tay ba lần đầu.",
+   "practice": "scenario",
+   "visual": "chart:tổng doanh số theo chi nhánh"
+  },
+  {
+   "id": 2473,
+   "slug": "bang-excel-la-dieu-kien-de-luong-doc-duoc-dong",
+   "title": "Bảng Excel phải có tiêu đề và định dạng bảng thì luồng mới đọc được dòng",
+   "part": 2,
+   "brief": "Luồng không tìm thấy dòng nào vì dữ liệu chưa là bảng; bạn nhận ra lỗi và sửa cấu trúc.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2474,
+   "slug": "mini-du-an-bao-cao-tuan-excel-gui-email-tu-dong",
+   "title": "Mini dự án: báo cáo tuần từ Excel tự gửi email vào sáng thứ Hai",
+   "part": 2,
+   "brief": "Bạn dựng luồng chọn dữ liệu tuần, viết tóm tắt bằng AI, gửi cho bạn trước khi gửi cho sếp.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2475,
+   "slug": "thu-luong-bang-du-lieu-mau-va-bao-ve-nguoi-that",
+   "title": "Thử luồng bằng dữ liệu mẫu và bảo vệ người nhận thật",
+   "part": 3,
+   "brief": "Bạn tạo môi trường thử với người nhận là chính bạn và quy ước gắn nhãn thư thử.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2476,
+   "slug": "doc-lich-su-chay-luong-va-tim-loi-thuong-gap",
+   "title": "Đọc lịch sử chạy của luồng và tìm lỗi thường gặp",
+   "part": 3,
+   "brief": "Luồng hôm qua thất bại; bạn đọc trạng thái, tên bước lỗi, thông điệp và chọn cách xử lý.",
+   "practice": "aiLab-spotError",
+   "visual": "chart:tỉ lệ chạy thành công theo tuần"
+  },
+  {
+   "id": 2477,
+   "slug": "dat-canh-bao-khi-luong-hong-va-nguoi-thay-the",
+   "title": "Đặt cảnh báo khi luồng hỏng, và ai thay bạn khi bạn nghỉ",
+   "part": 3,
+   "brief": "Luồng lỗi ba ngày không ai biết; bạn chọn người nhận cảnh báo và người dự phòng.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2478,
+   "slug": "giao-luong-cho-dong-nghiep-ban-ghi-mot-trang",
+   "title": "Bàn giao luồng cho đồng nghiệp: bản ghi một trang, không cần bạn giải thích",
+   "part": 3,
+   "brief": "Bạn viết trang mô tả luồng làm gì, khi nào, dữ liệu nào, cách tắt, và nhờ AI đọc lại như người mới.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2479,
+   "slug": "capstone-luong-office-cho-mot-quy-trinh-that-cua-ban",
+   "title": "Tổng kết: dựng, thử, giám sát và bàn giao luồng Office cho một quy trình thật",
+   "part": 3,
+   "brief": "Bạn chọn một quy trình có phê duyệt và tệp, vẽ sơ đồ, thử, đặt cảnh báo và bàn giao bằng một trang.",
+   "practice": "scenario",
+   "visual": "flow"
+  }
+ ]
+}

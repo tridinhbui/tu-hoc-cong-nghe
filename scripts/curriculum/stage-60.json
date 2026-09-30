@@ -1,0 +1,209 @@
+{
+ "stage": 60,
+ "label": "Chặng 60",
+ "name": {
+  "vi": "Chatbot và bot hỏi-đáp cho doanh nghiệp nhỏ",
+  "en": "Chatbots and Q&A bots for small business"
+ },
+ "idStart": 2600,
+ "parts": [
+  {
+   "vi": "Bot đầu tiên từ câu hỏi khách hay hỏi",
+   "en": "The first bot from real customer questions"
+  },
+  {
+   "vi": "Cho bot đọc tài liệu của shop",
+   "en": "Letting the bot read your shop's documents"
+  },
+  {
+   "vi": "Giới hạn, chuyển cho người, kiểm thử câu khó",
+   "en": "Limits, handover to a human, hard-question tests"
+  },
+  {
+   "vi": "Đo chất lượng và giữ bot luôn mới",
+   "en": "Measuring quality and keeping the bot current"
+  }
+ ],
+ "lessons": [
+  {
+   "id": 2600,
+   "slug": "chep-20-cau-khach-hay-hoi-tu-tin-nhan-cu",
+   "title": "Chép 20 câu khách hay hỏi từ tin nhắn cũ của shop",
+   "part": 0,
+   "brief": "Cuối ngày bạn trả lời lặp lại 'giá bao nhiêu, ship mấy ngày' hoài; bạn gom tin nhắn cũ thành danh sách câu hỏi thật, chưa cần bot.",
+   "practice": "aiLab-prompt",
+   "visual": "chart:chi phí thời gian trả lời theo số tin lặp lại mỗi ngày"
+  },
+  {
+   "id": 2601,
+   "slug": "nhom-cau-hoi-khach-de-biet-bot-tra-loi-duoc-gi",
+   "title": "Nhóm câu hỏi của khách: bot trả lời được, cần người, không nên trả lời",
+   "part": 0,
+   "brief": "Bạn xếp 20 câu vào ba ngăn; sau bài bạn biết phần nào của việc trả lời là hợp để giao cho bot.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2602,
+   "slug": "viet-cau-tra-loi-mau-giong-giong-cua-chu-shop",
+   "title": "Viết lời chào và câu trả lời mẫu đúng giọng chủ shop",
+   "part": 0,
+   "brief": "Khách nhắn lúc 11 giờ đêm; bạn nhờ AI viết lại 5 câu trả lời theo giọng thường ngày của mình thay vì giọng máy.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2603,
+   "slug": "bot-tra-loi-sai-gia-vi-lay-tu-tin-cu",
+   "title": "Bot báo sai giá vì bám vào tin nhắn cũ: tìm chỗ sai",
+   "part": 0,
+   "brief": "Bạn xem một đoạn hội thoại bot nói giá khuyến mãi đã hết hạn và chỉ ra bot đã lấy thông tin từ đâu.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2604,
+   "slug": "du-an-nho-bot-tra-loi-ba-cau-hoi-hay-nhat",
+   "title": "Dự án nhỏ: bot mẫu trả lời đúng 3 câu hỏi hay gặp nhất",
+   "part": 0,
+   "brief": "Bạn dựng một bản thử chỉ trả lời ba câu (giờ mở cửa, giá, đổi trả) và tự nhắn hỏi thử để xem bot làm được đến đâu.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2605,
+   "slug": "gom-bang-gia-chinh-sach-thanh-mot-tai-lieu-sach",
+   "title": "Gom bảng giá và chính sách rải rác thành một tài liệu sạch",
+   "part": 1,
+   "brief": "Thông tin của shop nằm trong ảnh chụp, tin Zalo và sổ tay; bạn gom lại thành một tệp có tiêu đề rõ, mỗi ý một đoạn.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2606,
+   "slug": "tai-lieu-mau-thuan-nhau-bot-se-chon-cai-nao",
+   "title": "Hai tài liệu nói khác nhau về đổi trả: bot sẽ chọn cái nào",
+   "part": 1,
+   "brief": "Bạn thấy chính sách đổi 7 ngày trong một tệp và 14 ngày trong tệp khác; bạn quyết định tệp nào là bản chuẩn.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2607,
+   "slug": "cat-tai-lieu-thanh-doan-ngan-de-bot-tim-dung-cho",
+   "title": "Cắt tài liệu thành đoạn ngắn để bot tìm đúng chỗ",
+   "part": 1,
+   "brief": "Bot trả lời chung chung vì tài liệu dài một khối; bạn thử chia theo câu hỏi khách và so sánh câu trả lời.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2608,
+   "slug": "bot-tra-loi-tu-tai-lieu-cu-ma-khong-bao-cho-ban",
+   "title": "Bảng giá đã đổi mà bot vẫn nói giá cũ: dò nguồn của câu trả lời",
+   "part": 1,
+   "brief": "Bạn đọc câu trả lời của bot kèm đoạn nó trích và tìm ra vì sao nó vẫn dùng bản cũ.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2609,
+   "slug": "du-an-nho-bot-doc-thuc-don-hoac-danh-muc-cua-shop",
+   "title": "Dự án nhỏ: bot đọc thực đơn hoặc danh mục sản phẩm của bạn",
+   "part": 1,
+   "brief": "Bạn cho bot đọc danh mục thật (khoảng 20 món), rồi hỏi 10 câu về thành phần, kích cỡ, còn hàng để xem nó trích đúng đến đâu.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2610,
+   "slug": "dat-cau-bot-khong-biet-thi-noi-khong-biet",
+   "title": "Dặn bot: không có trong tài liệu thì nói không biết",
+   "part": 2,
+   "brief": "Khách hỏi món shop chưa từng bán; bạn viết một câu dặn để bot nhận là không chắc thay vì đoán cho vui lòng khách.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2611,
+   "slug": "luc-nao-bot-phai-chuyen-cho-nguoi-that",
+   "title": "Lúc nào bot phải chuyển cho người thật: khiếu nại, hoàn tiền, khách đang bực",
+   "part": 2,
+   "brief": "Bạn liệt kê 6 tình huống ở shop mình và viết dấu hiệu để bot dừng lại và gọi bạn.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2612,
+   "slug": "noi-chuyen-chuyen-giao-khach-khong-phai-ke-lai-tu-dau",
+   "title": "Chuyển khách sang người mà không bắt họ kể lại từ đầu",
+   "part": 2,
+   "brief": "Bạn thiết kế tin nhắn tóm tắt cuộc trò chuyện gửi cho nhân viên nhận tiếp, gồm tên món, vấn đề và điều khách đã thử.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2613,
+   "slug": "bot-hua-hoan-tien-thay-chu-shop-tim-loi-trong-doan-chat",
+   "title": "Bot lỡ hứa hoàn tiền thay chủ shop: tìm câu vượt quyền",
+   "part": 2,
+   "brief": "Bạn đọc một đoạn chat, đánh dấu câu bot nói vượt quá điều bạn cho phép và viết lại giới hạn cho nó.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2614,
+   "slug": "du-an-nho-bo-25-cau-hoi-kho-de-thu-bot-truoc-khi-dung",
+   "title": "Dự án nhỏ: bộ 25 câu hỏi khó để thử bot trước khi dùng thật",
+   "part": 2,
+   "brief": "Bạn viết câu hỏi lắt léo (hỏi vòng, hỏi hai ý, viết tắt, hỏi ngoài lề) và ghi kết quả mong muốn để chấm bot.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2615,
+   "slug": "cham-diem-bot-bang-bang-dung-sai-thieu-nguy-hiem",
+   "title": "Chấm bot bằng bảng: đúng, sai, thiếu, nguy hiểm",
+   "part": 3,
+   "brief": "Bạn chạy 25 câu qua bot và ghi mỗi câu vào một trong bốn nhóm để biết chỗ nào phải sửa trước.",
+   "practice": "scenario",
+   "visual": "chart:tỷ lệ câu trả lời đúng theo số câu thử"
+  },
+  {
+   "id": 2616,
+   "slug": "tin-nhan-cua-khach-that-hoi-khac-cau-ban-tu-nghi",
+   "title": "Khách thật hỏi khác câu bạn tự nghĩ: học từ cuộc chat mẫu",
+   "part": 3,
+   "brief": "Bạn xem 8 câu khách nhắn, thấy chúng cụt, sai chính tả, gửi ảnh, và sửa bộ thử cho sát thực tế.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2617,
+   "slug": "khi-shop-doi-bang-gia-cap-nhat-noi-dung-bot-the-nao",
+   "title": "Shop đổi bảng giá cuối tháng: quy trình cập nhật nội dung bot",
+   "part": 3,
+   "brief": "Bạn viết ba bước cho người phụ trách: sửa tài liệu gốc, chạy lại bộ câu thử, ghi ngày đổi.",
+   "practice": "scenario",
+   "visual": "chart:chi phí sai lệch do giá cũ theo số ngày chưa cập nhật"
+  },
+  {
+   "id": 2618,
+   "slug": "doc-nhat-ky-hoi-thoai-hang-tuan-tim-cau-bot-tra-loi-hut",
+   "title": "Đọc nhật ký hội thoại mỗi tuần để tìm câu bot trả lời hụt",
+   "part": 3,
+   "brief": "Mỗi thứ Hai bạn dành 15 phút lọc các câu khách phải hỏi lại hoặc gọi người, và ghi lại cần thêm gì vào tài liệu.",
+   "practice": "aiLab-prompt",
+   "visual": "chart:số câu bị chuyển cho người theo tuần"
+  },
+  {
+   "id": 2619,
+   "slug": "du-an-cuoi-bot-hoi-dap-cho-shop-cua-ban-kem-so-tay-van-hanh",
+   "title": "Dự án cuối: bot hỏi-đáp cho shop của bạn kèm sổ tay vận hành một trang",
+   "part": 3,
+   "brief": "Bạn bàn giao một bot đã thử, có giới hạn, có đường chuyển cho người, cùng một trang ghi ai cập nhật gì và bao lâu một lần.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  }
+ ]
+}

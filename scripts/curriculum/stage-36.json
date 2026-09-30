@@ -1,0 +1,209 @@
+{
+ "stage": 36,
+ "label": "Chặng 36",
+ "name": {
+  "vi": "Bất động sản và môi giới",
+  "en": "Real estate and brokerage"
+ },
+ "idStart": 2120,
+ "parts": [
+  {
+   "vi": "Tin đăng và chăm khách",
+   "en": "Listings and client care"
+  },
+  {
+   "vi": "Khu vực và so sánh",
+   "en": "Areas and comparisons"
+  },
+  {
+   "vi": "Buổi xem nhà và hồ sơ",
+   "en": "Viewings and paperwork"
+  },
+  {
+   "vi": "Nói đúng, không hứa quá",
+   "en": "Honest claims, no overpromising"
+  }
+ ],
+ "lessons": [
+  {
+   "id": 2120,
+   "slug": "viet-lai-tin-dang-nha-tu-anh-chup",
+   "title": "Viết lại tin đăng nhà từ 8 tấm ảnh bạn vừa chụp",
+   "part": 0,
+   "brief": "Bạn vừa chụp xong căn hộ và chưa biết viết gì ngoài 'nhà đẹp, giá tốt'. Sau bài bạn nhờ AI dựng tin đăng 3 đoạn từ ảnh và ghi chú thật của mình.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2121,
+   "slug": "hoi-chu-nha-truoc-khi-dang-tin",
+   "title": "Ba câu phải hỏi chủ nhà trước khi đăng tin",
+   "part": 0,
+   "brief": "Chủ nhà nhắn 'cứ đăng đi' mà bạn chưa rõ diện tích, hướng, nội thất tính kèm. Bạn lập được danh sách câu hỏi cần xác nhận trước khi tin lên mạng.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2122,
+   "slug": "soat-loi-mo-ta-tin-dang-ai-viet",
+   "title": "Bắt lỗi trong mô tả tin đăng do AI viết",
+   "part": 0,
+   "brief": "AI viết 'view sông, sát trung tâm' cho căn không có view sông. Bạn học soi từng câu so với thông tin thật và gạch ra chỗ bịa.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2123,
+   "slug": "tra-loi-khach-hoi-gia-luc-nua-dem",
+   "title": "Trả lời khách hỏi giá lúc 11 giờ đêm",
+   "part": 0,
+   "brief": "Khách nhắn hỏi giá và còn thương lượng không. Bạn soạn được mẫu trả lời lịch sự, không tiết lộ mức chốt của chủ nhà.",
+   "practice": "aiLab-prompt",
+   "visual": "chart:thời gian phản hồi tính theo giờ và số khách quay lại"
+  },
+  {
+   "id": 2124,
+   "slug": "mini-tin-dang-va-loat-tin-nhan-tra-loi",
+   "title": "Mini-dự án: một tin đăng và ba tin nhắn trả lời khách",
+   "part": 0,
+   "brief": "Bạn chọn một căn thật, dựng tin đăng, câu hỏi chủ nhà và ba mẫu trả lời khách hay hỏi, rồi tự kiểm lại từng dòng.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2125,
+   "slug": "so-sanh-hai-khu-vuc-bang-so-lieu-that",
+   "title": "So sánh hai khu vực cho khách bằng số liệu bạn tự thu thập",
+   "part": 1,
+   "brief": "Khách phân vân giữa hai phường. Bạn ghi lại giá rao, quãng đường đi làm, trường học gần đó rồi nhờ AI trình bày thành bảng dễ đọc.",
+   "practice": "aiLab-prompt",
+   "visual": "chart:giá rao trung bình theo diện tích của các căn bạn đã ghi"
+  },
+  {
+   "id": 2126,
+   "slug": "tinh-tien-tra-hang-thang-de-khach-hinh-dung",
+   "title": "Tính khoản trả hàng tháng để khách hình dung",
+   "part": 1,
+   "brief": "Khách hỏi vay bao nhiêu thì trả mỗi tháng bao nhiêu. Bạn kéo thanh trượt số tiền vay, thời hạn để thấy khoản trả hàng tháng, kèm lưu ý đây chỉ là ước tính.",
+   "practice": "scenario",
+   "visual": "chart:khoản trả hàng tháng theo số tiền vay và số năm"
+  },
+  {
+   "id": 2127,
+   "slug": "kiem-tra-con-so-ai-tinh-gia-moi-met-vuong",
+   "title": "Kiểm lại con số AI tính giá mỗi mét vuông",
+   "part": 1,
+   "brief": "AI chia sai khi có diện tích thông thủy và tim tường. Bạn học tự bấm lại phép tính và phát hiện chỗ lệch.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2128,
+   "slug": "viet-gioi-thieu-du-an-khong-sao-chep-cua-chu-dau-tu",
+   "title": "Viết giới thiệu dự án bằng lời của bạn, không chép brochure",
+   "part": 1,
+   "brief": "Bạn được phát tài liệu dự án dày 40 trang. Bạn nhờ AI rút ý chính bằng ngôn ngữ đời thường, rồi tự gạch những câu hứa hẹn chưa có căn cứ.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2129,
+   "slug": "mini-ban-so-sanh-khu-vuc-gui-khach",
+   "title": "Mini-dự án: bản so sánh hai khu vực gửi khách một trang",
+   "part": 1,
+   "brief": "Bạn làm trọn một trang so sánh, ghi rõ nguồn từng con số và ngày thu thập, để khách tự đọc trước khi gặp.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2130,
+   "slug": "len-lich-xem-nha-cho-ba-khach-trong-mot-chieu",
+   "title": "Lên lịch xem nhà cho ba khách trong một chiều thứ Bảy",
+   "part": 2,
+   "brief": "Ba khách, hai căn, đường kẹt xe. Bạn nhờ AI sắp thứ tự và thời gian đi lại, nhưng tự kiểm những đoạn nó đoán quãng đường.",
+   "practice": "scenario",
+   "visual": "chart:thời gian di chuyển giữa các điểm hẹn theo giờ cao điểm"
+  },
+  {
+   "id": 2131,
+   "slug": "checklist-truoc-buoi-xem-nha-cho-tung-khach",
+   "title": "Checklist trước buổi xem nhà, tùy từng khách",
+   "part": 2,
+   "brief": "Khách có con nhỏ khác khách đi một mình. Bạn nhờ AI dựng checklist theo hoàn cảnh khách rồi bổ sung điều bạn biết về căn nhà.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2132,
+   "slug": "ghi-chu-sau-buoi-xem-nha-thanh-viec-can-lam",
+   "title": "Ghi chú vội sau buổi xem nhà thành việc cần làm",
+   "part": 2,
+   "brief": "Ra khỏi nhà khách, bạn gõ vài dòng lộn xộn. Bạn nhờ AI biến chúng thành danh sách việc và câu cần hỏi lại chủ nhà.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2133,
+   "slug": "chuan-bi-ho-so-giay-to-de-gap-ben-tu-van",
+   "title": "Chuẩn bị hồ sơ để đưa khách gặp người có chuyên môn",
+   "part": 2,
+   "brief": "Khách cần hỏi luật sư hoặc công chứng. Bạn lập danh sách giấy tờ cần mang và câu hỏi nên hỏi, không tự kết luận thay chuyên gia.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2134,
+   "slug": "mini-goi-chuan-bi-buoi-xem-nha-tron-ven",
+   "title": "Mini-dự án: gói chuẩn bị buổi xem nhà trọn vẹn",
+   "part": 2,
+   "brief": "Bạn ghép lịch, checklist, ghi chú sau xem thành một gói dùng lại cho mọi buổi xem nhà sau này.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2135,
+   "slug": "nhan-ra-thong-tin-khong-nen-dan-vao-ai",
+   "title": "Những thông tin khách hàng không bao giờ dán vào AI",
+   "part": 3,
+   "brief": "Bạn định dán ảnh sổ đỏ và số căn cước của khách để AI tóm tắt. Bạn học cách che thông tin trước khi hỏi và lúc nào thì không hỏi AI.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2136,
+   "slug": "doc-lai-hop-dong-dat-coc-de-biet-hoi-gi",
+   "title": "Đọc hợp đồng đặt cọc để biết mình cần hỏi gì",
+   "part": 3,
+   "brief": "Khách đưa bạn bản đặt cọc và hỏi 'có sao không'. Bạn nhờ AI gạch các mục quan trọng thành câu hỏi gửi người có chuyên môn, không nhờ nó phán đúng sai.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2137,
+   "slug": "cau-noi-hua-qua-trong-tin-nhan-ban-khach",
+   "title": "Nhận diện câu hứa quá trong tin nhắn bán hàng",
+   "part": 3,
+   "brief": "Trong đoạn chat có 'chắc chắn tăng giá', 'cam kết cho thuê được'. Bạn phân loại đâu là ý kiến, đâu là lời hứa không nên viết ra.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2138,
+   "slug": "tra-loi-khach-hoi-phap-ly-khi-ban-khong-phai-luat-su",
+   "title": "Khách hỏi chuyện pháp lý, bạn trả lời thế nào",
+   "part": 3,
+   "brief": "Khách hỏi thẳng 'căn này có tranh chấp không'. Bạn tập trả lời trung thực điều mình biết, và chuyển đúng câu hỏi cho nơi có thẩm quyền.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2139,
+   "slug": "bo-quy-tac-ca-nhan-khi-dung-ai-trong-moi-gioi",
+   "title": "Bộ quy tắc cá nhân khi dùng AI trong môi giới",
+   "part": 3,
+   "brief": "Sau các bài trước bạn viết một trang quy tắc riêng: cái gì AI được làm, cái gì phải tự kiểm, cái gì không đưa vào. Capstone ghép toàn chặng.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  }
+ ]
+}

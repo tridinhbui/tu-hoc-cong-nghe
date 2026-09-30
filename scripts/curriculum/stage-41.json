@@ -1,0 +1,209 @@
+{
+ "stage": 41,
+ "label": "Chặng 41",
+ "name": {
+  "vi": "Freelancer, thiết kế và sáng tạo",
+  "en": "Freelancers, designers and creatives"
+ },
+ "idStart": 2220,
+ "parts": [
+  {
+   "vi": "Nhận việc và hiểu yêu cầu",
+   "en": "Winning work and understanding briefs"
+  },
+  {
+   "vi": "Báo giá và hợp đồng",
+   "en": "Quotes and contracts"
+  },
+  {
+   "vi": "Portfolio và chăm khách",
+   "en": "Portfolio and client care"
+  },
+  {
+   "vi": "Thời gian, thu nhập và dự án cuối",
+   "en": "Time, income and final project"
+  }
+ ],
+ "lessons": [
+  {
+   "id": 2220,
+   "slug": "freelancer-tra-loi-khach-hoi-gia-lan-dau",
+   "title": "Trả lời khách hỏi 'làm cái này bao nhiêu' ngay tin đầu",
+   "part": 0,
+   "brief": "Khách nhắn hỏi giá khi chưa nói gì; bạn nhờ AI soạn câu trả lời hỏi lại ba điều cần biết trước khi nêu con số.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2221,
+   "slug": "freelancer-tom-tat-brief-roi-rac-thanh-mot-trang",
+   "title": "Tóm brief rời rạc của khách thành một trang xác nhận",
+   "part": 0,
+   "brief": "Khách gửi năm tin nhắn và một file; bạn nhờ AI gom thành trang yêu cầu, gửi lại khách xác nhận trước khi bắt đầu.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2222,
+   "slug": "freelancer-loc-cau-hoi-lam-ro-yeu-cau",
+   "title": "Chọn năm câu hỏi làm rõ yêu cầu đáng hỏi nhất",
+   "part": 0,
+   "brief": "Brief mơ hồ 'làm cho đẹp'; bạn nhờ AI đề xuất câu hỏi và loại những câu khách sẽ thấy phiền hay không trả lời được.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2223,
+   "slug": "freelancer-nhan-hay-tu-choi-mot-viec-moi",
+   "title": "Cân nhắc nhận hay từ chối một việc qua bảng ba cột",
+   "part": 0,
+   "brief": "Có một việc gấp giá thấp; bạn liệt kê thời gian thật, tiền thật, khách quen, nhờ AI đóng vai người phản biện, và tự quyết.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2224,
+   "slug": "freelancer-du-an-nho-mau-tin-nhan-dau-vao-cho-khach-moi",
+   "title": "Dự án nhỏ: bộ mẫu trả lời khách mới từ hỏi giá đến chốt brief",
+   "part": 0,
+   "brief": "Gom bốn mẫu tin nhắn dùng lại, thử với hai khách giả định, ghi lại chỗ cần bạn sửa giọng cho giống mình.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2225,
+   "slug": "freelancer-tinh-gia-tu-gio-lam-that-cua-ban",
+   "title": "Tính giá từ số giờ làm thật thay vì đoán",
+   "part": 1,
+   "brief": "Bạn chưa biết mình làm một logo mất bao lâu; bạn ghi thời gian ba việc gần nhất, nhờ AI tính giá theo giờ mục tiêu và thời gian dự phòng.",
+   "practice": "scenario",
+   "visual": "chart:báo giá theo số giờ làm và giờ sửa"
+  },
+  {
+   "id": 2226,
+   "slug": "freelancer-viet-bao-gia-ro-pham-vi-so-lan-sua",
+   "title": "Viết báo giá ghi rõ việc gì trong giá, việc gì ngoài giá",
+   "part": 1,
+   "brief": "Khách hay xin 'sửa thêm chút'; bạn nhờ AI dựng báo giá có số lần sửa và giá cho việc phát sinh.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2227,
+   "slug": "freelancer-hop-dong-cho-luat-su-xem-danh-sach-can-hoi",
+   "title": "Lập danh sách điều cần hỏi luật sư trước khi ký hợp đồng",
+   "part": 1,
+   "brief": "Khách gửi hợp đồng dài; bạn nhờ AI liệt kê các mục cần hỏi (quyền sử dụng sản phẩm, thanh toán, chấm dứt), không nhờ AI nói có ký hay không.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2228,
+   "slug": "freelancer-tin-nhac-thanh-toan-khong-lam-mat-long",
+   "title": "Nhắc khách thanh toán trễ mà vẫn giữ quan hệ",
+   "part": 1,
+   "brief": "Hóa đơn quá hạn hai tuần; bạn soạn ba tin nhắc từ nhẹ đến rõ ràng, chỉ ghi số tiền và ngày theo hóa đơn thật.",
+   "practice": "scenario",
+   "visual": "chart:số tiền chưa thu theo ngày trễ"
+  },
+  {
+   "id": 2229,
+   "slug": "freelancer-du-an-nho-bo-bao-gia-va-hoa-don-mau",
+   "title": "Dự án nhỏ: bộ báo giá và tin nhắc thanh toán dùng lại",
+   "part": 1,
+   "brief": "Ghép báo giá, danh sách hỏi luật sư, ba tin nhắc thành một thư mục; đánh dấu phần nào cần người có chuyên môn duyệt.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2230,
+   "slug": "freelancer-viet-mo-ta-du-an-cho-portfolio",
+   "title": "Viết mô tả dự án cho portfolio từ ghi chú của chính bạn",
+   "part": 2,
+   "brief": "Bạn có ảnh sản phẩm nhưng không biết kể gì; nhờ AI dựng khung vấn đề, cách làm, kết quả từ ghi chú thật, không bịa số liệu.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2231,
+   "slug": "freelancer-hoi-khach-cu-xin-loi-gioi-thieu",
+   "title": "Xin lời giới thiệu từ khách cũ một cách không gượng",
+   "part": 2,
+   "brief": "Bạn có khách hài lòng; nhờ AI soạn tin nhờ họ viết vài dòng đánh giá thật, để họ chỉnh và bạn không tự viết thay họ.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2232,
+   "slug": "freelancer-tra-loi-gop-y-kho-nghe-cua-khach",
+   "title": "Đọc góp ý khó nghe và tách ra việc cần làm",
+   "part": 2,
+   "brief": "Khách nhắn 'không đúng ý'; bạn nhờ AI tách cảm xúc khỏi yêu cầu cụ thể, rồi hỏi lại đúng chỗ khách chưa vừa.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2233,
+   "slug": "freelancer-thu-thap-so-lieu-ket-qua-that-de-ke-chuyen",
+   "title": "Gom số liệu kết quả thật của khách để kể chuyện có chứng cứ",
+   "part": 2,
+   "brief": "Bạn muốn ghi 'giúp khách tăng đơn'; bạn xin khách số liệu thật hoặc cho phép ghi ẩn danh, nhờ AI diễn đạt, không thêm phần trăm nào khách chưa xác nhận.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2234,
+   "slug": "freelancer-du-an-nho-trang-portfolio-ba-du-an",
+   "title": "Dự án nhỏ: trang portfolio ba dự án kèm lời kể ngắn",
+   "part": 2,
+   "brief": "Chọn ba việc, viết mỗi việc một đoạn, nhờ hai người quen đọc thử để xem phần nào chưa rõ.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2235,
+   "slug": "freelancer-xep-lich-tuan-tu-viec-va-han-chot",
+   "title": "Xếp lịch tuần từ danh sách việc và hạn chót thật",
+   "part": 3,
+   "brief": "Bạn có năm việc, ba khách; bạn đưa AI hạn chót và số giờ, nhờ xếp lịch, rồi bạn cắt phần không khả thi.",
+   "practice": "aiLab-prompt",
+   "visual": "chart:giờ trống theo số việc nhận"
+  },
+  {
+   "id": 2236,
+   "slug": "freelancer-ghi-thu-chi-va-de-danh-thue-cho-ke-toan",
+   "title": "Ghi thu chi hằng tháng để hỏi kế toán đúng câu",
+   "part": 3,
+   "brief": "Cuối quý bạn không nhớ mình thu bao nhiêu; bạn dựng bảng thu chi và danh sách câu hỏi cho kế toán, không nhờ AI tính thuế.",
+   "practice": "aiLab-spotError",
+   "visual": "chart:thu nhập theo tháng và chi phí cố định"
+  },
+  {
+   "id": 2237,
+   "slug": "freelancer-thoi-gian-nghi-va-bao-khach-khi-qua-tai",
+   "title": "Báo khách khi quá tải mà không mất uy tín",
+   "part": 3,
+   "brief": "Bạn nhận quá nhiều việc; bạn soạn tin báo lùi hạn có phương án, kiểm lại ngày mới bạn hứa có làm được thật không.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2238,
+   "slug": "freelancer-kiem-soat-cong-cu-ai-khi-lam-cho-khach",
+   "title": "Dùng AI khi làm cho khách: hỏi khách và giữ bí mật",
+   "part": 3,
+   "brief": "Khách gửi tài liệu chưa công bố; bạn hỏi điều khoản, ẩn thông tin nhạy cảm, và ghi rõ với khách công đoạn nào có dùng AI.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2239,
+   "slug": "freelancer-du-an-cuoi-he-thong-mot-thang-lam-viec-cua-ban",
+   "title": "Dự án cuối: hệ thống làm việc một tháng của freelancer",
+   "part": 3,
+   "brief": "Ghép mẫu tin, báo giá, lịch tuần, bảng thu chi, quy tắc dùng AI thành một bộ dùng ngay cho nghề của bạn.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  }
+ ]
+}

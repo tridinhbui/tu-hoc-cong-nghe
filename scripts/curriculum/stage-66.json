@@ -1,0 +1,209 @@
+{
+ "stage": 66,
+ "label": "Chặng 66",
+ "name": {
+  "vi": "Nền tảng công nghệ cho người đi làm",
+  "en": "Tech foundations for working adults"
+ },
+ "idStart": 2720,
+ "parts": [
+  {
+   "vi": "Chiếc máy tính bạn đang dùng",
+   "en": "The computer you use every day"
+  },
+  {
+   "vi": "Mạng và Wi-Fi ở chỗ làm",
+   "en": "Networks and Wi-Fi at work"
+  },
+  {
+   "vi": "Đám mây, mật khẩu và lừa đảo",
+   "en": "The cloud, passwords and scams"
+  },
+  {
+   "vi": "Sao lưu, cập nhật và đọc lỗi",
+   "en": "Backups, updates and reading errors"
+  }
+ ],
+ "lessons": [
+  {
+   "id": 2720,
+   "slug": "may-tinh-cua-ban-gom-may-thanh-phan-bang-ngoi-nha",
+   "title": "Máy tính của bạn như một căn nhà: bàn làm việc, tủ hồ sơ và kho",
+   "part": 0,
+   "brief": "Máy chạy chậm giữa buổi họp và bạn không biết nên mua thêm gì; bạn mô tả triệu chứng để AI chỉ ra phần nào thường là nguyên nhân.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2721,
+   "slug": "o-cung-day-vi-sao-may-bao-day-du-luong",
+   "title": "Ổ đĩa báo đầy: cái gì đang chiếm chỗ và cái gì dọn được",
+   "part": 0,
+   "brief": "Máy báo hết dung lượng đúng lúc cần lưu báo cáo; bạn lập danh sách nhóm tệp nên kiểm tra trước, không xoá vội.",
+   "practice": "scenario",
+   "visual": "chart:dung lượng còn trống theo số tệp video và ảnh tích lại"
+  },
+  {
+   "id": 2722,
+   "slug": "tep-nam-o-dau-may-hay-nhom-luu-tru-chung",
+   "title": "Tệp này nằm ở đâu: trên máy bạn hay trên kho chung",
+   "part": 0,
+   "brief": "Đồng nghiệp bảo không thấy tệp bạn vừa lưu; bạn tìm ra tệp đang ở máy mình hay ở thư mục chung.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2723,
+   "slug": "khoi-dong-lai-may-co-that-su-giup-khong",
+   "title": "Khởi động lại máy: khi nào nó giúp, khi nào chỉ mất thời gian",
+   "part": 0,
+   "brief": "Máy treo trước hạn nộp và ai cũng bảo khởi động lại; bạn hiểu điều gì được dọn sạch và điều gì mất nếu chưa lưu.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2724,
+   "slug": "du-an-nho-danh-gia-suc-khoe-may-tinh-ca-nhan",
+   "title": "Dự án nhỏ: bảng kiểm sức khoẻ cho chiếc máy bạn đang dùng",
+   "part": 0,
+   "brief": "Bạn ghi dung lượng, tuổi máy, tệp chưa sao lưu của máy mình vào một trang và nhờ AI xếp việc nên làm trước.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2725,
+   "slug": "wifi-cham-do-modem-do-nha-mang-hay-do-may-ban",
+   "title": "Wi-Fi chậm: lỗi ở máy bạn, ở bộ phát hay ở nhà mạng",
+   "part": 1,
+   "brief": "Cuộc họp trực tuyến giật lúc 9 giờ sáng; bạn thử ba phép kiểm tra đơn giản để khoanh vùng nguyên nhân.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2726,
+   "slug": "bang-thong-va-so-nguoi-dung-chung-mot-duong-mang",
+   "title": "Cả văn phòng chung một đường mạng: vì sao giờ cao điểm chậm hơn",
+   "part": 1,
+   "brief": "Chiều thứ sáu ai cũng tải tệp lớn và mạng ì ạch; bạn thấy tốc độ chia đều cho số người dùng thế nào.",
+   "practice": "scenario",
+   "visual": "chart:tốc độ mỗi người theo số người dùng chung mạng"
+  },
+  {
+   "id": 2727,
+   "slug": "mang-cong-ty-va-mang-khach-vi-sao-co-hai-ten",
+   "title": "Mạng công ty và mạng khách: vì sao tách riêng lại an toàn hơn",
+   "part": 1,
+   "brief": "Khách đến họp xin mật khẩu Wi-Fi; bạn quyết định cho họ dùng mạng nào và giải thích ngắn gọn.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2728,
+   "slug": "wifi-quan-ca-phe-lam-viec-duoc-gi-khong-nen-lam-gi",
+   "title": "Làm việc ở quán cà phê: việc nào ổn, việc nào để về văn phòng",
+   "part": 1,
+   "brief": "Bạn phải gửi bảng lương từ quán cà phê; bạn phân loại những việc nên hay không nên làm qua Wi-Fi công cộng.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2729,
+   "slug": "du-an-nho-so-do-mang-nha-hoac-van-phong-cua-ban",
+   "title": "Dự án nhỏ: vẽ sơ đồ mạng nhà hoặc văn phòng của bạn",
+   "part": 1,
+   "brief": "Bạn liệt kê thiết bị nào nối vào đâu rồi nhờ AI chỉ ra chỗ nghẽn và chỗ rủi ro.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2730,
+   "slug": "dam-may-la-may-tinh-cua-nguoi-khac-ban-thue-cho-de",
+   "title": "Đám mây là máy tính của người khác mà bạn thuê chỗ để",
+   "part": 2,
+   "brief": "Công ty chuyển tệp lên kho trực tuyến và bạn thắc mắc dữ liệu giờ nằm đâu; bạn giải thích lại cho đồng nghiệp bằng ví dụ gửi kho.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2731,
+   "slug": "mat-khau-manh-la-mat-khau-dai-de-nho-khong-lap",
+   "title": "Mật khẩu mạnh: dài, dễ nhớ, không dùng lại",
+   "part": 2,
+   "brief": "Bạn dùng một mật khẩu cho mọi tài khoản công việc; bạn xem lại danh sách và đổi tài khoản quan trọng nhất trước.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2732,
+   "slug": "xac-thuc-hai-lop-vi-sao-biet-mat-khau-van-chua-du",
+   "title": "Xác thực hai lớp: vì sao biết mật khẩu vẫn chưa đủ vào nhà",
+   "part": 2,
+   "brief": "Có thông báo lạ hỏi mã xác nhận khi bạn không đăng nhập; bạn biết điều đó cho thấy gì và nên làm gì tiếp.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2733,
+   "slug": "thu-lua-dao-qua-email-nhan-ra-tu-ba-dau-hieu",
+   "title": "Thư lừa đảo: nhận ra từ ba dấu hiệu trước khi bấm",
+   "part": 2,
+   "brief": "Một email giả danh giám đốc bảo chuyển gấp và giữ kín; bạn chỉ ra dấu hiệu bất thường và cách xác minh bằng kênh khác.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2734,
+   "slug": "du-an-nho-don-dep-tai-khoan-va-bat-hai-lop-cho-ba-tai-khoan",
+   "title": "Dự án nhỏ: bảo vệ ba tài khoản quan trọng nhất của bạn",
+   "part": 2,
+   "brief": "Bạn chọn ba tài khoản mất là đau nhất, kiểm tra mật khẩu và lớp xác thực, ghi lại việc còn thiếu.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2735,
+   "slug": "sao-luu-quy-tac-ba-ban-hai-noi-mot-noi-xa",
+   "title": "Sao lưu: ba bản, hai nơi, một nơi xa chỗ làm",
+   "part": 3,
+   "brief": "Máy hỏng đúng đêm trước ngày nộp hồ sơ; bạn tính xem mình còn bao nhiêu tuần công việc nếu mất máy hôm nay.",
+   "practice": "scenario",
+   "visual": "chart:số ngày công việc có thể mất theo tần suất sao lưu"
+  },
+  {
+   "id": 2736,
+   "slug": "cap-nhat-phan-mem-vi-sao-thong-bao-do-dang-phien",
+   "title": "Cập nhật phần mềm: vì sao thông báo phiền ấy đáng bấm",
+   "part": 3,
+   "brief": "Máy nhắc cập nhật lần thứ mười và bạn luôn chọn để sau; bạn chọn giờ cập nhật hợp lý không làm hỏng buổi họp.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2737,
+   "slug": "doc-thong-bao-loi-khong-hoang-ba-cau-hoi-dau-tien",
+   "title": "Đọc thông báo lỗi mà không hoảng: ba câu hỏi đầu tiên",
+   "part": 3,
+   "brief": "Cửa sổ lỗi hiện lên khi bạn đang nộp báo cáo; bạn tách ra điều đã xảy ra, ở đâu, và chép đúng dòng chữ để hỏi người khác.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2738,
+   "slug": "hoi-nho-it-hay-hoi-ai-cach-mo-ta-loi-de-duoc-giup-nhanh",
+   "title": "Nhờ bộ phận IT hay AI giúp: cách mô tả lỗi để được giúp nhanh",
+   "part": 3,
+   "brief": "Bạn viết yêu cầu hỗ trợ có ảnh chụp, giờ xảy ra và việc đã thử, không dán mật khẩu hay dữ liệu khách.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2739,
+   "slug": "tong-ket-so-tay-an-toan-cong-nghe-mot-trang-cua-ban",
+   "title": "Tổng kết: sổ tay công nghệ một trang cho chính bạn",
+   "part": 3,
+   "brief": "Bạn gom việc đã làm trong chặng thành một trang: máy, mạng, tài khoản, sao lưu, ai gọi khi có sự cố, và nhờ AI rà chỗ thiếu.",
+   "practice": "scenario",
+   "visual": "flow"
+  }
+ ]
+}

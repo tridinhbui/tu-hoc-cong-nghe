@@ -1,0 +1,209 @@
+{
+ "stage": 58,
+ "label": "Chặng 58",
+ "name": {
+  "vi": "Đọc và sửa lỗi cùng AI",
+  "en": "Reading and fixing errors with AI"
+ },
+ "idStart": 2560,
+ "parts": [
+  {
+   "vi": "Đọc thông báo lỗi như đọc một lá thư",
+   "en": "Reading an error message like a letter"
+  },
+  {
+   "vi": "Hỏi AI đúng cách",
+   "en": "Asking AI the right way"
+  },
+  {
+   "vi": "Thử từng thay đổi và quay lại bản cũ",
+   "en": "One change at a time, and going back"
+  },
+  {
+   "vi": "Lỗi khó và biết lúc cần người",
+   "en": "Hard errors and knowing when to ask a person"
+  }
+ ],
+ "lessons": [
+  {
+   "id": 2560,
+   "slug": "thong-bao-loi-do-tren-man-hinh-doc-tu-dau",
+   "title": "Màn hình báo lỗi đỏ chót: đọc từ dòng nào trước",
+   "part": 0,
+   "brief": "Công cụ của bạn bỗng hiện một khối chữ đỏ; bạn học tìm ba thứ: nó nói gì, ở đâu, do đâu.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2561,
+   "slug": "loi-cua-ban-hay-loi-cua-he-thong-khac",
+   "title": "Lỗi do bạn nhập, do công cụ hay do dịch vụ bên ngoài",
+   "part": 0,
+   "brief": "Bạn phân loại năm thông báo lỗi thật vào ba nhóm để biết nên đổ lỗi cho ai và sửa ở đâu.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2562,
+   "slug": "chup-man-hinh-loi-va-ghi-lai-cac-buoc-de-lap-lai",
+   "title": "Chụp lỗi và ghi các bước để ai cũng làm lại được",
+   "part": 0,
+   "brief": "Đồng nghiệp báo 'không chạy được'; bạn viết lại ba dòng gồm các bước, kết quả mong muốn và kết quả thật.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2563,
+   "slug": "tim-thong-tin-thua-trong-mot-bao-cao-loi",
+   "title": "Bản báo lỗi thiếu gì: chấm điểm một bản báo lỗi mẫu",
+   "part": 0,
+   "brief": "Bạn đọc bản báo lỗi 'nó hỏng rồi' và liệt kê năm thông tin AI hay người khác sẽ phải hỏi lại.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2564,
+   "slug": "du-an-nho-viet-bao-cao-loi-mot-trang-cho-loi-that",
+   "title": "Dự án nhỏ: một bản báo lỗi mà người khác sửa được ngay",
+   "part": 0,
+   "brief": "Bạn chọn một lỗi có thật của mình và viết bản báo lỗi đầy đủ để đưa cho AI hoặc người hỗ trợ.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2565,
+   "slug": "dan-thong-bao-loi-cho-ai-can-kem-nhung-gi",
+   "title": "Dán lỗi cho AI: kèm những gì và giấu những gì",
+   "part": 1,
+   "brief": "Bạn chuẩn bị đoạn lỗi để hỏi AI, vừa đủ ngữ cảnh và đã xoá mật khẩu, địa chỉ và dữ liệu khách.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2566,
+   "slug": "xin-ai-giai-thich-loi-truoc-roi-moi-xin-cach-sua",
+   "title": "Xin AI giải thích lỗi trước, rồi mới xin cách sửa",
+   "part": 1,
+   "brief": "Bạn thử hai cách hỏi và thấy vì sao hỏi 'lỗi này nghĩa là gì' cho kết quả khác 'sửa giúp tôi'.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2567,
+   "slug": "ai-doan-nguyen-nhan-sai-nhung-noi-rat-tu-tin",
+   "title": "AI đoán sai nguyên nhân mà vẫn nói rất tự tin",
+   "part": 1,
+   "brief": "Bạn đọc ba lời giải thích của AI và tìm câu nào chỉ là phỏng đoán, cách nào để kiểm chứng.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2568,
+   "slug": "hoi-ai-cho-nhieu-gia-thuyet-va-cach-thu-tung-cai",
+   "title": "Xin AI ba giả thuyết và cách thử từng giả thuyết",
+   "part": 1,
+   "brief": "Bạn yêu cầu AI xếp các nguyên nhân theo khả năng, kèm một phép thử nhanh cho mỗi cái.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2569,
+   "slug": "du-an-nho-nhat-ky-hoi-dap-loi-voi-ai",
+   "title": "Dự án nhỏ: nhật ký ghi câu hỏi, câu trả lời và kết quả thử",
+   "part": 1,
+   "brief": "Bạn lập bảng ba cột để sau này không phải hỏi lại AI cùng một lỗi hai lần.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2570,
+   "slug": "sua-mot-cho-mot-lan-vi-sao-khong-nen-doi-nam-thu",
+   "title": "Sửa một chỗ mỗi lần: vì sao đổi năm thứ cùng lúc là bẫy",
+   "part": 2,
+   "brief": "Bạn được đưa năm gợi ý sửa của AI và sắp thứ tự thử, mỗi lần chỉ đổi một chỗ.",
+   "practice": "scenario",
+   "visual": "chart:số lần thử theo số thay đổi thử cùng lúc"
+  },
+  {
+   "id": 2571,
+   "slug": "luu-ban-cu-truoc-khi-sua-va-cach-quay-lai",
+   "title": "Lưu bản cũ trước khi sửa và cách quay lại",
+   "part": 2,
+   "brief": "Bạn tạo bản sao có ghi ngày trước khi để AI sửa, rồi luyện quay lại bản đó khi sửa hỏng thêm.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2572,
+   "slug": "ai-sua-loi-nay-lai-hong-cho-khac",
+   "title": "AI sửa xong lỗi này thì lỗi khác xuất hiện: đọc một bản sửa có rủi ro",
+   "part": 2,
+   "brief": "Bạn xem một bản sửa AI đề xuất và tìm các chỗ có thể vô tình làm hỏng phần đang chạy tốt.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2573,
+   "slug": "kiem-lai-sau-khi-sua-bo-cau-hoi-thu-nhanh",
+   "title": "Sửa xong rồi: năm phép thử nhanh để chắc chắn",
+   "part": 2,
+   "brief": "Bạn lập danh sách phép thử gồm trường hợp bình thường, rỗng, quá lớn và lặp lại rồi chạy lại toàn bộ.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2574,
+   "slug": "du-an-nho-sua-mot-loi-co-that-tu-bao-cao-toi-kiem-tra",
+   "title": "Dự án nhỏ: sửa một lỗi thật, từ báo cáo tới kiểm tra lại",
+   "part": 2,
+   "brief": "Bạn đi trọn một vòng: tái hiện, hỏi AI, thử từng thay đổi, kiểm lại và ghi vào nhật ký.",
+   "practice": "sim:editor:fix-bug",
+   "visual": "flow"
+  },
+  {
+   "id": 2575,
+   "slug": "loi-chi-thinh-thoang-moi-xuat-hien",
+   "title": "Lỗi chỉ thỉnh thoảng mới xuất hiện: cách bắt nó",
+   "part": 3,
+   "brief": "Có ngày công cụ chạy, có ngày không; bạn ghi lại điều kiện mỗi lần để tìm điểm chung.",
+   "practice": "scenario",
+   "visual": "chart:tỷ lệ lỗi theo số lần chạy"
+  },
+  {
+   "id": 2576,
+   "slug": "loi-tu-du-lieu-ban-nhap-vao-khong-phai-tu-cong-cu",
+   "title": "Lỗi nằm ở dữ liệu chứ không phải công cụ",
+   "part": 3,
+   "brief": "Bạn phát hiện một dòng có dấu cách thừa làm cả bảng sai, và học cách kiểm dữ liệu trước khi nghi công cụ.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2577,
+   "slug": "khi-nao-nen-dung-thu-nua-va-khi-nao-goi-nguoi",
+   "title": "Khi nào thôi thử nữa và gọi người: năm dấu hiệu",
+   "part": 3,
+   "brief": "Bạn đặt giới hạn thời gian cho mình, liệt kê những lỗi liên quan tiền, dữ liệu khách hay bảo mật cần người ngay.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2578,
+   "slug": "nho-nguoi-ho-tro-giup-bang-mot-tin-nhan-goi-gon",
+   "title": "Nhờ người hỗ trợ bằng một tin nhắn gọn, đủ ý",
+   "part": 3,
+   "brief": "Bạn soạn tin cho đồng nghiệp kỹ thuật, đã có bản báo lỗi, nhật ký thử và câu hỏi cụ thể.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2579,
+   "slug": "du-an-tong-ket-so-tay-xu-ly-loi-cua-rieng-ban",
+   "title": "Dự án tổng kết: sổ tay xử lý lỗi một trang của riêng bạn",
+   "part": 3,
+   "brief": "Bạn gom quy trình đọc, hỏi, thử, quay lại và gọi người thành một trang để dùng cho mọi lỗi sau này.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  }
+ ]
+}

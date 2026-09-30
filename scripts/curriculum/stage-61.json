@@ -1,0 +1,209 @@
+{
+ "stage": 61,
+ "label": "Chặng 61",
+ "name": {
+  "vi": "Bảng tính nâng cao với AI",
+  "en": "Advanced spreadsheets with AI"
+ },
+ "idStart": 2620,
+ "parts": [
+  {
+   "vi": "Bảng tính sạch trước khi làm gì khác",
+   "en": "A clean sheet before anything else"
+  },
+  {
+   "vi": "Tra cứu và ghép bảng",
+   "en": "Lookups and joining tables"
+  },
+  {
+   "vi": "Tổng hợp nhiều bảng bằng pivot",
+   "en": "Combining many tables with pivots"
+  },
+  {
+   "vi": "Kiểm công thức AI viết và làm mẫu tái dùng",
+   "en": "Auditing AI formulas and building reusable templates"
+  }
+ ],
+ "lessons": [
+  {
+   "id": 2620,
+   "slug": "mot-cot-ten-khach-viet-ba-kieu-lam-sach-cot-do",
+   "title": "Một cột tên khách viết ba kiểu: nhờ AI làm sạch mà không mất dòng",
+   "part": 0,
+   "brief": "Bạn có danh sách khách nhập tay lộn xộn; bạn mô tả lỗi cho AI, kiểm số dòng trước và sau khi sửa.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2621,
+   "slug": "ngay-thang-luu-dang-chu-doi-ngay-sang-ngay-that",
+   "title": "Ngày tháng lưu dạng chữ: đổi sang ngày thật để tính được",
+   "part": 0,
+   "brief": "Bảng doanh thu của bạn không lọc được theo tháng; bạn tìm nguyên nhân và nhờ AI chỉ cách đổi, rồi tự thử trên 5 dòng.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2622,
+   "slug": "tach-mot-cot-dia-chi-thanh-nhieu-cot-va-kiem-lai",
+   "title": "Tách cột địa chỉ thành phường, quận, thành phố và kiểm lại",
+   "part": 0,
+   "brief": "Bạn nhờ AI đề xuất cách tách, rồi kiểm mười dòng khó nhất xem có chỗ nào bị cắt sai.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2623,
+   "slug": "so-luong-bi-luu-thanh-chu-tim-o-tinh-tong-sai",
+   "title": "Tổng doanh thu thấp bất thường: tìm ô số bị lưu thành chữ",
+   "part": 0,
+   "brief": "Bạn thấy tổng nhỏ hơn dự đoán, và lần theo dấu hiệu tới các ô lệch trái, có dấu cách thừa.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2624,
+   "slug": "du-an-nho-don-mot-tep-khach-hang-thanh-bang-dung-duoc",
+   "title": "Dự án nhỏ: dọn một tệp khách hàng thành bảng dùng được",
+   "part": 0,
+   "brief": "Bạn dọn tên, số điện thoại, ngày và trùng lặp trên tệp của mình, ghi lại từng bước để làm lại lần sau.",
+   "practice": "aiLab-prompt",
+   "visual": "chart:số dòng lỗi còn lại sau mỗi lượt làm sạch"
+  },
+  {
+   "id": 2625,
+   "slug": "tra-gia-theo-ma-hang-thay-vi-do-mat",
+   "title": "Tra giá theo mã hàng thay vì dò bằng mắt",
+   "part": 1,
+   "brief": "Bạn có bảng đơn 300 dòng và bảng giá riêng; bạn mô tả việc cần làm cho AI và hiểu công thức nó viết đang tìm gì ở đâu.",
+   "practice": "aiLab-prompt",
+   "visual": "chart:thời gian dò tay theo số dòng đơn hàng"
+  },
+  {
+   "id": 2626,
+   "slug": "tra-cuu-tra-ve-loi-hoac-ket-qua-sai-vi-ma-hang-la-khac",
+   "title": "Tra cứu ra lỗi hoặc giá sai vì mã hàng viết khác nhau",
+   "part": 1,
+   "brief": "Một số mã có dấu cách hay chữ hoa thường khác; bạn tìm cặp mã không khớp và giải thích vì sao.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2627,
+   "slug": "ghep-hai-bang-khi-mot-ben-co-khach-ben-kia-khong-co",
+   "title": "Ghép hai bảng khi một bên có khách mà bên kia không có",
+   "part": 1,
+   "brief": "Bạn muốn biết khách nào đã mua mà chưa có trong danh bạ; bạn chọn cách ghép đúng cho câu hỏi đó.",
+   "practice": "sim:sql:left-join-null",
+   "visual": "flow"
+  },
+  {
+   "id": 2628,
+   "slug": "tra-cuu-hai-dieu-kien-cung-luc-vd-ma-hang-va-thang",
+   "title": "Tra cứu theo hai điều kiện: mã hàng và tháng",
+   "part": 1,
+   "brief": "Giá thay đổi theo tháng; bạn nhờ AI dựng cách tra và tự kiểm ba ô với số bạn biết chắc.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2629,
+   "slug": "du-an-nho-bang-doi-chieu-hoa-don-va-tien-ve",
+   "title": "Dự án nhỏ: bảng đối chiếu hoá đơn và tiền về",
+   "part": 1,
+   "brief": "Bạn ghép danh sách hoá đơn với sao kê để ra hoá đơn chưa thu tiền, và ghi rõ cách xử lý dòng lệch vài nghìn.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2630,
+   "slug": "bang-tong-hop-pivot-tra-loi-cau-doanh-thu-theo-thang-theo-nhom",
+   "title": "Bảng tổng hợp cho câu hỏi doanh thu theo tháng theo nhóm hàng",
+   "part": 2,
+   "brief": "Sếp hỏi nhóm hàng nào đang tụt; bạn dựng pivot từ bảng đơn hàng và đọc ra một câu trả lời.",
+   "practice": "aiLab-prompt",
+   "visual": "chart:doanh thu theo tháng của từng nhóm hàng"
+  },
+  {
+   "id": 2631,
+   "slug": "pivot-dem-tren-du-lieu-thieu-o-trong-dem-thieu-dong",
+   "title": "Pivot đếm ra ít hơn số đơn thật: dò dòng bị bỏ sót",
+   "part": 2,
+   "brief": "Bạn đối chiếu số dòng nguồn với tổng pivot và tìm ra ô trống hay dòng nằm ngoài vùng chọn.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2632,
+   "slug": "gop-12-bang-thang-thanh-mot-bang-de-tong-hop",
+   "title": "Gộp 12 bảng tháng thành một bảng để tổng hợp",
+   "part": 2,
+   "brief": "Mỗi tháng một tab, cột đặt tên lệch nhau; bạn thống nhất tên cột rồi nhờ AI hướng dẫn cách gộp và kiểm tổng.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2633,
+   "slug": "trung-binh-cua-cac-trung-binh-dung-hay-sai-khi-gop-bao-cao",
+   "title": "Trung bình của các trung bình: khi nào gộp báo cáo bị sai",
+   "part": 2,
+   "brief": "Hai chi nhánh báo giá trị đơn trung bình; bạn tính lại tổng bằng số đơn và thấy vì sao không cộng chia đôi được.",
+   "practice": "scenario",
+   "visual": "chart:giá trị đơn trung bình theo số đơn của mỗi chi nhánh"
+  },
+  {
+   "id": 2634,
+   "slug": "du-an-nho-bao-cao-tuan-tu-ba-nguon-so-lieu",
+   "title": "Dự án nhỏ: báo cáo tuần từ ba nguồn số liệu",
+   "part": 2,
+   "brief": "Bạn ghép số đơn, số khách và chi phí quảng cáo thành một bảng tuần và viết ba dòng nhận xét.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2635,
+   "slug": "ai-viet-cong-thuc-dai-doc-tung-manh-truoc-khi-tin",
+   "title": "AI viết công thức dài: tách từng mảnh đọc trước khi tin",
+   "part": 3,
+   "brief": "Công thức có bốn hàm lồng nhau; bạn nhờ AI giải thích từng mảnh và tự dự đoán kết quả cho một dòng.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2636,
+   "slug": "thu-cong-thuc-ai-tren-5-dong-ban-biet-dap-an",
+   "title": "Thử công thức AI trên 5 dòng mà bạn đã biết đáp án",
+   "part": 3,
+   "brief": "Bạn chọn năm dòng gồm cả trường hợp lạ (trống, âm, trùng) và ghi kết quả mong muốn trước khi chạy.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2637,
+   "slug": "cong-thuc-chay-dung-nhung-ket-qua-sai-dong-cuoi-bi-bo-qua",
+   "title": "Công thức chạy không lỗi mà tổng sai: dòng cuối bị bỏ ngoài vùng",
+   "part": 3,
+   "brief": "Bạn rà vùng tham chiếu của công thức AI viết và thấy nó chỉ phủ đến dòng 200 trong khi có 240 dòng.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2638,
+   "slug": "dung-mau-bao-cao-tai-su-dung-vung-nhap-vung-tinh-vung-kiem",
+   "title": "Dựng mẫu báo cáo dùng lại được: vùng nhập, vùng tính, vùng kiểm",
+   "part": 3,
+   "brief": "Bạn tách ba vùng trong một tệp của mình để tháng sau chỉ dán số mới vào, và thêm ô kiểm tổng khớp.",
+   "practice": "aiLab-prompt",
+   "visual": "chart:thời gian làm báo cáo theo số lần dùng lại mẫu"
+  },
+  {
+   "id": 2639,
+   "slug": "du-an-cuoi-mau-bao-cao-thang-cua-ban-kem-trang-huong-dan",
+   "title": "Dự án cuối: mẫu báo cáo tháng của bạn kèm trang hướng dẫn",
+   "part": 3,
+   "brief": "Bạn bàn giao một mẫu có ô kiểm và một trang ghi nguồn số, cách cập nhật, những lỗi từng gặp, để đồng nghiệp dùng thay bạn.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  }
+ ]
+}

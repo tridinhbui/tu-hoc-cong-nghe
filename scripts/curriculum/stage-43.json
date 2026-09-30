@@ -1,0 +1,209 @@
+{
+ "stage": 43,
+ "label": "Chặng 43",
+ "name": {
+  "vi": "AI trong Word, Excel, PowerPoint và Google Workspace",
+  "en": "AI in Office and Google Workspace"
+ },
+ "idStart": 2260,
+ "parts": [
+  {
+   "vi": "Văn bản và thư",
+   "en": "Documents and mail"
+  },
+  {
+   "vi": "Bảng tính",
+   "en": "Spreadsheets"
+  },
+  {
+   "vi": "Bài trình bày và họp",
+   "en": "Slides and meetings"
+  },
+  {
+   "vi": "Cả tuần làm việc",
+   "en": "The whole work week"
+  }
+ ],
+ "lessons": [
+  {
+   "id": 2260,
+   "slug": "viet-lai-doan-van-trong-tai-lieu-dang-mo",
+   "title": "Viết lại một đoạn ngay trong tài liệu đang mở",
+   "part": 0,
+   "brief": "Bạn có đoạn báo cáo nặng nề và không muốn chuyển qua lại giữa hai cửa sổ; bạn nhờ trợ lý trong trình soạn thảo viết gọn lại và kiểm xem có mất ý không. Người viết kiểm chứng tài liệu chính thức về trợ lý trong Word và Docs.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2261,
+   "slug": "tom-tat-van-ban-dai-va-do-lai-voi-ban-goc",
+   "title": "Tóm tắt văn bản dài rồi dò lại với bản gốc",
+   "part": 0,
+   "brief": "Sếp gửi tài liệu 30 trang và hỏi ý chính; bạn tóm tắt bằng trợ lý rồi đối chiếu từng ý với đoạn gốc.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2262,
+   "slug": "soan-thu-tra-loi-trong-hop-thu",
+   "title": "Soạn thư trả lời ngay trong hộp thư",
+   "part": 0,
+   "brief": "Bạn có 12 thư chưa trả lời sáng thứ hai; bạn nhờ trợ lý soạn nháp, sửa giọng và tự quyết định trước khi gửi. Người viết kiểm chứng tài liệu chính thức về trợ lý trong Gmail và Outlook.",
+   "practice": "aiLab-prompt",
+   "visual": "chart:số thư cần trả lời so với phút tiết kiệm được"
+  },
+  {
+   "id": 2263,
+   "slug": "tom-tat-chuoi-thu-dai-ai-noi-gi-ai-can-lam-gi",
+   "title": "Tóm tắt chuỗi thư dài: ai nói gì, ai cần làm gì",
+   "part": 0,
+   "brief": "Bạn được thêm vào giữa chuỗi 40 thư; bạn nhờ trợ lý lập danh sách việc và đối chiếu lại với thư gốc.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2264,
+   "slug": "du-an-nho-mot-bao-cao-tu-ban-nhap-den-ban-gui",
+   "title": "Dự án nhỏ: một báo cáo từ nháp đến bản gửi",
+   "part": 0,
+   "brief": "Bạn chọn báo cáo tuần của mình, dùng trợ lý ở ba bước dàn ý, viết, rà và ghi lại chỗ nào bạn phải sửa tay.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2265,
+   "slug": "hoi-bang-tinh-bang-tieng-viet-thuong",
+   "title": "Hỏi bảng tính bằng tiếng Việt thường ngày",
+   "part": 1,
+   "brief": "Bạn muốn biết tháng nào doanh thu thấp nhất mà chưa rành công thức; bạn hỏi bằng lời và học cách đọc lại công thức nó viết. Người viết kiểm chứng tài liệu chính thức về trợ lý trong Excel và Sheets.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2266,
+   "slug": "cong-thuc-do-tro-ly-viet-kiem-bang-ba-dong-mau",
+   "title": "Công thức do trợ lý viết: kiểm bằng ba dòng mẫu",
+   "part": 1,
+   "brief": "Công thức chạy ra số nhưng bạn không chắc đúng; bạn tự tính tay ba dòng để so.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2267,
+   "slug": "lam-sach-cot-du-lieu-ten-ngay-so-dien-thoai",
+   "title": "Làm sạch một cột dữ liệu lộn xộn",
+   "part": 1,
+   "brief": "Cột ngày tháng trong bảng của bạn viết đủ kiểu; bạn nhờ trợ lý chuẩn hoá rồi đếm lại số dòng trước và sau.",
+   "practice": "scenario",
+   "visual": "chart:số dòng lỗi trước và sau khi làm sạch"
+  },
+  {
+   "id": 2268,
+   "slug": "tao-bieu-do-tu-bang-so-va-doc-cho-dung",
+   "title": "Tạo biểu đồ từ bảng số và đọc cho đúng",
+   "part": 1,
+   "brief": "Bạn cần một biểu đồ cho buổi họp; trợ lý vẽ được nhưng trục hoặc thang đo có thể gây hiểu nhầm, bạn học cách kiểm.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2269,
+   "slug": "du-an-nho-bang-theo-doi-chi-phi-thang",
+   "title": "Dự án nhỏ: bảng theo dõi chi tiêu hoặc doanh thu tháng",
+   "part": 1,
+   "brief": "Bạn dựng bảng theo dõi từ số liệu của mình với sự trợ giúp của AI và kiểm tổng bằng cách tính tay.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2270,
+   "slug": "dan-y-bai-trinh-bay-tu-mot-trang-ghi-chu",
+   "title": "Dàn ý bài trình bày từ một trang ghi chú",
+   "part": 2,
+   "brief": "Bạn có một trang ghi chú lộn xộn và ngày mai họp; bạn nhờ trợ lý dựng dàn ý 6 trang chiếu và chỉnh theo người nghe. Người viết kiểm chứng tài liệu chính thức về trợ lý trong PowerPoint và Slides.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2271,
+   "slug": "bai-trinh-bay-nhieu-chu-lam-gon-lai-nhu-the-nao",
+   "title": "Trang chiếu nhiều chữ: làm gọn mà không mất ý",
+   "part": 2,
+   "brief": "Trang chiếu dày đặc chữ làm người nghe ngủ gật; bạn nhờ rút thành ba ý và kiểm xem số liệu còn nguyên.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2272,
+   "slug": "hinh-anh-do-ai-tao-cho-bai-trinh-bay-dung-va-can-than",
+   "title": "Hình do AI tạo cho trang chiếu: dùng và cẩn thận",
+   "part": 2,
+   "brief": "Bạn cần một hình minh hoạ; bạn học khi nào hợp lý, khi nào nên dùng ảnh thật và cách ghi chú khi dùng ảnh do AI tạo.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2273,
+   "slug": "ghi-chu-cuoc-hop-do-ai-lam-doc-lai-truoc-khi-gui",
+   "title": "Biên bản họp do AI ghi: đọc lại trước khi gửi",
+   "part": 2,
+   "brief": "Cuộc họp một tiếng và công cụ ghi lại biên bản; bạn kiểm tên người, hạn chót và việc được giao. Người viết kiểm chứng tài liệu chính thức về ghi chú họp trong Meet và Teams.",
+   "practice": "aiLab-spotError",
+   "visual": "chart:độ dài cuộc họp so với số việc được giao sót"
+  },
+  {
+   "id": 2274,
+   "slug": "du-an-nho-mot-buoi-hop-tu-chuan-bi-den-bien-ban",
+   "title": "Dự án nhỏ: một buổi họp từ chuẩn bị đến biên bản",
+   "part": 2,
+   "brief": "Bạn dùng trợ lý soạn chương trình họp, ghi việc trong họp và gửi biên bản có chủ việc và hạn rõ.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2275,
+   "slug": "lich-va-cuoc-hen-tro-ly-goi-y-gio-hop",
+   "title": "Lịch và cuộc hẹn: nhờ trợ lý gợi ý giờ họp và soạn lời mời",
+   "part": 3,
+   "brief": "Bạn cần xếp một buổi họp cho năm người bận; bạn nhờ trợ lý gợi ý khung giờ và soạn lời mời, còn tự kiểm múi giờ và người bắt buộc dự.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2276,
+   "slug": "bieu-mau-va-mau-van-ban-dung-lai-nhieu-lan",
+   "title": "Biểu mẫu và mẫu văn bản: dựng một lần, dùng nhiều lần",
+   "part": 3,
+   "brief": "Bạn viết đi viết lại cùng một loại thư; bạn nhờ trợ lý dựng mẫu có chỗ trống và tự đọc lại một bản điền thử.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2277,
+   "slug": "tuan-lam-viec-giao-viec-nao-cho-tro-ly-va-viec-nao-khong",
+   "title": "Một tuần làm việc: việc nào giao cho trợ lý, việc nào không",
+   "part": 3,
+   "brief": "Bạn nhìn lịch tuần của mình và đánh dấu việc nào hợp giao cho trợ lý, việc nào cần chính bạn hoặc không được đưa dữ liệu vào.",
+   "practice": "scenario",
+   "visual": "chart:số giờ mỗi loại việc trong tuần"
+  },
+  {
+   "id": 2278,
+   "slug": "gioi-han-cua-tro-ly-trong-ung-dung-khi-nao-nen-dung-lai",
+   "title": "Giới hạn của trợ lý trong ứng dụng: khi nào nên dừng lại",
+   "part": 3,
+   "brief": "Trợ lý trong ứng dụng có thể khác bản chat riêng về khả năng; bạn lập danh sách việc nó làm chưa chắc và cách xử trí.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2279,
+   "slug": "capstone-quy-trinh-mot-tuan-cua-ban-voi-tro-ly-van-phong",
+   "title": "Tổng kết: quy trình một tuần của bạn với trợ lý văn phòng",
+   "part": 3,
+   "brief": "Bạn ghép văn bản, bảng tính, bài trình bày và họp thành một quy trình tuần có bước kiểm tay, để đồng nghiệp dùng lại.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  }
+ ]
+}

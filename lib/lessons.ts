@@ -9,6 +9,7 @@ import { WORK_DATA_AI_LESSONS } from "./work-data-ai-lessons";
 import { WORK_AUTOMATION_LESSONS } from "./work-automation-lessons";
 import { WORK_AI_TEAMS_LESSONS } from "./work-ai-teams-lessons";
 import { WORK_AI_SAFETY_LESSONS } from "./work-ai-safety-lessons";
+import { AI_WORK_LESSONS } from "./ai-work-lessons";
 import { BUILDER_LLM_API_LESSONS } from "./builder-llm-api-lessons";
 import { BUILDER_RAG_LESSONS } from "./builder-rag-lessons";
 import { BUILDER_AGENTS_LESSONS } from "./builder-agents-lessons";
@@ -63,6 +64,7 @@ export const lessons: Lesson[] = [
   ...WORK_AUTOMATION_LESSONS,
   ...WORK_AI_TEAMS_LESSONS,
   ...WORK_AI_SAFETY_LESSONS,
+  ...AI_WORK_LESSONS,
   ...BUILDER_LLM_API_LESSONS,
   ...BUILDER_RAG_LESSONS,
   ...BUILDER_AGENTS_LESSONS,

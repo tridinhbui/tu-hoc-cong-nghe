@@ -1,0 +1,209 @@
+{
+ "stage": 57,
+ "label": "Chặng 57",
+ "name": {
+  "vi": "Làm công cụ nhỏ cho công việc",
+  "en": "Small tools for your own work"
+ },
+ "idStart": 2540,
+ "parts": [
+  {
+   "vi": "Từ một việc lặp lại tới công cụ đầu tiên",
+   "en": "From a repeated chore to your first tool"
+  },
+  {
+   "vi": "Biểu mẫu, máy tính và bảng theo dõi",
+   "en": "Forms, calculators and trackers"
+  },
+  {
+   "vi": "Dữ liệu lưu ở đâu và ai xem được",
+   "en": "Where data lives and who can see it"
+  },
+  {
+   "vi": "Thử với người dùng thật và bàn giao",
+   "en": "Testing with real users and handover"
+  }
+ ],
+ "lessons": [
+  {
+   "id": 2540,
+   "slug": "chon-viec-lap-lai-dang-lam-thanh-cong-cu-nho",
+   "title": "Chọn đúng một việc lặp lại đáng làm thành công cụ nhỏ",
+   "part": 0,
+   "brief": "Mỗi tuần bạn gõ lại cùng một bảng báo giá; bạn đếm số lần lặp, số phút mất và chọn một việc để làm thành công cụ.",
+   "practice": "aiLab-prompt",
+   "visual": "chart:số phút mất mỗi tuần theo số lần lặp"
+  },
+  {
+   "id": 2541,
+   "slug": "mo-ta-cong-cu-bang-mot-trang-giay-truoc-khi-nho-ai",
+   "title": "Mô tả công cụ trên một trang giấy trước khi nhờ AI dựng",
+   "part": 0,
+   "brief": "Bạn viết ai dùng, nhập gì, ra gì, rồi đưa cho AI để nó hỏi lại những chỗ còn thiếu.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2542,
+   "slug": "tim-loi-trong-mo-ta-cong-cu-truoc-khi-dung",
+   "title": "Tìm chỗ mơ hồ trong một bản mô tả công cụ mẫu",
+   "part": 0,
+   "brief": "Bạn đọc một bản mô tả 'làm cái bảng tính tiền giúp tôi' và chỉ ra bốn chỗ AI sẽ phải đoán bừa.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2543,
+   "slug": "cong-cu-nho-hay-dung-phan-mem-co-san",
+   "title": "Làm mới hay dùng phần mềm có sẵn: quyết định trước khi tốn công",
+   "part": 0,
+   "brief": "Bạn đứng trước ba nhu cầu thật của phòng mình và chọn cái nào đáng tự làm, cái nào nên dùng đồ sẵn.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2544,
+   "slug": "du-an-nho-cong-cu-tinh-tien-cong-thu-cong",
+   "title": "Dự án nhỏ: bản chạy đầu tiên của một công cụ chỉ có một nút",
+   "part": 0,
+   "brief": "Bạn nhờ AI dựng công cụ tính thành tiền từ số lượng và đơn giá, rồi tự thử ba con số bằng tay.",
+   "practice": "aiLab-prompt",
+   "visual": "chart:thành tiền theo số lượng và đơn giá"
+  },
+  {
+   "id": 2545,
+   "slug": "bieu-mau-thu-thap-thong-tin-khach-can-nhung-truong-nao",
+   "title": "Biểu mẫu nhận yêu cầu: hỏi những gì, bỏ những gì",
+   "part": 1,
+   "brief": "Đội bạn nhận yêu cầu qua tin nhắn lộn xộn; bạn chọn các trường thật sự cần và bỏ trường không ai dùng.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2546,
+   "slug": "bieu-mau-cho-nhap-sai-ngay-thang-va-so-dien-thoai",
+   "title": "Biểu mẫu cho phép nhập sai: ngày tháng, số điện thoại, ô bỏ trống",
+   "part": 1,
+   "brief": "Bạn xem một biểu mẫu mẫu chấp nhận ngày 31/02 và số điện thoại 5 chữ số, rồi liệt kê các luật kiểm tra còn thiếu.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2547,
+   "slug": "may-tinh-bao-gia-nhieu-dong-va-chiet-khau",
+   "title": "Máy tính báo giá có nhiều dòng và chiết khấu",
+   "part": 1,
+   "brief": "Bạn tự thử máy tính với hai dòng hàng và một mức giảm để chắc AI làm đúng thứ tự tính.",
+   "practice": "aiLab-prompt",
+   "visual": "chart:tổng tiền theo mức chiết khấu"
+  },
+  {
+   "id": 2548,
+   "slug": "bang-theo-doi-viec-can-lam-cho-ca-nhom-nho",
+   "title": "Bảng theo dõi đơn hoặc việc cho cả nhóm nhỏ",
+   "part": 1,
+   "brief": "Nhóm bạn cãi nhau xem ai đang giữ đơn nào; bạn thiết kế các cột trạng thái, người phụ trách và ngày hẹn.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2549,
+   "slug": "du-an-nho-bieu-mau-ket-noi-bang-theo-doi",
+   "title": "Dự án nhỏ: biểu mẫu nhập, bảng theo dõi hiện ra ngay",
+   "part": 1,
+   "brief": "Bạn nối biểu mẫu yêu cầu với bảng theo dõi, gửi ba yêu cầu thử và xem ba dòng mới hiện ra.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2550,
+   "slug": "du-lieu-luu-o-may-ban-hay-tren-may-chu",
+   "title": "Dữ liệu công cụ nằm ở đâu: máy bạn, trình duyệt hay máy chủ",
+   "part": 2,
+   "brief": "Đồng nghiệp mở công cụ của bạn mà không thấy dữ liệu bạn nhập; bạn tìm ra dữ liệu đang nằm ở đâu.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2551,
+   "slug": "nhap-du-lieu-that-vao-cong-cu-thi-can-nghi-gi",
+   "title": "Đừng dán dữ liệu khách thật vào bản thử của công cụ",
+   "part": 2,
+   "brief": "Bạn phân loại các cột dữ liệu trong bảng của mình theo mức nhạy cảm và tạo bộ dữ liệu giả để thử.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2552,
+   "slug": "phan-quyen-ai-duoc-xem-ai-duoc-sua",
+   "title": "Ai được xem, ai được sửa: phân quyền cho công cụ nhóm",
+   "part": 2,
+   "brief": "Bạn ghi ra ba nhóm người dùng công cụ và quyền của từng nhóm, rồi nhờ AI đọc lại để tìm lỗ hổng.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2553,
+   "slug": "xuat-nhap-du-lieu-ra-file-de-khong-bi-nhot",
+   "title": "Xuất dữ liệu ra tệp để công cụ hỏng cũng không mất trắng",
+   "part": 2,
+   "brief": "Bạn thêm nút xuất bảng ra tệp và thử mở lại tệp đó ở máy khác.",
+   "practice": "aiLab-spotError",
+   "visual": "chart:số dòng dữ liệu theo số tháng dùng"
+  },
+  {
+   "id": 2554,
+   "slug": "du-an-nho-cong-cu-co-nho-lai-du-lieu-sau-khi-tat-may",
+   "title": "Dự án nhỏ: công cụ nhớ dữ liệu sau khi tắt trình duyệt",
+   "part": 2,
+   "brief": "Bạn đóng và mở lại công cụ để kiểm dữ liệu còn nguyên, và ghi lại nơi nó được lưu.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2555,
+   "slug": "nhoi-nguoi-dung-that-thu-mot-cong-cu-trong-mot-buoi",
+   "title": "Nhờ một đồng nghiệp thử công cụ mà bạn không được chỉ dẫn",
+   "part": 3,
+   "brief": "Bạn quan sát người thử làm một việc và ghi lại ba chỗ họ kẹt mà không nói gì.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2556,
+   "slug": "gom-phan-hoi-cua-nguoi-thu-thanh-danh-sach-viec-sua",
+   "title": "Biến phản hồi lộn xộn của người thử thành danh sách việc sửa",
+   "part": 3,
+   "brief": "Bạn có mười lời nhận xét thô và xếp chúng thành sửa ngay, sửa sau và không sửa.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2557,
+   "slug": "dung-tin-loi-khen-cua-nguoi-thu-sai-cach",
+   "title": "Người thử khen 'ổn rồi' có nghĩa là gì: đọc phản hồi cho đúng",
+   "part": 3,
+   "brief": "Bạn xem một bản ghi phản hồi và chỉ ra chỗ ta đang nghe điều mình muốn nghe.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2558,
+   "slug": "cong-cu-hong-luc-dong-nghiep-can-nhat-thi-lam-sao",
+   "title": "Công cụ hỏng đúng lúc đồng nghiệp cần: kế hoạch dự phòng",
+   "part": 3,
+   "brief": "Bạn viết một trang cách làm tay khi công cụ không chạy và người nào gọi khi cần.",
+   "practice": "scenario",
+   "visual": "chart:số giờ làm tay theo số đơn"
+  },
+  {
+   "id": 2559,
+   "slug": "du-an-tong-ket-cong-cu-nho-co-ban-huong-dan-va-nguoi-duy-tri",
+   "title": "Dự án tổng kết: công cụ nhỏ có hướng dẫn một trang và người duy trì",
+   "part": 3,
+   "brief": "Bạn hoàn tất công cụ, viết hướng dẫn một trang, ghi ai sửa khi hỏng và bàn giao cho một đồng nghiệp.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  }
+ ]
+}

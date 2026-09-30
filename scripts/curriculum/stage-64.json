@@ -1,0 +1,209 @@
+{
+ "stage": 64,
+ "label": "Chặng 64",
+ "name": {
+  "vi": "Dùng AI có trách nhiệm trong tổ chức",
+  "en": "Responsible AI use in organisations"
+ },
+ "idStart": 2680,
+ "parts": [
+  {
+   "vi": "Vì sao cần quy tắc",
+   "en": "Why rules matter"
+  },
+  {
+   "vi": "Rủi ro và công cụ được duyệt",
+   "en": "Risk and approved tools"
+  },
+  {
+   "vi": "Đào tạo và nhật ký",
+   "en": "Training and logging"
+  },
+  {
+   "vi": "Sự cố và đo lợi ích",
+   "en": "Incidents and measuring benefit"
+  }
+ ],
+ "lessons": [
+  {
+   "id": 2680,
+   "slug": "nhan-vien-tu-dung-ai-khong-ai-biet-buc-tranh-thuc-te",
+   "title": "Nhân viên đã tự dùng AI mà không ai biết: bức tranh thật trong phòng",
+   "part": 0,
+   "brief": "Bạn hỏi ẩn danh cả phòng đang dùng AI vào việc gì và ghi lại thành bảng ba cột dễ nhìn.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2681,
+   "slug": "ba-cach-chuyen-thong-tin-cong-ty-ra-ngoai-qua-cong-cu-ai",
+   "title": "Ba đường thông tin công ty đi ra ngoài qua công cụ AI",
+   "part": 0,
+   "brief": "Bạn vẽ lại đường một tài liệu nội bộ có thể rời công ty khi ai đó dán vào ô chat.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2682,
+   "slug": "cam-tat-ca-hay-cho-tat-ca-vi-sao-ca-hai-deu-that-bai",
+   "title": "Cấm tất cả hay cho tất cả: vì sao cả hai đều thất bại",
+   "part": 0,
+   "brief": "Sếp muốn cấm AI; bạn trình bày vì sao người ta vẫn dùng lén và đề xuất lối giữa.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2683,
+   "slug": "quy-tac-mot-trang-cho-cong-viec-thuong-ngay-cua-phong",
+   "title": "Quy tắc dùng AI một trang cho việc thường ngày của phòng",
+   "part": 0,
+   "brief": "Bạn viết bản nháp: được làm, cần hỏi, không bao giờ làm, kèm ba ví dụ thật của phòng.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2684,
+   "slug": "mini-doc-lai-quy-tac-cung-mot-dong-nghiep-khong-thich-ai",
+   "title": "Mini: đọc quy tắc cùng một đồng nghiệp còn ngờ vực",
+   "part": 0,
+   "brief": "Bạn đưa bản nháp cho một người hay nghi ngờ và sửa những câu mơ hồ họ chỉ ra.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2685,
+   "slug": "cham-diem-mot-viec-dung-ai-theo-du-lieu-va-hau-qua",
+   "title": "Chấm điểm một việc dùng AI theo dữ liệu chạm tới và hậu quả sai",
+   "part": 1,
+   "brief": "Bạn xếp mười việc của phòng vào bảng hai trục: dữ liệu nhạy cảm và tác hại nếu sai.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2686,
+   "slug": "viec-thap-rui-ro-cho-lam-ngay-viec-cao-can-nguoi-duyet",
+   "title": "Việc rủi ro thấp làm ngay, việc rủi ro cao cần người duyệt",
+   "part": 1,
+   "brief": "Bạn chọn ba việc ở mỗi nhóm và ghi rõ ai nhìn kết quả trước khi đi ra ngoài.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2687,
+   "slug": "ai-viet-sai-nhung-nghe-rat-chac-chan-dieu-phong-can-biet",
+   "title": "AI viết sai nhưng nghe rất chắc chắn: điều cả phòng cần biết",
+   "part": 1,
+   "brief": "Bạn xem một bản tóm tắt có lỗi lẫn trong câu văn trơn tru và tập tìm chỗ phải kiểm.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2688,
+   "slug": "chi-phi-cua-mot-loi-sai-duoc-gui-di-mot-viec-ba-so-nhan",
+   "title": "Chi phí một lỗi được gửi đi: ba con số nhân với nhau",
+   "part": 1,
+   "brief": "Bạn ước lượng số lần dùng, tỷ lệ lỗi lọt và thiệt hại mỗi lỗi để thấy việc nào đáng kiểm.",
+   "practice": "aiLab-prompt",
+   "visual": "chart:thiệt hại dự kiến theo tỷ lệ lỗi lọt qua"
+  },
+  {
+   "id": 2689,
+   "slug": "danh-sach-cong-cu-duoc-duyet-ghi-nhung-gi-moi-dong",
+   "title": "Danh sách công cụ được duyệt: mỗi dòng ghi những gì",
+   "part": 1,
+   "brief": "Bạn dựng khung danh sách: dùng cho việc gì, loại dữ liệu được vào, ai chịu trách nhiệm, xem lại khi nào.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2690,
+   "slug": "hoi-nha-cung-cap-gi-ve-du-lieu-ban-dua-vao",
+   "title": "Hỏi nhà cung cấp gì về dữ liệu bạn đưa vào",
+   "part": 2,
+   "brief": "Bạn soạn danh sách câu hỏi về lưu giữ, huấn luyện, xoá và người truy cập; luôn đối chiếu tài liệu chính thức của bên cung cấp.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2691,
+   "slug": "mini-yeu-cau-them-mot-cong-cu-moi-vao-danh-sach",
+   "title": "Mini: yêu cầu thêm một công cụ mới vào danh sách",
+   "part": 2,
+   "brief": "Bạn điền một phiếu đề nghị ngắn cho công cụ bạn muốn dùng, ghi việc cụ thể và dữ liệu.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2692,
+   "slug": "dao-tao-mot-buoi-45-phut-de-nguoi-ta-nho-den-thu-nam",
+   "title": "Buổi đào tạo 45 phút để người ta còn nhớ đến thứ Năm",
+   "part": 2,
+   "brief": "Bạn xếp một buổi ngắn: một ví dụ hỏng, một ví dụ tốt, một bài tay làm ngay.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2693,
+   "slug": "bai-tap-tim-loi-cho-nhan-vien-moi-dung-ai-an-toan",
+   "title": "Bài tập tìm lỗi cho nhân viên mới: dùng AI an toàn",
+   "part": 2,
+   "brief": "Bạn tạo ba đoạn hội thoại có một chỗ dán dữ liệu không nên và nhờ người học chỉ ra.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2694,
+   "slug": "nguoi-quan-ly-phai-hoi-gi-khi-cap-duoi-nop-ket-qua-do-ai",
+   "title": "Người quản lý hỏi gì khi cấp dưới nộp kết quả có AI hỗ trợ",
+   "part": 2,
+   "brief": "Bạn có ba câu hỏi để duyệt mà không làm người nộp thấy bị nghi ngờ.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2695,
+   "slug": "nhat-ky-dung-ai-ghi-ngan-de-truy-lai-khong-de-canh-sat",
+   "title": "Nhật ký dùng AI: ghi ngắn để truy lại, không để canh chừng",
+   "part": 3,
+   "brief": "Bạn thiết kế nhật ký ba dòng mỗi lần: việc gì, công cụ nào, ai đã duyệt.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2696,
+   "slug": "ai-lam-sai-viec-quan-trong-nam-buoc-dau-tien-trong-gio-dau",
+   "title": "AI làm sai việc quan trọng: năm bước đầu tiên trong giờ đầu",
+   "part": 3,
+   "brief": "Kết quả sai đã tới khách; bạn thực hành chuỗi dừng, báo người, khoanh phạm vi, sửa, ghi lại.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2697,
+   "slug": "khi-lo-dan-du-lieu-khong-nen-dan-vao-ai-noi-ai-va-noi-the-nao",
+   "title": "Lỡ dán dữ liệu không nên vào ô chat: nói với ai và nói thế nào",
+   "part": 3,
+   "brief": "Bạn soạn tin báo sự cố ngắn, không đổ lỗi, có đủ việc đã dán, lúc nào, dữ liệu gì.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2698,
+   "slug": "do-loi-ich-that-sau-ba-thang-gio-tiet-kiem-va-gio-sua-lai",
+   "title": "Đo lợi ích thật sau ba tháng: giờ tiết kiệm trừ giờ sửa lại",
+   "part": 3,
+   "brief": "Bạn tính giờ mỗi việc trước và sau, có trừ thời gian kiểm và sửa, để biết có đáng không.",
+   "practice": "aiLab-spotError",
+   "visual": "chart:giờ tiết kiệm ròng theo giờ sửa lại mỗi việc"
+  },
+  {
+   "id": 2699,
+   "slug": "capstone-bo-ho-so-dung-ai-co-trach-nhiem-cho-mot-phong",
+   "title": "Capstone: bộ hồ sơ dùng AI có trách nhiệm cho một phòng",
+   "part": 3,
+   "brief": "Bạn ghép quy tắc, bảng rủi ro, danh sách công cụ, nhật ký và kế hoạch sự cố thành một bộ gọn để trình sếp.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  }
+ ]
+}

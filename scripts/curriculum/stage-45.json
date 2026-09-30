@@ -1,0 +1,209 @@
+{
+ "stage": 45,
+ "label": "Chặng 45",
+ "name": {
+  "vi": "AI tìm kiếm và nghiên cứu",
+  "en": "AI search and research"
+ },
+ "idStart": 2300,
+ "parts": [
+  {
+   "vi": "Hỏi cho ra câu trả lời có nguồn",
+   "en": "Asking questions that get sourced answers"
+  },
+  {
+   "vi": "Kiểm nguồn và bắt lỗi bịa",
+   "en": "Checking sources and catching fabrications"
+  },
+  {
+   "vi": "Nghiên cứu sâu và báo cáo dài",
+   "en": "Deep research and long reports"
+  },
+  {
+   "vi": "Nguồn mâu thuẫn và làm việc có trách nhiệm",
+   "en": "Conflicting sources and responsible practice"
+  }
+ ],
+ "lessons": [
+  {
+   "id": 2300,
+   "slug": "hoi-de-tim-ra-viec-can-biet-that",
+   "title": "Từ câu hỏi mơ hồ đến câu hỏi tìm được đáp án",
+   "part": 0,
+   "brief": "Sếp nhờ bạn 'tìm hiểu thị trường máy pha cà phê'. Bạn viết lại thành ba câu hỏi cụ thể có thể trả lời được trước khi gõ vào công cụ.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2301,
+   "slug": "tim-kiem-co-ai-tra-loi-va-dan-nguon",
+   "title": "Công cụ tìm kiếm có AI trả lời bằng cách nào",
+   "part": 0,
+   "brief": "Bạn hỏi một chuyện cần số liệu cho email gửi khách. Bạn xem câu trả lời tổng hợp và bấm mở từng nguồn được dẫn để thấy chúng có thật nói vậy không.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2302,
+   "slug": "bam-mo-nguon-dau-tien-truoc-khi-tin",
+   "title": "Mở nguồn đầu tiên: thói quen 30 giây",
+   "part": 0,
+   "brief": "Bạn nhận một đoạn tóm tắt kèm liên kết. Bạn mở nguồn, tìm đúng câu được trích và ghi lại có khớp hay không.",
+   "practice": "scenario",
+   "visual": "chart:thời gian kiểm nguồn theo số ý cần kiểm"
+  },
+  {
+   "id": 2303,
+   "slug": "ai-bia-ra-nguon-dan-nhan-biet-truoc",
+   "title": "Nguồn dẫn nghe rất thật nhưng không tồn tại",
+   "part": 0,
+   "brief": "Đồng nghiệp dán vào báo cáo một tên nghiên cứu do AI đưa. Bạn học ba dấu hiệu nghi ngờ và cách tìm lại tên đó ngoài công cụ.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2304,
+   "slug": "du-an-nho-mot-cau-hoi-ba-nguon-da-kiem",
+   "title": "Dự án nhỏ: trả lời một câu hỏi công việc bằng ba nguồn đã kiểm",
+   "part": 0,
+   "brief": "Bạn chọn một câu hỏi thật của tuần này, tìm bằng AI, kiểm ba nguồn và viết ba dòng kết luận kèm mức chắc chắn.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2305,
+   "slug": "nguon-goc-hay-nguon-tong-hop-phan-biet",
+   "title": "Nguồn gốc hay bài chép lại từ bài chép lại",
+   "part": 1,
+   "brief": "Bạn thấy cùng một con số ở năm trang. Bạn lần ngược để xem chúng có chung một gốc không, rồi đếm nguồn độc lập thật.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2306,
+   "slug": "ai-tim-kiem-hay-tim-kiem-thuong",
+   "title": "Khi nào dùng tìm kiếm thường, khi nào dùng AI",
+   "part": 1,
+   "brief": "Có ba việc: tìm số điện thoại cục thuế, so sánh hai phần mềm, hiểu một khái niệm lạ. Bạn chọn cách tìm hợp cho từng việc và giải thích.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2307,
+   "slug": "tin-cu-hay-tin-moi-kiem-ngay-thang",
+   "title": "Con số này của năm nào",
+   "part": 1,
+   "brief": "Bạn định đưa số liệu vào bản chào giá. Bạn kiểm ngày đăng, ngày cập nhật của nguồn và hỏi lại AI để loại thông tin đã cũ.",
+   "practice": "aiLab-spotError",
+   "visual": "chart:độ lệch số liệu theo số năm nguồn đã cũ"
+  },
+  {
+   "id": 2308,
+   "slug": "hoi-them-de-bat-ai-neu-cho-chua-chac",
+   "title": "Bắt AI nói chỗ nó chưa chắc",
+   "part": 1,
+   "brief": "Bạn thêm vào câu hỏi yêu cầu tách rõ điều đã có nguồn, điều suy đoán và điều không tìm thấy, rồi so hai câu trả lời.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2309,
+   "slug": "du-an-nho-so-sanh-hai-nha-cung-cap-co-nguon",
+   "title": "Dự án nhỏ: so sánh hai nhà cung cấp có nguồn cho từng dòng",
+   "part": 1,
+   "brief": "Bạn cần chọn giữa hai nhà cung cấp dịch vụ. Bạn lập bảng so sánh mà mỗi ô đều có nguồn mở được.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2310,
+   "slug": "nghien-cuu-sau-giao-viec-dai-cho-ai",
+   "title": "Giao AI một việc nghiên cứu dài rồi đi làm việc khác",
+   "part": 2,
+   "brief": "Bạn cần bản tổng quan cho cuộc họp chiều mai. Bạn viết phạm vi, độ dài, loại nguồn muốn và điều cần tránh, rồi kiểm bản trả về (đọc tài liệu chính thức của công cụ để biết cách nó hoạt động hiện nay).",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2311,
+   "slug": "kiem-ban-nghien-cuu-dai-tim-cho-yeu",
+   "title": "Đọc bản báo cáo dài của AI: tìm ba chỗ yếu nhất",
+   "part": 2,
+   "brief": "Bạn nhận báo cáo mười trang. Bạn chọn ba khẳng định quan trọng nhất và kiểm từng cái tới tận nguồn.",
+   "practice": "scenario",
+   "visual": "chart:thời gian đọc và kiểm theo số trang báo cáo"
+  },
+  {
+   "id": 2312,
+   "slug": "mau-yeu-cau-bao-cao-co-trich-dan-danh-so",
+   "title": "Mẫu yêu cầu: báo cáo có trích dẫn đánh số",
+   "part": 2,
+   "brief": "Bạn xây một mẫu yêu cầu để mọi báo cáo AI trả về đều có đánh số nguồn, ngày truy cập và mục 'chưa xác minh'.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2313,
+   "slug": "ban-do-nguon-ai-chinh-thuc-bao-chi-blog",
+   "title": "Xếp hạng nguồn: văn bản chính thức, báo, blog, diễn đàn",
+   "part": 2,
+   "brief": "Bạn cần trích một quy định nội bộ ngành. Bạn xếp các nguồn tìm được theo độ tin cậy và ghi lý do, không kết luận pháp lý.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2314,
+   "slug": "du-an-nho-ban-tom-tat-thi-truong-mot-trang",
+   "title": "Dự án nhỏ: bản tóm tắt thị trường một trang cho sếp",
+   "part": 2,
+   "brief": "Bạn viết một trang có luận điểm, ba bằng chứng có nguồn và một phần 'điều còn chưa biết'.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2315,
+   "slug": "khi-cac-nguon-noi-nguoc-nhau",
+   "title": "Hai nguồn nói ngược nhau thì làm gì",
+   "part": 3,
+   "brief": "Hai bài báo cho hai con số khác nhau. Bạn tìm định nghĩa, thời điểm và cách đo khác nhau để giải thích chênh lệch.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2316,
+   "slug": "thien-lech-cua-cau-hoi-hoi-de-bi-dua-di",
+   "title": "Câu hỏi của bạn đã dẫn đường cho câu trả lời",
+   "part": 3,
+   "brief": "Bạn hỏi 'tại sao X tốt' rồi hỏi 'tại sao X tệ' và so kết quả để học cách đặt câu hỏi trung lập.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2317,
+   "slug": "ghi-so-tay-nghien-cuu-de-nguoi-khac-lam-lai",
+   "title": "Sổ tay nghiên cứu để đồng nghiệp làm lại được",
+   "part": 3,
+   "brief": "Bạn ghi câu hỏi, từ khoá đã thử, nguồn đã loại và lý do, để người khác kiểm lại trong 15 phút.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2318,
+   "slug": "dieu-khong-nen-dan-vao-o-tim-kiem",
+   "title": "Điều không nên dán vào ô tìm kiếm AI",
+   "part": 3,
+   "brief": "Bạn xem xét một yêu cầu chứa tên khách và giá nội bộ, rồi viết lại bản ẩn danh vẫn hỏi được ý chính.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2319,
+   "slug": "bai-tong-ket-bao-cao-nghien-cuu-co-trich-dan-day-du",
+   "title": "Tổng kết: báo cáo nghiên cứu ngắn có trích dẫn đầy đủ",
+   "part": 3,
+   "brief": "Bạn làm trọn một báo cáo hai trang: câu hỏi rõ, nguồn đã kiểm, chỗ mâu thuẫn, kết luận có mức chắc chắn và người bạn nhờ xem lại.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  }
+ ]
+}

@@ -1,0 +1,209 @@
+{
+ "stage": 34,
+ "label": "Chặng 34",
+ "name": {
+  "vi": "Nhà hàng, quán cà phê và F&B",
+  "en": "Restaurants, cafes and F&B"
+ },
+ "idStart": 2080,
+ "parts": [
+  {
+   "vi": "Menu và lời giới thiệu món",
+   "en": "Menu and dish descriptions"
+  },
+  {
+   "vi": "Khách góp ý và đánh giá",
+   "en": "Customer feedback and reviews"
+  },
+  {
+   "vi": "Ca làm, nhập hàng và giá vốn món",
+   "en": "Shifts, purchasing and dish costs"
+  },
+  {
+   "vi": "Quảng bá quán và vận hành cả tuần",
+   "en": "Promoting the venue and running the week"
+  }
+ ],
+ "lessons": [
+  {
+   "id": 2080,
+   "slug": "viet-lai-mo-ta-mon-tren-menu",
+   "title": "Viết lại mô tả món trên menu mà không hứa quá",
+   "part": 0,
+   "brief": "Menu quán bạn ghi món cho có và khách hay hỏi lại. Bạn nhờ AI viết mô tả ngắn, đúng nguyên liệu thật và ghi rõ chất gây dị ứng cần hỏi lại bếp.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2081,
+   "slug": "soat-menu-tim-mon-ghi-khong-khop",
+   "title": "Soát menu tìm món ghi không khớp với thực tế",
+   "part": 0,
+   "brief": "Bạn xem một menu do AI soạn, có món ghi nguyên liệu quán không dùng. Bạn tập đối chiếu từng dòng với công thức thật.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2082,
+   "slug": "khach-hoi-mon-ngoai-menu-luc-dong",
+   "title": "Giờ cao điểm khách hỏi món không có trong menu",
+   "part": 0,
+   "brief": "Khách yêu cầu đổi món giữa giờ đông. Qua tình huống, bạn tập chọn cách trả lời nhanh, nhã nhặn và nhờ AI soạn sẵn vài câu mẫu cho nhân viên.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2083,
+   "slug": "doi-ten-mon-dich-sang-tieng-anh",
+   "title": "Dịch tên món cho khách nước ngoài mà không mất hồn món",
+   "part": 0,
+   "brief": "Quán có khách ngoại quốc. Bạn nhờ AI dịch tên món và kiểm tra bản dịch có làm khách hiểu nhầm nguyên liệu hay không.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2084,
+   "slug": "mini-du-an-menu-mot-trang",
+   "title": "Mini-dự án: menu một trang để in",
+   "part": 0,
+   "brief": "Bạn chọn 10 món chính, viết mô tả, thêm ghi chú dị ứng và gom thành một trang. Kết quả là menu bạn có thể đưa đi in.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2085,
+   "slug": "doc-cham-diem-danh-gia-khach",
+   "title": "Đọc hết đánh giá của khách trong một buổi tối",
+   "part": 1,
+   "brief": "Đánh giá dồn từ nhiều nơi. Bạn nhờ AI gom theo chủ đề như chờ lâu, món, thái độ, rồi tự kiểm tra vài đánh giá gốc để chắc AI không gộp sai.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2086,
+   "slug": "tra-loi-danh-gia-xau-cho-cong-khai",
+   "title": "Trả lời một đánh giá một sao để người khác cũng đọc",
+   "part": 1,
+   "brief": "Khách chê quán trên mạng. Bạn nhờ AI viết bản nháp bình tĩnh, nhận phần đúng, không cãi và không tiết lộ thông tin của khách.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2087,
+   "slug": "ban-tra-loi-danh-gia-nay-hong-o-dau",
+   "title": "Bản trả lời đánh giá này hỏng ở đâu",
+   "part": 1,
+   "brief": "Bạn xem một bản trả lời AI viết có chỗ đổ lỗi cho khách và chỗ hứa đền bù quá tay. Bạn tập chỉ ra và sửa.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2088,
+   "slug": "khach-noi-bi-dau-bung-sau-bua-an",
+   "title": "Khách nhắn rằng bị khó chịu trong người sau bữa ăn",
+   "part": 1,
+   "brief": "Một khách nhắn cho quán sau bữa ăn. Bạn tập cách phản hồi: lắng nghe, hỏi đã dùng món gì, đề nghị họ đến cơ sở y tế nếu cần và ghi lại nội bộ, không kết luận nguyên nhân.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2089,
+   "slug": "mini-du-an-bo-cau-tra-loi-mau",
+   "title": "Mini-dự án: bộ câu trả lời mẫu cho các phản hồi hay gặp",
+   "part": 1,
+   "brief": "Bạn soạn năm câu trả lời mẫu cho các tình huống lặp lại như chờ lâu, món nguội, tính sai tiền, để nhân viên chỉnh lại rồi dùng.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2090,
+   "slug": "xep-lich-ca-cho-tuan-toi",
+   "title": "Xếp lịch ca cho tuần tới khi ai cũng có chuyện riêng",
+   "part": 2,
+   "brief": "Bạn có danh sách ca cần người và nguyện vọng của nhân viên. Bạn nhờ AI đề xuất lịch rồi tự kiểm tra ca thiếu người và giờ nghỉ liền kề.",
+   "practice": "aiLab-prompt",
+   "visual": "chart:số nhân viên cần theo khung giờ trong ngày"
+  },
+  {
+   "id": 2091,
+   "slug": "soat-lich-ca-ai-vua-xep",
+   "title": "Lịch ca AI vừa xếp có chỗ vô lý",
+   "part": 2,
+   "brief": "Bạn nhận một lịch ca có người làm hai ca liền và ngày nghỉ bị thiếu. Bạn tập rà từng dòng theo luật của quán.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2092,
+   "slug": "nhan-vien-xin-doi-ca-sat-gio",
+   "title": "Nhân viên xin đổi ca chỉ vài tiếng trước giờ làm",
+   "part": 2,
+   "brief": "Hai bạn cùng xin đổi ca vào phút chót. Qua tình huống, bạn tập cân bằng công bằng và nhu cầu của quầy, rồi soạn tin nhắn trả lời gọn.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2093,
+   "slug": "uoc-luong-luong-hang-can-nhap",
+   "title": "Ước lượng lượng nguyên liệu cần nhập cho cuối tuần",
+   "part": 2,
+   "brief": "Bạn có số bán tuần trước và một sự kiện gần quán. Bạn nhờ AI tính lượng nhập gợi ý rồi đối chiếu với tủ lạnh thật.",
+   "practice": "aiLab-prompt",
+   "visual": "chart:lượng nguyên liệu nhập theo số phần bán"
+  },
+  {
+   "id": 2094,
+   "slug": "mini-du-an-bang-gia-von-mot-mon",
+   "title": "Mini-dự án: bảng giá vốn cho một món chủ lực",
+   "part": 2,
+   "brief": "Bạn tính giá vốn một món từ định lượng, hao hụt và giá nhập hiện tại, rồi so với giá bán. Bạn tự nhập số của mình.",
+   "practice": "aiLab-prompt",
+   "visual": "chart:giá vốn theo giá bán món"
+  },
+  {
+   "id": 2095,
+   "slug": "viet-bai-dang-gioi-thieu-mon-moi",
+   "title": "Viết bài đăng giới thiệu món mới cho fanpage quán",
+   "part": 3,
+   "brief": "Quán có món mới. Bạn nhờ AI viết ba bản bài đăng và chọn bản đúng giọng quán, không nêu ưu đãi mà bạn chưa duyệt.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2096,
+   "slug": "soat-bai-quang-ba-co-noi-qua",
+   "title": "Bài quảng cáo này có nói quá về món không",
+   "part": 3,
+   "brief": "Bạn xem một bài đăng có những câu như ngon nhất thành phố hay tốt cho sức khoẻ. Bạn tập gạch những câu không chứng minh được.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2097,
+   "slug": "chu-quan-doi-mat-phi-giao-hang-tang",
+   "title": "Nền tảng giao hàng tăng phí và bạn phải quyết định",
+   "part": 3,
+   "brief": "Nền tảng giao đồ ăn tăng phí. Qua tình huống, bạn tập tính lại lợi nhuận món, cân nhắc giá menu riêng cho kênh giao và soạn lời báo khách.",
+   "practice": "scenario",
+   "visual": "chart:lợi nhuận mỗi đơn theo mức phí"
+  },
+  {
+   "slug": "mini-du-an-lich-dang-bai-hai-tuan-cho-quan",
+   "title": "Mini-dự án: lịch đăng bài hai tuần cho quán",
+   "brief": "Bạn lên lịch hai tuần đăng bài từ món, ca đông khách và ngày ít khách của quán, nhờ AI soạn nháp rồi tự duyệt từng bài trước khi đăng.",
+   "practice": "aiLab-prompt",
+   "visual": "flow",
+   "id": 2098,
+   "part": 3
+  },
+  {
+   "id": 2099,
+   "slug": "mini-du-an-cam-nang-mot-ca-cho-quan",
+   "title": "Mini-dự án: cẩm nang một ca làm cho nhân viên mới",
+   "part": 3,
+   "brief": "Bạn gom quy trình mở ca, đóng ca, xử lý khách khó và vệ sinh thành cẩm nang một ca có checklist, rồi nhờ AI đóng vai nhân viên mới hỏi lại chỗ chưa rõ.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  }
+ ]
+}

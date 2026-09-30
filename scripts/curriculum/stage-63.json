@@ -1,0 +1,209 @@
+{
+ "stage": 63,
+ "label": "Chặng 63",
+ "name": {
+  "vi": "Đọc số liệu có kiểm chứng",
+  "en": "Reading numbers with care"
+ },
+ "idStart": 2660,
+ "parts": [
+  {
+   "vi": "Con số đầu tiên",
+   "en": "The first number"
+  },
+  {
+   "vi": "So sánh cho công bằng",
+   "en": "Fair comparisons"
+  },
+  {
+   "vi": "Mẫu nhỏ, thử và nhân quả",
+   "en": "Small samples, tests and cause"
+  },
+  {
+   "vi": "Hỏi lại báo cáo",
+   "en": "Questioning the report"
+  }
+ ],
+ "lessons": [
+  {
+   "id": 2660,
+   "slug": "luong-trung-binh-phong-ban-nghe-cao-hon-thuc-te",
+   "title": "Lương trung bình của phòng nghe cao, sao ai cũng thấy thấp",
+   "part": 0,
+   "brief": "Báo cáo ghi lương trung bình phòng 15 triệu nhưng đa số nhận ít hơn; bạn dùng trung vị để thấy con số điển hình.",
+   "practice": "aiLab-prompt",
+   "visual": "chart:mức lương trung bình và trung trị theo số người lương rất cao"
+  },
+  {
+   "id": 2661,
+   "slug": "don-hang-trung-binh-bi-vai-don-lon-keo-len",
+   "title": "Giá trị đơn trung bình bị vài đơn lớn kéo lên",
+   "part": 0,
+   "brief": "Bạn xem 30 đơn tuần qua, tìm 2 đơn lớn làm lệch trung bình và báo cáo lại cả hai con số.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2662,
+   "slug": "ty-le-va-so-tuyet-doi-khi-bao-cao-tang-gap-doi",
+   "title": "Tăng gấp đôi nghe to, nhưng từ 2 lên 4 thì sao",
+   "part": 0,
+   "brief": "Báo cáo khoe khiếu nại tăng 100%; bạn hỏi số gốc và viết lại câu cho đúng tầm vóc.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2663,
+   "slug": "phan-tram-cua-phan-tram-va-diem-phan-tram",
+   "title": "Tăng 2 điểm phần trăm hay tăng 2 phần trăm",
+   "part": 0,
+   "brief": "Tỷ lệ hoàn đơn từ 5% lên 7%; bạn phân biệt hai cách nói và chọn câu chính xác cho sếp.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2664,
+   "slug": "mini-viet-lai-ba-dong-so-trong-bao-cao-thang",
+   "title": "Viết lại ba dòng số trong báo cáo tháng của bạn",
+   "part": 0,
+   "brief": "Bạn lấy ba con số thật trong báo cáo tuần và thêm số gốc, đơn vị, kỳ so sánh cho từng dòng.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2665,
+   "slug": "so-sanh-thang-nay-thang-truoc-khi-so-ngay-khac-nhau",
+   "title": "So tháng này với tháng trước khi số ngày làm việc khác nhau",
+   "part": 1,
+   "brief": "Tháng 2 ngắn hơn tháng 1 nên doanh số thấp; bạn đưa về mức mỗi ngày làm việc trước khi kết luận.",
+   "practice": "aiLab-prompt",
+   "visual": "chart:doanh số theo số ngày làm việc"
+  },
+  {
+   "id": 2666,
+   "slug": "cung-ky-nam-truoc-va-mua-vu",
+   "title": "Cùng kỳ năm trước và chuyện mùa vụ",
+   "part": 1,
+   "brief": "Bán hàng tháng Tết luôn cao; bạn chọn mốc so sánh đúng thay vì so với tháng liền trước.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2667,
+   "slug": "chia-cho-cai-gi-doanh-thu-tren-nguoi-tren-ca-tren-gio",
+   "title": "Chia cho cái gì: doanh thu trên người, trên ca hay trên giờ",
+   "part": 1,
+   "brief": "Hai cửa hàng khác quy mô; bạn chọn mẫu số để so công bằng và giải thích lý do.",
+   "practice": "aiLab-spotError",
+   "visual": "chart:doanh thu theo số nhân viên mỗi cửa hàng"
+  },
+  {
+   "id": 2668,
+   "slug": "nhom-so-sanh-khong-cung-loai-khach-cu-va-khach-moi",
+   "title": "Nhóm so sánh không cùng loại: khách cũ và khách mới",
+   "part": 1,
+   "brief": "Chiến dịch có vẻ hiệu quả vì chỉ gửi cho khách cũ; bạn tìm chỗ lệch và đề xuất nhóm đối chứng.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2669,
+   "slug": "mini-bang-so-sanh-cong-bang-hai-doi-ban-hang",
+   "title": "Mini: bảng so sánh công bằng hai đội bán hàng",
+   "part": 1,
+   "brief": "Bạn dựng bảng một trang so hai đội với cùng mẫu số, cùng kỳ và ghi chú điểm chưa công bằng.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2670,
+   "slug": "ba-khach-hang-khen-co-du-de-doi-quy-trinh-khong",
+   "title": "Ba khách khen có đủ để đổi quy trình không",
+   "part": 2,
+   "brief": "Ba lời khen đầu tuần khiến sếp muốn đổi cách làm; bạn tính cần thêm bao nhiêu phản hồi mới đáng tin.",
+   "practice": "scenario",
+   "visual": "chart:độ tin cậy theo số phản hồi"
+  },
+  {
+   "id": 2671,
+   "slug": "khao-sat-chi-nguoi-thich-tra-loi",
+   "title": "Khảo sát nội bộ chỉ người thích trả lời mới trả lời",
+   "part": 2,
+   "brief": "20 trong 200 nhân viên phản hồi; bạn chỉ ra ai đang vắng mặt và nói lại kết luận cho khiêm tốn hơn.",
+   "practice": "aiLab-spotError",
+   "visual": "chart:tỷ lệ phản hồi khảo sát theo số người"
+  },
+  {
+   "id": 2672,
+   "slug": "thu-hai-cach-viet-tieu-de-email-so-sanh-don-gian",
+   "title": "Thử hai tiêu đề email: so sánh đơn giản, không cần thống kê cao siêu",
+   "part": 2,
+   "brief": "Bạn gửi hai tiêu đề cho hai nửa danh sách cùng ngày và ghi kết quả bằng số gốc.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2673,
+   "slug": "dung-thu-som-vi-hom-nay-ban-hang-tot",
+   "title": "Dừng thử sớm vì hôm nay bán tốt",
+   "part": 2,
+   "brief": "Ngày đầu phương án B hơn A; bạn viết sẵn quy tắc dừng trước khi bắt đầu để khỏi tự lừa mình.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2674,
+   "slug": "mini-ke-hoach-thu-mot-thay-doi-nho-trong-hai-tuan",
+   "title": "Mini: kế hoạch thử một thay đổi nhỏ trong hai tuần",
+   "part": 2,
+   "brief": "Bạn viết kế hoạch thử: đổi gì, đo gì, khi nào dừng, và ai quyết định sau kết quả.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2675,
+   "slug": "hai-thu-cung-tang-kem-bang-chung-nhan-qua",
+   "title": "Hai thứ cùng tăng không có nghĩa cái này gây ra cái kia",
+   "part": 3,
+   "brief": "Doanh số kem và đuối nước cùng tăng mùa hè; bạn tìm yếu tố thứ ba ở ví dụ đời thường rồi ở số liệu của bạn.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2676,
+   "slug": "nhan-qua-nguoc-nguoi-dung-nhieu-tinh-nang-co-phai-vi-tinh-nang",
+   "title": "Người dùng nhiều tính năng: nhờ tính năng hay vốn đã trung thành",
+   "part": 3,
+   "brief": "Nhóm dùng nhiều thì giữ lại tốt; bạn nêu ba cách giải thích và một việc kiểm tra được.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2677,
+   "slug": "bieu-do-cat-cut-truc-so-khong-bat-dau-tu-0",
+   "title": "Biểu đồ cắt cụt: trục số không bắt đầu từ 0",
+   "part": 3,
+   "brief": "Cột B trông cao gấp ba vì trục cắt; bạn vẽ lại đúng thước đo và ghi rõ chênh thật bao nhiêu.",
+   "practice": "aiLab-spotError",
+   "visual": "chart:chiều cao cột hiển thị theo mốc bắt đầu của trục"
+  },
+  {
+   "id": 2678,
+   "slug": "nam-cau-hoi-khi-nhan-bao-cao-tu-nguoi-khac",
+   "title": "Năm câu hỏi khi nhận một báo cáo số từ người khác",
+   "part": 3,
+   "brief": "Bạn có bộ năm câu hỏi ngắn: số gốc, kỳ so sánh, nhóm nào bị loại, ai đo, đo thế nào.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2679,
+   "slug": "capstone-tham-tra-mot-bao-cao-that-cua-phong-ban",
+   "title": "Capstone: thẩm tra một báo cáo thật của phòng bạn",
+   "part": 3,
+   "brief": "Bạn lấy một báo cáo có sẵn, rà số gốc, so sánh, mẫu, nhân quả, rồi gửi đồng nghiệp bản ghi chú một trang.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  }
+ ]
+}

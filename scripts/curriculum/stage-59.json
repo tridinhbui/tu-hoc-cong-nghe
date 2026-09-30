@@ -1,0 +1,209 @@
+{
+ "stage": 59,
+ "label": "Chặng 59",
+ "name": {
+  "vi": "Đưa sản phẩm lên mạng an toàn",
+  "en": "Publishing your product safely"
+ },
+ "idStart": 2580,
+ "parts": [
+  {
+   "vi": "Địa chỉ và nơi đặt sản phẩm",
+   "en": "The address and where it lives"
+  },
+  {
+   "vi": "Bí mật và mật khẩu",
+   "en": "Secrets and passwords"
+  },
+  {
+   "vi": "Sao lưu, theo dõi và cập nhật",
+   "en": "Backups, monitoring and updates"
+  },
+  {
+   "vi": "Chi phí và một lần ra mắt trọn vẹn",
+   "en": "Costs and a full launch"
+  }
+ ],
+ "lessons": [
+  {
+   "id": 2580,
+   "slug": "dua-san-pham-len-mang-la-dua-di-dau-va-cho-ai-thay",
+   "title": "Đưa lên mạng nghĩa là gì: ai sẽ mở được đường dẫn của bạn",
+   "part": 0,
+   "brief": "Bạn gửi đường dẫn thử cho đồng nghiệp và phân biệt bản chỉ mình bạn xem với bản cả thế giới xem.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2581,
+   "slug": "ten-mien-nhu-bien-so-nha-mua-o-dau-va-ai-giu",
+   "title": "Tên miền như biển số nhà: mua ở đâu và ai đứng tên",
+   "part": 0,
+   "brief": "Công ty bạn định lấy tên miền cho công cụ; bạn kiểm ai đứng tên, ngày hết hạn và cách gia hạn.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2582,
+   "slug": "noi-luu-tru-nho-thue-cho-o-dau-de-san-pham-chay",
+   "title": "Thuê chỗ để sản phẩm chạy: chọn kiểu lưu trữ theo nhu cầu",
+   "part": 0,
+   "brief": "Bạn so ba kiểu chỗ đặt cho một trang tĩnh, một biểu mẫu và một công cụ có tài khoản. Hãy kiểm tra tài liệu chính thức của nhà cung cấp trước khi viết bài.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2583,
+   "slug": "mo-ta-nhu-cau-cho-nha-cung-cap-bang-cau-hoi-dung",
+   "title": "Hỏi nhà cung cấp đúng câu: bản mô tả nhu cầu một trang",
+   "part": 0,
+   "brief": "Bạn nhờ AI biến nhu cầu của mình thành danh sách câu hỏi về nơi đặt dữ liệu, sao lưu và hỗ trợ.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2584,
+   "slug": "du-an-nho-dua-mot-trang-tinh-len-mang-thu-nghiem",
+   "title": "Dự án nhỏ: đưa một trang tĩnh lên và mở bằng điện thoại",
+   "part": 0,
+   "brief": "Bạn công bố trang thử, mở bằng mạng khác, ghi lại địa chỉ và cách gỡ xuống.",
+   "practice": "sim:cloud:static-website",
+   "visual": "flow"
+  },
+  {
+   "id": 2585,
+   "slug": "o-khoa-https-nghia-la-gi-va-khong-nghia-la-gi",
+   "title": "Ổ khoá HTTPS nghĩa là gì và không có nghĩa là gì",
+   "part": 1,
+   "brief": "Bạn thấy ổ khoá trên một trang lừa đảo; bạn học rằng khoá chỉ nói đường truyền được mã hoá.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2586,
+   "slug": "cau-hinh-sai-tro-tenmien-ve-noi-khac",
+   "title": "Tên miền trỏ nhầm chỗ: đọc lỗi khi trang không mở được",
+   "part": 1,
+   "brief": "Trang của bạn báo 'không tìm thấy'; bạn kiểm từng bước từ tên miền tới nơi đặt trang.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2587,
+   "slug": "email-cong-ty-va-ten-mien-ai-dang-gui-thu-thay-ban",
+   "title": "Email công ty và tên miền: thư của bạn có bị vào hộp spam",
+   "part": 1,
+   "brief": "Bạn hiểu vì sao thư gửi từ công cụ mới của bạn vào spam và cần nhờ ai kiểm cấu hình.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2588,
+   "slug": "du-an-nho-so-do-tu-ten-mien-toi-trang-cua-ban",
+   "title": "Dự án nhỏ: vẽ sơ đồ đường đi từ tên miền tới trang của bạn",
+   "part": 1,
+   "brief": "Bạn vẽ các chặng và ghi ai quản lý từng chặng, để khi hỏng biết gọi ai.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2589,
+   "slug": "mat-khau-va-khoa-bi-mat-la-gi-vi-sao-khong-dan-vao-ma",
+   "title": "Khoá bí mật là gì và vì sao không được dán vào chỗ công khai",
+   "part": 1,
+   "brief": "Bạn thấy một khoá dán ngay trong trang công khai và học cách nhận ra nó.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2590,
+   "slug": "kiem-tra-tai-khoan-quan-tri-co-bat-hai-lop-chua",
+   "title": "Tài khoản quản trị: bật xác thực hai lớp và chia quyền",
+   "part": 2,
+   "brief": "Bạn kiểm ba tài khoản đang quản lý sản phẩm, ai còn quyền dù đã nghỉ việc.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2591,
+   "slug": "nho-ai-doc-lai-danh-sach-thu-can-giu-kin",
+   "title": "Nhờ AI lập danh sách thứ cần giữ kín trước khi công bố",
+   "part": 2,
+   "brief": "Bạn liệt kê khoá, mật khẩu, tệp dữ liệu, email cá nhân, mà không dán giá trị thật vào cuộc trò chuyện.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2592,
+   "slug": "ro-ri-khoa-bi-mat-viec-phai-lam-trong-mot-gio-dau",
+   "title": "Lỡ để lộ khoá bí mật: việc cần làm trong một giờ đầu",
+   "part": 2,
+   "brief": "Bạn được đưa một tình huống lộ khoá và xếp bước: thu hồi, đổi, kiểm tra, báo người phụ trách.",
+   "practice": "scenario",
+   "visual": "chart:thiệt hại theo số giờ chưa đổi khoá"
+  },
+  {
+   "id": 2593,
+   "slug": "du-an-nho-bang-kiem-bi-mat-truoc-khi-ra-mat",
+   "title": "Dự án nhỏ: bảng kiểm bí mật một trang trước khi ra mắt",
+   "part": 2,
+   "brief": "Bạn tạo bảng kiểm và tự chấm cho một sản phẩm của mình hoặc sản phẩm mẫu.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2594,
+   "slug": "sao-luu-chua-khoi-phuc-thu-thi-chua-phai-sao-luu-cua-ban",
+   "title": "Sao lưu của bạn đã từng được khôi phục thử chưa",
+   "part": 2,
+   "brief": "Bạn chọn dữ liệu cần lưu, tần suất và thử khôi phục sang một chỗ trống để chắc nó dùng được.",
+   "practice": "aiLab-spotError",
+   "visual": "chart:dữ liệu mất theo số ngày giữa hai lần sao lưu"
+  },
+  {
+   "id": 2595,
+   "slug": "theo-doi-san-pham-song-hay-chet-bang-thong-bao-don-gian",
+   "title": "Theo dõi sản phẩm còn chạy không bằng một thông báo đơn giản",
+   "part": 3,
+   "brief": "Bạn đặt kiểm tra định kỳ, nhận tin khi trang không mở được và quyết định ai nhận tin.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2596,
+   "slug": "doc-nhat-ky-loi-cua-san-pham-dang-chay",
+   "title": "Đọc nhật ký của sản phẩm đang chạy: ba dòng đáng chú ý",
+   "part": 3,
+   "brief": "Bạn được đưa một đoạn nhật ký và chọn ra dòng nào cần hành động ngay, dòng nào chỉ ghi nhận.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2597,
+   "slug": "cap-nhat-san-pham-dang-chay-ma-khong-lam-nguoi-dung-gian-doan",
+   "title": "Cập nhật khi người dùng đang dùng: thử trước, ra mắt sau, có đường lui",
+   "part": 3,
+   "brief": "Bạn lập kế hoạch cập nhật ngoài giờ cao điểm và cách quay lại bản cũ nếu lỗi.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2598,
+   "slug": "chi-phi-nam-thang-cua-mot-san-pham-nho-doc-hoa-don-the-nao",
+   "title": "Chi phí hằng tháng của sản phẩm nhỏ: đọc hoá đơn và đặt hạn mức",
+   "part": 3,
+   "brief": "Bạn lập bảng chi phí theo tên miền, lưu trữ và dịch vụ kèm, đặt cảnh báo khi vượt mức. Hãy kiểm tra bảng giá chính thức khi viết bài.",
+   "practice": "aiLab-prompt",
+   "visual": "chart:chi phí theo số người dùng mỗi tháng"
+  },
+  {
+   "id": 2599,
+   "slug": "du-an-tong-ket-mot-lan-ra-mat-tron-ven-co-ke-hoach-lui",
+   "title": "Dự án tổng kết: một lần ra mắt trọn vẹn có kế hoạch lùi lại",
+   "part": 3,
+   "brief": "Bạn hoàn thành bảng kiểm gồm địa chỉ, HTTPS, bí mật, sao lưu, theo dõi, chi phí và người trực để công bố sản phẩm nhỏ.",
+   "practice": "sim:cloud:budget",
+   "visual": "flow"
+  }
+ ]
+}

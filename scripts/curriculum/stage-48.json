@@ -1,0 +1,209 @@
+{
+ "stage": 48,
+ "label": "Chặng 48",
+ "name": {
+  "vi": "Trợ lý AI tuỳ chỉnh cho phòng bạn",
+  "en": "Custom AI assistants for your team"
+ },
+ "idStart": 2360,
+ "parts": [
+  {
+   "vi": "Câu dặn dò cố định",
+   "en": "A standing set of instructions"
+  },
+  {
+   "vi": "Cho trợ lý tài liệu nền",
+   "en": "Giving the assistant background documents"
+  },
+  {
+   "vi": "Thử, sửa và chia sẻ",
+   "en": "Test, fix and share"
+  },
+  {
+   "vi": "Nuôi trợ lý lâu dài",
+   "en": "Keeping the assistant healthy"
+  }
+ ],
+ "lessons": [
+  {
+   "id": 2360,
+   "slug": "dan-mot-lan-dung-mai-cho-viec-lap-lai",
+   "title": "Việc nào bạn dặn AI lần thứ ba trong tuần",
+   "part": 0,
+   "brief": "Tuần nào bạn cũng dán cùng đoạn dặn dò vào khung chat để nhờ soạn email trả lời khách. Sau bài bạn biết chọn việc đáng đóng thành trợ lý riêng và việc không đáng.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2361,
+   "slug": "cau-dan-co-dinh-ba-phan-vai-viec-giong",
+   "title": "Câu dặn cố định gồm ba phần: vai, việc, giọng",
+   "part": 0,
+   "brief": "Bạn viết thử một đoạn dặn cho trợ lý soạn thư phúc đáp của phòng mình. Sau bài bạn có bản dặn ba phần chạy được trên ba email thật.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2362,
+   "slug": "mau-tra-loi-tot-de-tro-ly-bat-chuoc",
+   "title": "Đưa một mẫu trả lời tốt để trợ lý bắt chước",
+   "part": 0,
+   "brief": "Bạn có một email cũ được sếp khen và muốn mọi thư sau giống thế. Sau bài bạn biết chọn, che thông tin và gắn mẫu vào phần dặn.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2363,
+   "slug": "dan-qua-dai-tro-ly-lan-lon-yeu-cau",
+   "title": "Bản dặn dài ba trang: vì sao trợ lý bỏ sót",
+   "part": 0,
+   "brief": "Trợ lý cứ quên dòng dặn 'luôn ghi mã đơn' nằm ở cuối bản dặn dài. Bạn tìm ra chỗ rối và rút bản dặn còn nửa trang mà vẫn đủ ý.",
+   "practice": "aiLab-spotError",
+   "visual": "chart:số dòng dặn dò so với số quy tắc trợ lý làm đúng"
+  },
+  {
+   "id": 2364,
+   "slug": "du-an-tro-ly-tra-loi-thu-khach-dau-tien",
+   "title": "Mini dự án: trợ lý trả lời thư khách đầu tiên của bạn",
+   "part": 0,
+   "brief": "Bạn chọn một loại thư khách lặp lại nhiều nhất và dựng trợ lý đầu tiên trong 20 phút. Cuối bài bạn có bản dặn và ba thư thử.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2365,
+   "slug": "tai-lieu-nen-la-gi-va-khong-nen-dua-gi",
+   "title": "Tài liệu nền nào nên đưa, tài liệu nào để ngoài",
+   "part": 1,
+   "brief": "Phòng bạn có bảng giá, quy trình đổi trả và hợp đồng mẫu để sẵn. Bạn phân loại thứ gì hợp làm tài liệu nền, thứ gì không nên tải lên.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2366,
+   "slug": "chuan-bi-file-cho-tro-ly-doc-dung",
+   "title": "Sửa một file quy trình để trợ lý đọc đúng",
+   "part": 1,
+   "brief": "Trợ lý cứ trích nhầm mục vì file PDF quy trình gộp nhiều bảng và ghi chú lộn xộn. Bạn dọn file thành tiêu đề rõ, mỗi mục một ý.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2367,
+   "slug": "hai-ban-quy-dinh-cu-moi-tro-ly-tin-ban-nao",
+   "title": "Hai bản quy định cũ và mới: trợ lý tin bản nào",
+   "part": 1,
+   "brief": "Bảng giá năm ngoái vẫn nằm cạnh bảng giá mới trong thư mục nền. Bạn đặt tên, ngày hiệu lực và quy tắc để trợ lý không lấy nhầm bản cũ.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2368,
+   "slug": "hoi-dap-quy-trinh-noi-bo-co-dan-nguon",
+   "title": "Cho trợ lý trả lời quy trình kèm dẫn nguồn",
+   "part": 1,
+   "brief": "Đồng nghiệp mới hỏi đi hỏi lại về quy trình xin nghỉ, thanh toán tạm ứng. Bạn dặn trợ lý luôn chỉ ra mục nào trong tài liệu và nói không biết khi thiếu.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2369,
+   "slug": "du-an-tro-ly-tra-cuu-so-tay-phong",
+   "title": "Mini dự án: trợ lý tra cứu sổ tay của phòng",
+   "part": 1,
+   "brief": "Bạn gom ba tài liệu quen dùng nhất của phòng thành bộ nền nhỏ. Cuối bài bạn có trợ lý trả lời được năm câu hỏi thật của đồng nghiệp.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2370,
+   "slug": "bo-cau-hoi-thu-truoc-khi-giao-cho-dong-nghiep",
+   "title": "Bộ mười câu hỏi thử trước khi cho ai dùng",
+   "part": 2,
+   "brief": "Bạn sắp giao trợ lý cho cả phòng nhưng mới thử vài câu dễ. Bạn viết mười câu gồm câu thường gặp, câu khó và câu ngoài phạm vi.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2371,
+   "slug": "cau-hoi-lech-ngoai-pham-vi-tro-ly-co-tu-choi",
+   "title": "Câu hỏi lệch ngoài phạm vi: trợ lý có biết từ chối",
+   "part": 2,
+   "brief": "Đồng nghiệp hỏi trợ lý phần bảng giá về chuyện luật lao động. Bạn thử xem nó đoán bừa hay chuyển về người phụ trách, rồi vá bản dặn.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2372,
+   "slug": "khi-tro-ly-tu-tin-tra-loi-sai-mot-con-so",
+   "title": "Trợ lý tự tin nêu sai một con số: lần theo nguồn",
+   "part": 2,
+   "brief": "Trợ lý báo phí giao hàng khác bảng giá trong tài liệu nền. Bạn tìm xem sai vì tài liệu, vì bản dặn hay vì trợ lý tự suy ra.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2373,
+   "slug": "do-ty-le-cau-tra-loi-dung-tren-bo-thu",
+   "title": "Đếm tỷ lệ trả lời đúng trên bộ thử của bạn",
+   "part": 2,
+   "brief": "Bạn chạy mười câu thử và chấm đúng, sai, bỏ. Sau bài bạn có một bảng nhỏ để so trước và sau mỗi lần sửa bản dặn.",
+   "practice": "aiLab-prompt",
+   "visual": "chart:số câu đúng trên mười câu thử theo từng lần sửa bản dặn"
+  },
+  {
+   "id": 2374,
+   "slug": "chia-se-tro-ly-cho-nhom-ai-duoc-sua-ai-chi-dung",
+   "title": "Chia sẻ trợ lý cho nhóm: ai được sửa, ai chỉ dùng",
+   "part": 2,
+   "brief": "Ba người trong phòng cùng chỉnh bản dặn và trợ lý bỗng hành xử khác đi. Bạn đặt một người chủ và quy tắc ghi thay đổi.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2375,
+   "slug": "tro-ly-dung-chung-tai-lieu-nhay-cam-nam-o-dau",
+   "title": "Trợ lý dùng chung: tài liệu nhạy cảm nằm ở đâu",
+   "part": 3,
+   "brief": "Bạn muốn tải bảng lương làm nền cho trợ lý cả phòng dùng. Bạn dừng lại, hỏi ai sẽ đọc được gì và tách phần được đưa vào khỏi phần không.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2376,
+   "slug": "ghi-ngay-sua-va-ly-do-cho-ban-dan",
+   "title": "Sổ ghi ngày sửa và lý do cho bản dặn",
+   "part": 3,
+   "brief": "Ba tháng sau không ai nhớ vì sao có dòng 'không hứa ngày giao'. Bạn lập sổ một dòng mỗi lần sửa để lần sau biết đường lùi lại.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2377,
+   "slug": "chinh-sach-moi-ra-tro-ly-van-tra-loi-cu",
+   "title": "Chính sách mới ra, trợ lý vẫn trả lời theo cái cũ",
+   "part": 3,
+   "brief": "Phòng đổi thời hạn đổi trả từ bảy ngày sang mười bốn ngày mà trợ lý còn nói bảy. Bạn lập lịch rà tài liệu nền và cách báo người dùng.",
+   "practice": "scenario",
+   "visual": "chart:số ngày kể từ lần cập nhật tài liệu nền cuối"
+  },
+  {
+   "id": 2378,
+   "slug": "nhac-viec-luc-nao-nen-tach-mot-tro-ly-thanh-hai",
+   "title": "Lúc nào tách một trợ lý thành hai",
+   "part": 3,
+   "brief": "Trợ lý vừa trả lời khách vừa soạn báo cáo nội bộ và giọng văn lẫn lộn. Bạn học nhận ra dấu hiệu cần tách và cách chia phần dặn.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2379,
+   "slug": "du-an-goi-tro-ly-cho-phong-va-mot-trang-huong-dan",
+   "title": "Dự án tổng kết: gói trợ lý cho phòng kèm một trang hướng dẫn",
+   "part": 3,
+   "brief": "Bạn gom bản dặn, tài liệu nền, bộ thử và sổ sửa thành một trợ lý giao cho đồng nghiệp. Cuối bài bạn có trang hướng dẫn ngắn cho người mới dùng.",
+   "practice": "scenario",
+   "visual": "flow"
+  }
+ ]
+}

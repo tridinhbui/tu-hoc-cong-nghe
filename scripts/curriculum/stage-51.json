@@ -1,0 +1,209 @@
+{
+ "stage": 51,
+ "label": "Chặng 51",
+ "name": {
+  "vi": "Tự động hoá không cần code: kích hoạt và hành động",
+  "en": "No-code automation: triggers and actions"
+ },
+ "idStart": 2420,
+ "parts": [
+  {
+   "vi": "Khi này thì làm kia",
+   "en": "When this happens, do that"
+  },
+  {
+   "vi": "Dữ liệu đi qua từng bước",
+   "en": "Data through each step"
+  },
+  {
+   "vi": "Rẽ nhánh, thử và bật",
+   "en": "Branches, testing and switching on"
+  },
+  {
+   "vi": "Giữ cho nó an toàn và bền",
+   "en": "Keeping it safe and durable"
+  }
+ ],
+ "lessons": [
+  {
+   "id": 2420,
+   "slug": "email-hoa-don-tu-luu-vao-thu-muc",
+   "title": "Email hoá đơn về hộp thư, ai lưu vào thư mục mỗi tháng?",
+   "part": 0,
+   "brief": "Cuối tháng bạn lục hộp thư tìm hoá đơn nhà cung cấp; bài này cho bạn viết một câu 'khi có email như vậy thì lưu tệp vào thư mục' mà chưa cần công cụ nào.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2421,
+   "slug": "ke-viec-lap-lai-tuan-truoc-cua-ban",
+   "title": "Kê ra năm việc bạn lặp lại tuần trước, việc nào đáng tự động",
+   "part": 0,
+   "brief": "Bạn nhìn lại lịch tuần vừa rồi và chấm điểm từng việc lặp theo tần suất, số phút và mức rủi ro nếu làm sai.",
+   "practice": "scenario",
+   "visual": "chart:phút tiết kiệm mỗi tuần theo số lần lặp"
+  },
+  {
+   "id": 2422,
+   "slug": "kich-hoat-la-cai-gi-xay-ra-truoc",
+   "title": "Kích hoạt: điều gì phải xảy ra trước để việc kia tự chạy",
+   "part": 0,
+   "brief": "Một đơn hàng mới về lúc nửa đêm; bạn học phân biệt kích hoạt theo sự kiện với kích hoạt theo giờ và chọn đúng loại cho việc của mình.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2423,
+   "slug": "hanh-dong-nho-mot-buoc-mot-ket-qua",
+   "title": "Hành động nhỏ: mỗi bước chỉ làm một việc và trả một kết quả",
+   "part": 0,
+   "brief": "Bạn tách việc 'nhận đơn rồi báo khách' thành các bước đơn lẻ để biết bước nào hỏng thì sửa bước đó.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2424,
+   "slug": "mini-du-an-tu-dong-cam-on-khach-moi",
+   "title": "Mini dự án: tự động gửi lời cảm ơn khi có khách điền biểu mẫu",
+   "part": 0,
+   "brief": "Bạn vẽ trọn một luồng ba bước từ biểu mẫu đến email cảm ơn và viết ra điều kiện để bạn tin nó chạy đúng.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2425,
+   "slug": "truong-du-lieu-ten-email-so-tien-di-dau",
+   "title": "Tên, email, số tiền: mỗi mẩu dữ liệu đi đâu qua các bước",
+   "part": 1,
+   "brief": "Một đơn hàng có tên, email, số tiền; bạn lần theo từng trường xem nó được gán vào ô nào ở bước sau.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2426,
+   "slug": "o-trong-o-sai-khi-du-lieu-thieu",
+   "title": "Ô trống, ô sai: khi khách quên điền một dòng thì luồng làm gì",
+   "part": 1,
+   "brief": "Khách bỏ trống số điện thoại; bạn quyết định luồng nên dừng, bỏ qua hay báo cho bạn.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2427,
+   "slug": "dinh-dang-ngay-so-tien-lech-giua-hai-noi",
+   "title": "Ngày tháng và số tiền lệch định dạng giữa hai nơi",
+   "part": 1,
+   "brief": "Bảng ghi 05/06 còn hệ thống kia hiểu là 6 tháng 5; bạn nhận ra kiểu lệch này và ghi cách quy ước chung.",
+   "practice": "aiLab-spotError",
+   "visual": "chart:số dòng lỗi định dạng theo tổng số dòng nhập"
+  },
+  {
+   "id": 2428,
+   "slug": "nho-ai-viet-lai-noi-dung-email-tu-dong",
+   "title": "Nhờ AI viết nội dung email tự động mà vẫn giữ giọng của bạn",
+   "part": 1,
+   "brief": "Bạn soạn mẫu email có chỗ trống cho tên và số tiền, nhờ AI viết ba biến thể rồi chọn một.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2429,
+   "slug": "mini-du-an-bang-theo-doi-don-cap-nhat-tu-dong",
+   "title": "Mini dự án: bảng theo dõi đơn tự thêm dòng khi có đơn mới",
+   "part": 1,
+   "brief": "Bạn thiết kế luồng đưa mỗi đơn mới vào một dòng bảng kèm trạng thái ban đầu, và ghi các cột cần có.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2430,
+   "slug": "neu-thi-dieu-kien-don-gian-cho-viec-hang-ngay",
+   "title": "Nếu... thì...: một điều kiện đơn giản cho việc hằng ngày",
+   "part": 2,
+   "brief": "Đơn trên 5 triệu cần bạn duyệt, còn lại đi thẳng; bạn viết điều kiện đó bằng lời rồi nhờ AI kiểm chỗ hổng.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2431,
+   "slug": "rai-nhanh-khi-dieu-kien-khong-ai-nghi-toi",
+   "title": "Rẽ nhánh: trường hợp không ai nghĩ tới sẽ đi đâu",
+   "part": 2,
+   "brief": "Bạn tìm nhánh 'còn lại' cho luồng phân loại yêu cầu để không có yêu cầu nào rơi vào khoảng trống.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2432,
+   "slug": "chay-thu-voi-du-lieu-gia-truoc-khi-bat",
+   "title": "Chạy thử với dữ liệu giả trước khi bật cho khách thật",
+   "part": 2,
+   "brief": "Bạn soạn ba dòng dữ liệu giả gồm một đúng, một thiếu, một kỳ lạ để thử luồng mà không ai bị gửi nhầm.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2433,
+   "slug": "doc-nhat-ky-chay-tim-buoc-that-bai",
+   "title": "Đọc nhật ký chạy: tìm ra bước nào vừa thất bại",
+   "part": 2,
+   "brief": "Sáng thứ Hai có ba luồng báo lỗi; bạn đọc một dòng nhật ký để biết bước, lý do và việc cần làm.",
+   "practice": "aiLab-spotError",
+   "visual": "chart:số lần chạy thất bại theo ngày trong tuần"
+  },
+  {
+   "id": 2434,
+   "slug": "mini-du-an-luong-phan-loai-yeu-cau-khach",
+   "title": "Mini dự án: luồng phân loại yêu cầu khách thành ba nhóm",
+   "part": 2,
+   "brief": "Bạn dựng luồng đọc yêu cầu, gán nhóm và báo đúng người, kèm bảng thử năm ca.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2435,
+   "slug": "gioi-han-so-lan-chay-va-chi-phi-an",
+   "title": "Giới hạn số lần chạy và chi phí ẩn của một luồng chạy mỗi phút",
+   "part": 3,
+   "brief": "Một luồng kiểm tra mỗi phút chạy hàng chục nghìn lần mỗi tháng; bạn ước tính lượng chạy và chọn tần suất hợp lý.",
+   "practice": "scenario",
+   "visual": "chart:số lượt chạy mỗi tháng theo khoảng cách giữa các lần kiểm"
+  },
+  {
+   "id": 2436,
+   "slug": "luong-gui-nham-nguoi-va-cach-chan-truoc",
+   "title": "Luồng gửi nhầm người: cách chặn trước khi nó xảy ra",
+   "part": 3,
+   "brief": "Một email nội bộ suýt đến khách; bạn thêm bước duyệt và danh sách nhận cố định để giảm rủi ro.",
+   "practice": "aiLab-spotError",
+   "visual": "flow"
+  },
+  {
+   "id": 2437,
+   "slug": "khong-de-mat-khau-the-to-truoc-cong-cu",
+   "title": "Không đưa mật khẩu và thẻ vào công cụ tự động: thay bằng gì",
+   "part": 3,
+   "brief": "Bạn học phân biệt dữ liệu nào không bao giờ dán vào luồng và cách xin đúng quyền truy cập thay vì chia sẻ mật khẩu.",
+   "practice": "scenario",
+   "visual": "flow"
+  },
+  {
+   "id": 2438,
+   "slug": "khi-cong-cu-doi-cach-hoat-dong-luong-hong",
+   "title": "Khi công cụ đổi cách hoạt động, luồng của bạn hỏng: ghi chú để sửa nhanh",
+   "part": 3,
+   "brief": "Bạn viết một trang 'luồng này làm gì' để người khác sửa được. Người viết bài đối chiếu tài liệu chính thức của công cụ được chọn để kiểm chứng khái niệm.",
+   "practice": "aiLab-prompt",
+   "visual": "flow"
+  },
+  {
+   "id": 2439,
+   "slug": "capstone-luong-tu-dong-dau-tien-cua-ban",
+   "title": "Tổng kết: thiết kế, thử và ghi lại luồng tự động đầu tiên của bạn",
+   "part": 3,
+   "brief": "Bạn chọn một việc lặp thật, vẽ kích hoạt-điều kiện-hành động, thử với dữ liệu giả và viết hướng dẫn một trang.",
+   "practice": "scenario",
+   "visual": "flow"
+  }
+ ]
+}
