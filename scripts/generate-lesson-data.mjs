@@ -174,6 +174,10 @@ const lessons = balancedLessons.map((lesson) => ({
   totalMinutes: estimateLessonMinutes(lesson),
   checkpointIndex: findCheckpointIndex(lesson.sections),
 }));
+// Chuỗi `duration` viết tay ("5 phút", "8 phút") bị thay bằng con số ước tính
+// (đã có sàn 10 phút trong lib/lesson-reading.js): nó trôi khỏi thân bài, và là
+// chỗ cuối cùng còn hiện số dưới 10 phút trên thẻ và trang bài.
+for (const l of lessons) l.duration = `${l.totalMinutes} phút`;
 
 if (!Array.isArray(lessons) || lessons.length === 0) {
   throw new Error(`Expected a non-empty lessons array, got: ${typeof lessons}`);

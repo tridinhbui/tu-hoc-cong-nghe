@@ -17,13 +17,13 @@ export const PACE_KEY = "thtcdn_path_pace";
  *  Đây là trung vị THẬT của kho, đo bằng totalMinutes trong lib/lessons-data,
  *  và learning-path-claims.test.ts gác cho nó khớp.
  *
- *  Con số này nằm sát ranh giới hơn vẻ ngoài của nó: phân bố hiện tại (1.503
- *  bài) có 625 bài từ 7 phút trở xuống và 223 bài ở mức 8, nên vị trí trung vị
- *  (752) rơi vào ô đầu của nhóm 8. Nó đã nhảy từ 5 lên 8 đúng một lần khi 740
- *  bài AI cho công việc (dài hơn, mỗi bài có thực hành và hình ảnh) vào kho.
+ *  Con số này bằng đúng SÀN MIN_LESSON_MINUTES (lib/lesson-reading.js): 826 trong
+ *  1.503 bài đứng ở sàn, nên trung vị không thể thấp hơn 10 và chỉ nhúc nhích
+ *  lên khi phần lớn kho dài hơn sàn. Nó từng là 5 (kho cũ), rồi 8 khi 740 bài
+ *  AI cho công việc vào kho, rồi 10 khi sàn được đặt để khớp lời hứa "10-15 phút".
  *  Khi test đỏ ở đây, hãy đo lại phân bố trước khi kết luận có gì đó hỏng - rất
  *  có thể chỉ là một lô bài mới vừa đi qua ranh giới. */
-export const MEDIAN_LESSON_MINUTES = 8;
+export const MEDIAN_LESSON_MINUTES = 10;
 
 export interface Pace {
   perDay: 1 | 2;

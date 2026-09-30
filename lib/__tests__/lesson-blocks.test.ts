@@ -116,3 +116,15 @@ describe("dịch khối tương tác", () => {
     expect(block.nodes.g.text).toBe("Tốt");
   });
 });
+
+describe("thời lượng của bản dịch", () => {
+  it("giữ chữ của bản dịch nhưng lấy con số của bài gốc (có sàn 10 phút)", async () => {
+    const { localizedDuration } = await import("@/lib/lesson-translations.js");
+    // Bản dịch viết tay từng là chỗ duy nhất còn hiện "6 min" sau khi sàn 10 phút ra đời.
+    expect(localizedDuration("6 min", "12 phút")).toBe("12 min");
+    expect(localizedDuration("about 6 minutes", "10 phút")).toBe("about 10 minutes");
+    expect(localizedDuration("", "10 phút")).toBe("10 phút");
+    expect(localizedDuration(undefined, "10 phút")).toBe("10 phút");
+    expect(localizedDuration("short", "10 phút")).toBe("10 phút");
+  });
+});

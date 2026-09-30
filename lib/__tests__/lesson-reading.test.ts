@@ -2,8 +2,10 @@ import { describe, it, expect } from "vitest";
 import {
   countBlockWords,
   estimateReadingMinutes,
+  estimateReadingSeconds,
   estimateLessonMinutes,
   findCheckpointIndex,
+  MIN_LESSON_MINUTES,
 } from "@/lib/lesson-reading.js";
 
 function paragraph(wordCount: number) {
@@ -27,14 +29,23 @@ describe("countBlockWords", () => {
 });
 
 describe("estimateReadingMinutes", () => {
-  it("never returns 0, even for an empty lesson", () => {
-    expect(estimateReadingMinutes({ sections: [] })).toBe(1);
-    expect(estimateReadingMinutes({})).toBe(1);
-    expect(estimateReadingMinutes(null)).toBe(1);
+  it("never goes below the floor, even for an empty lesson", () => {
+    // Sàn 10 phút: lời hứa "10-15 phút một bài" không cho phép nhãn thấp hơn.
+    expect(estimateReadingMinutes({ sections: [] })).toBe(MIN_LESSON_MINUTES);
+    expect(estimateReadingMinutes({})).toBe(MIN_LESSON_MINUTES);
+    expect(estimateReadingMinutes(null)).toBe(MIN_LESSON_MINUTES);
   });
 
   it("falls back to `explanation` for older lessons with no sections", () => {
-    expect(estimateReadingMinutes({ explanation: Array(320).fill("chữ").join(" ") })).toBe(2);
+    // 320 từ ở 160 từ/phút = 2 phút = 120 giây. Đo bằng GIÂY vì phút đã bị kẹp sàn.
+    expect(estimateReadingSeconds({ explanation: Array(320).fill("chữ").join(" ") })).toBe(120);
+  });
+
+  it("charges interactive blocks for the time spent doing them", () => {
+    const words = estimateReadingSeconds({ sections: [paragraph(100)] });
+    for (const type of ["aiLab", "scenario", "sim", "chart", "flow"]) {
+      expect(estimateReadingSeconds({ sections: [paragraph(100), { type }] }), type).toBeGreaterThan(words);
+    }
   });
 
   it("charges a formula block more than the same word count of prose", () => {
@@ -48,9 +59,10 @@ describe("estimateReadingMinutes", () => {
 
 describe("estimateLessonMinutes", () => {
   it("adds the opening question and quiz on top of the body", () => {
-    const body = { sections: [paragraph(320)] };
+    // Thân đủ dài để vượt sàn 10 phút, nếu không cả hai vế đều bằng sàn.
+    const body = { sections: [paragraph(2400)] };
     const full = { ...body, openingQuestion: "Vì sao?", quiz: [{}, {}, {}, {}] };
-    // Body alone is ~2 min; opening (25s) + 4 questions (100s) adds ~2 more.
+    // Thân ~15 phút; câu mở đầu (25s) + 4 câu quiz (100s) cộng thêm ~2 phút.
     expect(estimateLessonMinutes(full)).toBeGreaterThan(estimateReadingMinutes(body));
   });
 

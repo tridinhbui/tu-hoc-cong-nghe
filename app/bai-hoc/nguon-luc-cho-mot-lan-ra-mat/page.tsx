@@ -21,7 +21,7 @@ const META: LessonMeta = {
   id: 9014, slug: "nguon-luc-cho-mot-lan-ra-mat", day: 15, accent: "emerald",
   title: "Nguồn Lực Cho Một Lần Ra Mắt",
   subtitle: "Công sức để đưa một hệ thống lên sản xuất đến từ đâu?",
-  duration: "8 phút", difficulty: "Khó", emoji: "💼",
+  duration: "10 phút", difficulty: "Khó", emoji: "💼",
   nextSlug: "synergy-ma", nextTitle: "Cộng hưởng khi gộp hai dịch vụ",
 };
 /* i18n-ignore-end */

@@ -15,7 +15,7 @@ import { applyLessonOverrides } from "./lesson-quiz-overrides.js";
 import { balanceLessonQuizzes } from "./lesson-quiz-balance.js";
 import { lessonBelongsToTrack } from "./track-stages";
 import { DEFAULT_LOCALE, type Locale } from "./i18n/locales";
-import { mergeLessonTranslation } from "./lesson-translations.js";
+import { localizedDuration, mergeLessonTranslation } from "./lesson-translations.js";
 
 /**
  * Dynamic lesson loader for code splitting.
@@ -119,7 +119,7 @@ function localizeMeta(meta: LessonMeta, index: Map<string, TranslationIndexEntry
     ...meta,
     title: patch.title?.trim() ? patch.title : meta.title,
     subtitle: patch.subtitle?.trim() ? patch.subtitle : meta.subtitle,
-    duration: patch.duration?.trim() ? patch.duration : meta.duration,
+    duration: localizedDuration(patch.duration, meta.duration),
   };
 }
 

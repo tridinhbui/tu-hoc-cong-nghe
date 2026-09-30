@@ -21,7 +21,7 @@ const LESSON: LessonMeta = {
   id: 9004, slug: "cac-hang-uu-tien-tai-nguyen", day: 5, accent: "teal",
   title: "Các Hạng Ưu Tiên Tài Nguyên",
   subtitle: "9 hạng công suất, thứ tự thu hồi và ai bị cắt trước khi cụm thiếu chỗ",
-  duration: "8 phút", difficulty: "Trung bình", emoji: "",
+  duration: "10 phút", difficulty: "Trung bình", emoji: "",
   nextSlug: "cau-dieu-kien-if-else", nextTitle: "Day 6: Câu điều kiện",
 };
 /* i18n-ignore-end */
