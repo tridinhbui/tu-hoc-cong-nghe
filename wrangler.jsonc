@@ -34,6 +34,10 @@
 	"exports": {
 		"RealtimeHub": { "type": "durable-object", "storage": "sqlite" }
 	},
+	// Workers AI - bộ não của chatbot Cơ Cơ (app/api/coco-chat/route.ts). Thiếu
+	// binding (chạy `next dev` không qua worker) thì route tự rơi về chế độ gợi
+	// ý bài học, không báo lỗi.
+	"ai": { "binding": "AI" },
 	"r2_buckets": [{ "binding": "FILES", "bucket_name": "thcn-files" }],
 	// "kv_namespaces":[{ "binding": "SESSIONS", "id": "<điền sau>" }],
 	"vars": {

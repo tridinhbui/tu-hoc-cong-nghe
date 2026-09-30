@@ -59,6 +59,29 @@ export const cocoVi = {
       "Phòng thi này tính thật: trượt thì phải chờ một lúc mới thi lại. Ôn kỹ rồi hẵng vào nhé.",
     ],
   },
+  // components/CoCoChatbot.tsx - chatbot nổi trên mọi trang.
+  cocoChat: {
+    fabLabel: "Hỏi Cơ Cơ",
+    title: "Cơ Cơ",
+    status: "Trợ lý học - hỏi gì cũng được",
+    close: "Đóng",
+    reset: "Cuộc trò chuyện mới",
+    greeting: "Chào bạn, tớ là Cơ Cơ! Bạn đang vướng chỗ nào? Hỏi tớ về bài đang học, một khái niệm khó, hay nên học gì tiếp - tớ trả lời ngay.",
+    suggestions: [
+      "Giải thích bài này đơn giản hơn giúp tớ",
+      "API là gì?",
+      "Tớ nên học gì tiếp theo?",
+      "Git khác GitHub thế nào?",
+    ],
+    placeholder: "Nhập câu hỏi cho Cơ Cơ...",
+    send: "Gửi",
+    relatedLessons: "Bài học liên quan",
+    offlineWithLinks: "Tớ đang không kết nối được bộ não AI, nhưng tìm thấy mấy bài này có vẻ đúng thứ bạn cần:",
+    offlineNoLinks: "Tớ đang không kết nối được bộ não AI, và cũng chưa tìm thấy bài nào khớp. Bạn thử hỏi bằng từ khoá khác (ví dụ: Python, SQL, Docker) nhé.",
+    rateLimited: "Bạn hỏi nhanh quá, tớ gõ không kịp! Đợi một phút rồi hỏi tiếp nhé.",
+    error: "Ối, tớ bị mất kết nối. Bạn thử gửi lại nhé.",
+    disclaimer: "Cơ Cơ có thể nhầm - kiểm tra lại trong bài học.",
+  },
 };
 
 export const cocoEn: typeof cocoVi = {
@@ -112,4 +135,27 @@ export const cocoEn: typeof cocoVi = {
       "This exam counts for real: fail and you wait a while before retrying. Review first, then come in.",
     ],
   },
+  cocoChat: {
+    fabLabel: "Ask Cơ Cơ",
+    title: "Cơ Cơ",
+    status: "Study buddy - ask me anything",
+    close: "Close",
+    reset: "New conversation",
+    greeting: "Hi, I'm Cơ Cơ! Where are you stuck? Ask me about the lesson you're on, a tricky concept, or what to learn next - I'll answer right away.",
+    suggestions: [
+      "Explain this lesson more simply",
+      "What is an API?",
+      "What should I learn next?",
+      "How is Git different from GitHub?",
+    ],
+    placeholder: "Ask Cơ Cơ a question...",
+    send: "Send",
+    relatedLessons: "Related lessons",
+    offlineWithLinks: "I can't reach my AI brain right now, but these lessons look like what you need:",
+    offlineNoLinks: "I can't reach my AI brain right now, and I couldn't find a matching lesson either. Try other keywords (e.g. Python, SQL, Docker).",
+    rateLimited: "You're asking faster than I can type! Wait a minute and ask again.",
+    error: "Oops, I lost the connection. Please try sending again.",
+    disclaimer: "Cơ Cơ can make mistakes - double-check in the lesson.",
+  },
 };
+

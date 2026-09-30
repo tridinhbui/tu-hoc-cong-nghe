@@ -108,6 +108,12 @@ const INTENTIONALLY_UNTRANSLATED = new Set([
   // Lời thoại của chính Cơ Cơ (lib/i18n/dictionaries/sections/coco.ts).
   "coco.typingLabel",
   "coco.dashboardFirst",
+  // Chatbot Cơ Cơ (components/CoCoChatbot.tsx) - câu tiếng Anh gọi tên linh vật.
+  "cocoChat.fabLabel",
+  "cocoChat.title",
+  "cocoChat.greeting",
+  "cocoChat.placeholder",
+  "cocoChat.disclaimer",
   // Already English in the Vietnamese source: the game's own branded chrome
   // (studio and arsenal banners, the arena badge) and two building names. They
   // are in the dictionary rather than inline because the coverage script scores

@@ -7,6 +7,7 @@ declare global {
   interface CloudflareEnv {
     DB: import("@cloudflare/workers-types").D1Database;
     FILES: import("@cloudflare/workers-types").R2Bucket;
+    AI: import("@cloudflare/workers-types").Ai;
   }
 }
 export {};
