@@ -56,13 +56,14 @@ async function markup(
 }
 
 describe("trang /lo-trinh dựng ra chữ gì", () => {
-  it("hiện con số 5 phút ngay đầu trang, trước mọi phần giải thích", async () => {
+  it("hiện con số phút mỗi ngày ngay đầu trang, trước mọi phần giải thích", async () => {
     const html = await markup("vi");
     // Đo bằng ID của khối, không bằng tên khối. Mục lục ở đầu trang liệt kê
     // đúng những cái tên đó, nên indexOf trên chữ sẽ bắt trúng mục lục và báo
     // sai thứ tự trong khi thứ tự vẫn đúng - phép kiểm hỏng theo kiểu tệ nhất,
     // đỏ vì một thay đổi hợp lệ.
-    const minutes = html.indexOf("5 phút mỗi ngày");
+    // Lấy con số từ hằng số: nó đã đổi từ 5 lên 8 một lần, và test này đỏ theo.
+    const minutes = html.indexOf(`${MEDIAN_LESSON_MINUTES} phút mỗi ngày`);
     const howTo = html.indexOf('id="how"');
     expect(minutes).toBeGreaterThan(-1);
     expect(howTo).toBeGreaterThan(-1);
