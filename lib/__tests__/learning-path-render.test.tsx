@@ -62,8 +62,9 @@ describe("trang /lo-trinh dựng ra chữ gì", () => {
     // đúng những cái tên đó, nên indexOf trên chữ sẽ bắt trúng mục lục và báo
     // sai thứ tự trong khi thứ tự vẫn đúng - phép kiểm hỏng theo kiểu tệ nhất,
     // đỏ vì một thay đổi hợp lệ.
-    // Lấy con số từ hằng số: nó đã đổi từ 5 lên 8 một lần, và test này đỏ theo.
-    const minutes = html.indexOf(`${MEDIAN_LESSON_MINUTES} phút mỗi ngày`);
+    // Khẩu hiệu là một KHOẢNG (10-15), chủ ý không bám trung vị đo được: nó nói
+    // thời gian làm cả bài kể cả thực hành, không chỉ thời gian đọc.
+    const minutes = html.indexOf("10-15 phút mỗi ngày");
     const howTo = html.indexOf('id="how"');
     expect(minutes).toBeGreaterThan(-1);
     expect(howTo).toBeGreaterThan(-1);

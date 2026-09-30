@@ -219,7 +219,7 @@ export default function LearningPathClient({
         </div>
       </nav>
 
-      {/* Câu trả lời trước tiên: mỗi ngày 6 phút, và hôm nay là bài này. */}
+      {/* Câu trả lời trước tiên: mỗi ngày 10-15 phút, và hôm nay là bài này. */}
       <section className={`${panel} grid gap-3 p-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-center`}>
         <div>
         <div className="flex items-center gap-2">

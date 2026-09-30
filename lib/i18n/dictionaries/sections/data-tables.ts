@@ -182,7 +182,7 @@ export const dataTablesVi = {
           title: "Spaced Repetition & Active Recall — Học ít, nhớ lâu",
           subtitle: "Phương pháp ghi nhớ bám sát đường cong quên lãng (Forgetting Curve) của não bộ.",
           items: [
-            { title: "5-7 phút / bài", desc: "Bài học ngắn gọn, tập trung đúng 1 khái niệm cốt lõi." },
+            { title: "10-15 phút / bài", desc: "Bài học ngắn gọn, tập trung đúng 1 khái niệm cốt lõi." },
             { title: "Active Recall", desc: "Bắt não kích hoạt nhớ lại kiến thức qua Quiz kiểm tra." },
             { title: "Nhắc ôn đúng lúc", desc: "Câu hỏi ôn lặp lại xuất hiện tự động sau ~5 bài tiếp." },
             { title: "Khắc sâu bản chất", desc: "Biến lý thuyết thành phản xạ đọc mã nguồn." },
@@ -382,7 +382,7 @@ export const dataTablesEn: typeof dataTablesVi = {
           title: "Spaced Repetition & Active Recall - learn less, remember longer",
           subtitle: "A memory method built around the brain's forgetting curve.",
           items: [
-            { title: "5-7 minutes a lesson", desc: "Short lessons, each focused on exactly one core concept." },
+            { title: "10-15 minutes a lesson", desc: "Short lessons, each focused on exactly one core concept." },
             { title: "Active recall", desc: "Quizzes force your brain to actively retrieve what it just learned." },
             { title: "Reviews at the right time", desc: "Spaced-repetition questions resurface automatically after roughly 5 more lessons." },
             { title: "Makes it second nature", desc: "Turns theory into the reflex of actually reading code." },
