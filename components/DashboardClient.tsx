@@ -27,6 +27,7 @@ import FloatingStudyGroupChat from "@/components/FloatingStudyGroupChat";
 import LessonAppealModal from "@/components/LessonAppealModal";
 import OnboardingFlow from "@/components/OnboardingFlow";
 import ResumeLearningButton from "@/components/ResumeLearningButton";
+import LearningFocusHero from "@/components/LearningFocusHero";
 import StreakReminderManager from "@/components/StreakReminderManager";
 import AnnouncementBanner from "@/components/AnnouncementBanner";
 import DashboardTour from "@/components/DashboardTour";
@@ -557,11 +558,13 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
       const customLabel = format(t.dashboard.stageLabel, { n: displayIdx + 1 });
       stageLabelsMap.set(stage.label, customLabel);
 
-      byStage.set(
-        stage.label,
-        sorted.filter((l) => isLessonInRange(l.id, stage) && (!l.track || l.track === activeTrack))
-      );
-
+      // Bài của chặng xếp THEO THỨ TỰ PHẦN, không theo id. Một phần có thể
+      // trỏ tới dải id nằm sau phần kế tiếp (Chặng 1 mở bằng bài 1351, rồi mới
+      // tới 263), và `currentLessonId` lấy bài chưa học đầu tiên của danh sách
+      // này - xếp theo id thì "bài đang học" nhảy qua bài 001 để chỉ vào 002,
+      // trong khi số thứ tự bên cạnh vẫn đếm theo phần.
+      const stageLessons: LessonMeta[] = [];
+      const seen = new Set<number>();
       for (const part of stage.parts) {
         const partLessons = sorted.filter(
           (l) => isLessonInRange(l.id, part) && (!l.track || l.track === activeTrack)
@@ -572,8 +575,20 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
             n += 1;
             ordinal.set(l.id, n);
           }
+          if (!seen.has(l.id)) {
+            seen.add(l.id);
+            stageLessons.push(l);
+          }
         }
       }
+      // Bài thuộc dải của chặng mà không phần nào nhận: giữ lại ở cuối, như
+      // trước đây chúng vẫn được đếm.
+      for (const l of sorted) {
+        if (!seen.has(l.id) && isLessonInRange(l.id, stage) && (!l.track || l.track === activeTrack)) {
+          stageLessons.push(l);
+        }
+      }
+      byStage.set(stage.label, stageLessons);
     });
 
     return {
@@ -1718,9 +1733,46 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                 linh vật cách nhau một thẻ là một con thừa. */}
             <CoCoSays lines={t.coco.hocBai} size={36} />
 
-            {/* Resume Learning Card */}
+            {/* Học tiếp: bài và chặng lấy từ CHÍNH danh sách bên dưới (xem chú
+                thích đầu LearningFocusHero). Hết bài thì lùi về
+                ResumeLearningButton, nơi có sẵn lời chúc mừng khi xong lộ trình. */}
             <div data-tour="resume-learning">
-              <ResumeLearningButton activeTrack={activeTrack} userId={user?.id} showCoCo={false} />
+              {(() => {
+                const focusLesson = currentLessonId !== null ? lessonById.get(currentLessonId) : undefined;
+                const focusStageIdx = focusLesson
+                  ? track.stages.findIndex((s) => (lessonsByStageLabel.get(s.label) ?? []).some((l) => l.id === focusLesson.id))
+                  : -1;
+                const focusStage = focusStageIdx >= 0 ? track.stages[focusStageIdx] : null;
+                if (!focusLesson || !focusStage) {
+                  return <ResumeLearningButton activeTrack={activeTrack} userId={user?.id} showCoCo={false} />;
+                }
+                const focusStageLessons = lessonsByStageLabel.get(focusStage.label) ?? [];
+                const focusCopy = t.revampDashboard.stages[activeTrack]?.[focusStageIdx];
+                const focusStageCopy = t.trackStages[activeTrack]?.stages[focusStageIdx];
+                return (
+                  <LearningFocusHero
+                    stageKicker={format(t.revampDashboard.stageKicker, {
+                      stage: stageDisplayLabels.get(focusStage.label) || focusStageCopy?.label || focusStage.label,
+                      tag: focusCopy?.tag ?? "",
+                    })}
+                    stageHeadline={focusCopy?.headline ?? focusStageCopy?.name ?? focusStage.name}
+                    lessonTitle={stripStageLessonPrefix(focusLesson.title)}
+                    lessonSubtitle={renderSubtitle(focusLesson.id)}
+                    lessonNumber={String(lessonOrdinal.get(focusLesson.id) ?? focusLesson.id).padStart(3, "0")}
+                    lessonTime={formatLessonTime(focusLesson, t.dashboard.minutesShort)}
+                    href={`/bai-hoc/${focusLesson.slug}`}
+                    slug={focusLesson.slug}
+                    stageSegments={focusStageLessons.map((l) =>
+                      completed.includes(l.id) ? "done" : l.id === focusLesson.id ? "current" : "todo"
+                    )}
+                    courseDone={trackCounts[activeTrack].done}
+                    courseTotal={trackCounts[activeTrack].total}
+                    onJumpToStage={() =>
+                      document.getElementById(`stage-${focusStage.label}`)?.scrollIntoView({ behavior: "smooth", block: "start" })
+                    }
+                  />
+                );
+              })()}
             </div>
 
             {/* Trên /hoc-bai chỗ này là lộ trình, không phải lời chúc.
@@ -1903,15 +1955,15 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
 
  <>
  {/* ── Search Bar + Flag Mode Controls ── */}
- <div className="mt-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+ <div className="mt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
  {/* Left: Compact Search Input */}
  <div className="relative flex-1 max-w-md">
- <Search className="w-4 h-4 text-stone-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+ <Search className="w-3.5 h-3.5 text-ink-faint absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
  <input
  value={stageSearchQuery}
  onChange={(e) => setStageSearchQuery(e.target.value)}
  placeholder={t.dashboard.searchPlaceholder}
- className="w-full pl-10 pr-9 py-2.5 rounded-sm border border-line bg-white dark:bg-stone-900 text-xs font-medium text-ink placeholder:text-stone-400 focus:outline-none focus:border-brand-600 transition-colors"
+ className="w-full pl-9 pr-9 py-2 rounded-control border border-transparent bg-surface-raised dark:bg-stone-900/60 text-xs font-medium text-ink placeholder:text-ink-faint focus:outline-none focus:border-brand-400 focus:bg-white dark:focus:bg-stone-900 transition-colors"
  />
  {stageSearchQuery && (
  <button
@@ -1953,10 +2005,10 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
  else setFlagSelectionMode(true);
  }}
  aria-pressed={flagSelectionMode}
- className={`px-3.5 py-2 text-xs font-bold rounded-sm border transition-colors cursor-pointer flex items-center gap-1.5 ${
+ className={`px-2.5 py-1.5 text-xs font-semibold rounded-control border transition-colors cursor-pointer flex items-center gap-1.5 ${
  flagSelectionMode
  ? "border-brand-600 bg-white text-accent-strong dark:border-brand-400 dark:bg-stone-900"
- : "border-line bg-transparent text-ink-muted hover:border-line-strong hover:text-ink-body"
+ : "border-transparent bg-transparent text-ink-faint hover:bg-surface-raised hover:text-ink-body"
  }`}
  >
  <span>{t.dashboard.markLearned.button}</span>
@@ -1965,7 +2017,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
  e.stopPropagation();
  setManualFlagInfoOpen((current) => !current);
  }}
- className="inline-flex items-center justify-center rounded-xs border border-line w-4 h-4 text-[10px] font-black text-stone-500 transition-colors hover:bg-surface-raised dark:text-stone-400 dark:hover:bg-stone-800" aria-expanded={manualFlagInfoOpen}
+ className="inline-flex items-center justify-center rounded-full border border-line w-4 h-4 text-[10px] font-bold text-ink-faint transition-colors hover:bg-surface-raised dark:text-stone-400 dark:hover:bg-stone-800" aria-expanded={manualFlagInfoOpen}
  aria-label={t.dashboard.markLearned.help}
  >
  ?
@@ -2015,7 +2067,6 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
  const visibleStages = activeTrack === "professional"
  ? track.stages.filter((s) => (PROFESSIONAL_BRANCHES.find((b) => b.id === professionalBranch)!.stageLabels as readonly string[]).includes(s.label))
  : track.stages;
- const currentLesson = currentLessonId !== null ? lessonById.get(currentLessonId) : undefined;
  return (
  <ol data-tour="stage-list" className="mt-8">
  {visibleStages.map((stage, visIdx) => {
@@ -2078,7 +2129,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
  <div className="flex shrink-0 flex-col items-center">
  <div
  aria-hidden
- className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-sm ${
+ className={`flex shrink-0 items-center justify-center rounded-sm ${isActive ? "h-10 w-10" : "mt-1 h-8 w-8"} ${
  status === "mastered"
  ? "bg-surface-raised text-cyan-600 dark:text-cyan-400"
  : status === "active"
@@ -2099,18 +2150,18 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
  )}
  </div>
  {!isLastStage && (
- <div className={`my-1 w-px flex-1 ${status === "mastered" ? "bg-cyan-200 dark:bg-cyan-900" : "bg-line"}`} />
+ <div className={`my-1 w-px flex-1 ${status === "mastered" ? "bg-cyan-200 dark:bg-cyan-900" : isActive ? "bg-brand-200 dark:bg-brand-900" : "bg-line"}`} />
  )}
  </div>
 
- <div className={`min-w-0 flex-1 ${isLastStage ? "" : "pb-5"}`}>
+ <div className={`min-w-0 flex-1 ${isLastStage ? "" : isActive || stageOpen ? "pb-7" : "pb-1.5"}`}>
  <div
  className={`rounded-sm transition-colors ${
  isActive
- ? "border border-brand-600 bg-white p-4 sm:p-5 dark:border-brand-500 dark:bg-stone-900"
+ ? "rounded-card bg-brand-50/80 p-4 sm:p-6 dark:bg-brand-950/35"
  : stageOpen
- ? "border border-line bg-white px-3.5 py-3 sm:px-4 dark:bg-stone-900"
- : "border border-transparent px-3.5 py-2.5 hover:bg-surface-raised sm:px-4 dark:hover:bg-stone-900/60"
+ ? "rounded-card bg-surface-raised/70 px-3.5 py-3 sm:px-4 dark:bg-stone-900/60"
+ : "px-3.5 py-2 hover:bg-surface-raised sm:px-4 dark:hover:bg-stone-900/60"
  }`}
  >
  {/* Stage header - click to expand/collapse */}
@@ -2134,7 +2185,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
  tag: outcomeCopy?.tag ?? "",
  })}
  </Sys>
- <span className={`font-mono text-[9px] font-bold tracking-wider ${
+ {(status === "active" || status === "started" || status === "mastered") && <span className={`font-mono text-[9px] font-bold tracking-wider ${
  status === "active"
  ? "text-accent-strong"
  : status === "mastered" || status === "started"
@@ -2142,8 +2193,8 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
  : "text-ink-faint"
  }`}>
  {statusLabel}
- </span>
- {stage.isNew && (
+ </span>}
+ {stage.isNew && (isActive || stageOpen) && (
  <span className="text-[9px] font-bold uppercase text-ink-muted">
  {t.dashboard.isNew}
  </span>
@@ -2154,14 +2205,14 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
      gốc vẫn ở `title` cho ai rê chuột vào. */}
  <h3
  title={stageCopy?.name ?? stage.name}
- className={`mt-1 leading-snug tracking-tight ${
- isActive ? "font-black text-lg sm:text-xl text-ink-max" : status === "locked" ? "font-bold text-sm sm:text-base text-ink-faint" : status === "notStarted" ? "font-bold text-sm sm:text-base text-ink-soft" : "font-bold text-sm sm:text-base text-ink-body"
+ className={`${isActive ? "mt-1.5" : "mt-0.5"} leading-snug tracking-tight ${
+ isActive ? "font-black text-xl sm:text-2xl text-ink-max" : status === "locked" ? "font-semibold text-sm text-ink-faint" : status === "notStarted" ? "font-semibold text-sm text-ink-soft" : status === "mastered" ? "font-semibold text-sm text-ink-muted" : "font-bold text-sm text-ink-body"
  }`}
  >
  {outcomeCopy?.headline ?? stageCopy?.name ?? stage.name}
  </h3>
- {outcomeCopy && (
- <div className="mt-1.5">
+ {outcomeCopy && (isActive || stageOpen) && (
+ <div className={isActive ? "mt-3" : "mt-1.5"}>
  <span className={`eyebrow ${isActive ? "text-accent-strong" : "text-ink-faint"}`}>
  {status === "mastered" ? t.revampDashboard.masteredOutcomeLabel : t.revampDashboard.outcomeLabel}
  </span>
@@ -2181,7 +2232,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
  )}
  </div>
  )}
- {showPrereq && prevStage && (
+ {showPrereq && prevStage && stageOpen && (
  <p className="mt-1.5 inline-flex items-center gap-1.5 text-[11px] font-medium text-ink-faint">
  <Lock className="h-3 w-3 shrink-0 text-ink-faint" aria-hidden />
  {format(t.revampDashboard.prereqLine, {
@@ -2243,31 +2294,21 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
  </div>
  </div>
 
- {/* Bước tiếp theo: luôn lộ ra ở chặng đang học, kể cả khi phần chứa
-     bài ấy đang gập - người học không phải mở accordion để biết bấm
-     vào đâu. Nằm NGOÀI hàng tiêu đề (role=button) để cú bấm không gập
-     cả chặng. */}
- {isActive && currentLesson && !flagSelectionMode && (
- <div className="mt-3.5 flex flex-col gap-2.5 rounded-sm bg-accent-soft p-3 sm:flex-row sm:items-center">
- <div className="min-w-0 flex-1">
- <Sys className="text-accent-strong">{t.revampDashboard.nextActionLabel}</Sys>
- <p className="mt-0.5 text-sm font-black leading-snug text-ink-max">
- {stripStageLessonPrefix(currentLesson.title)}
- </p>
- <p className="mt-0.5 flex items-center gap-2 font-mono text-[11px] tabular-nums text-ink-muted">
- <span>{String(lessonOrdinal.get(currentLesson.id) ?? currentLesson.id).padStart(3, "0")}</span>
- <span>{formatLessonTime(currentLesson, t.dashboard.minutesShort)}</span>
- </p>
+ {/* Tiến độ chặng đang học, trải ngang: con số nhỏ ở góc phải không đủ
+     cho thứ người học đang theo đuổi. */}
+ {isActive && stageLessons.length > 0 && (
+ <div className="mt-4 flex items-center gap-3">
+ <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-brand-100 dark:bg-brand-900/60">
+ <div className="h-full rounded-full bg-brand-600 transition-[width] duration-700 dark:bg-brand-500" style={{ width: `${Math.max(percent, 2)}%` }} />
  </div>
- <Link
- href={`/bai-hoc/${currentLesson.slug}`}
- className={`${btnPrimary} shrink-0 self-start px-4 py-2 text-xs sm:self-center`}
- >
- {t.revampDashboard.nextActionCta}
- <ArrowRight className="h-3.5 w-3.5" aria-hidden />
- </Link>
+ <span className="font-mono text-[11px] font-semibold tabular-nums text-accent-strong">{Math.round(percent)}%</span>
  </div>
  )}
+
+ {/* "Bước tiếp theo" từng là một khung xanh thứ hai kèm nút HỌC TIẾP thứ
+     hai, ngay dưới thẻ Học tiếp đầu trang - hai nút chính cho cùng một
+     việc. Thẻ đầu trang giờ là nút duy nhất; trong chặng, bài đang học
+     được nhấn bằng chính hàng của nó. */}
 
  {/* Not available yet */}
  {stageOpen && !stage.available && (
@@ -2294,7 +2335,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
  {/* Parts (sub-stages) - each its own collapsible row. Một đường kẻ ngăn
      giữa các phần thay cho một khung viền quanh từng phần. */}
  {stageOpen && stage.available && stageLessons.length > 0 && !isStageLockedByMilestone && (
- <div className="mt-3.5 divide-y divide-line border-t border-line">
+ <div className={isActive ? "mt-5 space-y-0.5" : "mt-3 divide-y divide-line"}>
  {stage.parts.map((part, partIdx) => {
  const partLessons = lessonsByPartKey.get(`${stage.label}::${part.name}`) ?? [];
  if (partLessons.length === 0) return null;
@@ -2315,7 +2356,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
  <button
  onClick={() => togglePart(partKey)}
  aria-expanded={partOpen}
- className="flex w-full cursor-pointer select-none items-center gap-3 px-1 py-2.5 text-left transition-colors hover:bg-surface-raised dark:hover:bg-stone-800/50"
+ className="flex w-full cursor-pointer select-none items-center gap-3 rounded-control px-1.5 py-2 text-left transition-colors hover:bg-white/70 dark:hover:bg-stone-800/50"
  >
  <span className="shrink-0" aria-hidden>
  {partMastered ? (
@@ -2351,7 +2392,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
  </button>
 
  {partOpen && (
- <div className="space-y-1 pb-2.5">
+ <div className={`ml-4 space-y-0.5 border-l pb-2 pl-2 ${partHasCurrent ? "border-accent-line-mid" : "border-line"}`}>
  {visiblePartLessons.map((lesson) => {
  const isDone = completed.includes(lesson.id);
  const isExamCredited = isDone && examCreditedIds.has(lesson.id);
@@ -2393,7 +2434,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
  onClick={() => handleSelectableLessonCardClick(lesson.id, isDone)}
  className={`relative block rounded-sm border transition-colors ${
  isCurrentLesson && !isDone
- ? "border-accent-line-mid bg-accent-soft"
+ ? "border-brand-300 bg-white shadow-[0_2px_10px_-4px_rgba(41,97,184,0.35)] dark:border-brand-700 dark:bg-stone-900"
  : isSelectedForFlag
  ? "border-brand-600 bg-white dark:border-brand-400 dark:bg-stone-900"
  : isFlagged
@@ -2774,7 +2815,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
               lưới. Đây là lý do preset phải đổi cả lớp CSS của cột chứ không
               chỉ ẩn widget: chú thích dài ở ngay trên đã ghi rằng bố cục này
               nhạy tới mức thừa một khối là trình duyệt tự đẻ ra một hàng ngầm. */}
-          <div className={`min-w-0 space-y-6 ${
+          <div className={`min-w-0 ${isLessonsView ? "space-y-3" : "space-y-6"} ${
             isLessonsView
               ? "xl:min-h-0 xl:overflow-y-auto xl:pr-1.5"
               : isFullPreset
@@ -2803,26 +2844,26 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
 
             {isLessonsView && user?.id && <MistakeReviewWidget userId={user.id} />}
 
-            {isLessonsView && user?.id && <DailyNewsQuizWidget userId={user.id} compact />}
+            {isLessonsView && user?.id && <DailyNewsQuizWidget userId={user.id} compact quiet />}
 
             {isLessonsView && (
-              <div className={`${panel} p-5 flex items-center justify-between gap-3 select-none`}>
+              <div className="rounded-card bg-surface-raised/70 px-3.5 py-3 flex items-center justify-between gap-3 select-none dark:bg-stone-900/50">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-sm bg-surface-raised flex items-center justify-center shrink-0 dark:bg-stone-950">
-                    <Trophy className="w-5 h-5 text-ink-muted" />
+                  <div className="w-8 h-8 rounded-control bg-white flex items-center justify-center shrink-0 dark:bg-stone-950">
+                    <Trophy className="w-4 h-4 text-ink-muted" />
                   </div>
                   <div>
                     <span className="eyebrow text-ink-muted block">
                       {t.dashboard.nextChallenge}
                     </span>
-                    <h4 className="text-sm font-bold tracking-tight text-ink-body mt-0.5">
+                    <h4 className="text-sm font-semibold tracking-tight text-ink-body mt-0.5">
                       {format(t.dashboard.rigorousExamTitle, { level: getLevelByXp(userXp).level + 1 })}
                     </h4>
                   </div>
                 </div>
                 <Link
                   href="/kiem-tra"
-                  className="group inline-flex shrink-0 cursor-pointer items-center gap-1.5 rounded-sm border border-line px-3 py-1.5 text-[11px] font-bold text-ink-body transition-colors hover:border-line-strong hover:text-ink-max"
+                  className="group inline-flex shrink-0 cursor-pointer items-center gap-1.5 rounded-control px-2 py-1.5 text-[11px] font-semibold text-ink-muted transition-colors hover:bg-white hover:text-accent-strong dark:hover:bg-stone-950"
                 >
                   <span>{t.dashboard.takeExamNow}</span>
                   <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
@@ -2831,7 +2872,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
             )}
 
             {isLessonsView && (
-              <section className={`${panel} p-3.5`}>
+              <section className="px-1 pt-1">
                 <h3 className="eyebrow mb-2.5 text-ink-faint">
                   {t.dashboard.communityTodayTitle}
                 </h3>

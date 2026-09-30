@@ -67,6 +67,13 @@ export const revampDashboardVi = {
     nextActionLabel: "BƯỚC TIẾP THEO",
     nextActionCta: "Học tiếp",
     currentLessonBadge: "BÀI CỦA BẠN",
+    // Thẻ "Học tiếp" đầu /hoc-bai: bài đang học, chặng của nó, tiến độ.
+    focusKicker: "Học tiếp",
+    focusLessonMeta: "Bài {n} · {time}",
+    focusStageProgress: "{done}/{total} bài trong chặng",
+    focusCourseProgress: "Cả lộ trình · {done}/{total} bài",
+    focusJumpToStage: "Xem chặng này",
+    focusCta: "Học tiếp",
     // Thay `t.dashboard.markLearned.autoColour` ("xanh lá") trong hộp giải
     // thích: bài đã xong giờ tô cyan, nên câu chữ phải gọi đúng màu đang thấy.
     autoColour: "xanh ngọc",
@@ -197,6 +204,12 @@ export const revampDashboardEn: typeof revampDashboardVi = {
     nextActionLabel: "NEXT STEP",
     nextActionCta: "Continue",
     currentLessonBadge: "YOUR LESSON",
+    focusKicker: "Continue learning",
+    focusLessonMeta: "Lesson {n} · {time}",
+    focusStageProgress: "{done}/{total} lessons in this stage",
+    focusCourseProgress: "Whole path · {done}/{total} lessons",
+    focusJumpToStage: "Show this stage",
+    focusCta: "Continue",
     autoColour: "teal",
 
     stages: {
