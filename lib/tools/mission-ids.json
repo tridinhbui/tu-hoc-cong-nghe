@@ -1,0 +1,52 @@
+{
+  "terminal": [
+    "pwd",
+    "ls-project",
+    "mkdir-notes",
+    "echo-write",
+    "grep-word",
+    "git-commit",
+    "git-branch",
+    "docker-nginx"
+  ],
+  "editor": [
+    "open-index",
+    "change-heading",
+    "css-background",
+    "search-todo",
+    "fix-bug",
+    "button-log",
+    "about-page",
+    "save-all"
+  ],
+  "sql": [
+    "select-all",
+    "where-city",
+    "order-limit",
+    "group-count",
+    "having-avg",
+    "left-join-null",
+    "best-sellers",
+    "revenue-per-customer"
+  ],
+  "api": [
+    "firstGet",
+    "filterCategory",
+    "readNotFound",
+    "createProduct",
+    "badRequest",
+    "loginThenMe",
+    "patchPrice",
+    "deleteProduct"
+  ],
+  "cloud": [
+    "launch-vm",
+    "open-http",
+    "ssh-my-ip",
+    "static-website",
+    "safe-database",
+    "stop-vm",
+    "budget",
+    "clean-up"
+  ]
+}

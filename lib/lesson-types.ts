@@ -88,7 +88,77 @@ export type LessonSectionBlock =
       solution: string;
       expectedOutput: string;
       hints?: string[];
-    };
+    }
+  // ── Khối tương tác (KE-HOACH-1500-BAI.md, giai đoạn 1) ──────────────────
+  // Luật chung: KHÔNG gọi AI thật, KHÔNG eval chuỗi thành mã. Mọi phản hồi
+  // viết sẵn trong dữ liệu bài, nên chấm lặp lại được và kiểm được trong CI
+  // (lib/lesson-blocks/validate.ts, gọi từ scripts/audit-lesson-content.mjs).
+  //
+  // Nhúng một nhiệm vụ có sẵn của trình mô phỏng ở /cong-cu. `mission` là id
+  // trong lib/tools/<tool>/missions.ts; chấm bằng chính `check` của nhiệm vụ.
+  | { type: "sim"; tool: SimToolId; mission: string; title: string; task: string }
+  // Phòng thí nghiệm AI giả lập, hai kiểu:
+  //  - "prompt": người học lắp prompt bằng cách chọn một phương án cho từng
+  //    phần (bối cảnh, việc cần làm, khuôn dạng, ví dụ...). Mỗi phần có đúng
+  //    một phương án `good`. Câu trả lời của "AI" là `responses` đầu tiên có
+  //    mọi `requires` đều đã chọn phương án tốt; phần tử cuối không `requires`
+  //    là câu trả lời mặc định (prompt kém).
+  //  - "spotError": một bản nháp do "AI" viết, chia đoạn; đoạn có `error` là
+  //    chỗ bịa/sai. Người học bấm các đoạn đáng ngờ rồi nộp.
+  | {
+      type: "aiLab";
+      mode: "prompt";
+      title: string;
+      task: string;
+      parts: { id: string; label: string; options: { text: string; good?: boolean; feedback: string }[] }[];
+      responses: { requires?: string[]; text: string }[];
+    }
+  | {
+      type: "aiLab";
+      mode: "spotError";
+      title: string;
+      task: string;
+      segments: { text: string; error?: string }[];
+    }
+  // Tình huống rẽ nhánh. `nodes[start]` là cảnh đầu; cảnh có `choices` là
+  // điểm quyết định, cảnh có `ending` là kết thúc. Mọi nhánh phải tới một kết
+  // thúc, có ít nhất một kết thúc "good", và không có vòng lặp.
+  | {
+      type: "scenario";
+      title: string;
+      start: string;
+      nodes: Record<string, { text: string; choices?: { label: string; next: string }[]; ending?: "good" | "bad" }>;
+    }
+  // Biểu đồ. "series": đường/cột tính từ biểu thức số học an toàn (chỉ số,
+  // + - * / ^, ngoặc, x, id tham số, min/max/round/abs) với thanh trượt
+  // `params` - parse bằng lib/lesson-blocks/expr.ts, không eval. "data": bảng
+  // số viết sẵn.
+  | {
+      type: "chart";
+      title: string;
+      caption: string;
+      kind: "line" | "area" | "bar";
+      xLabel: string;
+      yLabel: string;
+      x: { from: number; to: number; step: number };
+      params?: { id: string; label: string; min: number; max: number; step: number; value: number; unit?: string }[];
+      series: { label: string; expr: string }[];
+    }
+  | {
+      type: "chart";
+      title: string;
+      caption: string;
+      kind: "bar" | "line";
+      xLabel?: string;
+      yLabel: string;
+      data: { label: string; values: number[] }[];
+      seriesLabels: string[];
+    }
+  // Sơ đồ chạy từng bước: bấm "Bước tiếp" để thấy dữ liệu đi qua từng khâu.
+  | { type: "flow"; title: string; steps: { label: string; detail: string }[] };
+
+/** Trình mô phỏng nhúng được vào bài - cùng id với lib/tools/<id>/. */
+export type SimToolId = "terminal" | "editor" | "sql" | "api" | "cloud";
 
 /** Ngôn ngữ tô màu được. */
 export type CodeLanguage = "python" | "javascript" | "html" | "css" | "sql" | "bash" | "json" | "text";
@@ -310,7 +380,32 @@ export type TranslatedSectionBlock =
       solution?: string;
       expectedOutput?: string;
       hints?: string[];
-    };
+    }
+  // Khối tương tác: chỉ chữ cho người đọc là dịch được. Cấu trúc - `tool`,
+  // `mission`, `good`, `requires`, `start`, `next`, `ending`, `expr`, số liệu -
+  // luôn đọc từ bản tiếng Việt, cùng lý do `correct` không dịch được.
+  | { type: "sim"; title?: string; task?: string }
+  | {
+      type: "aiLab";
+      title?: string;
+      task?: string;
+      parts?: { label?: string; options?: { text?: string; feedback?: string }[] }[];
+      responses?: { text?: string }[];
+      segments?: { text?: string; error?: string }[];
+    }
+  | { type: "scenario"; title?: string; nodes?: Record<string, { text?: string; choices?: { label?: string }[] }> }
+  | {
+      type: "chart";
+      title?: string;
+      caption?: string;
+      xLabel?: string;
+      yLabel?: string;
+      params?: { label?: string; unit?: string }[];
+      series?: { label?: string }[];
+      data?: { label?: string }[];
+      seriesLabels?: string[];
+    }
+  | { type: "flow"; title?: string; steps?: { label?: string; detail?: string }[] };
 
 /** A lesson plus the provenance of the text it carries. */
 export interface LocalizedLesson extends Lesson {

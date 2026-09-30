@@ -27,6 +27,22 @@ export interface ToolMissionView {
   criteria?: ToolCriterionView[];
 }
 
+/**
+ * Chế độ nhúng: công cụ khoá vào MỘT nhiệm vụ và khung này không dựng trang
+ * (tiêu đề, cột ticket, hàng đợi) mà giao cho `render` - dùng bởi khối `sim`
+ * trong bài học (components/lesson-blocks/SimBlock.tsx). Công cụ ở chế độ này
+ * bắt đầu từ trạng thái mới và không đọc/ghi localStorage của trang /cong-cu.
+ */
+export interface ToolEmbed {
+  missionId: string;
+  render: (view: { mission: ToolMissionView | undefined; reset?: () => void; surface: React.ReactNode }) => React.ReactNode;
+}
+
+/** Lọc danh sách nhiệm vụ còn đúng nhiệm vụ được nhúng (không nhúng thì giữ nguyên). */
+export function embedMissions<T extends { id: string }>(missions: T[], embed: ToolEmbed | undefined): T[] {
+  return embed ? missions.filter((m) => m.id === embed.missionId) : missions;
+}
+
 type CocoEvent = { kind: "error" | "hint" | "done"; mission: string; n: number } | null;
 
 /**
@@ -51,6 +67,7 @@ export default function ToolShell({
   ready = true,
   errorKey = 0,
   renderArtifact,
+  embed,
   children,
 }: {
   tool: ToolId;
@@ -63,6 +80,8 @@ export default function ToolShell({
   errorKey?: number;
   /** Kết quả / artifact của một nhiệm vụ đã xong. */
   renderArtifact?: (missionId: string) => React.ReactNode;
+  /** Có thì nhúng vào bài học thay vì dựng trang - xem ToolEmbed. */
+  embed?: ToolEmbed;
   children: React.ReactNode;
 }) {
   const { t } = useI18n();
@@ -106,6 +125,7 @@ export default function ToolShell({
     if (next !== event) setEvent(next);
   }
 
+  if (embed) return <>{embed.render({ mission: missions.find((m) => m.id === embed.missionId), reset: onReset, surface: children })}</>;
   if (!active) return null;
 
   const index = missions.findIndex((m) => m.id === active.id);

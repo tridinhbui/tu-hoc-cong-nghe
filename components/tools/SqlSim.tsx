@@ -17,7 +17,7 @@ import {
   Trash2,
   XCircle,
 } from "lucide-react";
-import ToolShell from "@/components/tools/ToolShell";
+import ToolShell, { embedMissions, type ToolEmbed } from "@/components/tools/ToolShell";
 import { useI18n } from "@/lib/i18n/context";
 import { format, intlLocale } from "@/lib/i18n";
 import type { SqlValue } from "@/lib/mini-sql";
@@ -73,7 +73,8 @@ function writeJson(key: string, value: unknown) {
   }
 }
 
-export default function SqlSim() {
+export default function SqlSim({ embed }: { embed?: ToolEmbed }) {
+  const embedded = !!embed;
   const { t, locale } = useI18n();
   const c = t.toolSql;
   const r = t.revampTools.sql;
@@ -92,26 +93,30 @@ export default function SqlSim() {
   const gutterRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- đọc tiến độ đã lưu trong localStorage sau khi gắn vào trang
+    if (embedded) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- bản nhúng bắt đầu từ trạng thái mới, không đọc tiến độ của /cong-cu
+      setLoaded(true);
+      return;
+    }
     setDone(readJson<string[]>(DONE_KEY, []));
     setHistory(readJson<HistoryEntry[]>(HISTORY_KEY, []));
     setSql(readJson<string>(DRAFT_KEY, STARTER_SQL));
     setArtifacts(readJson<Record<string, SqlArtifact>>(ARTIFACT_KEY, {}));
     setLoaded(true);
-  }, []);
+  }, [embedded]);
 
   useEffect(() => {
-    if (loaded) writeJson(DONE_KEY, done);
-  }, [done, loaded]);
+    if (loaded && !embedded) writeJson(DONE_KEY, done);
+  }, [done, loaded, embedded]);
   useEffect(() => {
-    if (loaded) writeJson(HISTORY_KEY, history);
-  }, [history, loaded]);
+    if (loaded && !embedded) writeJson(HISTORY_KEY, history);
+  }, [history, loaded, embedded]);
   useEffect(() => {
-    if (loaded) writeJson(DRAFT_KEY, sql);
-  }, [sql, loaded]);
+    if (loaded && !embedded) writeJson(DRAFT_KEY, sql);
+  }, [sql, loaded, embedded]);
   useEffect(() => {
-    if (loaded) writeJson(ARTIFACT_KEY, artifacts);
-  }, [artifacts, loaded]);
+    if (loaded && !embedded) writeJson(ARTIFACT_KEY, artifacts);
+  }, [artifacts, loaded, embedded]);
 
   const run = useCallback(
     (text: string) => {
@@ -190,7 +195,7 @@ export default function SqlSim() {
 
   // Tiêu chí đọc lần chạy gần nhất: lỗi thì chưa có kết quả nào để chấm.
   const current = { result: outcome?.ok ? outcome.result : null };
-  const missions = SQL_MISSIONS.map((m) => {
+  const missions = embedMissions(SQL_MISSIONS, embed).map((m) => {
     const copy = missionCopy[m.id];
     return {
       id: m.id,
@@ -241,6 +246,7 @@ export default function SqlSim() {
       ready={loaded}
       errorKey={errorKey}
       renderArtifact={renderArtifact}
+      embed={embed}
     >
       <div className="overflow-hidden rounded-2xl border border-line bg-white shadow-sm dark:bg-stone-900">
         {/* Thanh công cụ */}

@@ -29,7 +29,7 @@ import {
   Ban,
   CaseSensitive,
 } from "lucide-react";
-import ToolShell from "@/components/tools/ToolShell";
+import ToolShell, { embedMissions, type ToolEmbed } from "@/components/tools/ToolShell";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 import {
@@ -246,7 +246,8 @@ function LangIcon({ lang, className }: { lang: Language; className?: string }) {
 
 // --------------------------------------------------------------------------
 
-export default function EditorSim() {
+export default function EditorSim({ embed }: { embed?: ToolEmbed }) {
+  const embedded = !!embed;
   const { t } = useI18n();
   const c = t.toolEditor;
 
@@ -316,6 +317,11 @@ export default function EditorSim() {
   // ---- lưu trữ --------------------------------------------------------------
 
   useEffect(() => {
+    if (embedded) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- bản nhúng bắt đầu từ dự án mẫu, không đọc tiến độ của /cong-cu
+      setLoaded(true);
+      return;
+    }
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
       if (raw) {
@@ -323,7 +329,6 @@ export default function EditorSim() {
         if (isEditorState(saved.editor)) {
           const ed = saved.editor;
           const done = Array.isArray(saved.done) ? saved.done.filter((d) => typeof d === "string") : [];
-          // eslint-disable-next-line react-hooks/set-state-in-effect -- khôi phục tiến độ đã lưu trong localStorage sau khi hydrate
           setBox({ editor: ed, done: withDone(done, ed) });
         }
         if (saved.theme === "light" || saved.theme === "dark" || saved.theme === "auto") setThemeMode(saved.theme);
@@ -332,17 +337,17 @@ export default function EditorSim() {
       // localStorage bị chặn hoặc dữ liệu hỏng: bắt đầu từ dự án mẫu.
     }
     setLoaded(true);
-  }, []);
+  }, [embedded]);
 
   useEffect(() => {
-    if (!loaded) return;
+    if (!loaded || embedded) return;
     try {
       const payload: Saved = { editor: box.editor, done: box.done, theme: themeMode };
       localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
     } catch {
       // Không lưu được thì thôi - công cụ vẫn chạy trong phiên này.
     }
-  }, [box, themeMode, loaded]);
+  }, [box, themeMode, loaded, embedded]);
 
   // Lần render đầu dùng ngôn ngữ mặc định; nếu người đọc dùng tiếng Anh thì
   // ngôn ngữ đổi ngay sau đó. Dự án mẫu chưa bị đụng tới thì đổi theo.
@@ -744,7 +749,7 @@ export default function EditorSim() {
   const run0 = editor.lastRun;
   const consoleErrors = run0?.console.filter((e) => e.level === "error").length ?? 0;
 
-  const missions = EDITOR_MISSIONS.map((m) => {
+  const missions = embedMissions(EDITOR_MISSIONS, embed).map((m) => {
     const copy = c.missions[m.id as keyof typeof c.missions];
     const labels = copy.criteria as Record<string, string>;
     return {
@@ -841,10 +846,11 @@ export default function EditorSim() {
       ready={loaded}
       errorKey={errorKey}
       renderArtifact={renderArtifact}
+      embed={embed}
     >
       <div
         onKeyDown={onRootKeyDown}
-        className={`flex flex-col overflow-hidden rounded-xl border font-sans shadow-sm ${P.frame} md:h-[680px]`}
+        className={`flex flex-col overflow-hidden rounded-xl border font-sans shadow-sm ${P.frame} ${embedded ? "md:h-[460px]" : "md:h-[680px]"}`}
       >
         {/* Thanh tiêu đề */}
         <div className={`flex h-9 shrink-0 items-center gap-2 border-b px-3 text-xs ${P.titleBar}`}>

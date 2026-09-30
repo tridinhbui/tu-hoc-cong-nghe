@@ -19,7 +19,7 @@ import {
   Upload,
   X,
 } from "lucide-react";
-import ToolShell from "@/components/tools/ToolShell";
+import ToolShell, { embedMissions, type ToolEmbed } from "@/components/tools/ToolShell";
 import { useI18n } from "@/lib/i18n/context";
 import { format, intlLocale } from "@/lib/i18n";
 import {
@@ -160,7 +160,8 @@ const btnDanger =
   "inline-flex items-center justify-center gap-1.5 rounded-lg border border-danger-line px-2.5 py-1 text-xs font-bold text-danger hover:bg-danger-soft disabled:opacity-40";
 const label = "mb-1 block text-xs font-bold text-ink-muted";
 
-export default function CloudSim() {
+export default function CloudSim({ embed }: { embed?: ToolEmbed }) {
+  const embedded = !!embed;
   const { t } = useI18n();
   const c = t.toolCloud;
   const money = useMoney();
@@ -172,6 +173,11 @@ export default function CloudSim() {
   const state = model.cloud;
 
   useEffect(() => {
+    if (embedded) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- bản nhúng bắt đầu từ trạng thái mới, không đọc tiến độ của /cong-cu
+      setHydrated(true);
+      return;
+    }
     try {
       const raw = window.localStorage.getItem(STORAGE_KEY);
       if (raw) {
@@ -185,18 +191,17 @@ export default function CloudSim() {
     } catch {
       /* bộ nhớ trình duyệt bị chặn: chạy tiếp với trạng thái mới */
     }
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- đọc localStorage một lần sau khi mount
     setHydrated(true);
-  }, []);
+  }, [embedded]);
 
   useEffect(() => {
-    if (!hydrated) return;
+    if (!hydrated || embedded) return;
     try {
       window.localStorage.setItem(STORAGE_KEY, JSON.stringify(model));
     } catch {
       /* không lưu được thì thôi - tiến độ chỉ mất khi tải lại trang */
     }
-  }, [model, hydrated]);
+  }, [model, hydrated, embedded]);
 
   useEffect(() => {
     const id = window.setInterval(() => dispatch({ type: "tick" }), 1000);
@@ -216,7 +221,7 @@ export default function CloudSim() {
 
   const errorText = (code: CloudErrorCode) => c.errors[code];
 
-  const missions = CLOUD_MISSIONS.map((m) => {
+  const missions = embedMissions(CLOUD_MISSIONS, embed).map((m) => {
     const copy = c.missions[m.id as keyof typeof c.missions];
     const labels = copy.criteria as Record<string, string>;
     return {
@@ -242,6 +247,7 @@ export default function CloudSim() {
       ready={hydrated}
       errorKey={errorKey}
       renderArtifact={() => <InfraSummary state={state} money={money} />}
+      embed={embed}
       onReset={() => {
         dispatch({ type: "reset" });
         setNotice(null);

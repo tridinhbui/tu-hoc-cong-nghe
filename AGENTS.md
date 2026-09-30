@@ -610,6 +610,34 @@ must never have, so `/runners/` gets its own CSP - in `next.config.ts` for dev
 and in `public/_headers` for Cloudflare, which serves static files without going
 through Next. Change one, change both.
 
+## Interactive blocks: sim, aiLab, scenario, chart, flow
+
+Added for KE-HOACH-1500-BAI.md. Types and comments live in `lib/lesson-types.ts`;
+renderers in `components/lesson-blocks/`, loaded lazily from `LessonSections.tsx`.
+
+1. **No real AI, no eval.** `aiLab` is a simulated chat whose replies are written
+   into the lesson data. Chart series are strings parsed by
+   `lib/lesson-blocks/expr.js` (numbers, `+ - * / ^`, parentheses, `x`, param
+   ids, `min/max/round/abs/floor/ceil`) - never `eval`/`new Function`; the page
+   CSP forbids it anyway.
+2. **Every block is validated in CI** by `lib/lesson-blocks/validate.js`, called
+   from `npm run audit:lessons`, gated at zero with no baseline: a scenario with
+   a dead end or a loop, a chart that hits NaN/Infinity at either end of a
+   slider, a prompt lab whose part has zero or two "good" options, a `sim`
+   pointing at a mission not in `lib/tools/mission-ids.json` (kept in sync with
+   `lib/tools/*/missions.ts` by `lib/__tests__/lesson-blocks.test.ts`).
+3. **Every new lesson needs one practice block** (`exercise | sim | aiLab |
+   scenario`) **and one visual block** (`chart | flow | feynman`). Older lessons
+   are grandfathered in `scripts/interactive-baseline.json`, which only shrinks
+   (`--write-baseline`). Adding a slug to it is not a fix.
+4. **A chart is for real quantities.** "Every lesson has a visual" is satisfied
+   by `flow` or `feynman` too; do not force a data chart onto a lesson with no
+   numbers in it. Illustrative numbers must say so in the `caption`.
+5. **Translations carry text only.** `good`, `requires`, `next`, `ending`,
+   `start`, `expr`, `mission` and every number are read from the Vietnamese
+   block; a translated array of the wrong length falls back to Vietnamese
+   whole (`lib/lesson-translations.js`).
+
 ## The content gates
 
 `scripts/audit-lesson-content.mjs` holds four per-lesson minimums, and each is

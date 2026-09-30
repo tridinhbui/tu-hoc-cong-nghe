@@ -7,6 +7,7 @@ import FormulaBlock from "@/components/FormulaBlock";
 import FeynmanCard from "@/components/learning-flows/FeynmanCard";
 import CodeBlock from "@/components/lesson-blocks/CodeBlock";
 import ExerciseBlock from "@/components/lesson-blocks/ExerciseBlock";
+import dynamic from "next/dynamic";
 import { recordExercisePass } from "@/lib/exercise-passes";
 import { TRACK_PERSONAL, isLessonInRange } from "@/lib/track-stages";
 
@@ -18,6 +19,16 @@ const exerciseStartsCollapsed = (lessonId?: number) =>
   lessonId !== undefined && COLLAPSED_EXERCISE_STAGES.some((s) => isLessonInRange(lessonId, s));
 import { useI18n } from "@/lib/i18n/context";
 import { Sys } from "@/components/ui/system";
+
+/* Khối tương tác tải lười: recharts và năm bộ máy mô phỏng không được vào
+ * bundle đầu của MỌI trang bài chỉ vì một số bài dùng chúng. Chỗ giữ chỗ có
+ * chiều cao để trang không giật khi khối tải xong. */
+const blockPlaceholder = () => <div aria-hidden className="h-48 animate-pulse rounded-card bg-surface-raised" />;
+const SimBlock = dynamic(() => import("@/components/lesson-blocks/SimBlock"), { ssr: false, loading: blockPlaceholder });
+const AiLabBlock = dynamic(() => import("@/components/lesson-blocks/AiLabBlock"), { ssr: false, loading: blockPlaceholder });
+const ScenarioBlock = dynamic(() => import("@/components/lesson-blocks/ScenarioBlock"), { ssr: false, loading: blockPlaceholder });
+const ChartBlock = dynamic(() => import("@/components/lesson-blocks/ChartBlock"), { ssr: false, loading: blockPlaceholder });
+const FlowBlock = dynamic(() => import("@/components/lesson-blocks/FlowBlock"), { ssr: false, loading: blockPlaceholder });
 
 function renderFormattedText(text: string, seenTerms: Set<string>): React.ReactNode {
   // Split on double or single line breaks for clean paragraph spacing
@@ -223,6 +234,19 @@ export default function LessonSections({
             collapsed={exerciseStartsCollapsed(lessonId)}
           />
         );
+
+      // Khối thực hành ghi "đã qua" cùng chỗ với bài tập viết mã: bảng
+      // exercise_passes khoá theo (bài, vị trí khối), không theo loại khối.
+      case "sim":
+        return <SimBlock key={i} {...block} onPass={lessonId ? () => void recordExercisePass(lessonId, i) : undefined} />;
+      case "aiLab":
+        return <AiLabBlock key={i} {...block} onPass={lessonId ? () => void recordExercisePass(lessonId, i) : undefined} />;
+      case "scenario":
+        return <ScenarioBlock key={i} {...block} onPass={lessonId ? () => void recordExercisePass(lessonId, i) : undefined} />;
+      case "chart":
+        return <ChartBlock key={i} {...block} />;
+      case "flow":
+        return <FlowBlock key={i} {...block} />;
 
       default:
         return null;

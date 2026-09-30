@@ -41,6 +41,9 @@ import { revampToolsVi, revampToolsEn } from "./revamp-tools";
 import { revampGameVi, revampGameEn } from "./revamp-game";
 import { practicalSkillVi, practicalSkillEn } from "./practical-skill";
 import { lessonCodeVi, lessonCodeEn } from "./lesson-code";
+import { lessonBlockSimVi, lessonBlockSimEn } from "./lesson-block-sim";
+import { lessonBlockPracticeVi, lessonBlockPracticeEn } from "./lesson-block-practice";
+import { lessonBlockVisualVi, lessonBlockVisualEn } from "./lesson-block-visual";
 import { dashboardCardsVi, dashboardCardsEn } from "./dashboard-cards";
 import { toolSimsVi, toolSimsEn } from "./tool-sims";
 import { toolTerminalVi, toolTerminalEn } from "./tool-terminal";
@@ -113,6 +116,9 @@ export const viSections = {
   ...revampGameVi,
   ...practicalSkillVi,
   ...lessonCodeVi,
+  ...lessonBlockSimVi,
+  ...lessonBlockPracticeVi,
+  ...lessonBlockVisualVi,
   ...dashboardCardsVi,
   ...toolSimsVi,
   ...toolTerminalVi,
@@ -187,6 +193,9 @@ export const enSections: typeof viSections = {
   ...revampGameEn,
   ...practicalSkillEn,
   ...lessonCodeEn,
+  ...lessonBlockSimEn,
+  ...lessonBlockPracticeEn,
+  ...lessonBlockVisualEn,
   ...dashboardCardsEn,
   ...toolSimsEn,
   ...toolTerminalEn,

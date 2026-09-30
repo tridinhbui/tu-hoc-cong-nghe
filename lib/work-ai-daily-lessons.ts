@@ -162,10 +162,75 @@ export const WORK_AI_DAILY_LESSONS: Lesson[] = [
         type: "paragraph",
         text: "Một trưởng nhóm kinh doanh mất khoảng ba giờ mỗi sáng thứ Hai: trả lời email tồn, viết lại báo cáo tuần cho gọn, soạn tin nhắn nhắc khách thanh toán. Phần lớn là việc chữ có khuôn - đúng loại việc AI tạo sinh (generative AI) làm nhanh nhất.",
       },
+      {
+        "type": "chart",
+        "title": "Để AI viết nháp email: tiết kiệm được bao nhiêu giờ",
+        "caption": "Kéo hai thanh trượt cho khớp với việc của bạn. Giả định 22 ngày làm việc mỗi tháng. Phút tiết kiệm là phần còn lại SAU khi bạn đã đọc và sửa bản nháp - thời gian kiểm tra vẫn là của bạn.",
+        "kind": "line",
+        "xLabel": "Tháng",
+        "yLabel": "Giờ tiết kiệm (cộng dồn)",
+        "x": {
+          "from": 1,
+          "to": 12,
+          "step": 1
+        },
+        "params": [
+          {
+            "id": "emails",
+            "label": "Số email mỗi ngày",
+            "min": 1,
+            "max": 40,
+            "step": 1,
+            "value": 10,
+            "unit": "email"
+          },
+          {
+            "id": "saved",
+            "label": "Phút tiết kiệm mỗi email",
+            "min": 0,
+            "max": 10,
+            "step": 0.5,
+            "value": 3,
+            "unit": "phút"
+          }
+        ],
+        "series": [
+          {
+            "label": "Giờ tiết kiệm cộng dồn",
+            "expr": "x * emails * saved * 22 / 60"
+          }
+        ]
+      },
       { type: "heading", text: "Nó hoạt động thế nào - một câu là đủ" },
       {
         type: "paragraph",
         text: "AI tạo sinh dự đoán chữ tiếp theo hợp lý nhất, từng chữ một, dựa trên hàng tỷ trang nó đã đọc. Từ câu đó suy ra gần hết điểm mạnh và điểm yếu: viết trôi vì nó đã đọc rất nhiều văn bản; bịa vì một con số \"nghe hợp lý\" có xác suất cao dù nó chưa từng tồn tại.",
+      },
+      {
+        "type": "flow",
+        "title": "Một prompt đi đâu khi bạn bấm Gửi",
+        "steps": [
+          {
+            "label": "Trình duyệt đóng gói",
+            "detail": "Câu bạn gõ, cùng các tin nhắn trước đó trong cuộc trò chuyện, được gói lại và gửi qua Internet (đã mã hoá HTTPS) tới máy chủ của nhà cung cấp AI."
+          },
+          {
+            "label": "Máy chủ nhận và kiểm tra",
+            "detail": "Máy chủ xác nhận tài khoản của bạn, kiểm tra giới hạn sử dụng và quy định an toàn, rồi chuyển yêu cầu tới cụm máy có chạy mô hình."
+          },
+          {
+            "label": "Cắt thành token",
+            "detail": "Văn bản được cắt thành các mảnh nhỏ gọi là token - thường là một phần của từ. Mô hình không đọc chữ như người, nó làm việc với dãy token này."
+          },
+          {
+            "label": "Mô hình đoán từng token",
+            "detail": "Mô hình tính xem token nào nên đến tiếp theo, chọn một, nối vào, rồi lặp lại. Câu trả lời được viết từng mảnh một chứ không nghĩ xong cả đoạn rồi mới viết."
+          },
+          {
+            "label": "Chữ chảy về màn hình",
+            "detail": "Mỗi mảnh vừa sinh ra được gửi ngay về trình duyệt, nên bạn thấy chữ hiện dần. Bạn vẫn là người đọc lại và quyết định có dùng hay không."
+          }
+        ]
       },
       {
         type: "comparison",
@@ -193,9 +258,172 @@ export const WORK_AI_DAILY_LESSONS: Lesson[] = [
         ],
       },
       {
+        "type": "aiLab",
+        "mode": "prompt",
+        "title": "Nhờ AI viết email xin lùi hạn giao hàng",
+        "task": "Lô hàng cho khách Minh Phát trễ 3 ngày vì kho chưa nhận đủ vật tư. Lắp một prompt để AI viết nháp email báo khách.",
+        "parts": [
+          {
+            "id": "context",
+            "label": "Bối cảnh",
+            "options": [
+              {
+                "text": "Viết email cho khách.",
+                "feedback": "AI không biết khách là ai, trễ việc gì - nó sẽ tự bịa."
+              },
+              {
+                "text": "Tôi là nhân viên kinh doanh. Khách Minh Phát đặt 500 thùng giao ngày 12/10; kho thiếu vật tư nên giao trễ tới 15/10.",
+                "good": true,
+                "feedback": "Đủ người, việc, số lượng và ngày - AI chỉ việc viết quanh dữ kiện bạn đưa."
+              }
+            ]
+          },
+          {
+            "id": "task",
+            "label": "Việc cần làm",
+            "options": [
+              {
+                "text": "Viết email xin lỗi, báo ngày giao mới 15/10 và đề nghị giao trước 200 thùng ngày 12/10.",
+                "good": true,
+                "feedback": "Nói rõ email phải làm được gì, kể cả phương án bù cho khách."
+              },
+              {
+                "text": "Viết gì đó để khách đừng giận.",
+                "feedback": "Mục tiêu mơ hồ - AI dễ hứa những thứ công ty không làm được."
+              }
+            ]
+          },
+          {
+            "id": "format",
+            "label": "Giọng và độ dài",
+            "options": [
+              {
+                "text": "Viết thật hay.",
+                "feedback": "\"Hay\" không phải yêu cầu đo được - AI sẽ viết dài và văn hoa."
+              },
+              {
+                "text": "Giọng lịch sự, ngắn gọn, dưới 120 chữ, xưng \"chúng tôi\" - \"Quý khách\".",
+                "good": true,
+                "feedback": "Giọng, độ dài và cách xưng hô rõ ràng - bản nháp dùng gần như ngay."
+              }
+            ]
+          }
+        ],
+        "responses": [
+          {
+            "requires": [
+              "context",
+              "task",
+              "format"
+            ],
+            "text": "Kính gửi Quý khách Minh Phát,\n\nChúng tôi thành thật xin lỗi: do kho chưa nhận đủ vật tư, đơn 500 thùng sẽ giao trễ tới ngày 15/10 thay vì 12/10. Để Quý khách không gián đoạn, chúng tôi đề nghị giao trước 200 thùng vào ngày 12/10, phần còn lại ngày 15/10.\n\nMong Quý khách thông cảm và phản hồi để chúng tôi sắp xếp.\n\nTrân trọng."
+          },
+          {
+            "requires": [
+              "context"
+            ],
+            "text": "Kính gửi Quý khách Minh Phát,\n\nĐơn 500 thùng của Quý khách sẽ giao trễ tới 15/10. Chúng tôi rất lấy làm tiếc về sự bất tiện này và cam kết sẽ nỗ lực hết mình để phục vụ Quý khách tốt hơn trong tương lai...\n\n(Có đủ dữ kiện nhưng thiếu phương án bù cho khách, và giọng văn còn dài dòng.)"
+          },
+          {
+            "text": "Kính gửi Quý khách hàng thân mến,\n\nNhân dịp này, chúng tôi xin gửi lời tri ân sâu sắc và xin thông báo đơn hàng của Quý khách sẽ được giao trong 7 ngày tới kèm ưu đãi giảm 20%...\n\n(AI không biết khách, đơn hay ngày thật - nên tự bịa \"7 ngày\" và \"giảm 20%\", những điều công ty chưa hề hứa.)"
+          }
+        ]
+      },
+      {
         type: "callout",
         label: "Rủi ro: ô chat không riêng tư",
         text: "Dán vào ô chat là gửi dữ liệu ra một hệ thống bên ngoài. Bảng lương, số CCCD, hợp đồng khách hàng, số liệu chưa công bố - không đưa vào công cụ công ty chưa duyệt, kể cả khi đã tắt lịch sử. Và người gửi email là bạn, nên người chịu trách nhiệm cho câu sai trong đó cũng là bạn.",
+      },
+      {
+        "type": "aiLab",
+        "mode": "spotError",
+        "title": "Soát biên bản họp do AI tóm tắt",
+        "task": "Bạn đưa AI bản ghi cuộc họp giao ban thứ Hai và nhờ tóm tắt. Bản ghi chỉ có: doanh số tháng 9 đạt khoảng 92% kế hoạch, chị Lan phụ trách báo cáo khách hàng, hạn nộp là thứ Sáu tuần này, chưa chốt ngân sách quảng cáo. Đánh dấu những đoạn AI tự thêm.",
+        "segments": [
+          {
+            "text": "Cuộc họp giao ban thứ Hai điểm lại kết quả kinh doanh tháng 9."
+          },
+          {
+            "text": "Doanh số tháng 9 đạt 92,4% kế hoạch, tăng 15% so với tháng 8.",
+            "error": "Bản ghi chỉ nói \"khoảng 92%\" và không nhắc tháng 8 - \"92,4%\" và \"tăng 15%\" là số AI bịa cho nghe chính xác."
+          },
+          {
+            "text": "Chị Lan phụ trách báo cáo khách hàng."
+          },
+          {
+            "text": "Hạn nộp báo cáo là thứ Sáu, ngày 17/10.",
+            "error": "Bản ghi chỉ nói \"thứ Sáu tuần này\"; AI tự điền ngày 17/10 - có thể sai ngày thật."
+          },
+          {
+            "text": "Ngân sách quảng cáo quý 4 đã được duyệt ở mức 350 triệu đồng.",
+            "error": "Bản ghi nói ngân sách CHƯA chốt. AI đảo ngược kết luận và bịa luôn con số."
+          },
+          {
+            "text": "Nội dung ngân sách sẽ bàn tiếp ở buổi họp sau."
+          }
+        ]
+      },
+      {
+        "type": "scenario",
+        "title": "Sếp cần bản tóm tắt báo cáo trong 30 phút",
+        "start": "s1",
+        "nodes": {
+          "s1": {
+            "text": "9 giờ sáng, sếp nhắn: \"Em tóm tắt báo cáo thị trường 40 trang này thành 1 trang, 9 rưỡi anh họp với ban giám đốc.\" Báo cáo có số liệu nội bộ chưa công bố.",
+            "choices": [
+              {
+                "label": "Dán cả 40 trang vào một ứng dụng AI miễn phí trên điện thoại cho nhanh",
+                "next": "bad_leak"
+              },
+              {
+                "label": "Dùng công cụ AI công ty đã duyệt, dán báo cáo và nhờ tóm tắt",
+                "next": "s2"
+              }
+            ]
+          },
+          "bad_leak": {
+            "text": "Bản tóm tắt ra trong 1 phút. Nhưng số liệu chưa công bố vừa được gửi lên một dịch vụ bên ngoài mà công ty không kiểm soát. Tuần sau, phòng IT hỏi vì sao tài liệu mật xuất hiện trong nhật ký truy cập ứng dụng lạ.",
+            "ending": "bad"
+          },
+          "s2": {
+            "text": "AI trả về một trang gọn gàng, có câu: \"Thị phần công ty tăng từ 18% lên 23% trong năm.\" Còn 15 phút.",
+            "choices": [
+              {
+                "label": "Gửi ngay cho sếp - trông đã rất chuyên nghiệp",
+                "next": "bad_number"
+              },
+              {
+                "label": "Mở báo cáo gốc, tìm các con số và tên trong bản tóm tắt để đối chiếu",
+                "next": "s3"
+              }
+            ]
+          },
+          "bad_number": {
+            "text": "Trong cuộc họp, giám đốc tài chính hỏi con số 23% lấy ở trang nào. Báo cáo gốc ghi 21%. Sếp phải xin lỗi trước ban giám đốc.",
+            "ending": "bad"
+          },
+          "s3": {
+            "text": "Bạn thấy báo cáo gốc ghi thị phần 21%, không phải 23%. Các ý khác đều khớp.",
+            "choices": [
+              {
+                "label": "Sửa thành 21%, ghi rõ trang nguồn cạnh mỗi con số, rồi gửi sếp",
+                "next": "good"
+              },
+              {
+                "label": "Xoá hết mọi con số cho an toàn rồi gửi",
+                "next": "bad_vague"
+              }
+            ]
+          },
+          "bad_vague": {
+            "text": "Bản tóm tắt không còn sai, nhưng cũng không còn gì để sếp dùng: ban giám đốc cần đúng các con số đó để ra quyết định.",
+            "ending": "bad"
+          },
+          "good": {
+            "text": "9 giờ 25, sếp nhận một trang gọn, số đã đối chiếu, có số trang nguồn. Khi giám đốc tài chính hỏi, sếp mở đúng trang 12 trong 5 giây.",
+            "ending": "good"
+          }
+        }
       },
       {
         type: "closing",

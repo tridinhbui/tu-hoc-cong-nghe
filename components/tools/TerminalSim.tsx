@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { BookOpen, ChevronDown, Container, Eraser, GitBranch } from "lucide-react";
-import ToolShell from "@/components/tools/ToolShell";
+import ToolShell, { embedMissions, type ToolEmbed } from "@/components/tools/ToolShell";
 import { useI18n } from "@/lib/i18n/context";
 import { createInitialState } from "@/lib/tools/terminal/seed";
 import { INTERRUPT_ECHO, PROMPT_USER, complete, runLine } from "@/lib/tools/terminal/shell";
@@ -68,7 +68,8 @@ function Prompt({ path }: { path: string }) {
   );
 }
 
-export default function TerminalSim() {
+export default function TerminalSim({ embed }: { embed?: ToolEmbed }) {
+  const embedded = !!embed;
   const { t } = useI18n();
   const c = t.toolTerminal;
 
@@ -87,13 +88,17 @@ export default function TerminalSim() {
 
   // Đọc tiến độ đã lưu sau khi gắn vào trang (localStorage không có lúc render phía máy chủ).
   useEffect(() => {
+    if (embedded) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- bản nhúng bắt đầu từ trạng thái mới, không đọc tiến độ của /cong-cu
+      setLoaded(true);
+      return;
+    }
     const stored = loadJson<TermState>(STORAGE_STATE);
     const done = loadJson<string[]>(STORAGE_DONE);
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- khôi phục trạng thái đã lưu trong localStorage, chỉ đọc được ở trình duyệt
     if (stored && stored.version === 1 && stored.root) setState(stored);
     if (Array.isArray(done)) setSavedDone(done);
     setLoaded(true);
-  }, []);
+  }, [embedded]);
 
   const doneIds = useMemo(() => {
     const ids = new Set(savedDone);
@@ -102,10 +107,10 @@ export default function TerminalSim() {
   }, [state, savedDone]);
 
   useEffect(() => {
-    if (!loaded) return;
+    if (!loaded || embedded) return;
     saveJson(STORAGE_STATE, state);
     saveJson(STORAGE_DONE, [...doneIds]);
-  }, [state, doneIds, loaded]);
+  }, [state, doneIds, loaded, embedded]);
 
   useEffect(() => {
     const el = scrollRef.current;
@@ -213,6 +218,7 @@ export default function TerminalSim() {
     setInput("");
     histIndex.current = null;
     push([{ k: "welcome" }], true);
+    if (embedded) return;
     try {
       window.localStorage.removeItem(STORAGE_STATE);
       window.localStorage.removeItem(STORAGE_DONE);
@@ -221,7 +227,7 @@ export default function TerminalSim() {
     }
   };
 
-  const missions = TERMINAL_MISSIONS.map((m) => {
+  const missions = embedMissions(TERMINAL_MISSIONS, embed).map((m) => {
     const copy = c.missions[m.id as keyof typeof c.missions];
     const labels = copy.criteria as Record<string, string>;
     return {
@@ -348,6 +354,7 @@ export default function TerminalSim() {
       ready={loaded}
       errorKey={errorKey}
       renderArtifact={renderArtifact}
+      embed={embed}
     >
       <div className="space-y-3">
         <div className="overflow-hidden rounded-2xl border border-stone-800 bg-stone-950 shadow-xl">
@@ -383,7 +390,7 @@ export default function TerminalSim() {
           <div
             ref={scrollRef}
             onClick={focusInput}
-            className="h-[420px] cursor-text overflow-y-auto px-3 py-3 font-mono text-[12.5px] leading-[1.35] sm:h-[520px] sm:text-[13px]"
+            className={`${embedded ? "h-[300px]" : "h-[420px] sm:h-[520px]"} cursor-text overflow-y-auto px-3 py-3 font-mono text-[12.5px] leading-[1.35] sm:text-[13px]`}
           >
             {screen.map(renderEntry)}
             <div className="flex items-start">
@@ -399,7 +406,7 @@ export default function TerminalSim() {
                 }}
                 onKeyDown={onKeyDown}
                 aria-label={c.inputLabel}
-                autoFocus
+                autoFocus={!embedded}
                 autoCapitalize="off"
                 autoComplete="off"
                 autoCorrect="off"
@@ -429,7 +436,7 @@ export default function TerminalSim() {
           </div>
         </div>
 
-        <div className="rounded-2xl border border-line bg-white dark:bg-stone-900">
+        {!embedded && <div className="rounded-2xl border border-line bg-white dark:bg-stone-900">
           <button
             type="button"
             onClick={() => setCheatOpen((v) => !v)}
@@ -468,7 +475,7 @@ export default function TerminalSim() {
               </div>
             </div>
           )}
-        </div>
+        </div>}
       </div>
     </ToolShell>
   );

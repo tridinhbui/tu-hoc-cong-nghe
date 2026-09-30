@@ -17,6 +17,7 @@ import { fileURLToPath } from "url";
 import { readHandAuthoredQuizzes } from "./hand-authored-quizzes.mjs";
 import path from "path";
 import { mergeLessonTranslation } from "../lib/lesson-translations.js";
+import { validateInteractiveBlock, countBlockKinds } from "../lib/lesson-blocks/validate.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
@@ -1501,6 +1502,97 @@ if (hollowDistractors.length > MAX_HOLLOW_DISTRACTORS) {
   );
 }
 
+// ── Cổng: khối tương tác (KE-HOACH-1500-BAI.md) ─────────────────────────
+// Hai việc khác nhau, hai luật khác nhau:
+//
+//  1. Khối tương tác HỎNG - tình huống có ngõ cụt, biểu đồ ra NaN ở đầu thanh
+//     trượt, `sim` trỏ tới nhiệm vụ không có - gác ở 0, không baseline. Một
+//     khối hỏng không phải nợ để trả dần; nó là một bài tập không ai qua được.
+//  2. Bài THIẾU khối thực hành (exercise/sim/aiLab/scenario) hoặc khối hình
+//     ảnh (chart/flow/feynman). Lúc đặt cổng, gần như cả kho thiếu, nên bài cũ
+//     nằm trong interactive-baseline.json và danh sách chỉ được co lại
+//     (--write-baseline). Bài KHÔNG có trong danh sách - tức mọi bài mới viết -
+//     phải có cả hai ngay từ đầu.
+const missionIds = JSON.parse(readFileSync(path.join(__dirname, "..", "lib", "tools", "mission-ids.json"), "utf8"));
+const simMissions = Object.fromEntries(Object.entries(missionIds).map(([tool, ids]) => [tool, new Set(ids)]));
+const interactiveBaselinePath = path.join(__dirname, "interactive-baseline.json");
+const interactiveBaseline = existsSync(interactiveBaselinePath)
+  ? JSON.parse(readFileSync(interactiveBaselinePath, "utf8"))
+  : { practice: [], visual: [] };
+const practiceBaseline = new Set(interactiveBaseline.practice ?? []);
+const visualBaseline = new Set(interactiveBaseline.visual ?? []);
+
+const brokenBlocks = [];
+const lacksPracticeBlock = [];
+const lacksVisualBlock = [];
+for (const lesson of corpus) {
+  (lesson.sections ?? []).forEach((block, i) => {
+    for (const err of validateInteractiveBlock(block, { simMissions })) brokenBlocks.push(`    ${lesson.slug} [khối ${i}] ${err}`);
+  });
+  const kinds = countBlockKinds(lesson.sections);
+  if (kinds.practice < 1) lacksPracticeBlock.push(lesson.slug);
+  if (kinds.visual < 1) lacksVisualBlock.push(lesson.slug);
+}
+const practiceUnbaselined = lacksPracticeBlock.filter((slug) => !practiceBaseline.has(slug)).sort();
+const visualUnbaselined = lacksVisualBlock.filter((slug) => !visualBaseline.has(slug)).sort();
+const practiceFixed = [...practiceBaseline].filter((slug) => !lacksPracticeBlock.includes(slug)).sort();
+const visualFixed = [...visualBaseline].filter((slug) => !lacksVisualBlock.includes(slug)).sort();
+
+console.log(
+  `\nKhối tương tác: ${brokenBlocks.length} khối hỏng  ·  ` +
+    `thiếu thực hành ${lacksPracticeBlock.length}/${corpus.length} bài (${practiceBaseline.size} miễn trừ)  ·  ` +
+    `thiếu hình ảnh ${lacksVisualBlock.length}/${corpus.length} bài (${visualBaseline.size} miễn trừ)`
+);
+
+if (isSourceLocale && brokenBlocks.length > 0) {
+  tellFailures.push(`${brokenBlocks.length} khối tương tác hỏng:\n${brokenBlocks.join("\n")}`);
+}
+if (isSourceLocale && practiceUnbaselined.length > 0) {
+  tellFailures.push(
+    `${practiceUnbaselined.length} bài không có khối thực hành (exercise / sim / aiLab / scenario):\n` +
+      practiceUnbaselined.map((slug) => `    ${slug}`).join("\n") +
+      `\n  Mọi bài mới cần ít nhất một. Thêm bài vào interactive-baseline.json không phải là sửa.`
+  );
+}
+if (isSourceLocale && visualUnbaselined.length > 0) {
+  tellFailures.push(
+    `${visualUnbaselined.length} bài không có khối hình ảnh (chart / flow / feynman):\n` +
+      visualUnbaselined.map((slug) => `    ${slug}`).join("\n") +
+      `\n  Mọi bài mới cần ít nhất một. Thêm bài vào interactive-baseline.json không phải là sửa.`
+  );
+}
+if (practiceFixed.length + visualFixed.length > 0) {
+  console.log(
+    `  ${practiceFixed.length + visualFixed.length} mục trong interactive-baseline.json đã đạt - ` +
+      `chạy --write-baseline để bỏ ra.`
+  );
+}
+
+// Gieo danh sách miễn trừ - một lần duy nhất, như --seed-thin-baseline.
+if (process.argv.includes("--seed-interactive-baseline")) {
+  if (existsSync(interactiveBaselinePath)) {
+    console.error("interactive-baseline.json đã có; từ đây chỉ dùng --write-baseline để bớt.");
+    process.exit(1);
+  }
+  writeFileSync(
+    interactiveBaselinePath,
+    `${JSON.stringify(
+      {
+        _note:
+          "Bài chưa có khối thực hành / hình ảnh lúc đặt cổng (2026-09-30). Danh sách CHỈ co lại: " +
+          "bài mới bắt buộc qua cổng. Bổ sung xong một bài thì chạy " +
+          "`node scripts/audit-lesson-content.mjs --write-baseline`.",
+        practice: [...lacksPracticeBlock].sort(),
+        visual: [...lacksVisualBlock].sort(),
+      },
+      null,
+      2
+    )}\n`
+  );
+  console.log(`Đã gieo: ${lacksPracticeBlock.length} bài thiếu thực hành, ${lacksVisualBlock.length} bài thiếu hình ảnh.`);
+  process.exit(0);
+}
+
 // ── Cổng: phần giải thích quiz quá mỏng ───────────────────────────────────
 const thinBySlug = new Map();
 for (const row of thinExplanations) {
@@ -1734,6 +1826,23 @@ if (process.argv.includes("--write-baseline")) {
     `Thin-explanation baseline rewritten: ${thinBaseline.size} -> ${thinKept.length} lessons ` +
       `(removed ${thinFixedButStillBaselined.length}).`
   );
+
+  // Và cho interactive-baseline.json: chỉ bớt bài đã có khối.
+  if (existsSync(interactiveBaselinePath)) {
+    writeFileSync(
+      interactiveBaselinePath,
+      `${JSON.stringify(
+        {
+          ...interactiveBaseline,
+          practice: [...practiceBaseline].filter((slug) => !practiceFixed.includes(slug)).sort(),
+          visual: [...visualBaseline].filter((slug) => !visualFixed.includes(slug)).sort(),
+        },
+        null,
+        2
+      )}\n`
+    );
+    console.log(`Interactive baseline rewritten (removed ${practiceFixed.length} practice, ${visualFixed.length} visual).`);
+  }
   process.exit(0);
 }
 

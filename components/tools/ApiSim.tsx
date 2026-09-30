@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { BookOpen, ChevronDown, Clock, Folder, KeyRound, Loader2, Plus, Send, Trash2, WandSparkles, X } from "lucide-react";
-import ToolShell from "@/components/tools/ToolShell";
+import ToolShell, { embedMissions, type ToolEmbed } from "@/components/tools/ToolShell";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 import {
@@ -93,7 +93,8 @@ function statusTone(status: number): string {
   return "bg-surface-raised text-ink-muted";
 }
 
-export default function ApiSim() {
+export default function ApiSim({ embed }: { embed?: ToolEmbed }) {
+  const embedded = !!embed;
   const { t } = useI18n();
   const c = t.toolApi;
 
@@ -113,12 +114,16 @@ export default function ApiSim() {
   const generation = useRef(0);
 
   useEffect(() => {
+    if (embedded) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- bản nhúng bắt đầu từ trạng thái mới, không đọc tiến độ của /cong-cu
+      setLoaded(true);
+      return;
+    }
     try {
       const raw = window.localStorage.getItem(STORAGE_KEY);
       if (raw) {
         const saved = JSON.parse(raw) as Partial<Persisted>;
         if (saved.api && Array.isArray(saved.api.products) && Array.isArray(saved.api.history)) {
-          // eslint-disable-next-line react-hooks/set-state-in-effect -- khôi phục tiến độ đã lưu trong localStorage sau khi mount
           setApi(saved.api);
         }
         if (Array.isArray(saved.done)) setDone(saved.done);
@@ -128,22 +133,22 @@ export default function ApiSim() {
       // localStorage bị chặn hoặc dữ liệu hỏng: bắt đầu từ trạng thái mới.
     }
     setLoaded(true);
-  }, []);
+  }, [embedded]);
 
   const liveDone = useMemo(() => API_MISSIONS.filter((m) => m.check(api)).map((m) => m.id as string), [api]);
   const allDone = useMemo(() => Array.from(new Set([...done, ...liveDone])), [done, liveDone]);
 
   useEffect(() => {
-    if (!loaded) return;
+    if (!loaded || embedded) return;
     try {
       const payload: Persisted = { api, done: allDone, draft };
       window.localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
     } catch {
       // Không lưu được thì thôi - mô phỏng vẫn chạy trong phiên này.
     }
-  }, [api, allDone, draft, loaded]);
+  }, [api, allDone, draft, loaded, embedded]);
 
-  const missions = API_MISSIONS.map((m) => {
+  const missions = embedMissions(API_MISSIONS, embed).map((m) => {
     const copy = c.missions[m.id];
     const labels = copy.criteria as Record<string, string>;
     return {
@@ -273,6 +278,7 @@ export default function ApiSim() {
       ready={loaded}
       errorKey={errorKey}
       renderArtifact={renderArtifact}
+      embed={embed}
     >
       <div className="overflow-hidden rounded-2xl border border-line bg-white dark:bg-stone-900">
         <div className="grid md:grid-cols-[220px_minmax(0,1fr)]">
