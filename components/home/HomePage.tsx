@@ -146,7 +146,7 @@ export default function HomePage() {
                 </span>
               </p>
               <a
-                href="https://www.facebook.com/share/g/1C2jTdsgF5/"
+                href="https://www.facebook.com/groups/4402614233328401"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex shrink-0 items-center gap-1 whitespace-nowrap text-xs font-bold text-white underline-offset-4 hover:underline sm:text-[13px]"
