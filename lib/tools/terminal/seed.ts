@@ -1,17 +1,19 @@
 /** Trạng thái ban đầu: máy Linux nhỏ với thư mục nhà /home/ban và một dự án
  *  web mẫu ở ~/du-an để người học đi lại, đọc, sửa, commit. */
 import { HOME, mkDir, mkFile } from "./fs";
+import { seedExtras } from "./labs";
 import type { DirNode, TermState } from "./types";
 
 /** Các lệnh có tệp thực thi trong /usr/bin - `which` và Tab đọc danh sách này. */
 export const BIN_COMMANDS = [
   "ls", "cat", "echo", "pwd", "mkdir", "touch", "rm", "cp", "mv", "head", "tail",
   "wc", "grep", "find", "tree", "whoami", "hostname", "date", "clear", "chmod",
-  "which", "git", "docker", "curl", "sudo",
+  "which", "git", "docker", "curl", "sudo", "sort", "uniq", "cut", "printf", "env",
+  "printenv", "ps", "kill", "dig", "nslookup", "host", "ping",
 ];
 
 /** Lệnh dựng sẵn của bash, không có tệp trong /usr/bin. */
-export const BUILTIN_COMMANDS = ["cd", "help", "history"];
+export const BUILTIN_COMMANDS = ["cd", "help", "history", "export", "unset"];
 
 /* i18n-ignore-start: nội dung các tệp trên ổ đĩa mô phỏng - mã nguồn và README
    của dự án viết bằng tiếng Anh như dự án thật, không phải chữ giao diện */
@@ -101,7 +103,7 @@ export function createInitialState(now: number): TermState {
   root.children["etc"] = etc;
   root.children["tmp"] = mkDir(now, 0o777);
 
-  return {
+  const state: TermState = {
     version: 1,
     root,
     cwd: HOME,
@@ -113,4 +115,6 @@ export function createInitialState(now: number): TermState {
     gitUser: { name: "ban", email: "ban@may-hoc.local" },
     docker: { images: [], containers: [], counter: 0 },
   };
+  seedExtras(state, now);
+  return state;
 }

@@ -180,7 +180,8 @@ describe("cloud missions", () => {
       expect(en?.hint, m.id).toBeTruthy();
     }
     expect(CLOUD_MISSIONS.length).toBeGreaterThanOrEqual(6);
-    expect(CLOUD_MISSIONS.length).toBeLessThanOrEqual(8);
+    // 8 nhiệm vụ gốc + 12 nhiệm vụ mở rộng (chi tiết ở tool-cloud-missions.test.ts).
+    expect(CLOUD_MISSIONS.length).toBeLessThanOrEqual(20);
   });
 
   it("every error code has vi and en copy", () => {
@@ -238,7 +239,8 @@ describe("cloud missions", () => {
     step(must(deleteObject(s, "lan-portfolio-2026", "index.html")));
     step(must(deleteBucket(s, "lan-portfolio-2026")));
     expect(monthlyTotal(s)).toBe(0);
-    expect(done).toEqual(CLOUD_MISSIONS.map((m) => m.id));
+    // Chuỗi này chỉ làm tám nhiệm vụ gốc; 12 nhiệm vụ mở rộng có kịch bản riêng.
+    expect(done).toEqual(CLOUD_MISSIONS.slice(0, 8).map((m) => m.id));
   });
 
   it("round-trips through JSON for localStorage", () => {

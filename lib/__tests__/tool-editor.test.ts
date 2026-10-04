@@ -156,7 +156,7 @@ describe("editor engine: srcDoc and validation", () => {
 describe("editor missions", () => {
   it("has vi and en copy for every mission", () => {
     expect(EDITOR_MISSIONS.length).toBeGreaterThanOrEqual(6);
-    expect(EDITOR_MISSIONS.length).toBeLessThanOrEqual(8);
+    expect(EDITOR_MISSIONS.length).toBeLessThanOrEqual(24);
     for (const m of EDITOR_MISSIONS) {
       const vi = toolEditorVi.toolEditor.missions[m.id as keyof typeof toolEditorVi.toolEditor.missions];
       const en = toolEditorEn.toolEditor.missions[m.id as keyof typeof toolEditorEn.toolEditor.missions];
@@ -244,6 +244,7 @@ describe("editor missions", () => {
     note(s);
     expect(done.has("save-all")).toBe(true);
 
-    expect([...done].sort()).toEqual(EDITOR_MISSIONS.map((m) => m.id).sort());
+    // Tám nhiệm vụ đầu; các nhiệm vụ sau có bộ kiểm riêng (tool-editor-missions.test.ts).
+    expect([...done].sort()).toEqual(EDITOR_MISSIONS.slice(0, 8).map((m) => m.id).sort());
   });
 });

@@ -6,9 +6,9 @@
 export type ToolId = "terminal" | "editor" | "sql" | "api" | "cloud";
 
 export const TOOL_MISSION_COUNTS: Record<ToolId, number> = {
-  terminal: 8,
-  editor: 8,
-  sql: 8,
-  api: 8,
-  cloud: 8,
+  terminal: 24,
+  editor: 21,
+  sql: 21,
+  api: 18,
+  cloud: 20,
 };

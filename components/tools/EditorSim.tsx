@@ -50,7 +50,6 @@ import {
   isEditorState,
   joinPath,
   languageOf,
-  markClick,
   offsetOfLine,
   relocalize,
   openFile,
@@ -68,7 +67,7 @@ import {
   type OpResult,
   type TreeNode,
 } from "@/lib/tools/editor/engine";
-import { buildSrcDoc, isShimMessage, missingFileMessage, notFoundMessage } from "@/lib/tools/editor/srcdoc";
+import { applyShimMessage, buildSrcDoc, isShimMessage, missingFileMessage, notFoundMessage } from "@/lib/tools/editor/srcdoc";
 import { validateProject, type Problem } from "@/lib/tools/editor/validate";
 import { highlight, type TokenKind } from "@/lib/tools/editor/highlight";
 import { EDITOR_MISSIONS, headingOf } from "@/lib/tools/editor/missions";
@@ -381,7 +380,7 @@ export default function EditorSim({ embed }: { embed?: ToolEmbed }) {
       const started = startRun(editorRef.current, entry);
       const runId = started.lastRun!.id;
       const token = `run-${runId}-${Math.random().toString(36).slice(2)}`;
-      const built = buildSrcDoc(started.files, entry, token);
+      const built = buildSrcDoc(started.files, entry, token, started.storage ?? {});
       let next = started;
       if (!getFile(started, entry)) {
         next = appendConsole(next, runId, { level: "error", source: "runtime", text: notFoundMessage(entry) });
@@ -404,18 +403,8 @@ export default function EditorSim({ embed }: { embed?: ToolEmbed }) {
       const cur = runRef.current;
       if (!cur || e.source !== iframeRef.current?.contentWindow || !isShimMessage(e.data, cur.token)) return;
       const msg = e.data;
-      if (msg.type === "console") {
-        apply((s) =>
-          appendConsole(s, cur.runId, {
-            level: msg.level ?? "log",
-            source: msg.source ?? "console",
-            text: String(msg.text ?? ""),
-            file: msg.file,
-            line: msg.line,
-          }),
-        );
-      } else if (msg.type === "click") {
-        apply((s) => markClick(s, cur.runId));
+      if (msg.type === "console" || msg.type === "click" || msg.type === "dom") {
+        apply((s) => applyShimMessage(s, cur.runId, msg));
       } else if (msg.type === "navigate" && msg.href) {
         const target = resolvePath(cur.entry, msg.href);
         if (target === null) return;

@@ -6,6 +6,7 @@ import ToolShell, { embedMissions, type ToolEmbed } from "@/components/tools/Too
 import { IconTile, panel } from "@/components/ui/system";
 import { useI18n } from "@/lib/i18n/context";
 import { createInitialState } from "@/lib/tools/terminal/seed";
+import { migrateState } from "@/lib/tools/terminal/labs";
 import { INTERRUPT_ECHO, PROMPT_USER, complete, runLine } from "@/lib/tools/terminal/shell";
 import { displayPath } from "@/lib/tools/terminal/fs";
 import { findRepo } from "@/lib/tools/terminal/git";
@@ -96,7 +97,7 @@ export default function TerminalSim({ embed }: { embed?: ToolEmbed }) {
     }
     const stored = loadJson<TermState>(STORAGE_STATE);
     const done = loadJson<string[]>(STORAGE_DONE);
-    if (stored && stored.version === 1 && stored.root) setState(stored);
+    if (stored && stored.version === 1 && stored.root) setState(migrateState(stored, Date.now()));
     if (Array.isArray(done)) setSavedDone(done);
     setLoaded(true);
   }, [embedded]);

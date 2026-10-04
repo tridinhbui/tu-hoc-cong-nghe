@@ -205,7 +205,8 @@ describe("api collection", () => {
         T0,
       );
       const status = (result as HttpResponse).status;
-      if (item.id === "me") expect(status).toBe(401);
+      // /me, /partner/inventory và /admin/stats cố ý bắt đầu bằng 401: người học phải tự thêm token hoặc khoá.
+      if (item.id === "me" || item.id === "partnerInventory" || item.id === "adminStats") expect(status).toBe(401);
       else expect(status, item.id).toBeLessThan(300);
     }
   });
@@ -219,9 +220,9 @@ describe("api collection", () => {
 });
 
 describe("api missions", () => {
-  it("has 6-8 missions with unique ids and vi+en copy", () => {
+  it("has 6-30 missions with unique ids and vi+en copy", () => {
     expect(API_MISSIONS.length).toBeGreaterThanOrEqual(6);
-    expect(API_MISSIONS.length).toBeLessThanOrEqual(8);
+    expect(API_MISSIONS.length).toBeLessThanOrEqual(30);
     expect(new Set(API_MISSIONS.map((m) => m.id)).size).toBe(API_MISSIONS.length);
     for (const m of API_MISSIONS) {
       for (const dict of [toolApiVi, toolApiEn]) {
@@ -266,6 +267,11 @@ describe("api missions", () => {
     step("DELETE", "/products/6");
     expect(done()).toContain("deleteProduct");
 
-    expect(done()).toEqual(API_MISSIONS.map((m) => m.id));
+    expect(done()).toEqual(
+      expect.arrayContaining([
+        "firstGet", "filterCategory", "readNotFound", "createProduct",
+        "badRequest", "loginThenMe", "patchPrice", "deleteProduct",
+      ]),
+    );
   });
 });

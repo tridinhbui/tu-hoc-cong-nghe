@@ -45,6 +45,11 @@ import { P43_ADDITIONS } from "./p43";
 import { P44_ADDITIONS } from "./p44";
 import { P45_ADDITIONS } from "./p45";
 import { P46_ADDITIONS } from "./p46";
+import { Q01_ADDITIONS } from "./q01";
+import { Q02_ADDITIONS } from "./q02";
+import { Q03_ADDITIONS } from "./q03";
+import { Q04_ADDITIONS } from "./q04";
+import { Q05_ADDITIONS } from "./q05";
 
 /**
  * Khối THÊM vào bài đã có (KE-HOACH-1500-BAI.md: bài nào cũng có thực hành và
@@ -113,6 +118,21 @@ const FILES: Record<string, Record<string, LessonSectionBlock[]>> = {
   p46: P46_ADDITIONS,
 };
 
+/**
+ * Đợt hai (2026-10-05): khối `sim` nhúng nhiệm vụ MỚI của trình mô phỏng vào bài
+ * đã nhận khối ở đợt một. Khác đợt một ở chỗ một slug được phép nằm ở nhiều tệp
+ * - các khối được NỐI vào sau khối của đợt một, theo thứ tự tệp. Mỗi tệp q vẫn do
+ * một người viết, và scripts/check-block-additions.mjs chặn một bài có hơn một
+ * khối sim.
+ */
+const SIM_FILES: Record<string, Record<string, LessonSectionBlock[]>> = {
+  q01: Q01_ADDITIONS,
+  q02: Q02_ADDITIONS,
+  q03: Q03_ADDITIONS,
+  q04: Q04_ADDITIONS,
+  q05: Q05_ADDITIONS,
+};
+
 export const LESSON_BLOCK_ADDITIONS: Record<string, LessonSectionBlock[]> = (() => {
   const merged: Record<string, LessonSectionBlock[]> = {};
   const owner: Record<string, string> = {};
@@ -122,6 +142,9 @@ export const LESSON_BLOCK_ADDITIONS: Record<string, LessonSectionBlock[]> = (() 
       owner[slug] = file;
       merged[slug] = blocks;
     }
+  }
+  for (const record of Object.values(SIM_FILES)) {
+    for (const [slug, blocks] of Object.entries(record)) merged[slug] = [...(merged[slug] ?? []), ...blocks];
   }
   return merged;
 })();

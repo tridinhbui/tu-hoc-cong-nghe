@@ -6,6 +6,10 @@
 //   kết quả khác nhau - đúng cái bẫy mà người học cần thấy tận mắt;
 // - giá sản phẩm không trùng nhau ở nhóm đầu, để "top 5 đắt nhất" có một đáp án
 //   duy nhất;
+// - hai khách chưa để lại email (NULL) và một khách đăng ký hai lần cùng một
+//   email (id 4 và 11), cho các bài về NULL và bản ghi trùng;
+// - mỗi đơn có phí vận chuyển (shipping_fee), một cột nằm ở bảng đơn nên bị
+//   nhân lên khi JOIN sang dòng chi tiết - cái bẫy "SUM bị nhân";
 // - tổng số lượng bán của ba sản phẩm đứng đầu là 7, 6, 5 - không hoà nhau, để
 //   nhiệm vụ "bán chạy nhất" không phụ thuộc thứ tự ngẫu nhiên.
 //
@@ -58,6 +62,7 @@ export const SAMPLE_SCHEMA: TableSchema[] = [
       { name: "customer_id", type: "INTEGER", key: "fk", ref: "customers" },
       { name: "order_date", type: "DATE" },
       { name: "status", type: "TEXT" },
+      { name: "shipping_fee", type: "INTEGER" },
     ],
   },
   {
@@ -77,12 +82,12 @@ const CUSTOMERS: SqlValue[][] = [
   [3, "Lê Hoàng Cường", "Đà Nẵng", "cuong.le@mail.vn", "2025-12-01"],
   [4, "Phạm Thu Dung", "Hà Nội", "dung.pham@mail.vn", "2026-01-08"],
   [5, "Hoàng Minh Đức", "Hồ Chí Minh", "duc.hoang@mail.vn", "2026-01-20"],
-  [6, "Vũ Ngọc Hà", "Hải Phòng", "ha.vu@mail.vn", "2026-02-03"],
+  [6, "Vũ Ngọc Hà", "Hải Phòng", null, "2026-02-03"],
   [7, "Đặng Quốc Huy", "Hà Nội", "huy.dang@mail.vn", "2026-02-14"],
   [8, "Bùi Thanh Lan", "Cần Thơ", "lan.bui@mail.vn", "2026-03-01"],
-  [9, "Đỗ Gia Long", "Hồ Chí Minh", "long.do@mail.vn", "2026-03-19"],
+  [9, "Đỗ Gia Long", "Hồ Chí Minh", null, "2026-03-19"],
   [10, "Ngô Bảo Ngọc", "Đà Nẵng", "ngoc.ngo@mail.vn", "2026-04-05"],
-  [11, "Dương Khánh Linh", "Hà Nội", "linh.duong@mail.vn", "2026-05-12"],
+  [11, "Dương Khánh Linh", "Hà Nội", "dung.pham@mail.vn", "2026-05-12"],
   [12, "Lý Tuấn Kiệt", "Huế", "kiet.ly@mail.vn", "2026-06-30"],
 ];
 
@@ -102,22 +107,22 @@ const PRODUCTS: SqlValue[][] = [
 ];
 
 const ORDERS: SqlValue[][] = [
-  [1, 1, "2026-07-02", "delivered"],
-  [2, 2, "2026-07-03", "delivered"],
-  [3, 3, "2026-07-05", "cancelled"],
-  [4, 1, "2026-07-10", "delivered"],
-  [5, 4, "2026-07-12", "delivered"],
-  [6, 5, "2026-07-15", "shipping"],
-  [7, 6, "2026-07-18", "delivered"],
-  [8, 2, "2026-07-20", "pending"],
-  [9, 7, "2026-07-22", "delivered"],
-  [10, 8, "2026-08-01", "delivered"],
-  [11, 9, "2026-08-03", "shipping"],
-  [12, 10, "2026-08-05", "delivered"],
-  [13, 3, "2026-08-09", "delivered"],
-  [14, 5, "2026-08-12", "pending"],
-  [15, 7, "2026-08-15", "cancelled"],
-  [16, 1, "2026-08-20", "shipping"],
+  [1, 1, "2026-07-02", "delivered", 30000],
+  [2, 2, "2026-07-03", "delivered", 0],
+  [3, 3, "2026-07-05", "cancelled", 30000],
+  [4, 1, "2026-07-10", "delivered", 30000],
+  [5, 4, "2026-07-12", "delivered", 0],
+  [6, 5, "2026-07-15", "shipping", 45000],
+  [7, 6, "2026-07-18", "delivered", 30000],
+  [8, 2, "2026-07-20", "pending", 0],
+  [9, 7, "2026-07-22", "delivered", 30000],
+  [10, 8, "2026-08-01", "delivered", 45000],
+  [11, 9, "2026-08-03", "shipping", 30000],
+  [12, 10, "2026-08-05", "delivered", 0],
+  [13, 3, "2026-08-09", "delivered", 30000],
+  [14, 5, "2026-08-12", "pending", 45000],
+  [15, 7, "2026-08-15", "cancelled", 30000],
+  [16, 1, "2026-08-20", "shipping", 0],
 ];
 /* i18n-ignore-end */
 

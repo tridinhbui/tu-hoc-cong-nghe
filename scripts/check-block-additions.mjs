@@ -84,6 +84,17 @@ for (const [slug, blocks] of Object.entries(record)) {
   if (!Array.isArray(blocks) || blocks.length === 0) { err(slug, "danh sách khối rỗng"); continue; }
   if (blocks.every((b) => CONNECTIVE.has(b.type))) err(slug, "chỉ có khối chữ nối - phải có ít nhất một khối thực hành / hình ảnh thật");
 
+  // Đợt hai (tệp qNN): chỉ khối sim, tối đa MỘT khối sim mỗi bài (đã tính khối sim
+  // đang có), và bỏ qua bài đã có bản dịch tiếng Anh - thêm khối làm lệch vị trí
+  // sections của bản dịch, nên bài đó phải đi qua bước dịch riêng.
+  const simBefore = (lesson.sections ?? []).filter((x) => x.type === "sim").length;
+  const simNew = blocks.filter((x) => x.type === "sim").length;
+  if (simNew > 0 && simBefore + simNew > 1) err(slug, `bài sẽ có ${simBefore + simNew} khối sim (đã có ${simBefore}) - tối đa 1`);
+  if (path.basename(file).startsWith("q")) {
+    if (blocks.some((x) => x.type !== "sim")) err(slug, "tệp qNN chỉ được chứa khối sim");
+    if (existsSync(path.join(root, "lib/lessons-i18n/en", `${slug}.json`))) err(slug, "bài đã có bản dịch tiếng Anh - bỏ qua (khối thêm làm lệch bản dịch)");
+  }
+
   const before = countBlockKinds(lesson.sections);
   const after = countBlockKinds([...(lesson.sections ?? []), ...blocks]);
   if (before.practice === 0 && after.practice === 0) err(slug, "bài đang thiếu thực hành (exercise/sim/aiLab/scenario) mà đợt này không thêm");

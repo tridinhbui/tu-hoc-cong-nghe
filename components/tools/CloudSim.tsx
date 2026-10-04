@@ -10,20 +10,26 @@ import {
   ExternalLink,
   Globe,
   HardDrive,
+  KeyRound,
+  Layers,
   LayoutDashboard,
+  PiggyBank,
   Plus,
   Receipt,
   Server,
   Shield,
+  ShieldCheck,
   Trash2,
   Upload,
   X,
 } from "lucide-react";
 import ToolShell, { btnRun, embedMissions, type ToolEmbed } from "@/components/tools/ToolShell";
 import { panel } from "@/components/ui/system";
+import { GovernancePage, IdentityPage, ProtectionPage, ScalingPage, type AdvancedCtx } from "@/components/tools/CloudAdvanced";
 import { useI18n } from "@/lib/i18n/context";
 import { format, intlLocale } from "@/lib/i18n";
 import {
+  AZ_IDS,
   BUDGET_LIMIT,
   COST_SERVICES,
   DB_ENGINES,
@@ -31,6 +37,7 @@ import {
   DB_SIZES,
   FIREWALL_PORTS,
   IMAGE_IDS,
+  INTERNAL_CIDR,
   MY_IP,
   REGIONS,
   REGION_IDS,
@@ -57,6 +64,7 @@ import {
   monthlyTotal,
   parseState,
   removeRule,
+  setBlockPublicAccess,
   setBucketPublic,
   setBucketWebsite,
   setRegion,
@@ -72,6 +80,7 @@ import {
   warnings,
   websiteResponse,
   websiteUrl,
+  type Az,
   type CloudErrorCode,
   type CloudState,
   type DbEngine,
@@ -81,6 +90,7 @@ import {
   type RegionId,
   type Result,
   type RuleSource,
+  type Subnet,
   type Vm,
   type VmSizeId,
   type Warning,
@@ -90,7 +100,18 @@ import { TOOL_STORAGE } from "@/lib/tools/progress";
 
 const STORAGE_KEY = TOOL_STORAGE.cloud;
 
-type PageId = "overview" | "compute" | "storage" | "database" | "networking" | "monitoring" | "billing";
+type PageId =
+  | "overview"
+  | "compute"
+  | "storage"
+  | "database"
+  | "networking"
+  | "monitoring"
+  | "billing"
+  | "identity"
+  | "scaling"
+  | "protection"
+  | "governance";
 
 const NAV: { id: PageId; icon: typeof Server }[] = [
   { id: "overview", icon: LayoutDashboard },
@@ -100,6 +121,10 @@ const NAV: { id: PageId; icon: typeof Server }[] = [
   { id: "networking", icon: Shield },
   { id: "monitoring", icon: Activity },
   { id: "billing", icon: Receipt },
+  { id: "identity", icon: KeyRound },
+  { id: "scaling", icon: Layers },
+  { id: "protection", icon: ShieldCheck },
+  { id: "governance", icon: PiggyBank },
 ];
 
 /* i18n-ignore-start: tên giao thức/dịch vụ chuẩn của từng cổng, dải CIDR và dòng
@@ -114,6 +139,7 @@ const PORT_SERVICE: Record<FirewallPort, string> = {
 const SOURCE_CIDR: Record<RuleSource, string> = {
   anywhere: "0.0.0.0/0",
   myIp: `${MY_IP}/32`,
+  internal: INTERNAL_CIDR,
 };
 const HTTP_STATUS_LINE = { 200: "200 OK", 403: "403 Forbidden", 404: "404 Not Found" } as const;
 /* i18n-ignore-end */
@@ -240,6 +266,16 @@ export default function CloudSim({ embed }: { embed?: ToolEmbed }) {
   const region = REGIONS[state.region];
 
   const ctx: PageCtx = { state, run, setNotice, money, errorText, go: setPage };
+  const advCtx: AdvancedCtx = {
+    state,
+    run,
+    money,
+    errorText,
+    apply: (cloud, success) => {
+      dispatch({ type: "set", cloud });
+      setNotice(success ? { tone: "ok", text: success } : null);
+    },
+  };
 
   return (
     <ToolShell
@@ -347,6 +383,10 @@ export default function CloudSim({ embed }: { embed?: ToolEmbed }) {
             {page === "networking" && <NetworkingPage ctx={ctx} />}
             {page === "monitoring" && <MonitoringPage ctx={ctx} />}
             {page === "billing" && <BillingPage ctx={ctx} />}
+            {page === "identity" && <IdentityPage ctx={advCtx} />}
+            {page === "scaling" && <ScalingPage ctx={advCtx} />}
+            {page === "protection" && <ProtectionPage ctx={advCtx} />}
+            {page === "governance" && <GovernancePage ctx={advCtx} />}
           </main>
         </div>
       </div>
@@ -479,6 +519,16 @@ function useWarningText() {
         return format(c.warnings.dbNoBackups, { name: dbName(w.dbId) });
       case "overBudget":
         return format(c.warnings.overBudget, { total: money(w.total), budget: money(BUDGET_LIMIT) });
+      case "identityAdmin":
+        return format(c.warnings.identityAdmin, { name: w.name });
+      case "userNoMfa":
+        return format(c.warnings.userNoMfa, { name: w.name });
+      case "orphanVolume":
+        return format(c.warnings.orphanVolume, { name: state.volumes.find((v) => v.id === w.volumeId)?.name ?? w.volumeId });
+      case "lbSingleZone":
+        return format(c.warnings.lbSingleZone, { name: state.lbs.find((l) => l.id === w.lbId)?.name ?? w.lbId });
+      case "budgetAlert":
+        return format(c.warnings.budgetAlert, { total: money(w.total), pct: w.pct });
     }
   };
 }
@@ -627,6 +677,7 @@ function ComputePage({ ctx }: { ctx: PageCtx }) {
                 <p className="font-mono text-[11px] text-ink-muted">
                   {vm.id} · {c.images[vm.image]} · {c.regions[vm.region]}
                 </p>
+                <p className="text-[11px] text-ink-muted">{format(c.compute.placement, { subnet: c.compute.subnets[vm.subnet], zone: c.zones[vm.az] })}</p>
               </div>
               <div>
                 <StateBadge state={vm.state} />
@@ -714,13 +765,15 @@ function LaunchWizard({ ctx, onClose }: { ctx: PageCtx; onClose: () => void }) {
   const [newKey, setNewKey] = useState("my-key");
   const [ports, setPorts] = useState<FirewallPort[]>([22]);
   const [sshSource, setSshSource] = useState<RuleSource>("anywhere");
+  const [subnet, setSubnet] = useState<Subnet>("public");
+  const [az, setAz] = useState<Az>("a");
 
   const monthly = vmMonthly(size, state.region) + diskMonthly(state.region);
   const togglePort = (p: FirewallPort) => setPorts((ps) => (ps.includes(p) ? ps.filter((x) => x !== p) : [...ps, p]));
 
   const launch = () => {
     const keyPair = keyMode === "__none" ? null : keyMode === "__new" ? newKey : keyMode;
-    if (run(launchVm(state, { name, image, size, keyPair, ports, sshSource }), format(c.compute.launchedMsg, { name: name.trim() }))) {
+    if (run(launchVm(state, { name, image, size, keyPair, ports, sshSource, subnet, az }), format(c.compute.launchedMsg, { name: name.trim() }))) {
       onClose();
     }
   };
@@ -763,7 +816,7 @@ function LaunchWizard({ ctx, onClose }: { ctx: PageCtx; onClose: () => void }) {
 
       <div className={section}>
         <p className={label}>{w.size}</p>
-        <div className="grid gap-2 sm:grid-cols-3">
+        <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
           {VM_SIZE_IDS.map((id) => (
             <button
               key={id}
@@ -781,6 +834,34 @@ function LaunchWizard({ ctx, onClose }: { ctx: PageCtx; onClose: () => void }) {
               </p>
             </button>
           ))}
+        </div>
+      </div>
+
+      <div className={section}>
+        <p className={label}>{w.subnet}</p>
+        <div className="grid gap-2 sm:grid-cols-2">
+          {(["public", "private"] as Subnet[]).map((id) => (
+            <button
+              key={id}
+              type="button"
+              onClick={() => setSubnet(id)}
+              className={`rounded-lg border p-2.5 text-left ${subnet === id ? "border-accent bg-accent-wash ring-1 ring-accent" : "border-line hover:border-accent-line hover:bg-accent-wash"}`}
+            >
+              <p className="text-sm font-bold text-ink">{c.compute.subnets[id]}</p>
+              <p className="text-[11px] text-ink-muted">{w.subnetNotes[id]}</p>
+            </button>
+          ))}
+        </div>
+        <div className="mt-2 flex flex-wrap items-center gap-2 text-xs text-ink-muted">
+          <span className="font-bold">{w.zone}</span>
+          <select className={`${input} w-auto py-1 text-xs`} value={az} onChange={(e) => setAz(e.target.value as Az)} aria-label={w.zone}>
+            {AZ_IDS.map((z) => (
+              <option key={z} value={z}>
+                {c.zones[z]}
+              </option>
+            ))}
+          </select>
+          <span className="text-[11px] text-ink-faint">{w.zoneNote}</span>
         </div>
       </div>
 
@@ -987,6 +1068,10 @@ function StoragePage({ ctx }: { ctx: PageCtx }) {
                 <Toggle checked={bucket.publicAccess} onChange={(v) => run(setBucketPublic(state, bucket.name, v))}>
                   <span className="font-bold">{s.publicToggle}</span>
                   <span className="block text-xs text-ink-muted">{s.publicNote}</span>
+                </Toggle>
+                <Toggle checked={bucket.blockPublicAccess} onChange={(v) => run(setBlockPublicAccess(state, bucket.name, v))}>
+                  <span className="font-bold">{s.blockToggle}</span>
+                  <span className="block text-xs text-ink-muted">{s.blockNote}</span>
                 </Toggle>
                 <Toggle checked={bucket.website} onChange={(v) => run(setBucketWebsite(state, bucket.name, v))}>
                   <span className="font-bold">{s.websiteToggle}</span>
@@ -1327,6 +1412,9 @@ function RuleTable({ vm, onAdd, onRemove }: { vm: Vm; onAdd: (p: FirewallPort, s
           <option value="myIp">
             {c.sources.myIp} ({SOURCE_CIDR.myIp})
           </option>
+          <option value="internal">
+            {c.sources.internal} ({SOURCE_CIDR.internal})
+          </option>
         </select>
         <button type="button" className={btnGhost} onClick={() => onAdd(port, source)}>
           <Plus className="h-3.5 w-3.5" />
@@ -1427,7 +1515,13 @@ function BillingPage({ ctx }: { ctx: PageCtx }) {
   const pct = Math.min(100, (total / BUDGET_LIMIT) * 100);
   const over = total > BUDGET_LIMIT;
   const nameOf = (id: string) =>
-    state.vms.find((v) => v.id === id)?.name ?? state.databases.find((d) => d.id === id)?.name ?? id;
+    state.vms.find((v) => v.id === id)?.name ??
+    state.databases.find((d) => d.id === id)?.name ??
+    state.volumes.find((v) => v.id === id)?.name ??
+    state.lbs.find((l) => l.id === id)?.name ??
+    state.asgs.find((g) => g.id === id)?.name ??
+    state.snapshots.find((x) => x.id === id)?.dbName ??
+    id;
 
   return (
     <div>

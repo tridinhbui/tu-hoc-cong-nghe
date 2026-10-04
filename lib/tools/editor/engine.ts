@@ -41,6 +41,13 @@ export interface RunRecord {
   snapshot: Record<string, string>;
   console: ConsoleEntry[];
   clicked: boolean;
+  /** HTML của <body> trang đang chạy, do trang tự báo về (xem srcdoc.ts):
+   *  lúc dựng xong (`first`), lần gần nhất (`last`), và lần gần nhất SAU khi
+   *  người học bấm vào trang (`afterClick`). Nhiệm vụ về DOM đọc những bản
+   *  chụp này - kết quả thật của mã, không phải mã đã gõ. Thiếu ở dữ liệu cũ. */
+  dom?: { first: string | null; last: string | null; afterClick: string | null };
+  /** localStorage của "hồ sơ trình duyệt" lúc lần chạy này bắt đầu. */
+  storageSeed?: Record<string, string>;
 }
 
 export interface SearchRecord {
@@ -74,6 +81,9 @@ export interface EditorState {
   lastSearch: SearchRecord | null;
   saveCount: number;
   starterHeading: string;
+  /** localStorage của trang xem trước, giữ qua các lần chạy như một hồ sơ
+   *  trình duyệt - để thử "tải lại trang mà dữ liệu còn đó". Thiếu = rỗng. */
+  storage?: Record<string, string>;
 }
 
 export type OpError = "empty" | "invalid" | "exists" | "notFound";
@@ -407,7 +417,37 @@ export function startRun(state: EditorState, entry = "index.html"): EditorState 
   return {
     ...state,
     runCount: id,
-    lastRun: { id, entry, snapshot, console: [], clicked: false },
+    lastRun: {
+      id,
+      entry,
+      snapshot,
+      console: [],
+      clicked: false,
+      dom: { first: null, last: null, afterClick: null },
+      storageSeed: { ...(state.storage ?? {}) },
+    },
+  };
+}
+
+/** Trang báo cáo lại <body> và localStorage hiện tại. */
+export function recordDom(
+  state: EditorState,
+  runId: number,
+  html: string,
+  storage?: Record<string, string>,
+): EditorState {
+  const run = state.lastRun;
+  if (!run || run.id !== runId) return state;
+  const prev = run.dom ?? { first: null, last: null, afterClick: null };
+  const dom = {
+    first: prev.first ?? html,
+    last: html,
+    afterClick: run.clicked ? html : prev.afterClick,
+  };
+  return {
+    ...state,
+    storage: storage ? { ...storage } : state.storage,
+    lastRun: { ...run, dom },
   };
 }
 

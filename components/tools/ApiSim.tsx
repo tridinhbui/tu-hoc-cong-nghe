@@ -8,6 +8,7 @@ import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 import {
   METHODS,
+  normalizeApiState,
   createApiState,
   formatBytes,
   jsonError,
@@ -54,7 +55,7 @@ const TOKEN_COLOR: Record<JsonTokenType, string> = {
   plain: "text-stone-300",
 };
 
-const CHEAT_CODES = [200, 201, 204, 400, 401, 403, 404, 405, 415, 429, 500] as const;
+const CHEAT_CODES = [200, 201, 204, 400, 401, 403, 404, 405, 409, 415, 422, 429, 500] as const;
 type CheatKey = `c${(typeof CHEAT_CODES)[number]}`;
 
 type ReqTab = "params" | "headers" | "body" | "auth";
@@ -125,7 +126,7 @@ export default function ApiSim({ embed }: { embed?: ToolEmbed }) {
       if (raw) {
         const saved = JSON.parse(raw) as Partial<Persisted>;
         if (saved.api && Array.isArray(saved.api.products) && Array.isArray(saved.api.history)) {
-          setApi(saved.api);
+          setApi(normalizeApiState(saved.api));
         }
         if (Array.isArray(saved.done)) setDone(saved.done);
         if (saved.draft && typeof saved.draft.url === "string") setDraft(saved.draft);

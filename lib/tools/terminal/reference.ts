@@ -8,7 +8,7 @@ export interface CommandRef {
 }
 
 export interface CommandGroup {
-  id: "files" | "text" | "git" | "docker";
+  id: "files" | "text" | "system" | "git" | "docker";
   items: CommandRef[];
 }
 
@@ -27,7 +27,7 @@ export const HELP_GROUPS: CommandGroup[] = [
       { id: "mv", code: "mv <src> <dest>" },
       { id: "rm", code: "rm [-r] <file>" },
       { id: "tree", code: "tree" },
-      { id: "find", code: "find . -name '*.js'" },
+      { id: "find", code: "find . -name '*.log' -mtime +14 [-delete]" },
       { id: "chmod", code: "chmod +x <file> | chmod 644 <file>" },
     ],
   },
@@ -41,9 +41,24 @@ export const HELP_GROUPS: CommandGroup[] = [
       { id: "wc", code: "wc -l <file>" },
       { id: "grep", code: "grep [-i] [-n] [-r] <word> <file>" },
       { id: "pipe", code: "cat file | grep word" },
+      { id: "sort", code: "sort [-r] [-n] [file]" },
+      { id: "uniq", code: "sort | uniq -c" },
+      { id: "cut", code: "cut -d' ' -f4 [file]" },
+      { id: "printf", code: "printf 'line1\nline2\n' > file" },
       { id: "history", code: "history" },
       { id: "which", code: "which <command>" },
       { id: "whoami", code: "whoami | date | clear" },
+    ],
+  },
+  {
+    id: "system",
+    items: [
+      { id: "export", code: "export NAME=value" },
+      { id: "env", code: "env | printenv NAME" },
+      { id: "ps", code: "ps aux [--sort=-%cpu]" },
+      { id: "kill", code: "kill <pid> | kill -9 <pid>" },
+      { id: "dig", code: "dig +short <domain> | nslookup <domain>" },
+      { id: "ping", code: "ping -c 3 <host>" },
     ],
   },
   {
@@ -57,7 +72,16 @@ export const HELP_GROUPS: CommandGroup[] = [
       { id: "gitDiff", code: "git diff [--staged]" },
       { id: "gitBranch", code: "git branch [name]" },
       { id: "gitSwitch", code: "git switch -c <name> | git checkout <name>" },
-      { id: "gitMerge", code: "git merge <branch>" },
+      { id: "gitMerge", code: "git merge <branch> | git merge --abort" },
+      { id: "gitShow", code: "git show <commit>" },
+      { id: "gitRevert", code: "git revert <commit>" },
+      { id: "gitReset", code: "git reset [--soft|--hard] <commit>" },
+      { id: "gitTag", code: "git tag v1.0.0 [<commit>]" },
+      { id: "gitStash", code: "git stash | git stash pop" },
+      { id: "gitRm", code: "git rm --cached <file>" },
+      { id: "gitRemote", code: "git remote add origin <url>" },
+      { id: "gitFetch", code: "git fetch | git pull [--rebase]" },
+      { id: "gitPush", code: "git push [-u origin <branch>]" },
     ],
   },
   {
@@ -65,9 +89,12 @@ export const HELP_GROUPS: CommandGroup[] = [
     items: [
       { id: "dockerPull", code: "docker pull nginx" },
       { id: "dockerImages", code: "docker images" },
-      { id: "dockerRun", code: "docker run -d -p 8080:80 --name web nginx" },
+      { id: "dockerRun", code: "docker run -d -p 8080:80 -e KEY=v -v vol:/path --name web nginx" },
       { id: "dockerPs", code: "docker ps [-a]" },
-      { id: "dockerLogs", code: "docker logs <name>" },
+      { id: "dockerLogs", code: "docker logs [--tail 20] <name>" },
+      { id: "dockerExec", code: "docker exec <name> ls /" },
+      { id: "dockerVolume", code: "docker volume create|ls|rm <name>" },
+      { id: "dockerBuild", code: "docker build -t name:tag ." },
       { id: "dockerStop", code: "docker stop <name>" },
       { id: "dockerRm", code: "docker rm <name>" },
       { id: "curl", code: "curl localhost:8080" },

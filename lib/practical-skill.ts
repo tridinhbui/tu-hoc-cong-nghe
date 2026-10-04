@@ -284,6 +284,19 @@ const TOOL_MISSION_AREAS: Record<string, SkillArea> = {
   "terminal:docker-nginx": "cloud",
   "cloud:ssh-my-ip": "security",
   "cloud:safe-database": "security",
+  // Nhiệm vụ thêm 2026-10-05: lệch khỏi lĩnh vực mặc định của công cụ.
+  "terminal:chmod-key": "security",
+  "terminal:env-secret": "security",
+  "terminal:docker-build": "cloud",
+  "terminal:docker-logs": "cloud",
+  "terminal:docker-volume": "cloud",
+  "terminal:dns-lookup": "cloud",
+  "cloud:bucket-block-public": "security",
+  "cloud:iam-mfa": "security",
+  "cloud:iam-least-privilege": "security",
+  "cloud:sg-db-internal": "security",
+  "api:apiKeyHeader": "security",
+  "api:authVsPermission": "security",
 };
 
 export function toolMissionArea(tool: string, missionId: string): SkillArea | null {

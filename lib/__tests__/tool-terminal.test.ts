@@ -192,11 +192,11 @@ describe("terminal git", () => {
     expect(r.code).toBe(1);
   });
 
-  it("reports conflicts without changing the tree", () => {
+  it("reports conflicts and marks the file for hand resolution", () => {
     const r = sh(repo(), "git add .", "git commit -m init", "git switch -c x", "echo x > README.md", "git commit -am x", "git switch main", "echo m > README.md", "git commit -am m", "git merge x");
     expect(r.text).toContain("CONFLICT (content): Merge conflict in README.md");
     expect(r.notices).toEqual(["mergeConflict"]);
-    expect(sh(r.s, "cat README.md").text).toBe("m");
+    expect(sh(r.s, "cat README.md").text).toBe("<<<<<<< HEAD\nm\n=======\nx\n>>>>>>> x");
   });
 
   it("errors on unknown subcommands and bad branches", () => {
@@ -249,7 +249,6 @@ describe("terminal missions", () => {
     }
     expect(Object.keys(toolTerminalVi.toolTerminal.missions).sort()).toEqual(TERMINAL_MISSIONS.map((m) => m.id).sort());
     expect(TERMINAL_MISSIONS.length).toBeGreaterThanOrEqual(6);
-    expect(TERMINAL_MISSIONS.length).toBeLessThanOrEqual(8);
   });
 
   it("every help/cheat-sheet entry has vi and en copy", () => {
@@ -285,7 +284,8 @@ describe("terminal missions", () => {
       done.push(id);
       expect(completedMissionIds(s), id).toEqual(expect.arrayContaining(done));
     }
-    expect(completedMissionIds(s)).toHaveLength(TERMINAL_MISSIONS.length);
+    // 8 nhiệm vụ gốc; các nhiệm vụ mở rộng có bộ kiểm thử riêng (tool-terminal-missions.test.ts)
+    expect(completedMissionIds(s)).toEqual(expect.arrayContaining(steps.map(([id]) => id)));
   });
 
   it("does not count near misses", () => {

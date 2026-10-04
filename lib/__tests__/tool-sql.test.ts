@@ -162,9 +162,8 @@ const WRONG: Record<string, string> = {
 };
 
 describe("nhiệm vụ", () => {
-  it("6-8 nhiệm vụ, id không trùng", () => {
-    expect(SQL_MISSIONS.length).toBeGreaterThanOrEqual(6);
-    expect(SQL_MISSIONS.length).toBeLessThanOrEqual(8);
+  it("có nhiệm vụ, id không trùng", () => {
+    expect(SQL_MISSIONS.length).toBeGreaterThanOrEqual(8);
     expect(new Set(SQL_MISSION_IDS).size).toBe(SQL_MISSION_IDS.length);
   });
 
@@ -187,7 +186,8 @@ describe("nhiệm vụ", () => {
   });
 
   it("mỗi nhiệm vụ làm được bằng một câu viết khác câu tham chiếu", () => {
-    for (const m of SQL_MISSIONS) {
+    // Nhiệm vụ thêm sau có cách giải riêng trong tool-sql-missions.test.ts.
+    for (const m of SQL_MISSIONS.filter((x) => x.id in SOLUTIONS)) {
       const sql = SOLUTIONS[m.id];
       expect(sql, m.id).toBeTruthy();
       expect(m.check({ result: run(sql) }), m.id).toBe(true);

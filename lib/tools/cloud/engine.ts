@@ -26,11 +26,12 @@ export const REGION_IDS = Object.keys(REGIONS) as RegionId[];
 export type ImageId = "ubuntu" | "debian";
 export const IMAGE_IDS: ImageId[] = ["ubuntu", "debian"];
 
-export type VmSizeId = "nano" | "small" | "medium";
+export type VmSizeId = "nano" | "small" | "medium" | "large";
 export const VM_SIZES: Record<VmSizeId, { vcpu: number; ramGb: number; hourly: number }> = {
   nano: { vcpu: 1, ramGb: 0.5, hourly: 150 },
   small: { vcpu: 1, ramGb: 2, hourly: 400 },
   medium: { vcpu: 2, ramGb: 4, hourly: 800 },
+  large: { vcpu: 4, ramGb: 8, hourly: 1600 },
 };
 export const VM_SIZE_IDS = Object.keys(VM_SIZES) as VmSizeId[];
 
@@ -60,9 +61,11 @@ export const BUDGET_LIMIT = 500000;
 
 export const FIREWALL_PORTS = [22, 80, 443, 3306, 5432] as const;
 export type FirewallPort = (typeof FIREWALL_PORTS)[number];
-export type RuleSource = "anywhere" | "myIp";
+/** "internal" = mạng riêng của tài khoản (10.0.0.0/16): chỉ các máy bên trong gọi vào được. */
+export type RuleSource = "anywhere" | "myIp" | "internal";
 
 export const MY_IP = "113.160.24.87";
+export const INTERNAL_CIDR = "10.0.0.0/16";
 
 /** Những tên kho đã có người khác lấy - tên kho là duy nhất trên TOÀN hệ thống. */
 export const TAKEN_BUCKET_NAMES = [
@@ -100,6 +103,15 @@ export interface FirewallRule {
   source: RuleSource;
 }
 
+/** Khu khả dụng: hai trung tâm dữ liệu riêng bên trong một vùng. */
+export type Az = "a" | "b";
+export const AZ_IDS: Az[] = ["a", "b"];
+/** Mạng con công khai có đường ra Internet và IP công khai; mạng con riêng thì không. */
+export type Subnet = "public" | "private";
+
+export type Tags = Record<string, string>;
+export const MAX_TAGS = 5;
+
 export interface Vm {
   id: string;
   name: string;
@@ -114,6 +126,9 @@ export interface Vm {
   publicIp: string | null;
   privateIp: string;
   rules: FirewallRule[];
+  subnet: Subnet;
+  az: Az;
+  tags: Tags;
 }
 
 export interface BucketObject {
@@ -128,6 +143,9 @@ export interface Bucket {
   objects: BucketObject[];
   publicAccess: boolean;
   website: boolean;
+  /** Chặn truy cập công khai: bật là đè lên mọi cài đặt công khai khác của kho. */
+  blockPublicAccess: boolean;
+  tags: Tags;
 }
 
 export type DbStatus = "creating" | "available";
@@ -142,6 +160,107 @@ export interface Db {
   publiclyAccessible: boolean;
   status: DbStatus;
   statusSince: number;
+  /** Dữ liệu đã bị xoá nhầm/hỏng (bấm mô phỏng sự cố). Bản khôi phục từ ảnh chụp tốt thì sạch. */
+  dataLost: boolean;
+  tags: Tags;
+}
+
+/** Ảnh chụp thủ công: sống độc lập với cơ sở dữ liệu gốc, vẫn còn sau khi xoá nó. */
+export interface Snapshot {
+  id: string;
+  dbName: string;
+  engine: DbEngine;
+  size: DbSizeId;
+  region: RegionId;
+  backups: boolean;
+  at: number;
+  /** Lúc chụp dữ liệu còn nguyên. */
+  intact: boolean;
+}
+
+/** Ổ đĩa rời: gắn vào máy, và KHÔNG tự mất khi máy bị xoá. */
+export interface Volume {
+  id: string;
+  name: string;
+  region: RegionId;
+  attachedTo: string | null;
+  tags: Tags;
+}
+export const VOLUME_GB = 20;
+
+export type IamService = "storage" | "database" | "compute" | "billing";
+export type PolicyId =
+  | "admin-access"
+  | "storage-read"
+  | "storage-full"
+  | "database-read"
+  | "database-full"
+  | "compute-full"
+  | "billing-read";
+export const POLICY_IDS: PolicyId[] = [
+  "admin-access",
+  "storage-read",
+  "storage-full",
+  "database-read",
+  "database-full",
+  "compute-full",
+  "billing-read",
+];
+export const POLICIES: Record<PolicyId, { service: IamService | "*"; level: "read" | "full" }> = {
+  "admin-access": { service: "*", level: "full" },
+  "storage-read": { service: "storage", level: "read" },
+  "storage-full": { service: "storage", level: "full" },
+  "database-read": { service: "database", level: "read" },
+  "database-full": { service: "database", level: "full" },
+  "compute-full": { service: "compute", level: "full" },
+  "billing-read": { service: "billing", level: "read" },
+};
+export interface Identity {
+  name: string;
+  kind: "user" | "role";
+  policies: PolicyId[];
+  mfa: boolean;
+}
+
+export interface LoadBalancer {
+  id: string;
+  name: string;
+  region: RegionId;
+  targets: string[];
+  status: "provisioning" | "active";
+  statusSince: number;
+}
+export const LB_MONTHLY = 40000;
+export const LB_PROVISION_SECONDS = 3;
+
+export type LoadLevel = "normal" | "spike";
+/** Số yêu cầu mỗi giây mà một máy mỗi cỡ gánh được ở 100% CPU. */
+export const SIZE_CAPACITY: Record<VmSizeId, number> = { nano: 25, small: 50, medium: 100, large: 200 };
+/** Tổng lượng yêu cầu mỗi giây đang đổ vào dịch vụ. */
+export const LOAD_REQUESTS: Record<LoadLevel, number> = { normal: 40, spike: 150 };
+export const ASG_MAX_LIMIT = 6;
+export const ASG_COOLDOWN_SECONDS = 5;
+/** Dưới mức CPU này thì nhóm thu bớt máy (về tối thiểu). */
+export const ASG_SCALE_IN_CPU = 25;
+export const SNAPSHOT_MONTHLY = 3000;
+
+export interface AutoScalingGroup {
+  id: string;
+  name: string;
+  region: RegionId;
+  size: VmSizeId;
+  min: number;
+  max: number;
+  /** Quá ngưỡng CPU trung bình này thì thêm máy. */
+  scaleOutCpu: number;
+  /** Mỗi phần tử là giây đồng hồ lúc máy đó sẵn sàng nhận việc. */
+  instances: number[];
+  lastScaleAt: number;
+}
+
+export interface BudgetAlert {
+  limit: number;
+  thresholds: number[];
 }
 
 export type HistoryKind =
@@ -152,7 +271,15 @@ export type HistoryKind =
   | "bucket-created"
   | "bucket-deleted"
   | "db-created"
-  | "db-deleted";
+  | "db-deleted"
+  | "volume-created"
+  | "volume-attached"
+  | "volume-deleted"
+  | "snapshot-taken"
+  | "db-data-lost"
+  | "db-restored"
+  | "traffic-spike"
+  | "scaled-out";
 
 export interface HistoryEvent {
   kind: HistoryKind;
@@ -171,6 +298,15 @@ export interface CloudState {
   databases: Db[];
   keyPairs: string[];
   history: HistoryEvent[];
+  volumes: Volume[];
+  identities: Identity[];
+  lbs: LoadBalancer[];
+  asgs: AutoScalingGroup[];
+  snapshots: Snapshot[];
+  budgetAlert: BudgetAlert | null;
+  load: LoadLevel;
+  /** Khu đang giả lập mất điện: máy ở khu đó không phục vụ được. */
+  outageAz: Az | null;
 }
 
 export type CloudErrorCode =
@@ -187,7 +323,20 @@ export type CloudErrorCode =
   | "vmNotRunning"
   | "vmTerminated"
   | "ruleExists"
-  | "keyPairFormat";
+  | "keyPairFormat"
+  | "volumeInUse"
+  | "volumeNotAttached"
+  | "regionMismatch"
+  | "policyAttached"
+  | "mfaNotForRole"
+  | "targetExists"
+  | "dbNotAvailable"
+  | "asgRange"
+  | "asgThreshold"
+  | "tagFormat"
+  | "tagLimit"
+  | "budgetLimit"
+  | "budgetThresholds";
 
 export type Result = { ok: true; state: CloudState } | { ok: false; error: CloudErrorCode };
 
@@ -207,6 +356,14 @@ export function initialState(): CloudState {
     databases: [],
     keyPairs: [],
     history: [],
+    volumes: [],
+    identities: [],
+    lbs: [],
+    asgs: [],
+    snapshots: [],
+    budgetAlert: null,
+    load: "normal",
+    outageAz: null,
   };
 }
 
@@ -222,8 +379,8 @@ function publicIpFor(seq: number): string {
   return `203.0.113.${((seq * 37) % 250) + 2}`;
 }
 
-function privateIpFor(seq: number): string {
-  return `10.0.1.${((seq * 13) % 240) + 10}`;
+function privateIpFor(seq: number, subnet: Subnet = "public"): string {
+  return `10.0.${subnet === "public" ? 1 : 2}.${((seq * 13) % 240) + 10}`;
 }
 
 export function validateResourceName(name: string, existing: string[]): CloudErrorCode | null {
@@ -257,7 +414,13 @@ export type CostNote =
   | "websiteTraffic"
   | "dbInstance"
   | "dbStorage"
-  | "dbBackups";
+  | "dbBackups"
+  | "volumeAttached"
+  | "volumeOrphan"
+  | "lbBase"
+  | "asgInstances"
+  | "asgDisks"
+  | "dbSnapshot";
 
 export interface CostLine {
   service: CostService;
@@ -295,9 +458,14 @@ export function bucketBytes(b: Bucket): number {
   return b.objects.reduce((s, o) => s + o.sizeBytes, 0);
 }
 
-/** Trang web tĩnh thật sự mở được: bật hosting, cho phép truy cập công khai, có index.html. */
+/** Kho thật sự đọc được từ Internet: cho phép công khai VÀ không bị chặn truy cập công khai. */
+export function bucketIsPublic(b: Bucket): boolean {
+  return b.publicAccess && !b.blockPublicAccess;
+}
+
+/** Trang web tĩnh thật sự mở được: bật hosting, truy cập công khai không bị chặn, có index.html. */
 export function isLiveWebsite(b: Bucket): boolean {
-  return b.website && b.publicAccess && b.objects.some((o) => o.key === "index.html");
+  return b.website && bucketIsPublic(b) && b.objects.some((o) => o.key === "index.html");
 }
 
 export function costLines(state: CloudState): CostLine[] {
@@ -313,6 +481,25 @@ export function costLines(state: CloudState): CostLine[] {
       note: isBilledRunning(vm) ? "vmDisk" : "vmDiskStopped",
       monthly: diskMonthly(vm.region),
     });
+  }
+  for (const vol of state.volumes) {
+    lines.push({
+      service: "disk",
+      resourceId: vol.id,
+      note: vol.attachedTo ? "volumeAttached" : "volumeOrphan",
+      monthly: diskMonthly(vol.region),
+    });
+  }
+  for (const lb of state.lbs) {
+    lines.push({ service: "network", resourceId: lb.id, note: "lbBase", monthly: Math.round(LB_MONTHLY * REGIONS[lb.region].priceFactor) });
+  }
+  for (const g of state.asgs) {
+    if (g.instances.length === 0) continue;
+    lines.push({ service: "compute", resourceId: g.id, note: "asgInstances", monthly: g.instances.length * vmMonthly(g.size, g.region) });
+    lines.push({ service: "disk", resourceId: g.id, note: "asgDisks", monthly: g.instances.length * diskMonthly(g.region) });
+  }
+  for (const sn of state.snapshots) {
+    lines.push({ service: "database", resourceId: sn.id, note: "dbSnapshot", monthly: Math.round(SNAPSHOT_MONTHLY * REGIONS[sn.region].priceFactor) });
   }
   for (const b of state.buckets) {
     const f = REGIONS[b.region].priceFactor;
@@ -377,6 +564,10 @@ export interface LaunchVmInput {
   keyPair: string | null;
   ports: FirewallPort[];
   sshSource: RuleSource;
+  /** Mặc định: mạng con công khai. Mạng con riêng thì máy không có IP công khai. */
+  subnet?: Subnet;
+  /** Mặc định: khu a. */
+  az?: Az;
 }
 
 export function launchVm(state: CloudState, input: LaunchVmInput): Result {
@@ -390,6 +581,7 @@ export function launchVm(state: CloudState, input: LaunchVmInput): Result {
     if (!/^[a-z0-9][a-z0-9-]{0,31}$/.test(kp)) return fail("keyPairFormat");
     if (!keyPairs.includes(kp)) keyPairs = [...keyPairs, kp];
   }
+  const subnet: Subnet = input.subnet ?? "public";
   const seq = state.seq + 1;
   const rules: FirewallRule[] = [...new Set(input.ports)].map((port, i) => ({
     id: `sgr-${hex(seq * 16 + i, 6)}`,
@@ -406,9 +598,12 @@ export function launchVm(state: CloudState, input: LaunchVmInput): Result {
     state: "pending",
     stateSince: state.clock,
     runningSince: null,
-    publicIp: publicIpFor(seq),
-    privateIp: privateIpFor(seq),
+    publicIp: subnet === "private" ? null : publicIpFor(seq),
+    privateIp: privateIpFor(seq, subnet),
     rules,
+    subnet,
+    az: input.az ?? "a",
+    tags: {},
   };
   const next: CloudState = { ...state, seq, keyPairs, vms: [...state.vms, vm] };
   return ok(record(state, next, "vm-launched", vm.id));
@@ -438,7 +633,7 @@ export function startVm(state: CloudState, id: string): Result {
     ...v,
     state: "pending",
     stateSince: state.clock,
-    publicIp: publicIpFor(seq),
+    publicIp: vm.subnet === "private" ? null : publicIpFor(seq),
   }));
   return ok(record(state, next, "vm-started", id));
 }
@@ -447,13 +642,18 @@ export function terminateVm(state: CloudState, id: string): Result {
   const vm = state.vms.find((v) => v.id === id);
   if (!vm) return fail("notFound");
   if (vm.state === "terminated") return fail("vmTerminated");
-  const next = updateVm(state, id, (v) => ({
-    ...v,
-    state: "terminated",
-    stateSince: state.clock,
-    publicIp: null,
-    runningSince: null,
-  }));
+  // Ổ đĩa rời gắn vào máy thì được tháo ra và Ở LẠI - vẫn tính tiền, đúng như đám mây thật.
+  const next = updateVm(
+    { ...state, volumes: state.volumes.map((vol) => (vol.attachedTo === id ? { ...vol, attachedTo: null } : vol)) },
+    id,
+    (v) => ({
+      ...v,
+      state: "terminated",
+      stateSince: state.clock,
+      publicIp: null,
+      runningSince: null,
+    })
+  );
   return ok(record(state, next, "vm-terminated", id));
 }
 
@@ -483,7 +683,15 @@ export function createBucket(state: CloudState, name: string): Result {
   const n = name.trim();
   const err = validateBucketName(n, state);
   if (err) return fail(err);
-  const bucket: Bucket = { name: n, region: state.region, objects: [], publicAccess: false, website: false };
+  const bucket: Bucket = {
+    name: n,
+    region: state.region,
+    objects: [],
+    publicAccess: false,
+    website: false,
+    blockPublicAccess: false,
+    tags: {},
+  };
   return ok(record(state, { ...state, buckets: [...state.buckets, bucket] }, "bucket-created", n));
 }
 
@@ -512,6 +720,10 @@ export function setBucketPublic(state: CloudState, bucket: string, on: boolean):
   return updateBucket(state, bucket, (b) => ({ ...b, publicAccess: on }));
 }
 
+export function setBlockPublicAccess(state: CloudState, bucket: string, on: boolean): Result {
+  return updateBucket(state, bucket, (b) => ({ ...b, blockPublicAccess: on }));
+}
+
 export function setBucketWebsite(state: CloudState, bucket: string, on: boolean): Result {
   return updateBucket(state, bucket, (b) => ({ ...b, website: on }));
 }
@@ -535,7 +747,7 @@ export type WebsiteResponse = 200 | 403 | 404;
 /** Mở địa chỉ website của kho thì nhận được gì. */
 export function websiteResponse(b: Bucket): WebsiteResponse {
   if (!b.website) return 404;
-  if (!b.publicAccess) return 403;
+  if (!bucketIsPublic(b)) return 403;
   if (!b.objects.some((o) => o.key === "index.html")) return 404;
   return 200;
 }
@@ -565,6 +777,8 @@ export function createDatabase(state: CloudState, input: CreateDbInput): Result 
     publiclyAccessible: input.publiclyAccessible,
     status: "creating",
     statusSince: state.clock,
+    dataLost: false,
+    tags: {},
   };
   return ok(record(state, { ...state, seq, databases: [...state.databases, db] }, "db-created", db.id));
 }
@@ -589,6 +803,374 @@ export function dbEndpoint(db: Db): string {
   return `${db.name}.${db.id.slice(3)}.${REGIONS[db.region].zone}.db.nimbo.cloud:${DB_PORTS[db.engine]}`;
 }
 /* i18n-ignore-end */
+
+/* ------------------------------------------------------------------ ổ đĩa rời */
+
+export function createVolume(state: CloudState, name: string): Result {
+  const n = name.trim();
+  const err = validateResourceName(n, state.volumes.map((v) => v.name));
+  if (err) return fail(err);
+  const seq = state.seq + 1;
+  const vol: Volume = { id: `vol-${hex(seq * 69069, 6)}`, name: n, region: state.region, attachedTo: null, tags: {} };
+  return ok(record(state, { ...state, seq, volumes: [...state.volumes, vol] }, "volume-created", vol.id));
+}
+
+export function attachVolume(state: CloudState, volumeId: string, vmId: string): Result {
+  const vol = state.volumes.find((v) => v.id === volumeId);
+  const vm = state.vms.find((v) => v.id === vmId);
+  if (!vol || !vm) return fail("notFound");
+  if (vm.state === "terminated") return fail("vmTerminated");
+  if (vol.attachedTo) return fail("volumeInUse");
+  if (vol.region !== vm.region) return fail("regionMismatch");
+  const next = { ...state, volumes: state.volumes.map((v) => (v.id === volumeId ? { ...v, attachedTo: vmId } : v)) };
+  return ok(record(state, next, "volume-attached", volumeId));
+}
+
+export function detachVolume(state: CloudState, volumeId: string): Result {
+  const vol = state.volumes.find((v) => v.id === volumeId);
+  if (!vol) return fail("notFound");
+  if (!vol.attachedTo) return fail("volumeNotAttached");
+  return ok({ ...state, volumes: state.volumes.map((v) => (v.id === volumeId ? { ...v, attachedTo: null } : v)) });
+}
+
+export function deleteVolume(state: CloudState, volumeId: string): Result {
+  const vol = state.volumes.find((v) => v.id === volumeId);
+  if (!vol) return fail("notFound");
+  if (vol.attachedTo) return fail("volumeInUse");
+  const next = { ...state, volumes: state.volumes.filter((v) => v.id !== volumeId) };
+  return ok(record(state, next, "volume-deleted", volumeId));
+}
+
+export function orphanVolumes(state: CloudState): Volume[] {
+  return state.volumes.filter((v) => v.attachedTo === null);
+}
+
+/* ------------------------------------------------------------------ danh tính và quyền (IAM) */
+
+export function identityCan(i: Identity, service: IamService, level: "read" | "full"): boolean {
+  return i.policies.some((p) => {
+    const g = POLICIES[p];
+    return (g.service === "*" || g.service === service) && (g.level === "full" || level === "read");
+  });
+}
+
+/** Có quyền trên MỌI dịch vụ - tương đương chìa khoá vạn năng. */
+export function isAdmin(i: Identity): boolean {
+  return i.policies.some((p) => POLICIES[p].service === "*");
+}
+
+export function createIdentity(state: CloudState, kind: Identity["kind"], name: string): Result {
+  const n = name.trim();
+  const err = validateResourceName(n, state.identities.map((i) => i.name));
+  if (err) return fail(err);
+  return ok({ ...state, identities: [...state.identities, { name: n, kind, policies: [], mfa: false }] });
+}
+
+function updateIdentity(state: CloudState, name: string, fn: (i: Identity) => Identity | null): Result {
+  const found = state.identities.find((i) => i.name === name);
+  if (!found) return fail("notFound");
+  const out = fn(found);
+  if (!out) return fail("mfaNotForRole");
+  return ok({ ...state, identities: state.identities.map((i) => (i.name === name ? out : i)) });
+}
+
+export function attachPolicy(state: CloudState, name: string, policy: PolicyId): Result {
+  if (!(policy in POLICIES)) return fail("notFound");
+  const found = state.identities.find((i) => i.name === name);
+  if (found?.policies.includes(policy)) return fail("policyAttached");
+  return updateIdentity(state, name, (i) => ({ ...i, policies: [...i.policies, policy] }));
+}
+
+export function detachPolicy(state: CloudState, name: string, policy: PolicyId): Result {
+  const found = state.identities.find((i) => i.name === name);
+  if (found && !found.policies.includes(policy)) return fail("notFound");
+  return updateIdentity(state, name, (i) => ({ ...i, policies: i.policies.filter((p) => p !== policy) }));
+}
+
+export function setMfa(state: CloudState, name: string, on: boolean): Result {
+  return updateIdentity(state, name, (i) => (i.kind === "user" ? { ...i, mfa: on } : null));
+}
+
+export function deleteIdentity(state: CloudState, name: string): Result {
+  if (!state.identities.some((i) => i.name === name)) return fail("notFound");
+  return ok({ ...state, identities: state.identities.filter((i) => i.name !== name) });
+}
+
+/* ------------------------------------------------------------------ cân bằng tải */
+
+export function createLoadBalancer(state: CloudState, name: string): Result {
+  const n = name.trim();
+  const err = validateResourceName(n, state.lbs.map((l) => l.name));
+  if (err) return fail(err);
+  const seq = state.seq + 1;
+  const lb: LoadBalancer = {
+    id: `lb-${hex(seq * 31337, 6)}`,
+    name: n,
+    region: state.region,
+    targets: [],
+    status: "provisioning",
+    statusSince: state.clock,
+  };
+  return ok({ ...state, seq, lbs: [...state.lbs, lb] });
+}
+
+function updateLb(state: CloudState, id: string, fn: (l: LoadBalancer) => Result | LoadBalancer): Result {
+  const lb = state.lbs.find((l) => l.id === id);
+  if (!lb) return fail("notFound");
+  const out = fn(lb);
+  if ("ok" in out) return out;
+  return ok({ ...state, lbs: state.lbs.map((l) => (l.id === id ? out : l)) });
+}
+
+export function addTarget(state: CloudState, lbId: string, vmId: string): Result {
+  const vm = state.vms.find((v) => v.id === vmId);
+  if (!vm) return fail("notFound");
+  if (vm.state === "terminated") return fail("vmTerminated");
+  return updateLb(state, lbId, (lb) => {
+    if (lb.targets.includes(vmId)) return fail("targetExists");
+    if (lb.region !== vm.region) return fail("regionMismatch");
+    return { ...lb, targets: [...lb.targets, vmId] };
+  });
+}
+
+export function removeTarget(state: CloudState, lbId: string, vmId: string): Result {
+  return updateLb(state, lbId, (lb) => (lb.targets.includes(vmId) ? { ...lb, targets: lb.targets.filter((t) => t !== vmId) } : fail("notFound")));
+}
+
+export function deleteLoadBalancer(state: CloudState, lbId: string): Result {
+  if (!state.lbs.some((l) => l.id === lbId)) return fail("notFound");
+  return ok({ ...state, lbs: state.lbs.filter((l) => l.id !== lbId) });
+}
+
+/** Giả lập mất điện cả một khu khả dụng (hoặc null = hết sự cố). */
+export function setOutage(state: CloudState, az: Az | null): CloudState {
+  return { ...state, outageAz: az };
+}
+
+/** Máy đạt kiểm tra sức khoẻ: đang chạy, không nằm ở khu mất điện, và cổng 80 mở cho bộ cân bằng tải. */
+export function targetHealthy(state: CloudState, vm: Vm): boolean {
+  return (
+    vm.state === "running" &&
+    state.outageAz !== vm.az &&
+    vm.rules.some((r) => r.port === 80 && (r.source === "anywhere" || r.source === "internal"))
+  );
+}
+
+export function lbTargets(state: CloudState, lb: LoadBalancer): Vm[] {
+  return lb.targets.map((id) => state.vms.find((v) => v.id === id)).filter((v): v is Vm => !!v && v.state !== "terminated");
+}
+
+export function lbHealthyTargets(state: CloudState, lb: LoadBalancer): Vm[] {
+  return lbTargets(state, lb).filter((v) => targetHealthy(state, v));
+}
+
+/** Khách gọi vào bộ cân bằng tải thì nhận 200 (có máy khoẻ nhận việc) hay 503 (không máy nào). */
+export function lbResponse(state: CloudState, lb: LoadBalancer): 200 | 503 {
+  return lb.status === "active" && lbHealthyTargets(state, lb).length > 0 ? 200 : 503;
+}
+
+/** Vẫn phục vụ được dù MỘT khu bất kỳ mất điện - phép thử dự phòng thật sự. */
+export function lbSurvivesAnyZoneOutage(state: CloudState, lb: LoadBalancer): boolean {
+  return AZ_IDS.every((az) => lbResponse({ ...state, outageAz: az }, lb) === 200);
+}
+
+/* ------------------------------------------------------------------ tự mở rộng */
+
+export interface CreateAsgInput {
+  name: string;
+  size: VmSizeId;
+  min: number;
+  max: number;
+  scaleOutCpu: number;
+}
+
+export function createAutoScalingGroup(state: CloudState, input: CreateAsgInput): Result {
+  const name = input.name.trim();
+  const err = validateResourceName(name, state.asgs.map((g) => g.name));
+  if (err) return fail(err);
+  const { min, max, scaleOutCpu } = input;
+  if (!Number.isInteger(min) || !Number.isInteger(max) || min < 1 || max < min || max > ASG_MAX_LIMIT) return fail("asgRange");
+  if (!Number.isInteger(scaleOutCpu) || scaleOutCpu < 30 || scaleOutCpu > 90) return fail("asgThreshold");
+  const seq = state.seq + 1;
+  const g: AutoScalingGroup = {
+    id: `asg-${hex(seq * 48271, 6)}`,
+    name,
+    region: state.region,
+    size: input.size,
+    min,
+    max,
+    scaleOutCpu,
+    instances: Array.from({ length: min }, () => state.clock + PENDING_SECONDS),
+    lastScaleAt: state.clock,
+  };
+  return ok(record(state, { ...state, seq, asgs: [...state.asgs, g] }, "vm-launched", g.id));
+}
+
+export function deleteAutoScalingGroup(state: CloudState, id: string): Result {
+  if (!state.asgs.some((g) => g.id === id)) return fail("notFound");
+  return ok({ ...state, asgs: state.asgs.filter((g) => g.id !== id) });
+}
+
+/** Đổi mức tải đổ vào dịch vụ: bình thường hoặc đột biến (chiến dịch, flash sale). */
+export function setLoad(state: CloudState, load: LoadLevel): CloudState {
+  const next = { ...state, load };
+  return load === "spike" && state.load !== "spike" ? record(state, next, "traffic-spike", "load") : next;
+}
+
+export function asgReady(g: AutoScalingGroup, clock: number): number {
+  return g.instances.filter((t) => t <= clock).length;
+}
+
+/** % CPU trung bình của nhóm: tải chia đều cho các máy ĐÃ sẵn sàng. */
+export function asgCpu(state: CloudState, g: AutoScalingGroup): number {
+  const ready = asgReady(g, state.clock);
+  if (ready === 0) return 100;
+  return Math.min(100, Math.round((LOAD_REQUESTS[state.load] / (ready * SIZE_CAPACITY[g.size])) * 100));
+}
+
+/* ------------------------------------------------------------------ thẻ chi phí */
+
+export type TaggableKind = "vm" | "bucket" | "db" | "volume";
+
+const TAG_KEY = /^[a-z][a-z0-9-]{0,19}$/;
+const TAG_VALUE = /^[a-z0-9][a-z0-9-]{0,29}$/;
+
+function mapTags(state: CloudState, kind: TaggableKind, id: string, fn: (t: Tags) => Tags | null): Result {
+  let found = false;
+  let failed = false;
+  const apply = <T extends { tags: Tags }>(item: T): T => {
+    found = true;
+    const out = fn(item.tags);
+    if (!out) {
+      failed = true;
+      return item;
+    }
+    return { ...item, tags: out };
+  };
+  const next: CloudState =
+    kind === "vm"
+      ? { ...state, vms: state.vms.map((x) => (x.id === id ? apply(x) : x)) }
+      : kind === "bucket"
+        ? { ...state, buckets: state.buckets.map((x) => (x.name === id ? apply(x) : x)) }
+        : kind === "db"
+          ? { ...state, databases: state.databases.map((x) => (x.id === id ? apply(x) : x)) }
+          : { ...state, volumes: state.volumes.map((x) => (x.id === id ? apply(x) : x)) };
+  if (!found) return fail("notFound");
+  if (failed) return fail("tagLimit");
+  return ok(next);
+}
+
+export function setTag(state: CloudState, kind: TaggableKind, id: string, key: string, value: string): Result {
+  const k = key.trim();
+  const v = value.trim();
+  if (!TAG_KEY.test(k) || !TAG_VALUE.test(v)) return fail("tagFormat");
+  return mapTags(state, kind, id, (tags) => (k in tags || Object.keys(tags).length < MAX_TAGS ? { ...tags, [k]: v } : null));
+}
+
+export function removeTag(state: CloudState, kind: TaggableKind, id: string, key: string): Result {
+  return mapTags(state, kind, id, (tags) => Object.fromEntries(Object.entries(tags).filter(([k]) => k !== key)));
+}
+
+/** Mọi tài nguyên gắn thẻ được còn sống: máy, kho, cơ sở dữ liệu, ổ đĩa rời. */
+export function taggableResources(state: CloudState): { kind: TaggableKind; id: string; tags: Tags }[] {
+  return [
+    ...liveVms(state).map((v) => ({ kind: "vm" as const, id: v.id, tags: v.tags })),
+    ...state.buckets.map((b) => ({ kind: "bucket" as const, id: b.name, tags: b.tags })),
+    ...state.databases.map((d) => ({ kind: "db" as const, id: d.id, tags: d.tags })),
+    ...state.volumes.map((v) => ({ kind: "volume" as const, id: v.id, tags: v.tags })),
+  ];
+}
+
+/** Hoá đơn gộp theo giá trị của một thẻ. Khoản không có thẻ rơi vào khoá "" (không rõ chủ). */
+export function costByTag(state: CloudState, key: string): Record<string, number> {
+  const owner = new Map(taggableResources(state).map((r) => [r.id, r.tags[key] ?? ""]));
+  const out: Record<string, number> = {};
+  for (const l of costLines(state)) {
+    const v = owner.get(l.resourceId) ?? "";
+    out[v] = (out[v] ?? 0) + l.monthly;
+  }
+  return out;
+}
+
+/* ------------------------------------------------------------------ ảnh chụp và khôi phục */
+
+export function takeSnapshot(state: CloudState, dbId: string): Result {
+  const db = state.databases.find((d) => d.id === dbId);
+  if (!db) return fail("notFound");
+  if (db.status !== "available") return fail("dbNotAvailable");
+  const seq = state.seq + 1;
+  const snap: Snapshot = {
+    id: `snap-${hex(seq * 52711, 6)}`,
+    dbName: db.name,
+    engine: db.engine,
+    size: db.size,
+    region: db.region,
+    backups: db.backups,
+    at: state.clock,
+    intact: !db.dataLost,
+  };
+  return ok(record(state, { ...state, seq, snapshots: [...state.snapshots, snap] }, "snapshot-taken", snap.id));
+}
+
+export function deleteSnapshot(state: CloudState, snapId: string): Result {
+  if (!state.snapshots.some((x) => x.id === snapId)) return fail("notFound");
+  return ok({ ...state, snapshots: state.snapshots.filter((x) => x.id !== snapId) });
+}
+
+/** Mô phỏng sự cố: ai đó chạy lệnh xoá không có điều kiện lọc. */
+export function simulateDataLoss(state: CloudState, dbId: string): Result {
+  const db = state.databases.find((d) => d.id === dbId);
+  if (!db) return fail("notFound");
+  if (db.status !== "available") return fail("dbNotAvailable");
+  const next = { ...state, databases: state.databases.map((d) => (d.id === dbId ? { ...d, dataLost: true } : d)) };
+  return ok(record(state, next, "db-data-lost", dbId));
+}
+
+/** Khôi phục LUÔN tạo một cơ sở dữ liệu MỚI từ ảnh chụp, không ghi đè cái cũ. */
+export function restoreDatabase(state: CloudState, snapId: string, newName: string): Result {
+  const snap = state.snapshots.find((x) => x.id === snapId);
+  if (!snap) return fail("notFound");
+  const name = newName.trim();
+  const err = validateResourceName(name, state.databases.map((d) => d.name));
+  if (err) return fail(err);
+  const seq = state.seq + 1;
+  const db: Db = {
+    id: `db-${hex(seq * 40503, 6)}`,
+    name,
+    region: snap.region,
+    engine: snap.engine,
+    size: snap.size,
+    backups: snap.backups,
+    publiclyAccessible: false,
+    status: "creating",
+    statusSince: state.clock,
+    dataLost: !snap.intact,
+    tags: {},
+  };
+  return ok(record(state, { ...state, seq, databases: [...state.databases, db] }, "db-restored", db.id));
+}
+
+/* ------------------------------------------------------------------ cảnh báo ngân sách */
+
+export function setBudgetAlert(state: CloudState, limit: number, thresholds: number[]): Result {
+  if (!Number.isInteger(limit) || limit < 1000 || limit > 100_000_000) return fail("budgetLimit");
+  const set = [...new Set(thresholds)].sort((a, b) => a - b);
+  if (set.length === 0 || set.length > 5 || set.some((t) => !Number.isInteger(t) || t < 1 || t > 100)) return fail("budgetThresholds");
+  return ok({ ...state, budgetAlert: { limit, thresholds: set } });
+}
+
+export function clearBudgetAlert(state: CloudState): CloudState {
+  return { ...state, budgetAlert: null };
+}
+
+/** Ngưỡng cao nhất đã chạm (theo % ngân sách của cảnh báo), hoặc null. */
+export function budgetAlertReached(state: CloudState): number | null {
+  const a = state.budgetAlert;
+  if (!a) return null;
+  const pct = (monthlyTotal(state) / a.limit) * 100;
+  const hit = a.thresholds.filter((t) => pct >= t);
+  return hit.length ? Math.max(...hit) : null;
+}
 
 /* ------------------------------------------------------------------ thời gian */
 
@@ -618,7 +1200,28 @@ function tickOnce(state: CloudState): CloudState {
       ? { ...d, status: "available", statusSince: clock }
       : d
   );
-  return { ...state, clock, vms, databases };
+  const lbs = state.lbs.map((l): LoadBalancer =>
+    l.status === "provisioning" && clock - l.statusSince >= LB_PROVISION_SECONDS ? { ...l, status: "active", statusSince: clock } : l
+  );
+  let next: CloudState = { ...state, clock, vms, databases, lbs };
+  for (const g of state.asgs) next = scaleGroup(next, g.id);
+  return next;
+}
+
+/** Một lượt đánh giá chính sách: CPU vượt ngưỡng thì thêm máy, rảnh quá thì bớt, có thời gian nghỉ giữa hai lần. */
+function scaleGroup(state: CloudState, id: string): CloudState {
+  const g = state.asgs.find((x) => x.id === id);
+  if (!g || state.clock - g.lastScaleAt < ASG_COOLDOWN_SECONDS) return state;
+  const cpu = asgCpu(state, g);
+  const put = (ng: AutoScalingGroup) => ({ ...state, asgs: state.asgs.map((x) => (x.id === id ? ng : x)) });
+  if (cpu > g.scaleOutCpu && g.instances.length < g.max) {
+    const ng = { ...g, instances: [...g.instances, state.clock + PENDING_SECONDS], lastScaleAt: state.clock };
+    return record(state, put(ng), "scaled-out", id);
+  }
+  if (cpu < ASG_SCALE_IN_CPU && g.instances.length > g.min) {
+    return put({ ...g, instances: g.instances.slice(0, -1), lastScaleAt: state.clock });
+  }
+  return state;
 }
 
 /* ------------------------------------------------------------------ giám sát */
@@ -645,7 +1248,7 @@ function seedOf(id: string): number {
 export function cpuSeries(vm: Vm, clock: number, points = 30): (number | null)[] {
   const seed = seedOf(vm.id);
   const serving = vm.rules.some((r) => r.port === 80 || r.port === 443);
-  const base = (vm.size === "nano" ? 22 : vm.size === "small" ? 14 : 8) + (serving ? 10 : 0);
+  const base = (vm.size === "nano" ? 22 : vm.size === "small" ? 14 : vm.size === "medium" ? 8 : 5) + (serving ? 10 : 0);
   const out: (number | null)[] = [];
   for (let t = clock - points + 1; t <= clock; t++) {
     if (vm.runningSince === null || t < vm.runningSince) {
@@ -669,7 +1272,12 @@ export type Warning =
   | { kind: "dbPortOpenWorld"; vmId: string; port: FirewallPort }
   | { kind: "dbPublic"; dbId: string }
   | { kind: "dbNoBackups"; dbId: string }
-  | { kind: "overBudget"; total: number };
+  | { kind: "overBudget"; total: number }
+  | { kind: "identityAdmin"; name: string }
+  | { kind: "userNoMfa"; name: string }
+  | { kind: "orphanVolume"; volumeId: string }
+  | { kind: "lbSingleZone"; lbId: string }
+  | { kind: "budgetAlert"; pct: number; total: number };
 
 export function warnings(state: CloudState): Warning[] {
   const out: Warning[] = [];
@@ -685,7 +1293,18 @@ export function warnings(state: CloudState): Warning[] {
     if (db.publiclyAccessible) out.push({ kind: "dbPublic", dbId: db.id });
     if (!db.backups) out.push({ kind: "dbNoBackups", dbId: db.id });
   }
+  for (const i of state.identities) {
+    if (isAdmin(i)) out.push({ kind: "identityAdmin", name: i.name });
+    if (i.kind === "user" && !i.mfa) out.push({ kind: "userNoMfa", name: i.name });
+  }
+  for (const v of orphanVolumes(state)) out.push({ kind: "orphanVolume", volumeId: v.id });
+  for (const lb of state.lbs) {
+    const zones = new Set(lbHealthyTargets(state, lb).map((v) => v.az));
+    if (lb.targets.length > 0 && zones.size < 2) out.push({ kind: "lbSingleZone", lbId: lb.id });
+  }
   const total = monthlyTotal(state);
+  const reached = budgetAlertReached(state);
+  if (reached !== null) out.push({ kind: "budgetAlert", pct: reached, total });
   if (total > BUDGET_LIMIT) out.push({ kind: "overBudget", total });
   return out;
 }
@@ -707,5 +1326,22 @@ export function parseState(raw: unknown): CloudState | null {
   ) {
     return null;
   }
-  return s as CloudState;
+  // Trạng thái lưu từ phiên bản cũ chưa có các trường mới: điền mặc định thay vì bỏ.
+  const base = initialState();
+  const arr = <T,>(v: unknown): T[] => (Array.isArray(v) ? (v as T[]) : []);
+  return {
+    ...base,
+    ...(s as CloudState),
+    vms: (s.vms as Partial<Vm>[]).map((v) => ({ subnet: "public", az: "a", tags: {}, ...v }) as Vm),
+    buckets: (s.buckets as Partial<Bucket>[]).map((b) => ({ blockPublicAccess: false, tags: {}, ...b }) as Bucket),
+    databases: (s.databases as Partial<Db>[]).map((d) => ({ dataLost: false, tags: {}, ...d }) as Db),
+    volumes: arr<Partial<Volume>>(s.volumes).map((v) => ({ tags: {}, ...v }) as Volume),
+    identities: arr<Identity>(s.identities),
+    lbs: arr<LoadBalancer>(s.lbs),
+    asgs: arr<AutoScalingGroup>(s.asgs),
+    snapshots: arr<Snapshot>(s.snapshots),
+    budgetAlert: s.budgetAlert ?? null,
+    load: s.load === "spike" ? "spike" : "normal",
+    outageAz: s.outageAz === "a" || s.outageAz === "b" ? s.outageAz : null,
+  };
 }

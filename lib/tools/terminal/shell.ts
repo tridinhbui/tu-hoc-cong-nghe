@@ -27,7 +27,26 @@ import {
   mkDir,
 } from "./fs";
 import { BIN_COMMANDS, BUILTIN_COMMANDS } from "./seed";
-import { GIT_SUBCOMMANDS, branchNames, git } from "./git";
+import {
+  cmdAssign,
+  cmdCut,
+  cmdDig,
+  cmdEnv,
+  cmdExport,
+  cmdHost,
+  cmdKill,
+  cmdNslookup,
+  cmdPing,
+  cmdPrintenv,
+  cmdPrintf,
+  cmdPs,
+  cmdSort,
+  cmdUniq,
+  cmdUnset,
+  isAssignment,
+  lookupVar,
+} from "./extras";
+import { GIT_TAB_SUBCOMMANDS, branchNames, git } from "./git";
 import { DOCKER_SUBCOMMANDS, curl, docker } from "./docker";
 import type { CmdResult, Ctx, DirNode, FsNode, NoticeId, OutputLine, RunResult, Span, TermState } from "./types";
 import { formatLsDate, formatUnixDate, splitLines } from "./util";
@@ -49,12 +68,17 @@ interface Pipeline {
   join: "&&" | ";" | "||";
 }
 
-function envValue(state: TermState, name: string): string {
-  const env: Record<string, string> = { HOME, USER, PWD: state.cwd, SHELL: "/bin/bash", HOSTNAME: HOST, OLDPWD: state.oldCwd };
-  return env[name] ?? "";
+/** `$TÊN` được giữ dưới dạng dấu hiệu rồi mới thay giá trị lúc chạy từng lệnh,
+ *  để `export A=1 && echo $A` thấy A vừa gán. */
+function varMark(name: string): string {
+  return `\u0001${name}\u0002`;
 }
 
-function tokenize(state: TermState, line: string): Token[] | string {
+function expandVars(state: TermState, text: string): string {
+  return text.replace(/\u0001([A-Za-z_][A-Za-z0-9_]*)\u0002/g, (_m, n: string) => lookupVar(state, n));
+}
+
+function tokenize(line: string): Token[] | string {
   const tokens: Token[] = [];
   let i = 0;
   while (i < line.length) {
@@ -95,7 +119,7 @@ function tokenize(state: TermState, line: string): Token[] | string {
           } else if (line[j] === "$") {
             const m = /^\$\{?([A-Za-z_][A-Za-z0-9_]*)\}?/.exec(line.slice(j));
             if (m) {
-              chunk += envValue(state, m[1]);
+              chunk += varMark(m[1]);
               j += m[0].length;
             } else chunk += line[j++];
           } else chunk += line[j++];
@@ -109,7 +133,7 @@ function tokenize(state: TermState, line: string): Token[] | string {
       } else if (c === "$") {
         const m = /^\$\{?([A-Za-z_][A-Za-z0-9_]*)\}?/.exec(line.slice(i));
         if (m) {
-          value += envValue(state, m[1]);
+          value += varMark(m[1]);
           i += m[0].length;
         } else value += line[i++];
       } else if (c === "~" && first && (i + 1 >= line.length || " \t/".includes(line[i + 1]))) {
@@ -642,6 +666,8 @@ function cmdFind(ctx: Ctx, args: string[]): CmdResult {
   }
   let name: RegExp | null = null;
   let type: "f" | "d" | null = null;
+  let mtime: { op: "+" | "-" | "="; days: number } | null = null;
+  let del = false;
   for (; i < args.length; i++) {
     const a = args[i];
     if (a === "-name" || a === "-iname") {
@@ -653,19 +679,42 @@ function cmdFind(ctx: Ctx, args: string[]): CmdResult {
       const v = args[++i];
       if (v !== "f" && v !== "d") return fail(`find: Unknown argument to -type: ${v ?? ""}`);
       type = v;
-    } else return fail(`find: unknown predicate \`${a}'`);
+    } else if (a === "-mtime") {
+      const v = args[++i];
+      const m = /^([+-]?)(\d+)$/.exec(v ?? "");
+      if (!m) return fail(`find: invalid argument \`${v ?? ""}' to \`-mtime'`);
+      mtime = { op: m[1] === "+" ? "+" : m[1] === "-" ? "-" : "=", days: Number(m[2]) };
+    } else if (a === "-delete") del = true;
+    else return fail(`find: unknown predicate \`${a}'`);
   }
   const abs = resolvePath(ctx.state.cwd, start);
   const root = getNode(ctx.state.root, abs);
   if (!root) return fail(`find: '${start}': No such file or directory`);
   const out: string[] = [];
+  const doomed: string[] = [];
+  const ageDays = (n: FsNode) => Math.floor((ctx.now - n.mtime) / 86400000);
   const visit = (node: FsNode, path: string, nm: string) => {
     const typeOk = !type || (type === "d" ? node.type === "dir" : node.type === "file");
-    if (typeOk && (!name || name.test(nm))) out.push(path);
+    const ageOk = !mtime || (mtime.op === "+" ? ageDays(node) > mtime.days : mtime.op === "-" ? ageDays(node) < mtime.days : ageDays(node) === mtime.days);
+    if (typeOk && ageOk && (!name || name.test(nm))) {
+      out.push(path);
+      doomed.push(path);
+    }
     if (node.type === "dir")
       for (const child of Object.keys(node.children).sort()) visit(node.children[child], `${path.replace(/\/$/, "")}/${child}`, child);
   };
   visit(root, start, baseName(abs));
+  if (del) {
+    // xoá sâu nhất trước, như find -delete (tự bật -depth)
+    const err: string[] = [];
+    for (const p of [...doomed].reverse()) {
+      const target = resolvePath(ctx.state.cwd, p);
+      const n = getNode(ctx.state.root, target);
+      if (n?.type === "dir" && Object.keys(n.children).length) err.push(`find: cannot delete '${p}': Directory not empty`);
+      else if (target !== "/") removeNode(ctx.state.root, target);
+    }
+    return { out: [], err, code: err.length ? 1 : 0 };
+  }
   return ok(out);
 }
 
@@ -779,8 +828,19 @@ function execSimple(ctx: Ctx, argv: string[], stdin: string | undefined, depth: 
     if (!args.length) return fail(["usage: sudo -h | -K | -k | -V", "usage: sudo [-u user] command"]);
   }
   if (args[0] === "ll") args = ["ls", "-alF", ...args.slice(1)];
-  const [cmd, ...rest] = args;
   const s = ctx.state;
+  // NAME=giá trị đứng đầu: một mình thì gán biến, đi kèm lệnh thì chỉ có hiệu lực cho lệnh đó
+  const lead = args.findIndex((a) => !isAssignment(a));
+  if (lead !== 0 && args.length) {
+    if (lead < 0) return cmdAssign(ctx, args);
+    const saved = s.env ? { ...s.env } : undefined;
+    s.env ??= {};
+    for (const w of args.slice(0, lead)) s.env[w.slice(0, w.indexOf("="))] = w.slice(w.indexOf("=") + 1);
+    const res = execSimple(ctx, args.slice(lead), stdin, depth);
+    s.env = saved ?? {};
+    return res;
+  }
+  const [cmd, ...rest] = args;
   if (cmd.includes("/") || cmd === "bash" || cmd === "sh") {
     const scriptPath = cmd.includes("/") ? cmd : rest[0];
     if (!scriptPath) return ok();
@@ -789,7 +849,15 @@ function execSimple(ctx: Ctx, argv: string[], stdin: string | undefined, depth: 
     if (node.type === "dir") return fail(`bash: ${scriptPath}: Is a directory`, 126);
     if (cmd.includes("/") && !isExecutable(node)) return fail(`bash: ${scriptPath}: Permission denied`, 126);
     if (depth > 3) return ok();
-    return runScript(ctx, node.content, depth);
+    // chương trình con: chỉ thấy biến đã export, và không làm đổi thư mục / biến của shell cha
+    const saved = { vars: s.vars, env: s.env ? { ...s.env } : undefined, cwd: s.cwd, oldCwd: s.oldCwd };
+    s.vars = {};
+    const res = runScript(ctx, node.content, depth);
+    s.vars = saved.vars;
+    s.env = saved.env;
+    s.cwd = saved.cwd;
+    s.oldCwd = saved.oldCwd;
+    return res;
   }
   switch (cmd) {
     case "pwd":
@@ -863,6 +931,34 @@ function execSimple(ctx: Ctx, argv: string[], stdin: string | undefined, depth: 
       return docker(ctx, rest);
     case "curl":
       return curl(ctx, rest);
+    case "sort":
+      return cmdSort(ctx, rest, stdin, (p) => resolvePath(s.cwd, p));
+    case "uniq":
+      return cmdUniq(ctx, rest, stdin, (p) => resolvePath(s.cwd, p));
+    case "cut":
+      return cmdCut(ctx, rest, stdin, (p) => resolvePath(s.cwd, p));
+    case "printf":
+      return cmdPrintf(rest);
+    case "export":
+      return cmdExport(ctx, rest);
+    case "unset":
+      return cmdUnset(ctx, rest);
+    case "env":
+      return cmdEnv(ctx);
+    case "printenv":
+      return cmdPrintenv(ctx, rest);
+    case "ps":
+      return cmdPs(ctx, rest);
+    case "kill":
+      return cmdKill(ctx, rest);
+    case "dig":
+      return cmdDig(ctx, rest);
+    case "nslookup":
+      return cmdNslookup(rest);
+    case "host":
+      return cmdHost(rest);
+    case "ping":
+      return cmdPing(rest);
     default:
       if (EDITORS.includes(cmd)) return { out: [], err: [], code: 1, notices: ["noEditor"] };
       return fail(`${cmd}: command not found`, 127);
@@ -875,9 +971,14 @@ function logName(args: string[]): string {
   return a[0] ?? "";
 }
 
+function logArgs(args: string[]): string[] {
+  const a = args[0] === "sudo" ? args.slice(1) : args;
+  return a.slice(1, 13);
+}
+
 function execLine(ctx: Ctx, line: string, depth: number): ExecOut {
   const res: ExecOut = { lines: [], notices: [], clear: false, code: 0 };
-  const tokens = tokenize(ctx.state, line);
+  const tokens = tokenize(line);
   if (typeof tokens === "string") {
     res.lines.push(plain(tokens, true));
     res.code = 2;
@@ -896,11 +997,12 @@ function execLine(ctx: Ctx, line: string, depth: number): ExecOut {
     for (let ci = 0; ci < pl.cmds.length; ci++) {
       const sc = pl.cmds[ci];
       const last = ci === pl.cmds.length - 1;
-      const args = sc.args.flatMap((a, i) => (sc.globs[i] ? expandGlob(ctx.state, a) : [a]));
-      if (sc.input !== undefined) {
-        const node = getNode(ctx.state.root, resolvePath(ctx.state.cwd, sc.input));
+      const args = sc.args.flatMap((a, i) => (sc.globs[i] ? expandGlob(ctx.state, expandVars(ctx.state, a)) : [expandVars(ctx.state, a)]));
+      const inputPath = sc.input === undefined ? undefined : expandVars(ctx.state, sc.input);
+      if (inputPath !== undefined) {
+        const node = getNode(ctx.state.root, resolvePath(ctx.state.cwd, inputPath));
         if (!node || node.type !== "file") {
-          res.lines.push(plain(`bash: ${sc.input}: ${node ? "Is a directory" : "No such file or directory"}`, true));
+          res.lines.push(plain(`bash: ${inputPath}: ${node ? "Is a directory" : "No such file or directory"}`, true));
           res.code = 1;
           break;
         }
@@ -917,15 +1019,16 @@ function execLine(ctx: Ctx, line: string, depth: number): ExecOut {
         res.lines = [];
       }
       if (sc.redirect) {
-        const abs = resolvePath(ctx.state.cwd, sc.redirect.path);
+        const target = expandVars(ctx.state, sc.redirect.path);
+        const abs = resolvePath(ctx.state.cwd, target);
         const node = getNode(ctx.state.root, abs);
         if (node?.type === "dir") {
-          res.lines.push(plain(`bash: ${sc.redirect.path}: Is a directory`, true));
+          res.lines.push(plain(`bash: ${target}: Is a directory`, true));
           code = 1;
         } else {
           const prev = sc.redirect.append && node?.type === "file" ? node.content : "";
           if (!writeFile(ctx.state.root, abs, prev + toContent(r.out), ctx.now)) {
-            res.lines.push(plain(`bash: ${sc.redirect.path}: No such file or directory`, true));
+            res.lines.push(plain(`bash: ${target}: No such file or directory`, true));
             code = 1;
           }
         }
@@ -936,7 +1039,7 @@ function execLine(ctx: Ctx, line: string, depth: number): ExecOut {
       } else {
         stdin = toContent(r.out);
       }
-      ctx.state.log.push({ seq: ctx.state.seq, cmd: logName(args), cwd: cwdBefore, code, redirect: !!sc.redirect || undefined });
+      ctx.state.log.push({ seq: ctx.state.seq, cmd: logName(args), cwd: cwdBefore, code, redirect: !!sc.redirect || undefined, args: logArgs(args) });
       res.code = code;
     }
   }
@@ -983,7 +1086,7 @@ export function complete(state: TermState, line: string): Completion {
   if (!words.length && !partial.includes("/")) {
     candidates = fromList([...new Set([...BIN_COMMANDS, ...BUILTIN_COMMANDS])].sort());
   } else if (words[0] === "git" && words.length === 1) {
-    candidates = fromList(GIT_SUBCOMMANDS);
+    candidates = fromList(GIT_TAB_SUBCOMMANDS);
   } else if (words[0] === "docker" && words.length === 1) {
     candidates = fromList(DOCKER_SUBCOMMANDS);
   } else if (words[0] === "git" && ["checkout", "switch", "merge", "branch"].includes(words[1] ?? "") && !partial.includes("/")) {

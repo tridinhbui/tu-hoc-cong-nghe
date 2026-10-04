@@ -21,7 +21,12 @@ export type CollectionId =
   | "me"
   | "patchPrice"
   | "deleteProduct"
-  | "reports";
+  | "reports"
+  | "partnerInventory"
+  | "exports"
+  | "createOrder"
+  | "adminStats"
+  | "v2Products";
 
 export function emptyDraft(): RequestDraft {
   return {
@@ -74,6 +79,19 @@ export const COLLECTION: { id: CollectionId; request: RequestDraft }[] = [
   },
   { id: "deleteProduct", request: draft({ method: "DELETE", url: `${BASE_URL}/products/6` }) },
   { id: "reports", request: draft({ url: `${BASE_URL}/reports` }) },
+  { id: "partnerInventory", request: draft({ url: `${BASE_URL}/partner/inventory` }) },
+  { id: "exports", request: draft({ url: `${BASE_URL}/exports` }) },
+  {
+    id: "createOrder",
+    request: draft({
+      method: "POST",
+      url: `${BASE_URL}/orders`,
+      bodyMode: "json",
+      body: JSON.stringify({ product_id: 1, quantity: 1 }, null, 2),
+    }),
+  },
+  { id: "adminStats", request: draft({ url: `${BASE_URL}/admin/stats` }) },
+  { id: "v2Products", request: draft({ url: `https://api.cua-hang.dev/v2/products?limit=3` }) },
 ];
 /* i18n-ignore-end */
 

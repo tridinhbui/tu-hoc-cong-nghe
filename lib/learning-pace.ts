@@ -21,10 +21,11 @@ export const PACE_KEY = "thtcdn_path_pace";
  *  1.503 bài đứng ở sàn, nên trung vị không thể thấp hơn 10 và chỉ nhúc nhích
  *  lên khi phần lớn kho dài hơn sàn. Nó từng là 5 (kho cũ), rồi 8 khi 740 bài
  *  AI cho công việc vào kho, rồi 10 khi sàn được đặt để khớp lời hứa "10-15 phút", rồi 11 khi ~250 bài cũ
- *  được thêm khối thực hành và hình ảnh (lib/lesson-block-additions) và vượt sàn.
+ *  được thêm khối thực hành và hình ảnh (lib/lesson-block-additions) và vượt sàn,
+ *  rồi 12 khi 116 bài có thêm khối mô phỏng (tính thời gian làm nhiệm vụ).
  *  Khi test đỏ ở đây, hãy đo lại phân bố trước khi kết luận có gì đó hỏng - rất
  *  có thể chỉ là một lô bài mới vừa đi qua ranh giới. */
-export const MEDIAN_LESSON_MINUTES = 11;
+export const MEDIAN_LESSON_MINUTES = 12;
 
 export interface Pace {
   perDay: 1 | 2;
