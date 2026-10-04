@@ -83,6 +83,38 @@
       }
     },
     {
+      "type": "exercise",
+      "title": "The same numbers, two rankings",
+      "task": "Two services have scores (0-100) for three pillars in this order: resource efficiency, user experience, operational quality. The function xep_hang already ranks by the weights passed in. Print the top service and its score (rounded to one decimal) for both weight sets. The second line in the starter code uses the wrong weight set.",
+      "starter": "dich_vu = {\"Light\": (92, 70, 25), \"Disciplined\": (55, 72, 90)}\n\ndef diem(chi_so, w):\n    return sum(c * t for c, t in zip(chi_so, w)) / sum(w)\n\ndef xep_hang(w):\n    return sorted(dich_vu, key=lambda ten: diem(dich_vu[ten], w), reverse=True)\n\ntiet_kiem = (6, 3, 1)\nvan_hanh = (1, 3, 6)\n\ndau = xep_hang(tiet_kiem)[0]\nprint(\"Leaning to savings:\", dau, round(diem(dich_vu[dau], tiet_kiem), 1))\ndau = xep_hang(tiet_kiem)[0]\nprint(\"Leaning to operations:\", dau, round(diem(dich_vu[dau], van_hanh), 1))\n",
+      "solution": "dich_vu = {\"Light\": (92, 70, 25), \"Disciplined\": (55, 72, 90)}\n\ndef diem(chi_so, w):\n    return sum(c * t for c, t in zip(chi_so, w)) / sum(w)\n\ndef xep_hang(w):\n    return sorted(dich_vu, key=lambda ten: diem(dich_vu[ten], w), reverse=True)\n\ntiet_kiem = (6, 3, 1)\nvan_hanh = (1, 3, 6)\n\ndau = xep_hang(tiet_kiem)[0]\nprint(\"Leaning to savings:\", dau, round(diem(dich_vu[dau], tiet_kiem), 1))\ndau = xep_hang(van_hanh)[0]\nprint(\"Leaning to operations:\", dau, round(diem(dich_vu[dau], van_hanh), 1))\n",
+      "expectedOutput": "Leaning to savings: Light 78.7\nLeaning to operations: Disciplined 81.1",
+      "hints": [
+        "Which weight set does the second print line pass to xep_hang? It must be the one that line is talking about.",
+        "None of the two services' numbers change. Only the weights change, and the ranking flips."
+      ]
+    },
+    {
+      "type": "chart",
+      "title": "Drag the weights, the ranking swaps",
+      "caption": "Illustrative scores: the Light service has resource score 92, experience 70; the Disciplined service has 55, 72, 90. The remaining weight is split evenly between the other two pillars. Find where the two lines cross, then drag the Light service's operations score to see where the crossing moves.",
+      "xLabel": "Weight of resource efficiency (%)",
+      "yLabel": "Composite score",
+      "params": [
+        {
+          "label": "Light service operations score"
+        }
+      ],
+      "series": [
+        {
+          "label": "Light service"
+        },
+        {
+          "label": "Disciplined service"
+        }
+      ]
+    },
+    {
       "type": "closing",
       "lines": [
         "A combined score is not a measurement, it is an opinion about what counts.",

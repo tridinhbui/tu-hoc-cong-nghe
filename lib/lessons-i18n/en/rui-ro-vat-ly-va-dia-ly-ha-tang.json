@@ -76,6 +76,41 @@
       }
     },
     {
+      "type": "exercise",
+      "title": "How much does one event within 50 km take down",
+      "task": "Four data centers have (x, y) coordinates in km on an illustrative flat map, grouped into three zones on paper. A weather event at (10, 5) affects everything within 50 km. The code uses a 5 km radius, so it counts only one center. Fix the radius and print the number of centers down and the percentage. Three zones on paper do not help if all three sit inside the same weather system.",
+      "hints": [
+        "The lesson's question is a 50 km radius, but the variable ban_kinh is 5.",
+        "A, B and C are all under 50 km from the event; D is far beyond it."
+      ]
+    },
+    {
+      "type": "flow",
+      "title": "One hour of lookups to answer: how much does an event within 50 km take down",
+      "steps": [
+        {
+          "label": "Get the real locations",
+          "detail": "Open the contract or the provider's console and write down the specific site of every place that runs the system, not just the region name. Almost no team has ever done this because the region name seemed to answer it."
+        },
+        {
+          "label": "Look up what is shared",
+          "detail": "For each site, ask whether they share a grid or substation, or the same regional power provider. The answer is not in the code, so you have to ask the provider rather than dig through config files."
+        },
+        {
+          "label": "Network paths and people",
+          "detail": "Do the cable routes share a corridor, and where do the on-call staff live relative to where they must go during a storm or flood? These two get forgotten because they are not on the infrastructure diagram."
+        },
+        {
+          "label": "Draw the fifty-kilometre radius",
+          "detail": "Put a circle around each site and count the ones that fall inside the same circle. The number to record is the share of the system down if one event covers the whole circle, not the number of regions you have."
+        },
+        {
+          "label": "Write it down and prepare ahead",
+          "detail": "A physical incident has no rollback button; you wait for power, for water to recede, for people to get there. A plan only works if prepared in advance, so the output of this hour is a concrete item in the plan, not a number in a drawer."
+        }
+      ]
+    },
+    {
       "type": "closing",
       "lines": [
         "A physical event turns incidents that would have been independent into one incident.",

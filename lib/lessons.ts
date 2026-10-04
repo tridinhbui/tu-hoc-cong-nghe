@@ -6220,7 +6220,7 @@ const BASE_LESSONS: Lesson[] = [
         "Đồng hồ của hai máy chủ chạy lệch nhau vài phút mỗi ngày"
       ],
       "correct": 0,
-      "explanation": "Ngày là một khoảng, và khoảng đó bắt đầu ở nửa đêm theo múi giờ nào là chuyện phải thống nhất. Đơn lúc 23 giờ 30 giờ Việt Nam nằm ở ngày hôm trước nếu cắt theo giờ chuẩn quốc tế. Cách sửa là ghi rõ trong định nghĩa báo cáo ngày được cắt theo múi giờ nào."
+      "explanation": "Ngày là một khoảng, và khoảng đó bắt đầu ở nửa đêm theo múi giờ nào là chuyện phải thống nhất. Đơn lúc 3 giờ 30 sáng giờ Việt Nam nằm ở ngày hôm trước nếu cắt theo giờ chuẩn quốc tế. Cách sửa là ghi rõ trong định nghĩa báo cáo ngày được cắt theo múi giờ nào."
     },
     "quiz": [
       {
@@ -6305,7 +6305,7 @@ const BASE_LESSONS: Lesson[] = [
       },
       {
         "type": "paragraph",
-        "text": "Câu hỏi doanh thu ngày mùng một là bao nhiêu chỉ có nghĩa khi kèm theo múi giờ. Một đơn đặt lúc 23 giờ 30 giờ Việt Nam nằm ở ngày mùng một theo giờ Việt Nam, nhưng nằm ở ngày ba mươi mốt theo giờ chuẩn quốc tế. Hai báo cáo cùng đọc một bảng vẫn ra hai con số, và cả hai đều đúng theo định nghĩa riêng."
+        "text": "Câu hỏi doanh thu ngày mùng một là bao nhiêu chỉ có nghĩa khi kèm theo múi giờ. Một đơn đặt lúc 3 giờ 30 sáng giờ Việt Nam nằm ở ngày mùng một theo giờ Việt Nam, nhưng nằm ở ngày ba mươi mốt theo giờ chuẩn quốc tế (20 giờ 30 hôm trước). Hai báo cáo cùng đọc một bảng vẫn ra hai con số, và cả hai đều đúng theo định nghĩa riêng."
       },
       {
         "type": "callout",

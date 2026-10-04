@@ -74,6 +74,39 @@
       }
     },
     {
+      "type": "exercise",
+      "title": "Flat-rate plan, per-call costs: who is losing money",
+      "task": "The plan costs 200 thousand per person per month, flat. The fixed cost is 30,000 thousand split across 500 people (illustrative), plus 0.5 thousand for each external service call. The starter code only counts the fixed part. Add the usage-based part to see which group is losing money.",
+      "starter": "GIA_GOI = 200\nCHI_PHI_CO_DINH = 30000\nNGUOI_DUNG = 500\nDON_GIA_LAN = 0.5\nlo = 0\nfor ten, so_lan in ((\"Light\", 100), (\"Medium\", 300), (\"Heavy\", 600)):\n    chi_phi = CHI_PHI_CO_DINH / NGUOI_DUNG\n    lai = GIA_GOI - chi_phi\n    print(f\"{ten}: profit {lai:.0f} thousand\")\n    if lai < 0:\n        lo += 1\nprint(f\"Groups losing money: {lo}/3\")\n",
+      "solution": "GIA_GOI = 200\nCHI_PHI_CO_DINH = 30000\nNGUOI_DUNG = 500\nDON_GIA_LAN = 0.5\nlo = 0\nfor ten, so_lan in ((\"Light\", 100), (\"Medium\", 300), (\"Heavy\", 600)):\n    chi_phi = CHI_PHI_CO_DINH / NGUOI_DUNG + so_lan * DON_GIA_LAN\n    lai = GIA_GOI - chi_phi\n    print(f\"{ten}: profit {lai:.0f} thousand\")\n    if lai < 0:\n        lo += 1\nprint(f\"Groups losing money: {lo}/3\")\n",
+      "expectedOutput": "Light: profit 90 thousand\nMedium: profit -10 thousand\nHeavy: profit -160 thousand\nGroups losing money: 2/3",
+      "hints": [
+        "Cost per person has two parts: the fixed part split per head, and the number of calls times the unit price.",
+        "The Medium group looks close to break-even, but a few dozen more calls and it is losing money."
+      ]
+    },
+    {
+      "type": "chart",
+      "title": "Flat revenue, rising cost",
+      "caption": "Illustrative numbers. The revenue line is flat because users pay a fixed price; the cost line starts at the fixed part per head and then climbs with the number of calls. Drag the price per call to move where the two lines cross: past that point, the more active a user is, the more you lose.",
+      "xLabel": "External service calls per person per month",
+      "yLabel": "Thousand per person per month",
+      "params": [
+        {
+          "label": "Cost per call (illustrative)",
+          "unit": "thousand"
+        }
+      ],
+      "series": [
+        {
+          "label": "Revenue per person (flat plan)"
+        },
+        {
+          "label": "Cost per person"
+        }
+      ]
+    },
+    {
       "type": "closing",
       "lines": [
         "High fixed cost is what turns scale into an advantage; without it, crowded and empty are the same.",

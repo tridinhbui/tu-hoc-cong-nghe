@@ -83,6 +83,40 @@
       }
     },
     {
+      "type": "exercise",
+      "title": "How much pooling saves",
+      "task": "Three services, usage across six time slots (resource units, illustrative figures). The starter treats the shared reserve as the sum of the individual peaks, so it reports 0% saving. Fix it: the shared reserve is the peak of the TOTAL usage in each time slot.",
+      "hints": [
+        "First add the three services together slot by slot to get a series of six numbers, and only then take the peak of that series.",
+        "Try putting all three peaks in the same slot: the shared reserve will equal the individual reserves and the saving falls to 0%."
+      ]
+    },
+    {
+      "type": "chart",
+      "title": "Pooling only saves when the peaks are offset",
+      "caption": "A simplified model with illustrative numbers, not measured from a real system. Peak overlap of 0% means the peaks never meet; 100% means they always meet, and then the two lines coincide and pooling saves nothing.",
+      "xLabel": "Services pooled together",
+      "yLabel": "Reserve to hold (units)",
+      "params": [
+        {
+          "label": "Peak of each service",
+          "unit": "units"
+        },
+        {
+          "label": "Degree of peak overlap",
+          "unit": "%"
+        }
+      ],
+      "series": [
+        {
+          "label": "Each service holds its own"
+        },
+        {
+          "label": "Pooled"
+        }
+      ]
+    },
+    {
       "type": "closing",
       "lines": [
         "Pooling saves exactly as much as the peaks fail to coincide.",

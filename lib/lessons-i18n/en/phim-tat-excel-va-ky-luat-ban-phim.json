@@ -143,6 +143,44 @@
       "text": "Good layout and fast operation go together. A model with a single consistent time axis, where each row holds only one kind of logic, lets you write one formula and drag it across the whole row. A patched-together model forces you to retype cell by cell, and every retype is another chance for an error."
     },
     {
+      "type": "exercise",
+      "title": "Where Ctrl + Down arrow jumps to",
+      "task": "A column of data has two blank cells in the middle (indexes start at 0, printed as rows starting at 1). Write ctrl_xuong(i) to simulate Ctrl + Down arrow: if the next cell has data, jump to the last cell of that continuous block; if the next cell is blank, jump to the next cell that has data; if there is none, stop at the last row.",
+      "hints": [
+        "From row 4, the cell at row 5 is blank, so you must keep going until you meet the first cell with data.",
+        "If you reach the end of the column without finding data, return the index of the last row."
+      ],
+      "starter": "cot = [\"Date\", \"01/05\", \"02/05\", \"03/05\", None, None, \"10/05\", \"11/05\"]\n\ndef ctrl_xuong(i):\n    if i == len(cot) - 1:\n        return i\n    if cot[i + 1] is not None:\n        while i + 1 < len(cot) and cot[i + 1] is not None:\n            i += 1\n        return i\n    return i + 1  # TODO: if the next cell is blank, jump across the gap\n\nfor i in [0, 3, 4, 6, 7]:\n    print(f\"from row {i + 1} -> row {ctrl_xuong(i) + 1}\")",
+      "solution": "cot = [\"Date\", \"01/05\", \"02/05\", \"03/05\", None, None, \"10/05\", \"11/05\"]\n\ndef ctrl_xuong(i):\n    if i == len(cot) - 1:\n        return i\n    if cot[i + 1] is not None:\n        while i + 1 < len(cot) and cot[i + 1] is not None:\n            i += 1\n        return i\n    j = i + 1\n    while j < len(cot) and cot[j] is None:\n        j += 1\n    return j if j < len(cot) else len(cot) - 1\n\nfor i in [0, 3, 4, 6, 7]:\n    print(f\"from row {i + 1} -> row {ctrl_xuong(i) + 1}\")",
+      "expectedOutput": "from row 1 -> row 4\nfrom row 4 -> row 7\nfrom row 5 -> row 7\nfrom row 7 -> row 8\nfrom row 8 -> row 8"
+    },
+    {
+      "type": "flow",
+      "title": "Check an unfamiliar sheet in two minutes, without touching the mouse",
+      "steps": [
+        {
+          "label": "Ctrl + Home, then Ctrl + Shift + arrow",
+          "detail": "Go to the first cell, then select the whole data region to see its true size. A region with only 40 rows when the title says a full quarter means data is missing, and you know at once."
+        },
+        {
+          "label": "Ctrl + ` to show formulas",
+          "detail": "The whole sheet switches from results to formulas. A hand-typed number hiding in a column of formulas stands out like a line in a different typeface."
+        },
+        {
+          "label": "Ctrl + [ on a suspicious cell",
+          "detail": "Jump to the source cell of a formula. If it points to an old sheet or last year's column, the reference error shows up here."
+        },
+        {
+          "label": "F2, then F4 while editing",
+          "detail": "F2 enters edit mode and colours the referenced cells; F4 cycles through the row-lock and column-lock forms. A formula dragged across a whole row needs exactly this form."
+        },
+        {
+          "label": "Paste Special to lock in the result",
+          "detail": "When you need to freeze a number or break a circular link, paste values only. Every step goes through the keyboard, so the test's time limit is not spent hunting for the mouse."
+        }
+      ]
+    },
+    {
       "type": "closing",
       "lines": [
         "Nobody looks up shortcuts during a test. The operations have to live in your hands, not in your head.",

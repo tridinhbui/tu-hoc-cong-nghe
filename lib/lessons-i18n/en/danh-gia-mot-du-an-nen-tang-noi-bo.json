@@ -106,6 +106,60 @@
       }
     },
     {
+      "type": "aiLab",
+      "title": "Review an AI-written assessment of a platform project",
+      "task": "An AI tool wrote the assessment for a project to build an internal deployment platform. Click the passages that bend the arithmetic, then submit.",
+      "segments": [
+        {
+          "text": "Building the platform costs 24 person-months, an estimate already doubled from the first figure because first estimates are almost always low."
+        },
+        {
+          "text": "The platform will make teams much faster, so the saving is counted at 8 person-months per quarter.",
+          "error": "The saving must be measured from what is really being spent today, not from a feeling of speed. With no measurement yet, it cannot be counted."
+        },
+        {
+          "text": "To turn the difference positive, the benefit is counted over twelve quarters instead of eight.",
+          "error": "Stretching the horizon until the difference turns positive is bending the numbers. Beyond eight quarters every assumption is meaningless."
+        },
+        {
+          "text": "Upkeep of about a fifth of the build effort per year was subtracted from the saving before comparing."
+        },
+        {
+          "text": "The product direction is still vague, so a higher discount rate is used than for stable infrastructure."
+        },
+        {
+          "text": "Once built, the platform is done, so no effort is counted for fixing bugs and answering questions afterwards.",
+          "error": "A platform has to be fed too: bug fixes, questions, version upgrades, documentation. Skipping this compares a one-time cost with a permanent benefit."
+        }
+      ]
+    },
+    {
+      "type": "flow",
+      "title": "From a rough estimate to a trustworthy difference",
+      "steps": [
+        {
+          "label": "Count the effort and double it",
+          "detail": "Include the part of the team pulled off other work. First estimates are almost always low, so double from this step; it is the only certain item in the whole calculation."
+        },
+        {
+          "label": "Measure the saving from real data",
+          "detail": "Take the hours teams spend today on exactly the job the platform will replace. Anything that exists only as a prediction stays out of the spreadsheet."
+        },
+        {
+          "label": "Subtract upkeep",
+          "detail": "About a fifth of the build effort per year for bug fixes, questions, upgrades and docs. Subtract it from the saving before comparing, or you compare a one-time cost with a permanent benefit."
+        },
+        {
+          "label": "Discount and cut at eight quarters",
+          "detail": "Each later quarter counts for less, and nothing past eight quarters is counted. Pick a high discount rate when direction is vague, a low one when infrastructure is stable."
+        },
+        {
+          "label": "Read the difference honestly",
+          "detail": "A thin positive difference plus optimistic estimates is really negative. Only when the difference stays positive after every step above is the project worth doing."
+        }
+      ]
+    },
+    {
       "type": "closing",
       "lines": [
         "The cost is paid now and measurable; the benefit is spread out and depends on the future resembling today.",

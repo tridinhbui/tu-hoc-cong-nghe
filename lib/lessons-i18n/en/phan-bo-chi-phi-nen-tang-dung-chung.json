@@ -140,6 +140,68 @@
       "text": "Not whether the unit is profitable or loss-making after allocation, but: if it goes, which costs genuinely disappear from the business? Head office rent, executive salaries and core system costs barely fall when a product line is closed - they simply get reallocated onto what remains. Plenty of closure decisions have reduced total profit for exactly this reason."
     },
     {
+      "type": "scenario",
+      "title": "Should a department that loses money after allocation be closed?",
+      "nodes": {
+        "de_xuat": {
+          "text": "The year-end report shows the Internal Tools department losing money after shared costs are allocated. The CFO proposes closing it. You lead the analysis.",
+          "choices": [
+            {
+              "label": "Support closing it because it loses money after allocation"
+            },
+            {
+              "label": "Ask: if we close it, which costs actually disappear?"
+            },
+            {
+              "label": "Change the allocation basis so the department looks profitable"
+            }
+          ]
+        },
+        "dong_ngay": {
+          "text": "The department closes, but headquarters rent, core infrastructure and executive pay barely shrink. They are reallocated to the remaining departments, and total profit falls by exactly the contribution the closed department was making."
+        },
+        "doi_tieu_thuc": {
+          "text": "Changing the basis only moves cost onto another department. That one now shows a loss, an argument breaks out, and the total does not change. The move looks like analysis but only shifts the burden."
+        },
+        "hoi": {
+          "text": "You split the report into three tiers. After direct costs the department is still positive. Core infrastructure and headquarters rent do not go away if it closes. How do you compare the two options?",
+          "choices": [
+            {
+              "label": "Use the contribution after direct costs to compare keeping with closing"
+            },
+            {
+              "label": "Reallocate shared costs to the remaining departments and see if they still profit"
+            }
+          ]
+        },
+        "dong_gop": {
+          "text": "You state it plainly: closing removes only the direct costs and loses the positive contribution too. For judging the manager, use the figure after controllable costs. The company keeps the department and decides on the figure that answers the right question."
+        },
+        "chia_lai": {
+          "text": "The remaining departments carry more shared cost, total profit is still lower than if you had kept it, and the argument over the allocation basis eats the whole meeting without anyone answering which costs really disappear."
+        }
+      }
+    },
+    {
+      "type": "chart",
+      "title": "One department, three profit tiers tell three stories",
+      "caption": "Illustrative figures, in millions of VND. Tier one is the least disputed; tier two is for judging the manager; tier three (after allocated shared costs) is for decisions about a product or department, not for judging people.",
+      "yLabel": "Profit (millions of VND)",
+      "data": [
+        {
+          "label": "Internal tools"
+        },
+        {
+          "label": "Payments platform"
+        }
+      ],
+      "seriesLabels": [
+        "After direct costs",
+        "After controllable costs",
+        "After allocated shared costs"
+      ]
+    },
+    {
       "type": "closing",
       "lines": [
         "The post-allocation number is not objective fact, it is the outcome of a choice that ought to be stated out loud.",

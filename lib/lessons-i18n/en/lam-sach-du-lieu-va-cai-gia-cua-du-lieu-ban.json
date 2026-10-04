@@ -175,6 +175,46 @@
       "text": "A column mixing dong with thousands of dong, or rates written as 0.15 with rates written as 15, passes every data-type check - they are all valid numbers. It passes the missing-value check and the duplicate check too. The only way to catch it is the distribution: a histogram with two clusters exactly a thousand times apart is unmistakable. This is why the first step with a new data set should be plotting the distribution of every numeric column, not running the first calculation."
     },
     {
+      "type": "exercise",
+      "title": "A rate column mixing two units",
+      "task": "The profit-margin column below has values like 0.15 mixed with values like 15. Every value is a valid number, so no type check catches it. The starter averages the column directly and gets a meaningless figure. Convert every value greater than 1 to decimal form (divide by 100), count the rows you fixed, then recompute the average.",
+      "starter": "rates = [0.12, 15, 0.2, 18, 0.1, 25]\n\nclean = []\nfixed = 0\nfor v in rates:\n    clean.append(v)\n\nprint(\"Normalised:\", fixed, \"rows\")\nprint(f\"Average: {sum(clean) / len(clean) * 100:.1f}%\")\n",
+      "solution": "rates = [0.12, 15, 0.2, 18, 0.1, 25]\n\nclean = []\nfixed = 0\nfor v in rates:\n    if v > 1:\n        v = v / 100\n        fixed += 1\n    clean.append(v)\n\nprint(\"Normalised:\", fixed, \"rows\")\nprint(f\"Average: {sum(clean) / len(clean) * 100:.1f}%\")\n",
+      "expectedOutput": "Normalised: 3 rows\nAverage: 16.7%",
+      "hints": [
+        "Any value above 1 is almost certainly in percent form, since the decimal rates here are all below 1.",
+        "Remember to increase fixed each time you divide, so the report shows how many rows you touched."
+      ]
+    },
+    {
+      "type": "feynman",
+      "title": "Blank cells in a survey are like people skipping the income question",
+      "intro": "Imagine handing out an income survey to a class, and 20% of the forms leave the income box empty. Very rich and very strapped people are both more reluctant to answer than people in the middle. Each way of handling blanks is a way of guessing who those silent people are.",
+      "columns": [
+        "Method",
+        "Like doing this to the forms",
+        "What it costs"
+      ],
+      "rows": [
+        [
+          "Delete rows with gaps",
+          "Throw away blank forms, read only complete ones",
+          "You lose exactly both ends of the income range, and the average drifts to the middle"
+        ],
+        [
+          "Fill with the median",
+          "Write every blank person in at the middle level",
+          "Spread shrinks, confidence intervals look narrower than reality"
+        ],
+        [
+          "Add a flag column",
+          "Fill in a temporary number and note: this person left it blank",
+          "Keeps the signal that silence is information too"
+        ]
+      ],
+      "oneLiner": "Deleting or filling blanks means choosing an assumption about the people who did not answer, and a flag column is the only way to keep the fact that they stayed silent."
+    },
+    {
       "type": "closing",
       "lines": [
         "Every cleaning decision is an assumption about the real world. Write it down.",

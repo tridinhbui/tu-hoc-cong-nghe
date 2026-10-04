@@ -97,6 +97,42 @@
       "text": "Choosing 5% for a project on a newly launched product is saying you believe that product keeps this shape for two years. That may be true, but it has to be said out loud rather than hidden in one cell of a spreadsheet. When somebody asks why the number came out as it did, the discount rate is the first place to look."
     },
     {
+      "type": "exercise",
+      "title": "What a promise in period eight is worth",
+      "task": "For three per-quarter discount rates (5%, 15%, 20%), compute the discount factor DF = 1 / (1 + r)^n at period 4 and period 8, then the present value of a benefit of 10 person-months per quarter over 8 quarters. Print one line per rate, DF rounded to two decimals and PV to one. (Illustrative data.)",
+      "hints": [
+        "The factor falls exponentially, not linearly: use (1 + r) to the power n, not 1 + r times n.",
+        "At r = 15% the period 8 factor should come out near 0.33, matching the figure in the lesson's formula."
+      ],
+      "starter": "loi_ich = 10\nso_quy = 8\n\ndef df(r, n):\n    return 1 / (1 + r * n)\n\nfor r in (0.05, 0.15, 0.20):\n    pv = sum(loi_ich * df(r, n) for n in range(1, so_quy + 1))\n    print(f\"r={round(r * 100)}%: period 4 = {df(r, 4):.2f}, period 8 = {df(r, 8):.2f}, PV = {pv:.1f}\")\n",
+      "solution": "loi_ich = 10\nso_quy = 8\n\ndef df(r, n):\n    return 1 / (1 + r) ** n\n\nfor r in (0.05, 0.15, 0.20):\n    pv = sum(loi_ich * df(r, n) for n in range(1, so_quy + 1))\n    print(f\"r={round(r * 100)}%: period 4 = {df(r, 4):.2f}, period 8 = {df(r, 8):.2f}, PV = {pv:.1f}\")\n",
+      "expectedOutput": "r=5%: period 4 = 0.82, period 8 = 0.68, PV = 64.6\nr=15%: period 4 = 0.57, period 8 = 0.33, PV = 44.9\nr=20%: period 4 = 0.48, period 8 = 0.23, PV = 38.4"
+    },
+    {
+      "type": "chart",
+      "title": "The discount factor drops faster than you think as the rate rises",
+      "caption": "Illustrative figures: the main line is the rate you set with the slider; the other two are fixed at 5% and 20% per quarter. At period 8, the low rate keeps about two thirds of the value and the high rate only about a fifth.",
+      "xLabel": "Quarters until the benefit arrives",
+      "yLabel": "Discount factor (1 is full value)",
+      "params": [
+        {
+          "label": "Per-quarter discount rate you choose",
+          "unit": "%"
+        }
+      ],
+      "series": [
+        {
+          "label": "Your rate"
+        },
+        {
+          "label": "Low, 5% per quarter"
+        },
+        {
+          "label": "High, 20% per quarter"
+        }
+      ]
+    },
+    {
       "type": "closing",
       "lines": [
         "The same total at two different times is two different values.",

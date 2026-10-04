@@ -90,6 +90,43 @@
       "text": "The ratio between the owned and borrowed shares tends to drift one way: every time capacity is needed urgently, borrowing more is the fastest route. No single decision in that chain is wrong, and after two years the system depends on the borrowed share at a level nobody ever considered."
     },
     {
+      "type": "exercise",
+      "title": "If the borrowed part disappears, how much can we still serve",
+      "task": "Four capacity sources, in requests per second (illustrative numbers). A source with a quota can only be used up to the quota even if you rent more. Compute the capacity really usable, the part blocked by quotas, and the percentage still served when all borrowed sources are lost. The starter adds the capacity directly and ignores quotas.",
+      "hints": [
+        "For each source, the usable part is min(capacity, quota) when a quota exists.",
+        "The final percentage divides the owned part by the usable capacity, not by the nominal capacity."
+      ]
+    },
+    {
+      "type": "feynman",
+      "title": "Owned, borrowed and quota: a story about housing",
+      "intro": "Think about where a family lives. Some rooms are bought outright, some are rented by the day, and there are limits nobody notices until they hit them.",
+      "columns": [
+        "Part",
+        "Like",
+        "What to ask"
+      ],
+      "rows": [
+        [
+          "Owned",
+          "A house already bought, always available",
+          "How many rooms? The limit is a number known in advance"
+        ],
+        [
+          "Borrowed",
+          "Renting a room by the day or staying with an acquaintance",
+          "What does the agreement say, and if they stop letting you stay, how much space is left"
+        ],
+        [
+          "Quota",
+          "A lift marked for eight people at most, which nobody knows about because nine have never stood in it",
+          "Which limit applies that nobody has ever reached"
+        ]
+      ],
+      "oneLiner": "Ask the system what percentage it can still serve when every borrowed part is gone, then list the quotas nobody has touched."
+    },
+    {
       "type": "closing",
       "lines": [
         "The same amount of load does not mean the same condition.",

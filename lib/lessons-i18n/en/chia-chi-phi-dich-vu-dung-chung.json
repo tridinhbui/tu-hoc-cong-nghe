@@ -75,6 +75,83 @@
       }
     },
     {
+      "type": "scenario",
+      "title": "Splitting the shared platform's bill",
+      "nodes": {
+        "start": {
+          "text": "The shared platform costs 120 million a month. Three teams use it at roughly 70%, 20% and 10% (raw measurements), but the smallest user is the team with the most people. How do you split the bill?",
+          "choices": [
+            {
+              "label": "Split evenly, 40 million each, quick and no arguments"
+            },
+            {
+              "label": "Split by team headcount, which sounds the fairest"
+            },
+            {
+              "label": "Split by measured usage, with a monthly statement"
+            }
+          ]
+        },
+        "equal": {
+          "text": "The team using 10% pays the same as the team using 70%, so the heaviest team learns the wrong lesson: using more costs nothing extra. Three months later their usage is up by half, the shared bill balloons, and no team has a reason to cut back."
+        },
+        "headcount": {
+          "text": "The biggest team pays the most though it barely touches the platform, while the heaviest user pays little because it has few people. The unfairly charged team starts building its own version, and the heavy team's usage does not change."
+        },
+        "measured": {
+          "text": "Each team sees its own share every month and behavior starts to change without anyone nagging. Something else comes up: the platform team says they are only named when something breaks. What should the monthly report include?",
+          "choices": [
+            {
+              "label": "Only incident counts, since that is what everyone cares about"
+            },
+            {
+              "label": "Drop incidents from the report to cut the noise"
+            },
+            {
+              "label": "Incident counts together with the releases that ran through the platform"
+            }
+          ]
+        },
+        "onlyfail": {
+          "text": "The report shows only bad days, so the platform team exists only on bad days. Your two best engineers ask to move to a product team that quarter, and their seats are hard to refill."
+        },
+        "hide": {
+          "text": "The report is cleaner, but product teams see incidents in chat and not in the report, and begin to doubt every other number in it. Trust in the cost report collapses with it."
+        },
+        "both": {
+          "text": "The report shows the bad days and the volume of work the platform team carries, with equal prominence. The picture balances: product teams see the value, the platform team gets credit, and costs are tied to whoever generates them."
+        }
+      }
+    },
+    {
+      "type": "feynman",
+      "title": "Splitting the bill like splitting the electricity in a boarding house",
+      "intro": "A row of rooms shares one meter. The landlord can split evenly, split by number of occupants, or install a separate meter for each room. All three collect the full monthly bill, but each teaches the tenants a different habit.",
+      "columns": [
+        "Way to split",
+        "Like",
+        "The habit it teaches"
+      ],
+      "rows": [
+        [
+          "Even split",
+          "Every room pays the same amount",
+          "Running the air conditioner all day costs nothing extra, so nobody has a reason to turn it off"
+        ],
+        [
+          "By team size",
+          "Split by number of people in each room",
+          "A crowded room that is out all day still pays a lot, which breeds resentment instead of savings"
+        ],
+        [
+          "By measured usage",
+          "One meter per room",
+          "Whoever uses more pays more, behavior changes without nagging, at the price of installing the meters"
+        ]
+      ],
+      "oneLiner": "All three splits add up to the right total; only tying the number to real usage changes behavior."
+    },
+    {
       "type": "closing",
       "lines": [
         "What the split teaches the teams outlasts that month's number.",

@@ -154,6 +154,59 @@
       "text": "\"This will never happen again\" is a promise nobody controls, and if it does happen again the second time costs twice as much, because the promise is standing there. Replace it with what you can say specifically: which control has just been added, who approves which step from now on."
     },
     {
+      "type": "aiLab",
+      "title": "Draft notice for an API key leak",
+      "task": "An AI tool drafted an incident notice about leaked API keys. The figures in the draft are illustrative. Click the sentences the lesson just taught as weak points of a bad-news notice, then submit.",
+      "segments": [
+        {
+          "text": "Some API keys were exposed through a public code repository, and we revoked them at 09:10 today."
+        },
+        {
+          "text": "We are deeply sorry and take the security of every user extremely seriously.",
+          "error": "Full of adjectives but no number or action anyone can check. The lesson replaces this with specifics: how many accounts, which controls changed."
+        },
+        {
+          "text": "214 accounts were affected between the 3rd and the 9th, and a second repository is still being reviewed."
+        },
+        {
+          "text": "This will never happen again.",
+          "error": "A promise nobody controls; if it does happen again, the second time costs double because the promise is on record."
+        },
+        {
+          "text": "From now on, every change to key configuration needs two approvers."
+        },
+        {
+          "text": "We will post more information as soon as we have it, occasionally during the week.",
+          "error": "No deadline. After a full disclosure, update only at the times you named; \"occasionally\" leaves users guessing and chasing you."
+        },
+        {
+          "text": "The next update will be posted at 15:00 tomorrow."
+        }
+      ]
+    },
+    {
+      "type": "flow",
+      "title": "The first twenty-four hours of a key leak",
+      "steps": [
+        {
+          "label": "Contain first, count later",
+          "detail": "Revoke the keys and close the exposed sessions. You can start containing before you know how big it is, so there is no reason to wait."
+        },
+        {
+          "label": "Scope it",
+          "detail": "Write down three things: how many accounts, what data, since which date. Also note what has not been checked yet, such as the second repository, because that is where the second piece of bad news could sit."
+        },
+        {
+          "label": "Disclose in full, once",
+          "detail": "One notice with the numbers, the cause, the controls changed, and a date for whatever is unfinished. Three small drips of the same content make readers ask how much more is coming; one complete notice closes that question."
+        },
+        {
+          "label": "Update on the promised schedule",
+          "detail": "Post at the agreed time, even if only to say nothing new. No extra deadlines, no moved deadlines; each kept appointment is a reason to believe what you say next."
+        }
+      ]
+    },
+    {
       "type": "closing",
       "lines": [
         "An incident costs trust once. Mishandling an incident costs trust again and again.",

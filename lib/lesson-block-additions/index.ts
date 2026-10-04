@@ -15,6 +15,36 @@ import { P13_ADDITIONS } from "./p13";
 import { P14_ADDITIONS } from "./p14";
 import { P15_ADDITIONS } from "./p15";
 import { P16_ADDITIONS } from "./p16";
+import { P17_ADDITIONS } from "./p17";
+import { P18_ADDITIONS } from "./p18";
+import { P19_ADDITIONS } from "./p19";
+import { P20_ADDITIONS } from "./p20";
+import { P21_ADDITIONS } from "./p21";
+import { P22_ADDITIONS } from "./p22";
+import { P23_ADDITIONS } from "./p23";
+import { P24_ADDITIONS } from "./p24";
+import { P25_ADDITIONS } from "./p25";
+import { P26_ADDITIONS } from "./p26";
+import { P27_ADDITIONS } from "./p27";
+import { P28_ADDITIONS } from "./p28";
+import { P29_ADDITIONS } from "./p29";
+import { P30_ADDITIONS } from "./p30";
+import { P31_ADDITIONS } from "./p31";
+import { P32_ADDITIONS } from "./p32";
+import { P33_ADDITIONS } from "./p33";
+import { P34_ADDITIONS } from "./p34";
+import { P35_ADDITIONS } from "./p35";
+import { P36_ADDITIONS } from "./p36";
+import { P37_ADDITIONS } from "./p37";
+import { P38_ADDITIONS } from "./p38";
+import { P39_ADDITIONS } from "./p39";
+import { P40_ADDITIONS } from "./p40";
+import { P41_ADDITIONS } from "./p41";
+import { P42_ADDITIONS } from "./p42";
+import { P43_ADDITIONS } from "./p43";
+import { P44_ADDITIONS } from "./p44";
+import { P45_ADDITIONS } from "./p45";
+import { P46_ADDITIONS } from "./p46";
 
 /**
  * Khối THÊM vào bài đã có (KE-HOACH-1500-BAI.md: bài nào cũng có thực hành và
@@ -51,6 +81,36 @@ const FILES: Record<string, Record<string, LessonSectionBlock[]>> = {
   p14: P14_ADDITIONS,
   p15: P15_ADDITIONS,
   p16: P16_ADDITIONS,
+  p17: P17_ADDITIONS,
+  p18: P18_ADDITIONS,
+  p19: P19_ADDITIONS,
+  p20: P20_ADDITIONS,
+  p21: P21_ADDITIONS,
+  p22: P22_ADDITIONS,
+  p23: P23_ADDITIONS,
+  p24: P24_ADDITIONS,
+  p25: P25_ADDITIONS,
+  p26: P26_ADDITIONS,
+  p27: P27_ADDITIONS,
+  p28: P28_ADDITIONS,
+  p29: P29_ADDITIONS,
+  p30: P30_ADDITIONS,
+  p31: P31_ADDITIONS,
+  p32: P32_ADDITIONS,
+  p33: P33_ADDITIONS,
+  p34: P34_ADDITIONS,
+  p35: P35_ADDITIONS,
+  p36: P36_ADDITIONS,
+  p37: P37_ADDITIONS,
+  p38: P38_ADDITIONS,
+  p39: P39_ADDITIONS,
+  p40: P40_ADDITIONS,
+  p41: P41_ADDITIONS,
+  p42: P42_ADDITIONS,
+  p43: P43_ADDITIONS,
+  p44: P44_ADDITIONS,
+  p45: P45_ADDITIONS,
+  p46: P46_ADDITIONS,
 };
 
 export const LESSON_BLOCK_ADDITIONS: Record<string, LessonSectionBlock[]> = (() => {

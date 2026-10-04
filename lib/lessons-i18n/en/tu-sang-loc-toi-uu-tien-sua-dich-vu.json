@@ -75,6 +75,79 @@
       }
     },
     {
+      "type": "scenario",
+      "title": "Twelve services, people for only three",
+      "nodes": {
+        "dau": {
+          "text": "The portfolio has twelve services scored on three pillars, but the team can fix only three this quarter. Your manager asks how to choose. What do you propose first?",
+          "choices": [
+            {
+              "label": "Find services nobody calls any more and shut them down"
+            },
+            {
+              "label": "Fix every service below a score of 60, in order"
+            },
+            {
+              "label": "Fix the weakest service in each group to keep things balanced"
+            }
+          ]
+        },
+        "nguong": {
+          "text": "Nine services are below the threshold, a list far longer than the team can handle. The team takes the three lowest scores, and they turn out to be internal tools few people use. The service on the payment path, scoring slightly higher, is untouched. A threshold treats every service the same."
+        },
+        "nhom": {
+          "text": "There are four groups, so four services get fixed, beyond the team's capacity, and two of those groups were already fine. Effort goes into lifting a healthy group so the table looks balanced, while the group with the riskiest service waits for next quarter."
+        },
+        "loaibo": {
+          "text": "The team finds two services that are only called by each other. Shutting both down takes two days, the average score rises and the list gets shorter. Ten services remain, still too many for the people available. How do you rank the three to fix?",
+          "choices": [
+            {
+              "label": "Rank by score times importance and take the top three"
+            },
+            {
+              "label": "Rank by lowest score first and take the top three"
+            },
+            {
+              "label": "Let each team pick the service it wants to fix first"
+            }
+          ]
+        },
+        "trieuchung": {
+          "text": "The three lowest-scoring services are all rarely used. Three months later an incident comes from the service on the payment path, which scored slightly higher and never made the top three. A symptom-ordered list always fixes the least-used things first."
+        },
+        "tuchon": {
+          "text": "Each team picks what it knows and finds easy, two teams choose the same service and the one nobody claims is left. With no shared criterion, at the end of the quarter nobody can show that the three fixes reduced any particular risk."
+        },
+        "tot": {
+          "text": "The three services on the payment and login path are fixed first. The two retired services also cut future work, and the team adds a rule: new changes must not make the three pillars worse. The fix order matches the order of the incidents to come."
+        }
+      }
+    },
+    {
+      "type": "chart",
+      "title": "Same four services, two different fix orders",
+      "caption": "Illustrative figures: shortfall equals 100 minus the score, and importance is rated 1 to 10 by the transaction volume passing through. Ranked by the first column the internal tool comes first; ranked by the second, the payment service comes first by a wide margin.",
+      "yLabel": "Score (illustrative units)",
+      "data": [
+        {
+          "label": "Internal tool"
+        },
+        {
+          "label": "Reports"
+        },
+        {
+          "label": "Login"
+        },
+        {
+          "label": "Payments"
+        }
+      ],
+      "seriesLabels": [
+        "Score shortfall",
+        "Shortfall times importance"
+      ]
+    },
+    {
       "type": "closing",
       "lines": [
         "Choosing the wrong work means however well it is done it is still effort thrown away.",

@@ -170,6 +170,51 @@
         "result": "Revenue per signup = VND 300 · per active user = VND 7,500 · per paying user = VND 100,000",
         "explanation": "One business, three figures more than 300 times apart, and only the first goes on the homepage. Cumulative signups is a vanity metric because it only ever rises - it cannot respond to anything that happens afterwards. The metric worth tracking is the one that can GO DOWN when the business does badly."
       }
+    },
+    {
+      "type": "exercise",
+      "title": "Cumulative total grows, what about the active rate",
+      "task": "After three months, the total number of sign-ups keeps rising and the slide looks great. For each month, compute the percentage of users still active out of all sign-ups, then check whether this rate falls three months in a row. The starter code divides the wrong way round and gives a figure above 100%.",
+      "starter": "thang = [(1, 1000, 500), (2, 1500, 450), (3, 2000, 400)]\n\nty_le = []\nfor t, tich_luy, hoat_dong in thang:\n    p = tich_luy / hoat_dong * 100\n    ty_le.append(p)\n    print(f\"Month {t}: {tich_luy} signed up, {p:.1f}% active\")\n\nprint(\"Falling every month:\", all(a > b for a, b in zip(ty_le, ty_le[1:])))\n",
+      "solution": "thang = [(1, 1000, 500), (2, 1500, 450), (3, 2000, 400)]\n\nty_le = []\nfor t, tich_luy, hoat_dong in thang:\n    p = hoat_dong / tich_luy * 100\n    ty_le.append(p)\n    print(f\"Month {t}: {tich_luy} signed up, {p:.1f}% active\")\n\nprint(\"Falling every month:\", all(a > b for a, b in zip(ty_le, ty_le[1:])))\n",
+      "expectedOutput": "Month 1: 1000 signed up, 50.0% active\nMonth 2: 1500 signed up, 30.0% active\nMonth 3: 2000 signed up, 20.0% active\nFalling every month: True",
+      "hints": [
+        "The active rate is the active users divided by the whole signed-up group, so the numerator is hoat_dong.",
+        "With the rate computed correctly, the last line shows that the action-driving metric is falling while the vanity metric rises."
+      ]
+    },
+    {
+      "type": "feynman",
+      "title": "A metric is like a car gauge: looking good is not enough, it must steer you",
+      "intro": "The odometer only goes up. The fuel gauge rises and falls with how you drive, and when the needle hits red you have something to do. The four screening questions in the lesson are how to tell the two kinds of gauge apart.",
+      "columns": [
+        "Screening question",
+        "With a car gauge",
+        "With a business metric"
+      ],
+      "rows": [
+        [
+          "Can it change",
+          "The fuel needle moves with how you drive",
+          "A cumulative user total only goes one way, so it carries no signal"
+        ],
+        [
+          "Who owns it",
+          "The driver watches the fuel needle",
+          "An ownerless metric just sits on a report"
+        ],
+        [
+          "Leading or lagging",
+          "The red line warns before the engine dies",
+          "30-day return rate warns before revenue drops"
+        ],
+        [
+          "How it gets gamed",
+          "Siphon fuel out of the tank so the needle looks good",
+          "Pair it: growth alongside churn rate"
+        ]
+      ],
+      "oneLiner": "Pick a metric where, when it worsens, someone has to do something, and pair it so no one can game it with a shortcut."
     }
   ]
 }

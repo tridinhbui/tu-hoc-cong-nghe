@@ -13,10 +13,18 @@
   ],
   "explanation": "On a bar chart the eye compares area and height, so a bar twice as tall is read as twice the value. Cutting the axis at 95 makes the step from 96 to 98 look like a tripling, when in reality it is barely two per cent. Note that the rule is different for line charts: a line represents a trend rather than a magnitude, so cutting the axis to make the movement visible is usually acceptable - as long as it is labelled clearly.",
   "diagram": [
-    { "label": "Comparing across groups: bars" },
-    { "label": "Change over time: a line" },
-    { "label": "Relationship between two variables: a scatter" },
-    { "label": "Distribution of one variable: a histogram" }
+    {
+      "label": "Comparing across groups: bars"
+    },
+    {
+      "label": "Change over time: a line"
+    },
+    {
+      "label": "Relationship between two variables: a scatter"
+    },
+    {
+      "label": "Distribution of one variable: a histogram"
+    }
   ],
   "realWorldExample": {
     "company": "The growth chart in a fundraising deck",
@@ -106,7 +114,10 @@
       "type": "lead",
       "text": "Visualisation is not a decorative final step. It is the step where you decide what the reader will see first - and in many cases that is the only thing they will remember."
     },
-    { "type": "heading", "text": "Four questions, four chart types" },
+    {
+      "type": "heading",
+      "text": "Four questions, four chart types"
+    },
     {
       "type": "conceptTable",
       "title": "Choose by the question, not by habit",
@@ -149,6 +160,49 @@
       "type": "callout",
       "label": "Dual axes: the hardest trick to spot",
       "text": "Putting two lines on one picture with two different scales lets the author manufacture almost any degree of apparent agreement between the two quantities - all it takes is adjusting the scales until the lines touch at a few points. The viewer sees a tight relationship the data itself never asserted. When you meet a dual-axis chart, redraw each line on its own before believing the connection."
+    },
+    {
+      "type": "aiLab",
+      "title": "AI-written chart commentary: find the bad advice",
+      "task": "An AI tool wrote commentary for a quarterly report's charts. The figures are illustrative. Click the passages that give wrong or misleading chart advice, then submit.",
+      "segments": [
+        {
+          "text": "Revenue for the three branches should be drawn as a bar chart, since this compares groups."
+        },
+        {
+          "text": "The bar chart's vertical axis can start at 480 million so the difference shows more clearly, making branch A (520 million) look twice as tall as branch B (500 million).",
+          "error": "The eye reads bar height as absolute size. Cutting the axis at 480 makes a 4% gap look like double. Bars must start at 0; if you must cut, say so clearly on the chart itself."
+        },
+        {
+          "text": "Monthly revenue is drawn as a line chart, and the axis need not start at 0 because what matters is direction and slope."
+        },
+        {
+          "text": "To show that ad spend drives revenue, put the two lines on one chart with two differently scaled vertical axes and adjust them until they touch. Two overlapping lines prove that ads raise revenue.",
+          "error": "Scaling the axes so the lines touch manufactures an arbitrary match, and the data does not support that relationship. A match on a chart does not prove causation either. Plot each line on its own first before believing it."
+        },
+        {
+          "text": "To see how customer income is spread, use a histogram, because the mean does not show how the data is distributed."
+        },
+        {
+          "text": "Add a three-dimensional effect to the bars so the values stand out more.",
+          "error": "Three-dimensional effects distort the proportions between bars and make values harder to read. It is on the lesson's list of warning signs, not a way to make something stand out."
+        }
+      ]
+    },
+    {
+      "type": "chart",
+      "title": "Cutting the axis makes a 4% gap look many times larger",
+      "caption": "Illustrative figures: bar A is 52 tall, bar B is 50, a real gap of 4%. The horizontal axis is where the vertical axis starts (0 is honest). The upper line shows how many times taller bar A looks than bar B on the chart.",
+      "xLabel": "Starting value of the vertical axis",
+      "yLabel": "Bar A looks this many times taller than bar B",
+      "series": [
+        {
+          "label": "Relative height seen on the chart"
+        },
+        {
+          "label": "True ratio"
+        }
+      ]
     },
     {
       "type": "closing",

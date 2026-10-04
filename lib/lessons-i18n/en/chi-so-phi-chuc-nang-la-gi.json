@@ -75,6 +75,46 @@
       }
     },
     {
+      "type": "exercise",
+      "title": "The average says fine, the 95th percentile disagrees",
+      "task": "Twenty latency measurements (ms). Requirement: the 95th percentile must be under 800 ms. The starter code uses the mean as the 95th percentile. Fix it: sort the list, then take the element at rank 95% x n rounded up (counting from 1).",
+      "starter": "do_tre = [300] * 18 + [2000, 2000]\nn = len(do_tre)\ntrung_binh = sum(do_tre) / n\np95 = trung_binh\nprint(f\"Mean: {trung_binh:.0f} ms\")\nprint(f\"p95: {p95:.0f} ms\")\nprint(\"Pass\" if p95 < 800 else \"Fail\")\n",
+      "solution": "do_tre = [300] * 18 + [2000, 2000]\nn = len(do_tre)\ntrung_binh = sum(do_tre) / n\nxs = sorted(do_tre)\nhang = (95 * n + 99) // 100\np95 = xs[hang - 1]\nprint(f\"Mean: {trung_binh:.0f} ms\")\nprint(f\"p95: {p95:.0f} ms\")\nprint(\"Pass\" if p95 < 800 else \"Fail\")\n",
+      "expectedOutput": "Mean: 470 ms\np95: 2000 ms\nFail",
+      "hints": [
+        "With 20 measurements, the 95% rank is rank 19 (counting from 1), which is index 18 in the sorted list.",
+        "The two slowest measurements are at the end of the sorted list."
+      ]
+    },
+    {
+      "type": "feynman",
+      "title": "The three metric groups, told through a restaurant",
+      "intro": "A dish that comes out matching the menu is the functional requirement. But whether customers come back depends on how fast it arrives, whether the kitchen is clean, and whether it copes at the rush hour.",
+      "columns": [
+        "Group",
+        "At the restaurant",
+        "As a ticket with a threshold (illustrative example)"
+      ],
+      "rows": [
+        [
+          "Resource efficiency",
+          "How much ingredient and gas each serving costs",
+          "Infrastructure cost per thousand requests stays under the chosen level, assigned to one person to watch"
+        ],
+        [
+          "Experience",
+          "What matters is the slowest ten percent of customers, not the average wait",
+          "The 95th percentile of latency stays under the chosen threshold, measured from the user's browser"
+        ],
+        [
+          "Operations",
+          "The kitchen has a written recipe and the next shift can cook from it at once",
+          "Recovery after an incident within the set time, and a recovery drill has been run"
+        ]
+      ],
+      "oneLiner": "A non-functional requirement only gets an owner when it is a number with a threshold and a name."
+    },
+    {
       "type": "closing",
       "lines": [
         "Works correctly and works at all are two different questions, and few people ask the second.",

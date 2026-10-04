@@ -144,6 +144,45 @@
       }
     },
     {
+      "type": "exercise",
+      "title": "Checking the clock mid-way through a 90-minute test",
+      "task": "The plan splits 90 minutes into five parts (10, 20, 30, 20, 10 minutes). You have finished the first three parts with the actual times below. Print each part with its actual time, cumulative time and lateness against the plan's cumulative mark, then a last line: minutes left, minutes the last two parts need, and the shortfall. The starter code compares each part on its own, so it misses accumulated lateness.",
+      "starter": "const plan = [[\"Read the brief\", 10], [\"Input\", 20], [\"Core processing\", 30], [\"Testing\", 20], [\"Error review\", 10]];\nconst actual = [12, 22, 41];\n\nlet cum = 0;\nlet planCum = 0;\nactual.forEach((used, i) => {\n  const [name, minutes] = plan[i];\n  cum += used;\n  planCum += minutes;\n  const late = used - minutes;\n  const status = late > 0 ? `late ${late}` : \"on time\";\n  console.log(`${name}: ${used}/${minutes} min, total ${cum}/${planCum} - ${status}`);\n});\n\nconst need = plan.slice(actual.length).reduce((s, p) => s + p[1], 0);\nconsole.log(`${90 - cum} min left, last two parts need ${need} min: short by ${need}`);",
+      "solution": "const plan = [[\"Read the brief\", 10], [\"Input\", 20], [\"Core processing\", 30], [\"Testing\", 20], [\"Error review\", 10]];\nconst actual = [12, 22, 41];\n\nlet cum = 0;\nlet planCum = 0;\nactual.forEach((used, i) => {\n  const [name, minutes] = plan[i];\n  cum += used;\n  planCum += minutes;\n  const late = cum - planCum;\n  const status = late > 0 ? `late ${late}` : \"on time\";\n  console.log(`${name}: ${used}/${minutes} min, total ${cum}/${planCum} - ${status}`);\n});\n\nconst left = 90 - cum;\nconst need = plan.slice(actual.length).reduce((s, p) => s + p[1], 0);\nconsole.log(`${left} min left, last two parts need ${need} min: short by ${need - left}`);",
+      "expectedOutput": "Read the brief: 12/10 min, total 12/10 - late 2\nInput: 22/20 min, total 34/30 - late 4\nCore processing: 41/30 min, total 75/60 - late 15\n15 min left, last two parts need 30 min: short by 15",
+      "hints": [
+        "Lateness is actual cumulative minus planned cumulative, not actual minus plan for that part alone.",
+        "The shortfall is the minutes the last two parts need minus the minutes left."
+      ]
+    },
+    {
+      "type": "chart",
+      "title": "How the 90 minutes are split",
+      "caption": "The suggested allocation in this lesson for a 90-minute test, not a rule of any particular exam. Note that testing and error review still get their own slots, because running out of time with an unfinished product is a common reason for failing.",
+      "xLabel": "Phase",
+      "yLabel": "Minutes",
+      "data": [
+        {
+          "label": "Read the brief"
+        },
+        {
+          "label": "Input"
+        },
+        {
+          "label": "Core processing"
+        },
+        {
+          "label": "Testing"
+        },
+        {
+          "label": "Error review"
+        }
+      ],
+      "seriesLabels": [
+        "Suggested minutes"
+      ]
+    },
+    {
       "type": "closing",
       "lines": [
         "The timed coding test does not measure knowledge; it measures working habits under pressure.",

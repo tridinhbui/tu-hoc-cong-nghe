@@ -150,6 +150,41 @@
       "text": "The most common arrangement in practice uses both: a script pulls and cleans the data and writes out one tidy table, then the spreadsheet handles the model and the presentation. The people who lose the most time are usually the ones forcing a single tool to do both jobs."
     },
     {
+      "type": "exercise",
+      "title": "Merge two sources with different date formats",
+      "task": "Two sources report sales by day: source a writes dates like 2026-03-05, source b like 05/03/2026 (day/month/year). Merge both into monthly totals and print them in month order. The starter treats both as the same format, so source b's month keys are wrong.",
+      "hints": [
+        "datetime.strptime(text, format) reads a date in a given format; strftime(\"%Y-%m\") gives the month key.",
+        "Each source has its own format, so pair each format with its source."
+      ]
+    },
+    {
+      "type": "flow",
+      "title": "The script handles the data, the spreadsheet handles the model",
+      "steps": [
+        {
+          "label": "Pull data from several sources",
+          "detail": "The script reads system exports, other teams' sheets and downloaded files. Each source has its own column names and date format, and every difference is handled in code, not by hand."
+        },
+        {
+          "label": "Clean and merge",
+          "detail": "Rename columns, convert dates to one format, drop duplicate rows. Each transformation is one readable line of code, so a reviewer can follow every step."
+        },
+        {
+          "label": "Export a tidy table",
+          "detail": "The result is one clean table, one meaning per column. Rerun the script on new data and the same structure comes out, which a chain of manual steps cannot promise."
+        },
+        {
+          "label": "The spreadsheet is the model",
+          "detail": "People who need to see each cell, change assumptions and tweak directly open the exported table. Excel is doing what it is best at: seeing, trying and adjusting."
+        },
+        {
+          "label": "Present to people who do not read code",
+          "detail": "Charts and summary tables come from the spreadsheet. When the numbers change, rerun the script and update; nobody has to remember last month's manual steps."
+        }
+      ]
+    },
+    {
       "type": "closing",
       "lines": [
         "The right question is not Excel or Python, but how many more times am I going to do this.",

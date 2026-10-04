@@ -13,10 +13,18 @@
   ],
   "explanation": "Partial evaluation with F9 lets you dissect a long formula piece by piece and see exactly what each piece returns. It narrows an error down in seconds rather than making you reread the whole chain. Remember to press Esc to exit, not Enter - otherwise you replace the formula with a static value and create a brand new error.",
   "diagram": [
-    { "label": "Suspect a number" },
-    { "label": "Trace precedents: see where the data comes from" },
-    { "label": "Partial F9: narrow the error down" },
-    { "label": "Fix the cause, not the symptom" }
+    {
+      "label": "Suspect a number"
+    },
+    {
+      "label": "Trace precedents: see where the data comes from"
+    },
+    {
+      "label": "Partial F9: narrow the error down"
+    },
+    {
+      "label": "Fix the cause, not the symptom"
+    }
   ],
   "realWorldExample": {
     "company": "Spreadsheet errors in real projects",
@@ -105,18 +113,30 @@
       "type": "lead",
       "text": "A beginner finishes building a model and is pleased that it runs. Someone experienced finishes building it and starts looking for ways to prove it wrong. That difference in attitude is what this lesson is about."
     },
-    { "type": "heading", "text": "Three tiers of defence" },
+    {
+      "type": "heading",
+      "text": "Three tiers of defence"
+    },
     {
       "type": "conceptTable",
       "title": "From prevention to detection",
       "subtitle": "Each tier catches a different kind of error",
       "concepts": [
-        { "def": "A clear structure, one kind of logic per row, no hardcodes, no merged cells, no hidden rows - catching the error before it appears." },
-        { "def": "Check cells and conditional formatting. The model changes colour on its own when something is wrong, without depending on the user remembering to look." },
-        { "def": "Partial F9, trace precedents, show formulas. The tools you use once you know there is an error and need to find where it lives." }
+        {
+          "def": "A clear structure, one kind of logic per row, no hardcodes, no merged cells, no hidden rows - catching the error before it appears."
+        },
+        {
+          "def": "Check cells and conditional formatting. The model changes colour on its own when something is wrong, without depending on the user remembering to look."
+        },
+        {
+          "def": "Partial F9, trace precedents, show formulas. The tools you use once you know there is an error and need to find where it lives."
+        }
       ]
     },
-    { "type": "heading", "text": "The check row: what catches errors while you build, not after you finish" },
+    {
+      "type": "heading",
+      "text": "The check row: what catches errors while you build, not after you finish"
+    },
     {
       "type": "paragraph",
       "text": "The most effective technique is also the simplest: every schedule gets its own row computing the difference between two things that ought to be equal, and one cell aggregating every check row in the file. Capacity table: total provisioned capacity less total allocated capacity. Server table: closing server count less (opening + added − retired). Traffic table: total calls on the per-service table less total calls on the per-region table. All of them must come to 0. Set conditional formatting to turn red on anything else, and keep that aggregate cell in the top corner of every sheet - the error announces itself the moment you mistype, not when you send the file out."
@@ -126,16 +146,97 @@
       "title": "Four debugging tools, and the kind of error each one catches",
       "subtitle": "None of them replaces another - they catch different things",
       "concepts": [
-        { "def": "Catches logic errors: a missing item, a sign added the wrong way, a formula dragged one row short. The only safety net running continuously while you build." },
-        { "def": "Catches reference errors: where is this cell taking its number from. The fastest way to find a formula pointing at last year's column or at an old sheet nobody deleted." },
-        { "def": "Catches errors inside a long formula: select one segment, F9 to see what it returns, Esc to undo. The only way to dissect a five-level nested IF without pulling it apart." },
-        { "def": "Catches human errors: the convention that blue is a manual input, black is a formula, green is a link to another sheet. One black cell among the blue means somebody has just overwritten a formula with a hard number - the most common and most silent error in a model with several users." }
+        {
+          "def": "Catches logic errors: a missing item, a sign added the wrong way, a formula dragged one row short. The only safety net running continuously while you build."
+        },
+        {
+          "def": "Catches reference errors: where is this cell taking its number from. The fastest way to find a formula pointing at last year's column or at an old sheet nobody deleted."
+        },
+        {
+          "def": "Catches errors inside a long formula: select one segment, F9 to see what it returns, Esc to undo. The only way to dissect a five-level nested IF without pulling it apart."
+        },
+        {
+          "def": "Catches human errors: the convention that blue is a manual input, black is a formula, green is a link to another sheet. One black cell among the blue means somebody has just overwritten a formula with a hard number - the most common and most silent error in a model with several users."
+        }
       ]
     },
     {
       "type": "callout",
       "label": "The final test",
       "text": "Give the model to someone who has never seen it and explain nothing. If they can find which cells are assumptions, which are results, and run a different scenario themselves within five minutes, your model meets the handover standard. If not, the problem is in the structure and not in the reader."
+    },
+    {
+      "type": "scenario",
+      "title": "The check cell turns red at 5 pm",
+      "nodes": {
+        "ket": {
+          "text": "Your traffic model is about to go out. The check cell in the top corner is red with a value of 12: the total calls by service disagree with the total by region. What do you do?",
+          "choices": [
+            {
+              "label": "Add an adjustment row subtracting 12 so the check cell reads 0"
+            },
+            {
+              "label": "Open each check row to find the first table that is off"
+            },
+            {
+              "label": "Send it with a note that there is a small unexplained error"
+            }
+          ]
+        },
+        "che": {
+          "text": "The check cell reads 0 and the model gets through the meeting. Next month new data comes in, the gap is now 19 and the hard-coded row still subtracts 12. Nobody remembers where that row came from, and the check cell has lost its ability to flag errors."
+        },
+        "gui": {
+          "text": "The recipient asks what the 12 is and you cannot say. The table is treated as untrustworthy, and the whole model is questioned instead of one number."
+        },
+        "tim": {
+          "text": "The region table's check row has been red from March onward, with every earlier month at 0. From March on means the error starts in exactly one formula column. How do you proceed?",
+          "choices": [
+            {
+              "label": "Press Ctrl + [ on the March cell to see where it takes its number from"
+            },
+            {
+              "label": "Delete the March formula and type the number by hand so it matches"
+            }
+          ]
+        },
+        "nguon": {
+          "text": "The March cell points to an old sheet that was never deleted instead of the current one. You fix the reference and fill it down, and the check cell returns to 0 with no hard-coded number. Next time the same kind of error turns red the moment you mistype."
+        },
+        "go": {
+          "text": "The check cell reads 0 because you forced the numbers to match. But March is now a hard-coded number, so when you change an assumption on the input sheet, March stays still while the other months move, and the model answers the what-if question wrongly."
+        }
+      }
+    },
+    {
+      "type": "flow",
+      "title": "From the red cell to the cause: the order of tracing",
+      "steps": [
+        {
+          "label": "The check cell reports an error",
+          "detail": "Conditional formatting turns it red when it is not 0. You know there is an error but not where; diagnosis starts here."
+        },
+        {
+          "label": "Find the first non-zero check row",
+          "detail": "Go from top to bottom through the tables and months. An error usually starts in one column and spreads to later ones, so the first cell is the one to look at."
+        },
+        {
+          "label": "Show-formulas mode",
+          "detail": "Ctrl + ` shows whether that column has a formula different from its neighbours. A formula filled one row short, or a hand-typed number mixed in, shows up as text in a different style."
+        },
+        {
+          "label": "Ctrl + [ to trace the source cell",
+          "detail": "If the formula matches its neighbours, see where it takes its number from. Pointing at last year's column or an old sheet is a reference error, a kind the check row cannot name the cause of."
+        },
+        {
+          "label": "F9 on parts of a long formula",
+          "detail": "For a deeply nested IF, highlight a part and press F9 to see that part's value, Esc to undo. You break the formula down without splitting it apart."
+        },
+        {
+          "label": "Fix one place, recheck the whole file",
+          "detail": "The total cell gathering every check row at 0 is the proof. If one table is at 0 but the total is still red, another table still has an error."
+        }
+      ]
     },
     {
       "type": "closing",

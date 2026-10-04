@@ -75,6 +75,51 @@
       }
     },
     {
+      "type": "exercise",
+      "title": "Is this tool worth building",
+      "task": "A manual task takes 10 minutes and repeats 20 times a month. Writing a tool for it takes 12 hours (assume the tool needs no upkeep). For the task surviving 2, 4 and 12 months, print the net hours saved, that is, after subtracting the effort of building the tool, with a verdict. The starter code forgets to subtract the effort spent.",
+      "starter": "phut_moi_lan = 10\nlan_moi_thang = 20\ngio_lam_cong_cu = 12\n\nfor thang in [2, 4, 12]:\n    tiet_kiem = phut_moi_lan * lan_moi_thang * thang / 60\n    ket_qua = tiet_kiem  # TODO: subtract the effort of building the tool\n    nhan = \"worth accumulating\" if ket_qua > 0 else \"not worth accumulating\"\n    print(f\"After {thang} months: {ket_qua:.1f} hours -> {nhan}\")\n",
+      "solution": "phut_moi_lan = 10\nlan_moi_thang = 20\ngio_lam_cong_cu = 12\n\nfor thang in [2, 4, 12]:\n    tiet_kiem = phut_moi_lan * lan_moi_thang * thang / 60\n    ket_qua = tiet_kiem - gio_lam_cong_cu\n    nhan = \"worth accumulating\" if ket_qua > 0 else \"not worth accumulating\"\n    print(f\"After {thang} months: {ket_qua:.1f} hours -> {nhan}\")\n",
+      "expectedOutput": "After 2 months: -5.3 hours -> not worth accumulating\nAfter 4 months: 1.3 hours -> worth accumulating\nAfter 12 months: 28.0 hours -> worth accumulating",
+      "hints": [
+        "The hours saved are the total manual time over the whole span, not yet the net figure.",
+        "Net = saved minus gio_lam_cong_cu. The first two months are not enough to break even."
+      ]
+    },
+    {
+      "type": "chart",
+      "title": "The break-even point of accumulating",
+      "caption": "Illustrative numbers: drag the sliders to see how long the tool needs to beat doing it by hand. If the task disappears before the two lines cross, accumulating is a loss, which matches the lesson's distinguishing question: will this task still exist six months from now.",
+      "xLabel": "Months the task survives",
+      "yLabel": "Cumulative effort (hours)",
+      "params": [
+        {
+          "label": "Time per manual run",
+          "unit": "min"
+        },
+        {
+          "label": "Runs per month",
+          "unit": "runs"
+        },
+        {
+          "label": "Effort to build the tool",
+          "unit": "hours"
+        },
+        {
+          "label": "Monthly upkeep of the tool",
+          "unit": "hours"
+        }
+      ],
+      "series": [
+        {
+          "label": "Keep doing it by hand"
+        },
+        {
+          "label": "Build the tool"
+        }
+      ]
+    },
+    {
       "type": "closing",
       "lines": [
         "The compounding option is slower the first time and the price of skipping it arrives very late.",

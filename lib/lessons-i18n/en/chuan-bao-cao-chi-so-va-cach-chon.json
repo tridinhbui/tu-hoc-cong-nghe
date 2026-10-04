@@ -75,6 +75,46 @@
       }
     },
     {
+      "type": "exercise",
+      "title": "One month, two availability figures",
+      "task": "In a 43200-minute month there are three events: 20 minutes hard down, 90 minutes slower than 2 seconds, and 60 minutes of announced maintenance. The contract standard counts only hard downtime and excludes maintenance. The operations standard counts all three. The code currently computes both standards the same way, so they give one number. Fix kha_dung so each standard counts only its own kinds of events.",
+      "starter": "su_viec = [(\"down\", 20), (\"slow\", 90), (\"maintenance\", 60)]\nTONG = 43200\n\ndef kha_dung(loai_tinh):\n    mat = sum(p for loai, p in su_viec)\n    return round(100 - 100 * mat / TONG, 2)\n\nprint(\"Contract:\", str(kha_dung([\"down\"])) + \"%\")\nprint(\"Operations:\", str(kha_dung([\"down\", \"slow\", \"maintenance\"])) + \"%\")\n",
+      "solution": "su_viec = [(\"down\", 20), (\"slow\", 90), (\"maintenance\", 60)]\nTONG = 43200\n\ndef kha_dung(loai_tinh):\n    mat = sum(p for loai, p in su_viec if loai in loai_tinh)\n    return round(100 - 100 * mat / TONG, 2)\n\nprint(\"Contract:\", str(kha_dung([\"down\"])) + \"%\")\nprint(\"Operations:\", str(kha_dung([\"down\", \"slow\", \"maintenance\"])) + \"%\")\n",
+      "expectedOutput": "Contract: 99.95%\nOperations: 99.61%",
+      "hints": [
+        "The parameter loai_tinh is not used yet. Only add up events whose kind is in it.",
+        "Add the condition if loai in loai_tinh to the sum expression."
+      ]
+    },
+    {
+      "type": "feynman",
+      "title": "One system, three readers, three different standards",
+      "intro": "A patient has one body but three records of it. The medical certificate filed with the insurer lists only the indicators agreed in advance. The monitoring chart in the emergency room records every small fluctuation. The report to the hospital director only gives the quarterly trend.",
+      "columns": [
+        "Reader",
+        "The question they ask",
+        "The standard that fits"
+      ],
+      "rows": [
+        [
+          "Customer",
+          "Does the system keep its promise?",
+          "Narrow, measured from outside, with maintenance excluded: stable and open to dispute"
+        ],
+        [
+          "Operations team",
+          "Is anything abnormal today?",
+          "Broad, includes slowness, measured continuously: sensitive and always looks worse"
+        ],
+        [
+          "Leadership",
+          "Where is the trend heading?",
+          "Heavily aggregated, read per quarter, with a break line if the definition changes"
+        ]
+      ],
+      "oneLiner": "Choose the standard by the reader, and write the definition of down next to every number."
+    },
+    {
       "type": "closing",
       "lines": [
         "Several standards exist because several readers ask several different questions.",

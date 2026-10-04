@@ -152,6 +152,38 @@
       "text": "If three weeks of data cannot separate a real effect from luck, then keeping or removing a feature on the strength of a three-week chart is acting on noise. This is one of the most common mistakes, and one of the most ignored, when product teams read the dashboard after each release."
     },
     {
+      "type": "exercise",
+      "title": "Eight weeks of data: what the confidence interval says",
+      "task": "Below is the average latency increase (%) for eight consecutive weeks after a release. Each week is an independent observation. Print the mean, the standard error SE = s / sqrt(n), the approximate 95% confidence interval (mean ± 1.96 SE), and a conclusion on whether the interval rules out 0. The starter computes SE as s divided by n.",
+      "hints": [
+        "The formula in the lesson is s divided by the square root of n, not divided by n.",
+        "With only eight observations the true interval is a little wider than 1.96 SE. If this interval already contains 0, the conclusion can only get weaker."
+      ],
+      "starter": "import math, statistics\ntang_truong = [2.1, -0.9, 1.8, 0.9, -1.2, 2.5, 0.3, 1.0]\nn = len(tang_truong)\ntb = statistics.mean(tang_truong)\ns = statistics.stdev(tang_truong)\nse = s / n\nthap, cao = tb - 1.96 * se, tb + 1.96 * se\nprint(\"Mean:\", round(tb, 2))\nprint(\"Standard error:\", round(se, 2))\nprint(\"Confidence interval:\", round(thap, 2), \"to\", round(cao, 2))\nprint(\"Conclusion:\", \"different from 0\" if thap > 0 or cao < 0 else \"not enough to say it differs from 0\")\n",
+      "solution": "import math, statistics\ntang_truong = [2.1, -0.9, 1.8, 0.9, -1.2, 2.5, 0.3, 1.0]\nn = len(tang_truong)\ntb = statistics.mean(tang_truong)\ns = statistics.stdev(tang_truong)\nse = s / math.sqrt(n)\nthap, cao = tb - 1.96 * se, tb + 1.96 * se\nprint(\"Mean:\", round(tb, 2))\nprint(\"Standard error:\", round(se, 2))\nprint(\"Confidence interval:\", round(thap, 2), \"to\", round(cao, 2))\nprint(\"Conclusion:\", \"different from 0\" if thap > 0 or cao < 0 else \"not enough to say it differs from 0\")\n",
+      "expectedOutput": "Mean: 0.81\nStandard error: 0.48\nConfidence interval: -0.12 to 1.75\nConclusion: not enough to say it differs from 0"
+    },
+    {
+      "type": "chart",
+      "title": "Four times the data, only twice as precise",
+      "caption": "Illustrative figures: the weekly standard deviation is yours to set. The standard error falls with the square root of the number of weeks, so going from 16 to 64 weeks only halves it. Sampling more densely within the same weeks does not change n, so it does not pull this line down.",
+      "xLabel": "Weeks observed",
+      "yLabel": "Half-width of the interval (percentage points)",
+      "params": [
+        {
+          "label": "Weekly standard deviation"
+        }
+      ],
+      "series": [
+        {
+          "label": "Standard error s/√n"
+        },
+        {
+          "label": "Half of the 95% interval"
+        }
+      ]
+    },
+    {
       "type": "closing",
       "lines": [
         "A number without a confidence interval is an opinion in make-up.",

@@ -68,6 +68,44 @@
       }
     },
     {
+      "type": "exercise",
+      "title": "Sort four incidents into the right risk category",
+      "task": "Each incident has three signals: does it still happen if everything outside the team stands still, is the cause a configuration or manual operation, and do the two sides read the exchanged data differently. Write phan_nhom() to return one of four categories: code, operations, dependency, interface. If it still happens when the outside stands still, it is code or operations; if not, it is dependency or interface.",
+      "hints": [
+        "Start with the splitting question: the con_xay_ra True branch is within the team's reach.",
+        "Each branch has one more signal to choose between two categories: cau_hinh in the within-reach branch, hieu_khac in the outside branch."
+      ],
+      "starter": "su_co = [\n    (\"Division by zero on an empty cart\", True, False, False),\n    (\"Wrong environment variable after deploy\", True, True, False),\n    (\"Payment library drops the old version\", False, False, False),\n    (\"Partner changes dates from string to number\", False, False, True),\n]\n# (description, still happens when the outside stands still, due to configuration, the two sides read the data differently)\n\ndef phan_nhom(con_xay_ra, cau_hinh, hieu_khac):\n    return \"code\"\n\nfor mo_ta, a, b, c in su_co:\n    print(f\"{mo_ta} -> {phan_nhom(a, b, c)}\")\n",
+      "solution": "su_co = [\n    (\"Division by zero on an empty cart\", True, False, False),\n    (\"Wrong environment variable after deploy\", True, True, False),\n    (\"Payment library drops the old version\", False, False, False),\n    (\"Partner changes dates from string to number\", False, False, True),\n]\n# (description, still happens when the outside stands still, due to configuration, the two sides read the data differently)\n\ndef phan_nhom(con_xay_ra, cau_hinh, hieu_khac):\n    if con_xay_ra:\n        return \"operations\" if cau_hinh else \"code\"\n    return \"interface\" if hieu_khac else \"dependency\"\n\nfor mo_ta, a, b, c in su_co:\n    print(f\"{mo_ta} -> {phan_nhom(a, b, c)}\")\n",
+      "expectedOutput": "Division by zero on an empty cart -> code\nWrong environment variable after deploy -> operations\nPayment library drops the old version -> dependency\nPartner changes dates from string to number -> interface"
+    },
+    {
+      "type": "flow",
+      "title": "A date bug that looked like a code bug and turned out to be an interface",
+      "steps": [
+        {
+          "label": "The symptom appears on our side",
+          "detail": "The order service breaks with a date it cannot read. From the inside this looks like a code bug: the date-parsing function lacks a check for unexpected data."
+        },
+        {
+          "label": "Fix the exact line",
+          "detail": "Add a check and skip the bad record. The incident closes in an hour, fast and reasonable, and the chance of it recurring is exactly what it was before."
+        },
+        {
+          "label": "Ask the splitting question",
+          "detail": "If everything outside the team stood still, would this incident still happen? No: the partner just changed dates from string to number, so it lives in neither the team's code nor its configuration."
+        },
+        {
+          "label": "Call it by name: interface risk",
+          "detail": "The two sides read the exchanged data differently. Part of the fix now sits on the other side, so this is a conversation and not just a single fix."
+        },
+        {
+          "label": "Use that category's tools",
+          "detail": "Work with the partner on a data contract and checks at the boundary, so a type change is caught at the entry point rather than breaking deep in the code. This is what actually reduces incidents."
+        }
+      ]
+    },
+    {
       "type": "closing",
       "lines": [
         "The name picks the tool, and the tool decides whether it happens again.",

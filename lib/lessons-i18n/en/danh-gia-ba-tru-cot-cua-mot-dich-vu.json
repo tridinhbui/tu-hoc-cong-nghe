@@ -72,6 +72,40 @@
       "text": "Do not wait for a perfect measurement before you start recording. A slightly wrong measurement starting today beats a perfect one starting next month, because the value lives in the time series rather than in absolute accuracy. When you discover the denominator was wrong, recompute the whole history against the new one - never join two stretches measured two different ways."
     },
     {
+      "type": "exercise",
+      "title": "Cost goes up or down, depending on the denominator",
+      "task": "The three-month infrastructure cost of a service (thousand dong) and its request counts (thousands) are given. The starter prints total cost, so every month looks more expensive and the conclusion says it got worse. Change it to print the cost per thousand requests, then draw the conclusion from that figure.",
+      "hints": [
+        "The unit of work here is per thousand requests, so each month's value is that month's cost divided by that same month's request count."
+      ]
+    },
+    {
+      "type": "flow",
+      "title": "Assessing an invoice-email service",
+      "steps": [
+        {
+          "label": "Pick the unit of work",
+          "detail": "For an invoice-email service the unit is 'per thousand emails sent', not 'per month'. Divide cost, power and errors by that unit and a busy month is no longer automatically a bad month."
+        },
+        {
+          "label": "Measure where the user stands",
+          "detail": "Time from the moment the customer clicks send to the email reaching the inbox, not just server processing time. Emails bounced for a wrong address or a dropped network count toward the error rate. The number gets worse, which is a sign it is more accurate."
+        },
+        {
+          "label": "Record it now, even if the measure is off",
+          "detail": "One row a week in a spreadsheet is enough. Next month you have a line to look at, instead of starting from zero because you waited for a perfect measure."
+        },
+        {
+          "label": "Compare it with itself",
+          "detail": "This month against its own previous six months, not against the image-processing service run by the next team. Two services doing different work have cost-per-request figures that cannot be compared."
+        },
+        {
+          "label": "Change the denominator, recompute history",
+          "detail": "If you later decide to divide per invoice instead of per email, recompute the old months the new way. Splicing two periods from different measures produces a trend that does not exist."
+        }
+      ]
+    },
+    {
       "type": "closing",
       "lines": [
         "An absolute number mixes efficiency with scale; only dividing by work separates them.",

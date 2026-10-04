@@ -83,6 +83,37 @@
       "text": "Monthly suits most teams: frequent enough to catch a trend, sparse enough not to react to noise. Weekly is nearly always too dense - week-to-week movement is mostly noise, and updating on noise produces a sequence of decisions oscillating back and forth without arriving anywhere."
     },
     {
+      "type": "exercise",
+      "title": "Replace the assumption with real numbers, re-forecast the rest",
+      "task": "The original plan assumed costs grow 3% per month. Real figures exist for the first three months. Compute the real monthly growth rate from the measurements (the ratio of last month to first month, taking the root over the number of gaps between months), then re-forecast months 4 to 6 and record the assumption that changed.",
+      "hints": [
+        "Three months have two gaps between them, so the growth per gap is (117/100) to the power 1/2.",
+        "Remember to convert to a growth rate by subtracting 1."
+      ]
+    },
+    {
+      "type": "flow",
+      "title": "One rolling-forecast cycle in a month",
+      "steps": [
+        {
+          "label": "Put the real numbers in for the month just ended",
+          "detail": "Month 3 is closed: real cost 117, the plan said 109. You replace 109 with 117 in the sheet, and you no longer edit past months."
+        },
+        {
+          "label": "Find the assumption that was wrong",
+          "detail": "The plan assumed 3% growth a month, the real figures show nearly 8%. That is nobody's fault, just an assumption to update."
+        },
+        {
+          "label": "Re-forecast the remainder",
+          "detail": "At the new rate, months 4 to 12 are recomputed from 117. The past stays as it is, so the full-year figure now reflects what has been learned."
+        },
+        {
+          "label": "Record the changed assumption",
+          "detail": "One line: 'Growth 3% to 8%; cause: two large customers launched early'. After six months this list shows where the team tends to be wrong, which a plan written once never tells you."
+        }
+      ]
+    },
+    {
       "type": "closing",
       "lines": [
         "A plan is something to be updated, not something to be defended.",

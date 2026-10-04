@@ -13,10 +13,18 @@
   ],
   "explanation": "The crux of it is repeatability. When you clean by hand, the result depends on your memory of the order you did things in, and each month you may do it slightly differently - which quietly makes the numbers across periods not truly comparable. Power Query records every step into a list you can see and check, and it reruns that list identically each time new data arrives.",
   "diagram": [
-    { "label": "Connect to the data source" },
-    { "label": "Record each cleaning step" },
-    { "label": "Load into the sheet or the data model" },
-    { "label": "Next period: just hit refresh" }
+    {
+      "label": "Connect to the data source"
+    },
+    {
+      "label": "Record each cleaning step"
+    },
+    {
+      "label": "Load into the sheet or the data model"
+    },
+    {
+      "label": "Next period: just hit refresh"
+    }
   ],
   "realWorldExample": {
     "company": "The monthly management report",
@@ -131,7 +139,10 @@
       "label": "Signs it is time to move to an automated process",
       "text": "If you have done the same operation on data three times or more, or if somebody else has to do exactly that operation too, it is time to make it a process. The switching cost pays back faster than it first feels like it will."
     },
-    { "type": "heading", "text": "The real difference is that the steps are recorded" },
+    {
+      "type": "heading",
+      "text": "The real difference is that the steps are recorded"
+    },
     {
       "type": "paragraph",
       "text": "Cleaning by hand is a sequence of actions that leaves no trace: delete the first four rows, split the name column, change the date format, filter out the totals row, swap the decimal separator. Next month a new file arrives and you have to remember and repeat that order exactly. If somebody else covers for you, they do it their way and the result shifts without anyone noticing. Power Query writes each step into a readable list, so the process becomes something that exists independently of the person running it - and next month there is one action left, refresh."
@@ -151,6 +162,49 @@
         "label": "When doing it by hand is still fine",
         "text": "A one-off, a small dataset, nobody else needs to repeat it, and that file structure will never appear again. This case is real and not rare - the problem only arises when people assume this is the only time, and it turns out to be monthly."
       }
+    },
+    {
+      "type": "exercise",
+      "title": "Write it as steps so next month can re-run it",
+      "task": "The monthly export has a stray title row at the top, extra whitespace, numbers written like 1.250,5 and a Total row in the middle (illustrative figures). Complete the cleaning chain: drop the first row, trim whitespace, split on the semicolon, drop the total row, convert the numbers to a machine-readable form, then print the number of services and the total.",
+      "starter": "dong = [\n    \"Tháng 5\",\n    \"  Dịch vụ A ; 1.250,5 \",\n    \"  Dịch vụ B ; 980,0 \",\n    \"Tổng cộng ; 2.230,5\",\n    \" Dịch vụ C ; 410,25 \",\n]\n\ndu_lieu = []\nfor d in dong[1:]:\n    ten, so = [p.strip() for p in d.split(\";\")]\n    # TODO: missing step - skip the total row\n    du_lieu.append((ten, float(so.replace(\".\", \"\").replace(\",\", \".\"))))\n\ntong = sum(v for _, v in du_lieu)\nprint(f\"Số dòng: {len(du_lieu)}\")\nprint(f\"Tổng: {tong:.2f}\")",
+      "hints": [
+        "The Total row goes through every other step without error, so it never fails; it just doubles its share of the sum.",
+        "Add a condition that skips the loop iteration when the name starts with Tổng."
+      ]
+    },
+    {
+      "type": "feynman",
+      "title": "A written recipe, not cooking from memory",
+      "intro": "A good cook still writes down the recipe for a dish made every week. Not because they forgot how, but because with a recipe someone else gets the same taste, and when the dish comes out too salty you know which step to look at.",
+      "columns": [
+        "In the kitchen",
+        "Cleaning data",
+        "What changes"
+      ],
+      "rows": [
+        [
+          "Cooking from memory",
+          "Cleaning by hand, recalling the steps each time",
+          "Each month a different step gets skipped and nobody notices"
+        ],
+        [
+          "Writing each step in a notebook",
+          "Power Query saves every operation as a readable step",
+          "The process exists independently of whoever runs it"
+        ],
+        [
+          "Cooking it again next week",
+          "Refresh when the new file arrives with the same structure",
+          "One action replaces the whole chain"
+        ],
+        [
+          "Odd-tasting dish, taste each step",
+          "Click each step to see the data right after it",
+          "Trace back to the exact broken spot instead of starting over"
+        ]
+      ],
+      "oneLiner": "The biggest value of a recorded process is not saved time but being able to trace back when the final number looks odd."
     },
     {
       "type": "closing",

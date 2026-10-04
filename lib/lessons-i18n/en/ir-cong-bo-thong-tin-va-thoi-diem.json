@@ -164,6 +164,81 @@
       }
     },
     {
+      "type": "scenario",
+      "title": "The webhook has been broken since Wednesday afternoon",
+      "nodes": {
+        "phat_hien": {
+          "text": "On Thursday morning you get word: Wednesday afternoon's deployment changed the amount field in the webhook from a number to a string, and some customers' code has broken. Nobody knows how many customers. Engineering says it needs two days for an exact count and a patch. What do you do?",
+          "choices": [
+            {
+              "label": "Wait two days and announce with the customer count and a full patch"
+            },
+            {
+              "label": "Post now what is certain, stating clearly what is still being verified"
+            },
+            {
+              "label": "Post in the evening, when few people are online, to keep the noise down"
+            }
+          ]
+        },
+        "doi": {
+          "text": "Two days later the notice comes out with full figures, but the community opened a forum thread by Thursday noon. Many engineers dug for the cause themselves, and a few wrongly concluded it was a bug in their own code and rolled back their own version. Your notice arrived after the rumors."
+        },
+        "toi": {
+          "text": "The notice goes up at 10 pm, when the on-call teams have gone home. Next morning, the first people to open their machines find the incident has run all night without a warning, and they understand that the timing was deliberate."
+        },
+        "ngay": {
+          "text": "The notice is up: webhooks since Wednesday afternoon have the amount field changed in type, impact is being assessed, next update at 3 pm. Early afternoon engineering says the patch will slip to Saturday. What do you do?",
+          "choices": [
+            {
+              "label": "Stay quiet until the patch is out, then update"
+            },
+            {
+              "label": "Update at the promised time, with a temporary workaround"
+            },
+            {
+              "label": "Message a few of the biggest affected customers privately"
+            }
+          ]
+        },
+        "im": {
+          "text": "3 pm passes with nothing new. Users read silence as the situation being worse than you said, and support tickets spike right around then. The patch ships Saturday, but the promised update was dropped."
+        },
+        "rieng": {
+          "text": "A few big customers re-planned in time, while the rest of the community learned of it from a screenshot of a message passed around. They remember that the best information went privately to others before them."
+        },
+        "tot": {
+          "text": "At exactly 3 pm you post: patch expected Saturday, and meanwhile you can read the amount field as a string and coerce it to a number on your side. Users have something to do right now, and since you kept the first promise, the next promise has value."
+        }
+      }
+    },
+    {
+      "type": "flow",
+      "title": "When the disclosure clock starts",
+      "steps": [
+        {
+          "label": "Wednesday afternoon: the event happens",
+          "detail": "The deployment changes the webhook field type. The disclosure clock starts running RIGHT here, even when no one in the company knows anything yet."
+        },
+        {
+          "label": "Thursday: the on-call team finds out",
+          "detail": "A day has gone by. The on-call team keeps handling it reasonably, and the developer-relations team still has heard nothing. The clock does not stop to wait for a report."
+        },
+        {
+          "label": "Friday: engineering leads meet",
+          "detail": "The meeting debates what to say, which numbers to wait for, whether to wait for the patch. This is where the internal reasons sound most sensible, and also where another day is lost."
+        },
+        {
+          "label": "Monday: the person who publishes hears of it",
+          "detail": "Four days passed before the person responsible for writing the notice learned of the problem. Meanwhile users opened tickets and posted questions themselves."
+        },
+        {
+          "label": "The right count, and fixing the bottleneck",
+          "detail": "Count from Wednesday. What needs fixing is the path the news takes: one channel for the on-call person to tell the publisher directly the moment a change affects users, without waiting for meetings."
+        }
+      ]
+    },
+    {
       "type": "closing",
       "lines": [
         "This job runs on two clocks: the disclosure deadline and the rumour mill.",

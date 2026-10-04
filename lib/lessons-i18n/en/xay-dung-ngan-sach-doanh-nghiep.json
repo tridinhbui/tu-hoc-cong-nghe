@@ -75,6 +75,41 @@
       }
     },
     {
+      "type": "exercise",
+      "title": "The storage line never shrinks by itself",
+      "task": "Each month the team adds 200 GB of data, at an illustrative price of 0.02 USD per GB per month. Fix the loop so `luu` is the capacity accumulated up to that month, and `luu_xoa` is the capacity under a policy that keeps only the last 6 months of data. Compare three ways of budgeting for 12 months.",
+      "starter": "them = 200      # GB added per month\ngia = 0.02      # USD per GB per month (illustrative)\ngiu_toi_da = 6  # deletion policy: keep only the last 6 months\n\ntong_don = 0\ntong_xoa = 0\nfor thang in range(1, 13):\n    luu = them       # TODO: data accumulated up to this month\n    luu_xoa = them   # TODO: same, but keep only giu_toi_da months\n    tong_don += luu * gia\n    tong_xoa += luu_xoa * gia\n\nprint(f\"Nhân mười hai: {them * gia * 12:.0f} USD\")\nprint(f\"Cộng dồn: {tong_don:.0f} USD\")\nprint(f\"Có xoá sau 6 tháng: {tong_xoa:.0f} USD\")\n",
+      "hints": [
+        "After `thang` months, the capacity stored is them times thang.",
+        "With a deletion policy, the number of months kept never exceeds giu_toi_da: use min(thang, giu_toi_da)."
+      ]
+    },
+    {
+      "type": "chart",
+      "title": "How multiply-by-twelve and cumulative drift apart",
+      "caption": "Illustrative figures: the unit price and monthly added capacity are yours to adjust. The lower line is budgeting as 'this month times twelve'; the curving line is cumulative storage cost when data only grows. The gap between them is the hole in the budget.",
+      "xLabel": "Month of the year",
+      "yLabel": "Cumulative storage cost (USD)",
+      "params": [
+        {
+          "label": "Data added per month",
+          "unit": "GB"
+        },
+        {
+          "label": "Price per GB per month (illustrative)",
+          "unit": "USD"
+        }
+      ],
+      "series": [
+        {
+          "label": "Budgeted by multiplying the first month"
+        },
+        {
+          "label": "Data accumulated (cumulative)"
+        }
+      ]
+    },
+    {
       "type": "closing",
       "lines": [
         "Start from measurable quantities, not from last year's number.",

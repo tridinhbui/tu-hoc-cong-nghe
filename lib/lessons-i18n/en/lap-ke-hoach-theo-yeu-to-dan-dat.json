@@ -13,10 +13,18 @@
   ],
   "explanation": "Both methods produce a number, and the one from the growth-rate method is sometimes closer to reality. The difference lies elsewhere: when revenue comes in 12% short, a single-block plan only tells you that you are 12% short. A plan split into paying users times average plan price times renewal rate tells you whether the shortfall came from fewer sign-ups or from more users leaving - and those two causes call for completely different actions.",
   "diagram": [
-    { "label": "Pick 2-4 real operating drivers" },
-    { "label": "Tie revenue and cost back to them" },
-    { "label": "Give each driver an owner" },
-    { "label": "When it misses: examine driver by driver" }
+    {
+      "label": "Pick 2-4 real operating drivers"
+    },
+    {
+      "label": "Tie revenue and cost back to them"
+    },
+    {
+      "label": "Give each driver an owner"
+    },
+    {
+      "label": "When it misses: examine driver by driver"
+    }
   ],
   "realWorldExample": {
     "company": "A subscription app planning its revenue",
@@ -105,7 +113,10 @@
       "type": "lead",
       "text": "The CFO & Operations stage taught budgets, rolling forecasts and variance analysis - the outputs of FP&A. This stage handles what comes before them: where the numbers in that budget came from in the first place."
     },
-    { "type": "heading", "text": "Two ways to build the same budget line" },
+    {
+      "type": "heading",
+      "text": "Two ways to build the same budget line"
+    },
     {
       "type": "comparison",
       "left": {
@@ -122,15 +133,55 @@
       "title": "Three screening questions for a driver",
       "subtitle": "Failing any one of them means the driver is not usable yet",
       "concepts": [
-        { "def": "Someone in the organisation has to be able to change it. A cloud provider's price list or market salary levels are important variables but they are not planning levers." },
-        { "def": "Some system has to record the actual figure, otherwise there is nothing to reconcile at period end and the plan becomes a promise." },
-        { "def": "A driver that belongs to nobody gets watched by nobody. This is an organisational condition, not a technical one." }
+        {
+          "def": "Someone in the organisation has to be able to change it. A cloud provider's price list or market salary levels are important variables but they are not planning levers."
+        },
+        {
+          "def": "Some system has to record the actual figure, otherwise there is nothing to reconcile at period end and the plan becomes a promise."
+        },
+        {
+          "def": "A driver that belongs to nobody gets watched by nobody. This is an organisational condition, not a technical one."
+        }
       ]
     },
     {
       "type": "callout",
       "label": "Do not mistake detail for accuracy",
       "text": "A fifteen-driver model looks far more serious than a three-driver one, but every extra driver is an extra assumption, and every assumption is a place where it can be wrong. More to the point: when the result misses, fifteen suspects cannot be judged. Stop at the number of drivers you genuinely have actual data to reconcile one by one."
+    },
+    {
+      "type": "exercise",
+      "title": "The period ends off plan: which driver is off",
+      "task": "Revenue = paying users x plan price x renewal rate. The plan was 1000 users, 200 thousand dong, 80%; actuals were 900 users, 200 thousand dong, 70%. The starter only computes the gap from users and price. Finish the gap caused by renewal rate (change only that driver, keep the other two at plan), then compute the remaining interaction between drivers so the parts add up exactly to the total gap.",
+      "starter": "def rev(users, price, renewal):\n    return users * price * renewal // 100\n\nplan = (1000, 200, 80)\nactual = (900, 200, 70)\n\nbase = rev(*plan)\ntotal_gap = rev(*actual) - base\nusers = rev(actual[0], plan[1], plan[2]) - base\nprice = rev(plan[0], actual[1], plan[2]) - base\nrenewal = 0\ninteraction = 0\n\nprint(\"Users:\", users)\nprint(\"Price:\", price)\nprint(\"Renewal:\", renewal)\nprint(\"Interaction:\", interaction)\n",
+      "solution": "def rev(users, price, renewal):\n    return users * price * renewal // 100\n\nplan = (1000, 200, 80)\nactual = (900, 200, 70)\n\nbase = rev(*plan)\ntotal_gap = rev(*actual) - base\nusers = rev(actual[0], plan[1], plan[2]) - base\nprice = rev(plan[0], actual[1], plan[2]) - base\nrenewal = rev(plan[0], plan[1], actual[2]) - base\ninteraction = total_gap - (users + price + renewal)\n\nprint(\"Users:\", users)\nprint(\"Price:\", price)\nprint(\"Renewal:\", renewal)\nprint(\"Interaction:\", interaction)\n",
+      "expectedOutput": "Users: -16000\nPrice: 0\nRenewal: -20000\nInteraction: 2000",
+      "hints": [
+        "Do the same as the two lines above: take the third element of actual and the first two of plan.",
+        "The three separate gaps do not add up to the total gap because the drivers multiply. The difference is the interaction."
+      ]
+    },
+    {
+      "type": "chart",
+      "title": "Renewal revenue hangs on three drivers, drag each slider to see",
+      "caption": "Illustrative numbers, simplified model: monthly renewal revenue = users x plan price x renewal rate. Drag price or renewal rate to see which driver shifts the whole line the most.",
+      "xLabel": "Paying users",
+      "yLabel": "Monthly renewal revenue (million dong)",
+      "params": [
+        {
+          "label": "Average plan price",
+          "unit": "thousand"
+        },
+        {
+          "label": "Renewal rate",
+          "unit": "%"
+        }
+      ],
+      "series": [
+        {
+          "label": "Renewal revenue"
+        }
+      ]
     },
     {
       "type": "closing",

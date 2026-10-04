@@ -151,6 +151,61 @@
       "text": "A great many business questions do not permit random assignment: you cannot randomly pick half your customers and raise their prices. In those cases the most honest approach is to state that the conclusion is correlational, list the alternative explanations you have not been able to rule out, and avoid verbs that imply causation such as drives or lifts."
     },
     {
+      "type": "aiLab",
+      "title": "AI-written analysis summary: where does it jump to causation",
+      "task": "An AI summarises an analysis of the notifications feature. The figures are illustrative. Click the passages whose conclusions go beyond the evidence, then submit.",
+      "segments": [
+        {
+          "text": "In last quarter's data, users with notifications on had clearly more sessions per week than those with them off."
+        },
+        {
+          "text": "So turning notifications on makes users more active, and we should enable them by default for everyone.",
+          "error": "The direction may be reversed: already-active users are the ones who turn notifications on. A third factor, such as interest in the product, could also sit behind both. Observational data cannot separate these possibilities."
+        },
+        {
+          "text": "This relationship repeats for three quarters in a row, but all three are observational data so a third factor is still not ruled out."
+        },
+        {
+          "text": "A satisfaction survey of active users gives an average of 4.6 out of 5, so we can conclude almost all customers are satisfied.",
+          "error": "This is survivorship bias. Unhappy users have left and vanished from the surveyed list, so the score looks better than reality. The 4.6 only describes those who stayed."
+        },
+        {
+          "text": "To test causation, turn notifications on at random for half of new users and compare them with the other half."
+        },
+        {
+          "text": "Ice cream sales and drownings both rise in summer, and temperature may be behind both."
+        }
+      ]
+    },
+    {
+      "type": "feynman",
+      "title": "Three ways correlation fools you, in three everyday stories",
+      "intro": "Two things moving together does not mean one pulls the other. Each mechanism in the lesson has an easy-to-remember everyday story, and a question to ask yourself before writing the word 'causes' in a report.",
+      "columns": [
+        "Mechanism",
+        "Everyday story",
+        "Question to ask"
+      ],
+      "rows": [
+        [
+          "Confounder",
+          "Hot weather raises both ice cream and swimming, so drownings track ice cream sales",
+          "Is there a third factor acting on both"
+        ],
+        [
+          "Reverse causation",
+          "People who read a lot buy bookshelves; bookshelves do not make them read",
+          "Could the direction run opposite to what I assume"
+        ],
+        [
+          "Survivorship bias",
+          "Asking diners in a restaurant how good the food is; those who disliked it never came back",
+          "Where did the people missing from the sample go"
+        ]
+      ],
+      "oneLiner": "When two things move together, before asking which causes which, ask what other explanation has not yet been ruled out."
+    },
+    {
       "type": "closing",
       "lines": [
         "The discipline here is not in the arithmetic but in bothering to list the explanations you do not like.",

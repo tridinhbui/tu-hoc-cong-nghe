@@ -72,6 +72,81 @@
       }
     },
     {
+      "type": "scenario",
+      "title": "This week's milestone and what gets cut",
+      "nodes": {
+        "dau": {
+          "text": "The team lead needs to hit a milestone this week. The internal payments service has a test suite that takes a while on every push, and an on-call guide that is a few months out of date. He asks what can be cut to make it. What do you suggest?",
+          "choices": [
+            {
+              "label": "Turn off automated tests this week, re-enable after the milestone"
+            },
+            {
+              "label": "Postpone side work, keep the tests and the guide"
+            },
+            {
+              "label": "Leave the old on-call guide for one more quarter"
+            }
+          ]
+        },
+        "tat": {
+          "text": "That week really was faster. Three weeks later a config change makes prices display wrongly for one group of customers. With no tests to point at the culprit, two people spend over half a day tracing each deploy. The time saved was repaid many times over."
+        },
+        "tailieu": {
+          "text": "The service runs fine for two months. Then one night it fails from a bug that takes ten minutes to fix. The new on-call person does not know which recovery steps are still valid, has to phone people one by one, and loses two hours. Missing documentation does not cause the bug, it multiplies the downtime twelvefold."
+        },
+        "giu": {
+          "text": "The milestone is met without trading away the foundation. One real problem remains: the slow test suite makes every push wait, and teammates start to complain. How do you handle it?",
+          "choices": [
+            {
+              "label": "Batch many changes into one push to wait less"
+            },
+            {
+              "label": "Mark the slow tests as temporarily skipped"
+            },
+            {
+              "label": "Run a fast suite on every push, the full suite nightly"
+            }
+          ]
+        },
+        "gop": {
+          "text": "Waiting drops, but each push now carries many changes. When one breaks something, nobody knows which of ten changes is the culprit, and narrowing it down takes longer than before."
+        },
+        "boqua": {
+          "text": "The slow tests are often exactly the ones that touch the database and payments. They get switched off, nobody remembers to turn them back on, and a bug in that very area slips into production while the dashboard stays green."
+        },
+        "tot": {
+          "text": "Each push waits only for the fast suite, so the pace does not slow; the full suite still runs every night and reports the next morning. The tests and the guide stay intact, so the next incident will be shorter."
+        }
+      }
+    },
+    {
+      "type": "flow",
+      "title": "The same incident at three in the morning, two outcomes",
+      "steps": [
+        {
+          "label": "The alert fires",
+          "detail": "The service returns errors for part of the requests. The real cause is an expired certificate, but the on-call person does not know that yet. With or without documentation, this starting point is the same."
+        },
+        {
+          "label": "Understand what is happening",
+          "detail": "With a guide: open the common-failures section and see the certificate line at once. Without one: read logs, guess, then phone whoever wrote the service. This step is where the two scenarios split."
+        },
+        {
+          "label": "Find the right place to fix",
+          "detail": "With clear access, the on-call person can make the change and knows which changes leave a trace. Without it, they wait for someone with access to wake up."
+        },
+        {
+          "label": "Fix and verify",
+          "detail": "With automated tests in the deploy step, the change ships with justified confidence. Without them, the on-call person fixes while worrying about breaking something else."
+        },
+        {
+          "label": "Measure recovery time",
+          "detail": "Measure from when it started failing, not from when it was noticed. For the same cause, the first scenario takes about fifteen minutes, the second can take hours. That is the multiplier the lesson talks about."
+        }
+      ]
+    },
+    {
       "type": "closing",
       "lines": [
         "This pillar does not create problems, it decides how long problems last.",

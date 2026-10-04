@@ -73,6 +73,46 @@
       "text": "Write it in advance, while the conversation is still easy. There are usually three ways out: extend by another cycle, narrow the scope of the handover and keep the hardest part, or conclude that this system should be replaced rather than taken on. The third sounds extreme and is sometimes the cheapest, and it only gets considered if it was written down from the start."
     },
     {
+      "type": "exercise",
+      "title": "A measurable milestone: three incidents in a row with no call",
+      "task": "Below are post-handover incidents, each with a date and whether the new team handled it alone. The milestone is three CONSECUTIVE self-handled incidents. Print the incident number and the date the milestone is reached in the form: Milestone reached at incident N - date. The starter counts the total self-handled, and one call for help does not reset the counter to zero.",
+      "starter": "incidents = [(\"03-02\", True), (\"03-09\", False), (\"03-15\", True), (\"03-21\", True),\n             (\"04-02\", False), (\"04-10\", True), (\"04-18\", True), (\"04-25\", True)]\nstreak = 0\nfor i, (day, handled) in enumerate(incidents, start=1):\n    if handled:\n        streak += 1\n    if streak == 3:\n        print(\"Milestone reached at incident\", i, \"-\", day)\n        break\n",
+      "solution": "incidents = [(\"03-02\", True), (\"03-09\", False), (\"03-15\", True), (\"03-21\", True),\n             (\"04-02\", False), (\"04-10\", True), (\"04-18\", True), (\"04-25\", True)]\nstreak = 0\nfor i, (day, handled) in enumerate(incidents, start=1):\n    if handled:\n        streak += 1\n    else:\n        streak = 0\n    if streak == 3:\n        print(\"Milestone reached at incident\", i, \"-\", day)\n        break\n",
+      "expectedOutput": "Milestone reached at incident 8 - 04-25",
+      "hints": [
+        "Three scattered self-handled incidents are not the milestone. What does consecutive mean when the new team has to call for help?",
+        "Add an else branch: when an incident is not self-handled, streak goes back to 0."
+      ]
+    },
+    {
+      "type": "feynman",
+      "title": "Handover is like learning to drive",
+      "intro": "A driving school can promise three months of lessons, or promise to teach until you pass the test. The first is easy to put in a contract. Only the second says you can actually drive.",
+      "columns": [
+        "In learning to drive",
+        "In a system handover",
+        "What it says"
+      ],
+      "rows": [
+        [
+          "Three full months of lessons",
+          "The old team supports for three full months",
+          "Only that time has passed, not how ready anyone is"
+        ],
+        [
+          "Driving through three situations in a row with no instructor braking",
+          "The new team handles three incidents in a row without calling the old team",
+          "Measures what the new team can do"
+        ],
+        [
+          "The instructor sits beside you but does not hold the wheel",
+          "The old team answers questions, does not fix things for them",
+          "If the instructor holds the wheel, the milestone is never truly reached"
+        ]
+      ],
+      "oneLiner": "A good milestone measures what the receiver can do, not how long the giver stayed."
+    },
+    {
       "type": "closing",
       "lines": [
         "Time does not measure readiness, it measures time.",

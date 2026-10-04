@@ -146,6 +146,81 @@
       }
     },
     {
+      "type": "scenario",
+      "title": "\"Needs to be more strategic\"",
+      "nodes": {
+        "nhan_xet": {
+          "text": "After several years as a strong execution engineer, your year-end review says: needs to be more proactive and more strategic. No examples attached. How do you react?",
+          "choices": [
+            {
+              "label": "Take on more work and deliver ahead of every deadline"
+            },
+            {
+              "label": "Ask your manager for one concrete example of a decision you should have made"
+            },
+            {
+              "label": "Ask to switch teams because the feedback is too vague to act on"
+            }
+          ]
+        },
+        "nhieu": {
+          "text": "You do more and faster, exactly by the old criteria. Next year the feedback is the same, because what they want is different work, not more of it, and you burn out with no one seeing a difference."
+        },
+        "chuyen": {
+          "text": "The new team judges by the same ladder map, so after a year you get almost the same feedback in other words. You lose a year and the trust built up with the old team."
+        },
+        "hoi": {
+          "text": "Your manager names a concrete case: three projects were all ambiguous, nobody chose which to do first, and nobody owned that choice. What do you try first?",
+          "choices": [
+            {
+              "label": "Wait for the manager to choose, then do your assigned part really well"
+            },
+            {
+              "label": "Run all three projects in parallel to be safe"
+            },
+            {
+              "label": "Pick one, write the reason and the conditions that would prove you wrong"
+            }
+          ]
+        },
+        "cho": {
+          "text": "You are still on the execution rung: everything handed down is done well, but the person choosing is still your manager. Six months later the \"needs to be more proactive\" comment returns word for word."
+        },
+        "ba": {
+          "text": "All three projects run half-speed and none finishes on time. You avoided having to choose, but choosing is the value of the judgement rung, and you spent your time on the old one."
+        },
+        "ok": {
+          "text": "You put forward a defensible view along with what could prove it wrong. Your manager can push back in the right place, and next time the choice of priorities is handed to you. The criteria changed, and you are the one who saw it coming."
+        }
+      }
+    },
+    {
+      "type": "flow",
+      "title": "Turning a vague comment into something you can act on",
+      "steps": [
+        {
+          "label": "The comment arrives",
+          "detail": "Phrases like \"more proactive\" or \"more strategic\" almost never come with examples. Do not agree at once and do not dismiss it; write it down verbatim."
+        },
+        {
+          "label": "Ask for one specific situation",
+          "detail": "Ask the reviewer: was there a decision last week I should have made? This question turns the comment into something real to discuss."
+        },
+        {
+          "label": "Place yourself on the ladder",
+          "detail": "Set that situation beside the three rungs: execution, judgement, decision. If it requires choosing the right problem or taking responsibility under missing information, the criteria have changed."
+        },
+        {
+          "label": "Try the next rung's work",
+          "detail": "Take a small task at the next rung, such as choosing priorities between two ambiguous jobs. Work differently, not more, and write down your reason plus what would prove you wrong."
+        },
+        {
+          "label": "Collect feedback and record it",
+          "detail": "Afterwards ask the same person: was this different? Record the comment and how you translated it, so next time you do not guess from scratch."
+        }
+      ]
+    },
+    {
       "type": "closing",
       "lines": [
         "End of the stage: getting the solution right is only half of it; the other half is making that solution believed and acted on.",

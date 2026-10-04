@@ -151,6 +151,65 @@
       "text": "The community accepts a slip if it was flagged and the cause matches what the team had said. What is not forgiven is discovering that the team did not see it coming - because that says something about every future release, not just this one."
     },
     {
+      "type": "aiLab",
+      "title": "Draft notice for pushing back a milestone",
+      "task": "An AI tool drafted a notice to the community that a launch milestone is slipping. Click the sentences the lesson just taught you should not publish, then submit.",
+      "segments": [
+        {
+          "text": "We are moving the new authentication release from mid-quarter to the end of this quarter."
+        },
+        {
+          "text": "Due to some technical difficulties, the milestone had to be pushed back.",
+          "error": "A vague cause. The lesson is specific: the community accepts one slip when the cause is clear and matches what the team said before, while a generic line makes them suspect the team did not see it coming."
+        },
+        {
+          "text": "Sign-in with the new keys moves fully to next quarter, while the old sign-in keeps working as it does today."
+        },
+        {
+          "text": "Since last week we have separately told a few large customers so they could move their plans early.",
+          "error": "Telling some customers privately first is what the lesson forbids. The rest of the community will find out, and they will remember that they heard second."
+        },
+        {
+          "text": "We promise the new date will not slip by even one day.",
+          "error": "A milestone that just slipped, paired with an absolute promise. If it slips again, what is lost is not only the date but the whole promise just made."
+        },
+        {
+          "text": "This notice is published as soon as we had enough grounds, four weeks before the planned date."
+        },
+        {
+          "text": "The next update will be posted next Friday."
+        }
+      ]
+    },
+    {
+      "type": "feynman",
+      "title": "A release date is like a time you promise a friend",
+      "intro": "A friend keeps making plans with you. When one is punctual, you arrive on time. When one is often late, you tell yourself to add half an hour, and their promises stop meaning anything. A product team's dates work exactly the same way.",
+      "columns": [
+        "How the date is set",
+        "Like",
+        "The later cost"
+      ],
+      "rows": [
+        [
+          "Set early to get attention",
+          "Saying \"I'll be there in five minutes\" while still far away",
+          "One slip and everyone adds time to your future promises"
+        ],
+        [
+          "Set far out, then ship early",
+          "Promising an hour, arriving in forty minutes",
+          "Always looks good, until they discount it and the number loses meaning"
+        ],
+        [
+          "Know it will slip, say so at once",
+          "Texting the moment you know about the traffic jam, naming the jam",
+          "Acceptable, because the cause matches what you said before"
+        ]
+      ],
+      "oneLiner": "A date's value is the run of times it was kept, so warning early when it will slip is cheaper than being on time once and losing trust."
+    },
+    {
       "type": "closing",
       "lines": [
         "A date you publish is a date you live with until release day.",

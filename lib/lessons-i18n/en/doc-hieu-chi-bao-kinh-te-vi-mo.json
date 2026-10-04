@@ -84,6 +84,36 @@
       "text": "Leading indicators are for acting on; lagging ones are for checking whether the action worked. A board with only the first kind is full of false alarms and nobody believes it; a board with only the second is always right and always late. Both are needed, and they need reading on two different rhythms."
     },
     {
+      "type": "exercise",
+      "title": "How many days until full, not just 'reached 80%'",
+      "task": "Disk usage measured at the end of each week for four weeks: 52, 57, 63, 70 percent (illustrative data). An alert at 80% has not fired. Compute the average growth per week and the days left until 100%. The program currently divides the growth by all four readings instead of by the three gaps between them.",
+      "hints": [
+        "Four readings have only three gaps between them. Divide by len(muc) - 1.",
+        "A level-based alert cannot tell three months from two days. An alert on days remaining gives every case the same time to react."
+      ]
+    },
+    {
+      "type": "chart",
+      "title": "Same 80% threshold, a world of difference in reaction time",
+      "caption": "Illustrative figures. Days left to the threshold = (threshold minus current level) divided by weekly growth, times 7. The second line is the days left until 100% full. Drag the current level and watch: the same alert at 80% can give you months or days, depending entirely on the growth rate.",
+      "xLabel": "Growth rate (percentage points per week)",
+      "yLabel": "Days left",
+      "params": [
+        {
+          "label": "Current usage level",
+          "unit": "%"
+        }
+      ],
+      "series": [
+        {
+          "label": "Days left to the 80% alert threshold"
+        },
+        {
+          "label": "Days left until full"
+        }
+      ]
+    },
+    {
       "type": "closing",
       "lines": [
         "A leading indicator is always a derivative or a signal from upstream.",

@@ -88,6 +88,95 @@
       }
     },
     {
+      "type": "scenario",
+      "title": "Four weeks before the contract renewal",
+      "nodes": {
+        "dau": {
+          "text": "Your team uses a vendor's message-queue service, and your code calls their library directly in many places. They have just quoted a steep renewal increase and you have four weeks to prepare. What do you do first?",
+          "choices": [
+            {
+              "label": "Build an abstraction layer covering every feature of every vendor"
+            },
+            {
+              "label": "Pull every call into one thin layer that wraps only what you use"
+            },
+            {
+              "label": "Count the call sites in the code, then fix a migration plan"
+            }
+          ]
+        },
+        "day": {
+          "text": "The abstraction tries to cover every feature of vendors nobody has picked yet. It costs many times more effort, is hard to read, and when a second vendor really appears, its assumptions are all wrong. Four weeks pass with nothing to negotiate with."
+        },
+        "dem": {
+          "text": "The count looks neat: few call sites, a migration plan of a few weeks. But counting sees only calls in code. It misses the shape of the queued message data, and the way your team has grown used to their tooling. The real migration later runs several times over the estimate."
+        },
+        "mong": {
+          "text": "The thin layer can be read in minutes and every touchpoint sits in one place. Now the data: queued messages are stored in a shape only the vendor understands. What do you choose?",
+          "choices": [
+            {
+              "label": "Note the data shape in a document for later"
+            },
+            {
+              "label": "Export a periodic copy in a common format starting now"
+            },
+            {
+              "label": "Leave it, and plan the export when you actually leave"
+            }
+          ]
+        },
+        "ghichu": {
+          "text": "The document describes the data shape clearly, but a note is not a copy. When you need to leave, you still have to write the exporter from scratch, under pressure, and nobody knows whether it runs at real volume."
+        },
+        "muon": {
+          "text": "When you finally want out, the export reveals fields only the vendor understands and rate limits on exporting. The cost of leaving now exceeds any price increase they ever imagined, and you have nothing left to negotiate with."
+        },
+        "banso": {
+          "text": "The data now has a copy in a common format, refreshed daily. Next you need to know whether your migration estimate is trustworthy. How do you verify it?",
+          "choices": [
+            {
+              "label": "Build a prototype in one afternoon and mark it as checked"
+            },
+            {
+              "label": "Run one percent of real traffic through the second vendor"
+            }
+          ]
+        },
+        "thu": {
+          "text": "The prototype proves the integration can be done, and nothing more. It does not test real data or both teams operating at once, so the estimate still rests on imagination. The other side looks at it and knows you are not really ready to leave."
+        },
+        "that": {
+          "text": "One percent of real traffic shows the data moves, your team can operate both sides, and the estimate rests on work already done. The other side can see that too, so this renewal you negotiate with a real option in hand."
+        }
+      }
+    },
+    {
+      "type": "flow",
+      "title": "One percent of real traffic through the second vendor",
+      "steps": [
+        {
+          "label": "Gather the touchpoints",
+          "detail": "Every call to the current vendor goes through one thin layer. Finding them all means searching the code and also reading access lists and job schedules, because some touchpoints appear only outside the code."
+        },
+        {
+          "label": "Periodic data copy",
+          "detail": "Each night a copy in a common format is written somewhere you control. Nobody needs to read it yet, but when you do, that part of the work is already done."
+        },
+        {
+          "label": "Split off one percent",
+          "detail": "The thin layer sends about one percent of requests to the second vendor while the rest go as before. Pick a low-risk request type so a failure does little damage."
+        },
+        {
+          "label": "Compare results",
+          "detail": "Every day, compare both sides' results for the same kind of request. Differences in configuration and data show up here, while the old vendor is still serving."
+        },
+        {
+          "label": "Update the exit page",
+          "detail": "Write down what you just learned: what was hard, how long it took, who was needed. Each time the contract renews, open this page and revise the estimate."
+        }
+      ]
+    },
+    {
       "type": "closing",
       "lines": [
         "The cost of leaving is decided when you choose, not when you want to leave.",

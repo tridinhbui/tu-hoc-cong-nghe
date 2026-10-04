@@ -13,10 +13,21 @@
   ],
   "explanation": "In a spreadsheet, the unit of thought is a cell: you write a formula for the first one and drag it down. In code, the unit of thought is the whole column: you say 'take the revenue column minus the cost column' and that subtraction applies to every row at once. It sounds like a difference in syntax, but it changes how you express the problem - and once you can express it by column, the code is both shorter and many times faster.",
   "diagram": [
-    { "label": "Select the columns you need", "arrow": true },
-    { "label": "Filter rows by a condition", "arrow": true },
-    { "label": "Group and aggregate", "arrow": true },
-    { "label": "Join with another table" }
+    {
+      "label": "Select the columns you need",
+      "arrow": true
+    },
+    {
+      "label": "Filter rows by a condition",
+      "arrow": true
+    },
+    {
+      "label": "Group and aggregate",
+      "arrow": true
+    },
+    {
+      "label": "Join with another table"
+    }
   ],
   "realWorldExample": {
     "company": "Computing the margin on twenty thousand orders",
@@ -105,22 +116,68 @@
       "type": "lead",
       "text": "A data table in code looks exactly like an Excel sheet: rows, columns, headers. But the way you talk to it is completely different, and that difference decides whether your code is short or long, fast or slow."
     },
-    { "type": "heading", "text": "Four operations that cover most of the work" },
+    {
+      "type": "heading",
+      "text": "Four operations that cover most of the work"
+    },
     {
       "type": "conceptTable",
       "title": "The foundational operation set",
       "subtitle": "Almost every analysis is a combination of these four",
       "concepts": [
-        { "def": "Keep only the columns you need. A leaner table means fewer errors, and whoever reads the code later immediately sees what you care about." },
-        { "def": "Keep the rows meeting a condition. Equivalent to a spreadsheet filter, but written down as text, so it is reproducible." },
-        { "def": "Split the data by a field and aggregate each group. This is exactly a pivot table, except the result is still a table you can keep working on." },
-        { "def": "Connect two tables on a shared key. The most powerful of the four operations and also the one that produces the most errors." }
+        {
+          "def": "Keep only the columns you need. A leaner table means fewer errors, and whoever reads the code later immediately sees what you care about."
+        },
+        {
+          "def": "Keep the rows meeting a condition. Equivalent to a spreadsheet filter, but written down as text, so it is reproducible."
+        },
+        {
+          "def": "Split the data by a field and aggregate each group. This is exactly a pivot table, except the result is still a table you can keep working on."
+        },
+        {
+          "def": "Connect two tables on a shared key. The most powerful of the four operations and also the one that produces the most errors."
+        }
       ]
     },
     {
       "type": "callout",
       "label": "The data type trap",
       "text": "The most common error when reading data in is not a wrong formula but a column whose type is misread. A date column read as text sorts in the wrong order. A numeric column with thousands separators read as text makes every addition fail. The dangerous part is that there is no error message - only a wrong result. Checking each column's type immediately after loading the data is a habit worth forming early."
+    },
+    {
+      "type": "exercise",
+      "title": "Filter first, group after",
+      "task": "The order table below has both paid orders and refunded ones (refund). Revenue per city is counted on paid orders only. The starter adds up every row, so each city's figure is inflated. Add a filtering step so each city sums only its paid orders.",
+      "hints": [
+        "The order of the four operations in the lesson: select columns, filter rows, then group. The code is missing the row-filter step.",
+        "Inside the loop, skip any row whose trang_thai is not \"paid\" with continue before adding."
+      ]
+    },
+    {
+      "type": "flow",
+      "title": "An order table going through four operations",
+      "steps": [
+        {
+          "label": "Read it in, then check each column's type",
+          "detail": "The table has ngay_dat and tien columns. If tien is read as a string because of thousand separators like \"1.250.000\", every sum afterwards is wrong without any error. Print each column's type right now."
+        },
+        {
+          "label": "Select columns",
+          "detail": "Keep thanh_pho, trang_thai and tien and drop the rest. A narrower table means fewer mistakes, and whoever reads the code later sees at once which columns you care about."
+        },
+        {
+          "label": "Filter rows",
+          "detail": "Keep rows where trang_thai is paid. Six rows become four. The condition is written as code, so next week it reruns to exactly the same result, unlike a filter clicked by hand in a spreadsheet."
+        },
+        {
+          "label": "Group by city",
+          "detail": "One result row per city with the total amount. The result is still a table, so you can chain the next step instead of copying numbers somewhere else."
+        },
+        {
+          "label": "Join on a shared key",
+          "detail": "Join to the targets table on thanh_pho. Before joining, count the rows and the distinct key values in the right-hand table. If the two numbers differ, the join will duplicate rows."
+        }
+      ]
     },
     {
       "type": "closing",

@@ -76,6 +76,40 @@
       }
     },
     {
+      "type": "exercise",
+      "title": "Find the shared things that make services no longer independent",
+      "task": "Four services, each listing what it depends on (database, auth, region, on-call team...). Count how many services share each dependency and print those shared by AT LEAST 3 of the 4 services, sorted from most to fewest (ties by name). These are the common points of failure. (Illustrative data.)",
+      "hints": [
+        "The current threshold equals the number of services, so it only catches what all four share. A region whose failure takes down three of four services is also a common point of failure.",
+        "Set NGUONG to 3; the rest of the code is already correct."
+      ],
+      "starter": "dich_vu = {\n    \"orders\": {\"shared db\", \"auth\", \"region A\", \"on-call team 1\"},\n    \"inventory\": {\"shared db\", \"auth\", \"region A\", \"on-call team 1\"},\n    \"payments\": {\"payments db\", \"auth\", \"region A\", \"on-call team 1\"},\n    \"notifications\": {\"queue\", \"auth\", \"region B\", \"on-call team 1\"},\n}\nNGUONG = len(dich_vu)\n\ndem = {}\nfor deps in dich_vu.values():\n    for d in deps:\n        dem[d] = dem.get(d, 0) + 1\n\nfor ten, n in sorted(dem.items(), key=lambda kv: (-kv[1], kv[0])):\n    if n >= NGUONG:\n        print(f\"{ten}: {n}/{len(dich_vu)} services\")\n",
+      "solution": "dich_vu = {\n    \"orders\": {\"shared db\", \"auth\", \"region A\", \"on-call team 1\"},\n    \"inventory\": {\"shared db\", \"auth\", \"region A\", \"on-call team 1\"},\n    \"payments\": {\"payments db\", \"auth\", \"region A\", \"on-call team 1\"},\n    \"notifications\": {\"queue\", \"auth\", \"region B\", \"on-call team 1\"},\n}\nNGUONG = 3\n\ndem = {}\nfor deps in dich_vu.values():\n    for d in deps:\n        dem[d] = dem.get(d, 0) + 1\n\nfor ten, n in sorted(dem.items(), key=lambda kv: (-kv[1], kv[0])):\n    if n >= NGUONG:\n        print(f\"{ten}: {n}/{len(dich_vu)} services\")\n",
+      "expectedOutput": "auth: 4/4 services\non-call team 1: 4/4 services\nregion A: 3/4 services"
+    },
+    {
+      "type": "flow",
+      "title": "One bad night: twelve services fail from one shared thing",
+      "steps": [
+        {
+          "label": "The auth service slows down",
+          "detail": "Nothing reports an error; each login just takes two seconds instead of twenty milliseconds. All twelve services call it at the start of every request."
+        },
+        {
+          "label": "Timeouts spread service by service",
+          "detail": "Every service is waiting on auth, so they all exceed their timeouts together. The dashboard shows twelve red services at once, looking like twelve separate incidents."
+        },
+        {
+          "label": "Alerts pile onto one on-call team",
+          "detail": "All twelve alerts go to the same three people. Technical independence does not help when only three people are reading, and two incidents at once become one incident twice as long."
+        },
+        {
+          "label": "Find the common point first, fix each one after",
+          "detail": "Ask what all twelve services call, instead of going into each service. The common point shows up in minutes. After the incident, add it to the list of four shared dependencies and design a fallback for it."
+        }
+      ]
+    },
+    {
       "type": "closing",
       "lines": [
         "Risk falls through independence, not through the number of pieces.",

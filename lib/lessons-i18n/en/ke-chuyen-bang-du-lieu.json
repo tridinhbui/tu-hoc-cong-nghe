@@ -154,6 +154,118 @@
       }
     },
     {
+      "type": "aiLab",
+      "title": "Ask AI to build an inverted-pyramid deck",
+      "task": "Q4 revenue fell 8%, mostly in enterprise customers. Assemble a prompt for the AI to write the slide titles. Pick one option for each part.",
+      "parts": [
+        {
+          "id": "boi_canh",
+          "label": "Context",
+          "options": [
+            {
+              "text": "Say the audience is the board and they must decide whether to raise enterprise sales budget",
+              "good": true,
+              "feedback": "There is an audience and a decision to make, so the AI knows which recommendation the conclusion must lead to."
+            },
+            {
+              "text": "Send the Q4 revenue table and ask for professional-looking slide content",
+              "feedback": "Only data, no audience and no decision. The AI will describe the numbers rather than lead to an action."
+            },
+            {
+              "text": "Say the boss is very busy so the deck should be short and pretty, nothing more",
+              "feedback": "Short and pretty is not context. The AI does not know what the boss must decide, so the deck lacks a focus."
+            }
+          ]
+        },
+        {
+          "id": "tieu_de",
+          "label": "Title requirement",
+          "options": [
+            {
+              "text": "Write three titles that are messages with numbers, forming one argument",
+              "good": true,
+              "feedback": "Someone skimming only the titles still gets the whole argument, as the lesson said."
+            },
+            {
+              "text": "Write three short titles named after the chart, like Revenue by quarter",
+              "feedback": "A title that names the chart type does not tell the reader what to conclude."
+            },
+            {
+              "text": "Write lots of catchy titles so I can pick my favourite",
+              "feedback": "Many titles do not make one argument, and every finding is stated at the same weight."
+            }
+          ]
+        },
+        {
+          "id": "gioi_han",
+          "label": "Limits of the analysis",
+          "options": [
+            {
+              "text": "Add one slide stating what the analysis cannot answer and the assumption propping up the conclusion",
+              "good": true,
+              "feedback": "Stating limits yourself beats being asked, and it matches the limits tier of the four-tier structure."
+            },
+            {
+              "text": "Drop the limitations entirely so the deck is shorter and sounds surer",
+              "feedback": "The audience will ask anyway and you lose the initiative. This is a sign of a weak presentation."
+            },
+            {
+              "text": "Just add a methods section at the end for anyone who wants to read it",
+              "feedback": "Methods belong in the appendix. It does not say what was left out or which assumption holds the conclusion up."
+            }
+          ]
+        }
+      ],
+      "responses": [
+        {
+          "requires": [
+            "boi_canh",
+            "tieu_de",
+            "gioi_han"
+          ],
+          "text": "Title 1: Q4 revenue fell 8%, almost all of it in enterprise customers. Title 2: This segment lost new customers, not existing ones. Title 3: Recommend raising enterprise sales budget; decision needed today. Last slide: the effect of pricing is not analysed, and the conclusion assumes new customers are the main cause."
+        },
+        {
+          "requires": [
+            "boi_canh",
+            "tieu_de"
+          ],
+          "text": "Title 1: Q4 revenue fell 8%, concentrated in enterprise customers. Title 2: Lost new customers, not existing ones. Title 3: Recommend raising enterprise sales budget. No slide mentions the limits of the analysis, so the audience will ask on their own."
+        },
+        {
+          "requires": [
+            "tieu_de"
+          ],
+          "text": "Title 1: Q4 revenue fell 8%. Title 2: One customer group was hit hardest. Title 3: Needs further review. Without an audience and a decision, it ends on a line that says more analysis is needed."
+        },
+        {
+          "text": "Slide 1: Revenue by quarter. Slide 2: Revenue by customer group. Slide 3: Revenue by region. These are chart-name titles; a skimmer cannot conclude anything."
+        }
+      ]
+    },
+    {
+      "type": "flow",
+      "title": "The meeting is cut to five minutes: the deck must still reach a decision",
+      "steps": [
+        {
+          "label": "Minute one: a conclusion with a number",
+          "detail": "Open with one sentence: Q4 revenue fell 8%, almost all in enterprise customers, and we recommend raising that segment's sales budget. If the meeting stops here, the audience still has something to decide on."
+        },
+        {
+          "label": "Minutes two and three: three supports",
+          "detail": "One piece of evidence per slide, each title a message. Someone skimming only the titles can still read a continuous argument from top to bottom."
+        },
+        {
+          "label": "Minute four: the limits you state yourself",
+          "detail": "The analysis has not answered the effect of pricing, and it assumes new customers are the cause. Stating it first means the audience does not make you defend it."
+        },
+        {
+          "label": "Minute five: the recommendation to decide",
+          "detail": "End on a concrete choice for the decision-maker, not on a line saying more analysis is needed. The appendix waits for anyone asking about methods or other ways to slice the data."
+        }
+      ]
+    },
+    {
       "type": "closing",
       "lines": [
         "An analysis nobody acts on produces, in outcome terms, exactly what an analysis never done would have produced.",

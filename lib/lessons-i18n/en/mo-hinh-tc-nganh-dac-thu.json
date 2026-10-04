@@ -75,6 +75,41 @@
       }
     },
     {
+      "type": "exercise",
+      "title": "Ticket sale: size machines by the average or by the peak",
+      "task": "The number of requests per minute during a ticket sale is given in the array moi_phut. Each machine handles 50 requests per second. Print the peak-to-average ratio (one decimal place), the machines needed if sized by the average, and the machines needed if sized by the peak. The last line of the starter is still using the average.",
+      "hints": [
+        "The third line must use the variable that holds the highest value, not the average.",
+        "These ten minutes are only a small sample. With real data, measure the peak-to-average ratio on your busiest day instead of guessing."
+      ],
+      "starter": "import math\nmoi_phut = [120, 150, 130, 9000, 14000, 800, 200, 150, 100, 90]\nrps = [m / 60 for m in moi_phut]\ntb = sum(rps) / len(rps)\ndinh = max(rps)\nSUC_CHUA = 50\nprint(\"Peak-to-average ratio:\", round(dinh / tb, 1))\nprint(\"Machines needed (average):\", math.ceil(tb / SUC_CHUA))\nprint(\"Machines needed (peak):\", math.ceil(tb / SUC_CHUA))\n",
+      "solution": "import math\nmoi_phut = [120, 150, 130, 9000, 14000, 800, 200, 150, 100, 90]\nrps = [m / 60 for m in moi_phut]\ntb = sum(rps) / len(rps)\ndinh = max(rps)\nSUC_CHUA = 50\nprint(\"Peak-to-average ratio:\", round(dinh / tb, 1))\nprint(\"Machines needed (average):\", math.ceil(tb / SUC_CHUA))\nprint(\"Machines needed (peak):\", math.ceil(dinh / SUC_CHUA))\n",
+      "expectedOutput": "Peak-to-average ratio: 5.7\nMachines needed (average): 1\nMachines needed (peak): 5"
+    },
+    {
+      "type": "chart",
+      "title": "Machines needed when load is bursty",
+      "caption": "Illustrative figures: the average rate and the capacity per machine are yours to set. The peak line rises linearly with the peak-to-average ratio, while the average line stays flat. The gap between them is the number of machines the default calculation never sees.",
+      "xLabel": "Peak-to-average ratio (times)",
+      "yLabel": "Machines needed",
+      "params": [
+        {
+          "label": "Average requests per second"
+        },
+        {
+          "label": "Capacity per machine (requests/second)"
+        }
+      ],
+      "series": [
+        {
+          "label": "Needed for the peak"
+        },
+        {
+          "label": "Needed for the average"
+        }
+      ]
+    },
+    {
       "type": "closing",
       "lines": [
         "Knowing which kind of system you have matters more than calculating neatly.",

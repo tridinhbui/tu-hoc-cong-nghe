@@ -171,6 +171,32 @@
       ]
     },
     {
+      "type": "sim",
+      "title": "LEFT JOIN to find customers who never ordered",
+      "task": "The customers and orders tables are linked by orders.customer_id. Use a LEFT JOIN from customers to orders, then filter for rows where the orders side is empty (IS NULL) to list the customers with no orders. An INNER JOIN would quietly drop exactly this group."
+    },
+    {
+      "type": "chart",
+      "title": "JOIN against a table with many rows per key inflates the total",
+      "caption": "Illustrative figures. Each order is joined to a customer table where one customer ID has several rows (one per address). The horizontal axis is rows per customer ID; drag the slider to change the real revenue.",
+      "xLabel": "Rows in the right-hand table per customer ID",
+      "yLabel": "Total revenue shown (million VND)",
+      "params": [
+        {
+          "label": "Real revenue",
+          "unit": "million"
+        }
+      ],
+      "series": [
+        {
+          "label": "Total after JOIN"
+        },
+        {
+          "label": "Correct total"
+        }
+      ]
+    },
+    {
       "type": "closing",
       "lines": [
         "A well-written query replaces an entire routine of exporting to a spreadsheet and finishing by hand.",

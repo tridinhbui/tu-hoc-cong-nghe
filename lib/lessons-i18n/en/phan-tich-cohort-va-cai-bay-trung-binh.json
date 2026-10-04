@@ -167,6 +167,39 @@
       }
     },
     {
+      "type": "exercise",
+      "title": "Every group improves, yet the total goes down",
+      "task": "Customer retention data for two years across two channels. The starter computes the overall year-2 retention rate but still uses year-1 headcounts, so the result does not reflect the new mix. Fix it so each year's overall rate uses that year's own headcounts, then watch how each channel and the total move.",
+      "hints": [
+        "The overall rate is a weighted average, and the weights are the headcounts of the year being computed.",
+        "When fixed, the first two lines both rise while the last falls. The problem lies in the channel mix, not in the product."
+      ],
+      "starter": "nguoi1 = {\"referral\": 100, \"ads\": 100}\nti1 = {\"referral\": 50, \"ads\": 20}\nnguoi2 = {\"referral\": 50, \"ads\": 250}\nti2 = {\"referral\": 55, \"ads\": 25}\n\ndef chung(nguoi, ti):\n    return sum(nguoi[k] * ti[k] for k in nguoi) / sum(nguoi.values())\n\nfor kenh in nguoi1:\n    print(f\"{kenh}: {ti1[kenh]}% -> {ti2[kenh]}%\")\nprint(f\"Overall: {chung(nguoi1, ti1):.1f}% -> {chung(nguoi1, ti2):.1f}%\")\n",
+      "solution": "nguoi1 = {\"referral\": 100, \"ads\": 100}\nti1 = {\"referral\": 50, \"ads\": 20}\nnguoi2 = {\"referral\": 50, \"ads\": 250}\nti2 = {\"referral\": 55, \"ads\": 25}\n\ndef chung(nguoi, ti):\n    return sum(nguoi[k] * ti[k] for k in nguoi) / sum(nguoi.values())\n\nfor kenh in nguoi1:\n    print(f\"{kenh}: {ti1[kenh]}% -> {ti2[kenh]}%\")\nprint(f\"Overall: {chung(nguoi1, ti1):.1f}% -> {chung(nguoi2, ti2):.1f}%\")\n",
+      "expectedOutput": "referral: 50% -> 55%\nads: 20% -> 25%\nOverall: 35.0% -> 30.0%"
+    },
+    {
+      "type": "chart",
+      "title": "Both channels improve, the overall figure still falls",
+      "caption": "Figures from the lesson's example (customer retention, in percent): year 1 has 100 people per channel, year 2 has 50 from referrals and 250 from ads.",
+      "yLabel": "Retention rate (%)",
+      "data": [
+        {
+          "label": "Referral"
+        },
+        {
+          "label": "Ads"
+        },
+        {
+          "label": "Overall"
+        }
+      ],
+      "seriesLabels": [
+        "Year 1",
+        "Year 2"
+      ]
+    },
+    {
       "type": "closing",
       "lines": [
         "Before you trust an average, ask which groups it is averaging over.",

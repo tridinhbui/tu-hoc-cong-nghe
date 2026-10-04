@@ -87,6 +87,44 @@
       "text": "The natural reflex on receiving somebody else's code is to rewrite it the way you are used to. This is the most expensive mistake in the whole process, because most of the odd-looking places in old code are places where somebody fixed a real bug you do not know about yet. Leave them alone until you understand why they were written that way - and understanding here means finding the change that produced them."
     },
     {
+      "type": "exercise",
+      "title": "The job that hasn't shown itself within the handover window",
+      "task": "Each scheduled job has a run cycle (in days) and the number of days since its last run. The handover window is 14 days. Print the jobs that will NOT run even once in this window, with the number of days still to wait, in the form: name: N days until next run. The starter only looks at the cycle, not at the last run.",
+      "hints": [
+        "A 30-day cycle does not mean 30 days left. How long ago was the last run?",
+        "The days remaining are chu_ky minus da_qua. The job sao-ke-cuoi-thang will run inside the window, so it should not appear in the output."
+      ],
+      "starter": "cong_viec = [(\"sao-ke-cuoi-thang\", 30, 22), (\"dong-so-quy\", 90, 10), (\"bao-cao-ngay\", 1, 0),\n             (\"don-rac-tuan\", 7, 3), (\"gia-han-chung-chi\", 365, 40), (\"doi-soat-thang\", 30, 5)]\nCUA_SO = 14\nfor ten, chu_ky, da_qua in cong_viec:\n    con_lai = chu_ky\n    if chu_ky > CUA_SO:\n        print(ten + \":\", con_lai, \"days until next run\")\n",
+      "solution": "cong_viec = [(\"sao-ke-cuoi-thang\", 30, 22), (\"dong-so-quy\", 90, 10), (\"bao-cao-ngay\", 1, 0),\n             (\"don-rac-tuan\", 7, 3), (\"gia-han-chung-chi\", 365, 40), (\"doi-soat-thang\", 30, 5)]\nCUA_SO = 14\nfor ten, chu_ky, da_qua in cong_viec:\n    con_lai = chu_ky - da_qua\n    if con_lai > CUA_SO:\n        print(ten + \":\", con_lai, \"days until next run\")\n",
+      "expectedOutput": "dong-so-quy: 80 days until next run\ngia-han-chung-chi: 325 days until next run\ndoi-soat-thang: 25 days until next run"
+    },
+    {
+      "type": "flow",
+      "title": "Run in parallel before taking over",
+      "steps": [
+        {
+          "label": "Rebuild from a blank machine",
+          "detail": "Someone on the new team follows the handover document by hand, on a machine that has never run the system. Every missing or wrong step in the document shows up here, while the old team is still around to ask."
+        },
+        {
+          "label": "Run on the same inputs",
+          "detail": "The rebuild receives the same inputs as the old system, but its output is not used by anyone yet. That way a failure only annoys the team and does not harm users."
+        },
+        {
+          "label": "Compare day by day",
+          "detail": "Compare both outputs every day. Small differences in rounding, time zones and processing order are the kind no handover mentions, because even the old team does not know it relies on them."
+        },
+        {
+          "label": "Wait through the monthly calendar",
+          "detail": "You need at least one month-end run and, if there is one, a quarter-end. A job that stays silent through the handover will only reveal its dependencies on the day it runs."
+        },
+        {
+          "label": "Sign off once differences are explained",
+          "detail": "Differences need not be zero; each one needs someone who can explain why. Switch off the old system only when no unexplained difference is left."
+        }
+      ]
+    },
+    {
       "type": "closing",
       "lines": [
         "Technical barriers can be measured, so they get planned for; operational ones cannot.",

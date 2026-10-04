@@ -13,10 +13,18 @@
   ],
   "explanation": "Sensitivity answers the question of which variable matters most: hold everything else still, push one variable up and down, and see how far the result moves. A scenario answers something entirely different: what happens if a big sale event arrives - and during it traffic rises alongside the cache hit rate falling and retries climbing. Pushing traffic up 20% on its own while holding the others fixed describes a world that does not exist.",
   "diagram": [
-    { "label": "Sensitivity: one variable, find the ones that matter" },
-    { "label": "Scenario: a group of variables telling one story" },
-    { "label": "Find the threshold that changes the decision" },
-    { "label": "Present a range, not a point" }
+    {
+      "label": "Sensitivity: one variable, find the ones that matter"
+    },
+    {
+      "label": "Scenario: a group of variables telling one story"
+    },
+    {
+      "label": "Find the threshold that changes the decision"
+    },
+    {
+      "label": "Present a range, not a point"
+    }
   ],
   "realWorldExample": {
     "company": "A capacity plan for the year-end sale",
@@ -105,7 +113,10 @@
       "type": "lead",
       "text": "A plan that produces exactly one number leaves the decision-maker with nothing to do but believe it or not. What they need is a different question answered: how far off do we have to be before we act differently."
     },
-    { "type": "heading", "text": "Two tools, two different questions" },
+    {
+      "type": "heading",
+      "text": "Two tools, two different questions"
+    },
     {
       "type": "conceptTable",
       "title": "Sensitivity, scenarios and break-points",
@@ -127,7 +138,10 @@
       "label": "A scenario has to be internally consistent",
       "text": "The most common mistake is calling something a downside scenario while only raising traffic by 20%, leaving the cache hit rate, retries and average request size untouched. In reality those move together: rising traffic usually brings new users who make the cache less effective, a slower system that makes clients retry more, and a backlog of background jobs. A scenario is only useful when it describes a world that could actually exist."
     },
-    { "type": "heading", "text": "Why 20% more load makes waiting time five times longer" },
+    {
+      "type": "heading",
+      "text": "Why 20% more load makes waiting time five times longer"
+    },
     {
       "type": "paragraph",
       "text": "A server is busy 80% of the time. In a simple queueing model, waiting time is proportional to 1 / (1 - utilisation), which is 1 / 0.2 = 5 times the service time. A 20% rise in load pushes utilisation to 96%, and waiting time becomes 1 / 0.04 = 25 times. Load up 20%, waiting time up fivefold. That is the non-linearity of queues, and it is why a sensitivity table showing only percentage changes in traffic hides the most important part - the reader extrapolates linearly and reaches the wrong conclusion about how dangerous the situation is."
@@ -147,6 +161,39 @@
         "label": "Scenario - move a whole cluster at once",
         "text": "Build one consistent story about the world and let every assumption move with it. The purpose is PREPARATION: if this happens, how long can the system hold, and at what point must we act. The useful output is not a number but a trigger level."
       }
+    },
+    {
+      "type": "exercise",
+      "title": "Load up 20%: how much does the wait grow",
+      "task": "Using the queueing model from the lesson, wait time equals 1 ÷ (1 − utilisation) times the processing time. For three current utilisation levels, compute the new utilisation when load grows 20%, and the wait before and after. The starter extrapolates linearly: old wait times 1.2. Replace that with the queueing formula.",
+      "starter": "for busy in (50, 60, 80):\n    busy_new = busy * 120 // 100\n    old = 100 / (100 - busy)\n    new = old * 1.2\n    print(f\"Busy {busy}% -> {busy_new}%: wait {old:.1f} -> {new:.1f}x\")\n",
+      "solution": "for busy in (50, 60, 80):\n    busy_new = busy * 120 // 100\n    old = 100 / (100 - busy)\n    new = 100 / (100 - busy_new)\n    print(f\"Busy {busy}% -> {busy_new}%: wait {old:.1f} -> {new:.1f}x\")\n",
+      "expectedOutput": "Busy 50% -> 60%: wait 2.0 -> 2.5x\nBusy 60% -> 72%: wait 2.5 -> 3.6x\nBusy 80% -> 96%: wait 5.0 -> 25.0x",
+      "hints": [
+        "The new wait is computed from the new utilisation busy_new, not from the old wait.",
+        "The closer a system is to overload, the more the same load increase makes the wait jump: that is non-linearity."
+      ]
+    },
+    {
+      "type": "chart",
+      "title": "Same load increase, the busier the system, the more the wait explodes",
+      "caption": "Computed from the simple queueing formula in the lesson: wait = 1 ÷ (1 − utilisation), in multiples of processing time. Illustrative numbers, not measured from a real system. Drag the current utilisation to see the true curve pull away from the linear extrapolation.",
+      "xLabel": "Extra load (%)",
+      "yLabel": "Wait time (x processing time)",
+      "params": [
+        {
+          "label": "Current utilisation",
+          "unit": "%"
+        }
+      ],
+      "series": [
+        {
+          "label": "Queueing formula"
+        },
+        {
+          "label": "Linear extrapolation"
+        }
+      ]
     },
     {
       "type": "closing",

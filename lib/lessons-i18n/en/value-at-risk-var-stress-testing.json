@@ -84,6 +84,41 @@
       "text": "A test run once before release is only true for that version. The system changes every week, and most changes shift the shape of how it handles load in ways nobody anticipates. Rerunning on a schedule, even one scenario a month, is worth more than one comprehensive test and then nothing."
     },
     {
+      "type": "exercise",
+      "title": "How many connections does one slow dependency drain",
+      "task": "A service receives 20 requests per second, and each request holds a connection for as long as the dependency takes to answer. The connection pool has 50 slots. The starter code prints the right format but ignores latency, so it always reports fine. Fix it so held connections equal requests per second times latency (seconds), and report CẠN (exhausted) when it reaches 50 or more.",
+      "hints": [
+        "Each request holds a connection for exactly the latency, so connections held at once equal arrival rate times hold time.",
+        "Change one line: held should no longer equal rps but depend on latency."
+      ]
+    },
+    {
+      "type": "flow",
+      "title": "A load test, from scenario to re-run",
+      "steps": [
+        {
+          "label": "Pick a shape",
+          "detail": "Take the list of incidents that have happened and add a few that have not. Example: the payment service you call slows to ten seconds without dying, because that shape causes the most outages and is rarely tested."
+        },
+        {
+          "label": "Set the ruler before testing",
+          "detail": "Write down what counts as coping: requests still answered within what limit, error rate under what level. If you set the ruler after seeing results, people can always interpret them so the result looks fine."
+        },
+        {
+          "label": "Force the system to fail",
+          "detail": "Inject latency into the dependency or pile on load for a few seconds. Record two things: where the ruler was exceeded, and what ran out first (threads, connections, memory). What runs out first is what to fix."
+        },
+        {
+          "label": "Drop the load and watch",
+          "detail": "Return load to normal and time how long until the ruler is met again. If the system only recovers after someone restarts it, that is the most serious finding of the test, even if the breaking point looks fine."
+        },
+        {
+          "label": "Record it and schedule the re-run",
+          "detail": "Each scenario becomes one line: where it broke, how long to recover, who fixes what. Then schedule one scenario to re-run each month, because the system changes weekly and an old result only holds for the old version."
+        }
+      ]
+    },
+    {
       "type": "closing",
       "lines": [
         "Real incidents rarely have the shape of normal traffic multiplied up.",

@@ -13,10 +13,21 @@
   ],
   "explanation": "A simple test of whether a dashboard will survive: ask the viewer what they would do differently if this number went up or down. If the answer is nothing, it is just good to know, that dashboard will die no matter how well it is engineered. Conversely, a dashboard carrying only three numbers, each tied to a specific action, gets opened every day.",
   "diagram": [
-    { "label": "Who is looking, and what do they have to decide?", "arrow": true },
-    { "label": "Which metric, if it moves, changes the decision?", "arrow": true },
-    { "label": "Layout: the most important thing at the top", "arrow": true },
-    { "label": "Filters so viewers can dig in themselves" }
+    {
+      "label": "Who is looking, and what do they have to decide?",
+      "arrow": true
+    },
+    {
+      "label": "Which metric, if it moves, changes the decision?",
+      "arrow": true
+    },
+    {
+      "label": "Layout: the most important thing at the top",
+      "arrow": true
+    },
+    {
+      "label": "Filters so viewers can dig in themselves"
+    }
   ],
   "realWorldExample": {
     "company": "An operations team's on-call dashboard",
@@ -106,7 +117,10 @@
       "type": "lead",
       "text": "A dashboard is easy to build and hard to build well. Today's tools make producing twenty charts an afternoon's work - and that is exactly the problem, because the hard part was never the drawing."
     },
-    { "type": "heading", "text": "Why dashboards die" },
+    {
+      "type": "heading",
+      "text": "Why dashboards die"
+    },
     {
       "type": "list",
       "items": [
@@ -122,15 +136,104 @@
       "title": "The three layers of a usable dashboard",
       "subtitle": "Hierarchy matters more than the number of charts",
       "concepts": [
-        { "def": "One to three numbers at the very top, answering the question 'is there anything to deal with right now'. Readable in three seconds." },
-        { "def": "The main metrics over time, answering the question 'where is this heading'. Readable in thirty seconds." },
-        { "def": "A detail table with filters, answering the question 'why'. Used only when the two layers above show there is a problem." }
+        {
+          "def": "One to three numbers at the very top, answering the question 'is there anything to deal with right now'. Readable in three seconds."
+        },
+        {
+          "def": "The main metrics over time, answering the question 'where is this heading'. Readable in thirty seconds."
+        },
+        {
+          "def": "A detail table with filters, answering the question 'why'. Used only when the two layers above show there is a problem."
+        }
       ]
     },
     {
       "type": "callout",
       "label": "The refresh cadence must match the decision cadence",
       "text": "A metric serving a daily decision but refreshed monthly is useless. Conversely, real-time refresh on a metric only reviewed in a quarterly meeting wastes engineering effort and creates noise. Ask about the decision cadence before designing the data pipeline."
+    },
+    {
+      "type": "scenario",
+      "title": "The director asks for a customer-support dashboard",
+      "nodes": {
+        "bat_dau": {
+          "text": "The operations director sends you a list of twenty metrics and asks for a dashboard for the customer-support team. The tool lets you build all twenty charts in one afternoon.",
+          "choices": [
+            {
+              "label": "Build all twenty charts on one page"
+            },
+            {
+              "label": "Ask first: which decision will this dashboard change"
+            },
+            {
+              "label": "Pick the five prettiest charts and send them for approval"
+            }
+          ]
+        },
+        "hai_muoi": {
+          "text": "The page has twenty equal blocks. The first meeting spends ten minutes arguing about which block to look at, two weeks later nobody opens the page, and the on-call team still plans shifts by chat message."
+        },
+        "nam_dep": {
+          "text": "The five charts look great but are all monthly cumulative totals. None shows whether today's queue is overloaded, so the on-call team has no reason to open it each morning."
+        },
+        "hoi": {
+          "text": "The director replies: each morning the shift lead must decide who to reassign based on the queue, and each week the team reviews the trend. You must now choose how to organize the page.",
+          "choices": [
+            {
+              "label": "Three tiers: queue alert, weekly trend, filterable detail table"
+            },
+            {
+              "label": "One summary page, data refreshed at month end to keep the system light"
+            }
+          ]
+        },
+        "cuoi_thang": {
+          "text": "The shift lead needs numbers every morning but only gets the month-end version. With nothing to base daily decisions on, they count by hand in their own spreadsheet, and the dashboard is abandoned."
+        },
+        "ba_tang": {
+          "text": "The alert tier has two numbers readable in three seconds. During testing, two shift leads argue about the word overdue ticket: one counts from when the customer sent it, the other from when the ticket was received. How do you handle it?",
+          "choices": [
+            {
+              "label": "Put the definition right beside the number and agree it with both shift leads"
+            },
+            {
+              "label": "Let everyone read it their own way, and ask if they wonder"
+            }
+          ]
+        },
+        "dinh_nghia": {
+          "text": "The definition sits right under the alert number. The morning meeting goes on deciding who staffs which shift rather than arguing over a word, and the filters let the shift lead answer the second question without asking you."
+        },
+        "mo_ho": {
+          "text": "Two shift leads still read the same number in two senses and reach opposite decisions. The weekly report has two versions, and the meeting argues again instead of acting."
+        }
+      }
+    },
+    {
+      "type": "flow",
+      "title": "The three dashboard tiers, read in one morning",
+      "steps": [
+        {
+          "label": "Three seconds: the alert tier",
+          "detail": "The shift lead opens the page and sees two numbers: overdue tickets and current queue length. Both are normal, so they do not need to read further down."
+        },
+        {
+          "label": "One number changes color",
+          "detail": "Today the overdue count passes the agreed threshold. The threshold is in the definition beside the number, so nobody has to ask what counts as many."
+        },
+        {
+          "label": "Thirty seconds: the trend tier",
+          "detail": "The daily overdue line shows a rise since the start of the week, not one odd day. The question changes from is there a problem to why is it rising."
+        },
+        {
+          "label": "The drill-down tier with filters",
+          "detail": "Filter by request type, then by shift: most overdue tickets belong to one request type and one shift. The viewer answers the second question without going back to ask the analyst."
+        },
+        {
+          "label": "A decision is made before the meeting",
+          "detail": "The shift lead moves two people onto that shift this very morning. An hourly refresh fits a daily decision rhythm, exactly the point the lesson made about the data pipeline."
+        }
+      ]
     },
     {
       "type": "closing",

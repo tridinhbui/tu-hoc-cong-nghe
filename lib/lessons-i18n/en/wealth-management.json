@@ -79,6 +79,41 @@
       }
     },
     {
+      "type": "exercise",
+      "title": "Does the adoption rate hide the signal",
+      "task": "Eight teams: five are required to use the internal platform and three may choose. Compute two numbers: the share of all teams using it, and the share of teams that CHOOSE to use it, counting only the three not required. Round to a whole number. (Illustrative figures.)",
+      "hints": [
+        "First filter the teams where batBuoc is false, then count how many of those use it.",
+        "The denominator of the chosen-adoption rate is the number of teams not required, not the total."
+      ]
+    },
+    {
+      "type": "flow",
+      "title": "An internal platform going from need to being chosen",
+      "steps": [
+        {
+          "label": "One team solves its own problem",
+          "detail": "There is no platform plan yet. One team writes a deploy tool for itself, and it works well. This is the first confirmation, even though nobody calls it a platform."
+        },
+        {
+          "label": "A second team borrows it",
+          "detail": "The neighbouring team sees it and asks to use it. They find three places hard-wired to the first team and ask for fixes. This use bends the solution into the right shape."
+        },
+        {
+          "label": "A third team finds it on its own",
+          "detail": "Nobody sent an announcement. Three independent groups have confirmed the need, and now it is worth investing in a product. Starting from a nine-month plan instead of these three confirmations is starting from a guess."
+        },
+        {
+          "label": "Take on the hard part, shorten time to try",
+          "detail": "The platform team takes the parts teams find most painful, such as certificates and access, and measures the time from a team starting to try it to its first run. This number tells you whether the platform is easy to enter."
+        },
+        {
+          "label": "Keep a clear exit",
+          "detail": "A team weighing a move is estimating the platform's risk without being able to come back. A clear exit lowers that risk, and the chosen-adoption rate remains the signal that cannot be faked."
+        }
+      ]
+    },
+    {
       "type": "closing",
       "lines": [
         "An internal platform is a product, and its failures are product failures.",

@@ -75,6 +75,43 @@
       "text": "In most shortages, any team that measures the real utilisation of the machines it already holds finds it below half: idle between runs, waiting on data, waiting for somebody to press a button. Doubling utilisation by queueing the work yields exactly the amount of extra capacity the whole market is fighting over, and it needs nobody's agreement."
     },
     {
+      "type": "exercise",
+      "title": "Hand back machines by queueing work",
+      "task": "A team holds 8 specialised machines. The real daily run-hours of its jobs are [5, 3, 7, 4, 6, 2, 5, 6]. Print the current utilisation (percent, one decimal), the number of machines needed if work is queued so each runs at 60% utilisation (rounded up), and the number of machines that can be returned to another team.",
+      "hints": [
+        "A machine that should only run at 60% carries 24 × 0.6 hours of work a day.",
+        "Divide total work hours by the useful hours of one machine, then round up with math.ceil."
+      ]
+    },
+    {
+      "type": "feynman",
+      "title": "Two kinds of resource need two ways of thinking",
+      "intro": "Think of water and a sold-out concert. If you need more water, you open the tap and pay more. With tickets, even if you pay double, the number of seats in the hall stays the same; only who sits in them changes.",
+      "columns": [
+        "Type",
+        "Example",
+        "The real problem is"
+      ],
+      "rows": [
+        [
+          "Elastic",
+          "Storage capacity, bandwidth, commodity machines",
+          "Cost — pay more and you get it right away"
+        ],
+        [
+          "Physically capped",
+          "Scarce specialised machines, provider quotas",
+          "Allocation — a high price only decides who gets the share that exists"
+        ],
+        [
+          "What the team can do",
+          "Reduce demand, change type, raise utilisation",
+          "Within reach, with results in a few days"
+        ]
+      ],
+      "oneLiner": "With a physically capped resource, do not ask 'how much will we pay' but 'how do we make better use of what we hold'."
+    },
+    {
       "type": "closing",
       "lines": [
         "Paying more moves stock from somebody else to you; it does not create more stock.",

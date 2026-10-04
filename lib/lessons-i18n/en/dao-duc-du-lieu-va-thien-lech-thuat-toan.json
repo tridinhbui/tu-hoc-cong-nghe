@@ -13,10 +13,21 @@
   ],
   "explanation": "Removing the sensitive variable is a necessary step and nowhere near a sufficient one. Field of study, gaps in employment history, area of residence, even word choice in the CV can correlate strongly with gender or ethnicity, and the model will learn exactly that boundary through them. This is called a proxy variable, and the only way to detect it is to measure the outputs group by group - not to inspect the list of input variables.",
   "diagram": [
-    { "label": "Is the historical data biased?", "arrow": true },
-    { "label": "Which variable is standing in for a sensitive one?", "arrow": true },
-    { "label": "Measure outcomes group by group", "arrow": true },
-    { "label": "Can the decision be explained?" }
+    {
+      "label": "Is the historical data biased?",
+      "arrow": true
+    },
+    {
+      "label": "Which variable is standing in for a sensitive one?",
+      "arrow": true
+    },
+    {
+      "label": "Measure outcomes group by group",
+      "arrow": true
+    },
+    {
+      "label": "Can the decision be explained?"
+    }
   ],
   "realWorldExample": {
     "company": "An application approval model learning from historical data",
@@ -106,21 +117,65 @@
       "type": "lead",
       "text": "This stage ends on the part that is taught least and has the most real consequences. In automated systems, a data model does not stop at describing the world - it decides who gets an interview, whose account gets locked, and who does not."
     },
-    { "type": "heading", "text": "Three responsibilities when working with data" },
+    {
+      "type": "heading",
+      "text": "Three responsibilities when working with data"
+    },
     {
       "type": "conceptTable",
       "title": "What has to be checked before a model is used for real",
       "subtitle": "These three areas cover most of the ethical risk in using data for automated decisions",
       "concepts": [
-        { "def": "The minimum collection principle: take only the data genuinely needed for the stated purpose. Data you never collected is data that cannot leak." },
-        { "def": "Measure outcomes group by group, not just overall accuracy. A model improving for the majority group may be getting worse for a minority one." },
-        { "def": "You must be able to answer why a specific application was rejected. This is a legal requirement in many markets and the precondition for fixing a model when it goes wrong." }
+        {
+          "def": "The minimum collection principle: take only the data genuinely needed for the stated purpose. Data you never collected is data that cannot leak."
+        },
+        {
+          "def": "Measure outcomes group by group, not just overall accuracy. A model improving for the majority group may be getting worse for a minority one."
+        },
+        {
+          "def": "You must be able to answer why a specific application was rejected. This is a legal requirement in many markets and the precondition for fixing a model when it goes wrong."
+        }
       ]
     },
     {
       "type": "callout",
       "label": "Why removing the sensitive variable is not enough",
       "text": "A model that does not use gender can still learn the gender boundary through field of study, employment gaps or word choice in the CV. A model that does not use ethnicity can still learn it through the postcode. This is not a programming error but the natural consequence of social data being interwoven. Reviewing the list of input variables feels safe but detects nothing; only measuring outcomes by group finds it."
+    },
+    {
+      "type": "exercise",
+      "title": "Overall accuracy hides a group that gets rejected",
+      "task": "A loan-approval model has a result per application: group, whether the application really qualifies, and whether the model approved it. Measuring only the overall approval rate makes both groups look alike. The starter computes over all applications. Change it to compute the approval rate among qualified applications separately for each group, then print the gap.",
+      "hints": [
+        "The function takes a nhom (group) parameter but never uses it. Add the condition h[0] == nhom to the filter.",
+        "That is the point of the lesson: measure outcomes per group, because the overall figure hides the group being treated differently."
+      ]
+    },
+    {
+      "type": "flow",
+      "title": "A model without ethnicity still learns ethnic boundaries",
+      "steps": [
+        {
+          "label": "The input list looks clean",
+          "detail": "There is no gender or ethnicity column. Checking the variable list feels safe, and at this step nobody has noticed the problem."
+        },
+        {
+          "label": "Historical data carries the bias",
+          "detail": "Past rejected applications cluster in certain areas, because earlier decisions were biased. A model trained on them treats that as a rule."
+        },
+        {
+          "label": "Postal code becomes a proxy",
+          "detail": "Though it is just an address column, it correlates with population groups, so the model leans on it for predictions. Social data is intertwined."
+        },
+        {
+          "label": "Overall accuracy is still good",
+          "detail": "The majority group makes up most applications, so the overall figure looks fine. Nobody sees anything odd by looking at a single total."
+        },
+        {
+          "label": "Measuring per group exposes it",
+          "detail": "The approval rate among qualified applications differs sharply between groups. Only now is there grounds to fix the model, and to answer why an application was rejected."
+        }
+      ]
     },
     {
       "type": "closing",

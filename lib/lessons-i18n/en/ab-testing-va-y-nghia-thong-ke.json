@@ -13,10 +13,18 @@
   ],
   "explanation": "In the first few days the gap between two groups swings wildly because the sample is still small. If you keep watching the numbers and stop the moment they look good, you are almost certain to catch a random fluctuation and mistake it for a real effect. This is called peeking, and it can push the false-conclusion rate from the intended 5% to over 30%. The only defence is to compute the required sample size before you start, then run it out and conclude exactly once.",
   "diagram": [
-    { "label": "Set the hypothesis and the primary metric" },
-    { "label": "Compute the required sample size before launch" },
-    { "label": "Randomise the split, run the full duration" },
-    { "label": "Conclude once, with no mid-flight peeking" }
+    {
+      "label": "Set the hypothesis and the primary metric"
+    },
+    {
+      "label": "Compute the required sample size before launch"
+    },
+    {
+      "label": "Randomise the split, run the full duration"
+    },
+    {
+      "label": "Conclude once, with no mid-flight peeking"
+    }
   ],
   "realWorldExample": {
     "company": "A sign-up flow experiment at a mobile app",
@@ -106,7 +114,10 @@
       "type": "lead",
       "text": "The Quantitative stage laid the groundwork on hypothesis testing and the p-hacking trap in backtests. This lesson applies that same set of ideas to a situation you meet far more often: comparing two business options."
     },
-    { "type": "heading", "text": "The four steps of a trustworthy experiment" },
+    {
+      "type": "heading",
+      "text": "The four steps of a trustworthy experiment"
+    },
     {
       "type": "list",
       "items": [
@@ -142,6 +153,73 @@
       "type": "callout",
       "label": "Statistical significance is not business significance",
       "text": "With a large enough sample, almost any gap, however small, will clear statistical significance. That only says the gap is probably real; it says nothing about whether it is worth acting on. Always convert the improvement into money and set it beside the cost of rolling out before deciding."
+    },
+    {
+      "type": "scenario",
+      "title": "Day three of a fourteen-day experiment plan",
+      "nodes": {
+        "ngay3": {
+          "text": "You are running a test of a new buy button (variant B) on a fourteen-day plan. On day three, B is ahead of A on purchase rate and the p-value you can see is 0.03. Your boss asks: can we stop and ship?",
+          "choices": [
+            {
+              "label": "Stop now, it is statistically significant"
+            },
+            {
+              "label": "Run the full fourteen days as planned"
+            },
+            {
+              "label": "Keep going until the p-value gets even lower"
+            }
+          ]
+        },
+        "dung_som": {
+          "text": "Peeking repeatedly and stopping when it looks good makes the real false-alarm rate much higher than 5%. After launch, the purchase rate returns to its old level, the new button cost effort for nothing, and you have to explain to your boss why the number looked so good."
+        },
+        "keo_dai": {
+          "text": "Extending until the number suits you means choosing the stopping point after seeing the data. The conclusion sounds convincing but nobody can reproduce it, and the original plan loses its value."
+        },
+        "chay_tiep": {
+          "text": "After fourteen days, B is only about 2% ahead of A and the p-value is 0.20, not significant. Teammates suggest a few directions. What do you pick?",
+          "choices": [
+            {
+              "label": "Report no reliable difference and keep variant A"
+            },
+            {
+              "label": "Switch to reporting the secondary metric, time on page, because it looks good"
+            },
+            {
+              "label": "Slice the data into twenty user groups to find one where B wins"
+            }
+          ]
+        },
+        "bao_cao_that": {
+          "text": "You state plainly that there is no reliable difference, with the sample size and the minimum improvement set in advance. The team does not spend effort shipping something that may not work, and next time it can test a different hypothesis."
+        },
+        "doi_chi_so": {
+          "text": "The primary metric failed, so you switch to a secondary one with nicer numbers. It sounds reasonable, but the metric was chosen after seeing the data, is hard to spot from outside, and will not repeat on the next run."
+        },
+        "cat_lat": {
+          "text": "Slice twenty ways and on average one group reaches significance by pure chance. You report it as a finding, the new button is rolled out to exactly that group, and the real effect is zero."
+        }
+      }
+    },
+    {
+      "type": "chart",
+      "title": "The more variants you try, the likelier a chance 'significant' result",
+      "caption": "Theoretical, assuming independent tries and no variant that is truly better. Repeated peeking produces correlated looks, so the real number is lower than this line, but it rises the same way. This is an illustration, not a measurement from any specific experiment.",
+      "xLabel": "Number of variants or slices tried",
+      "yLabel": "Probability of at least one significant result (%)",
+      "params": [
+        {
+          "label": "Significance threshold per try",
+          "unit": "%"
+        }
+      ],
+      "series": [
+        {
+          "label": "Probability of a false alarm"
+        }
+      ]
     },
     {
       "type": "closing",
