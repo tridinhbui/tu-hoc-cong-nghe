@@ -92,6 +92,9 @@ export const revampDashboardVi = {
     moreLevels: "+{count} cấp",
     examLink: "Thi thăng cấp LV{level}",
     rankingLabel: "Xếp hạng",
+    sideTabProgress: "Tiến độ",
+    sideTabRewards: "Thưởng",
+    sideTabArena: "Đấu trường",
 
     // ── Học bài: cây kỹ năng ──────────────────────────────────────────────
     stageKicker: "{stage} · {tag}",
@@ -303,6 +306,9 @@ export const revampDashboardEn: typeof revampDashboardVi = {
     moreLevels: "+{count} levels",
     examLink: "Level-up exam LV{level}",
     rankingLabel: "Ranking",
+    sideTabProgress: "Progress",
+    sideTabRewards: "Rewards",
+    sideTabArena: "Arena",
 
     stageKicker: "{stage} · {tag}",
     outcomeLabel: "After this stage you can",

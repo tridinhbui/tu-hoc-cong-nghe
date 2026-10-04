@@ -19,7 +19,13 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   // 100%) - để thẻ trắng nổi thành lớp thay vì chìm vào một mặt trắng liền.
   // Giấy ngà chỉ dành cho trang chủ và cửa đăng nhập.
   return (
-    <div className="min-h-screen bg-page lg:pl-64 overflow-x-hidden">
+    <div className="relative isolate min-h-screen bg-page lg:pl-64 overflow-x-hidden">
+      {/* Nền có màu: hai vệt xanh và một vệt hồng đỏ, cố định theo khung nhìn
+          để mọi trang bớt nhợt mà không đổi chiều cao hay bố cục. */}
+      <div
+        aria-hidden
+        className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(60rem_32rem_at_85%_-8%,rgba(65,122,205,0.22),transparent),radial-gradient(40rem_28rem_at_-5%_30%,rgba(244,63,94,0.10),transparent),radial-gradient(44rem_30rem_at_60%_110%,rgba(56,189,248,0.18),transparent)] dark:opacity-40"
+      />
       <AppNavbar />
       <XpFloatingPopup />
       {children}

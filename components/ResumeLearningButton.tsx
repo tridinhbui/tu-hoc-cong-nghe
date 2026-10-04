@@ -221,7 +221,7 @@ export default function ResumeLearningButton({ activeTrack, compact = false, use
             <span aria-hidden className="pointer-events-none absolute -bottom-28 left-1/3 h-56 w-56 rounded-full bg-brand-300/20 blur-3xl" />
           </>
         )}
-        <div className={`relative flex flex-col gap-3 ${hero ? "p-6 sm:p-8 md:gap-10" : quiet ? "p-5 sm:p-6" : compact ? "p-4" : "p-4 sm:p-5"} md:flex-row md:items-center md:gap-6`}>
+        <div className={`relative flex flex-col gap-3 ${hero ? "p-6 sm:p-8 md:gap-10 lg:[@media(max-height:1199px)]:p-4 lg:[@media(max-height:1199px)]:gap-6" : quiet ? "p-5 sm:p-6" : compact ? "p-4" : "p-4 sm:p-5"} md:flex-row md:items-center md:gap-6`}>
           <div className="min-w-0 flex-1">
             <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1">
               {hero ? (
@@ -251,12 +251,12 @@ export default function ResumeLearningButton({ activeTrack, compact = false, use
                 </span>
               )}
             </div>
-            <span className={`block text-xs font-semibold ${hero ? "mt-5 text-brand-100" : "mt-2 text-ink-faint"}`}>{lessonLabel}</span>
-            <h2 className={`mt-0.5 font-black tracking-tight leading-snug ${hero ? "text-2xl sm:text-[34px] sm:leading-tight text-white" : "text-lg sm:text-2xl text-ink-max"}`}>
+            <span className={`block text-xs font-semibold ${hero ? "mt-5 text-brand-100 lg:[@media(max-height:1199px)]:mt-2" : "mt-2 text-ink-faint"}`}>{lessonLabel}</span>
+            <h2 className={`mt-0.5 font-black tracking-tight leading-snug ${hero ? "text-2xl sm:text-[34px] sm:leading-tight text-white lg:[@media(max-height:1199px)]:text-xl" : "text-lg sm:text-2xl text-ink-max"}`}>
               {shortTitle}
             </h2>
             {nextLesson.subtitle && (
-              <p className={`line-clamp-2 leading-snug ${hero ? "mt-2 max-w-2xl text-[15px] text-brand-50/90" : "mt-1 text-sm text-ink-muted"}`}>{nextLesson.subtitle}</p>
+              <p className={`line-clamp-2 leading-snug ${hero ? "mt-2 max-w-2xl text-[15px] text-brand-50/90 lg:[@media(max-height:1199px)]:hidden" : "mt-1 text-sm text-ink-muted"}`}>{nextLesson.subtitle}</p>
             )}
 
             {/* Tử số phải cùng phạm vi với mẫu số. `completedCount` đếm bài
@@ -265,7 +265,7 @@ export default function ResumeLearningButton({ activeTrack, compact = false, use
                 "412/326 bài" ngay cạnh thanh 78%. Và khi chưa có
                 trackProgress thì không in con số nào. Thanh màu cyan: đây là
                 tiến độ đã làm, không phải hành động. */}
-            <div className={`flex items-center gap-3 ${hero ? "mt-6" : "mt-4"}`}>
+            <div className={`flex items-center gap-3 ${hero ? "mt-6 lg:[@media(max-height:1199px)]:mt-3" : "mt-4"}`}>
               {trackProgress && (
                 <span className={`text-xs font-medium whitespace-nowrap ${hero ? "font-semibold text-brand-50" : "text-ink-faint"}`}>
                   {format(t.resume.resumeProgress, {
@@ -299,7 +299,7 @@ export default function ResumeLearningButton({ activeTrack, compact = false, use
           </span>
         </div>
         {hero && footnote && !flowNext && (
-          <div className="relative border-t border-white/10 bg-black/10 px-6 py-3 text-xs font-medium text-brand-100 sm:px-8">
+          <div className="relative border-t border-white/10 bg-black/10 px-6 py-3 text-xs font-medium text-brand-100 sm:px-8 lg:[@media(max-height:1199px)]:py-2">
             {footnote}
           </div>
         )}

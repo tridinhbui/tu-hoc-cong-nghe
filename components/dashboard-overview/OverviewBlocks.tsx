@@ -35,15 +35,22 @@ export const softCard =
   "rounded-2xl bg-white shadow-[0_1px_2px_rgba(16,24,40,0.04),0_8px_24px_-12px_rgba(41,97,184,0.18)] ring-1 ring-brand-100/70 dark:bg-stone-900 dark:ring-white/5";
 
 /** "01 Học tiếp" + một dòng gợi ý - đầu khu, như "01 Chọn vị trí". */
+const SECTION_CHIPS = [
+  "bg-gradient-to-br from-brand-500 to-brand-700 shadow-brand-600/30",
+  "bg-gradient-to-br from-rose-400 to-rose-600 shadow-rose-500/30",
+  "bg-gradient-to-br from-amber-400 to-orange-500 shadow-amber-500/30",
+  "bg-gradient-to-br from-emerald-400 to-emerald-600 shadow-emerald-500/30",
+];
+
 export function SectionHeading({ n, title, hint, action }: { n: number; title: string; hint?: string; action?: ReactNode }) {
   return (
     <div className="flex flex-wrap items-end justify-between gap-x-4 gap-y-1">
       <div className="min-w-0">
-        <h2 className="flex items-baseline gap-2 text-lg font-black tracking-tight text-ink-max">
-          <span className="font-mono text-base font-bold tabular-nums text-accent-strong">{String(n).padStart(2, "0")}</span>
+        <h2 className="flex items-center gap-2.5 text-lg font-black tracking-tight text-ink-max">
+          <span className={`inline-flex h-7 min-w-7 items-center justify-center rounded-lg px-1.5 font-mono text-[13px] font-bold tabular-nums text-white shadow-md ${SECTION_CHIPS[(n - 1) % SECTION_CHIPS.length]}`}>{String(n).padStart(2, "0")}</span>
           {title}
         </h2>
-        {hint && <p className="mt-0.5 text-sm text-ink-muted">{hint}</p>}
+        {hint && <p className="mt-0.5 text-sm text-ink-muted lg:[@media(max-height:1199px)]:hidden">{hint}</p>}
       </div>
       {action}
     </div>
@@ -57,7 +64,7 @@ export function OverviewTopBar({ xpPerLesson }: { xpPerLesson: number }) {
   return (
     <div className="flex items-center justify-between gap-4">
       <h1 className="text-xl font-black tracking-tight text-ink-max sm:text-2xl">{r.pageTitle}</h1>
-      <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-50 px-3 py-1.5 text-xs font-bold text-amber-700 ring-1 ring-amber-200/70 dark:bg-amber-500/10 dark:text-amber-300 dark:ring-amber-500/20">
+      <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-amber-400 to-orange-500 px-3 py-1.5 text-xs font-bold text-white shadow-md shadow-amber-500/30 ">
         <Crown className="h-3.5 w-3.5" aria-hidden />
         {format(r.rewardPill, { xp: xpPerLesson })}
       </span>
@@ -80,29 +87,32 @@ export function DashboardHeroBanner({
   const { t } = useI18n();
   const r = t.revampDashboard;
   return (
-    <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-100/70 via-brand-50 to-sky-100/80 p-5 ring-1 ring-brand-100 sm:p-7 dark:from-brand-950/50 dark:via-stone-900 dark:to-stone-900 dark:ring-white/5">
-      <div className="relative z-10 sm:pr-[290px] lg:pr-[330px]">
+    <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-200 via-brand-50 to-sky-200 p-5 shadow-[0_12px_32px_-16px_rgba(41,97,184,0.55)] ring-1 ring-brand-200 sm:p-7 lg:[@media(max-height:1199px)]:p-4 dark:from-brand-950/50 dark:via-stone-900 dark:to-stone-900 dark:ring-white/5">
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-brand-600 via-rose-500 to-amber-400" />
+      <div aria-hidden className="pointer-events-none absolute -left-10 -top-12 h-40 w-40 rounded-full bg-rose-300/40 blur-3xl dark:bg-rose-500/10" />
+      <div aria-hidden className="pointer-events-none absolute -bottom-16 right-24 h-44 w-44 rounded-full bg-brand-400/30 blur-3xl dark:bg-brand-500/10" />
+      <div className="relative z-10 sm:pr-[290px] lg:pr-[330px] lg:max-xl:!pr-0 lg:[@media(max-height:1199px)]:pr-[230px]">
         <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-accent-strong">
           {/* i18n-ignore-start: mã định vị hệ thống, cùng họ với THCN://INTERVIEW/TECH */}
           {"THCN://APP/DASHBOARD"}
           {/* i18n-ignore-end */}
         </p>
-        <h2 className="mt-2 text-2xl font-black leading-tight tracking-tight text-brand-950 sm:text-[30px] dark:text-stone-50">
+        <h2 className="mt-2 bg-gradient-to-r from-brand-800 to-brand-600 bg-clip-text text-2xl font-black leading-tight tracking-tight text-transparent sm:text-[30px] lg:[@media(max-height:1199px)]:mt-1 lg:[@media(max-height:1199px)]:text-xl dark:from-brand-200 dark:to-brand-400">
           {r.heroTitle}
         </h2>
-        <p className="mt-2 text-sm leading-relaxed text-ink-body sm:text-[15px]">{r.heroSub}</p>
+        <p className="mt-2 text-sm leading-relaxed text-ink-body sm:text-[15px] lg:[@media(max-height:1199px)]:hidden">{r.heroSub}</p>
       </div>
 
-      <WorkstationArt className="pointer-events-none absolute bottom-3 right-0 hidden h-[160px] w-[280px] sm:block lg:right-3 lg:h-[180px] lg:w-[315px]" />
+      <WorkstationArt className="pointer-events-none absolute bottom-3 right-0 hidden h-[160px] w-[280px] sm:block lg:right-3 lg:h-[180px] lg:w-[315px] lg:[@media(max-height:1199px)]:h-[110px] lg:[@media(max-height:1199px)]:w-[200px] lg:max-xl:!hidden" />
 
-      <div className="relative z-10 mt-5 rounded-2xl bg-white/85 px-3 py-2.5 ring-1 ring-brand-100 backdrop-blur-sm sm:mr-[290px] lg:mr-[330px] dark:bg-stone-950/60 dark:ring-white/5">
+      <div className="relative z-10 mt-5 lg:[@media(max-height:1199px)]:hidden rounded-2xl bg-white/85 px-3 py-2.5 ring-1 ring-brand-100 backdrop-blur-sm sm:mr-[290px] lg:mr-[330px] dark:bg-stone-950/60 dark:ring-white/5">
         <CoCoSays lines={cocoLines} vars={cocoVars} size={36} quiet />
       </div>
 
-      <div className="relative z-10 mt-4 flex flex-wrap items-center gap-x-3 gap-y-1.5">
-        <div className="h-2 w-40 overflow-hidden rounded-full bg-brand-100 sm:w-56 dark:bg-white/10">
+      <div className="relative z-10 mt-4 flex flex-wrap items-center gap-x-3 gap-y-1.5 lg:[@media(max-height:1199px)]:mt-2">
+        <div className="h-2.5 w-40 overflow-hidden rounded-full bg-white/80 sm:w-56 dark:bg-white/10">
           <div
-            className="h-full rounded-full bg-gradient-to-r from-brand-600 to-cyan-400 motion-safe:transition-[width] motion-safe:duration-700"
+            className="h-full rounded-full bg-gradient-to-r from-brand-600 via-sky-500 to-cyan-400 motion-safe:transition-[width] motion-safe:duration-700"
             style={{ width: `${Math.max(2, progressPct)}%` }}
           />
         </div>
@@ -120,11 +130,11 @@ export function PracticeModeGrid() {
   const { t } = useI18n();
   const r = t.revampDashboard;
   const modes: PracticeMode[] = [
-    { href: "/kiem-tra", label: t.nav.quiz, sub: r.practiceQuizSub, icon: GraduationCap, tile: "bg-brand-100 text-brand-600 dark:bg-brand-500/15 dark:text-brand-300" },
-    { href: "/phong-van-ky-thuat", label: t.nav.technicalInterview, sub: r.practiceInterviewSub, icon: BriefcaseBusiness, tile: "bg-sky-100 text-sky-600 dark:bg-sky-500/15 dark:text-sky-300" },
-    { href: "/cong-cu", label: t.nav.toolSimulators, sub: r.practiceToolsSub, icon: TerminalSquare, tile: "bg-emerald-100 text-emerald-600 dark:bg-emerald-500/15 dark:text-emerald-300" },
-    { href: "/thi-vuot-chang", label: t.nav.stageSkipExam, sub: r.practiceStageSkipSub, icon: Trophy, tile: "bg-amber-100 text-amber-600 dark:bg-amber-500/15 dark:text-amber-300" },
-    { href: "/game", label: t.dataRest.appNavbar.gameKingdomLabel, sub: r.practiceGameSub, icon: Gamepad2, tile: "bg-rose-100 text-rose-500 dark:bg-rose-500/15 dark:text-rose-300" },
+    { href: "/kiem-tra", label: t.nav.quiz, sub: r.practiceQuizSub, icon: GraduationCap, tile: "bg-gradient-to-br from-brand-500 to-brand-700 text-white shadow-md shadow-brand-600/30" },
+    { href: "/phong-van-ky-thuat", label: t.nav.technicalInterview, sub: r.practiceInterviewSub, icon: BriefcaseBusiness, tile: "bg-gradient-to-br from-sky-400 to-sky-600 text-white shadow-md shadow-sky-500/30" },
+    { href: "/cong-cu", label: t.nav.toolSimulators, sub: r.practiceToolsSub, icon: TerminalSquare, tile: "bg-gradient-to-br from-emerald-400 to-emerald-600 text-white shadow-md shadow-emerald-500/30" },
+    { href: "/thi-vuot-chang", label: t.nav.stageSkipExam, sub: r.practiceStageSkipSub, icon: Trophy, tile: "bg-gradient-to-br from-amber-400 to-orange-500 text-white shadow-md shadow-amber-500/30" },
+    { href: "/game", label: t.dataRest.appNavbar.gameKingdomLabel, sub: r.practiceGameSub, icon: Gamepad2, tile: "bg-gradient-to-br from-rose-400 to-rose-600 text-white shadow-md shadow-rose-500/30" },
   ];
   return (
     <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
@@ -132,13 +142,13 @@ export function PracticeModeGrid() {
         <Link
           key={href}
           href={href}
-          className={`${softCard} group flex flex-col items-center px-3 pb-3.5 pt-4 text-center transition-[box-shadow,transform] hover:-translate-y-0.5 hover:ring-brand-300 dark:hover:ring-brand-700`}
+          className={`${softCard} group flex flex-col items-center px-3 pb-3.5 pt-4 text-center lg:max-xl:px-1 lg:[@media(max-height:1199px)]:pb-2.5 lg:[@media(max-height:1199px)]:pt-3 transition-[box-shadow,transform] hover:-translate-y-1 hover:shadow-[0_14px_28px_-12px_rgba(41,97,184,0.45)] hover:ring-brand-300 dark:hover:ring-brand-700`}
         >
-          <span className={`flex h-12 w-12 items-center justify-center rounded-2xl transition-transform group-hover:scale-105 ${tile}`}>
+          <span className={`flex h-12 w-12 items-center justify-center rounded-2xl transition-transform group-hover:scale-105 lg:[@media(max-height:1199px)]:h-9 lg:[@media(max-height:1199px)]:w-9 ${tile}`}>
             <Icon className="h-6 w-6" strokeWidth={2.2} aria-hidden />
           </span>
-          <span className="mt-2.5 text-sm font-black leading-tight text-ink-max">{label}</span>
-          <span className="mt-1 text-[11.5px] leading-snug text-ink-muted">{sub}</span>
+          <span className="mt-2.5 text-sm font-black leading-tight text-ink-max lg:max-xl:text-[11px] lg:[@media(max-height:1199px)]:mt-1.5">{label}</span>
+          <span className="mt-1 text-[11.5px] leading-snug text-ink-muted lg:[@media(max-height:1199px)]:hidden">{sub}</span>
         </Link>
       ))}
     </div>
@@ -166,13 +176,14 @@ export function ProgressSideCard({
   const { t } = useI18n();
   const r = t.revampDashboard;
   const pct = xpForLevel ? Math.min(100, Math.round((xpInLevel / xpForLevel) * 100)) : 100;
-  const rows: { icon: LucideIcon; tone: string; label: string; value: ReactNode }[] = [
-    { icon: Flame, tone: "text-amber-500", label: r.sideStreak, value: streakSlot },
-    { icon: BookOpenCheck, tone: "text-accent", label: r.sideLessons, value: <span className="font-mono tabular-nums">{lessonsDone}/{lessonsTotal}</span> },
-    { icon: Target, tone: "text-rose-500", label: r.sideQuiz, value: <span className="font-mono tabular-nums">{avgQuizScore === null ? "--" : `${avgQuizScore}%`}</span> },
+  const rows: { icon: LucideIcon; tone: string; chip: string; label: string; value: ReactNode }[] = [
+    { icon: Flame, tone: "text-orange-500", chip: "bg-orange-100 dark:bg-orange-500/15", label: r.sideStreak, value: streakSlot },
+    { icon: BookOpenCheck, tone: "text-brand-600", chip: "bg-brand-100 dark:bg-brand-500/15", label: r.sideLessons, value: <span className="font-mono tabular-nums">{lessonsDone}/{lessonsTotal}</span> },
+    { icon: Target, tone: "text-rose-500", chip: "bg-rose-100 dark:bg-rose-500/15", label: r.sideQuiz, value: <span className="font-mono tabular-nums">{avgQuizScore === null ? "--" : `${avgQuizScore}%`}</span> },
   ];
   return (
-    <section className={`${softCard} p-5`}>
+    <section className={`${softCard} relative overflow-hidden p-5`}>
+      <div aria-hidden className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-rose-500 via-amber-400 to-brand-600" />
       <Link href="/profile" className="group flex items-center justify-between gap-2">
         <h2 className="flex items-center gap-2 text-base font-black tracking-tight text-ink-max">
           <Target className="h-5 w-5 text-rose-500" aria-hidden />
@@ -182,24 +193,24 @@ export function ProgressSideCard({
       </Link>
 
       <div className="mt-4 flex items-center gap-4">
-        <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-surface-raised font-mono text-base font-black text-ink-max dark:bg-stone-800">
+        <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 font-mono text-base font-black text-white shadow-md shadow-brand-600/30">
           {format(r.sideLevel, { level })}
         </span>
         <div className="min-w-0 flex-1">
           <p className="font-mono text-sm font-bold tabular-nums text-warn">
             {xpForLevel ? format(r.sideXp, { xp: xpInLevel, next: xpForLevel }) : format(r.heroXp, { xp: xpInLevel })}
           </p>
-          <div className="mt-2 h-2 overflow-hidden rounded-full bg-surface-sunken">
-            <div className="h-full rounded-full bg-gradient-to-r from-amber-400 to-amber-500" style={{ width: `${Math.max(3, pct)}%` }} />
+          <div className="mt-2 h-2.5 overflow-hidden rounded-full bg-amber-100 dark:bg-white/10">
+            <div className="h-full rounded-full bg-gradient-to-r from-amber-400 via-orange-400 to-rose-500" style={{ width: `${Math.max(3, pct)}%` }} />
           </div>
         </div>
       </div>
 
       <ol className="mt-4 divide-y divide-line-soft">
-        {rows.map(({ icon: Icon, tone, label, value }, i) => (
+        {rows.map(({ icon: Icon, tone, chip, label, value }, i) => (
           <li key={label} className="flex items-center gap-3 py-2.5">
             <span className="w-5 font-mono text-[11px] tabular-nums text-ink-faint">{String(i + 1).padStart(2, "0")}</span>
-            <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-surface-raised dark:bg-stone-800">
+            <span className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg ${chip}`}>
               <Icon className={`h-4 w-4 ${tone}`} aria-hidden />
             </span>
             <span className="flex-1 text-sm font-semibold text-ink-body">{label}</span>
@@ -218,16 +229,16 @@ export function TrophyPromoCard() {
   return (
     <Link
       href="/phong-van-ky-thuat"
-      className="group relative block overflow-hidden rounded-2xl bg-gradient-to-br from-brand-100 via-brand-50 to-sky-100 p-5 ring-1 ring-brand-100 dark:from-brand-950 dark:via-stone-900 dark:to-brand-950/60 dark:ring-white/5"
+      className="group relative block overflow-hidden rounded-2xl bg-gradient-to-br from-brand-600 via-brand-700 to-brand-900 p-5 shadow-[0_14px_30px_-14px_rgba(33,78,150,0.8)] ring-1 ring-brand-500/40 transition-transform hover:-translate-y-0.5"
     >
       <div className="relative z-10 max-w-[60%]">
-        <p className="text-xl font-black leading-tight tracking-tight text-brand-950 dark:text-stone-50">
+        <p className="text-xl font-black leading-tight tracking-tight text-white">
           {r.promoTitle1}
           <br />
           {r.promoTitle2}
         </p>
-        <p className="mt-2 text-xs leading-relaxed text-ink-body">{r.promoBody}</p>
-        <span className="mt-3 inline-flex items-center gap-1 text-xs font-bold text-accent-strong">
+        <p className="mt-2 text-xs leading-relaxed text-brand-100">{r.promoBody}</p>
+        <span className="mt-3 inline-flex items-center gap-1 rounded-full bg-rose-500 px-3 py-1 text-xs font-bold text-white shadow-md shadow-rose-900/30">
           {r.promoCta}
           <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden />
         </span>

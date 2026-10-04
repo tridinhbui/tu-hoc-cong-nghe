@@ -26,6 +26,8 @@ const HEADER_SUBTRACTION = "h-[calc(100dvh-3.5rem)]";
 const ONE_SCREEN_PAGES = [
   "app/(app)/kiem-tra/page.tsx",
   "app/(app)/nhom-hoc/page.tsx",
+  // Trang tổng quan: một màn hình ở chế độ Gọn và Đầy đủ, chỉ thẻ tự cuộn.
+  "components/DashboardClient.tsx",
 ];
 
 describe("one-screen pages stay one screen", () => {

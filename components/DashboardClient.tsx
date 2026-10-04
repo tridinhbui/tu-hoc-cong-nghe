@@ -252,6 +252,23 @@ function useStoredFlag(key: string): [boolean, () => void] {
 
 const STAGE_ICONS: LucideIcon[] = [GitBranch, Code2, Globe, Braces, Layers, Server, Database, Cloud, FileText, Compass, Cpu, Cloud, BookOpen, ShieldCheck, Smartphone, HardHat];
 
+/** Màn hình thấp hơn 1200px: các thẻ chuyển sang bản gọn để cả trang tổng quan
+ *  vừa đúng một màn hình. Đọc qua matchMedia thay vì đo chiều cao, để bản dựng
+ *  trên máy chủ (không có cửa sổ) và lần dựng đầu trên máy khách khớp nhau. */
+const SHORT_VIEWPORT_QUERY = "(max-height: 1199px)";
+function subscribeShortViewport(cb: () => void) {
+  const mq = window.matchMedia(SHORT_VIEWPORT_QUERY);
+  mq.addEventListener("change", cb);
+  return () => mq.removeEventListener("change", cb);
+}
+function useShortViewport(): boolean {
+  return useSyncExternalStore(
+    subscribeShortViewport,
+    () => window.matchMedia(SHORT_VIEWPORT_QUERY).matches,
+    () => false
+  );
+}
+
 export default function DashboardClient({ lessonsMeta, view = "overview" }: { lessonsMeta: LessonMeta[]; view?: DashboardView }) {
   const isLessonsView = view === "lessons";
   // Cột phải của /hoc-bai kéo đổi bề rộng được - xem lib/use-resizable-sidebar.ts.
@@ -278,6 +295,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
   // nó giữ nguyên bản gọn như trước. Nếu để preset chi phối cả trang đó thì
   // một lựa chọn đặt ở màn hình này sẽ lặng lẽ nới rộng màn hình kia - cùng
   // cái bẫy mà chú thích của `showOptional` ngay trên đã tránh.
+  const shortViewport = useShortViewport();
   const isCompactCard = isLessonsView || !isFullPreset;
 
   useEffect(() => {
@@ -418,6 +436,9 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
   // Dải cấp gọn (chỉ cấp gần) hay đủ 15 cấp; bảng xếp hạng thu gọn hay mở.
   const [showAllLevels, toggleAllLevels] = useStoredFlag("thtcdn_dashboard_all_levels");
   const [rankingOpen, toggleRanking] = useStoredFlag("thtcdn_dashboard_ranking_open");
+  // Chế độ Đầy đủ: cột phụ chia tab để chỉ một nhóm hiện mỗi lúc, thay vì xếp
+  // tất cả thành một dải dài hơn cả màn hình.
+  const [sideTab, setSideTab] = useState<"progress" | "rewards" | "arena">("progress");
   const [levelsOpen, setLevelsOpen] = useState(false);
   const [dbAvatarUrl, setDbAvatarUrl] = useState<string | null>(null);
   const [equippedGear, setEquippedGear] = useState<CharacterEquipments>({});
@@ -953,7 +974,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-page dark:bg-stone-950 flex flex-col items-center justify-center gap-4">
+      <div className="min-h-dvh bg-page dark:bg-stone-950 flex flex-col items-center justify-center gap-4">
         <div className="relative w-16 h-16">
           <span className="absolute -inset-1.5 rounded-full border-2 border-stone-300 border-t-brand-600 animate-spin dark:border-stone-700 dark:border-t-brand-400" />
           <div className="relative w-16 h-16 rounded-full overflow-hidden bg-surface-raised dark:bg-stone-900">
@@ -1134,10 +1155,19 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
     // Trong suốt, không `bg-white`: khung bố cục ở app/(app)/layout.tsx đã đặt
     // nền giấy ngà cho cả sản phẩm, và một lớp trắng ở đây sơn đè lên đúng thứ
     // đó - dashboard sẽ là ô trắng duy nhất trong một sản phẩm màu ngà.
-    <div className="min-h-screen xl:h-screen xl:overflow-y-auto">
+    // Trang tổng quan là MỘT MÀN HÌNH: khung cố định theo chiều cao cửa sổ và
+    // không bao giờ cuộn cả trang. Phần không vừa thì cuộn BÊN TRONG thẻ của nó.
+    // Dưới `lg` thanh bên của app thu thành header dính cao 3,5rem nên trừ nó đi
+    // (cùng hợp đồng với /kiem-tra - xem lib/__tests__/one-screen-pages.test.ts).
+    // `-mb-28`: AppShell chèn một khoảng đệm h-28 cuối mọi trang trên điện thoại
+    // để cuộn qua các nút nổi; với trang một màn hình nó cộng 112px vào chiều cao
+    // văn bản và làm cả trang cuộn. Bù lại bằng lề âm, và trả chỗ đó cho vùng cuộn
+    // bên trong (`pb-28`) để nút nổi vẫn không che nội dung cuối.
+    // Trang /hoc-bai (isLessonsView) giữ cách cũ.
+    <div className={isLessonsView ? "min-h-screen xl:h-screen xl:overflow-y-auto" : "-mb-28 h-[calc(100dvh-3.5rem)] overflow-hidden lg:mb-0 lg:h-dvh"}>
 
 
-      <div className="px-4 py-4 sm:px-5 sm:py-5 xl:h-full xl:flex xl:flex-col xl:min-h-0">
+      <div className={isLessonsView ? "px-4 py-4 sm:px-5 sm:py-5 xl:h-full xl:flex xl:flex-col xl:min-h-0" : "flex h-full min-h-0 flex-col px-3 py-3 sm:px-4 lg:px-5"}>
         {/* ── Admin -> everyone broadcasts (maintenance, launches, policy
             changes) - shown above the streak/recall reminders since these
             are typically more time-sensitive. ── */}
@@ -1181,7 +1211,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
           className={`mx-auto w-full space-y-5 min-w-0 xl:flex-1 xl:min-h-0 xl:space-y-0 ${
             isLessonsView
               ? "max-w-[1500px] xl:flex xl:flex-col"
-              : "max-w-[1500px] pt-2 sm:pt-4"
+              : "flex min-h-0 max-w-[1500px] flex-1 flex-col"
           }`}
         >
 
@@ -1238,15 +1268,15 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
             const curLvl = LEVELS.find((l) => l.level === currentUserLevel) ?? LEVELS[0];
 
             return (
-              <div className="mx-auto w-full max-w-[1240px] space-y-5">
+              <div className="mx-auto flex h-full min-h-0 w-full max-w-[1240px] flex-col gap-3">
               {/* Bố cục theo trang Luyện phỏng vấn: thanh đầu trang, banner có
                   minh hoạ và Cơ Cơ, các khu đánh số 01-04, và cột phải là thẻ
                   "Tiến độ của bạn" cùng thẻ cúp. Mọi khối cũ vẫn còn - chỉ đổi
                   chỗ và đổi mặt nền. */}
               <OverviewTopBar xpPerLesson={XP_PER_LESSON} />
-              <div className="grid grid-cols-1 gap-8 xl:grid-cols-[minmax(0,1fr)_340px] xl:items-start xl:gap-8">
+              <div className="grid min-h-0 flex-1 grid-cols-1 content-start gap-4 overflow-y-auto pb-28 [scrollbar-width:thin] lg:pb-0 lg:grid-cols-[minmax(0,1fr)_300px] lg:grid-rows-[minmax(0,1fr)] lg:overflow-hidden xl:grid-cols-[minmax(0,1fr)_340px]">
                 {/* ── Cột chính: 01 Học tiếp, 02 Luyện tập, 03 Cấp độ, 04 Lộ trình ── */}
-                <div className="min-w-0 space-y-9">
+                <div className="flex min-w-0 flex-col gap-4 lg:h-full lg:min-h-0">
                   <DashboardHeroBanner
                     cocoLines={!heroLesson ? (anyDone ? t.coco.dashboardDone : t.coco.dashboardFirst) : anyDone ? t.coco.dashboardNext : t.coco.dashboardFirst}
                     cocoVars={heroLesson ? { lesson: stripStageLessonPrefix(heroLesson.title) } : undefined}
@@ -1256,7 +1286,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                   {/* Hỏi lại việc "Làm ngay" của bài hôm qua TRƯỚC khi mời học
                       bài mới - xem components/YesterdayTaskCard.tsx. Tự ẩn
                       khi không có việc nào trong cửa sổ 6-72 giờ. */}
-                  <YesterdayTaskCard />
+                  <div className="lg:max-h-[22dvh] lg:overflow-y-auto"><YesterdayTaskCard /></div>
                   <section className="space-y-3">
                   <SectionHeading n={1} title={t.revampDashboard.sectionContinue} hint={t.revampDashboard.sectionContinueHint} />
                   <div data-tour="resume-learning">
@@ -1264,7 +1294,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                       showCoCo={false}
                       activeTrack={activeTrack}
                       userId={user?.id}
-                      compact={isCompactCard}
+                      compact={isCompactCard || shortViewport}
                       quiet
                       hero
                       footnote={
@@ -1298,7 +1328,8 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                     <PracticeModeGrid />
                   </section>
 
-                  <section className="space-y-3">
+                  <div className="grid min-h-0 gap-4 lg:flex-1 lg:grid-cols-2 lg:grid-rows-[minmax(0,1fr)]">
+                  <section className="space-y-3 lg:min-h-0 lg:overflow-y-auto lg:pr-1 [scrollbar-width:thin]">
                   <SectionHeading n={3} title={t.revampDashboard.sectionLevel} hint={t.revampDashboard.sectionLevelHint} />
                   {/* ── Tiến độ: cấp, XP, chuỗi ngày trong một mặt nền.
                       Dải cấp đầy đủ và danh sách người ở từng cấp chỉ mở khi
@@ -1536,7 +1567,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                   </section>
 
                   {/* ── Lộ trình: mục tiêu đã chọn và gợi ý học tiếp, một khu. */}
-                  <section className="space-y-5">
+                  <section className="space-y-5 lg:min-h-0 lg:overflow-y-auto lg:pr-1 [scrollbar-width:thin]">
                     <SectionHeading
                       n={4}
                       title={t.revampDashboard.roadmapTitle}
@@ -1557,72 +1588,102 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                       <DashboardRecommendations />
                     </div>
                   </section>
+                  </div>
                 </div>
 
                 {/* ── Cột phải: nhẹ, cho việc luyện tập và thông tin phụ ── */}
-                <aside className="min-w-0 space-y-5 xl:sticky xl:top-2">
-                  {/* Lối vào bốn chế độ luyện tập từng là một danh sách ở đây;
-                      giờ là khu 02 ở cột chính, dạng lưới thẻ. */}
-                  <ProgressSideCard
-                    level={currentUserLevel}
-                    xpInLevel={nextLvl ? userXp - curLvl.minXp : userXp}
-                    xpForLevel={nextLvl ? nextLvl.minXp - curLvl.minXp : null}
-                    streakSlot={<DashboardStreakWidget userId={user.id} quiet />}
-                    lessonsDone={trackCounts[activeTrack].done}
-                    lessonsTotal={trackCounts[activeTrack].total}
-                    avgQuizScore={anyDone ? avgQuizScore : null}
-                  />
-                  <TrophyPromoCard />
-
-                  {showOptional && <DailyNewsQuizWidget userId={user.id} compact quiet />}
-
-                  <div className="space-y-5 px-1">
-                    <PracticalSkillPanel compact collapsible />
-                    <div data-tour="user-stats" className="min-w-0">
-                      <UserStats
-                        xp={userXp}
-                        lessonsCompleted={totalDone}
-                        totalLessons={totalLessons}
-                        avgQuizScore={avgQuizScore}
-                        userId={user?.id}
-                        sidebar={true}
-                        embedded={true}
-                        compact={isCompactCard}
-                        hideIdentity
-                        quiet
-                      />
-                    </div>
-                    <div>
-                      <button
-                        type="button"
-                        onClick={toggleRanking}
-                        aria-expanded={rankingOpen}
-                        className="flex w-full cursor-pointer items-center justify-between gap-2 py-1 text-xs font-semibold text-ink-faint transition-colors hover:text-ink-body"
-                      >
-                        <span>{t.revampDashboard.rankingLabel}</span>
-                        <ChevronDown className={`h-3.5 w-3.5 transition-transform ${rankingOpen ? "rotate-180" : ""}`} aria-hidden />
-                      </button>
-                      {rankingOpen && (
-                        <div className="mt-3 rounded-2xl bg-surface p-4 dark:bg-stone-900">
-                          <DashboardLeaderboardCard userId={user.id} bare />
-                        </div>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Chế độ Đầy đủ: phần thưởng, đấu trường và cộng đồng -
-                      xếp ở cuối cột phụ, không tranh với việc học. */}
+                <aside className="flex min-w-0 flex-col gap-4 lg:h-full lg:min-h-0 lg:overflow-y-auto lg:pr-1 [scrollbar-width:thin]">
+                  {/* Chế độ Đầy đủ: ba tab giữ cột phụ vừa một màn hình; mỗi
+                      tab tự cuộn khi dài. Chế độ Gọn chỉ có tab Tiến độ. */}
                   {isFullPreset && (
-                    <div className="space-y-6">
+                    <div role="tablist" className="sticky top-0 z-10 grid shrink-0 grid-cols-3 gap-1 rounded-2xl bg-white/90 p-1 shadow-sm ring-1 ring-brand-100 backdrop-blur dark:bg-stone-900/90 dark:ring-white/10">
+                      {([
+                        { id: "progress" as const, label: t.revampDashboard.sideTabProgress, on: "bg-brand-600 text-white" },
+                        { id: "rewards" as const, label: t.revampDashboard.sideTabRewards, on: "bg-amber-500 text-white" },
+                        { id: "arena" as const, label: t.revampDashboard.sideTabArena, on: "bg-rose-500 text-white" },
+                      ]).map((tab) => (
+                        <button
+                          key={tab.id}
+                          type="button"
+                          role="tab"
+                          aria-selected={sideTab === tab.id}
+                          onClick={() => setSideTab(tab.id)}
+                          className={`cursor-pointer rounded-xl px-2 py-1.5 text-xs font-bold transition-colors ${sideTab === tab.id ? `${tab.on} shadow-sm` : "text-ink-muted hover:bg-brand-50 dark:hover:bg-white/5"}`}
+                        >
+                          {tab.label}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+
+                  {(!isFullPreset || sideTab === "progress") && (
+                    <>
+                      <ProgressSideCard
+                        level={currentUserLevel}
+                        xpInLevel={nextLvl ? userXp - curLvl.minXp : userXp}
+                        xpForLevel={nextLvl ? nextLvl.minXp - curLvl.minXp : null}
+                        streakSlot={<DashboardStreakWidget userId={user.id} quiet />}
+                        lessonsDone={trackCounts[activeTrack].done}
+                        lessonsTotal={trackCounts[activeTrack].total}
+                        avgQuizScore={anyDone ? avgQuizScore : null}
+                      />
+                      <TrophyPromoCard />
+
+                      {showOptional && <DailyNewsQuizWidget userId={user.id} compact quiet />}
+
+                      <div className="space-y-5 px-1">
+                        <PracticalSkillPanel compact collapsible />
+                        <div data-tour="user-stats" className="min-w-0">
+                          <UserStats
+                            xp={userXp}
+                            lessonsCompleted={totalDone}
+                            totalLessons={totalLessons}
+                            avgQuizScore={avgQuizScore}
+                            userId={user?.id}
+                            sidebar={true}
+                            embedded={true}
+                            compact={isCompactCard}
+                            hideIdentity
+                            quiet
+                          />
+                        </div>
+                        <div>
+                          <button
+                            type="button"
+                            onClick={toggleRanking}
+                            aria-expanded={rankingOpen}
+                            className="flex w-full cursor-pointer items-center justify-between gap-2 py-1 text-xs font-semibold text-ink-faint transition-colors hover:text-ink-body"
+                          >
+                            <span>{t.revampDashboard.rankingLabel}</span>
+                            <ChevronDown className={`h-3.5 w-3.5 transition-transform ${rankingOpen ? "rotate-180" : ""}`} aria-hidden />
+                          </button>
+                          {rankingOpen && (
+                            <div className="mt-3 rounded-2xl bg-surface p-4 dark:bg-stone-900">
+                              <DashboardLeaderboardCard userId={user.id} bare />
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </>
+                  )}
+
+                  {isFullPreset && sideTab === "rewards" && (
+                    <div className="space-y-4">
                       <CombinedRewardsWidget userId={user.id} defaultExpanded={false} compact />
+                      <DailyMotivationWidget userId={user.id} quiet />
+                    </div>
+                  )}
+
+                  {isFullPreset && sideTab === "arena" && (
+                    <div className="space-y-4">
                       <DashboardArenaCard onOpenBoss={() => setShowBossBattle(true)} onOpenPvp={() => setShowPvpModal(true)} />
                       <CommunityLearningNow lessonsMeta={lessonsMeta} />
                       <CommunityStreakWidget />
                     </div>
                   )}
 
-                  <div className="space-y-4 px-1">
-                    <DailyMotivationWidget userId={user.id} quiet />
+                  <div className="mt-auto space-y-4 px-1">
+                    {!isFullPreset && <DailyMotivationWidget userId={user.id} quiet />}
                     <div className="flex items-center gap-2.5">
                       <span className="text-xs text-ink-faint">{t.dashboard.presetLabel}</span>
                       <div role="group" aria-label={t.dashboard.presetLabel} className="inline-flex rounded-full bg-surface-raised p-0.5 dark:bg-stone-900">
