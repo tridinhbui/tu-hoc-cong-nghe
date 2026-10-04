@@ -59,6 +59,10 @@ describe("ticket của từng nhiệm vụ", () => {
 describe("tiêu chí SQL đọc kết quả thật", () => {
   it("câu tham chiếu đạt mọi tiêu chí", () => {
     for (const m of SQL_MISSIONS) {
+      // Nhiệm vụ ghi dữ liệu chấm trạng thái bảng sau khi chạy cả một kịch bản nhiều
+      // câu - `reference` của chúng không phải một SELECT, và tool-sql-missions.test.ts
+      // đã chạy kịch bản tham chiếu đó qua phiên thật.
+      if (m.kind === "write") continue;
       const state = { result: runQuery(SAMPLE_DB, m.reference) };
       expect(m.criteria.map((c) => c.check(state)), m.id).toEqual(m.criteria.map(() => true));
     }

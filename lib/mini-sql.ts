@@ -1,5 +1,10 @@
 // Một bộ máy SQL nhỏ, đủ để học viên gõ truy vấn thật trong bài Excel số 6.
 //
+// Ngoài truy vấn, bộ máy ghi được dữ liệu (INSERT / UPDATE / DELETE) qua
+// parseStatement + execWrite; BEGIN/COMMIT/ROLLBACK, CREATE INDEX và EXPLAIN chỉ
+// được PHÂN TÍCH CÚ PHÁP ở đây - phần thực thi nằm ở lib/tools/sql/session.ts.
+// runQuery vẫn chỉ đọc: nó không bao giờ sửa cơ sở dữ liệu truyền vào.
+//
 // Phạm vi đúng bằng phạm vi bài học: SELECT [DISTINCT], WHERE (kể cả BETWEEN),
 // JOIN, GROUP BY, HAVING, ORDER BY, LIMIT, năm hàm tổng hợp, CASE WHEN, vài hàm
 // vô hướng (COALESCE, ROUND, SUBSTR, LOWER, UPPER, LENGTH) và truy vấn con
@@ -13,7 +18,16 @@
 
 export type SqlValue = string | number | null;
 export type Row = Record<string, SqlValue>;
-export type Table = { name: string; columns: string[]; rows: Row[] };
+export type ColumnAffinity = "INTEGER" | "TEXT" | "DATE";
+export type Table = {
+  name: string;
+  columns: string[];
+  rows: Row[];
+  /** Cột khoá chính: INSERT bỏ trống thì tự cấp số kế tiếp, trùng thì báo lỗi. */
+  pk?: string;
+  /** Kiểu cột, chỉ dùng khi GHI: chuỗi toàn số vào cột INTEGER được đổi thành số. */
+  types?: Record<string, ColumnAffinity>;
+};
 export type Database = Record<string, Table>;
 
 export class SqlError extends Error {}
@@ -40,7 +54,16 @@ function lex(sql: string): Tok[] {
     if (c === "'" || c === '"') {
       let j = i + 1;
       let v = "";
-      while (j < sql.length && sql[j] !== c) {
+      while (j < sql.length) {
+        if (sql[j] === c) {
+          // Hai dấu nháy liền nhau trong chuỗi là một dấu nháy thật: 'It''s'.
+          if (sql[j + 1] === c) {
+            v += c;
+            j += 2;
+            continue;
+          }
+          break;
+        }
         v += sql[j];
         j++;
       }
@@ -83,7 +106,7 @@ function lex(sql: string): Tok[] {
  * Cây biểu thức
  * ------------------------------------------------------------------ */
 
-type Expr =
+export type Expr =
   | { k: "col"; name: string }
   | { k: "lit"; v: SqlValue }
   | { k: "bin"; op: string; l: Expr; r: Expr }
@@ -110,7 +133,7 @@ const KEYWORDS = new Set([
 type Select = { expr: Expr; alias: string };
 type Join = { type: "INNER" | "LEFT"; table: string; alias: string; left: Expr; right: Expr };
 
-type Query = {
+export type Query = {
   distinct: boolean;
   select: Select[];
   star: boolean;
@@ -122,6 +145,21 @@ type Query = {
   orderBy: { expr: Expr; desc: boolean }[];
   limit?: number;
 };
+
+/** Một câu lệnh đã phân tích. Chỉ select/insert/update/delete được mini-sql tự chạy. */
+export type Stmt =
+  | { kind: "select"; q: Query }
+  | { kind: "insert"; table: string; columns?: string[]; values?: Expr[][]; select?: Query }
+  | { kind: "update"; table: string; sets: { col: string; expr: Expr }[]; where?: Expr }
+  | { kind: "delete"; table: string; where?: Expr }
+  | { kind: "createIndex"; name: string; table: string; columns: string[]; ifNotExists: boolean }
+  | { kind: "dropIndex"; name: string; ifExists: boolean }
+  | { kind: "begin" }
+  | { kind: "commit" }
+  | { kind: "rollback" }
+  | { kind: "explain"; q: Query };
+
+export type WriteStmt = Extract<Stmt, { kind: "insert" | "update" | "delete" }>;
 
 class Parser {
   private i = 0;
@@ -156,6 +194,158 @@ class Parser {
     const q = this.parseSelect();
     if (this.i < this.toks.length) throw new SqlError(`Thừa nội dung ở cuối: ${this.toks[this.i].v}`);
     return q;
+  }
+
+  /** Phân tích MỘT câu lệnh bất kỳ trong phạm vi bộ máy hiểu. */
+  parseStatement(): Stmt {
+    const tk = this.peek();
+    if (!tk) throw new SqlError("Truy vấn kết thúc giữa chừng");
+    const w = tk.t === "word" ? tk.v.toUpperCase() : "";
+    let stmt: Stmt;
+    switch (w) {
+      case "SELECT":
+        stmt = { kind: "select", q: this.parseSelect() };
+        break;
+      case "INSERT":
+        this.i++;
+        stmt = this.parseInsert();
+        break;
+      case "UPDATE":
+        this.i++;
+        stmt = this.parseUpdate();
+        break;
+      case "DELETE":
+        this.i++;
+        stmt = this.parseDelete();
+        break;
+      case "CREATE":
+        this.i++;
+        stmt = this.parseCreate();
+        break;
+      case "DROP":
+        this.i++;
+        stmt = this.parseDrop();
+        break;
+      case "BEGIN":
+        this.i++;
+        this.eatWord("TRANSACTION");
+        stmt = { kind: "begin" };
+        break;
+      case "START":
+        this.i++;
+        this.expectWord("TRANSACTION");
+        stmt = { kind: "begin" };
+        break;
+      case "COMMIT":
+      case "END":
+        this.i++;
+        this.eatWord("TRANSACTION");
+        stmt = { kind: "commit" };
+        break;
+      case "ROLLBACK":
+        this.i++;
+        this.eatWord("TRANSACTION");
+        stmt = { kind: "rollback" };
+        break;
+      case "EXPLAIN": {
+        this.i++;
+        if (this.eatWord("QUERY")) this.expectWord("PLAN");
+        stmt = { kind: "explain", q: this.parseSelect() };
+        break;
+      }
+      default:
+        // Giữ nguyên thông điệp cũ: giao diện phân loại lỗi dựa vào nó.
+        throw new SqlError("Thiếu từ khoá SELECT");
+    }
+    if (this.i < this.toks.length) throw new SqlError(`Thừa nội dung ở cuối: ${this.toks[this.i].v}`);
+    return stmt;
+  }
+
+  private name(what: string): string {
+    const tk = this.peek();
+    if (tk?.t !== "word") throw new SqlError(`Thiếu ${what}`);
+    this.i++;
+    return tk.v;
+  }
+
+  private nameList(): string[] {
+    if (!this.eatPunc("(")) throw new SqlError("Thiếu dấu mở ngoặc trước danh sách cột");
+    const out: string[] = [];
+    for (;;) {
+      out.push(this.name("tên cột"));
+      if (!this.eatPunc(",")) break;
+    }
+    if (!this.eatPunc(")")) throw new SqlError("Thiếu dấu đóng ngoặc sau danh sách cột");
+    return out;
+  }
+
+  private parseInsert(): Stmt {
+    if (!this.eatWord("INTO")) throw new SqlError("Thiếu từ khoá INTO sau INSERT");
+    const table = this.name("tên bảng");
+    const columns = this.isPunc("(") ? this.nameList() : undefined;
+    if (this.isWord("SELECT")) return { kind: "insert", table, columns, select: this.parseSelect() };
+    if (!this.eatWord("VALUES")) throw new SqlError("Thiếu từ khoá VALUES (hoặc SELECT) trong INSERT");
+    const values: Expr[][] = [];
+    for (;;) {
+      if (!this.eatPunc("(")) throw new SqlError("Mỗi bộ giá trị của VALUES phải nằm trong ngoặc");
+      const row: Expr[] = [];
+      for (;;) {
+        row.push(this.expr(0));
+        if (!this.eatPunc(",")) break;
+      }
+      if (!this.eatPunc(")")) throw new SqlError("Thiếu dấu đóng ngoặc của VALUES");
+      values.push(row);
+      if (!this.eatPunc(",")) break;
+    }
+    return { kind: "insert", table, columns, values };
+  }
+
+  private parseUpdate(): Stmt {
+    const table = this.name("tên bảng");
+    if (!this.eatWord("SET")) throw new SqlError("Thiếu từ khoá SET sau tên bảng của UPDATE");
+    const sets: { col: string; expr: Expr }[] = [];
+    for (;;) {
+      const col = this.name("tên cột");
+      const eq = this.peek();
+      if (eq?.t !== "op" || eq.v !== "=") throw new SqlError("Thiếu dấu = sau tên cột trong SET");
+      this.i++;
+      sets.push({ col, expr: this.expr(0) });
+      if (!this.eatPunc(",")) break;
+    }
+    const where = this.eatWord("WHERE") ? this.expr(0) : undefined;
+    return { kind: "update", table, sets, where };
+  }
+
+  private parseDelete(): Stmt {
+    if (!this.eatWord("FROM")) throw new SqlError("Câu DELETE phải viết DELETE FROM tên_bảng");
+    const table = this.name("tên bảng");
+    const where = this.eatWord("WHERE") ? this.expr(0) : undefined;
+    return { kind: "delete", table, where };
+  }
+
+  private parseCreate(): Stmt {
+    if (this.isWord("UNIQUE")) throw new SqlError("Chưa hỗ trợ: CREATE UNIQUE INDEX - hãy dùng CREATE INDEX");
+    if (!this.eatWord("INDEX")) throw new SqlError("Chưa hỗ trợ: chỉ có CREATE INDEX (không tạo được bảng mới)");
+    let ifNotExists = false;
+    if (this.eatWord("IF")) {
+      this.expectWord("NOT");
+      this.expectWord("EXISTS");
+      ifNotExists = true;
+    }
+    const name = this.name("tên chỉ mục");
+    if (!this.eatWord("ON")) throw new SqlError("CREATE INDEX cần ON tên_bảng (cột)");
+    const table = this.name("tên bảng");
+    return { kind: "createIndex", name, table, columns: this.nameList(), ifNotExists };
+  }
+
+  private parseDrop(): Stmt {
+    if (!this.eatWord("INDEX")) throw new SqlError("Chưa hỗ trợ: chỉ có DROP INDEX (không xoá được bảng)");
+    let ifExists = false;
+    if (this.eatWord("IF")) {
+      this.expectWord("EXISTS");
+      ifExists = true;
+    }
+    return { kind: "dropIndex", name: this.name("tên chỉ mục"), ifExists };
   }
 
   private parseSelect(): Query {
@@ -670,6 +860,152 @@ export function runQuery(db: Database, sql: string): QueryResult {
   } finally {
     activeDb = previous;
   }
+}
+
+/** Phân tích một câu lệnh (không có dấu chấm phẩy ở cuối cũng được). */
+export function parseStatement(sql: string): Stmt {
+  return new Parser(lex(sql.replace(/;\s*$/, ""))).parseStatement();
+}
+
+/** Chạy một SELECT đã phân tích. Không sửa `db`. */
+export function runSelect(db: Database, q: Query): QueryResult {
+  const previous = activeDb;
+  activeDb = db;
+  try {
+    return execQuery(db, q);
+  } finally {
+    activeDb = previous;
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ * Ghi dữ liệu
+ * ------------------------------------------------------------------ */
+
+function toStored(v: SqlValue | boolean | undefined): SqlValue {
+  if (v === undefined) return null;
+  if (typeof v === "boolean") return v ? 1 : 0;
+  return v;
+}
+
+/** Ép kiểu theo cột như SQLite: chuỗi toàn số vào cột INTEGER thành số. */
+function coerce(table: Table, col: string, v: SqlValue): SqlValue {
+  if (table.types?.[col] === "INTEGER" && typeof v === "string" && v.trim() !== "" && /^-?\d+(\.\d+)?$/.test(v.trim())) {
+    return Number(v);
+  }
+  return v;
+}
+
+function requireTable(db: Database, name: string): Table {
+  const t = db[name];
+  if (!t) throw new SqlError(`Không có bảng "${name}"`);
+  return t;
+}
+
+function requireColumn(table: Table, col: string): string {
+  const hit = table.columns.find((c) => c === col) ?? table.columns.find((c) => c.toLowerCase() === col.toLowerCase());
+  if (!hit) throw new SqlError(`Không có cột "${col}"`);
+  return hit;
+}
+
+function rowContext(table: Table, row: Row): Row {
+  const ctx: Row = {};
+  for (const col of table.columns) {
+    ctx[col] = row[col] ?? null;
+    ctx[`${table.name}.${col}`] = row[col] ?? null;
+  }
+  return ctx;
+}
+
+function dupKeyError(table: Table, v: SqlValue): SqlError {
+  return new SqlError(`Trùng khoá chính: ${table.name}.${table.pk} = ${v} đã tồn tại`);
+}
+
+/**
+ * Chạy INSERT / UPDATE / DELETE và SỬA THẲNG `db`, trả về số dòng bị tác động.
+ * Mỗi câu lệnh là nguyên tử: lỗi ở dòng thứ ba thì không dòng nào được ghi.
+ */
+export function execWrite(db: Database, stmt: WriteStmt): number {
+  const previous = activeDb;
+  activeDb = db;
+  try {
+    return applyWrite(db, stmt);
+  } finally {
+    activeDb = previous;
+  }
+}
+
+function applyWrite(db: Database, stmt: WriteStmt): number {
+  const table = requireTable(db, stmt.table);
+
+  if (stmt.kind === "insert") {
+    const cols = (stmt.columns ?? table.columns).map((c) => requireColumn(table, c));
+    if (new Set(cols).size !== cols.length) throw new SqlError("INSERT có cột bị liệt kê hai lần");
+    const source: SqlValue[][] = stmt.select
+      ? execQuery(db, stmt.select).rows
+      : (stmt.values ?? []).map((row) => row.map((e) => toStored(evalExpr(e, {}))));
+    const pk = table.pk;
+    const used = new Set<SqlValue>(pk ? table.rows.map((r) => r[pk] ?? null) : []);
+    let next = pk ? Math.max(0, ...table.rows.map((r) => Number(r[pk]) || 0)) : 0;
+    const fresh: Row[] = [];
+    for (const values of source) {
+      if (values.length !== cols.length) {
+        throw new SqlError(`INSERT có ${cols.length} cột nhưng ${values.length} giá trị - số cột và số giá trị phải bằng nhau`);
+      }
+      const row: Row = Object.fromEntries(table.columns.map((c) => [c, null]));
+      cols.forEach((c, i) => {
+        row[c] = coerce(table, c, values[i] ?? null);
+      });
+      if (pk) {
+        if (row[pk] === null) {
+          next += 1;
+          row[pk] = next;
+        } else {
+          next = Math.max(next, Number(row[pk]) || 0);
+        }
+        if (used.has(row[pk])) throw dupKeyError(table, row[pk]);
+        used.add(row[pk]);
+      }
+      fresh.push(row);
+    }
+    table.rows.push(...fresh);
+    return fresh.length;
+  }
+
+  const matches = (row: Row) => (stmt.where ? truthy(evalExpr(stmt.where, rowContext(table, row))) : true);
+
+  if (stmt.kind === "delete") {
+    const keep: Row[] = [];
+    let n = 0;
+    for (const row of table.rows) {
+      if (matches(row)) n++;
+      else keep.push(row);
+    }
+    table.rows = keep;
+    return n;
+  }
+
+  const sets = stmt.sets.map((s) => ({ col: requireColumn(table, s.col), expr: s.expr }));
+  const changes = new Map<Row, Row>();
+  for (const row of table.rows) {
+    if (!matches(row)) continue;
+    // Mọi vế phải đều đọc dòng CŨ: SET a = b, b = a hoán đổi được hai cột.
+    const ctx = rowContext(table, row);
+    const next: Row = { ...row };
+    for (const s of sets) next[s.col] = coerce(table, s.col, toStored(evalExpr(s.expr, ctx)));
+    changes.set(row, next);
+  }
+  const updated = table.rows.map((r) => changes.get(r) ?? r);
+  if (table.pk && sets.some((s) => s.col === table.pk)) {
+    const seen = new Set<SqlValue>();
+    for (const r of updated) {
+      const k = r[table.pk] ?? null;
+      if (seen.has(k)) throw dupKeyError(table, k);
+      seen.add(k);
+    }
+  }
+  table.rows = updated;
+  return changes.size;
 }
 
 function execQuery(db: Database, q: Query): QueryResult {

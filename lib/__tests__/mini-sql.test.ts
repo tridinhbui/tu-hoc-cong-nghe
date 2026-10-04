@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { runQuery, resultsMatch, SqlError, type Database } from "../mini-sql";
+import { runQuery, resultsMatch, SqlError, parseStatement, execWrite, type Database, type WriteStmt } from "../mini-sql";
 
 const db: Database = {
   danh_muc: {
@@ -150,5 +150,82 @@ describe("so kết quả", () => {
 
   it("thiếu một dòng thì không khớp", () => {
     expect(resultsMatch(a, { columns: a.columns, rows: a.rows.slice(1) }, false)).toBe(false);
+  });
+});
+
+describe("INSERT / UPDATE / DELETE", () => {
+  const fresh = (): Database => ({
+    sp: {
+      name: "sp",
+      columns: ["id", "ten", "gia"],
+      rows: [
+        { id: 1, ten: "A", gia: 100 },
+        { id: 2, ten: "B", gia: 200 },
+        { id: 3, ten: "C", gia: 300 },
+      ],
+      pk: "id",
+      types: { id: "INTEGER", ten: "TEXT", gia: "INTEGER" },
+    },
+  });
+  const write = (d: Database, sql: string) => execWrite(d, parseStatement(sql) as WriteStmt);
+
+  it("INSERT cấp id kế tiếp, điền NULL cho cột bỏ trống, báo số dòng", () => {
+    const d = fresh();
+    expect(write(d, "INSERT INTO sp (ten, gia) VALUES ('D', 400), ('E', 500)")).toBe(2);
+    expect(runQuery(d, "SELECT id, ten, gia FROM sp WHERE id > 3").rows).toEqual([[4, "D", 400], [5, "E", 500]]);
+    write(d, "INSERT INTO sp (ten) VALUES ('F')");
+    expect(runQuery(d, "SELECT gia FROM sp WHERE ten = 'F'").rows).toEqual([[null]]);
+  });
+
+  it("INSERT trùng khoá chính hoặc sai số giá trị thì không ghi gì cả", () => {
+    const d = fresh();
+    expect(() => write(d, "INSERT INTO sp (id, ten, gia) VALUES (9, 'X', 1), (1, 'Y', 2)")).toThrow(/Trùng khoá chính/);
+    expect(d.sp.rows).toHaveLength(3);
+    expect(() => write(d, "INSERT INTO sp (ten, gia) VALUES ('X')")).toThrow(/2 cột nhưng 1 giá trị/);
+    expect(() => write(d, "INSERT INTO sp (nope) VALUES (1)")).toThrow(/Không có cột "nope"/);
+    expect(d.sp.rows).toHaveLength(3);
+  });
+
+  it("INSERT ... SELECT đọc xong rồi mới ghi, kể cả khi đọc chính bảng đích", () => {
+    const d = fresh();
+    expect(write(d, "INSERT INTO sp (ten, gia) SELECT ten, gia * 2 FROM sp WHERE gia >= 200")).toBe(2);
+    expect(d.sp.rows).toHaveLength(5);
+    expect(runQuery(d, "SELECT gia FROM sp WHERE id > 3").rows).toEqual([[400], [600]]);
+  });
+
+  it("UPDATE chỉ sửa dòng khớp WHERE, vế phải đọc giá trị cũ, không WHERE sửa hết", () => {
+    const d = fresh();
+    expect(write(d, "UPDATE sp SET gia = gia - 50 WHERE id = 2")).toBe(1);
+    expect(runQuery(d, "SELECT gia FROM sp ORDER BY id").rows).toEqual([[100], [150], [300]]);
+    expect(write(d, "UPDATE sp SET gia = 1")).toBe(3);
+    expect(runQuery(d, "SELECT DISTINCT gia FROM sp").rows).toEqual([[1]]);
+  });
+
+  it("UPDATE ép chuỗi số vào cột INTEGER, và không cho id trùng", () => {
+    const d = fresh();
+    write(d, "UPDATE sp SET gia = '999' WHERE id = 1");
+    expect(d.sp.rows[0].gia).toBe(999);
+    expect(() => write(d, "UPDATE sp SET id = 2 WHERE id = 1")).toThrow(/Trùng khoá chính/);
+    expect(d.sp.rows[0].id).toBe(1);
+  });
+
+  it("DELETE theo điều kiện hoặc cả bảng; truy vấn con dùng được trong WHERE", () => {
+    const d = fresh();
+    expect(write(d, "DELETE FROM sp WHERE gia > (SELECT AVG(gia) FROM sp)")).toBe(1);
+    expect(d.sp.rows.map((r) => r.id)).toEqual([1, 2]);
+    expect(write(d, "DELETE FROM sp")).toBe(2);
+    expect(d.sp.rows).toEqual([]);
+  });
+
+  it("runQuery vẫn chỉ đọc: câu ghi bị từ chối và không sửa gì", () => {
+    const d = fresh();
+    expect(() => runQuery(d, "DELETE FROM sp")).toThrow(SqlError);
+    expect(d.sp.rows).toHaveLength(3);
+  });
+
+  it("dấu nháy kép đôi trong chuỗi là một dấu nháy thật", () => {
+    const d = fresh();
+    write(d, "INSERT INTO sp (ten, gia) VALUES ('It''s', 1)");
+    expect(runQuery(d, "SELECT ten FROM sp WHERE id = 4").rows).toEqual([["It's"]]);
   });
 });

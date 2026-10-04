@@ -1,7 +1,7 @@
 /**
  * Ghép các tệp của dự án thành một tài liệu HTML duy nhất cho <iframe srcDoc>.
  *
- * Khung xem trước chạy với sandbox="allow-scripts" và KHÔNG có
+ * Khung xem trước chạy với sandbox="allow-scripts allow-forms" và KHÔNG có
  * allow-same-origin, nên nó không đọc được tệp nào bên ngoài. Vì vậy mọi
  * <link rel="stylesheet" href="..."> và <script src="..."> trỏ tới tệp trong dự
  * án được thay bằng nội dung tệp đó, viết thẳng vào trang.
@@ -10,6 +10,13 @@
  * <head>: nó bọc console.log/info/warn/error, bắt lỗi runtime, và gửi mọi thứ về
  * trang cha bằng postMessage kèm một token của lần chạy - tin nhắn của lần chạy
  * cũ (hoặc của bất kỳ ai khác) bị bỏ qua.
+ *
+ * `allow-forms` là BẮT BUỘC cho bài biểu mẫu: thiếu nó, Chrome chặn cả việc bắn
+ * sự kiện `submit` (đo thật: fired=0), nên nhiệm vụ form-validate không bao giờ
+ * xanh trong trình duyệt dù test jsdom - không áp sandbox - vẫn qua. Đổi lại,
+ * một biểu mẫu gửi mà không preventDefault sẽ điều hướng khung tới about:srcdoc
+ * trống; shim chặn điều hướng đó ở tầng window (chạy SAU mọi trình nghe của
+ * người học), nên trang xem trước vẫn còn.
  */
 import {
   appendConsole,
@@ -90,6 +97,7 @@ window.fetch=function(u){var url=String(u&&u.url?u.url:u);return new Promise(fun
 try{new MutationObserver(sched).observe(document,{childList:true,subtree:true,attributes:true,characterData:true})}catch(e){}
 window.addEventListener("load",sched);
 document.addEventListener("input",sched,true);
+window.addEventListener("submit",function(e){e.preventDefault()},false);
 document.addEventListener("click",function(e){post({type:"click"});var t=e.target,a=t&&t.closest?t.closest("a[href]"):null;if(!a)return;var h=a.getAttribute("href")||"";if(/^(#|javascript:)/i.test(h))return;e.preventDefault();post({type:"navigate",href:h})},true);
 })();`;
   const tag = `<script>${code.replace(/\n/g, "")}</script>`;

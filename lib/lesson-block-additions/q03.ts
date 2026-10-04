@@ -51,9 +51,9 @@ export const Q03_ADDITIONS: Record<string, LessonSectionBlock[]> = {
     {
       type: "sim",
       tool: "sql",
-      mission: "avg-subquery",
-      title: "Sản phẩm đắt hơn mức trung bình",
-      task: "Trung bình là mốc để so, và vài giá trị lớn có thể kéo nó lên. Liệt kê các sản phẩm có giá cao hơn giá trung bình của mọi sản phẩm. Mức trung bình phải do truy vấn con tự tính từ dữ liệu, không gõ cứng một con số.",
+      mission: "order-limit",
+      title: "Sắp xếp giảm dần để nhìn vài dòng đầu",
+      task: "Bài chỉ cách tìm giá trị ngoại cỡ bằng một thao tác: sắp xếp từ lớn đến nhỏ rồi nhìn vài dòng đầu. Trong trình mô phỏng SQL, làm đúng thao tác đó trên bảng sản phẩm (không phải bảng đơn hàng): lấy 5 sản phẩm giá cao nhất bằng ORDER BY ... DESC và LIMIT 5.",
     },
   ],
   "bang-tong-hop-pivot-tra-loi-cau-doanh-thu-theo-thang-theo-nhom": [

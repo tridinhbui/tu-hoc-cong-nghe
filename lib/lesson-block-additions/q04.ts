@@ -38,22 +38,13 @@ export const Q04_ADDITIONS: Record<string, LessonSectionBlock[]> = {
       task: "Bạn đã thấy một lời gọi API gồm phương thức, địa chỉ và header. Giờ hãy làm lại điều đó trong trình mô phỏng: thêm header X-API-Key = pk_demo_5f3a9c ở tab Headers rồi gọi GET /v1/partner/inventory. Không có header này, khoá sẽ phải nằm trong URL, nơi nó bị lưu lại trong nhật ký.",
     },
   ],
-  "dinh-dang-trao-doi-du-lieu": [
-    {
-      type: "sim",
-      tool: "api",
-      mission: "contentType415",
-      title: "Gửi sai định dạng và đọc lỗi 415",
-      task: "Mỗi định dạng trao đổi dữ liệu chỉ có ý nghĩa khi hai bên cùng hiểu nó. Gửi POST /v1/products với body kiểu Text để thấy API từ chối bằng 415 Unsupported Media Type, đọc thông báo lỗi, rồi đổi sang body JSON gồm name, price, category và gửi lại để tạo sản phẩm với 201 Created.",
-    },
-  ],
   "json-va-cach-doc-tai-lieu-api": [
     {
       type: "sim",
       tool: "api",
       mission: "contentType415",
       title: "Vì sao body phải là JSON",
-      task: "Tài liệu API nói body của yêu cầu tạo sản phẩm là JSON. Hãy kiểm chứng: gửi POST /v1/products với body Text và xem lỗi 415, sau đó chọn JSON với name, price, category rồi gửi lại cho tới khi nhận 201 Created.",
+      task: "Bài nhấn mạnh kỹ năng thật là đọc tài liệu rồi kiểm chứng nó bằng một lượt gọi. Tài liệu giả định ở đây nói body của yêu cầu tạo sản phẩm là JSON. Hãy kiểm chứng: gửi POST /v1/products với body Text và xem lỗi 415, sau đó chọn JSON với name, price, category rồi gửi lại cho tới khi nhận 201 Created.",
     },
   ],
   "phien-ban-api": [
@@ -89,7 +80,7 @@ export const Q04_ADDITIONS: Record<string, LessonSectionBlock[]> = {
       tool: "api",
       mission: "fixFromErrorDetails",
       title: "Hợp đồng nói trường nào sai",
-      task: "Một hợp đồng API tốt không chỉ từ chối yêu cầu sai mà còn nói rõ sai ở đâu. Hãy gửi một yêu cầu POST /v1/products sai từ hai trường trở lên, đọc details trong lỗi 400, sửa từng trường theo đó rồi gửi lại để tạo được sản phẩm.",
+      task: "Bài nói hợp đồng API là mọi thứ phía gọi nhìn thấy, kể cả thông báo lỗi. Hãy đứng ở phía người gọi: gửi một yêu cầu POST /v1/products sai từ hai trường trở lên, đọc details trong lỗi 400 (đây là phần hợp đồng nói rõ sai ở đâu), sửa từng trường theo đó rồi gửi lại để tạo được sản phẩm.",
     },
   ],
   "ra-soat-phan-quyen-vai-tro-va-han-muc": [
@@ -98,7 +89,7 @@ export const Q04_ADDITIONS: Record<string, LessonSectionBlock[]> = {
       tool: "api",
       mission: "authVsPermission",
       title: "Chưa đăng nhập khác với không đủ quyền",
-      task: "Bài phân biệt biết bạn là ai với việc bạn được làm gì. Gọi GET /v1/admin/stats khi chưa có token để nhận 401, đăng nhập bằng POST /v1/login, đặt Auth kiểu Bearer rồi gọi lại và xem mã đổi thành 403 Forbidden: bạn đã được xác thực nhưng vai trò không đủ quyền.",
+      task: "Rà soát phân quyền là rà vế 'được làm gì', còn vế 'là ai' đã xong trước đó; mô phỏng giúp thấy hai vế tách nhau. Gọi GET /v1/admin/stats khi chưa có token để nhận 401, đăng nhập bằng POST /v1/login, đặt Auth kiểu Bearer rồi gọi lại và xem mã đổi thành 403 Forbidden: đã xác thực nhưng vai trò không đủ quyền.",
     },
   ],
   "doc-mot-he-thong-xac-thuc": [

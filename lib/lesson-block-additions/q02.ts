@@ -11,15 +11,6 @@ export const Q02_ADDITIONS: Record<string, LessonSectionBlock[]> = {
       task: "Bài vừa cho thấy Flexbox căn hàng và cột bằng vài thuộc tính. Mở style.css trong trình soạn thảo, thêm vào quy tắc body các thuộc tính display: flex, justify-content, align-items cùng min-height: 100vh để khối giới thiệu nằm chính giữa trang cả chiều ngang lẫn chiều dọc, rồi bấm Chạy để xem kết quả.",
     },
   ],
-  "ba-loi-bo-cuc-hay-gap": [
-    {
-      type: "sim",
-      tool: "editor",
-      mission: "flex-center",
-      title: "Sửa khối dính mép bằng căn giữa Flexbox",
-      task: "Trong bài, nhiều lỗi bố cục đến từ việc đặt chỗ cho phần tử bằng mẹo thay vì bằng bố cục. Ở đây khối chữ đang dính sát góc trên bên trái. Sửa style.css để quy tắc body dùng display: flex và căn giữa theo cả hai chiều (nhớ đặt min-height để có chiều cao mà căn), rồi Chạy để kiểm tra.",
-    },
-  ],
   "responsive-mot-trang-cho-moi-man-hinh": [
     {
       type: "sim",
@@ -62,7 +53,7 @@ export const Q02_ADDITIONS: Record<string, LessonSectionBlock[]> = {
       tool: "editor",
       mission: "img-alt-lazy",
       title: "Đặt ảnh sản phẩm có mô tả vào trang",
-      task: "Bài dạy viết câu mô tả cho người không nhìn thấy ảnh và giữ trang nhẹ. Hãy áp vào một trang thật: thêm thẻ img vào index.html với alt viết như lời kể ngắn, loading=\"lazy\", width và height. Chạy trang để chắc ảnh không gây lỗi.",
+      task: "Bài dạy viết câu mô tả cho người không nhìn thấy ảnh và không để ảnh nặng làm chậm trang. Hãy áp vào một trang thật: thêm thẻ img vào index.html với alt viết như lời kể ngắn, rồi thêm loading=\"lazy\" cùng width và height (ba thuộc tính này không nằm trong bài nhưng là cách giữ trang không giật khi ảnh về). Chạy trang để chắc ảnh không gây lỗi.",
     },
   ],
   "bieu-mau-dung-duoc": [
@@ -126,24 +117,6 @@ export const Q02_ADDITIONS: Record<string, LessonSectionBlock[]> = {
       mission: "form-validate",
       title: "Báo lỗi khi gửi biểu mẫu để trống",
       task: "Bài nói dữ liệu người dùng phải được kiểm tra trước khi dùng. Dựng biểu mẫu có ô email, nút gửi và một ô thông báo có id=\"error\". Trong script.js bắt sự kiện submit, gọi preventDefault và hiện lời nhắc khi ô còn trống. Chạy trang, bấm Gửi và xem thông báo.",
-    },
-  ],
-  "javascript-chay-o-dau": [
-    {
-      type: "sim",
-      tool: "editor",
-      mission: "defer-script",
-      title: "Nạp script từ head mà không chặn trang",
-      task: "Trình duyệt dừng dựng trang khi gặp script thường, nên vị trí và cách nạp script quan trọng. Đưa thẻ script lên head của index.html, thêm thuộc tính defer, sửa lỗi gõ sai trong script.js nếu có, rồi Chạy để thấy console sạch lỗi và có dòng log.",
-    },
-  ],
-  "to-chuc-ma-va-mo-dun": [
-    {
-      type: "sim",
-      tool: "editor",
-      mission: "move-files",
-      title: "Gọn dự án vào thư mục css và js",
-      task: "Tổ chức mã bắt đầu từ việc đặt tệp đúng chỗ. Chuyển style.css vào thư mục css và script.js vào thư mục js, rồi cập nhật đường dẫn trong index.html cho khớp, vì đổi tên tệp không tự sửa liên kết. Chạy trang để chắc không báo thiếu tệp và script vẫn chạy.",
     },
   ],
   "luu-du-lieu-tren-trinh-duyet": [

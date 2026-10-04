@@ -12,6 +12,7 @@ import {
   KeyRound,
   Link2,
   Play,
+  RotateCcw,
   Rows3,
   Table2,
   Trash2,
@@ -22,9 +23,17 @@ import { chipAccent, panel } from "@/components/ui/system";
 import { useI18n } from "@/lib/i18n/context";
 import { format, intlLocale } from "@/lib/i18n";
 import type { SqlValue } from "@/lib/mini-sql";
-import { execute, type ExecOutcome } from "@/lib/tools/sql/engine";
-import { SAMPLE_DB, SAMPLE_SCHEMA } from "@/lib/tools/sql/sample-db";
+import { execute, type ExecOutcome, type StatementInfo } from "@/lib/tools/sql/engine";
+import { SAMPLE_SCHEMA } from "@/lib/tools/sql/sample-db";
 import { SQL_MISSIONS } from "@/lib/tools/sql/missions";
+import {
+  createSession,
+  deserializeSession,
+  missionState,
+  runSql,
+  serializeSession,
+  type SqlSession,
+} from "@/lib/tools/sql/session";
 import { TOOL_STORAGE } from "@/lib/tools/progress";
 
 const KEY_PREFIX = TOOL_STORAGE.sqlPrefix;
@@ -32,6 +41,8 @@ const DONE_KEY = `${KEY_PREFIX}done`;
 const HISTORY_KEY = `${KEY_PREFIX}history`;
 const DRAFT_KEY = `${KEY_PREFIX}draft`;
 const ARTIFACT_KEY = `${KEY_PREFIX}artifacts`;
+/** Cơ sở dữ liệu của phiên (dòng dữ liệu, chỉ mục, giao dịch đang mở). Khoá mới: tiến độ cũ không đổi. */
+const SESSION_KEY = `${KEY_PREFIX}session`;
 /** Số dòng tối đa cất lại cho mỗi kết quả bàn giao. */
 const ARTIFACT_ROWS = 10;
 const HISTORY_LIMIT = 30;
@@ -87,6 +98,7 @@ export default function SqlSim({ embed }: { embed?: ToolEmbed }) {
   const [history, setHistory] = useState<HistoryEntry[]>([]);
   const [done, setDone] = useState<string[]>([]);
   const [artifacts, setArtifacts] = useState<Record<string, SqlArtifact>>({});
+  const [session, setSession] = useState<SqlSession>(createSession);
   const [errorKey, setErrorKey] = useState(0);
   const [open, setOpen] = useState<Record<string, boolean>>({ customers: true });
   const [loaded, setLoaded] = useState(false);
@@ -103,6 +115,9 @@ export default function SqlSim({ embed }: { embed?: ToolEmbed }) {
     setHistory(readJson<HistoryEntry[]>(HISTORY_KEY, []));
     setSql(readJson<string>(DRAFT_KEY, STARTER_SQL));
     setArtifacts(readJson<Record<string, SqlArtifact>>(ARTIFACT_KEY, {}));
+    // Phiên hỏng hoặc từ phiên bản cũ (chưa có khoá này) → bắt đầu lại từ dữ liệu mẫu.
+    const saved = deserializeSession(readJson<unknown>(SESSION_KEY, null));
+    if (saved) setSession(saved);
     setLoaded(true);
   }, [embedded]);
 
@@ -118,37 +133,51 @@ export default function SqlSim({ embed }: { embed?: ToolEmbed }) {
   useEffect(() => {
     if (loaded && !embedded) writeJson(ARTIFACT_KEY, artifacts);
   }, [artifacts, loaded, embedded]);
+  useEffect(() => {
+    if (loaded && !embedded) writeJson(SESSION_KEY, serializeSession(session));
+  }, [session, loaded, embedded]);
 
   const run = useCallback(
     (text: string) => {
       const query = text.trim();
       if (!query) return;
-      const result = execute(SAMPLE_DB, query);
+      // Chạy trên bản sao của phiên: câu ghi dữ liệu có hiệu lực, SAMPLE_DB thì không bao giờ bị đụng.
+      const { session: next, outcome: result } = runSql(session, query);
+      setSession(next);
       setOutcome(result);
       setTab("results");
-      setHistory((h) =>
-        [{ sql: query, ok: result.ok, rows: result.ok ? result.result.rows.length : undefined, at: Date.now() }, ...h].slice(
-          0,
-          HISTORY_LIMIT,
-        ),
-      );
+      const last = result.statements?.[result.statements.length - 1];
+      const count = result.ok ? (last?.affected ?? result.result.rows.length) : undefined;
+      setHistory((h) => [{ sql: query, ok: result.ok, rows: count, at: Date.now() }, ...h].slice(0, HISTORY_LIMIT));
       if (result.ok) {
-        const newly = SQL_MISSIONS.filter((m) => !done.includes(m.id) && m.check({ result: result.result })).map((m) => m.id);
+        const state = missionState(next, result);
+        const newly = SQL_MISSIONS.filter((m) => !done.includes(m.id) && m.check(state));
         if (newly.length) {
-          setDone((d) => [...d, ...newly.filter((id) => !d.includes(id))]);
-          const artifact: SqlArtifact = {
+          setDone((d) => [...d, ...newly.map((m) => m.id).filter((id) => !d.includes(id))]);
+          const own: SqlArtifact = {
             sql: query,
             columns: result.result.columns,
             rows: result.result.rows.slice(0, ARTIFACT_ROWS),
             total: result.result.rows.length,
           };
-          setArtifacts((a) => ({ ...a, ...Object.fromEntries(newly.map((id) => [id, artifact])) }));
+          // Nhiệm vụ ghi dữ liệu bàn giao bảng SAU thay đổi, không phải kết quả rỗng của câu ghi.
+          const made = Object.fromEntries(
+            newly.map((m) => {
+              const shown = m.artifact ? execute(next.db, m.artifact) : null;
+              const a: SqlArtifact =
+                shown?.ok
+                  ? { sql: query, columns: shown.result.columns, rows: shown.result.rows.slice(0, ARTIFACT_ROWS), total: shown.result.rows.length }
+                  : own;
+              return [m.id, a];
+            }),
+          );
+          setArtifacts((a) => ({ ...a, ...made }));
         }
       } else {
         setErrorKey((k) => k + 1);
       }
     },
-    [done],
+    [done, session],
   );
 
   const insertAtCursor = (text: string) => {
@@ -186,7 +215,14 @@ export default function SqlSim({ embed }: { embed?: ToolEmbed }) {
     }
   };
 
+  /** Chỉ đưa dữ liệu về ban đầu - tiến độ nhiệm vụ, lịch sử giữ nguyên. */
+  const restoreData = () => {
+    setSession(createSession());
+    setOutcome(null);
+  };
+
   const reset = () => {
+    setSession(createSession());
     setDone([]);
     setHistory([]);
     setSql(STARTER_SQL);
@@ -195,7 +231,7 @@ export default function SqlSim({ embed }: { embed?: ToolEmbed }) {
   };
 
   // Tiêu chí đọc lần chạy gần nhất: lỗi thì chưa có kết quả nào để chấm.
-  const current = { result: outcome?.ok ? outcome.result : null };
+  const current = missionState(session, outcome);
   const missions = embedMissions(SQL_MISSIONS, embed).map((m) => {
     const copy = missionCopy[m.id];
     return {
@@ -260,7 +296,23 @@ export default function SqlSim({ embed }: { embed?: ToolEmbed }) {
             <span className="truncate text-xs text-ink-muted">{c.dbLabel}</span>
           </div>
           <div className="flex items-center gap-2">
+            {session.tx && (
+              <span className="inline-flex items-center gap-1 rounded-full border border-warn-line bg-amber-50 px-2 py-0.5 text-[11px] font-bold text-warn-ink dark:bg-amber-950/30">
+                <AlertTriangle className="h-3 w-3" />
+                {c.inTransaction}
+              </span>
+            )}
             <span className="hidden font-mono text-[11px] text-ink-faint sm:inline">{c.runShortcut}</span>
+            <button
+              type="button"
+              onClick={restoreData}
+              title={c.restoreDataHint}
+              aria-label={c.restoreData}
+              className="inline-flex h-8 items-center gap-1.5 rounded-control border border-accent-line bg-surface px-2.5 text-xs font-bold text-ink-muted transition-colors hover:bg-accent-wash hover:text-accent-strong"
+            >
+              <RotateCcw className="h-3.5 w-3.5" />
+              <span className="hidden sm:inline">{c.restoreData}</span>
+            </button>
             <button
               type="button"
               onClick={() => setSql("")}
@@ -308,7 +360,7 @@ export default function SqlSim({ embed }: { embed?: ToolEmbed }) {
                         <Table2 className="h-3.5 w-3.5 shrink-0 text-accent" />
                         <span className="truncate font-mono text-[13px] font-semibold text-ink">{table.name}</span>
                         <span className="ml-auto shrink-0 text-[10px] tabular-nums text-ink-faint">
-                          {format(c.rowsInTable, { count: SAMPLE_DB[table.name].rows.length })}
+                          {format(c.rowsInTable, { count: session.db[table.name].rows.length })}
                         </span>
                       </button>
                     </div>
@@ -340,6 +392,15 @@ export default function SqlSim({ embed }: { embed?: ToolEmbed }) {
                             </button>
                           </li>
                         ))}
+                        {session.indexes
+                          .filter((ix) => ix.table === table.name)
+                          .map((ix) => (
+                            <li key={ix.name} className="flex items-center gap-1.5 px-1 py-0.5" title={`${ix.name} (${ix.columns.join(", ")})`}>
+                              <span className="h-3 w-3 shrink-0 text-center font-mono text-[9px] font-bold text-emerald-600">i</span>
+                              <span className="truncate font-mono text-xs text-ink-muted">{ix.name}</span>
+                              <span className="ml-auto shrink-0 font-mono text-[10px] text-ink-faint">{c.indexesLabel}</span>
+                            </li>
+                          ))}
                       </ul>
                     )}
                   </li>
@@ -408,7 +469,7 @@ export default function SqlSim({ embed }: { embed?: ToolEmbed }) {
               </div>
               {tab === "results" && outcome && (
                 <div className="flex items-center gap-3 text-[11px] tabular-nums text-ink-muted">
-                  {outcome.ok && <span>{format(c.rowCount, { count: outcome.result.rows.length })}</span>}
+                  {outcome.ok && isTableResult(outcome) && <span>{format(c.rowCount, { count: outcome.result.rows.length })}</span>}
                   <span className="inline-flex items-center gap-1">
                     <Clock className="h-3 w-3" />
                     {format(c.elapsed, { ms: outcome.ms.toFixed(1) })}
@@ -466,6 +527,47 @@ export default function SqlSim({ embed }: { embed?: ToolEmbed }) {
   );
 }
 
+/** Câu cuối cùng trả về một bảng (SELECT, EXPLAIN) chứ không phải một số dòng bị tác động. */
+function isTableResult(outcome: ExecOutcome): boolean {
+  const last = outcome.statements?.[outcome.statements.length - 1];
+  return !last || last.kind === "select" || last.kind === "explain";
+}
+
+function StatementSummary({ statements }: { statements: StatementInfo[] }) {
+  const { t } = useI18n();
+  const c = t.toolSql;
+  // Câu SELECT/EXPLAIN đã có bảng kết quả ngay bên dưới, không cần dòng tóm tắt.
+  const shown = statements.filter((st) => st.kind !== "select" && st.kind !== "explain");
+  if (shown.length === 0) return null;
+  return (
+    <ul className="m-3 space-y-1.5">
+      {shown.map((st, i) => (
+        <li
+          key={i}
+          className={`flex flex-wrap items-center gap-2 rounded-lg border px-3 py-2 text-sm font-semibold ${
+            st.noWhere && (st.affected ?? 0) > 0
+              ? "border-warn-line bg-amber-50 text-warn-ink dark:bg-amber-950/30"
+              : "border-accent-line bg-accent-wash text-accent-strong"
+          }`}
+        >
+          <span className="tabular-nums">
+            {format(c.statementDone[st.kind], {
+              count: st.affected ?? 0,
+              table: st.table ?? "",
+              name: st.name ?? "",
+            })}
+          </span>
+          {st.noWhere && (
+            <span className="rounded-full bg-amber-200 px-2 py-0.5 text-[11px] font-black uppercase tracking-wide text-amber-900 dark:bg-amber-900/60 dark:text-amber-100">
+              {c.noWhereBadge}
+            </span>
+          )}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 function ResultsPanel({ outcome }: { outcome: ExecOutcome | null }) {
   const { t } = useI18n();
   const c = t.toolSql;
@@ -492,6 +594,11 @@ function ResultsPanel({ outcome }: { outcome: ExecOutcome | null }) {
             {format(c.suggestion, { name: error.suggestion })}
           </p>
         )}
+        {(outcome.statements?.length ?? 0) > 0 && (
+          <p className="mt-2 text-xs font-semibold text-warn-ink">
+            {format(c.appliedBefore, { count: outcome.statements?.length ?? 0 })}
+          </p>
+        )}
       </div>
     );
   }
@@ -512,13 +619,17 @@ function ResultsPanel({ outcome }: { outcome: ExecOutcome | null }) {
           ))}
         </div>
       )}
-      {result.rows.length === 0 ? (
+      <StatementSummary statements={outcome.statements ?? []} />
+      {!isTableResult(outcome) ? null : result.rows.length === 0 ? (
         <>
           <ResultTable columns={result.columns} rows={[]} />
           <p className="p-4 text-sm text-ink-muted">{c.emptyResult}</p>
         </>
       ) : (
         <ResultTable columns={result.columns} rows={result.rows} />
+      )}
+      {outcome.statements?.[outcome.statements.length - 1]?.kind === "explain" && (
+        <p className="border-t border-line-soft p-3 text-xs leading-relaxed text-ink-muted">{c.planNote}</p>
       )}
     </div>
   );

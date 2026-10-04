@@ -53,7 +53,7 @@ export const Q01_ADDITIONS: Record<string, LessonSectionBlock[]> = {
       tool: "terminal",
       mission: "env-export",
       title: "Đổi môi trường bằng biến, không sửa mã",
-      task: "Cấu hình khác nhau giữa các môi trường nên được truyền từ bên ngoài, không viết cứng trong mã. Hãy export APP_ENV=production và PORT=8080 trong terminal, rồi kiểm tra bằng printenv để thấy phiên làm việc đã mang đúng cấu hình của môi trường chạy thật.",
+      task: "Bài tách cấu hình khỏi mã: giá trị nào khác nhau giữa các môi trường thì truyền từ bên ngoài, và biến môi trường là cách truyền phổ biến nhất. Hãy thử trong terminal: export APP_ENV=production và PORT=8080, rồi kiểm tra bằng printenv để thấy phiên làm việc mang đúng cấu hình của môi trường chạy thật.",
     },
   ],
   "bi-mat-va-khoa-truy-cap": [
@@ -71,7 +71,7 @@ export const Q01_ADDITIONS: Record<string, LessonSectionBlock[]> = {
       tool: "terminal",
       mission: "env-secret",
       title: "Tách bí mật khỏi mã nguồn",
-      task: "Mã không nên chứa khoá; khoá nằm ở cấu hình bên ngoài. Hãy tạo tệp .env có dòng API_KEY=abc123 trong du-an, cho .gitignore bỏ qua nó, rồi khởi tạo Git và commit phần còn lại. Dùng git status để chứng minh .env không đi vào lịch sử.",
+      task: "Bài vẽ ranh giới giữa mã và cấu hình, và khoá truy cập là loại cấu hình nhạy cảm nhất nên phải nằm ngoài mã. Trong terminal, tạo tệp .env có dòng API_KEY=abc123 trong du-an, cho .gitignore bỏ qua nó, rồi khởi tạo Git và commit phần còn lại. Dùng git status để chứng minh .env không đi vào lịch sử.",
     },
   ],
   "doc-nhat-ky-loi-cua-san-pham-dang-chay": [
@@ -81,15 +81,6 @@ export const Q01_ADDITIONS: Record<string, LessonSectionBlock[]> = {
       mission: "log-errors",
       title: "Lọc dòng ERROR để gửi người kỹ thuật",
       task: "Bài dạy tìm vài dòng đáng chú ý giữa hàng trăm dòng nhật ký. Trong terminal, nhật ký ứng dụng nằm ở /var/log/myapp/app.log. Dùng grep ERROR rồi chuyển hướng kết quả vào một tệp như loi.txt, và cat tệp đó để kiểm tra rằng chỉ còn các dòng lỗi.",
-    },
-  ],
-  "go-loi-bang-log-va-ma-yeu-cau": [
-    {
-      type: "sim",
-      tool: "terminal",
-      mission: "docker-logs",
-      title: "Đọc log để chứng minh yêu cầu đã tới",
-      task: "Trên production bạn chỉ có những gì hệ thống đã ghi lại. Trong terminal, chạy nginx ở cổng 8081 bằng docker run, gửi một yêu cầu bằng curl, rồi đọc docker logs của container để tìm đúng dòng GET vừa gửi.",
     },
   ],
   "case-doc-sau-nhat-ky": [
@@ -170,7 +161,7 @@ export const Q01_ADDITIONS: Record<string, LessonSectionBlock[]> = {
       tool: "terminal",
       mission: "git-revert",
       title: "Gỡ commit gây lỗi mà không viết lại lịch sử",
-      task: "Tìm ra commit gây lỗi mới là nửa việc, nửa còn lại là gỡ nó an toàn. Trong kho /srv/cua-hang, xem lịch sử để nhận ra commit đổi quy tắc phí ship, rồi hoàn tác đúng commit ấy bằng git revert. Sau đó cat ship.txt để chắc phí đã trở lại 30000.",
+      task: "Bài dừng ở chỗ tìm ra commit gây lỗi; việc kế tiếp là gỡ nó mà không viết lại lịch sử chung. Trong kho /srv/cua-hang, xem lịch sử để nhận ra commit đổi quy tắc phí ship, rồi hoàn tác đúng commit ấy bằng git revert (lệnh này không nằm trong bài, bảng tra nhanh của terminal có sẵn). Sau đó cat ship.txt để chắc phí đã trở lại 30000.",
     },
   ],
   "volume-bien-moi-truong-va-container-phu-du": [

@@ -2,15 +2,6 @@ import type { LessonSectionBlock } from "../lesson-types";
 
 // Khối `sim` đợt hai - nhiệm vụ mới của trình mô phỏng. Một người viết cho một tệp.
 export const Q05_ADDITIONS: Record<string, LessonSectionBlock[]> = {
-  "ma-hoa-du-lieu-nam-yen": [
-    {
-      type: "sim",
-      tool: "cloud",
-      mission: "bucket-block-public",
-      title: "Khoá kho tài liệu nội bộ khỏi Internet",
-      task: "Bài vừa nói mã hoá chỉ là một lớp, còn câu hỏi đầu tiên là ai mở được dữ liệu. Trong trình mô phỏng đám mây, hãy tạo một kho lưu trữ, tải một tệp hoá đơn lên, rồi bật Chặn truy cập công khai cho kho đó. Giữ nguyên chế độ không phục vụ website để tệp không thể bị mở từ bên ngoài.",
-    },
-  ],
   "kiem-tra-tai-khoan-quan-tri-co-bat-hai-lop-chua": [
     {
       type: "sim",
@@ -44,7 +35,7 @@ export const Q05_ADDITIONS: Record<string, LessonSectionBlock[]> = {
       tool: "cloud",
       mission: "iam-least-privilege",
       title: "Một vai trò, một việc: chỉ đọc kho lưu trữ",
-      task: "Phân quyền theo vai trò chỉ tốt khi từng vai trò được cắt hẹp tới mức cần. Trong mục Danh tính của trình mô phỏng, hãy tạo một vai trò cho dịch vụ chỉ đọc tệp, chọn quyền chỉ đọc Kho lưu trữ và để trống mọi quyền ghi hay quyền với cơ sở dữ liệu.",
+      task: "Bài nói vai trò chưa đủ vì nó không biết bản ghi nào của ai, nhưng vai trò vẫn là lớp đầu tiên và phải được cắt hẹp. Mô phỏng chỉ có lớp vai trò: trong mục Danh tính, tạo một vai trò cho dịch vụ chỉ đọc tệp, chọn quyền chỉ đọc Kho lưu trữ và để trống mọi quyền ghi hay quyền với cơ sở dữ liệu.",
     },
   ],
   "buoi-ra-soat-hang-nam": [
@@ -53,7 +44,7 @@ export const Q05_ADDITIONS: Record<string, LessonSectionBlock[]> = {
       tool: "cloud",
       mission: "budget-alert",
       title: "Đặt ngưỡng cảnh báo hoá đơn cho đúng quy mô",
-      task: "Ngưỡng cảnh báo cũ là loại sai lệch không phát ra tín hiệu nào, nên mỗi lần rà soát phải đặt lại. Trong mục Ngân sách và thẻ, hãy đặt ngân sách 500000 mỗi tháng, chọn một ngưỡng cảnh báo sớm từ 80% trở xuống và thêm ngưỡng 100% rồi lưu.",
+      task: "Bài nói ngưỡng cảnh báo từng đúng sẽ lệch âm thầm khi quy mô đổi, nên mỗi lần rà soát phải đặt lại. Một ví dụ gần nhất trong mô phỏng là cảnh báo hoá đơn. Trong mục Ngân sách và thẻ, hãy đặt ngân sách 500000 mỗi tháng, chọn một ngưỡng cảnh báo sớm từ 80% trở xuống và thêm ngưỡng 100% rồi lưu.",
     },
   ],
   "chi-phi-nam-thang-cua-mot-san-pham-nho-doc-hoa-don-the-nao": [
@@ -79,8 +70,8 @@ export const Q05_ADDITIONS: Record<string, LessonSectionBlock[]> = {
       type: "sim",
       tool: "cloud",
       mission: "db-snapshot",
-      title: "Xem dịch vụ cơ sở dữ liệu quản lý sẵn lo sao lưu ra sao",
-      task: "Bài khuyên giao cơ sở dữ liệu cho dịch vụ quản lý sẵn, vì sao lưu là việc dễ làm sai. Hãy tạo một cơ sở dữ liệu trong trình mô phỏng, chờ nó Sẵn sàng và chụp một ảnh ở mục Ổ đĩa và sao lưu để thấy việc đó chỉ còn là một thao tác.",
+      title: "Chụp ảnh cơ sở dữ liệu: việc sao lưu quản lý sẵn",
+      task: "Bài khuyên giao cơ sở dữ liệu cho dịch vụ quản lý sẵn vì sao lưu là việc dễ làm sai khi tự làm. Hãy thử phần việc nhỏ nhất của nó trong trình mô phỏng: tạo một cơ sở dữ liệu, chờ Sẵn sàng rồi chụp một ảnh ở mục Ổ đĩa và sao lưu. Mô phỏng chỉ cho thấy bước chụp, việc khôi phục thử là phần bạn phải tự kiểm.",
     },
   ],
   "sao-luu-chua-khoi-phuc-thu-thi-chua-phai-sao-luu-cua-ban": [
@@ -116,7 +107,7 @@ export const Q05_ADDITIONS: Record<string, LessonSectionBlock[]> = {
       tool: "cloud",
       mission: "vm-fit-need",
       title: "Chọn vùng gần người dùng và cỡ máy vừa đủ",
-      task: "Bài nói đổi vùng cắt được hàng trăm mili giây, còn nâng máy chỉ cắt được vài chục. Trong trình mô phỏng, đổi vùng sang Hà Nội ở thanh trên cùng trước khi tạo máy, rồi chọn cỡ nhỏ nhất đủ 2 vCPU và 4 GB RAM và cho máy chạy.",
+      task: "Bài nói khoảng cách vật lý là trần cứng và chọn vùng gần người dùng là cách đi vòng. Trong trình mô phỏng, đổi vùng sang Hà Nội ở thanh trên cùng trước khi tạo máy, rồi chọn cỡ nhỏ nhất đủ 2 vCPU và 4 GB RAM (thuê to hơn chỉ tốn tiền chứ không giảm độ trễ) và cho máy chạy.",
     },
   ],
   "bac-thang-tien-gui": [
@@ -126,15 +117,6 @@ export const Q05_ADDITIONS: Record<string, LessonSectionBlock[]> = {
       mission: "sg-db-internal",
       title: "Tường lửa cho máy chạy cơ sở dữ liệu",
       task: "Tường lửa mặc định chặn, nên mỗi cổng mở ra phải có lý do. Trong trình mô phỏng, tạo một máy ảo chạy PostgreSQL, thêm luật cổng 5432 với nguồn là Mạng nội bộ và xoá luật SSH đang mở cho Mọi nơi nếu có.",
-    },
-  ],
-  "chon-dich-vu-quan-ly-san-hay-tu-dung": [
-    {
-      type: "sim",
-      tool: "cloud",
-      mission: "sg-db-internal",
-      title: "Nếu tự dựng cơ sở dữ liệu, phần bảo vệ cũng là của bạn",
-      task: "Tự dựng cơ sở dữ liệu nghĩa là bạn nhận cả việc vá lỗi và việc đóng cổng. Hãy thử phần việc đầu trong trình mô phỏng: tạo một máy ảo, mở cổng 5432 chỉ cho Mạng nội bộ và bảo đảm không còn luật nào mở cổng cơ sở dữ liệu hay SSH cho Mọi nơi.",
     },
   ],
   "vung-va-khu-kha-dung": [

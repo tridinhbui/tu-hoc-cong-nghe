@@ -28,7 +28,8 @@ export const toolSqlVi = {
     engineSays: "Bộ máy báo",
     suggestion: "Có phải ý bạn là {name}?",
     errorHints: {
-      missingSelect: "Câu truy vấn đọc dữ liệu luôn bắt đầu bằng SELECT. Kiểm tra xem có gõ nhầm (SELEC, SLECT) không.",
+      missingSelect:
+        "Bộ máy hiểu SELECT, INSERT INTO, UPDATE, DELETE FROM, BEGIN, COMMIT, ROLLBACK, CREATE INDEX và EXPLAIN. Câu lệnh phải bắt đầu bằng một trong số đó - kiểm tra xem có gõ nhầm (SELEC, UPDAT) không.",
       missingFrom:
         "Thiếu FROM, hoặc thiếu dấu phẩy giữa hai cột. Sau danh sách cột phải là FROM tên_bảng, và các cột cách nhau bằng dấu phẩy: SELECT name, city FROM customers.",
       missingBy: "GROUP và ORDER luôn đi kèm BY: viết GROUP BY status, ORDER BY price.",
@@ -41,6 +42,15 @@ export const toolSqlVi = {
       trailing:
         "Bộ máy đọc được câu lệnh tới giữa chừng rồi gặp {name}. Hay gặp nhất: quên dấu nháy quanh một chữ, hoặc viết sai thứ tự mệnh đề. Thứ tự đúng: SELECT → FROM → JOIN → WHERE → GROUP BY → HAVING → ORDER BY → LIMIT.",
       incomplete: "Câu lệnh dừng giữa chừng - có thể thiếu tên bảng sau FROM/JOIN, hoặc thiếu vế sau dấu so sánh.",
+      dmlSyntax:
+        "Các câu ghi dữ liệu có dạng cố định: INSERT INTO bảng (cột, ...) VALUES (giá trị, ...); UPDATE bảng SET cột = giá_trị WHERE ...; DELETE FROM bảng WHERE .... Số cột và số giá trị trong INSERT phải bằng nhau, và chữ phải nằm trong nháy đơn.",
+      constraint:
+        "Khoá chính (id) không được trùng. Muốn bộ máy tự cấp số kế tiếp, đừng liệt kê cột id trong INSERT.",
+      transaction:
+        "BEGIN mở một giao dịch, COMMIT lưu lại, ROLLBACK huỷ các thay đổi kể từ BEGIN. Không thể lồng BEGIN trong BEGIN, và COMMIT/ROLLBACK cần có giao dịch đang mở. Đang không chắc: nút Khôi phục dữ liệu mẫu đưa mọi thứ về ban đầu.",
+      index: "Tên chỉ mục phải là duy nhất. CREATE INDEX tên ON bảng (cột); DROP INDEX tên để xoá.",
+      unsupported:
+        "Mô phỏng này không làm phần đó, để tránh dạy sai. Thử bản đơn giản hơn: EXPLAIN chỉ cho truy vấn một bảng; chỉ mục tạo bằng CREATE INDEX (không UNIQUE); không tạo hay xoá bảng.",
       other: "Đọc kỹ thông điệp của bộ máy, rồi sửa từng mệnh đề một, chạy lại sau mỗi lần sửa.",
     },
     warningTitle: "Chạy được, nhưng nên xem lại",
@@ -49,7 +59,29 @@ export const toolSqlVi = {
         "Bạn trộn cột thường với hàm tổng hợp (COUNT, SUM, AVG...) mà không có GROUP BY, nên chỉ nhận về một dòng và giá trị cột thường là lấy đại. Muốn tính theo từng nhóm, thêm GROUP BY với đúng các cột thường đó.",
       equalsNull:
         "So sánh = NULL không bao giờ đúng, kể cả với ô trống, nên kết quả luôn rỗng. Dùng IS NULL hoặc IS NOT NULL.",
+      writeWithoutWhere:
+        "UPDATE / DELETE này không có WHERE nên tác động tới MỌI dòng của bảng, và nó đã chạy thật. Nếu không định vậy: bấm Khôi phục dữ liệu mẫu, hoặc lần sau bọc câu lệnh trong BEGIN ... ROLLBACK để thử trước.",
     },
+    restoreData: "Khôi phục dữ liệu mẫu",
+    restoreDataHint: "Đưa mọi bảng về dữ liệu ban đầu, bỏ chỉ mục và giao dịch đang mở. Tiến độ nhiệm vụ giữ nguyên.",
+    inTransaction: "Đang trong giao dịch - chưa COMMIT",
+    indexesLabel: "Chỉ mục",
+    statementDone: {
+      select: "Truy vấn xong",
+      insert: "Đã thêm {count} dòng vào {table}",
+      update: "Đã sửa {count} dòng của {table}",
+      delete: "Đã xoá {count} dòng khỏi {table}",
+      createIndex: "Đã tạo chỉ mục {name} trên {table}",
+      dropIndex: "Đã xoá chỉ mục {name}",
+      begin: "BEGIN: bắt đầu giao dịch. Từ giờ các thay đổi chỉ là tạm cho tới khi COMMIT",
+      commit: "COMMIT: đã lưu {count} dòng thay đổi",
+      rollback: "ROLLBACK: đã hoàn tác {count} dòng thay đổi, dữ liệu về lúc BEGIN",
+      explain: "Kế hoạch truy vấn",
+    },
+    noWhereBadge: "Không có WHERE - toàn bộ bảng",
+    appliedBefore: "{count} câu lệnh đứng trước câu bị lỗi đã chạy và vẫn có hiệu lực.",
+    planNote:
+      "Kế hoạch kiểu SQLite, chỉ cho truy vấn một bảng. Nó cho thấy cách ĐI VÀO bảng: SCAN là đọc cả bảng, SEARCH là nhảy thẳng tới các dòng khớp qua chỉ mục hoặc khoá chính. Dữ liệu mẫu quá nhỏ để thấy khác biệt tốc độ, nhưng với hàng triệu dòng thì đó là khác biệt giữa giây và mili-giây.",
     historyEmpty: "Các câu lệnh bạn chạy sẽ hiện ở đây. Bấm một dòng để mở lại.",
     historyError: "Lỗi",
     clearHistory: "Xoá lịch sử",
@@ -202,6 +234,55 @@ export const toolSqlVi = {
         hint: "JOIN sang order_items làm đơn có 2 phụ kiện xuất hiện 2 lần nên SUM bị nhân. Lọc đơn bằng WHERE id IN (SELECT order_id ...) rồi mới SUM trên bảng orders. SUM(DISTINCT) cũng sai vì gộp các đơn cùng mức phí.",
         criteria: { match: "Một con số: phí ship mỗi đơn chỉ tính một lần" },
       },
+      "insert-customer": {
+        from: "Trưởng nhóm CSKH",
+        title: "Thêm một khách hàng mới",
+        brief: "Khách vừa đăng ký qua điện thoại và nhân viên phải nhập tay: tên Tran Minh Anh, thành phố Vinh, email anh.tran@mail.vn (viết đúng như vậy, không dấu). Thêm đúng một dòng vào customers, không đụng tới khách cũ. Ngày đăng ký tuỳ bạn.",
+        hint: "INSERT INTO customers (name, city, email) VALUES ('...', '...', '...'). Không liệt kê cột id: bộ máy tự cấp số kế tiếp. Nếu liệt kê cột, số cột và số giá trị phải bằng nhau.",
+        criteria: { changed: "Đã có khách Tran Minh Anh trong bảng", match: "Đúng một khách mới với đủ tên, thành phố, email; khách cũ nguyên vẹn" },
+      },
+      "update-one-price": {
+        from: "Trưởng nhóm Định giá",
+        title: "Đổi giá đúng một sản phẩm",
+        brief: "Hãng giảm giá nhập, nên Laptop đồ hoạ 16 inch (id 2) chuyển sang giá 22.990.000 đ. Chỉ sửa sản phẩm đó: mười một sản phẩm còn lại phải giữ nguyên giá. Cẩn thận - UPDATE quên WHERE sửa MỌI dòng.",
+        hint: "UPDATE products SET price = ... WHERE id = 2. Chưa chắc thì bọc trong BEGIN ... ROLLBACK để thử, hoặc xem lại bằng SELECT. Lỡ sửa nhầm cả bảng: bấm Khôi phục dữ liệu mẫu.",
+        criteria: { changed: "Sản phẩm id 2 đã có giá mới", match: "Chỉ sản phẩm id 2 đổi giá, các sản phẩm khác nguyên vẹn, thay đổi đã lưu" },
+      },
+      "update-accessories": {
+        from: "Giám đốc Kinh doanh",
+        title: "Giảm giá phụ kiện đắt",
+        brief: "Chương trình xả kho: mọi sản phẩm thuộc danh mục Phụ kiện đang có giá trên 500.000 đ được giảm 50.000 đ. Phụ kiện giá 500.000 đ trở xuống và các danh mục khác không được đổi.",
+        hint: "Hai điều kiện nối bằng AND trong WHERE (danh mục và giá), và SET price = price - 50000 tính từ giá cũ. Chạy SELECT cùng điều kiện đó trước để biết sẽ sửa mấy dòng.",
+        criteria: { changed: "Các phụ kiện đắt đã giảm 50.000 đ", match: "Chỉ phụ kiện giá trên 500.000 đ bị đổi, mọi sản phẩm khác nguyên vẹn" },
+      },
+      "delete-cancelled": {
+        from: "Kế toán trưởng",
+        title: "Dọn các đơn đã huỷ",
+        brief: "Kế toán chốt sổ và muốn xoá khỏi bảng orders những đơn có trạng thái cancelled. Chỉ những đơn đó: đơn đã giao, đang giao, chờ xử lý phải còn nguyên, và đừng đụng tới bảng khách hàng và sản phẩm.",
+        hint: "DELETE FROM orders WHERE status = 'cancelled'. DELETE không có WHERE xoá sạch cả bảng. Chạy SELECT * FROM orders WHERE status = 'cancelled' trước để xem sắp xoá những dòng nào.",
+        criteria: { changed: "Không còn đơn nào ở trạng thái cancelled", match: "Chỉ đơn cancelled bị xoá, các đơn khác nguyên vẹn, thay đổi đã lưu" },
+      },
+      "rollback-delete": {
+        from: "Trưởng nhóm Dữ liệu",
+        title: "Thử lệnh xoá nguy hiểm rồi ROLLBACK",
+        brief: "Có người đề nghị dọn bảng orders bằng một lệnh xoá. Trước khi dám chạy thật, hãy thử: mở giao dịch, xoá TOÀN BỘ bảng orders, kiểm tra thấy bảng trống, rồi ROLLBACK. Kết thúc phải không mất dòng nào.",
+        hint: "BEGIN; DELETE FROM orders; SELECT COUNT(*) FROM orders; ROLLBACK; - ROLLBACK đưa dữ liệu về lúc BEGIN. Nếu gõ COMMIT thay vì ROLLBACK thì dữ liệu mất thật (khi đó bấm Khôi phục dữ liệu mẫu).",
+        criteria: { changed: "Đã có một giao dịch xoá hoặc sửa nhiều dòng rồi bị ROLLBACK", match: "Giao dịch đã đóng và mọi bảng vẫn nguyên như ban đầu" },
+      },
+      "create-index-search": {
+        from: "Kỹ sư Backend",
+        title: "Tăng tốc truy vấn đơn của một khách",
+        brief: "Trang Đơn của tôi tải chậm: nó chạy SELECT * FROM orders WHERE customer_id = 1 và bảng đơn sẽ lớn dần. Chạy EXPLAIN QUERY PLAN cho câu đó để xem hiện đang SCAN cả bảng, tạo chỉ mục cho cột customer_id của orders, rồi chạy lại EXPLAIN để xác nhận nó đã chuyển sang SEARCH.",
+        hint: "EXPLAIN QUERY PLAN SELECT * FROM orders WHERE customer_id = 1; rồi CREATE INDEX idx_orders_customer ON orders (customer_id); rồi chạy lại EXPLAIN. Chỉ mục trên cột khác (như status) không giúp truy vấn lọc theo customer_id.",
+        criteria: { changed: "Đã có chỉ mục trên orders với customer_id là cột đầu", match: "Kế hoạch của lần EXPLAIN cuối là SEARCH orders qua chỉ mục theo customer_id" },
+      },
+      "insert-select-reorder": {
+        from: "Trưởng nhóm CRM",
+        title: "Tạo đơn nhắc mua lại cho từng khách",
+        brief: "Chiến dịch nhắc mua lại cần một đơn nháp cho mỗi khách đã từng nhận hàng: customer_id của khách đó, ngày 2026-09-01, trạng thái pending, phí ship 0. Mỗi khách đúng một đơn nháp dù họ đã nhận nhiều đơn. Làm trong một câu INSERT ... SELECT, đừng gõ tay từng khách.",
+        hint: "INSERT INTO orders (customer_id, order_date, status, shipping_fee) SELECT DISTINCT customer_id, '2026-09-01', 'pending', 0 FROM orders WHERE status = 'delivered'. Thiếu DISTINCT thì khách nào có hai đơn đã giao sẽ nhận hai đơn nháp.",
+        criteria: { changed: "Bảng orders đã có thêm dòng mới", match: "Mỗi khách đã nhận hàng đúng một đơn pending ngày 2026-09-01, phí ship 0; đơn cũ nguyên vẹn" },
+      },
     },
   },
 };
@@ -232,7 +313,8 @@ export const toolSqlEn: typeof toolSqlVi = {
     engineSays: "Engine message",
     suggestion: "Did you mean {name}?",
     errorHints: {
-      missingSelect: "A query that reads data always starts with SELECT. Check for a typo (SELEC, SLECT).",
+      missingSelect:
+        "The engine understands SELECT, INSERT INTO, UPDATE, DELETE FROM, BEGIN, COMMIT, ROLLBACK, CREATE INDEX and EXPLAIN. A statement must start with one of them - check for a typo (SELEC, UPDAT).",
       missingFrom:
         "FROM is missing, or a comma between two columns is. The column list must be followed by FROM table_name, and columns are separated by commas: SELECT name, city FROM customers.",
       missingBy: "GROUP and ORDER always take BY: write GROUP BY status, ORDER BY price.",
@@ -245,6 +327,15 @@ export const toolSqlEn: typeof toolSqlVi = {
       trailing:
         "The engine read part of the query and then hit {name}. The usual causes: missing quotes around text, or clauses in the wrong order. The right order is SELECT → FROM → JOIN → WHERE → GROUP BY → HAVING → ORDER BY → LIMIT.",
       incomplete: "The query stops halfway - perhaps a table name is missing after FROM/JOIN, or one side of a comparison is.",
+      dmlSyntax:
+        "Write statements have a fixed shape: INSERT INTO table (column, ...) VALUES (value, ...); UPDATE table SET column = value WHERE ...; DELETE FROM table WHERE .... An INSERT needs as many values as columns, and text goes in single quotes.",
+      constraint:
+        "A primary key (id) cannot repeat. To let the engine hand out the next number, leave the id column out of the INSERT.",
+      transaction:
+        "BEGIN opens a transaction, COMMIT saves it, ROLLBACK discards every change since BEGIN. You cannot nest BEGIN inside BEGIN, and COMMIT/ROLLBACK need an open transaction. If you are unsure where you stand, the Restore sample data button puts everything back.",
+      index: "Index names must be unique. CREATE INDEX name ON table (column); DROP INDEX name removes one.",
+      unsupported:
+        "This simulator does not do that part, to avoid teaching something wrong. Try the simpler form: EXPLAIN works on one table only; indexes come from plain CREATE INDEX (no UNIQUE); tables cannot be created or dropped.",
       other: "Read the engine message carefully, then fix one clause at a time and run again after each change.",
     },
     warningTitle: "It ran, but take another look",
@@ -253,7 +344,29 @@ export const toolSqlEn: typeof toolSqlVi = {
         "You mixed plain columns with an aggregate (COUNT, SUM, AVG...) without GROUP BY, so you get a single row and the plain column's value is arbitrary. To compute per group, add GROUP BY with those plain columns.",
       equalsNull:
         "Comparing = NULL is never true, not even for an empty cell, so the result is always empty. Use IS NULL or IS NOT NULL.",
+      writeWithoutWhere:
+        "This UPDATE / DELETE has no WHERE, so it hit EVERY row of the table, and it really ran. If that was not the plan: press Restore sample data, or next time wrap the statement in BEGIN ... ROLLBACK to try it first.",
     },
+    restoreData: "Restore sample data",
+    restoreDataHint: "Puts every table back to its original data and drops indexes and any open transaction. Mission progress is kept.",
+    inTransaction: "In a transaction - not committed yet",
+    indexesLabel: "Indexes",
+    statementDone: {
+      select: "Query finished",
+      insert: "Inserted {count} rows into {table}",
+      update: "Updated {count} rows in {table}",
+      delete: "Deleted {count} rows from {table}",
+      createIndex: "Created index {name} on {table}",
+      dropIndex: "Dropped index {name}",
+      begin: "BEGIN: transaction started. Changes are only temporary until COMMIT",
+      commit: "COMMIT: saved {count} changed rows",
+      rollback: "ROLLBACK: undid {count} changed rows, data is back to how it was at BEGIN",
+      explain: "Query plan",
+    },
+    noWhereBadge: "No WHERE - the whole table",
+    appliedBefore: "{count} statements before the failing one already ran and still count.",
+    planNote:
+      "A SQLite-style plan, for single-table queries only. It shows how the table is ENTERED: SCAN reads the whole table, SEARCH jumps straight to the matching rows through an index or the primary key. The sample data is too small to feel the speed difference, but at millions of rows it is the difference between seconds and milliseconds.",
     historyEmpty: "Queries you run will appear here. Click one to reopen it.",
     historyError: "Error",
     clearHistory: "Clear history",
@@ -405,6 +518,55 @@ export const toolSqlEn: typeof toolSqlVi = {
         brief: "The carrier wants to reconcile: the total shipping fee (the shipping_fee column of orders) for orders with at least one product in the accessories category. Each order counts once however many accessories it has. One row, one number.",
         hint: "Joining to order_items makes an order with 2 accessories appear twice, so SUM is multiplied. Filter orders with WHERE id IN (SELECT order_id ...) and only then SUM on orders. SUM(DISTINCT) is wrong too: it merges different orders with the same fee.",
         criteria: { match: "One number: each order's fee counted once" },
+      },
+      "insert-customer": {
+        from: "Customer support lead",
+        title: "Add a new customer",
+        brief: "A customer just signed up by phone and staff have to type the record in: name Tran Minh Anh, city Vinh, email anh.tran@mail.vn (exactly that, no accents). Add exactly one row to customers and leave the existing customers alone. The signup date is up to you.",
+        hint: "INSERT INTO customers (name, city, email) VALUES ('...', '...', '...'). Leave the id column out: the engine hands out the next number. If you do list columns, the number of columns and values must match.",
+        criteria: { changed: "A customer named Tran Minh Anh is in the table", match: "Exactly one new customer with the right name, city and email; old customers untouched" },
+      },
+      "update-one-price": {
+        from: "Pricing lead",
+        title: "Change the price of exactly one product",
+        brief: "The vendor cut its cost, so the 16-inch graphics laptop (id 2) moves to 22,990,000 VND. Change that product only: the other eleven products must keep their prices. Careful - an UPDATE with no WHERE changes EVERY row.",
+        hint: "UPDATE products SET price = ... WHERE id = 2. If unsure, wrap it in BEGIN ... ROLLBACK to try it, or check with a SELECT. If you changed the whole table by mistake, press Restore sample data.",
+        criteria: { changed: "Product id 2 has the new price", match: "Only product id 2 changed price, every other product untouched, change saved" },
+      },
+      "update-accessories": {
+        from: "Sales director",
+        title: "Discount the pricier accessories",
+        brief: "Clearance sale: every product in the accessories category priced above 500,000 VND gets 50,000 VND off. Accessories at 500,000 or below, and every other category, must not change.",
+        hint: "Two conditions joined with AND in the WHERE (category and price), and SET price = price - 50000 works from the old price. Run a SELECT with the same conditions first to see how many rows you are about to change. Copy the category text from the products table.",
+        criteria: { changed: "The pricier accessories dropped by 50,000 VND", match: "Only accessories above 500,000 VND changed, every other product untouched" },
+      },
+      "delete-cancelled": {
+        from: "Chief accountant",
+        title: "Clear out cancelled orders",
+        brief: "Accounting is closing the books and wants the orders with status cancelled removed from the orders table. Only those: delivered, shipping and pending orders must stay, and the customers and products tables must not be touched.",
+        hint: "DELETE FROM orders WHERE status = 'cancelled'. A DELETE with no WHERE empties the whole table. Run SELECT * FROM orders WHERE status = 'cancelled' first to see which rows are about to go.",
+        criteria: { changed: "No order is left with status cancelled", match: "Only cancelled orders were deleted, every other order untouched, change saved" },
+      },
+      "rollback-delete": {
+        from: "Data team lead",
+        title: "Try a dangerous delete, then ROLLBACK",
+        brief: "Someone proposes clearing the orders table with one delete. Before anyone dares run it for real, try it: open a transaction, delete ALL of orders, check the table is empty, then ROLLBACK. When you are done not a single row may be missing.",
+        hint: "BEGIN; DELETE FROM orders; SELECT COUNT(*) FROM orders; ROLLBACK; - ROLLBACK returns the data to how it was at BEGIN. If you type COMMIT instead the data is really gone (then press Restore sample data).",
+        criteria: { changed: "A transaction that deleted or changed many rows was rolled back", match: "The transaction is closed and every table is exactly as it started" },
+      },
+      "create-index-search": {
+        from: "Backend engineer",
+        title: "Speed up one customer's order lookup",
+        brief: "The My Orders page loads slowly: it runs SELECT * FROM orders WHERE customer_id = 1 and the orders table keeps growing. Run EXPLAIN QUERY PLAN on that query to see it SCAN the whole table, create an index on orders.customer_id, then run EXPLAIN again to confirm it switched to a SEARCH.",
+        hint: "EXPLAIN QUERY PLAN SELECT * FROM orders WHERE customer_id = 1; then CREATE INDEX idx_orders_customer ON orders (customer_id); then run the EXPLAIN again. An index on a different column (like status) does not help a query that filters on customer_id.",
+        criteria: { changed: "orders has an index whose first column is customer_id", match: "The last EXPLAIN shows a SEARCH of orders through an index on customer_id" },
+      },
+      "insert-select-reorder": {
+        from: "CRM lead",
+        title: "Create a reorder draft for each customer",
+        brief: "The win-back campaign needs one draft order per customer who has ever received goods: that customer's customer_id, date 2026-09-01, status pending, shipping fee 0. Exactly one draft per customer even if they received several orders. Do it in a single INSERT ... SELECT, not by typing customers one by one.",
+        hint: "INSERT INTO orders (customer_id, order_date, status, shipping_fee) SELECT DISTINCT customer_id, '2026-09-01', 'pending', 0 FROM orders WHERE status = 'delivered'. Without DISTINCT a customer with two delivered orders gets two drafts.",
+        criteria: { changed: "The orders table has new rows", match: "Each customer who received goods has exactly one pending order dated 2026-09-01 with fee 0; old orders untouched" },
       },
     },
   },

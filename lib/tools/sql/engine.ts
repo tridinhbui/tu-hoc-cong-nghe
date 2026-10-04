@@ -21,6 +21,11 @@ export type SqlErrorKind =
   | "joinSyntax"
   | "trailing"
   | "incomplete"
+  | "dmlSyntax"
+  | "constraint"
+  | "transaction"
+  | "index"
+  | "unsupported"
   | "other";
 
 export interface SqlErrorInfo {
@@ -33,11 +38,33 @@ export interface SqlErrorInfo {
   suggestion?: string;
 }
 
-export type SqlWarningKind = "aggregateWithoutGroupBy" | "equalsNull";
+export type SqlWarningKind = "aggregateWithoutGroupBy" | "equalsNull" | "writeWithoutWhere";
+
+/** Điều một câu lệnh đã làm - giao diện ghép chữ từ từ điển, không nhận chữ dựng sẵn. */
+export interface StatementInfo {
+  kind:
+    | "select"
+    | "insert"
+    | "update"
+    | "delete"
+    | "createIndex"
+    | "dropIndex"
+    | "begin"
+    | "commit"
+    | "rollback"
+    | "explain";
+  /** Số dòng bị tác động (insert/update/delete), hoặc số dòng bị hoàn tác (rollback). */
+  affected?: number;
+  table?: string;
+  /** Tên chỉ mục (createIndex/dropIndex). */
+  name?: string;
+  /** UPDATE/DELETE không có WHERE: tác động tới mọi dòng. */
+  noWhere?: boolean;
+}
 
 export type ExecOutcome =
-  | { ok: true; result: QueryResult; ms: number; warnings: SqlWarningKind[] }
-  | { ok: false; error: SqlErrorInfo; ms: number };
+  | { ok: true; result: QueryResult; ms: number; warnings: SqlWarningKind[]; statements?: StatementInfo[] }
+  | { ok: false; error: SqlErrorInfo; ms: number; statements?: StatementInfo[] };
 
 const now = () => (typeof performance !== "undefined" ? performance.now() : Date.now());
 
@@ -55,6 +82,11 @@ export function execute(db: Database, sql: string): ExecOutcome {
 /* i18n-ignore-start: patterns match the Vietnamese error text produced by lib/mini-sql.ts; never displayed */
 const PATTERNS: { kind: SqlErrorKind; rx: RegExp }[] = [
   { kind: "missingSelect", rx: /Thiếu từ khoá SELECT/ },
+  { kind: "unsupported", rx: /^Chưa hỗ trợ/ },
+  { kind: "dmlSyntax", rx: /Thiếu từ khoá (INTO|VALUES|SET)\b|Câu DELETE|CREATE INDEX cần|Thiếu dấu =|INSERT có|VALUES|danh sách cột/ },
+  { kind: "constraint", rx: /Trùng khoá chính/ },
+  { kind: "transaction", rx: /giao dịch/ },
+  { kind: "index", rx: /chỉ mục/i },
   { kind: "missingFrom", rx: /Thiếu từ khoá FROM/ },
   { kind: "missingBy", rx: /Thiếu từ khoá BY/ },
   { kind: "unknownTable", rx: /Không có bảng "([^"]*)"/ },
@@ -153,6 +185,8 @@ export function lintQuery(sql: string): SqlWarningKind[] {
     }
   }
   if (/(=|<>|!=)\s*NULL\b/i.test(bare)) warnings.push("equalsNull");
+  // UPDATE / DELETE không WHERE vẫn chạy (đó là bài học), nhưng phải được nói to.
+  if (/^\s*(UPDATE|DELETE)\b/i.test(bare) && !/\bWHERE\b/i.test(bare)) warnings.push("writeWithoutWhere");
   return warnings;
 }
 

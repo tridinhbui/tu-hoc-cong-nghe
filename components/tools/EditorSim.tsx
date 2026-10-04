@@ -1163,7 +1163,7 @@ export default function EditorSim({ embed }: { embed?: ToolEmbed }) {
                       key={runToken}
                       ref={iframeRef}
                       title={c.previewTitle}
-                      sandbox="allow-scripts"
+                      sandbox="allow-scripts allow-forms"
                       srcDoc={srcDoc}
                       className="min-h-0 w-full flex-1 bg-white"
                     />

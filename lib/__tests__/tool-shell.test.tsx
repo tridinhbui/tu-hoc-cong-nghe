@@ -82,8 +82,8 @@ describe("CongCuClient", () => {
         <CongCuClient />
       </I18nProvider>
     );
-    expect(screen.getByText("2/21 ticket")).toBeTruthy();
+    expect(screen.getByText("2/28 ticket")).toBeTruthy();
     expect(screen.getByText("1/18 ticket")).toBeTruthy();
-    expect(screen.getByText("3/104 ticket đã đóng")).toBeTruthy();
+    expect(screen.getByText("3/111 ticket đã đóng")).toBeTruthy();
   });
 });

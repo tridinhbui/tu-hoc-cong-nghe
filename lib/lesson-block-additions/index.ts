@@ -50,6 +50,8 @@ import { Q02_ADDITIONS } from "./q02";
 import { Q03_ADDITIONS } from "./q03";
 import { Q04_ADDITIONS } from "./q04";
 import { Q05_ADDITIONS } from "./q05";
+import { Q06_ADDITIONS } from "./q06";
+import { Q07_ADDITIONS } from "./q07";
 
 /**
  * Khối THÊM vào bài đã có (KE-HOACH-1500-BAI.md: bài nào cũng có thực hành và
@@ -131,6 +133,8 @@ const SIM_FILES: Record<string, Record<string, LessonSectionBlock[]>> = {
   q03: Q03_ADDITIONS,
   q04: Q04_ADDITIONS,
   q05: Q05_ADDITIONS,
+  q06: Q06_ADDITIONS,
+  q07: Q07_ADDITIONS,
 };
 
 export const LESSON_BLOCK_ADDITIONS: Record<string, LessonSectionBlock[]> = (() => {

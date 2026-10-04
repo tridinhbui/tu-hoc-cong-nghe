@@ -69,7 +69,14 @@
     "undelivered-products",
     "revenue-per-customer",
     "repeat-buyers",
-    "shipping-fanout"
+    "shipping-fanout",
+    "insert-customer",
+    "update-one-price",
+    "update-accessories",
+    "delete-cancelled",
+    "rollback-delete",
+    "create-index-search",
+    "insert-select-reorder"
   ],
   "api": [
     "firstGet",

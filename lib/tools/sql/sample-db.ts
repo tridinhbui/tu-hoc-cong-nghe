@@ -16,7 +16,7 @@
 // Dữ liệu KHÔNG được dịch: nó là dữ liệu người học truy vấn, và đáp án của các
 // nhiệm vụ được tính từ chính các giá trị này ('Hà Nội', 'delivered', ...).
 
-import type { Database, Row, SqlValue } from "@/lib/mini-sql";
+import type { Database, Row, SqlValue, Table } from "@/lib/mini-sql";
 
 export type ColumnType = "INTEGER" | "TEXT" | "DATE";
 
@@ -155,10 +155,12 @@ const ORDER_ITEMS: SqlValue[][] = [
   [26, 16, 5, 1],
 ];
 
-function table(schema: TableSchema, data: SqlValue[][]) {
+function table(schema: TableSchema, data: SqlValue[][]): Table {
   const columns = schema.columns.map((c) => c.name);
   const rows: Row[] = data.map((values) => Object.fromEntries(columns.map((c, i) => [c, values[i] ?? null])));
-  return { name: schema.name, columns, rows };
+  const pk = schema.columns.find((c) => c.key === "pk")?.name;
+  const types = Object.fromEntries(schema.columns.map((c) => [c.name, c.type]));
+  return { name: schema.name, columns, rows, pk, types };
 }
 
 const DATA: Record<string, SqlValue[][]> = {
@@ -168,8 +170,10 @@ const DATA: Record<string, SqlValue[][]> = {
   order_items: ORDER_ITEMS,
 };
 
-/** Tạo một bản cơ sở dữ liệu mới. Bộ máy chỉ đọc (không có INSERT/UPDATE), nhưng
- *  vẫn trả bản mới mỗi lần để không ai vô tình dùng chung một đối tượng bị sửa. */
+/** Tạo một bản cơ sở dữ liệu mới. Bộ máy giờ GHI được (INSERT/UPDATE/DELETE trên
+ *  bản sao của phiên - xem session.ts), nên mỗi lần phải trả bản mới để không ai
+ *  vô tình dùng chung một đối tượng bị sửa. SAMPLE_DB bên dưới là bản gốc để
+ *  nhiệm vụ so sánh: không có mã nào được ghi vào nó. */
 export function createSampleDb(): Database {
   return Object.fromEntries(SAMPLE_SCHEMA.map((s) => [s.name, table(s, DATA[s.name])]));
 }

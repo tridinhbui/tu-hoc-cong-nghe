@@ -3,6 +3,7 @@ import { runQuery } from "../mini-sql";
 import { execute, lintQuery, resultCovers, closest } from "../tools/sql/engine";
 import { SAMPLE_DB, SAMPLE_SCHEMA, createSampleDb } from "../tools/sql/sample-db";
 import { SQL_MISSIONS, SQL_MISSION_IDS } from "../tools/sql/missions";
+import { createSession, missionState, runSql } from "../tools/sql/session";
 import { toolSqlVi, toolSqlEn } from "../i18n/dictionaries/sections/tool-sql";
 
 const run = (sql: string) => {
@@ -181,6 +182,13 @@ describe("nhiệm vụ", () => {
 
   it("câu tham chiếu tự qua nhiệm vụ của nó", () => {
     for (const m of SQL_MISSIONS) {
+      if (m.kind === "write") {
+        // Nhiệm vụ ghi dữ liệu: câu tham chiếu là một script chạy trên phiên mới.
+        const { session, outcome } = runSql(createSession(), m.reference);
+        expect(outcome.ok, m.id).toBe(true);
+        expect(m.check(missionState(session, outcome)), m.id).toBe(true);
+        continue;
+      }
       expect(m.check({ result: run(m.reference) }), m.id).toBe(true);
     }
   });
@@ -188,6 +196,7 @@ describe("nhiệm vụ", () => {
   it("mỗi nhiệm vụ làm được bằng một câu viết khác câu tham chiếu", () => {
     // Nhiệm vụ thêm sau có cách giải riêng trong tool-sql-missions.test.ts.
     for (const m of SQL_MISSIONS.filter((x) => x.id in SOLUTIONS)) {
+      expect(m.kind ?? "read", m.id).toBe("read");
       const sql = SOLUTIONS[m.id];
       expect(sql, m.id).toBeTruthy();
       expect(m.check({ result: run(sql) }), m.id).toBe(true);

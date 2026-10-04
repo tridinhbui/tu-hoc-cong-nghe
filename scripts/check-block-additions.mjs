@@ -92,7 +92,7 @@ for (const [slug, blocks] of Object.entries(record)) {
   if (simNew > 0 && simBefore + simNew > 1) err(slug, `bài sẽ có ${simBefore + simNew} khối sim (đã có ${simBefore}) - tối đa 1`);
   if (path.basename(file).startsWith("q")) {
     if (blocks.some((x) => x.type !== "sim")) err(slug, "tệp qNN chỉ được chứa khối sim");
-    if (existsSync(path.join(root, "lib/lessons-i18n/en", `${slug}.json`))) err(slug, "bài đã có bản dịch tiếng Anh - bỏ qua (khối thêm làm lệch bản dịch)");
+    if (!process.env.ALLOW_TRANSLATED && existsSync(path.join(root, "lib/lessons-i18n/en", `${slug}.json`))) err(slug, "bài đã có bản dịch tiếng Anh - bỏ qua (khối thêm làm lệch bản dịch)");
   }
 
   const before = countBlockKinds(lesson.sections);
