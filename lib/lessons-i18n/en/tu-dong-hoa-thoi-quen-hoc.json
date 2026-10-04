@@ -138,6 +138,75 @@
       "text": "Making up sessions turns coming back into repaying a debt, and that debt appears exactly when things are already hard. It is the common reason a three-day break becomes a permanent one. Come back at the smallest size, as though there were never anything to repay."
     },
     {
+      "type": "scenario",
+      "title": "The worst day of the study week",
+      "nodes": {
+        "a": {
+          "text": "Your plan is 45 minutes every evening. On Wednesday you are in meetings all day and get home exhausted at 9 pm. What do you do?",
+          "choices": [
+            {
+              "label": "Skip tonight, study double tomorrow to make up"
+            },
+            {
+              "label": "Force yourself to sit the full 45 minutes with an empty head"
+            },
+            {
+              "label": "Do the fifteen-minute minimum you prepared"
+            }
+          ]
+        },
+        "bad-bu": {
+          "text": "On Thursday evening you owe two sessions while still tired. You study half-heartedly, and the two-day break gets read as proof that you lack discipline. By next week you quit altogether."
+        },
+        "bad-ep": {
+          "text": "You sit the full 45 minutes but read the same paragraph five times. A bad feeling attaches to studying, and the next day you already dread opening the laptop."
+        },
+        "b": {
+          "text": "The fifteen-minute version is already in your calendar: open the tab you left the night before, do one exercise. You finish and the streak holds. The next morning you work out how tomorrow evening should start.",
+          "choices": [
+            {
+              "label": "Make up yesterday's missing part before the new lesson"
+            },
+            {
+              "label": "Return to the normal level, as if there is nothing to make up"
+            }
+          ]
+        },
+        "bad-bu2": {
+          "text": "Coming back turns into paying off a debt, and that debt shows up just when you are struggling. One more busy evening is enough to turn the streak into quitting."
+        },
+        "good": {
+          "text": "There is no debt to repay, so coming back needs no decision. On Thursday evening you open the lesson you prepared in advance, and the study week keeps its continuity instead of a pretty number."
+        }
+      }
+    },
+    {
+      "type": "flow",
+      "title": "Prepare the night before so tonight there is nothing left to choose",
+      "steps": [
+        {
+          "label": "At the end of a session, note where you stopped",
+          "detail": "Write one line: where you are stuck midway and what the next step is. Tomorrow you won't have to search for your place."
+        },
+        {
+          "label": "Pick the content for the next session",
+          "detail": "Decide now, while your head is clear: which exercise tomorrow. When you sit down there is no question of what to study."
+        },
+        {
+          "label": "Open what you will need",
+          "detail": "Leave the tab, file or notes on screen. Opening the tool is where many people give up."
+        },
+        {
+          "label": "Set a fixed time slot",
+          "detail": "The same hour every evening instead of whenever it suits. A fixed hour turns studying into a habit rather than a decision."
+        },
+        {
+          "label": "Mark out the minimum for the worst day",
+          "detail": "Write the fifteen-minute version in advance. On your worst day you don't have to think, only do."
+        }
+      ]
+    },
+    {
       "type": "closing",
       "lines": [
         "Discipline is finite; a good system is the one that spends the least of it.",

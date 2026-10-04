@@ -204,6 +204,32 @@
       ]
     },
     {
+      "type": "flow",
+      "title": "Why 25 plus 1 gives 251",
+      "steps": [
+        {
+          "label": "The user types 25 into the age box",
+          "detail": "On screen that is two digits, but to the machine an input box only hands back a piece of text."
+        },
+        {
+          "label": "The program receives the string \"25\"",
+          "detail": "tuoi_nhap = \"25\". Its type is string, even though it looks like a number. At this point you cannot do arithmetic with it as you would with a number."
+        },
+        {
+          "label": "+ meets two strings",
+          "detail": "tuoi_nhap + \"1\" joins text: \"25\" first, \"1\" after. The result is \"251\", and no error is reported."
+        },
+        {
+          "label": "Convert the type explicitly",
+          "detail": "int(tuoi_nhap) reads the string and returns the number 25. If the user typed \"hai lăm\", this line stops right away and tells you where the data went wrong."
+        },
+        {
+          "label": "+ adds real numbers",
+          "detail": "int(tuoi_nhap) + 1 gives 26. From here on the value is used as a number."
+        }
+      ]
+    },
+    {
       "type": "closing",
       "lines": [
         "Types are not red tape. They are how the machine knows what a plus sign between two values ought to mean.",

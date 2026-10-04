@@ -13,10 +13,18 @@
   ],
   "explanation": "Rereading a page and finding everything familiar produces a sense of having got it, but what was just tested is the ability to recognise, not the ability to recall. Those two capacities are far apart: you can recognise correct code on sight without being able to write it on a blank page. Most common review methods - rereading, rewatching, highlighting - train only the first, and that is why people are caught out on real work or in an interview. The only way to test the second is to close the material and write it out yourself.",
   "diagram": [
-    { "label": "Finish learning: the sense of having got it" },
-    { "label": "Weeks later: most of it gone, nobody measured" },
-    { "label": "Rereading: trains only recognition" },
-    { "label": "Recall and spacing: trains the thing that matters" }
+    {
+      "label": "Finish learning: the sense of having got it"
+    },
+    {
+      "label": "Weeks later: most of it gone, nobody measured"
+    },
+    {
+      "label": "Rereading: trains only recognition"
+    },
+    {
+      "label": "Recall and spacing: trains the thing that matters"
+    }
   ],
   "realWorldExample": {
     "company": "Twenty lessons and a blank page",
@@ -101,17 +109,78 @@
     "secondary": "For technical knowledge, swap the writing for rebuilding something very small without looking at the material."
   },
   "sections": [
-    { "type": "lead", "text": "Study progress gets measured in lessons completed, which is measuring what went in. What stayed appears on no progress bar at all, and it is the part still there after six months." },
-    { "type": "comparison",
-      "left": { "label": "Recognition", "text": "You see it and it looks familiar. Rereading, rewatching, skimming the highlights - all of these train this capacity, and all of them are comfortable." },
-      "right": { "label": "Recall", "text": "A blank page, written yourself. Uncomfortable, slow, and leaving you feeling you know less than you thought - three signs it is doing its job." }
+    {
+      "type": "lead",
+      "text": "Study progress gets measured in lessons completed, which is measuring what went in. What stayed appears on no progress bar at all, and it is the part still there after six months."
     },
-    { "type": "heading", "text": "You have to forget for the retrieval to count" },
-    { "type": "paragraph", "text": "This is the least intuitive part. Cramming right after learning leaves everything intact, every retrieval is easy, and the result is a good feeling and a short memory. Leaving a few days makes the retrieval markedly harder, and that difficulty is exactly what produces the effect. Put another way, the review method that feels most comfortable is almost always the least effective one." },
-    { "type": "callout", "label": "For technical knowledge, the test is rebuilding", "text": "Being able to answer questions about a technology and being able to use it are two different things. Rebuilding something very small without looking at the material forces you to decide at exactly the points the material never mentions - and that is the only part that separates knowing about a thing from being able to do it." },
-    { "type": "closing", "lines": [
-      "Learning faster means nothing if what falls away speeds up to match.",
-      "These three lessons teach no content of their own; they only make sure the content in later stages has somewhere to stay."
-    ]}
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Recognition",
+        "text": "You see it and it looks familiar. Rereading, rewatching, skimming the highlights - all of these train this capacity, and all of them are comfortable."
+      },
+      "right": {
+        "label": "Recall",
+        "text": "A blank page, written yourself. Uncomfortable, slow, and leaving you feeling you know less than you thought - three signs it is doing its job."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "You have to forget for the retrieval to count"
+    },
+    {
+      "type": "paragraph",
+      "text": "This is the least intuitive part. Cramming right after learning leaves everything intact, every retrieval is easy, and the result is a good feeling and a short memory. Leaving a few days makes the retrieval markedly harder, and that difficulty is exactly what produces the effect. Put another way, the review method that feels most comfortable is almost always the least effective one."
+    },
+    {
+      "type": "callout",
+      "label": "For technical knowledge, the test is rebuilding",
+      "text": "Being able to answer questions about a technology and being able to use it are two different things. Rebuilding something very small without looking at the material forces you to decide at exactly the points the material never mentions - and that is the only part that separates knowing about a thing from being able to do it."
+    },
+    {
+      "type": "exercise",
+      "title": "Schedule recall with growing gaps",
+      "task": "You finish a section on day 10 of your plan. You want to recall it after 2 days, then 4 more days, then 8 more days, each gap counted from the previous recall. Print the list of recall days. These gaps are only an example for practising the arithmetic; choose a rhythm that suits you.",
+      "starter": "ngay_hoc = 10\nkhoang_cach = [2, 4, 8]\nngay_on = []\nfor k in khoang_cach:\n    ngay_on.append(ngay_hoc + k)\nprint(\"Recall schedule:\", ngay_on)",
+      "solution": "ngay_hoc = 10\nkhoang_cach = [2, 4, 8]\nngay_on = []\nmoc = ngay_hoc\nfor k in khoang_cach:\n    moc += k\n    ngay_on.append(moc)\nprint(\"Recall schedule:\", ngay_on)",
+      "expectedOutput": "Recall schedule: [12, 16, 24]",
+      "hints": [
+        "The starter code always adds the gap to the first study day, so the recalls bunch up close together.",
+        "Use one variable to hold the most recent recall day and add the next gap to it."
+      ]
+    },
+    {
+      "type": "flow",
+      "title": "A recall session done properly",
+      "steps": [
+        {
+          "label": "Close all the material",
+          "detail": "Close notes, tabs and videos. Looking again feels familiar, but feeling familiar is not remembering."
+        },
+        {
+          "label": "Write it out from a blank page",
+          "detail": "Write what you remember about that day's topic. The slow, uncomfortable feeling shows that recall is happening."
+        },
+        {
+          "label": "Open the material and compare",
+          "detail": "Mark what you forgot or got wrong. That is what needs review, not the whole lesson."
+        },
+        {
+          "label": "Book the next one further out",
+          "detail": "Leave a few days, then retrieve again. The gap makes each retrieval harder, and that difficulty is what produces the effect."
+        },
+        {
+          "label": "Rebuild one very small thing without looking",
+          "detail": "Build a small feature from scratch. You have to decide in the places the material is silent, and that is the difference between knowing about it and being able to do it."
+        }
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Learning faster means nothing if what falls away speeds up to match.",
+        "These three lessons teach no content of their own; they only make sure the content in later stages has somewhere to stay."
+      ]
+    }
   ]
 }

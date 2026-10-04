@@ -182,6 +182,18 @@
       "text": "The temptation is to build a detailed log broken into thirty-minute blocks. Most people drop it in the first week, and three days of data is not usable for anything. One line each evening for two weeks is the worse measurement on precision and the better one on every other count."
     },
     {
+      "type": "exercise",
+      "title": "From a week's log to a usable number",
+      "task": "Below is the number of minutes you really studied each evening for a week; 0 means you could not study that day. Compute the total, the number of days you studied (count only days greater than 0) and the average per studied day, rounded to a whole number. Print exactly three lines.",
+      "starter": "nhat_ky = [0, 45, 0, 30, 60, 0, 20]\ntong = sum(nhat_ky)\nso_ngay_hoc = len([p for p in nhat_ky if p >= 0])\ntrung_binh = tong / so_ngay_hoc\nprint(f\"Total: {tong} minutes\")\nprint(f\"Days studied: {so_ngay_hoc}\")\nprint(f\"Average per studied day: {trung_binh:.0f} minutes\")",
+      "solution": "nhat_ky = [0, 45, 0, 30, 60, 0, 20]\ntong = sum(nhat_ky)\nso_ngay_hoc = len([p for p in nhat_ky if p > 0])\ntrung_binh = tong / so_ngay_hoc\nprint(f\"Total: {tong} minutes\")\nprint(f\"Days studied: {so_ngay_hoc}\")\nprint(f\"Average per studied day: {trung_binh:.0f} minutes\")",
+      "expectedOutput": "Total: 155 minutes\nDays studied: 4\nAverage per studied day: 39 minutes",
+      "hints": [
+        "The condition p >= 0 is true even for days with no study, so it counts 7 days.",
+        "The right average is the number you use to plan for a day you can actually study."
+      ]
+    },
+    {
       "type": "closing",
       "lines": [
         "Without measuring, every plan is a wish with a schedule attached.",

@@ -199,6 +199,32 @@
       ]
     },
     {
+      "type": "flow",
+      "title": "Normalise a name before comparing",
+      "steps": [
+        {
+          "label": "Typed input",
+          "detail": "\"  Nguyễn Văn An \" has two spaces at the start, one at the end and capital letters in three places."
+        },
+        {
+          "label": "Trim both ends with strip()",
+          "detail": "You get \"Nguyễn Văn An\". The extra spaces are gone, but the original string is untouched because strings do not change in place; you receive a new one."
+        },
+        {
+          "label": "Lowercase with lower()",
+          "detail": "You get \"nguyễn văn an\". Two people who typed An and AN are now the same person."
+        },
+        {
+          "label": "Compare with the stored value",
+          "detail": "\"nguyễn văn an\" == \"nguyễn văn an\" gives True. Skip the two steps above and the comparison gives False even though the two look identical."
+        },
+        {
+          "label": "Catch the result in a variable",
+          "detail": "A line like ten_nhap.strip() on its own changes nothing. To use it, write ten_sach = ten_nhap.strip().lower()."
+        }
+      ]
+    },
+    {
       "type": "closing",
       "lines": [
         "Strings look simple but they take up most of the real work, and they are where two different classes of bug both hide.",

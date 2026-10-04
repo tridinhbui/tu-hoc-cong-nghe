@@ -1,4 +1,5 @@
 import type { Lesson } from "./lesson-types";
+import { withBlockAdditions } from "./lesson-block-additions";
 import { ADVANCED_MASTERCLASS_LESSONS } from "./advanced-masterclass-lessons";
 import { GIT_LESSONS } from "./git-lessons";
 import { AI_MARKETING_LESSONS } from "./ai-marketing-lessons";
@@ -52,7 +53,7 @@ import { RELEASE_MECHANICS_LESSONS } from "./release-mechanics-lessons";
 import { TESTING_LESSONS } from "./testing-lessons";
 import { READING_STATEMENTS_LESSONS } from "./reading-statements-lessons";
 
-export const lessons: Lesson[] = [
+const BASE_LESSONS: Lesson[] = [
   ...READING_STATEMENTS_LESSONS,
   ...ADVANCED_MASTERCLASS_LESSONS,
   ...GIT_LESSONS,
@@ -83397,3 +83398,6 @@ export const lessons: Lesson[] = [
   "track": "bonus"
 }
 ];
+
+// Khối thực hành / hình ảnh thêm vào bài cũ - xem lib/lesson-block-additions/index.ts.
+export const lessons: Lesson[] = withBlockAdditions(BASE_LESSONS);

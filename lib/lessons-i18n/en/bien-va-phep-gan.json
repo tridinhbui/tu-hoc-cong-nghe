@@ -181,6 +181,39 @@
       ]
     },
     {
+      "type": "feynman",
+      "title": "A variable is more like a sticker on an object than a box",
+      "intro": "Think of the name stickers in a shared fridge. A sticker does not hold the milk; it only says whose milk it is. You can peel a sticker off and put it on another carton, and you can put two stickers on the same carton.",
+      "columns": [
+        "In the fridge",
+        "In programming",
+        "Example line"
+      ],
+      "rows": [
+        [
+          "Put the sticker An on a carton of milk",
+          "Give the name a to the value 5",
+          "a = 5"
+        ],
+        [
+          "Add a second sticker, Binh, to the same carton",
+          "Add a name b that points at the same value",
+          "b = a"
+        ],
+        [
+          "Peel off An and stick it on a box of cake",
+          "Reassign a to a new value",
+          "a = 9"
+        ],
+        [
+          "The milk still carries the sticker Binh",
+          "b still holds the old value",
+          "print(b)  # 5"
+        ]
+      ],
+      "oneLiner": "Reassigning a variable peels the sticker onto a different value; it does not pour something new into the old box."
+    },
+    {
       "type": "closing",
       "lines": [
         "A variable is a name attached to a value, and assignment moves that attachment at the line you write.",

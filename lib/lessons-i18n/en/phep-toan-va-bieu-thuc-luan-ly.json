@@ -195,6 +195,39 @@
       ]
     },
     {
+      "type": "feynman",
+      "title": "And, or, not at the cinema gate",
+      "intro": "The usher at a cinema door has a few rules. Each rule gives only two outcomes: let in or not. The three combining operators in programming work exactly the way you combine those rules.",
+      "columns": [
+        "Rule at the gate",
+        "Combining operator",
+        "When you are let in"
+      ],
+      "rows": [
+        [
+          "Has a ticket and is old enough for this film",
+          "ve and du_tuoi",
+          "Both conditions are true"
+        ],
+        [
+          "Has a regular ticket or a free pass",
+          "ve_thuong or ve_moi",
+          "At least one condition is true"
+        ],
+        [
+          "Is not a banned guest",
+          "not bi_cam",
+          "The original condition is false, so the result is true"
+        ],
+        [
+          "Has a regular ticket, or has a free pass and is old enough",
+          "A or B and C",
+          "Read as A or (B and C) because and is evaluated first; add parentheses to be clear"
+        ]
+      ],
+      "oneLiner": "Each comparison gives true or false, and/or/not combine them, and parentheses are the cheapest way to avoid memorising precedence."
+    },
+    {
       "type": "closing",
       "lines": [
         "A boolean expression written clearly is one that explains your intention by itself.",

@@ -13,10 +13,18 @@
     "The program reports an error at compile time for a loop with no exit condition"
   ],
   "diagram": [
-    { "label": "Check the condition before each round" },
-    { "label": "If true, run the inner block" },
-    { "label": "Update the variable to move towards stopping" },
-    { "label": "If false, exit and carry on below" }
+    {
+      "label": "Check the condition before each round"
+    },
+    {
+      "label": "If true, run the inner block"
+    },
+    {
+      "label": "Update the variable to move towards stopping"
+    },
+    {
+      "label": "If false, exit and carry on below"
+    }
   ],
   "realWorldExample": {
     "company": "Processing a data file",
@@ -103,29 +111,77 @@
     "secondary": "Then write a loop that totals a list and run it on an empty list. The result should be zero, not an error."
   },
   "sections": [
-    { "type": "lead", "text": "This is where a computer genuinely outclasses a person. Not because it is cleverer, but because it repeats one job ten thousand times with exactly the accuracy of the first round, in under a second, and does it identically again next month." },
-    { "type": "heading", "text": "Two kinds of loop, and how to choose" },
-    { "type": "comparison",
-      "left": { "label": "for - the set is known in advance", "text": "Visit every element of a list, or run across a given range of numbers. The number of rounds is settled the moment it starts, so there is almost no risk of running forever." },
-      "right": { "label": "while - only a stopping condition", "text": "Read until the file ends, retry until it succeeds, wait until the user types quit. The count is not known in advance, so this is where the risk of running forever lives." }
+    {
+      "type": "lead",
+      "text": "This is where a computer genuinely outclasses a person. Not because it is cleverer, but because it repeats one job ten thousand times with exactly the accuracy of the first round, in under a second, and does it identically again next month."
     },
-    { "type": "callout", "label": "A rule for every while loop", "text": "Once you have written it, point at the exact line that moves the condition towards stopping. If you cannot point at one, you have just written an infinite loop. The compiler will not catch it, because it cannot know in advance whether the condition changes - that is only settled at runtime." },
+    {
+      "type": "heading",
+      "text": "Two kinds of loop, and how to choose"
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "for - the set is known in advance",
+        "text": "Visit every element of a list, or run across a given range of numbers. The number of rounds is settled the moment it starts, so there is almost no risk of running forever."
+      },
+      "right": {
+        "label": "while - only a stopping condition",
+        "text": "Read until the file ends, retry until it succeeds, wait until the user types quit. The count is not known in advance, so this is where the risk of running forever lives."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "A rule for every while loop",
+      "text": "Once you have written it, point at the exact line that moves the condition towards stopping. If you cannot point at one, you have just written an infinite loop. The compiler will not catch it, because it cannot know in advance whether the condition changes - that is only settled at runtime."
+    },
     {
       "type": "code",
       "caption": "Point at the commented line: that is what moves the condition toward stopping. Delete it and run - the runner stops the infinite loop after a few seconds.",
       "code": "users = 1000\nmonths = 0\nwhile users < 2000:\n    users = users * 1.1   # this line moves the loop toward its exit\n    months = months + 1\nprint(\"Months to double:\", months)"
     },
-    { "type": "heading", "text": "The off-by-one error" },
-    { "type": "paragraph", "text": "This one is common enough to have its own name in the trade. The root is that indexes in most languages start at zero, so the last element of a five-element list sits at position four rather than five. Using less-than or less-than-or-equal in the stopping condition decides whether you visit them all, miss one, or run past the end of the list." },
-    { "type": "paragraph", "text": "The way to avoid this family of bugs entirely is to use the syntax that iterates elements directly rather than managing an index yourself. Nearly every modern language has it, and it should be your default; go back to managing indexes only when you genuinely need the position." },
-    { "type": "heading", "text": "Three more things to remember" },
-    { "type": "conceptTable", "title": "Common, and commonly confused", "concepts": [
-      { "en": "break", "def": "Leave the loop immediately. Often used once you have found what you were after." },
-      { "en": "continue", "def": "Skip the rest of the current round and move on to the next one." },
-      { "en": "Nested loop", "def": "The counts multiply: two loops of a thousand rounds give a million passes." },
-      { "en": "Mutation while iterating", "def": "Removing an element midway shifts the later ones up and they get skipped." }
-    ]},
-    { "type": "paragraph", "text": "That last point is worth stressing because it is silent: delete the element at position three and the fourth shifts down into position three, while the loop has already advanced its index to four. The shifted element is passed over, no error is reported, and you only notice when you check the result against something. Build a new list rather than editing in place." },
+    {
+      "type": "heading",
+      "text": "The off-by-one error"
+    },
+    {
+      "type": "paragraph",
+      "text": "This one is common enough to have its own name in the trade. The root is that indexes in most languages start at zero, so the last element of a five-element list sits at position four rather than five. Using less-than or less-than-or-equal in the stopping condition decides whether you visit them all, miss one, or run past the end of the list."
+    },
+    {
+      "type": "paragraph",
+      "text": "The way to avoid this family of bugs entirely is to use the syntax that iterates elements directly rather than managing an index yourself. Nearly every modern language has it, and it should be your default; go back to managing indexes only when you genuinely need the position."
+    },
+    {
+      "type": "heading",
+      "text": "Three more things to remember"
+    },
+    {
+      "type": "conceptTable",
+      "title": "Common, and commonly confused",
+      "concepts": [
+        {
+          "en": "break",
+          "def": "Leave the loop immediately. Often used once you have found what you were after."
+        },
+        {
+          "en": "continue",
+          "def": "Skip the rest of the current round and move on to the next one."
+        },
+        {
+          "en": "Nested loop",
+          "def": "The counts multiply: two loops of a thousand rounds give a million passes."
+        },
+        {
+          "en": "Mutation while iterating",
+          "def": "Removing an element midway shifts the later ones up and they get skipped."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "That last point is worth stressing because it is silent: delete the element at position three and the fourth shifts down into position three, while the loop has already advanced its index to four. The shifted element is passed over, no error is reported, and you only notice when you check the result against something. Build a new list rather than editing in place."
+    },
     {
       "type": "exercise",
       "title": "The off-by-one error",
@@ -139,9 +195,33 @@
         "Keep a highest variable and update it whenever you see a bigger value."
       ]
     },
-    { "type": "closing", "lines": [
-      "A loop turns a full day of manual work into a piece of code that runs in a second and repeats forever.",
-      "Next is the thing you will loop over most: lists, your first data structure."
-    ]}
+    {
+      "type": "chart",
+      "title": "A while loop: how many months for users to double",
+      "caption": "Illustrative figures following the example in the lesson: start with 1,000 users, growing each month at the rate you choose. The line that crosses the 2,000 mark is where the loop condition stops being true. Drag the growth rate down to see the loop run for more iterations.",
+      "xLabel": "Month",
+      "yLabel": "Number of users",
+      "params": [
+        {
+          "label": "Monthly growth rate",
+          "unit": "%"
+        }
+      ],
+      "series": [
+        {
+          "label": "Number of users"
+        },
+        {
+          "label": "Stop line 2,000"
+        }
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A loop turns a full day of manual work into a piece of code that runs in a second and repeats forever.",
+        "Next is the thing you will loop over most: lists, your first data structure."
+      ]
+    }
   ]
 }

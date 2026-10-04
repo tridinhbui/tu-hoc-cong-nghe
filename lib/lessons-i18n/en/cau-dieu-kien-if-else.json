@@ -13,10 +13,18 @@
     "Two, because in the end a program only has a true road and a false one"
   ],
   "diagram": [
-    { "label": "Evaluate the condition expression" },
-    { "label": "If true, run the first block" },
-    { "label": "If false, run the other block" },
-    { "label": "The two roads meet and the program continues" }
+    {
+      "label": "Evaluate the condition expression"
+    },
+    {
+      "label": "If true, run the first block"
+    },
+    {
+      "label": "If false, run the other block"
+    },
+    {
+      "label": "The two roads meet and the program continues"
+    }
   ],
   "realWorldExample": {
     "company": "Every login screen",
@@ -103,30 +111,68 @@
     "secondary": "Then rewrite the same logic in the early-return style and compare the two. Whichever reads more easily is your answer for the rest of the course."
   },
   "sections": [
-    { "type": "lead", "text": "Up to now your program has run straight down from the top. A conditional is what gives it the ability to pick a road, and that is when it starts to have real behaviour. From here too, bugs begin appearing in the places you are not looking." },
-    { "type": "heading", "text": "The basic structure" },
-    { "type": "paragraph", "text": "A conditional takes a boolean expression - exactly what you learned last lesson - and runs one of two blocks. Exactly one block runs: never both and never neither. Afterwards the two roads meet and the program carries on as normal." },
-    { "type": "callout", "label": "A condition should always be boolean", "text": "Some languages have rules that treat a few other values as false inside a conditional - zero, the empty string, null. Convenient, but a source of surprises, so while you are learning write the comparison out explicitly rather than leaning on implicit conversion." },
+    {
+      "type": "lead",
+      "text": "Up to now your program has run straight down from the top. A conditional is what gives it the ability to pick a road, and that is when it starts to have real behaviour. From here too, bugs begin appearing in the places you are not looking."
+    },
+    {
+      "type": "heading",
+      "text": "The basic structure"
+    },
+    {
+      "type": "paragraph",
+      "text": "A conditional takes a boolean expression - exactly what you learned last lesson - and runs one of two blocks. Exactly one block runs: never both and never neither. Afterwards the two roads meet and the program carries on as normal."
+    },
+    {
+      "type": "callout",
+      "label": "A condition should always be boolean",
+      "text": "Some languages have rules that treat a few other values as false inside a conditional - zero, the empty string, null. Convenient, but a source of surprises, so while you are learning write the comparison out explicitly rather than leaning on implicit conversion."
+    },
     {
       "type": "code",
       "caption": "Python uses indentation to know which lines belong to which branch - misaligned indentation is a syntax error. Change score and run again to walk through each branch.",
       "code": "score = 7.5\n\nif score >= 8:\n    print(\"Excellent\")\nelif score >= 6.5:\n    print(\"Good\")\nelse:\n    print(\"Needs work\")"
     },
-    { "type": "heading", "text": "Why deep nesting is a bad sign" },
-    { "type": "paragraph", "text": "Each level of nesting doubles the path count. Two levels give four paths, three give eight, four give sixteen. The number grows faster than anyone's ability to hold them all in mind, so in practice the author tries one or two - and the rest are where the bugs sit waiting." },
-    { "type": "comparison",
-      "left": { "label": "Deeply nested", "text": "Validity checked on the outside, then permissions inside that, and only then the main handling, indented three levels in. The most important part is buried the deepest." },
-      "right": { "label": "Early return", "text": "Each invalid case checked at the top of the function and exited at once. The main work sits at the outermost level, and the reader sees every constraint from a glance at the first few lines." }
+    {
+      "type": "heading",
+      "text": "Why deep nesting is a bad sign"
     },
-    { "type": "heading", "text": "Edge cases are where bugs live" },
-    { "type": "paragraph", "text": "The ordinary case is the one you think of while writing and test right after. What gets forgotten are the values at the edges, and they account for most of the real bugs in shipped software." },
-    { "type": "list", "items": [
-      "A value exactly at the threshold: above 8 does not include 8 itself.",
-      "An empty list: the loop never runs, and a total divided by the element count is a division by zero.",
-      "A null value: calling an operation on it usually stops the program outright.",
-      "Negative numbers and zero, wherever you quietly assumed the value is always positive."
-    ]},
-    { "type": "paragraph", "text": "A habit worth forming in your first week: every time you write a comparison with a threshold, ask yourself where the value exactly at that threshold should go. The question costs five seconds and it blocks the class of bug that takes the most hours to track down." },
+    {
+      "type": "paragraph",
+      "text": "Each level of nesting doubles the path count. Two levels give four paths, three give eight, four give sixteen. The number grows faster than anyone's ability to hold them all in mind, so in practice the author tries one or two - and the rest are where the bugs sit waiting."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Deeply nested",
+        "text": "Validity checked on the outside, then permissions inside that, and only then the main handling, indented three levels in. The most important part is buried the deepest."
+      },
+      "right": {
+        "label": "Early return",
+        "text": "Each invalid case checked at the top of the function and exited at once. The main work sits at the outermost level, and the reader sees every constraint from a glance at the first few lines."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "Edge cases are where bugs live"
+    },
+    {
+      "type": "paragraph",
+      "text": "The ordinary case is the one you think of while writing and test right after. What gets forgotten are the values at the edges, and they account for most of the real bugs in shipped software."
+    },
+    {
+      "type": "list",
+      "items": [
+        "A value exactly at the threshold: above 8 does not include 8 itself.",
+        "An empty list: the loop never runs, and a total divided by the element count is a division by zero.",
+        "A null value: calling an operation on it usually stops the program outright.",
+        "Negative numbers and zero, wherever you quietly assumed the value is always positive."
+      ]
+    },
+    {
+      "type": "paragraph",
+      "text": "A habit worth forming in your first week: every time you write a comparison with a threshold, ask yourself where the value exactly at that threshold should go. The question costs five seconds and it blocks the class of bug that takes the most hours to track down."
+    },
     {
       "type": "exercise",
       "title": "Two boundary cases",
@@ -139,9 +185,42 @@
         "> means strictly greater; >= means greater than or equal."
       ]
     },
-    { "type": "closing", "lines": [
-      "A branching program means a program with many roads, and every road you did not try is a road nobody has checked.",
-      "Next is the other half of control flow: loops, and how one never ends if you forget a single line."
-    ]}
+    {
+      "type": "chart",
+      "title": "The number of paths doubles with every level of nested conditions",
+      "caption": "Theoretical: each if/else has two branches, so the maximum number of paths is 2 to the power of the number of levels. Not measured from a real program, only an illustration of why deep nesting is hard to test.",
+      "xLabel": "Levels of nested conditions",
+      "yLabel": "Maximum number of paths",
+      "data": [
+        {
+          "label": "1 level"
+        },
+        {
+          "label": "2 levels"
+        },
+        {
+          "label": "3 levels"
+        },
+        {
+          "label": "4 levels"
+        },
+        {
+          "label": "5 levels"
+        },
+        {
+          "label": "6 levels"
+        }
+      ],
+      "seriesLabels": [
+        "Number of paths"
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A branching program means a program with many roads, and every road you did not try is a road nobody has checked.",
+        "Next is the other half of control flow: loops, and how one never ends if you forget a single line."
+      ]
+    }
   ]
 }
