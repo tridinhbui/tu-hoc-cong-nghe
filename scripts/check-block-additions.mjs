@@ -91,7 +91,10 @@ for (const [slug, blocks] of Object.entries(record)) {
   const simNew = blocks.filter((x) => x.type === "sim").length;
   if (simNew > 0 && simBefore + simNew > 1) err(slug, `bài sẽ có ${simBefore + simNew} khối sim (đã có ${simBefore}) - tối đa 1`);
   if (path.basename(file).startsWith("q")) {
-    if (blocks.some((x) => x.type !== "sim")) err(slug, "tệp qNN chỉ được chứa khối sim");
+    // ALLOW_TEACHING=1 (q06): được kèm đoạn dạy ngắn (heading/paragraph/list/callout) đứng
+    // trước khối sim, cho bài mà kho CHƯA dạy chủ đề của nhiệm vụ.
+    const onlySim = (x) => x.type === "sim" || (process.env.ALLOW_TEACHING && CONNECTIVE.has(x.type));
+    if (blocks.some((x) => !onlySim(x))) err(slug, "tệp qNN chỉ được chứa khối sim");
     if (!process.env.ALLOW_TRANSLATED && existsSync(path.join(root, "lib/lessons-i18n/en", `${slug}.json`))) err(slug, "bài đã có bản dịch tiếng Anh - bỏ qua (khối thêm làm lệch bản dịch)");
   }
 
