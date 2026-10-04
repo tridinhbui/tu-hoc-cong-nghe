@@ -5,7 +5,7 @@ import CoCoSays from "@/components/CoCoSays";
 import ExercisePracticeCard from "@/components/ExercisePracticeCard";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, CalendarDays, CheckCircle2, Compass, Flame, HelpCircle, ListChecks } from "lucide-react";
+import { ArrowLeft, ArrowRight, CalendarDays, CheckCircle2, Compass, Flame, HelpCircle, ListChecks, Sparkles } from "lucide-react";
 import { getDashboardGreetingAction } from "@/app/(app)/dashboard/actions";
 import { saveLearningPathPrefs } from "@/app/(app)/lo-trinh/actions";
 import { getLessonShortTitle } from "@/lib/lesson-labels";
@@ -21,7 +21,7 @@ import {
 } from "@/lib/learning-pace";
 import { format, intlLocale } from "@/lib/i18n";
 import type { StageTopicId } from "@/lib/stage-topics";
-import { Sys, panel, btnPrimary, textLink } from "@/components/ui/system";
+import { IconTile, Sys, panel, panelFocus, btnPrimary, textLink } from "@/components/ui/system";
 
 /** Mã định vị mono ở đầu trang: chính đường dẫn của route, không phải nhãn dịch. */
 const ROUTE_CODE = "THCN://APP/LO-TRINH";
@@ -218,6 +218,23 @@ export default function LearningPathClient({
           ))}
         </div>
       </nav>
+
+      {/* Lối vào trang hướng dẫn: đứng trên cả câu trả lời "mỗi ngày bao lâu"
+          vì người mới cần biết MỘT BÀI HỌC TRÔNG RA SAO trước khi quan tâm tới
+          nhịp học. Một dải mỏng, không phải một khối - xem /lo-trinh/huong-dan. */}
+      <Link href="/lo-trinh/huong-dan" className={`${panelFocus} group flex items-center gap-3 p-3.5 transition-colors hover:border-accent`}>
+        <IconTile className="h-10 w-10">
+          <Sparkles className="h-5 w-5" strokeWidth={2.1} />
+        </IconTile>
+        <span className="min-w-0 flex-1">
+          <span className="block text-sm font-black leading-snug text-ink-max">{p.guideTitle}</span>
+          <span className="block text-[13px] leading-5 text-ink-soft">{p.guideBody}</span>
+        </span>
+        <span className="inline-flex shrink-0 items-center gap-1 text-sm font-bold text-accent-strong">
+          <span className="hidden sm:inline">{p.guideOpen}</span>
+          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden />
+        </span>
+      </Link>
 
       {/* Câu trả lời trước tiên: mỗi ngày 10-15 phút, và hôm nay là bài này. */}
       <section className={`${panel} grid gap-3 p-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-center`}>

@@ -44,6 +44,7 @@ import { lessonCodeVi, lessonCodeEn } from "./lesson-code";
 import { lessonBlockSimVi, lessonBlockSimEn } from "./lesson-block-sim";
 import { lessonBlockPracticeVi, lessonBlockPracticeEn } from "./lesson-block-practice";
 import { lessonBlockVisualVi, lessonBlockVisualEn } from "./lesson-block-visual";
+import { startGuideVi, startGuideEn } from "./start-guide";
 import { dashboardCardsVi, dashboardCardsEn } from "./dashboard-cards";
 import { toolSimsVi, toolSimsEn } from "./tool-sims";
 import { toolTerminalVi, toolTerminalEn } from "./tool-terminal";
@@ -119,6 +120,7 @@ export const viSections = {
   ...lessonBlockSimVi,
   ...lessonBlockPracticeVi,
   ...lessonBlockVisualVi,
+  ...startGuideVi,
   ...dashboardCardsVi,
   ...toolSimsVi,
   ...toolTerminalVi,
@@ -196,6 +198,7 @@ export const enSections: typeof viSections = {
   ...lessonBlockSimEn,
   ...lessonBlockPracticeEn,
   ...lessonBlockVisualEn,
+  ...startGuideEn,
   ...dashboardCardsEn,
   ...toolSimsEn,
   ...toolTerminalEn,
