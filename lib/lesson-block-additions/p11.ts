@@ -61,44 +61,6 @@ export const P11_ADDITIONS: Record<string, LessonSectionBlock[]> = {
     },
   ],
 
-  "neu-da-bi-lua-lam-gi": [
-    {
-      type: "aiLab",
-      mode: "spotError",
-      title: "Soát bản hướng dẫn 'giờ đầu tiên' do AI soạn",
-      task: "Một chatbot soạn hướng dẫn cho người vừa chuyển tiền cho kẻ lừa đảo. Bấm vào các câu có thể làm hại người đang hoảng, rồi nộp.",
-      segments: [
-        { text: "Việc đầu tiên là gọi ngân hàng ngay, báo giao dịch bị lừa đảo và đề nghị hỗ trợ." },
-        {
-          text: "Trước khi gọi, hãy xoá cuộc trò chuyện với kẻ lừa đi để bớt xấu hổ và đỡ nhìn lại.",
-          error: "Tin nhắn, số tài khoản nhận, ảnh chụp màn hình và biên lai là bằng chứng. Xoá đi là tự làm yếu hồ sơ trình báo.",
-        },
-        { text: "Chụp màn hình tin nhắn, số tài khoản nhận và biên lai rồi cất ở nơi an toàn." },
-        {
-          text: "Cứ chờ một hai ngày cho bình tĩnh rồi mới gọi ngân hàng, vì gọi sớm hay muộn cũng như nhau.",
-          error: "Khả năng can thiệp vào dòng tiền giảm theo từng giờ vì tiền thường được chuyển tiếp ngay sau khi nhận. Gọi ngân hàng phải là việc đầu tiên.",
-        },
-        { text: "Mang hồ sơ đã giữ tới trình báo cơ quan chức năng." },
-        {
-          text: "Nếu có dịch vụ nhắn tin nhận lấy lại tiền cho bạn và chỉ cần ứng trước một khoản phí, hãy cân nhắc nhận vì họ có nghiệp vụ.",
-          error: "Đây là vòng lừa thứ hai nhắm vào người vừa mất tiền. Không dịch vụ tư nhân nào lấy lại được khoản đã chuyển, và phí ứng trước chỉ làm khoản mất lớn thêm.",
-        },
-        { text: "Đổi mật khẩu nếu thông tin đăng nhập có thể đã lộ, bắt đầu từ email." },
-      ],
-    },
-    {
-      type: "flow",
-      title: "Giờ đầu tiên, theo đúng thứ tự",
-      steps: [
-        { label: "Gọi ngân hàng", detail: "Báo giao dịch bị lừa đảo và đề nghị hỗ trợ. Chỉ bước này can thiệp được vào dòng tiền, nên nó đứng đầu và không được chờ." },
-        { label: "Giữ nguyên bằng chứng", detail: "Tin nhắn, số tài khoản nhận, ảnh chụp màn hình, biên lai. Chụp và cất trước khi chặn hay xoá bất cứ thứ gì." },
-        { label: "Trình báo cơ quan chức năng", detail: "Mang theo toàn bộ hồ sơ đã giữ. Người tiếp nhận làm việc nhanh hơn nhiều khi có sẵn số tài khoản và thời điểm chuyển." },
-        { label: "Đổi mật khẩu từ email", detail: "Nếu thông tin đăng nhập có thể đã lộ, đổi email trước vì mọi dịch vụ khác đặt lại mật khẩu qua nó." },
-        { label: "Từ chối 'dịch vụ thu hồi tiền'", detail: "Lời đề nghị giúp lấy lại tiền kèm phí ứng trước thường xuất hiện sau đó. Đừng trả, và nếu nhận được thì nói với ngân hàng." },
-      ],
-    },
-  ],
-
   "quy-tac-an-toan-cho-ca-nha": [
     {
       type: "scenario",
