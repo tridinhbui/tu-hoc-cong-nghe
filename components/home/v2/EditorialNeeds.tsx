@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
@@ -9,6 +10,32 @@ import { INK, Mono, PAPER, RULE } from "@/components/home/v2/kit";
 /** Bốn lối cho người chưa biết gì - cùng bốn lối "Hợp cho người mới" của
  *  MissionPicker trên /lo-trinh, theo cùng thứ tự. */
 const STARTER_FLOWS: FlowId[] = ["ai-assistant", "website", "data-ai", "ai-marketing"];
+
+export const NEEDS_SECTION_ID = "bat-dau";
+
+/** Cuộn tới khu "Bắt đầu từ việc bạn muốn làm" bằng mã, không dựa vào hành vi
+ *  mặc định của liên kết `#`. Nút "Bắt đầu học miễn phí" ở đầu trang từng là một
+ *  <Link href="#bat-dau"> trần và có người báo bấm không có gì xảy ra: liên kết
+ *  neo hỏng im lặng ở Safari và ở trình duyệt nhúng của Zalo/Facebook (nơi người
+ *  Việt hay mở link chia sẻ), và không có lỗi nào để thấy. scrollIntoView thì
+ *  chạy ở mọi nơi đó. */
+export function scrollToNeeds(smooth = true) {
+  const el = document.getElementById(NEEDS_SECTION_ID);
+  if (!el) return false;
+  // Cuộn mượt cần khung hình: ở tab nền, chế độ tiết kiệm pin hay một số
+  // trình duyệt nhúng nó khởi động rồi đứng yên (đo được: tab ẩn, scrollY mắc
+  // ở 0 sau 2,5 giây trong khi cuộn tức thì tới ngay). Nên chỉ cuộn mượt khi
+  // trang đang hiển thị, và luôn kiểm lại: nếu sau khi lẽ ra đã tới mà khu vẫn
+  // chưa nằm gần mép trên thì nhảy thẳng.
+  const animate = smooth && document.visibilityState === "visible";
+  el.scrollIntoView({ behavior: animate ? "smooth" : "auto", block: "start" });
+  if (animate) {
+    window.setTimeout(() => {
+      if (Math.abs(el.getBoundingClientRect().top) > 120) el.scrollIntoView({ behavior: "auto", block: "start" });
+    }, 1100);
+  }
+  return true;
+}
 
 /**
  * "Bắt đầu từ việc bạn muốn làm" - tờ đứng ngay dưới hero.
@@ -27,11 +54,20 @@ const STARTER_FLOWS: FlowId[] = ["ai-assistant", "website", "data-ai", "ai-marke
  */
 export function EditorialNeeds() {
   const { t } = useI18n();
+
+  /* Mở thẳng /#bat-dau: trình duyệt cuộn tới neo ngay lúc tải, TRƯỚC khi trang
+     hiện hết (chữ giải mã, phông chữ nạp xong làm bố cục dời chỗ) nên có thể
+     đáp sai chỗ hoặc bị huỷ. Cuộn lại một lần sau khi bố cục ổn định. */
+  useEffect(() => {
+    if (window.location.hash !== `#${NEEDS_SECTION_ID}`) return;
+    const id = window.setTimeout(() => scrollToNeeds(false), 350);
+    return () => window.clearTimeout(id);
+  }, []);
   const f = t.learningFlows;
   const g = t.revampGoals;
 
   return (
-    <section id="bat-dau" data-dbg="section#needs" className={`scroll-mt-16 border-b-2 ${RULE} ${PAPER} ${INK}`}>
+    <section id={NEEDS_SECTION_ID} data-dbg="section#needs" className={`scroll-mt-16 border-b-2 ${RULE} ${PAPER} ${INK}`}>
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
         <div className="grid items-end gap-4 lg:grid-cols-12">
           <div className="lg:col-span-8">

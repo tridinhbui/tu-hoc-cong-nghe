@@ -9,6 +9,7 @@ import { format } from "@/lib/i18n";
 import { XP_PER_LESSON } from "@/lib/levels";
 import LiveNumber from "@/components/LiveNumber";
 import { Scramble, TypeText, useInViewOnce } from "@/components/ui/effects";
+import { scrollToNeeds } from "@/components/home/v2/EditorialNeeds";
 import { BAND, Crosshair, ID, INK, Mono, PAPER, RULE, SheetHead, Stamp, useCrosshair } from "@/components/home/v2/kit";
 
 /* ───────────────────────── HERO ───────────────────────── */
@@ -141,13 +142,21 @@ export function EditorialHero({
                   mở form đăng ký: người mới được thử một bài trước, và thẻ cuối
                   bài mới là chỗ mời tạo tài khoản để lưu tiến độ. Đăng ký vẫn
                   ở nút "Vào học ngay" trên thanh điều hướng. */}
-              <Link
+              <a
                 href="#bat-dau"
+                onClick={(e) => {
+                  // Có JS thì tự cuộn (và cập nhật địa chỉ); không có JS thì
+                  // vẫn là liên kết neo bình thường.
+                  if (scrollToNeeds(!reduce)) {
+                    e.preventDefault();
+                    window.history.replaceState(null, "", "#bat-dau");
+                  }
+                }}
                 className="thcn-glitch group inline-flex items-center gap-3 bg-brand-600 px-6 py-4 text-[15px] font-black uppercase tracking-wide text-white transition-colors hover:bg-[#0d0e11] dark:hover:bg-brand-400 dark:hover:text-[#0d0e11]"
               >
                 {v.ctaPrimary}
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Link>
+              </a>
               <a
                 href={previewHref}
                 className={`inline-flex items-center gap-2 border-2 ${RULE} px-5 py-[14px] text-[14px] font-bold transition-colors hover:bg-[#0d0e11] hover:text-[#eeebe3] dark:hover:bg-[#eeebe3] dark:hover:text-[#0d0e11]`}
