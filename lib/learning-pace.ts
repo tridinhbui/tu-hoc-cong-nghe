@@ -25,7 +25,7 @@ export const PACE_KEY = "thtcdn_path_pace";
  *  rồi 12 khi 116 bài có thêm khối mô phỏng (tính thời gian làm nhiệm vụ).
  *  Khi test đỏ ở đây, hãy đo lại phân bố trước khi kết luận có gì đó hỏng - rất
  *  có thể chỉ là một lô bài mới vừa đi qua ranh giới. */
-export const MEDIAN_LESSON_MINUTES = 12;
+export const MEDIAN_LESSON_MINUTES = 13;
 
 export interface Pace {
   perDay: 1 | 2;

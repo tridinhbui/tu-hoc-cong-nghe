@@ -98,6 +98,14 @@ for (const [slug, blocks] of Object.entries(record)) {
     if (!process.env.ALLOW_TRANSLATED && existsSync(path.join(root, "lib/lessons-i18n/en", `${slug}.json`))) err(slug, "bài đã có bản dịch tiếng Anh - bỏ qua (khối thêm làm lệch bản dịch)");
   }
 
+  // Đợt rNN: đúng MỘT khối mô phỏng (sim | aiLab | scenario) cho bài chưa có loại nào.
+  if (path.basename(file).startsWith("r")) {
+    const SIMLIKE = new Set(["sim", "aiLab", "scenario"]);
+    if ((lesson.sections ?? []).some((x) => SIMLIKE.has(x.type))) err(slug, "bài đã có khối mô phỏng (sim/aiLab/scenario) - không thuộc đợt này");
+    if (blocks.length !== 1 || !SIMLIKE.has(blocks[0].type)) err(slug, "tệp rNN: mỗi bài đúng MỘT khối, thuộc sim | aiLab | scenario");
+    if (!process.env.ALLOW_TRANSLATED && existsSync(path.join(root, "lib/lessons-i18n/en", `${slug}.json`))) err(slug, "bài đã có bản dịch tiếng Anh - để đợt dịch riêng (ALLOW_TRANSLATED=1)");
+  }
+
   const before = countBlockKinds(lesson.sections);
   const after = countBlockKinds([...(lesson.sections ?? []), ...blocks]);
   if (before.practice === 0 && after.practice === 0) err(slug, "bài đang thiếu thực hành (exercise/sim/aiLab/scenario) mà đợt này không thêm");

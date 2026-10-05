@@ -194,6 +194,49 @@
       ]
     },
     {
+      "type": "scenario",
+      "title": "A fifteen-hour weekly study plan",
+      "nodes": {
+        "s": {
+          "text": "Counting on your calendar you find about 15 free hours a week and plan to split them into a 15-hour study plan. A fellow learner says to measure first. What do you do?",
+          "choices": [
+            {
+              "label": "Still plan 15 hours, the calendar clearly shows that many free hours"
+            },
+            {
+              "label": "Log one line each evening: how long uninterrupted, what time, what interrupted, for two weeks"
+            },
+            {
+              "label": "Build a detailed log in thirty-minute slots for the whole week"
+            }
+          ]
+        },
+        "a": {
+          "text": "In week one you manage 6 hours, in week two 5. You conclude you are lazy, when the figure of 15 never existed in the first place."
+        },
+        "c": {
+          "text": "The detailed log is too heavy and you drop it after three days, and three days of data is useless. A rough measurement completed beats a detailed one abandoned."
+        },
+        "b": {
+          "text": "After two weeks the log shows only about 7 hours are usable: Monday to Thursday evenings have about 60 uninterrupted minutes, and weekends get eaten by urgent tasks. What next?",
+          "choices": [
+            {
+              "label": "Plan for 7 hours, placing deep work in the longest block"
+            },
+            {
+              "label": "Try to fill the full 15 hours by studying in every gap during the day"
+            }
+          ]
+        },
+        "d": {
+          "text": "The plan rests on usable hours so you finish it, and after a few weeks you have enough data to try stretching it. You started from the real number."
+        },
+        "e": {
+          "text": "Fifteen-minute gaps are not enough to get into flow on work that needs focus. You sit longer and progress less, and then abandon the plan."
+        }
+      }
+    },
+    {
       "type": "closing",
       "lines": [
         "Without measuring, every plan is a wish with a schedule attached.",

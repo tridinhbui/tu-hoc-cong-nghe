@@ -114,6 +114,49 @@
       ]
     },
     {
+      "type": "scenario",
+      "title": "The plan that went wrong in March",
+      "nodes": {
+        "s": {
+          "text": "At the start of the year the team set a fixed budget. By March, usage jumps past the assumption. The finance lead says to keep the plan unchanged for easy comparison. What do you propose?",
+          "choices": [
+            {
+              "label": "Keep the plan, then trim reserves and reduce backups to hit the committed number"
+            },
+            {
+              "label": "Update assumptions with actuals, re-forecast the rest, record the changed assumptions"
+            },
+            {
+              "label": "Lower the target so the gap is smaller and the quarter-end report looks good"
+            }
+          ]
+        },
+        "a": {
+          "text": "A committed number competes with every other goal and wins. Spare capacity and backup frequency get cut because nobody measures them, and a November incident exposes the cost."
+        },
+        "c": {
+          "text": "A lower target hides the gap but does not explain why usage beat the assumption. Next quarter the same cause surprises you again."
+        },
+        "b": {
+          "text": "The new forecast shows the year overrunning by about 12%, and the list of changed assumptions shows the team tends to underestimate growth. The director asks why it deviated. How do you answer?",
+          "choices": [
+            {
+              "label": "The gap is information: which assumption was wrong, and how we adjust"
+            },
+            {
+              "label": "Apologise, next time the forecast will be more accurate and will not deviate"
+            }
+          ]
+        },
+        "d": {
+          "text": "A gap is not treated as a violation, so forecasters keep telling the truth. After six months the changed-assumption list shows where the team errs, which a fixed plan never gives you."
+        },
+        "e": {
+          "text": "An apology teaches everyone that deviation is blame. Next time forecasters hide gaps or pad the numbers, and the forecast loses all value."
+        }
+      }
+    },
+    {
       "type": "closing",
       "lines": [
         "A plan is something to be updated, not something to be defended.",

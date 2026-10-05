@@ -119,6 +119,49 @@
       ]
     },
     {
+      "type": "scenario",
+      "title": "The test with five times the load that passed",
+      "nodes": {
+        "s": {
+          "text": "The team ran a test at five times normal load and the system held, so it was declared safe. Three weeks later a partner service slowed but did not die and the whole system went down. What do you add to the test?",
+          "choices": [
+            {
+              "label": "Rerun the test at ten times load instead of five times as before"
+            },
+            {
+              "label": "A scenario where a dependency slows but does not die, with recovery time measured"
+            },
+            {
+              "label": "Stop testing, since tests never foresee real incidents"
+            }
+          ]
+        },
+        "a": {
+          "text": "Ten times is still multiplication, and still has no slow dependency. The system passes spectacularly and collapses exactly as before when the partner slows."
+        },
+        "c": {
+          "text": "Not testing guarantees meeting that kind of incident again with no idea how to handle it. You swap an incomplete test for no test at all."
+        },
+        "b": {
+          "text": "The new test shows every request waiting on the slow dependency, threads held until exhausted. The system does not recover on its own when the dependency recovers. What do you fix first?",
+          "choices": [
+            {
+              "label": "Set short timeouts, break the circuit, check it recovers on its own"
+            },
+            {
+              "label": "Raise the number of worker threads until the test runs through without errors"
+            }
+          ]
+        },
+        "d": {
+          "text": "A slow dependency now degrades just one feature, and the system serves normally again when it recovers. You schedule the test weekly because the system's shape changes with each release."
+        },
+        "e": {
+          "text": "More threads only delay exhaustion. Next time the dependency stays slow a bit longer and the system still collapses, using more memory on the way."
+        }
+      }
+    },
+    {
       "type": "closing",
       "lines": [
         "Real incidents rarely have the shape of normal traffic multiplied up.",

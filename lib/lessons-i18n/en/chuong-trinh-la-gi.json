@@ -228,6 +228,55 @@
       ]
     },
     {
+      "type": "scenario",
+      "title": "Two kinds of wrong, one afternoon",
+      "nodes": {
+        "s": {
+          "text": "You wrote a script that computes a price after discount. The moment you run it, the screen reports a syntax error on line 12 and prints nothing else. What do you do first?",
+          "choices": [
+            {
+              "label": "Run it a few more times to see if the error goes away"
+            },
+            {
+              "label": "Read line 12 and the line just above it"
+            },
+            {
+              "label": "Delete the file and rewrite it from scratch to be safe"
+            }
+          ]
+        },
+        "a": {
+          "text": "A syntax error is about form, not luck: however many times you run it, the machine stops at the same place. Ten minutes later you are looking at the same message."
+        },
+        "c": {
+          "text": "The rewrite forgets a bracket somewhere else, because you never understood where the old error was. The afternoon is gone and the root cause is untouched."
+        },
+        "b": {
+          "text": "Line 11 is missing a closing bracket, and the machine only noticed when it reached line 12. You add it, run again, and the program prints a result: an order of 100 with a 10% discount gives 90, while you meant to show the discount itself. No error message at all. What do you conclude?",
+          "choices": [
+            {
+              "label": "No error shown means the program is right, send it to the client"
+            },
+            {
+              "label": "The machine added wrong, try again on another machine"
+            },
+            {
+              "label": "The machine did exactly what I wrote, so I must reread my formula"
+            }
+          ]
+        },
+        "d": {
+          "text": "The client receives a wrong discount on every order. Logic errors never announce themselves, so it sits there until a person reads the result and finds it odd."
+        },
+        "e": {
+          "text": "The other machine prints the same number, because both follow your text letter by letter. You suspect the hardware while the bug is in your formula."
+        },
+        "g": {
+          "text": "You see the formula subtracts the discount instead of returning it. One line changed, it prints 10. You also note the difference: the machine points at syntax errors, but only you can find logic errors."
+        }
+      }
+    },
+    {
       "type": "closing",
       "lines": [
         "The chain source code - translator - machine instructions - process is the map for locating every error you meet later.",

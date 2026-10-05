@@ -110,6 +110,49 @@
       ]
     },
     {
+      "type": "scenario",
+      "title": "Twelve services that stopped in one night",
+      "nodes": {
+        "s": {
+          "text": "The company split its system into twelve services so they would fail independently. Last night eleven stopped together, because the identity service that every part calls slowed down. Where do you start reviewing the design?",
+          "choices": [
+            {
+              "label": "List what is shared: base services, infrastructure, libraries, on-call people"
+            },
+            {
+              "label": "Merge all twelve services into a single block for simplicity and easier management"
+            },
+            {
+              "label": "Adding machines to the identity service is enough to stop it slowing"
+            }
+          ]
+        },
+        "b": {
+          "text": "In one big block everything is still shared, and now releases are shared too. You lose independent deployment without removing any dependency."
+        },
+        "c": {
+          "text": "The identity service handles more load, but the next time it slows for a different reason, eleven services stop again. You treated one cause and left the dependency untouched."
+        },
+        "a": {
+          "text": "The list shows all twelve services call one identity service, sit in one region, and only three people are on call. Independence existed only on the diagram. Which source do you handle first?",
+          "choices": [
+            {
+              "label": "Let each service keep a cached copy so it continues when identity slows"
+            },
+            {
+              "label": "Write more documentation on how to call the identity service for other teams"
+            }
+          ]
+        },
+        "d": {
+          "text": "When identity slows, each service still serves users who are already signed in. The split now truly isolates a shared failure."
+        },
+        "e": {
+          "text": "Clearer documents do not make the identity service any less shared. The next slowdown still stops eleven services, only now everyone understands why."
+        }
+      }
+    },
+    {
       "type": "closing",
       "lines": [
         "Risk falls through independence, not through the number of pieces.",

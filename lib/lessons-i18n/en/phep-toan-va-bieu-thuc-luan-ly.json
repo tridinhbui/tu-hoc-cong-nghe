@@ -228,6 +228,49 @@
       "oneLiner": "Each comparison gives true or false, and/or/not combine them, and parentheses are the cheapest way to avoid memorising precedence."
     },
     {
+      "type": "scenario",
+      "title": "The member discount condition",
+      "nodes": {
+        "s": {
+          "text": "The rule is: discount if the customer is a member AND the order is at least 500k, OR if it is a promo day. A colleague wrote: is_member or order >= 500 and is_promo. A non-member orders 600k on a non-promo day. What happens?",
+          "choices": [
+            {
+              "label": "No discount, which matches the rule"
+            },
+            {
+              "label": "No discount, but only by chance: the expression is wrong"
+            },
+            {
+              "label": "Discount, because the order exceeds 500k so the second condition is met"
+            }
+          ]
+        },
+        "a": {
+          "text": "You nod because this example matches and ship it. The next day a member buys 100k on a promo day and the expression gives the wrong answer for another case. One matching example does not prove an expression right."
+        },
+        "c": {
+          "text": "Here and is evaluated first: order >= 500 and is_promo is false, is_member is false, so the result is false. You guessed the result wrong, so you cannot see the expression drifts from the rule."
+        },
+        "b": {
+          "text": "Right. and binds before or, so the expression reads: is a member, OR (order at least 500 AND promo day). You want it to match the rule. What do you do?",
+          "choices": [
+            {
+              "label": "Add explicit brackets and split the parts into named variables"
+            },
+            {
+              "label": "Reorder the parts until one example comes out right"
+            }
+          ]
+        },
+        "d": {
+          "text": "You write member_ok = is_member and order >= 500, then discount = member_ok or is_promo. Later readers understand at once, and you test all four combinations to be sure."
+        },
+        "e": {
+          "text": "One example comes out right but the precedence is still off, so a member with a small order on an ordinary day is wrong. You fixed to an example rather than to the rule."
+        }
+      }
+    },
+    {
       "type": "closing",
       "lines": [
         "A boolean expression written clearly is one that explains your intention by itself.",

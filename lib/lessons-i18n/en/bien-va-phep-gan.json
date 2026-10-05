@@ -214,6 +214,49 @@
       "oneLiner": "Reassigning a variable peels the sticker onto a different value; it does not pour something new into the old box."
     },
     {
+      "type": "scenario",
+      "title": "The price list that changed on its own",
+      "nodes": {
+        "s": {
+          "text": "You write gia_goc = 100, then gia_giam = gia_goc, and later add 50 to gia_goc for a price rise. When you print, what is gia_giam and how should you think about it?",
+          "choices": [
+            {
+              "label": "150, because gia_giam follows gia_goc like a spreadsheet formula"
+            },
+            {
+              "label": "100, because assignment copied the value at that line, once"
+            },
+            {
+              "label": "An error, because two variables cannot point to the same value"
+            }
+          ]
+        },
+        "a": {
+          "text": "You keep coding on that belief and quote the client a discounted price of 150. Assignment is not a live link: gia_giam took 100 at the assignment line and stayed there."
+        },
+        "c": {
+          "text": "The program raises no error at all, because several names pointing to one value is perfectly normal. You hunt for an error that does not exist and miss the real one, the wrong number."
+        },
+        "b": {
+          "text": "Right, gia_giam is still 100. Now you want gia_giam to equal 90% of the new gia_goc, after the price rise. What do you do?",
+          "choices": [
+            {
+              "label": "Assign gia_giam = gia_goc * 0.9 again after gia_goc changes"
+            },
+            {
+              "label": "Only edit gia_goc, since gia_giam will update itself to follow it"
+            }
+          ]
+        },
+        "d": {
+          "text": "You recompute at the moment you need it: gia_giam comes out as 135, matching the new price of 150. Whenever the base price changes, you know to assign that line again."
+        },
+        "e": {
+          "text": "gia_giam keeps the old price, so the month-end price table is off for every item. You are waiting for an update that assignment never performs."
+        }
+      }
+    },
+    {
       "type": "closing",
       "lines": [
         "A variable is a name attached to a value, and assignment moves that attachment at the line you write.",

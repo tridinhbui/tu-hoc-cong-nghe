@@ -216,6 +216,49 @@
       ]
     },
     {
+      "type": "scenario",
+      "title": "Grading: deep nesting or early return",
+      "nodes": {
+        "s": {
+          "text": "You inherit an order-handling function: if valid, inside it if authorised, inside it if in stock, and only then the main work indented three levels. You must add an address check. What do you do?",
+          "choices": [
+            {
+              "label": "Add a fourth if level for the address check, inside the third"
+            },
+            {
+              "label": "Split into separate checks at the top, returning early"
+            },
+            {
+              "label": "Merge all conditions into one very long, hard-to-read and line"
+            }
+          ]
+        },
+        "a": {
+          "text": "Four levels mean sixteen paths, and nobody can think through them all. Next week an out-of-stock order is processed anyway, because an else branch sits on the wrong level."
+        },
+        "c": {
+          "text": "The long line is correct, but when an order is rejected you cannot tell which condition caused it. The log only says invalid."
+        },
+        "b": {
+          "text": "Each check is one short line and the main work sits at the margin. Now you test the function at the boundary: the quantity ordered equals the quantity in stock. Which condition is right?",
+          "choices": [
+            {
+              "label": "Reject if quantity >= stock"
+            },
+            {
+              "label": "Reject if quantity > stock"
+            }
+          ]
+        },
+        "d": {
+          "text": "A customer ordering exactly what is left is wrongly refused, and the stock just sits there. The boundary is where greater-than and greater-or-equal differ."
+        },
+        "e": {
+          "text": "An order equal to stock is accepted and one item over is rejected. You add both boundary cases to the tests so the comparison is not changed by mistake later."
+        }
+      }
+    },
+    {
       "type": "closing",
       "lines": [
         "A branching program means a program with many roads, and every road you did not try is a road nobody has checked.",

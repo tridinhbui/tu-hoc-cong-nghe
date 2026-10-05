@@ -114,6 +114,49 @@
       ]
     },
     {
+      "type": "scenario",
+      "title": "The 80% capacity alert and the growth rate",
+      "nodes": {
+        "s": {
+          "text": "The team's dashboard only shows incident count, last month's cost and recorded error rate. Storage is at 62% and you want to add an alert. Where do you set it?",
+          "choices": [
+            {
+              "label": "Alert at 80% capacity, like every other team"
+            },
+            {
+              "label": "Alert on the growth rate, with the projected full date"
+            },
+            {
+              "label": "Add nothing, the dashboard already has enough indicators"
+            }
+          ]
+        },
+        "a": {
+          "text": "The time from 80% to full depends entirely on the growth rate: it might be three months, it might be two days. The alert fires but you cannot tell whether you have time."
+        },
+        "c": {
+          "text": "All three indicators lag: they only turn red after the fact. The disk fills one late-month night, and next month's incident count is what records it."
+        },
+        "b": {
+          "text": "The alert shows growth of 4 percentage points a week, so about nine weeks to full. But it fired twice before with nothing happening, and someone asks why the team keeps raising false alarms. How do you respond?",
+          "choices": [
+            {
+              "label": "Use leading indicators to act, lagging ones to check the action"
+            },
+            {
+              "label": "Switch off the leading alert and return to lagging ones for peace of mind, no more questions"
+            }
+          ]
+        },
+        "d": {
+          "text": "The team clears old data early because of the trajectory, and next quarter's lagging error rate confirms the action worked. The two kinds of indicator complement each other instead of replacing each other."
+        },
+        "e": {
+          "text": "Nobody is questioned about false alarms any more, and nobody sees the disk filling until it is full. The team has peace right up to the incident."
+        }
+      }
+    },
+    {
       "type": "closing",
       "lines": [
         "A leading indicator is always a derivative or a signal from upstream.",

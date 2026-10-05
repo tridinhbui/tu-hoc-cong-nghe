@@ -115,6 +115,49 @@
       ]
     },
     {
+      "type": "scenario",
+      "title": "The service scoring 82 that just had a four-hour incident",
+      "nodes": {
+        "s": {
+          "text": "The health dashboard gives the photo storage service an overall 82, among the best. This morning it caused a four-hour incident. The boss asks why a high score still failed. What do you check first?",
+          "choices": [
+            {
+              "label": "Where the 82 comes from: each pillar and its weight"
+            },
+            {
+              "label": "Lower the service's score to match the incident that just happened"
+            },
+            {
+              "label": "Trust the overall score and treat the incident as a rare exception"
+            }
+          ]
+        },
+        "b": {
+          "text": "An arbitrary deduction based on feeling passes through no measurable variable. Next time you cannot explain why exactly that many points, and the team objects."
+        },
+        "c": {
+          "text": "The overall score keeps showing green until the next incident. You use one number as the answer when it has hidden what it merged."
+        },
+        "a": {
+          "text": "The service scores high on resource efficiency and user experience, but test coverage is very low, so a weighting tilted to saving pushed it up. Tilt the weights to operations and this same service falls to the bottom. What do you do?",
+          "choices": [
+            {
+              "label": "Show all three pillars, state the weights, adjust through measurable variables"
+            },
+            {
+              "label": "Keep only one overall cell for brevity and drop each pillar's detail"
+            }
+          ]
+        },
+        "d": {
+          "text": "Looking at the dashboard, everyone sees test coverage dragging the score, and the team knows what to fix. The combined score becomes the start of a question instead of the answer."
+        },
+        "e": {
+          "text": "The cell is tidy but leaves no trail: looking at 82 you cannot tell what to fix. Next time another service looks good on the board and fails in real life."
+        }
+      }
+    },
+    {
       "type": "closing",
       "lines": [
         "A combined score is not a measurement, it is an opinion about what counts.",

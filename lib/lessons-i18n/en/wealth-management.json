@@ -114,6 +114,49 @@
       ]
     },
     {
+      "type": "scenario",
+      "title": "An internal platform used by 100% of teams, praised by none",
+      "nodes": {
+        "s": {
+          "text": "Eight teams, five of them required to use your internal platform, so adoption reads 100%. Feedback is all private grumbling, nobody says it openly. Your boss asks how you measure success.",
+          "choices": [
+            {
+              "label": "Report 100% adoption and ask for more people to build more features"
+            },
+            {
+              "label": "Look at the three unmandated teams: did they come on their own and stay"
+            },
+            {
+              "label": "Send a satisfaction survey to all eight teams, mandated ones included"
+            }
+          ]
+        },
+        "a": {
+          "text": "The 100% hides the only signal that says whether the platform is useful. Six months later two teams quietly build their own and you only learn when they ask to leave."
+        },
+        "c": {
+          "text": "The five mandated teams answer safely, since negative replies might be held against them. Satisfaction scores look high for the wrong reason and you do not know what to fix."
+        },
+        "b": {
+          "text": "Of the three free-choice teams, one tried it and left because setup took three days. This is concrete feedback, because they have a reason to want it better. What do you prioritise next?",
+          "choices": [
+            {
+              "label": "Shorten the time from first try to first run, and make leaving easy"
+            },
+            {
+              "label": "Add more features so teams have no reason at all to leave"
+            }
+          ]
+        },
+        "d": {
+          "text": "Setup time falls to half a day, and because leaving is easy other teams dare to try. Two teams come on their own the next quarter."
+        },
+        "e": {
+          "text": "New features do not fix three days of setup. The team that left does not return, and the platform gets heavier and harder to maintain."
+        }
+      }
+    },
+    {
       "type": "closing",
       "lines": [
         "An internal platform is a product, and its failures are product failures.",

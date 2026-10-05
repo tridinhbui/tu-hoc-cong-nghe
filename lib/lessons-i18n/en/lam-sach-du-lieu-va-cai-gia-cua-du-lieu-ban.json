@@ -215,6 +215,30 @@
       "oneLiner": "Deleting or filling blanks means choosing an assumption about the people who did not answer, and a flag column is the only way to keep the fact that they stayed silent."
     },
     {
+      "type": "aiLab",
+      "title": "A draft note on cleaning survey data",
+      "task": "An AI tool drafted a note on cleaning a survey with 20% of rows missing income. Click the sentences that are wrong according to the lesson, then submit.",
+      "segments": [
+        {
+          "text": "Before handling missing rows, ask whether they are missing at random or systematically."
+        },
+        {
+          "text": "Deleting every row with missing income is the safest way because it does not skew the data.",
+          "error": "Deleting rows is only right when data is missing completely at random. People who leave income blank rarely do so randomly, so deleting can remove a whole group."
+        },
+        {
+          "text": "Filling missing cells with the mean reduces spread and assumes the gaps are random."
+        },
+        {
+          "text": "A column mixing rates written as 0.15 and 15 will be caught at once by the data type check because the two forms differ.",
+          "error": "Both are valid numbers, so they pass every type check. The only way to spot it is to look at the distribution and ask whether the values make sense in their units."
+        },
+        {
+          "text": "Record each cleaning step instead of editing the raw data directly, so the result can be audited."
+        }
+      ]
+    },
+    {
       "type": "closing",
       "lines": [
         "Every cleaning decision is an assumption about the real world. Write it down.",

@@ -230,6 +230,30 @@
       ]
     },
     {
+      "type": "aiLab",
+      "title": "An AI tool's draft explaining data types",
+      "task": "An AI tool drafted a note for beginners about data types. Click the sentences that are wrong according to what the lesson just taught, then submit.",
+      "segments": [
+        {
+          "text": "Data read from an input box or a text file always arrives as a string."
+        },
+        {
+          "text": "So \"25\" + \"1\" gives 26, just like adding two numbers.",
+          "error": "On strings, plus joins text, so \"25\" + \"1\" gives \"251\". To add numbers you convert first, for example int(\"25\") + 1."
+        },
+        {
+          "text": "Integers are exact, so they suit counting and storing money."
+        },
+        {
+          "text": "Floats are also exact, so 0.1 + 0.2 always equals exactly 0.3.",
+          "error": "Floats are stored as binary approximations, so 0.1 + 0.2 gives 0.30000000000000004. Do not compare floats with equals; check whether the difference is below a threshold."
+        },
+        {
+          "text": "Explicit conversion beats letting the language guess, because a guess can be wrong without any warning."
+        }
+      ]
+    },
+    {
       "type": "closing",
       "lines": [
         "Types are not red tape. They are how the machine knows what a plus sign between two values ought to mean.",

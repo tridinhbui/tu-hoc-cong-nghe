@@ -117,6 +117,49 @@
       ]
     },
     {
+      "type": "scenario",
+      "title": "Twelve services peaking at midnight",
+      "nodes": {
+        "s": {
+          "text": "The team pooled twelve services' reserves into one shared pool, smaller than the sum of the separate reserves. At midnight every scheduled job runs together, all twelve peak at once and the pool runs dry. What do you do?",
+          "choices": [
+            {
+              "label": "Give each service its own reserve again, as before pooling"
+            },
+            {
+              "label": "Spread scheduled jobs over a window, instead of all at midnight"
+            },
+            {
+              "label": "Buy shared capacity to match the sum of all the peaks added together"
+            }
+          ]
+        },
+        "a": {
+          "text": "Each service again holds enough for its own peak, and that sits idle most of the day. You give up a large saving because of one fixable cause."
+        },
+        "c": {
+          "text": "Buying for the sum of the peaks wipes out the point of pooling. The saving disappears while the cause was a default run time."
+        },
+        "b": {
+          "text": "Jobs interleave between midnight and 3 a.m., the peak drops sharply and the pool is enough. Then you see a notification blast also makes all twelve services rise together. What do you prepare for when the pool runs dry?",
+          "choices": [
+            {
+              "label": "A written priority rule: which service gets capacity first when the pool is empty"
+            },
+            {
+              "label": "Let services compete, and whichever is faster wins"
+            }
+          ]
+        },
+        "d": {
+          "text": "The order is decided before it runs dry, while calm, so when the blast arrives payments are protected and background reports wait. The saving from pooling remains."
+        },
+        "e": {
+          "text": "Payments slow down at the same time as background reports because they fight over one pool. A decision that should have existed beforehand gets made mid-incident."
+        }
+      }
+    },
+    {
       "type": "closing",
       "lines": [
         "Pooling saves exactly as much as the peaks fail to coincide.",

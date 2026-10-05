@@ -176,6 +176,49 @@
       ]
     },
     {
+      "type": "scenario",
+      "title": "Three months after the course and remembering nothing",
+      "nodes": {
+        "s": {
+          "text": "You just finished a section on networking and want to retain it. You have two weekend hours to review. How do you spend them?",
+          "choices": [
+            {
+              "label": "Reread the notes, rewatch the videos, highlight a few more important passages"
+            },
+            {
+              "label": "Close every resource, write down what you recall, then rebuild something small"
+            },
+            {
+              "label": "Cram all two hours tonight while everything is still fresh in your head"
+            }
+          ]
+        },
+        "a": {
+          "text": "Everything looks familiar so you feel you understand. Two weeks later, facing a blank page, you cannot write a single command, because rereading only trains recognition."
+        },
+        "c": {
+          "text": "Cramming straight after learning leaves everything intact, so each retrieval is easy. You get a good feeling and a short memory, then forget it all the following week."
+        },
+        "b": {
+          "text": "The recall session is uncomfortable and slow, and you discover you forgot how to split subnets. You write the gaps down and schedule a review. Which schedule makes sense?",
+          "choices": [
+            {
+              "label": "Review after two days, then a week, then a month, widening gaps"
+            },
+            {
+              "label": "Review every day for the first week to be sure, then stop reviewing"
+            }
+          ]
+        },
+        "d": {
+          "text": "Each retrieval is a bit hard because you have started to forget, and that difficulty is what makes memory durable. Three months later you rebuild subnetting without opening a reference."
+        },
+        "e": {
+          "text": "A tightly packed week makes every attempt easy and leaves little lasting. By next month most is forgotten, and you have no schedule left for review."
+        }
+      }
+    },
+    {
       "type": "closing",
       "lines": [
         "Learning faster means nothing if what falls away speeds up to match.",

@@ -181,6 +181,49 @@
       ]
     },
     {
+      "type": "scenario",
+      "title": "A twenty-minute data test with no mouse allowed",
+      "nodes": {
+        "s": {
+          "text": "You are given an unfamiliar 5000-row sheet and 20 minutes to scan it, find errors and build a summary. The mouse is disabled. What do you do first?",
+          "choices": [
+            {
+              "label": "Scroll down with the arrow keys and read row by row, one at a time"
+            },
+            {
+              "label": "Go to the first cell, select the region with Ctrl + Shift + arrow, look at the edges"
+            },
+            {
+              "label": "Merge the header cells so it is easier to see"
+            }
+          ]
+        },
+        "a": {
+          "text": "Five thousand rows by single arrows eats almost all the time, and you read without knowing where to look. Only 5 minutes remain when you start the summary."
+        },
+        "c": {
+          "text": "Merged cells break selection, sorting and dragged formulas. You spend extra time unpicking them while the clock keeps running."
+        },
+        "b": {
+          "text": "In seconds you see two blank columns in the middle and one column off by a row. Now you check a formula, pressing F2 to enter the cell. Then you need to fill the formula down while locking the price column. What do you use?",
+          "choices": [
+            {
+              "label": "F4 to toggle the reference style while editing the formula"
+            },
+            {
+              "label": "Type dollar signs by hand into each cell across the table's two thousand rows"
+            }
+          ]
+        },
+        "d": {
+          "text": "One formula is written and dragged through the column, each row holding one kind of logic so nothing breaks. You finish early with time left to review."
+        },
+        "e": {
+          "text": "Typing two thousand cells by hand is slow and error-prone, and one missed lock makes the whole summary wrong. Operating speed is exactly what this test grades."
+        }
+      }
+    },
+    {
       "type": "closing",
       "lines": [
         "Nobody looks up shortcuts during a test. The operations have to live in your hands, not in your head.",

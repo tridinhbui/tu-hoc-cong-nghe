@@ -180,6 +180,49 @@
       ]
     },
     {
+      "type": "scenario",
+      "title": "Revenue totals off after grouping",
+      "nodes": {
+        "s": {
+          "text": "You load the orders table into a DataFrame, group by city and sum the amounts. The number is higher than accounting's report. The table has both paid and refunded orders. What do you check?",
+          "choices": [
+            {
+              "label": "The order of operations: filter paid first, group afterwards"
+            },
+            {
+              "label": "Drop the status column to keep the table lean, since all orders are alike"
+            },
+            {
+              "label": "Reread everything in a spreadsheet to reconcile with accounting's report"
+            }
+          ]
+        },
+        "b": {
+          "text": "The table is lean but there is no longer any way to tell refunds from paid orders, so the figure is still off and now has no clues."
+        },
+        "c": {
+          "text": "A spreadsheet opens three hundred thousand rows but slowly, and you still filter by hand, with nobody able to rerun it later. You abandon the main strength of the DataFrame."
+        },
+        "a": {
+          "text": "Filtering paid first and grouping gives accounting's figure. Then you join the orders table with the customers table by ID, and the row count rises from 40000 to 52000. What happened?",
+          "choices": [
+            {
+              "label": "Customer IDs are duplicated in the other table, so each order multiplies into several rows"
+            },
+            {
+              "label": "The DataFrame adds rows on its own when the two tables have different row counts"
+            }
+          ]
+        },
+        "d": {
+          "text": "The join multiplies silently, and a spreadsheet would never warn you. You check key uniqueness before joining and the row count stays at 40000."
+        },
+        "e": {
+          "text": "A DataFrame adds nothing on its own. You blame the tool while the join inflates the totals, and the report sent out is 30% above reality."
+        }
+      }
+    },
+    {
       "type": "closing",
       "lines": [
         "A data table in code is not a faster spreadsheet; it is a different way of thinking about the same table.",

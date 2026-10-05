@@ -178,6 +178,30 @@
       ]
     },
     {
+      "type": "aiLab",
+      "title": "A draft review of a loan-approval model",
+      "task": "An AI tool drafted comments on a loan-approval model that dropped the ethnicity column. Click the sentences that are wrong according to the lesson, then submit.",
+      "segments": [
+        {
+          "text": "The model reaches 92% overall accuracy on the full test set."
+        },
+        {
+          "text": "Because the ethnicity column was removed, the model is certainly not biased by ethnicity.",
+          "error": "Proxy variables such as postal code, school name or gaps in employment still carry ethnic boundaries, so removing the sensitive column is not enough."
+        },
+        {
+          "text": "Accuracy should be split by group, because the overall figure can hide one group being refused far more often."
+        },
+        {
+          "text": "A model trained on past lending data is automatically neutral, because data only reflects objective truth.",
+          "error": "Data carries how it was collected, how it was sampled and past decisions, so a model can reproduce the very unfairness it learned from."
+        },
+        {
+          "text": "An automated decision system needs to explain why an application was refused."
+        }
+      ]
+    },
+    {
       "type": "closing",
       "lines": [
         "A number is not neutral. It carries with it how it was collected, how the sample was chosen, and the past decisions that produced it.",

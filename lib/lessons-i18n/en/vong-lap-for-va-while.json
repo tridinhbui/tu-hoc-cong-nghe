@@ -217,6 +217,49 @@
       ]
     },
     {
+      "type": "scenario",
+      "title": "The loop that never ended on a Friday afternoon",
+      "nodes": {
+        "s": {
+          "text": "A reminder script uses while remaining > 0 to send each mail, but you forgot to decrease remaining after sending. The fan roars and customers receive hundreds of identical mails. What is your first move?",
+          "choices": [
+            {
+              "label": "Stop the process, then find the line that moves the condition toward stopping"
+            },
+            {
+              "label": "Let it run, it will probably finish by itself when the work runs out"
+            },
+            {
+              "label": "Add a one-second pause between sends to ease the load"
+            }
+          ]
+        },
+        "b": {
+          "text": "A while loop with no way to stop never finishes. By evening thousands of mails are out and the provider locks your sending account."
+        },
+        "c": {
+          "text": "The machine runs cooler but customers still get repeated mails, just slower. You treated the load symptom and left the infinite loop alone."
+        },
+        "a": {
+          "text": "You add remaining = remaining - 1 after each send. Then you think about avoiding this class of bug: the recipient list already exists, so you could walk its items. What do you choose?",
+          "choices": [
+            {
+              "label": "Switch to for person in recipient_list"
+            },
+            {
+              "label": "Keep while but count the index yourself and stop when it equals the length"
+            }
+          ]
+        },
+        "d": {
+          "text": "The number of repeats is fixed at the start, so the loop cannot run forever and there is no room for an off-by-one error."
+        },
+        "e": {
+          "text": "The index is incremented after a continue statement, so one branch never increments it and the loop hangs again. You reopened the exact door of the infinite loop and the off-by-one error."
+        }
+      }
+    },
+    {
       "type": "closing",
       "lines": [
         "A loop turns a full day of manual work into a piece of code that runs in a second and repeats forever.",

@@ -208,6 +208,49 @@
       ]
     },
     {
+      "type": "scenario",
+      "title": "Two carts, one list",
+      "nodes": {
+        "s": {
+          "text": "You write cart_a = [\"pen\", \"notebook\"], then cart_b = cart_a for a second customer, then add \"ruler\" to cart_b. The first customer complains about an item they never chose. The cause?",
+          "choices": [
+            {
+              "label": "Two names point to one list, so editing through either changes both"
+            },
+            {
+              "label": "Lists automatically sync with every other variable of equal value in the program"
+            },
+            {
+              "label": "The server mixed up the two customers' data while processing in parallel"
+            }
+          ]
+        },
+        "b": {
+          "text": "Lists have no sync mechanism; you write extra code to prevent something that does not exist. The bug stays because the real cause is one list with two names."
+        },
+        "c": {
+          "text": "You open a ticket for the infrastructure team and lose a day. They reply that the data was not mixed: the bug is in your own assignment line."
+        },
+        "a": {
+          "text": "Right. With compound data, assignment copies the pointer, not the data. You need a separate cart per customer. Each cart also holds a nested list of notes per item. Which kind of copy do you use?",
+          "choices": [
+            {
+              "label": "A shallow copy with .copy(), since the outer list is already a new one"
+            },
+            {
+              "label": "A deep copy, so the nested notes become independent too"
+            }
+          ]
+        },
+        "d": {
+          "text": "The outer list is new, but the inner notes lists are still shared. The second customer edits a note and the first customer's note changes too."
+        },
+        "e": {
+          "text": "Each cart is fully independent, including the inside. You accept the extra copying cost because correctness matters more than a few microseconds."
+        }
+      }
+    },
+    {
       "type": "closing",
       "lines": [
         "A list suits you when order means something and you need to walk everything. When the question is 'is this value in there', a set is the better choice.",

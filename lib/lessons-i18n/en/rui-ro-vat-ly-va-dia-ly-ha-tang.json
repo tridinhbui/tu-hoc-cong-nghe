@@ -111,6 +111,49 @@
       ]
     },
     {
+      "type": "scenario",
+      "title": "Three availability zones in one city",
+      "nodes": {
+        "s": {
+          "text": "The system runs in three availability zones and the team is confident it survives two zones failing. All three sit in one city, fed by one regional substation. A long heatwave is coming. What do you ask?",
+          "choices": [
+            {
+              "label": "How many zones there are, since three zones are usually considered safe enough"
+            },
+            {
+              "label": "How much one event within a 50 km radius would stop"
+            },
+            {
+              "label": "What percentage of load each zone carries, and whether it is even across the three"
+            }
+          ]
+        },
+        "a": {
+          "text": "Three zones isolate a fault in one building, not city-wide power and heat. All three degrade together and the two-failure design never gets used."
+        },
+        "c": {
+          "text": "Even load is good information, but it says nothing about all three zones sharing one power source. You have a neat figure for a question nobody asked."
+        },
+        "b": {
+          "text": "The answer is all three: no zone lies outside that radius. A physical outage has no rollback button; you wait for power to return. What do you propose?",
+          "choices": [
+            {
+              "label": "Place a replica on another grid and cable route, far enough away"
+            },
+            {
+              "label": "Add a fourth zone in the same city, for even thicker redundancy"
+            }
+          ]
+        },
+        "d": {
+          "text": "Real redundancy here differs from redundancy on a diagram: one weather event can no longer stop the whole system. The team also records the recovery time of a physical scenario in its plan."
+        },
+        "e": {
+          "text": "The fourth zone shares the same substation. When the heat cuts regional power, four zones stop together and cost rises while risk stays the same."
+        }
+      }
+    },
+    {
       "type": "closing",
       "lines": [
         "A physical event turns incidents that would have been independent into one incident.",

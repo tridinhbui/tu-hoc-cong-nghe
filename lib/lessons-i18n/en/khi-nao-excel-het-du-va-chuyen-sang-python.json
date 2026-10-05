@@ -185,6 +185,49 @@
       ]
     },
     {
+      "type": "scenario",
+      "title": "A 300,000-row table used once",
+      "nodes": {
+        "s": {
+          "text": "The boss hands you a 300,000-row table and asks one question to answer today. After that the table gets discarded. What do you use?",
+          "choices": [
+            {
+              "label": "Write a Python script right away because the table is big"
+            },
+            {
+              "label": "Use the spreadsheet, since it is a one-off and you need to see each cell"
+            },
+            {
+              "label": "Ask for a week to build an automated pipeline"
+            }
+          ]
+        },
+        "a": {
+          "text": "The script works but you spend two hours on a one-off question, and the boss cannot read the code to check the figure."
+        },
+        "c": {
+          "text": "An automated pipeline for a task that will not repeat is effort stored for a future that never comes. The boss needs the answer today, not next week."
+        },
+        "b": {
+          "text": "You answer within a session. Two weeks later the boss says: redo it every month, from three sources with different date formats. What do you think now?",
+          "choices": [
+            {
+              "label": "Keep pasting by hand every month, since Excel can still open all three tables and everyone is used to it"
+            },
+            {
+              "label": "Repetition is the main criterion: script handles the data, spreadsheet handles the model"
+            }
+          ]
+        },
+        "d": {
+          "text": "Every month a chain of manual steps that nobody can rerun and nobody can audit. In the fourth month one date format is read backwards and the report is wrong."
+        },
+        "e": {
+          "text": "The script can be rerun and leaves a trail; the spreadsheet remains where people view and edit the model. The right question is not Excel or Python, but how many more times this will repeat."
+        }
+      }
+    },
+    {
       "type": "closing",
       "lines": [
         "The right question is not Excel or Python, but how many more times am I going to do this.",

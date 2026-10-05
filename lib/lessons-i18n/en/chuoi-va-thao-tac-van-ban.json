@@ -225,6 +225,49 @@
       ]
     },
     {
+      "type": "scenario",
+      "title": "The customer who typed the right name and found no account",
+      "nodes": {
+        "s": {
+          "text": "A customer types \"  Nguyen Van An \" in the search box while the system stores \"nguyen van an\". The == comparison gives False and the customer reports no account found. Where do you fix it?",
+          "choices": [
+            {
+              "label": "Trim spaces and lowercase both sides before comparing"
+            },
+            {
+              "label": "Tell the customer to retype it, since names must match character by character"
+            },
+            {
+              "label": "Store an extra copy of the name in the customer's capitalisation"
+            }
+          ]
+        },
+        "b": {
+          "text": "The customer gives up after the second retype, since on screen they cannot see any difference between the two strings. The bug is a stray space the eye cannot see."
+        },
+        "c": {
+          "text": "Every customer's way of typing adds another record. A month later the table has duplicate rows and some people still cannot be found."
+        },
+        "a": {
+          "text": "Search works at once. You write one normalising function and use it in every search box. Now another spot: promo codes are 8 characters, and you slice the first 8 of a string. Names with accented letters come out garbled after slicing. How do you handle it?",
+          "choices": [
+            {
+              "label": "Slice by characters, not bytes, then test accented names"
+            },
+            {
+              "label": "Strip accents from every name before saving, to avoid display bugs later"
+            }
+          ]
+        },
+        "d": {
+          "text": "Slicing by characters keeps accented letters whole, and both places work. You add a few accented names to the tests so the next such bug shows itself."
+        },
+        "e": {
+          "text": "Customer names lose their accents on invoices and two different people become one name. You fixed the symptom by damaging the original data."
+        }
+      }
+    },
+    {
       "type": "closing",
       "lines": [
         "Strings look simple but they take up most of the real work, and they are where two different classes of bug both hide.",

@@ -184,6 +184,49 @@
       ]
     },
     {
+      "type": "scenario",
+      "title": "Renewal revenue off plan at quarter end",
+      "nodes": {
+        "s": {
+          "text": "Renewal revenue = paying users x plan price x renewal rate. At quarter end actual is 6% below plan. Last year's plan was built as old revenue times 1.1. How do you analyse it?",
+          "choices": [
+            {
+              "label": "Just say revenue is 6% short and suggest adding 12% next year"
+            },
+            {
+              "label": "Split into the three factors and see which one deviated from plan"
+            },
+            {
+              "label": "Add twelve more factors for a more detailed model"
+            }
+          ]
+        },
+        "a": {
+          "text": "A single lump only says it deviated, not why. Next year it deviates again because the real cause was never touched."
+        },
+        "c": {
+          "text": "Fifteen factors look rigorous, but each one is an assumption that could be wrong. When results deviate you again cannot say which one to suspect."
+        },
+        "b": {
+          "text": "Paying users match plan, price matches, but the renewal rate is 6 points lower. You choose a driver to track. Which fits?",
+          "choices": [
+            {
+              "label": "The renewal rate, since the team can influence it and measure it monthly"
+            },
+            {
+              "label": "Competitor pricing, since it affects the renewal rate the most"
+            }
+          ]
+        },
+        "d": {
+          "text": "The factor has an owner and a measure, so next month you see early if it slips. Variance analysis now points at the right place instead of starting from guesses."
+        },
+        "e": {
+          "text": "Nobody in the organisation can change competitor pricing, so no action attaches to it. The model gains a nice number that helps nobody do anything."
+        }
+      }
+    },
+    {
       "type": "closing",
       "lines": [
         "A good budget is not one that guesses right, it is one that can explain why it guessed wrong.",

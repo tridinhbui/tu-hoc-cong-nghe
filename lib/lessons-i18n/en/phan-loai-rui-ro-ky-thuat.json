@@ -106,6 +106,49 @@
       ]
     },
     {
+      "type": "scenario",
+      "title": "The date bug, fourth time around",
+      "nodes": {
+        "s": {
+          "text": "Four times in six months your code broke on odd dates from a partner service. Each time you fixed the exact failing line. A fifth is coming. Which risk group does this belong to?",
+          "choices": [
+            {
+              "label": "Code risk, since the break sits right inside our own code"
+            },
+            {
+              "label": "Dependency risk, since the source of the failure sits outside the team"
+            },
+            {
+              "label": "Operational risk, since the error shows up while running for real"
+            }
+          ]
+        },
+        "a": {
+          "text": "You add another check at the failing spot. Six weeks later the partner switches to another format and the error appears elsewhere. Fixing symptoms does not change how likely it is to recur."
+        },
+        "c": {
+          "text": "You add alerts and on-call staff. The incidents still happen exactly as before, just noticed a little sooner."
+        },
+        "b": {
+          "text": "The group-splitting question: if everything outside stood still, would this still happen? No, so this is dependency risk. What is the tool for this group?",
+          "choices": [
+            {
+              "label": "Pin the format, validate the data contract at the boundary, keep a fallback"
+            },
+            {
+              "label": "Write more unit tests for the date-handling function, including odd formats"
+            }
+          ]
+        },
+        "d": {
+          "text": "Odd data is stopped at the boundary with a clear alert on its origin. Changes from the partner no longer slip into the code, and the chance of repetition has really dropped."
+        },
+        "e": {
+          "text": "Tests only protect the formats you already know. The partner moves to a new one and the tests stay green while production breaks again."
+        }
+      }
+    },
+    {
       "type": "closing",
       "lines": [
         "The name picks the tool, and the tool decides whether it happens again.",

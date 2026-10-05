@@ -200,6 +200,49 @@
       ]
     },
     {
+      "type": "scenario",
+      "title": "Every channel improved yet the total worsened",
+      "nodes": {
+        "s": {
+          "text": "Last year overall retention was 35%: referral 50%, advertising 20%, 100 people each. This year referral rose to 55% with 20 people, advertising to 25% with 180, and the overall rate fell to 27%. The boss asks if the product got worse. What do you say?",
+          "choices": [
+            {
+              "label": "Yes, the overall figure fell so the product retains worse than last year"
+            },
+            {
+              "label": "No: both groups improved, the mix shifted toward the lower group"
+            },
+            {
+              "label": "There is not enough data to say anything about the product across these two years"
+            }
+          ]
+        },
+        "a": {
+          "text": "You pause a referral channel that is doing well to fix a problem that is not there. The average has hidden that every subgroup improved."
+        },
+        "c": {
+          "text": "The data is enough to say: the table already has both groups and both years. You hide from the analysis behind lack of data."
+        },
+        "b": {
+          "text": "This is Simpson's paradox: no arithmetic is wrong, only the question. The overall number answers how many of this year's customers stay, not whether the product retains better. How do you present it?",
+          "choices": [
+            {
+              "label": "A cohort table by channel and month, same age, with each share"
+            },
+            {
+              "label": "A single weighted-average figure for both years"
+            }
+          ]
+        },
+        "d": {
+          "text": "The boss sees at once that both channels rose and why the overall fell, then asks where to put budget. The table opens the right discussion instead of a false worry."
+        },
+        "e": {
+          "text": "A single figure merges everything again and loses the information you just found. Next quarter someone asks the same question again."
+        }
+      }
+    },
+    {
       "type": "closing",
       "lines": [
         "Before you trust an average, ask which groups it is averaging over.",

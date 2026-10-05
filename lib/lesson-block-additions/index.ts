@@ -52,6 +52,32 @@ import { Q04_ADDITIONS } from "./q04";
 import { Q05_ADDITIONS } from "./q05";
 import { Q06_ADDITIONS } from "./q06";
 import { Q07_ADDITIONS } from "./q07";
+import { R01_ADDITIONS } from "./r01";
+import { R02_ADDITIONS } from "./r02";
+import { R03_ADDITIONS } from "./r03";
+import { R04_ADDITIONS } from "./r04";
+import { R05_ADDITIONS } from "./r05";
+import { R06_ADDITIONS } from "./r06";
+import { R07_ADDITIONS } from "./r07";
+import { R08_ADDITIONS } from "./r08";
+import { R09_ADDITIONS } from "./r09";
+import { R10_ADDITIONS } from "./r10";
+import { R11_ADDITIONS } from "./r11";
+import { R12_ADDITIONS } from "./r12";
+import { R13_ADDITIONS } from "./r13";
+import { R14_ADDITIONS } from "./r14";
+import { R15_ADDITIONS } from "./r15";
+import { R16_ADDITIONS } from "./r16";
+import { R17_ADDITIONS } from "./r17";
+import { R18_ADDITIONS } from "./r18";
+import { R19_ADDITIONS } from "./r19";
+import { R20_ADDITIONS } from "./r20";
+import { R21_ADDITIONS } from "./r21";
+import { R22_ADDITIONS } from "./r22";
+import { R23_ADDITIONS } from "./r23";
+import { R24_ADDITIONS } from "./r24";
+import { R25_ADDITIONS } from "./r25";
+import { R26_ADDITIONS } from "./r26";
 
 /**
  * Khối THÊM vào bài đã có (KE-HOACH-1500-BAI.md: bài nào cũng có thực hành và
@@ -135,6 +161,32 @@ const SIM_FILES: Record<string, Record<string, LessonSectionBlock[]>> = {
   q05: Q05_ADDITIONS,
   q06: Q06_ADDITIONS,
   q07: Q07_ADDITIONS,
+  r01: R01_ADDITIONS,
+  r02: R02_ADDITIONS,
+  r03: R03_ADDITIONS,
+  r04: R04_ADDITIONS,
+  r05: R05_ADDITIONS,
+  r06: R06_ADDITIONS,
+  r07: R07_ADDITIONS,
+  r08: R08_ADDITIONS,
+  r09: R09_ADDITIONS,
+  r10: R10_ADDITIONS,
+  r11: R11_ADDITIONS,
+  r12: R12_ADDITIONS,
+  r13: R13_ADDITIONS,
+  r14: R14_ADDITIONS,
+  r15: R15_ADDITIONS,
+  r16: R16_ADDITIONS,
+  r17: R17_ADDITIONS,
+  r18: R18_ADDITIONS,
+  r19: R19_ADDITIONS,
+  r20: R20_ADDITIONS,
+  r21: R21_ADDITIONS,
+  r22: R22_ADDITIONS,
+  r23: R23_ADDITIONS,
+  r24: R24_ADDITIONS,
+  r25: R25_ADDITIONS,
+  r26: R26_ADDITIONS,
 };
 
 export const LESSON_BLOCK_ADDITIONS: Record<string, LessonSectionBlock[]> = (() => {

@@ -127,6 +127,49 @@
       "oneLiner": "Ask the system what percentage it can still serve when every borrowed part is gone, then list the quotas nobody has touched."
     },
     {
+      "type": "scenario",
+      "title": "The borrowed share of capacity",
+      "nodes": {
+        "s": {
+          "text": "The system serves 4000 requests per second at peak: 1500 on machines the team owns, 2500 on rented elastic capacity. The boss asks: are we safe? What do you ask first?",
+          "choices": [
+            {
+              "label": "Is the system slow today, and if not then we count as safe"
+            },
+            {
+              "label": "If the rented part disappeared, how much could the system still serve"
+            },
+            {
+              "label": "How many percent cheaper per month the rented part is than the owned part"
+            }
+          ]
+        },
+        "a": {
+          "text": "It is not slow today because nobody has touched the quota. Next week a surge hits the default account quota, and the system is not slowed gradually but cut off flatly."
+        },
+        "c": {
+          "text": "Cost is a fair question but not the safety question. You have a nice price comparison and still do not know what remains if the borrowed part is gone."
+        },
+        "b": {
+          "text": "1500 out of 4000 means about 38% remains when the borrowed part is gone. That turns a vague worry into a number. You also notice the account quota is at its default. What do you do?",
+          "choices": [
+            {
+              "label": "List every quota, raise those near the peak, add alerts"
+            },
+            {
+              "label": "Buy enough owned machines for 4000 requests immediately"
+            }
+          ]
+        },
+        "d": {
+          "text": "A quota is the worst kind of limit because it cuts off flatly at a default number. With quotas raised and alerts in place, the biggest risk is covered at small cost."
+        },
+        "e": {
+          "text": "Buying for 4000 gives up the benefit of elasticity, and you still do not know which quota is waiting to be hit. You pay a lot for half an answer."
+        }
+      }
+    },
+    {
       "type": "closing",
       "lines": [
         "The same amount of load does not mean the same condition.",

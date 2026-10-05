@@ -125,6 +125,49 @@
       ]
     },
     {
+      "type": "scenario",
+      "title": "Taking over a system from another organisation",
+      "nodes": {
+        "s": {
+          "text": "Your company takes over a system from another organisation. The last person who knows it well leaves in six weeks. The takeover plan focuses on the unfamiliar language and different architecture. What do you do first?",
+          "choices": [
+            {
+              "label": "Read all the source code to get familiar, and only then start asking the departing person"
+            },
+            {
+              "label": "Rebuild from a blank machine by hand, listing everything it calls out to"
+            },
+            {
+              "label": "Start rewriting in the way your team is used to and finds easier to maintain"
+            }
+          ]
+        },
+        "a": {
+          "text": "You finish the code, but things outside it, such as unwritten conventions and unrecorded dependencies, are not in it. The person who knew leaves with the unasked questions."
+        },
+        "c": {
+          "text": "The urge to rewrite breaks parts that look odd but have a reason. What worked in the old version no longer runs in the new one, and you lose both."
+        },
+        "b": {
+          "text": "Building from a blank machine reveals three configuration steps recorded nowhere, and the list shows an end-of-quarter job that calls an old service. Then you want to switch on the new system. Which step makes sense?",
+          "choices": [
+            {
+              "label": "Run the old and rebuilt versions in parallel, comparing results daily"
+            },
+            {
+              "label": "Switch off the old version today since the rebuilt one ran fine in testing"
+            }
+          ]
+        },
+        "d": {
+          "text": "Parallel running exposes configuration and data differences that no handover session would find, including the end-of-quarter job. You take over only when the two match across a full cycle."
+        },
+        "e": {
+          "text": "The end-of-quarter job runs next month and looks for an old service that has been shut down. The quarterly report is empty, and the only person who knew how to fix it has left."
+        }
+      }
+    },
+    {
       "type": "closing",
       "lines": [
         "Technical barriers can be measured, so they get planned for; operational ones cannot.",

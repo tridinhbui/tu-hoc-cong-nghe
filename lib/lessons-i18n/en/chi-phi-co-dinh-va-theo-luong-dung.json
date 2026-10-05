@@ -107,6 +107,49 @@
       ]
     },
     {
+      "type": "scenario",
+      "title": "A flat plan on a pay-per-call cost",
+      "nodes": {
+        "s": {
+          "text": "Your product sells a flat plan at 200k per user per month. Heavy users trigger more pay-per-call external requests, which cost more. Heavy users are growing. What do you check first?",
+          "choices": [
+            {
+              "label": "Total revenue, since it still grows with the number of users"
+            },
+            {
+              "label": "Cost and revenue of heavy and light users separately"
+            },
+            {
+              "label": "New installs this week"
+            }
+          ]
+        },
+        "a": {
+          "text": "A healthy total revenue hides that each extra heavy user loses a bit more. Next quarter external call costs exceed revenue while the report still looks green."
+        },
+        "c": {
+          "text": "Rising installs are good news on the surface, and under a flat plan every new heavy user makes it worse. You celebrate a number that says nothing about profit."
+        },
+        "b": {
+          "text": "Heavy users cost 260k each in call fees (illustrative figures), above the plan price. Scale is no longer an advantage because cost grows with usage. What do you propose?",
+          "choices": [
+            {
+              "label": "Add a per-call allowance to the plan, with overage billed"
+            },
+            {
+              "label": "Raise the flat price for everyone, light users included"
+            }
+          ]
+        },
+        "d": {
+          "text": "Heavy users' revenue starts moving with their cost, and light users keep their price. Both sides now follow usage, so scale is neutral again."
+        },
+        "e": {
+          "text": "Light users leave because of the higher price while heavy users stay and keep losing money. You push away exactly the group that was profitable."
+        }
+      }
+    },
+    {
       "type": "closing",
       "lines": [
         "High fixed cost is what turns scale into an advantage; without it, crowded and empty are the same.",

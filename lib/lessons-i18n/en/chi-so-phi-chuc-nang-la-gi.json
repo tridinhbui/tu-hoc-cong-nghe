@@ -115,6 +115,49 @@
       "oneLiner": "A non-functional requirement only gets an owner when it is a number with a threshold and a name."
     },
     {
+      "type": "scenario",
+      "title": "The system must be fast",
+      "nodes": {
+        "s": {
+          "text": "The spec says: the system must be fast. Measured average latency is 1 second and every test passes. Yet the share of users abandoning mid-way tripled. What do you look at first?",
+          "choices": [
+            {
+              "label": "High-percentile latency, since the average can hide a group waiting very long"
+            },
+            {
+              "label": "More functional tests, since some feature is probably untested"
+            },
+            {
+              "label": "Measure the average again to be sure"
+            }
+          ]
+        },
+        "b": {
+          "text": "All functional tests already pass and more of them changes nothing. A feature that is correct but slow for some users still loses them."
+        },
+        "c": {
+          "text": "The second run gives the same figure, 1 second. The average is unchanged because it still hides the slow group, and you still do not know why users leave."
+        },
+        "a": {
+          "text": "The 95th percentile is seven seconds: about a tenth of users wait seven seconds while the rest wait 300 milliseconds. You want to rewrite the requirement so it can be checked. How?",
+          "choices": [
+            {
+              "label": "Search shows results within 800 ms at the 95th percentile, with an owner"
+            },
+            {
+              "label": "The system must be very fast, faster than before and faster than competitors"
+            }
+          ]
+        },
+        "d": {
+          "text": "The requirement is now a number with a threshold and an owner, so it becomes a real ticket. An alert fires when the 95th percentile passes 800 ms."
+        },
+        "e": {
+          "text": "Faster than before still has no threshold, so nobody knows when it is done or broken. The requirement stays off the work list."
+        }
+      }
+    },
+    {
       "type": "closing",
       "lines": [
         "Works correctly and works at all are two different questions, and few people ask the second.",

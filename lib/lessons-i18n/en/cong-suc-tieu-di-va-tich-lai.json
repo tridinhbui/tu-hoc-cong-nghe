@@ -120,6 +120,49 @@
       ]
     },
     {
+      "type": "scenario",
+      "title": "Fixing by hand for the twenty-first time",
+      "nodes": {
+        "s": {
+          "text": "Each month you rebuild the test environment by hand, 10 minutes a time, 20 times a month. A colleague suggests writing a tool, about 8 hours. What do you think?",
+          "choices": [
+            {
+              "label": "Keep doing it by hand, it is only 10 minutes each time, after all"
+            },
+            {
+              "label": "Work out the break-even, including attention fragmented by each manual run"
+            },
+            {
+              "label": "Write tools right away for every repeated task in the team, whatever it is"
+            }
+          ]
+        },
+        "a": {
+          "text": "Ten minutes times twenty is over three hours a month, year after year. Manual work leaves nothing behind, so every quarter spends the same again."
+        },
+        "c": {
+          "text": "Some tasks vanish after this quarter, and a tool for them becomes saving for a future that never arrives. You spend effort on something that will be thrown away."
+        },
+        "b": {
+          "text": "Three hours twenty a month against eight hours: the tool breaks even in about three months, before counting broken attention. The job runs at least another year. You write the tool, and then what?",
+          "choices": [
+            {
+              "label": "Write one line on why it is built this way, and add a test protecting it"
+            },
+            {
+              "label": "Keep it in your head, whoever needs it can just ask me and find out"
+            }
+          ]
+        },
+        "d": {
+          "text": "What accumulates has three layers: the tool, the test, and the reason. When you are on leave, a colleague runs the command and knows why it is that way, and next quarter nobody works by hand."
+        },
+        "e": {
+          "text": "You go on leave and the tool breaks after an upgrade. Nobody knows why it was built that way, so everyone goes back to doing it by hand."
+        }
+      }
+    },
+    {
       "type": "closing",
       "lines": [
         "The compounding option is slower the first time and the price of skipping it arrives very late.",

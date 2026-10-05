@@ -110,6 +110,49 @@
       ]
     },
     {
+      "type": "scenario",
+      "title": "The ticket sale that opens at 10 a.m.",
+      "nodes": {
+        "s": {
+          "text": "A ticketing system averages 20 requests a minute, but 90% of load crams into the first two minutes after sales open. You size the machines like any internal service. Which number do you use?",
+          "choices": [
+            {
+              "label": "The per-minute average over the day"
+            },
+            {
+              "label": "Requests per second in the two peak minutes"
+            },
+            {
+              "label": "The average doubled for headroom"
+            }
+          ]
+        },
+        "a": {
+          "text": "The average is meaningless because the whole load sits in a few minutes. The machines suffice for the day and collapse at exactly 10 a.m., when everyone clicks at once."
+        },
+        "c": {
+          "text": "Double a wrong number is still wrong. The real peak is hundreds of times the average, so the system still collapses, only at greater cost."
+        },
+        "b": {
+          "text": "The peak is about 150 requests per second. You add more servers and test, but capacity does not rise: every server writes to a single database. What is the likely cause?",
+          "choices": [
+            {
+              "label": "The write database is a shared bottleneck; more servers make it more congested"
+            },
+            {
+              "label": "The new servers come from a batch with a hardware fault so they cannot run like the old ones"
+            }
+          ]
+        },
+        "d": {
+          "text": "You move writes through a queue and batch them, so the database receives them more evenly through the peak. Capacity rises because the bottleneck was addressed, not because of more servers."
+        },
+        "e": {
+          "text": "You replace the whole new batch and capacity still does not budge. The bottleneck is untouched, and the bill has doubled."
+        }
+      }
+    },
+    {
       "type": "closing",
       "lines": [
         "Knowing which kind of system you have matters more than calculating neatly.",

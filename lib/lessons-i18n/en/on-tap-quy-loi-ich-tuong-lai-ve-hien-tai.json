@@ -133,6 +133,49 @@
       ]
     },
     {
+      "type": "scenario",
+      "title": "Two proposals that both claim 40% savings",
+      "nodes": {
+        "s": {
+          "text": "Two proposals both claim a 40% infrastructure saving. One optimises the base storage layer, the other a feature of a newly launched product. Both pay off in the eighth quarter. What do you ask first?",
+          "choices": [
+            {
+              "label": "Which one shows the larger saving in its slide"
+            },
+            {
+              "label": "How likely the benefit is to vanish each quarter, and why"
+            },
+            {
+              "label": "Which is easier to do, so it finishes sooner"
+            }
+          ]
+        },
+        "a": {
+          "text": "The two numbers are equal so you flip a coin and pick the new-product proposal. Two quarters later the product changes direction and the saving vanishes with the optimisation."
+        },
+        "c": {
+          "text": "Easy to do says nothing about whether the benefit is intact in quarter eight. You chose by effort spent rather than by value received."
+        },
+        "b": {
+          "text": "The base storage layer is stable so you pick roughly 5% per quarter; the new product is still finding its way so about 20% per quarter. What is the discount factor at quarter eight, roughly?",
+          "choices": [
+            {
+              "label": "About 0.68 for the base layer and 0.23 for the new product"
+            },
+            {
+              "label": "About 0.60 for both, because both save 40%"
+            }
+          ]
+        },
+        "d": {
+          "text": "The base-layer benefit keeps over two thirds, while the new product's keeps less than a quarter. You choose the base layer and record the discount rate as a claim that must be defended."
+        },
+        "e": {
+          "text": "The two proposals are treated alike and you decide by feel, while the expected value of one is three times the other."
+        }
+      }
+    },
+    {
       "type": "closing",
       "lines": [
         "The same total at two different times is two different values.",

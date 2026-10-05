@@ -215,6 +215,49 @@
         ]
       ],
       "oneLiner": "Pick a metric where, when it worsens, someone has to do something, and pair it so no one can game it with a shortcut."
+    },
+    {
+      "type": "scenario",
+      "title": "The slide that says one million users",
+      "nodes": {
+        "s": {
+          "text": "This quarter's slide reads: total sign-ups reached one million, growing steadily. Only about 90,000 opened the app in the last month. The boss wants to use the slide. What do you propose?",
+          "choices": [
+            {
+              "label": "Keep total sign-ups as the headline since it rises steadily every week"
+            },
+            {
+              "label": "Add the active-user rate and revenue per real user"
+            },
+            {
+              "label": "Drop the metric to avoid arguments in this quarter's meeting"
+            }
+          ]
+        },
+        "a": {
+          "text": "A cumulative total cannot fall and nobody changes behaviour looking at it. Next quarter the active rate slips to 7% while the slide stays green."
+        },
+        "c": {
+          "text": "With no metric nobody knows whether the product is improving or worsening. Decisions shift to feel, and the arguments return harder."
+        },
+        "b": {
+          "text": "The active rate is 9%, and revenue per genuinely active user ties to money. The growth team starts pushing the metric with notifications that nag people into opening the app. What is about to happen?",
+          "choices": [
+            {
+              "label": "Goodhart: a metric made a target gets gamed, so add a counter-metric"
+            },
+            {
+              "label": "Nothing, since more people opening the app means the product is clearly improving"
+            }
+          ]
+        },
+        "d": {
+          "text": "The uninstall rate rises as soon as notifications multiply, and the team adjusts. The pair of metrics together stops one number being pushed while another is harmed."
+        },
+        "e": {
+          "text": "App opens rise, revenue per user falls, and real users leave from being pestered. A lone metric got gamed, as every lone metric does."
+        }
+      }
     }
   ]
 }

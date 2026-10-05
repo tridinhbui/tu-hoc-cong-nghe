@@ -115,6 +115,49 @@
       "oneLiner": "Choose the standard by the reader, and write the definition of down next to every number."
     },
     {
+      "type": "scenario",
+      "title": "Two availability figures for the same month",
+      "nodes": {
+        "s": {
+          "text": "The contract says availability this month was 99.95%, while the product team's dashboard says 99.5%. The customer calls to ask which is right. What do you check first?",
+          "choices": [
+            {
+              "label": "The formula, in case someone divided the numerator by the denominator the wrong way somewhere"
+            },
+            {
+              "label": "The definition of failure, measuring point, frequency, and excluded maintenance windows"
+            },
+            {
+              "label": "Report whichever number looks better, so the contract stays trouble-free"
+            }
+          ]
+        },
+        "a": {
+          "text": "Both formulas are correct and give the same arithmetic on their own data. You spend two hours checking something that is not wrong while the difference comes from elsewhere."
+        },
+        "c": {
+          "text": "The customer sees the worse internal dashboard and demands an explanation. You cannot give one because you do not know where the two figures differ."
+        },
+        "b": {
+          "text": "The contract standard counts outright failure only, measured from outside each minute, excluding announced maintenance; the product dashboard counts slowness too and measures from the user side. Both are right, answering different readers. How do you reply to the customer?",
+          "choices": [
+            {
+              "label": "Send both figures with their definition, measuring point and exclusions"
+            },
+            {
+              "label": "Change the dashboard definition to match the contract and publish the new number beside the old history"
+            }
+          ]
+        },
+        "d": {
+          "text": "The customer understands why the figures differ and which one binds the contract. Each number travels with what it measures, so nobody is misled."
+        },
+        "e": {
+          "text": "The new figure is prettier but not comparable with history, so the chart looks like quality suddenly improved. Operations loses the tool that sees anomalies, which the contract standard is blind to."
+        }
+      }
+    },
+    {
       "type": "closing",
       "lines": [
         "Several standards exist because several readers ask several different questions.",

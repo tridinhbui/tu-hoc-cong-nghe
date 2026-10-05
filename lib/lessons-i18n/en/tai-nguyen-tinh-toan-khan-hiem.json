@@ -112,6 +112,49 @@
       "oneLiner": "With a physically capped resource, do not ask 'how much will we pay' but 'how do we make better use of what we hold'."
     },
     {
+      "type": "scenario",
+      "title": "The scarcity of dedicated machines",
+      "nodes": {
+        "s": {
+          "text": "The team holds 8 dedicated machines, but a shortage means the provider has none free. The training schedule slips. The manager asks: what do we do this week?",
+          "choices": [
+            {
+              "label": "Pay double to jump to the front of the provider's queue"
+            },
+            {
+              "label": "Measure real utilisation of the 8 machines and reorder the job queue"
+            },
+            {
+              "label": "Sign a three-year contract with the provider to get machine priority"
+            }
+          ]
+        },
+        "a": {
+          "text": "Supply is fixed, so a higher price only decides who gets what exists. The provider still has no machines, and the team loses another week waiting."
+        },
+        "c": {
+          "text": "A long contract takes weeks to negotiate and depends on someone else. Machines still do not appear this month, and the team is locked into a long-term cost."
+        },
+        "b": {
+          "text": "The measurement shows the 8 machines are busy about 40% of the time, idling while waiting for data between runs. You have three levers in the team's hands. Which first?",
+          "choices": [
+            {
+              "label": "Queue jobs so machines always have work, and drop runs nobody reads"
+            },
+            {
+              "label": "Rent more general-purpose machines to run the same workload"
+            }
+          ]
+        },
+        "d": {
+          "text": "Utilisation rises, demand falls, and both can be done within days without waiting on anyone. The team finishes its work on the machines it already holds."
+        },
+        "e": {
+          "text": "General-purpose machines are far slower for this load and cannot replace the dedicated ones. You spend money and the schedule does not move."
+        }
+      }
+    },
+    {
       "type": "closing",
       "lines": [
         "Paying more moves stock from somebody else to you; it does not create more stock.",

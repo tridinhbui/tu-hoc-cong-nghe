@@ -196,6 +196,49 @@
       ]
     },
     {
+      "type": "scenario",
+      "title": "A single number for the capacity plan",
+      "nodes": {
+        "s": {
+          "text": "The capacity plan states exactly one number: 10 machines. One server is busy 80% of the time. The boss asks what happens if load rises 20%. How do you answer?",
+          "choices": [
+            {
+              "label": "20% more load means waits also rise 20%, linear in load"
+            },
+            {
+              "label": "Utilisation goes to 96%, and waiting rises about fivefold rather than linearly"
+            },
+            {
+              "label": "No effect, since the machine still has 4% spare capacity to handle more"
+            }
+          ]
+        },
+        "a": {
+          "text": "Queueing is not linear. You promise a latency you cannot hold, and the next load spike makes the system many times slower."
+        },
+        "c": {
+          "text": "4% free means the queue grows without bound in practice. Users wait tens of seconds and you have no plan for that case."
+        },
+        "b": {
+          "text": "Waiting time is proportional to 1 over (1 minus utilisation): from 5 up to 25 times the service time, a fivefold jump. The boss wants a bad scenario. How do you build it?",
+          "choices": [
+            {
+              "label": "Change several related variables together: traffic, cache, retries"
+            },
+            {
+              "label": "Just multiply traffic by 20% and keep everything else in the system unchanged"
+            }
+          ]
+        },
+        "d": {
+          "text": "The scenario is internally consistent, so you find the tipping point: above about 85% load you need more machines. Leadership gets two or three scenarios, not ten, each with its trigger."
+        },
+        "e": {
+          "text": "The bad scenario is merely a load increase, not a world that could happen. A real event worsens cache and retries together, so the plan is still short of machines."
+        }
+      }
+    },
+    {
       "type": "closing",
       "lines": [
         "Nobody blames you for missing a plan. They blame you when nobody knew it was being missed until it was too late.",

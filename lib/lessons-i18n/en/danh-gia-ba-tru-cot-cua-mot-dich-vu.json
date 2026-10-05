@@ -106,6 +106,49 @@
       ]
     },
     {
+      "type": "scenario",
+      "title": "Scoring the invoice email service",
+      "nodes": {
+        "s": {
+          "text": "You are assigned to evaluate the invoice email service. Available data: total monthly infrastructure cost, latency measured inside the data centre, and incident count. Your first step?",
+          "choices": [
+            {
+              "label": "Chart those three numbers by month and compare with the payments service"
+            },
+            {
+              "label": "Pick a unit of work, such as per thousand emails, and divide cost by it"
+            },
+            {
+              "label": "Combine the three numbers into one score for brevity"
+            }
+          ]
+        },
+        "a": {
+          "text": "Comparing two services doing different kinds of work is almost always meaningless, and total cost rises merely because email volume rises. You reach wrong conclusions about both."
+        },
+        "c": {
+          "text": "A combined score of 74 does not say where it came from, so nobody knows what to fix. You lose the trail the moment you merge."
+        },
+        "b": {
+          "text": "Cost per thousand emails fell 8% in three months while total cost rose. Now you measure latency. Where is the right place to measure?",
+          "choices": [
+            {
+              "label": "From the recipient's device or the nearest point where the user stands"
+            },
+            {
+              "label": "Inside the data centre, where the numbers are cleanest and most stable"
+            }
+          ]
+        },
+        "d": {
+          "text": "The figure is worse than the data-centre measurement, which is a sign it is right: it includes dropped networks and requests that never arrive. You start recording the series today even though the measurement is not perfect."
+        },
+        "e": {
+          "text": "The numbers look nice because they skip everything real users experience. The report is green while customers still complain emails arrive late."
+        }
+      }
+    },
+    {
       "type": "closing",
       "lines": [
         "An absolute number mixes efficiency with scale; only dividing by work separates them.",

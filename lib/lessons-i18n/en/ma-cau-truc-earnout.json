@@ -113,6 +113,49 @@
       "oneLiner": "A good milestone measures what the receiver can do, not how long the giver stayed."
     },
     {
+      "type": "scenario",
+      "title": "Handover after three months or after three incidents",
+      "nodes": {
+        "s": {
+          "text": "The old team is handing a service to a new team. The draft record says: the old team supports for three months. The service runs on a quarterly cycle. What do you propose to change?",
+          "choices": [
+            {
+              "label": "Keep three months, it is easy to write in the record and easy to check at expiry"
+            },
+            {
+              "label": "Replace time with measurable milestones: the new team handles three incidents in a row"
+            },
+            {
+              "label": "Extend to six months to be safe, since three months seems a bit short"
+            }
+          ]
+        },
+        "a": {
+          "text": "Three months ends right before the first quarterly run. That run exposes a dependency nobody knew about, and the old team has already gone."
+        },
+        "c": {
+          "text": "Six months is just another time marker. The new team stops asking from month three because it feels awkward, and the record still says ready when nobody has shown it."
+        },
+        "b": {
+          "text": "The milestones measure what the new team can do, not what the old team said. At 2 a.m. an incident hits; the old team's person could fix it in three minutes, the new team needs twenty. Who should fix it?",
+          "choices": [
+            {
+              "label": "The old team's person fixes it to be quick, since they fix it in three minutes"
+            },
+            {
+              "label": "The new team fixes it, the old person answers only when asked"
+            }
+          ]
+        },
+        "d": {
+          "text": "The incident ends quickly but the new team has handled none, so the three-in-a-row milestone is never reached. The handover drags on and the old team never leaves."
+        },
+        "e": {
+          "text": "It takes twenty minutes instead of three, but this is an incident the new team handled itself. Three in a row and the milestone is reached, and the system has truly changed hands."
+        }
+      }
+    },
+    {
       "type": "closing",
       "lines": [
         "Time does not measure readiness, it measures time.",

@@ -184,6 +184,49 @@
       ]
     },
     {
+      "type": "scenario",
+      "title": "Three weeks of data and a keep-or-remove decision",
+      "nodes": {
+        "s": {
+          "text": "A new feature has been live for three weeks. Average latency rose 4% versus before, and someone proposes removing it. Week-to-week swings are large. What do you ask before deciding?",
+          "choices": [
+            {
+              "label": "Remove it now, 4% is a real increase and users will surely notice"
+            },
+            {
+              "label": "What is the confidence interval of the increase, and does it contain zero"
+            },
+            {
+              "label": "Measure every minute instead of every day to get more data"
+            }
+          ]
+        },
+        "a": {
+          "text": "With three weeks and wide swings, the interval spans from a 6% decrease to a 14% increase. You remove a good feature because of noise."
+        },
+        "c": {
+          "text": "Denser measurement helps with within-day variation, but does not make the average trend more precise, because the truly independent observations are still three weeks. You get many more rows and no more insight."
+        },
+        "b": {
+          "text": "The 95% interval is from -6% to +14%, so the 4% cannot be told apart from luck. You want an interval half as wide. How much data do you need?",
+          "choices": [
+            {
+              "label": "Four times the data, since the standard error falls with the square root"
+            },
+            {
+              "label": "Twice the data, since doubling the data halves the error"
+            }
+          ]
+        },
+        "d": {
+          "text": "You keep the feature two more months and measure again, instead of acting on noise. The interval narrows afterward and the decision rests on a number together with its precision."
+        },
+        "e": {
+          "text": "Doubling only cuts the error by about 30%, so the interval still contains zero. Two months later you are back at the same question."
+        }
+      }
+    },
+    {
       "type": "closing",
       "lines": [
         "A number without a confidence interval is an opinion in make-up.",

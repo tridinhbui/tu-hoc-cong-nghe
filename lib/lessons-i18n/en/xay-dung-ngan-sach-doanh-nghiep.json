@@ -110,6 +110,49 @@
       ]
     },
     {
+      "type": "scenario",
+      "title": "The storage line in the annual budget",
+      "nodes": {
+        "s": {
+          "text": "This month storage costs 4 million. A colleague builds the annual budget as 4 million times 12. Each month the team adds 200 GB of data and data never shrinks on its own. What is your comment?",
+          "choices": [
+            {
+              "label": "Accept it, storage is a small item next to compute and staff"
+            },
+            {
+              "label": "This line accumulates: add up each month's volume, then multiply by unit price"
+            },
+            {
+              "label": "Add 10% on top to be safe, in case data grows faster"
+            }
+          ]
+        },
+        "a": {
+          "text": "By year end storage nearly doubles the estimate because data piles up. The small item becomes a shortfall, and the team has to ask for more mid-year."
+        },
+        "c": {
+          "text": "A 10% cushion still rests on the assumption that data stands still. The shortfall still happens, just a few months later."
+        },
+        "b": {
+          "text": "You build three scenarios by data growth rate, each with its trigger condition. Then the lead notes the budget is tight on storage but loose on compute. What worries you?",
+          "choices": [
+            {
+              "label": "The team will push work into compute because there is room there"
+            },
+            {
+              "label": "Nothing, the total budget still adds up so it counts as fine"
+            }
+          ]
+        },
+        "d": {
+          "text": "A budget is an architecture decision: it rewards compute-heavy designs even when cheaper storage would be right. You rebalance the two lines to match the intended design."
+        },
+        "e": {
+          "text": "The total matches but the two lines pull opposite ways, so the team builds expensive compute to avoid storage. By year end the total overruns even though each line looked fine."
+        }
+      }
+    },
+    {
       "type": "closing",
       "lines": [
         "Start from measurable quantities, not from last year's number.",

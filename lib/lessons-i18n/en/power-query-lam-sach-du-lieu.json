@@ -207,6 +207,49 @@
       "oneLiner": "The biggest value of a recorded process is not saved time but being able to trace back when the final number looks odd."
     },
     {
+      "type": "scenario",
+      "title": "The monthly report cleaned by hand",
+      "nodes": {
+        "s": {
+          "text": "Every month a file arrives from the system and you delete the top four rows, split the full-name column, fix the date format, filter the totals row. This is the fourth time, and a colleague has to do it too. What do you do?",
+          "choices": [
+            {
+              "label": "Keep doing it by hand, it only takes 20 minutes, which is negligible"
+            },
+            {
+              "label": "Build the steps as a saved query, next month just refresh"
+            },
+            {
+              "label": "Write long step-by-step instructions for your colleague to follow"
+            }
+          ]
+        },
+        "a": {
+          "text": "Each month you slip in a different place because manual steps leave no trace. This month you forget to filter the totals row and the final figure doubles."
+        },
+        "c": {
+          "text": "Instructions cannot run, so each person still works by hand and still errs differently. A document describes the steps but cannot replace them."
+        },
+        "b": {
+          "text": "Next month the new file arrives, you press refresh and finish in a minute. The final figure looks odd, and you want to know why. How does the query help?",
+          "choices": [
+            {
+              "label": "Open the recorded step list and trace back to where it deviates"
+            },
+            {
+              "label": "Redo it by hand from scratch and compare the two figures to see"
+            }
+          ]
+        },
+        "d": {
+          "text": "The third column-type step turns one text row into an error. You fix that single step and every later month is correct, with nobody else needing to remember anything."
+        },
+        "e": {
+          "text": "Redoing by hand gives a different number and you cannot tell which is right. Without a trail there is no way to trace back."
+        }
+      }
+    },
+    {
       "type": "closing",
       "lines": [
         "Clean data is not the product of being careful; it is the product of a good process.",

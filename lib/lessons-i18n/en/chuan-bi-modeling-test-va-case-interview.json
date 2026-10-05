@@ -183,6 +183,49 @@
       ]
     },
     {
+      "type": "scenario",
+      "title": "Minute 45 of a 90-minute test",
+      "nodes": {
+        "s": {
+          "text": "You are on a 90-minute coding test. Reading the data and the main processing both run, with 45 minutes left. The prompt is missing one detail on how fees are calculated. What do you do?",
+          "choices": [
+            {
+              "label": "Stop everything until you can ask the proctor"
+            },
+            {
+              "label": "Write down a clear assumption, say it aloud, and continue"
+            },
+            {
+              "label": "Guess silently and just write it, telling the grader nothing"
+            }
+          ]
+        },
+        "a": {
+          "text": "The proctor only repeats the prompt and you lose ten minutes. There is no time left to join the pieces and do the final check, so the program does not run end to end."
+        },
+        "c": {
+          "text": "The grader sees the output and cannot tell which assumption you chose or why. A reasonable choice becomes an unexplained guess."
+        },
+        "b": {
+          "text": "The grader nods, seeing you state the assumption. With 20 minutes left you have two options: handle a rare error case, or make sure the program runs end to end and tidy variable names. Which?",
+          "choices": [
+            {
+              "label": "Make it run end to end, tidy names, keep the last 10 minutes for review"
+            },
+            {
+              "label": "Handle the rare error case right up to the last minute of the test"
+            }
+          ]
+        },
+        "d": {
+          "text": "You submit a working program with clean structure and stated assumptions. Recruiters accept a rough solution that runs over an elaborate one that is unfinished."
+        },
+        "e": {
+          "text": "You finish the rare case but two parts are not joined properly and the print step has a bug. What is graded is structure and integration, not the rare case."
+        }
+      }
+    },
+    {
       "type": "closing",
       "lines": [
         "The timed coding test does not measure knowledge; it measures working habits under pressure.",
