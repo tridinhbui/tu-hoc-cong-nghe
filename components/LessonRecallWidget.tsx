@@ -152,7 +152,7 @@ export default function LessonRecallWidget({ userId }: LessonRecallWidgetProps) 
     <div className={`rounded-md border overflow-hidden relative bg-white dark:bg-stone-900 ${
       hasWarning
         ? 'border-warn-line'
-        : 'border-line'
+        : 'border-line-strong'
     }`}>
 
       {/* Collapsible Header */}
@@ -189,7 +189,7 @@ export default function LessonRecallWidget({ userId }: LessonRecallWidgetProps) 
 
       {/* Collapsible Content */}
       {!collapsed && (
-      <div className="px-4 pb-4 space-y-4 border-t border-line">
+      <div className="px-4 pb-4 space-y-4 border-t border-line-strong">
         {!activeItem ? (
           <div className="space-y-4 pt-4">
 
@@ -217,7 +217,7 @@ export default function LessonRecallWidget({ userId }: LessonRecallWidgetProps) 
             ))}
           </div>
             {dueRecalls.length > 3 && (
-              <p className="text-[11px] text-ink-faint text-center font-semibold">
+              <p className="text-[11px] text-ink-muted text-center font-semibold">
                 {format(t.recallWidget.moreWaiting, { count: dueRecalls.length - 3 })}
               </p>
             )}
@@ -225,11 +225,11 @@ export default function LessonRecallWidget({ userId }: LessonRecallWidgetProps) 
       ) : (
         // Active Quiz modal/card view inside widget
         <div className="space-y-4">
-          <div className="flex items-center justify-between border-b border-line pb-2">
+          <div className="flex items-center justify-between border-b border-line-strong pb-2">
             <span className="text-xs font-bold text-ink-max truncate max-w-[70%]">
               {format(t.recallWidget.reviewingLesson, { title: activeItem.lessonTitle })}
             </span>
-            <span className="font-mono text-[10.5px] font-medium tabular-nums text-ink-faint shrink-0">
+            <span className="font-mono text-[10.5px] font-medium tabular-nums text-ink-muted shrink-0">
               {format(t.recallWidget.questionCounter, { index: currentQIndex + 1, total: questions.length })}
             </span>
           </div>
@@ -249,7 +249,7 @@ export default function LessonRecallWidget({ userId }: LessonRecallWidgetProps) 
                     } else if (i === selectedOpt) {
                       btnCls = "border-red-500 bg-red-50 dark:bg-red-950/40 text-alert-ink";
                     } else {
-                      btnCls = "border-line opacity-60";
+                      btnCls = "border-line-strong opacity-60";
                     }
                   } else if (selectedOpt === i) {
                     btnCls = "border-brand-600 bg-brand-50 dark:border-brand-400 dark:bg-brand-950/40 text-ink-max font-bold";

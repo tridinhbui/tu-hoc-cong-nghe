@@ -92,7 +92,7 @@ export default function FlowBlock({ title, steps, onPass }: FlowBlockProps) {
   const current = steps[active];
 
   return (
-    <section className="my-6 rounded-card border border-line bg-surface p-4 sm:p-5" aria-label={title}>
+    <section className="my-6 rounded-card border border-line-strong bg-surface p-4 sm:p-5" aria-label={title}>
       <div className="mb-3 flex items-center justify-between gap-2">
         <div className="flex items-center gap-2 text-accent-strong">
           <Workflow className="h-4 w-4" aria-hidden />

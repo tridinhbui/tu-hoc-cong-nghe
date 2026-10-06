@@ -66,7 +66,7 @@ export default function ChartBlock(props: ChartBlockProps) {
 function Frame({ title, caption, children }: { title: string; caption: string; children: React.ReactNode }) {
   const { t } = useI18n();
   return (
-    <figure className={`my-6 rounded-card border border-line bg-surface p-4 sm:p-5 ${SERIES_VARS}`}>
+    <figure className={`my-6 rounded-card border border-line-strong bg-surface p-4 sm:p-5 ${SERIES_VARS}`}>
       <div className="mb-3 flex items-center gap-2 text-accent-strong">
         <BarChart3 className="h-4 w-4" aria-hidden />
         <Sys>{t.lessonBlockVisual.chartBadge}</Sys>

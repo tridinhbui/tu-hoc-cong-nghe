@@ -171,7 +171,7 @@ export default function LearningPathClient({
           <ArrowLeft className="h-4 w-4" />
           {p.backToDashboard}
         </Link>
-        <div className="mt-2.5 border-b border-line pb-1.5">
+        <div className="mt-2.5 border-b border-line-strong pb-1.5">
           <Sys className="text-ink-muted">{ROUTE_CODE}</Sys>
         </div>
         <h1 className="mt-2 text-2xl font-black leading-[1.15] tracking-tight text-ink-max sm:text-[1.75rem]">{p.title}</h1>
@@ -246,7 +246,7 @@ export default function LearningPathClient({
         <p className="mt-1 max-w-[68ch] text-sm leading-6 text-ink-body">{p.heroBody}</p>
         </div>
 
-        <div className="rounded-sm bg-page p-3.5 dark:bg-stone-950">
+        <div className="rounded-sm border border-line-strong bg-white p-3.5 dark:bg-stone-950">
           {loading ? (
             <p className="text-sm text-ink-muted">{p.heroLoading}</p>
           ) : !nextLesson ? (
@@ -285,7 +285,7 @@ export default function LearningPathClient({
                 className={`group cursor-pointer rounded-sm p-4 text-left transition-colors duration-200 ${
                   picked
                     ? "border border-brand-600 bg-brand-50 ring-1 ring-brand-600 dark:border-brand-400 dark:bg-brand-950/40 dark:ring-brand-400"
-                    : "border border-line hover:border-line-strong dark:border-stone-800 dark:hover:border-stone-700"
+                    : "border border-line-strong hover:border-line-strong dark:border-stone-800 dark:hover:border-stone-700"
                 }`}
               >
                 <div className="flex items-start justify-between gap-2">
@@ -306,7 +306,7 @@ export default function LearningPathClient({
                     Thẻ CHƯA chọn vẫn dùng tổng, và đó không phải cẩu thả: câu
                     hỏi ở đó là "hướng này to cỡ nào", không phải "tôi còn bao
                     nhiêu" - người đọc chưa học bài nào của nó. */}
-                <p className={`mt-3 text-xs font-bold tabular-nums ${picked ? "text-ink-muted" : "text-ink-faint"}`}>
+                <p className={`mt-3 text-xs font-bold tabular-nums ${picked ? "text-ink-muted" : "text-ink-muted"}`}>
                   {picked
                     ? format(p.trackLessonsLeft, { count: Math.max(0, counts[id] - done[id]) })
                     : format(p.trackLessons, { count: counts[id] })}{" "}
@@ -330,7 +330,7 @@ export default function LearningPathClient({
                 {picked ? (
                   <p className="mt-2 text-xs font-bold text-accent-strong">{p.trackPicked}</p>
                 ) : (
-                  <span className="mt-2 inline-flex items-center gap-1 text-xs font-semibold text-ink-faint transition-colors group-hover:text-accent-strong">
+                  <span className="mt-2 inline-flex items-center gap-1 text-xs font-semibold text-ink-muted transition-colors group-hover:text-accent-strong">
                     {p.trackPick}
                   </span>
                 )}
@@ -367,7 +367,7 @@ export default function LearningPathClient({
             ))}
           </Field>
         </div>
-        <div className="mt-3 rounded-sm bg-page p-3 dark:bg-stone-950">
+        <div className="mt-3 rounded-sm border border-line-strong bg-white p-3 dark:bg-stone-950">
           <p className="text-sm font-bold tabular-nums text-ink-heading">
             {format(p.paceEstimate, { count: remaining, weeks })}
           </p>
@@ -419,7 +419,7 @@ export default function LearningPathClient({
             [p.howPracticeTitle, p.howPracticeBody],
           ].map(([title, body], i) => (
             <li key={title} className="flex gap-3">
-              <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center font-mono text-xs font-medium tabular-nums text-ink-faint">
+              <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center font-mono text-xs font-medium tabular-nums text-ink-muted">
                 {String(i + 1).padStart(2, "0")}
               </span>
               <div>
@@ -549,7 +549,7 @@ function Card({
     // như bị cắt.
     <section id={id} className={`scroll-mt-6 ${panel} p-4`}>
       <div className="flex items-center gap-2.5">
-        <span className="flex shrink-0 items-center text-ink-faint">
+        <span className="flex shrink-0 items-center text-ink-muted">
           {icon}
         </span>
         <h2 className="text-base font-black tracking-tight text-ink-max">{title}</h2>
@@ -578,7 +578,7 @@ function Pill({ active, onClick, children }: { active: boolean; onClick: () => v
       className={`cursor-pointer rounded-sm border px-3 py-1.5 text-sm font-bold transition-colors ${
         active
           ? "border-brand-600 bg-brand-50 text-brand-800 dark:border-brand-400 dark:bg-brand-950/40 dark:text-brand-200"
-          : "border-line text-ink-muted hover:border-line-strong hover:text-ink-body dark:border-stone-800 dark:hover:border-stone-700"
+          : "border-line-strong text-ink-muted hover:border-line-strong hover:text-ink-body dark:border-stone-800 dark:hover:border-stone-700"
       }`}
     >
       {children}
@@ -593,7 +593,7 @@ function Disclosure({ question, answer }: { question: string; answer: string }) 
   return (
     <details className="group border-b border-stone-200 py-2 last:border-0 dark:border-stone-800">
       <summary className="cursor-pointer list-none text-sm font-bold text-stone-800 marker:content-none dark:text-stone-200">
-        <span className="mr-1.5 inline-block text-stone-400 transition-transform group-open:rotate-90">›</span>
+        <span className="mr-1.5 inline-block text-stone-500 transition-transform group-open:rotate-90">›</span>
         {question}
       </summary>
       <p className="mt-2 max-w-[68ch] pl-4 text-sm leading-6 text-ink-soft">{answer}</p>

@@ -50,12 +50,12 @@ function EmbedFrame({
 
   return (
     <div className={`${panel} my-6 overflow-hidden`}>
-      <div className="border-b border-line bg-surface-raised px-4 py-3">
+      <div className="border-b border-line-strong bg-surface-raised px-4 py-3">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <Sys className="text-ink-muted">
             {c.eyebrow} · {t.toolSims.tools[block.tool].name}
           </Sys>
-          <span title={c.sandbox} className="inline-flex items-center gap-1 text-ink-faint">
+          <span title={c.sandbox} className="inline-flex items-center gap-1 text-ink-muted">
             <ShieldCheck className="h-3.5 w-3.5" aria-hidden />
             <Sys>{c.sandbox}</Sys>
           </span>
@@ -70,7 +70,7 @@ function EmbedFrame({
         <>
           <div className="max-h-[560px] overflow-auto p-3">{surface}</div>
 
-          <div className="border-t border-line px-4 py-3">
+          <div className="border-t border-line-strong px-4 py-3">
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div className="min-w-0">
                 <Sys className="text-ink-muted">{c.mission}</Sys>
@@ -98,7 +98,7 @@ function EmbedFrame({
                         {met ? (
                           <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-accent" aria-hidden />
                         ) : (
-                          <Circle className="mt-0.5 h-4 w-4 shrink-0 text-ink-faint" aria-hidden />
+                          <Circle className="mt-0.5 h-4 w-4 shrink-0 text-ink-muted" aria-hidden />
                         )}
                         <span className={met ? "text-ink" : "text-ink-muted"}>{cr.label}</span>
                       </li>

@@ -191,7 +191,7 @@ export default function LessonNotes({ lessonId, lessonSlug }: LessonNotesProps) 
 
   if (loading) {
     return (
-      <div className="rounded-md border border-line bg-white p-4 dark:bg-stone-900">
+      <div className="rounded-md border border-line-strong bg-white p-4 dark:bg-stone-900">
         <div className="mb-2 h-3 w-1/4 rounded-xs bg-surface-sunken"></div>
         <div className="h-8 rounded-sm bg-surface-sunken"></div>
       </div>
@@ -199,13 +199,13 @@ export default function LessonNotes({ lessonId, lessonSlug }: LessonNotesProps) 
   }
 
   return (
-    <div className="overflow-hidden rounded-md border border-line bg-white dark:bg-stone-900">
+    <div className="overflow-hidden rounded-md border border-line-strong bg-white dark:bg-stone-900">
       {/* Header */}
-      <div className="flex h-9 items-center justify-between border-b border-line px-3">
+      <div className="flex h-9 items-center justify-between border-b border-line-strong px-3">
         <div className="flex items-center gap-2">
-          <NotebookPen aria-hidden className="h-4 w-4 text-ink-faint" strokeWidth={1.75} />
+          <NotebookPen aria-hidden className="h-4 w-4 text-ink-muted" strokeWidth={1.75} />
           <h3 className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">{t.notes.heading}</h3>
-          <Sys className="tabular-nums text-ink-faint">{notes.length}</Sys>
+          <Sys className="tabular-nums text-ink-muted">{notes.length}</Sys>
         </div>
         {!isOpen && (
           <button
@@ -348,7 +348,7 @@ export default function LessonNotes({ lessonId, lessonSlug }: LessonNotesProps) 
                 rows={4}
                 autoFocus
               />
-              <p className="text-xs text-ink-faint mt-1">
+              <p className="text-xs text-ink-muted mt-1">
                 {t.notes.tipPart1}
                 {"\\frac{a}{b}"}
                 {t.notes.tipPart2}
@@ -381,7 +381,7 @@ export default function LessonNotes({ lessonId, lessonSlug }: LessonNotesProps) 
           {!isEditing && (
             <button
               onClick={() => startEditing()}
-              className="mt-4 flex w-full items-center justify-center gap-2 rounded-sm border border-dashed border-line py-2 text-sm font-semibold text-ink-muted transition-colors hover:border-line-firm hover:text-ink-max"
+              className="mt-4 flex w-full items-center justify-center gap-2 rounded-sm border border-dashed border-line-strong py-2 text-sm font-semibold text-ink-muted transition-colors hover:border-line-firm hover:text-ink-max"
             >
               <Plus className="w-4 h-4" />
               {t.notes.addNote}
@@ -391,7 +391,7 @@ export default function LessonNotes({ lessonId, lessonSlug }: LessonNotesProps) 
       )}
 
       {isOpen && (
-        <div className="border-t border-line px-4 py-2.5">
+        <div className="border-t border-line-strong px-4 py-2.5">
           <button
             onClick={() => setIsOpen(false)}
             className="text-stone-500 hover:text-stone-700 dark:text-stone-400 dark:hover:text-stone-200 text-sm font-semibold flex items-center gap-1"

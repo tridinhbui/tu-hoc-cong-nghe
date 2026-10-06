@@ -190,7 +190,7 @@ export default function LearningGoalCard({ id, effort, quiet = false, warm = fal
       <section id={id} className="scroll-mt-6">
         <div className="flex items-baseline justify-between gap-3 border-b-2 border-ink-max pb-2">
           <h2 className="text-lg font-black tracking-tight text-ink-max">{c.pickTitle}</h2>
-          <span className="font-mono text-[11px] tabular-nums text-ink-faint">{LEARNING_FLOWS.length}</span>
+          <span className="font-mono text-[11px] tabular-nums text-ink-muted">{LEARNING_FLOWS.length}</span>
         </div>
         <p className="mt-1.5 text-sm leading-6 text-ink-soft">{r.pickHint}</p>
 
@@ -232,7 +232,7 @@ export default function LearningGoalCard({ id, effort, quiet = false, warm = fal
                   <span className="flex w-full items-start gap-3">
                     <Glyph
                       emoji={f.emoji}
-                      className={`mt-0.5 h-5 w-5 shrink-0 transition-colors ${on ? "text-accent" : "text-ink-faint group-hover:text-ink-muted"}`}
+                      className={`mt-0.5 h-5 w-5 shrink-0 transition-colors ${on ? "text-accent" : "text-ink-muted group-hover:text-ink-muted"}`}
                     />
                     <span className="min-w-0 flex-1">
                       <span className={`block text-base font-black leading-snug tracking-tight ${on ? "text-brand-950 dark:text-stone-100" : "text-ink-heading"}`}>{copy.title}</span>
@@ -252,7 +252,7 @@ export default function LearningGoalCard({ id, effort, quiet = false, warm = fal
                     </span>
                   ) : null}
                   {!on ? (
-                    <span className="inline-flex items-center gap-1 pl-8 text-xs font-semibold text-ink-faint transition-colors group-hover:text-accent-strong">
+                    <span className="inline-flex items-center gap-1 pl-8 text-xs font-semibold text-ink-muted transition-colors group-hover:text-accent-strong">
                       {r.select} <ArrowRight className="h-3 w-3" aria-hidden />
                     </span>
                   ) : null}
@@ -271,7 +271,7 @@ export default function LearningGoalCard({ id, effort, quiet = false, warm = fal
         {/* Bước hai của lựa chọn: thứ đầu tiên sẽ làm ra, rồi mới lưu. */}
         {picked ? (
           <div className="mt-4 border-l-[3px] border-brand-600 pl-4 dark:border-brand-400">
-            <p className="font-mono text-[10px] font-bold uppercase tracking-wider text-ink-faint">{r.firstBuildLabel}</p>
+            <p className="font-mono text-[10px] font-bold uppercase tracking-wider text-ink-muted">{r.firstBuildLabel}</p>
             <CoCoSays key={picked.id} lines={[r.flows[picked.id].firstBuild]} size={40} className="mt-2" />
             <button type="button" disabled={pending} onClick={() => choose(picked.id)} className={`${btnPrimary} mt-3`}>
               {format(r.startWith, { title: t.learningFlows.flows[picked.id].title })}
@@ -298,10 +298,10 @@ export default function LearningGoalCard({ id, effort, quiet = false, warm = fal
         <div className="flex min-w-0 items-start gap-3">
           <Glyph emoji={flow.emoji} className={`mt-1 h-6 w-6 shrink-0 ${warm ? "text-brand-600" : "text-accent-strong"}`} />
           <div className="min-w-0">
-            <p className="font-mono text-[10px] font-bold uppercase tracking-wider text-ink-faint">{c.yourGoal}</p>
+            <p className="font-mono text-[10px] font-bold uppercase tracking-wider text-ink-muted">{c.yourGoal}</p>
             <p className={`text-lg font-black leading-snug tracking-tight ${warm ? "text-brand-950 dark:text-stone-100" : "text-ink-max"}`}>{copy.title}</p>
             <p className="mt-0.5 text-sm text-ink-soft">
-              <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-ink-faint">{r.goalOutput}</span>{" "}
+              <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-ink-muted">{r.goalOutput}</span>{" "}
               <span className="font-bold text-ink-max">{cap.output}</span>
             </p>
           </div>
@@ -330,11 +330,11 @@ export default function LearningGoalCard({ id, effort, quiet = false, warm = fal
           chốt của chặng đang học nhắc "mình học cái này để làm gì". */}
       {notStarted && p.next ? (
         <div className="mt-4">
-          <p className="font-mono text-[10px] font-bold uppercase tracking-wider text-ink-faint">{r.firstBuildLabel}</p>
+          <p className="font-mono text-[10px] font-bold uppercase tracking-wider text-ink-muted">{r.firstBuildLabel}</p>
           <CoCoSays lines={[cap.firstBuild]} size={40} className="mt-2" />
         </div>
       ) : stepCopy ? (
-        <p className="mt-4 flex gap-2 border-l border-line pl-3 text-sm font-semibold leading-6 text-ink-max">
+        <p className="mt-4 flex gap-2 border-l border-line-strong pl-3 text-sm font-semibold leading-6 text-ink-max">
           <Lightbulb className="mt-0.5 h-4 w-4 shrink-0 text-ink-muted" aria-hidden />
           {stepCopy.oneLiner}
         </p>
@@ -346,7 +346,7 @@ export default function LearningGoalCard({ id, effort, quiet = false, warm = fal
             <p className="text-xs font-bold text-ink-muted">{c.nextLabel}</p>
             <p className="font-bold leading-snug text-ink-max">{cleanLessonTitle(p.next.title)}</p>
           </div>
-          <Link href={`/bai-hoc/${p.next.slug}`} className={warm ? "group inline-flex shrink-0 items-center gap-2 py-2 text-sm font-bold text-ink-muted transition-colors hover:text-accent-strong" : quiet ? "group inline-flex shrink-0 items-center gap-2 rounded-sm border border-line px-3.5 py-2 text-sm font-bold text-ink-body transition-colors hover:border-line-strong hover:text-ink-max" : `${btnPrimary} shrink-0`}>
+          <Link href={`/bai-hoc/${p.next.slug}`} className={warm ? "group inline-flex shrink-0 items-center gap-2 py-2 text-sm font-bold text-ink-muted transition-colors hover:text-accent-strong" : quiet ? "group inline-flex shrink-0 items-center gap-2 rounded-sm border border-line-strong px-3.5 py-2 text-sm font-bold text-ink-body transition-colors hover:border-line-strong hover:text-ink-max" : `${btnPrimary} shrink-0`}>
             {notStarted ? r.start : c.nextCta} <ArrowRight className="h-4 w-4" />
           </Link>
         </div>

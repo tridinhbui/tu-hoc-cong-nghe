@@ -26,8 +26,8 @@ export function LessonQuestionCard({
   const resolvedTitle = title ?? t.learningBlocks.defaultQuestionTitle;
 
   return (
-    <div className="overflow-hidden rounded-md border border-line bg-white dark:bg-stone-900">
-      <div className="flex h-9 items-center gap-2 border-b border-line px-3">
+    <div className="overflow-hidden rounded-md border border-line-strong bg-white dark:bg-stone-900">
+      <div className="flex h-9 items-center gap-2 border-b border-line-strong px-3">
         <StatusDot />
         <span className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">{resolvedTitle}</span>
       </div>
@@ -40,7 +40,7 @@ export function LessonQuestionCard({
           {options.map((opt, i) => {
             let btnCls =
               "border-stone-300 bg-white text-ink hover:border-stone-400 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-600";
-            let gutter = "text-ink-faint";
+            let gutter = "text-ink-muted";
             if (submitted) {
               if (i === correct) {
                 btnCls = "border-brand-600 bg-brand-50 font-semibold text-brand-900 dark:border-brand-400 dark:bg-brand-950/40 dark:text-brand-100";
@@ -117,14 +117,14 @@ export function LessonSummaryCard({ summary }: LessonSummaryCardProps) {
     summary.action ? { label: t.learningBlocks.actionLabel, value: summary.action } : null,
   ].filter((r): r is { label: string; value: string; strong?: boolean } => r !== null);
   return (
-    <div className="overflow-hidden rounded-md border border-line bg-white dark:bg-stone-900">
-      <div className="flex h-9 items-center border-b border-line px-3">
+    <div className="overflow-hidden rounded-md border border-line-strong bg-white dark:bg-stone-900">
+      <div className="flex h-9 items-center border-b border-line-strong px-3">
         <span className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">{t.learningBlocks.summaryTitle}</span>
       </div>
       <dl className="divide-y divide-stone-200 dark:divide-stone-800">
         {rows.map((row, i) => (
           <div key={row.label} className="flex items-baseline gap-4 px-4 py-3.5 sm:px-5">
-            <Sys className="flex-shrink-0 text-ink-faint">{String(i + 1).padStart(2, "0")}</Sys>
+            <Sys className="flex-shrink-0 text-ink-muted">{String(i + 1).padStart(2, "0")}</Sys>
             <div className="min-w-0 flex-1">
               <dt className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">{row.label}</dt>
               <dd className={`mt-1 max-w-[68ch] text-[15px] leading-7 ${row.strong ? "font-bold text-ink-max" : "text-ink-body"}`}>{row.value}</dd>
@@ -146,7 +146,7 @@ export function LessonApplicationCard({ title, message, secondary }: LessonAppli
   const { t } = useI18n();
   const resolvedTitle = title ?? t.learningBlocks.defaultApplicationTitle;
   return (
-    <div className="max-w-[68ch] border-l border-line pl-4 sm:pl-5">
+    <div className="max-w-[68ch] border-l border-line-strong pl-4 sm:pl-5">
       <p className="mb-1.5 text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">{resolvedTitle}</p>
       <p className="text-base font-semibold leading-7 text-ink-max">{message}</p>
       {secondary && <p className="mt-2 text-[15px] leading-7 text-ink-body">{secondary}</p>}
@@ -165,7 +165,7 @@ export function ReviewLoopCard({ title, prompt, cta }: ReviewLoopCardProps) {
   const resolvedTitle = title ?? t.learningBlocks.defaultReviewTitle;
   const resolvedCta = cta ?? t.learningBlocks.defaultReviewCta;
   return (
-    <div className="max-w-[68ch] border-l border-line pl-4 sm:pl-5">
+    <div className="max-w-[68ch] border-l border-line-strong pl-4 sm:pl-5">
       <p className="mb-1.5 text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">{resolvedTitle}</p>
       <p className="text-base font-semibold leading-7 text-ink-max">{prompt}</p>
       <p className="mt-3 inline-flex text-xs font-semibold text-ink-muted">

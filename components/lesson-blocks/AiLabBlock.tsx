@@ -43,7 +43,7 @@ function useTyped(text: string, runKey: number): string {
 function Header({ kind, title, task }: { kind: string; title: string; task: string }) {
   const { t } = useI18n();
   return (
-    <header className="space-y-2 border-b border-line px-4 py-3 sm:px-5">
+    <header className="space-y-2 border-b border-line-strong px-4 py-3 sm:px-5">
       <p className="flex items-center gap-2 text-accent-strong">
         <Bot className="h-3.5 w-3.5" aria-hidden />
         <Sys>{kind}</Sys>
@@ -106,7 +106,7 @@ function PromptLab({ title, task, parts, responses, onPass }: PromptProps) {
                     aria-pressed={on}
                     onClick={() => setChoice((s) => ({ ...s, [p.id]: oi }))}
                     className={`w-full rounded-control border px-3 py-2 text-left text-sm leading-6 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 ${
-                      on ? "border-accent bg-accent-soft text-ink-max" : "border-line bg-surface-raised text-ink-body hover:border-brand-300"
+                      on ? "border-accent bg-accent-soft text-ink-max" : "border-line-strong bg-surface-raised text-ink-body hover:border-brand-300"
                     }`}
                   >
                     {o.text}
@@ -118,13 +118,13 @@ function PromptLab({ title, task, parts, responses, onPass }: PromptProps) {
         ))}
 
         <div className="rounded-control border border-line-strong">
-          <p className="border-b border-line px-3 py-1.5 text-ink-muted">
+          <p className="border-b border-line-strong px-3 py-1.5 text-ink-muted">
             <Sys>{c.composer}</Sys>
           </p>
           <p aria-live="polite" className={`min-h-[3rem] whitespace-pre-line px-3 py-2 text-sm leading-6 ${promptText ? "text-ink-max" : "text-ink-muted"}`}>
             {promptText || c.composerEmpty}
           </p>
-          <div className="flex justify-end border-t border-line px-3 py-2">
+          <div className="flex justify-end border-t border-line-strong px-3 py-2">
             <button type="button" className={btnPrimary} onClick={send} disabled={!complete}>
               <Send className="h-4 w-4" aria-hidden />
               {sent ? c.resend : c.send}
@@ -142,7 +142,7 @@ function PromptLab({ title, task, parts, responses, onPass }: PromptProps) {
             </div>
             <div className="flex gap-2">
               <Bot className="mt-1 h-4 w-4 shrink-0 text-accent-strong" aria-label={c.assistant} />
-              <div className="min-w-0 flex-1 rounded-control border border-line px-3 py-2">
+              <div className="min-w-0 flex-1 rounded-control border border-line-strong px-3 py-2">
                 <Sys className="text-ink-muted">{c.assistant}</Sys>
                 <p className="mt-1 whitespace-pre-line text-sm leading-6 text-ink-max" data-testid="ailab-reply">
                   {typed || c.typing}
@@ -216,7 +216,7 @@ function SpotErrorLab({ title, task, segments, onPass }: SpotProps) {
       <div className="space-y-4 px-4 py-4 sm:px-5">
         <p className="text-sm text-ink-muted">{c.spotHint}</p>
         <div className="rounded-control border border-line-strong">
-          <p className="flex items-center gap-2 border-b border-line px-3 py-1.5 text-ink-muted">
+          <p className="flex items-center gap-2 border-b border-line-strong px-3 py-1.5 text-ink-muted">
             <Bot className="h-3.5 w-3.5" aria-hidden />
             <Sys>{c.draftLabel}</Sys>
           </p>

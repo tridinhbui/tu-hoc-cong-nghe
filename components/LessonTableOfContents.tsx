@@ -70,12 +70,12 @@ export default function LessonTableOfContents({ sections }: LessonTableOfContent
     <div className="hidden xl:block sticky top-24 h-fit">
       <div className="pl-1">
         <div className="flex items-center gap-2 mb-3">
-          <List className="w-3.5 h-3.5 text-ink-faint" />
-          <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-faint">
+          <List className="w-3.5 h-3.5 text-ink-muted" />
+          <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">
             {t.miscUi.lessonTableOfContents.title}
           </p>
         </div>
-        <nav className="space-y-0.5 border-l border-line">
+        <nav className="space-y-0.5 border-l border-line-strong">
           {tocItems.map((item, index) => {
             const isActive = index === activeIndex;
             const isPast = activeIndex >= 0 && index < activeIndex;
@@ -89,7 +89,7 @@ export default function LessonTableOfContents({ sections }: LessonTableOfContent
                     ? "border-brand-600 font-bold text-accent-strong dark:border-brand-400"
                     : isPast
                       ? "border-transparent font-medium text-ink-muted hover:text-ink"
-                      : "border-transparent font-medium text-ink-faint hover:text-ink"
+                      : "border-transparent font-medium text-ink-muted hover:text-ink"
                 }`}
               >
                 {item.text}

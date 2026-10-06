@@ -77,7 +77,7 @@ export default function ExerciseBlock({ language, title, task, starter, solution
 
   if (!open) {
     return (
-      <section className="my-8 rounded-md border border-dashed border-line bg-surface-raised/50 px-4 py-4 sm:px-5 dark:bg-stone-900/50">
+      <section className="my-8 rounded-md border border-dashed border-line-strong bg-surface-raised/50 px-4 py-4 sm:px-5 dark:bg-stone-900/50">
         <p className="flex flex-wrap items-center gap-2 text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">
           <span>{c.exerciseBadge}</span>
           <span className="rounded-full bg-surface px-2 py-0.5 normal-case tracking-normal text-ink-body dark:bg-stone-800">{c.exerciseOptional}</span>
@@ -87,7 +87,7 @@ export default function ExerciseBlock({ language, title, task, starter, solution
         <button
           type="button"
           onClick={() => setOpen(true)}
-          className="mt-3 inline-flex items-center gap-1.5 rounded-sm border border-line px-3 py-1.5 text-xs font-bold text-ink-body transition-colors hover:border-accent hover:text-accent-strong"
+          className="mt-3 inline-flex items-center gap-1.5 rounded-sm border border-line-strong px-3 py-1.5 text-xs font-bold text-ink-body transition-colors hover:border-accent hover:text-accent-strong"
         >
           <Play className="h-3.5 w-3.5" aria-hidden />
           {c.exerciseOpen}
@@ -97,13 +97,13 @@ export default function ExerciseBlock({ language, title, task, starter, solution
   }
 
   return (
-    <section className="my-8 overflow-hidden rounded-md border border-line bg-white dark:bg-stone-900">
-      <header className="space-y-2 border-b border-line px-4 py-3 sm:px-5">
+    <section className="my-8 overflow-hidden rounded-md border border-line-strong bg-white dark:bg-stone-900">
+      <header className="space-y-2 border-b border-line-strong px-4 py-3 sm:px-5">
         <p className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.08em] text-accent-strong">
           <span>{c.exerciseBadge}</span>
-          <span className="text-ink-faint">·</span>
+          <span className="text-ink-muted">·</span>
           <span className="font-mono">{c.languageNames[language]}</span>
-          <span className="text-ink-faint">·</span>
+          <span className="text-ink-muted">·</span>
           <span className="normal-case tracking-normal text-ink-muted">{c.exerciseOptional}</span>
         </p>
         <h3 className="text-lg font-black tracking-tight text-ink-max">{title}</h3>
@@ -111,7 +111,7 @@ export default function ExerciseBlock({ language, title, task, starter, solution
         <p className="max-w-[68ch] text-sm leading-6 text-ink-muted">{c.exerciseHint}</p>
       </header>
 
-      <div className="grid gap-0 border-b border-line">
+      <div className="grid gap-0 border-b border-line-strong">
         <div className="px-4 py-3 sm:px-5">
           <p className="mb-1 text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">{c.expected}</p>
           <pre className="overflow-x-auto rounded-sm bg-stone-100 px-3 py-2 font-mono text-[13px] leading-6 text-ink-max dark:bg-stone-800">
@@ -215,14 +215,14 @@ function GradeBanner({ grade }: { grade: GradeResult }) {
   const c = t.lessonCode;
   if (grade.pass) {
     return (
-      <p role="status" className="flex items-center gap-2 border-b border-line bg-brand-50 px-4 py-3 text-sm font-bold text-brand-800 dark:bg-brand-950/40 dark:text-brand-200 sm:px-5">
+      <p role="status" className="flex items-center gap-2 border-b border-line-strong bg-brand-50 px-4 py-3 text-sm font-bold text-brand-800 dark:bg-brand-950/40 dark:text-brand-200 sm:px-5">
         <CheckCircle2 className="h-4 w-4" aria-hidden />
         {c.pass}
       </p>
     );
   }
   return (
-    <div role="status" className="space-y-1 border-b border-line bg-red-50 px-4 py-3 text-sm text-red-900 dark:bg-red-950/40 dark:text-red-100 sm:px-5">
+    <div role="status" className="space-y-1 border-b border-line-strong bg-red-50 px-4 py-3 text-sm text-red-900 dark:bg-red-950/40 dark:text-red-100 sm:px-5">
       <p className="flex items-center gap-2 font-bold">
         <XCircle className="h-4 w-4" aria-hidden />
         {grade.line ? format(c.failLine, { line: grade.line }) : c.failGeneric}
