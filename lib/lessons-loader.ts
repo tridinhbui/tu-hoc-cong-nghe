@@ -1,6 +1,5 @@
 import "server-only";
-import { readFile } from "fs/promises";
-import path from "path";
+import { readLessonFile } from "./lesson-files";
 import type {
   Lesson,
   Difficulty,
@@ -11,8 +10,6 @@ import type {
   LessonTranslation,
   LocalizedLesson,
 } from "./lesson-types";
-import { applyLessonOverrides } from "./lesson-quiz-overrides.js";
-import { balanceLessonQuizzes } from "./lesson-quiz-balance.js";
 import { lessonBelongsToTrack } from "./track-stages";
 import { DEFAULT_LOCALE, type Locale } from "./i18n/locales";
 import { localizedDuration, mergeLessonTranslation } from "./lesson-translations.js";
@@ -45,13 +42,11 @@ import { localizedDuration, mergeLessonTranslation } from "./lesson-translations
 let lessonsCache: Lesson[] | null = null;
 let indexCache: LessonMeta[] | null = null;
 
-const lessonsDataDir = path.join(process.cwd(), "lib", "lessons-data");
 
 // Translations live outside lib/lessons-data because the generator wipes that
 // directory on every run (see the unlinkSync loop in
 // scripts/generate-lesson-data.mjs). Hand-authored English content in there
 // would be deleted by the next `npm run build`.
-const translationsDir = path.join(process.cwd(), "lib", "lessons-i18n");
 
 /** Per-locale translation cache. A miss is cached as `null` too: for the 705
  *  untranslated lessons the fallback path is the common one, and without
@@ -69,8 +64,8 @@ async function loadTranslation(
 
   let translation: LessonTranslation | null = null;
   try {
-    const raw = await readFile(path.join(translationsDir, locale, `${slug}.json`), "utf8");
-    translation = JSON.parse(raw) as LessonTranslation;
+    const raw = await readLessonFile(`lessons-i18n/${locale}/${slug}.json`);
+    translation = raw ? (JSON.parse(raw) as LessonTranslation) : null;
   } catch {
     translation = null; // not translated yet - the reader gets Vietnamese
   }
@@ -99,8 +94,8 @@ async function loadTranslationIndex(
 
   let entries: Map<string, TranslationIndexEntry>;
   try {
-    const raw = await readFile(path.join(translationsDir, locale, "_index.json"), "utf8");
-    entries = new Map(Object.entries(JSON.parse(raw) as Record<string, TranslationIndexEntry>));
+    const raw = await readLessonFile(`lessons-i18n/${locale}/_index.json`);
+    entries = raw ? new Map(Object.entries(JSON.parse(raw) as Record<string, TranslationIndexEntry>)) : new Map();
   } catch {
     // No translations built for this locale yet. An empty map means every
     // listing falls back to Vietnamese, which is the intended behaviour, not
@@ -132,20 +127,26 @@ export async function loadLessons(): Promise<Lesson[]> {
     return lessonsCache;
   }
 
-  const { lessons } = await import("./lessons");
-  // Mirror the generator's order exactly - overrides first, then balance.
-  // This path previously applied overrides and stopped, so whenever the
-  // generated data was missing it silently served the authored answer
-  // positions, which is the very skew lib/lesson-quiz-balance.js exists to
-  // remove.
-  lessonsCache = balanceLessonQuizzes(applyLessonOverrides(lessons)) as Lesson[];
+  // Không `import("./lessons")` nữa: kéo cả kho bài vào gói worker (xem
+  // lib/lesson-files.ts). Đọc từng bài đã sinh theo chỉ mục, từng đợt nhỏ.
+  const index = await loadIndex();
+  if (!index) throw new Error("Thiếu lessons-data/_index.json - chạy scripts/generate-lesson-data.mjs.");
+  const lessons: Lesson[] = [];
+  for (let i = 0; i < index.length; i += 40) {
+    const batch = await Promise.all(index.slice(i, i + 40).map((m) => readSourceFile(m.slug)));
+    for (const l of batch) if (l) lessons.push(l);
+  }
+  // Tệp sinh sẵn đã qua overrides rồi cân vị trí đáp án (generate-lesson-data.mjs),
+  // nên không áp lại ở đây - áp lại overrides từng làm mất cân bằng (xem getSourceLessonBySlug).
+  lessonsCache = lessons;
   return lessonsCache;
 }
 
 async function loadIndex(): Promise<LessonMeta[] | null> {
   if (indexCache) return indexCache;
   try {
-    const raw = await readFile(path.join(lessonsDataDir, "_index.json"), "utf8");
+    const raw = await readLessonFile("lessons-data/_index.json");
+    if (!raw) return null;
     indexCache = JSON.parse(raw) as LessonMeta[];
     return indexCache;
   } catch {
@@ -185,23 +186,23 @@ export async function getLessonBySlug(
   return mergeLessonTranslation(source, await loadTranslation(slug, locale), locale);
 }
 
+/** Một bài đã sinh, đọc từ hệ tệp hoặc static assets. null nếu không có. */
+async function readSourceFile(slug: string): Promise<Lesson | null> {
+  const raw = await readLessonFile(`lessons-data/${slug}.json`);
+  // Served as-is. scripts/generate-lesson-data.mjs already ran
+  // applyLessonOverrides over this content and THEN balanced the answer
+  // positions, in that order. Re-applying the overrides here replayed the
+  // authored `correct` indices on top of the balanced ones and undid the
+  // balancing entirely: 211 of 576 lessons were being served with every
+  // correct answer at index 0, against 11 in the generated data. Answering
+  // "A" to everything scored 100% on those, which feeds avg_quiz_score,
+  // the unlock gate, XP and the /su-nghiep competency percentages.
+  return raw ? (JSON.parse(raw) as Lesson) : null;
+}
+
 /** The Vietnamese lesson exactly as generated - no translation applied. */
 async function getSourceLessonBySlug(slug: string): Promise<Lesson | undefined> {
-  try {
-    const raw = await readFile(path.join(lessonsDataDir, `${slug}.json`), "utf8");
-    // Served as-is. scripts/generate-lesson-data.mjs already ran
-    // applyLessonOverrides over this content and THEN balanced the answer
-    // positions, in that order. Re-applying the overrides here replayed the
-    // authored `correct` indices on top of the balanced ones and undid the
-    // balancing entirely: 211 of 576 lessons were being served with every
-    // correct answer at index 0, against 11 in the generated data. Answering
-    // "A" to everything scored 100% on those, which feeds avg_quiz_score,
-    // the unlock gate, XP and the /su-nghiep competency percentages.
-    return JSON.parse(raw) as Lesson;
-  } catch {
-    const lessons = await loadLessons();
-    return lessons.find((l) => l && l.slug === slug);
-  }
+  return (await readSourceFile(slug)) ?? undefined;
 }
 
 /**

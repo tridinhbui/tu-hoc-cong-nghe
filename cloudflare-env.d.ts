@@ -5,6 +5,7 @@
 // là lỗi biên dịch, chứ không phải `undefined` lúc chạy.
 declare global {
   interface CloudflareEnv {
+    ASSETS: import("@cloudflare/workers-types").Fetcher;
     DB: import("@cloudflare/workers-types").D1Database;
     FILES: import("@cloudflare/workers-types").R2Bucket;
     AI: import("@cloudflare/workers-types").Ai;

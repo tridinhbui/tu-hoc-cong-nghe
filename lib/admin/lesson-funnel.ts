@@ -166,15 +166,15 @@ async function buildWhySplit(rows: LessonFunnelRow[]): Promise<WhyItMattersSplit
   const eligible = rows.filter((r) => r.opens >= MIN_OPENS);
   if (eligible.length === 0) return null;
 
-  const { readFile } = await import("node:fs/promises");
+  const { readLessonFile } = await import("@/lib/lesson-files");
   const withWhy = { lessons: 0, opens: 0, reachedRecall: 0 };
   const withoutWhy = { lessons: 0, opens: 0, reachedRecall: 0 };
 
   for (const r of eligible) {
     let hasWhy = false;
     try {
-      const raw = await readFile(`lib/lessons-data/${r.slug}.json`, "utf8");
-      hasWhy = Boolean(JSON.parse(raw).whyItMatters);
+      const raw = await readLessonFile(`lessons-data/${r.slug}.json`);
+      hasWhy = Boolean(JSON.parse(raw ?? "").whyItMatters);
     } catch {
       continue;
     }

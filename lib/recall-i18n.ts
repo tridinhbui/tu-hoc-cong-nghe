@@ -1,6 +1,7 @@
 import "server-only";
 import { readFile, readdir } from "node:fs/promises";
 import path from "node:path";
+import { readLessonFile } from "@/lib/lesson-files";
 import { DEFAULT_LOCALE, type Locale } from "@/lib/i18n/locales";
 import type { RecallItem } from "@/lib/recall-schedule";
 
@@ -26,7 +27,6 @@ import type { RecallItem } from "@/lib/recall-schedule";
  */
 
 const lessonsDataDir = path.join(process.cwd(), "lib", "lessons-data");
-const translationsDir = path.join(process.cwd(), "lib", "lessons-i18n");
 
 type TakeawaySource = { slug: string; index: number };
 
@@ -73,8 +73,8 @@ async function loadTranslatedTakeaways(slug: string, locale: Locale): Promise<st
   if (translationCache.has(key)) return translationCache.get(key) ?? null;
   let takeaways: string[] | null = null;
   try {
-    const raw = await readFile(path.join(translationsDir, locale, `${slug}.json`), "utf8");
-    const parsed = JSON.parse(raw) as { keyTakeaways?: unknown };
+    const raw = await readLessonFile(`lessons-i18n/${locale}/${slug}.json`);
+    const parsed = JSON.parse(raw ?? "") as { keyTakeaways?: unknown };
     if (Array.isArray(parsed.keyTakeaways)) takeaways = parsed.keyTakeaways as string[];
   } catch {
     takeaways = null;
@@ -103,8 +103,8 @@ async function sourceTakeawayCount(slug: string): Promise<number> {
   if (cached !== undefined) return cached;
   let count = 0;
   try {
-    const raw = await readFile(path.join(lessonsDataDir, `${slug}.json`), "utf8");
-    const lesson = JSON.parse(raw) as { keyTakeaways?: string[] };
+    const raw = await readLessonFile(`lessons-data/${slug}.json`);
+    const lesson = JSON.parse(raw ?? "") as { keyTakeaways?: string[] };
     count = lesson.keyTakeaways?.length ?? 0;
   } catch {
     count = 0;
@@ -164,8 +164,8 @@ async function translateLessonTitle(title: string, locale: Locale): Promise<stri
   const slug = (await getTitleIndex()).get(title);
   if (!slug) return title;
   try {
-    const raw = await readFile(path.join(translationsDir, locale, `${slug}.json`), "utf8");
-    const parsed = JSON.parse(raw) as { title?: unknown };
+    const raw = await readLessonFile(`lessons-i18n/${locale}/${slug}.json`);
+    const parsed = JSON.parse(raw ?? "") as { title?: unknown };
     if (typeof parsed.title === "string" && parsed.title.trim()) return parsed.title;
   } catch {
     // chưa dịch bài này
