@@ -5,7 +5,8 @@ import { createD1Client, ADMIN_BYPASS } from "@/lib/d1/query-builder";
 import snapshot from "../../scripts/d1/schema-snapshot.json";
 import registryJson from "../../scripts/d1/policy-registry.json";
 import predicatesJson from "../../scripts/d1/manual-predicates.json";
-import type { ColumnTypes, PolicyRegistry, ManualPredicates } from "@/lib/d1/query-builder";
+import type { PolicyRegistry, ManualPredicates } from "@/lib/d1/query-builder";
+import { typesFromSnapshot } from "@/lib/d1/schema-types";
 
 /**
  * Cổng admin cho D1 - thay lib/admin-auth.ts + lib/cloudflare-admin.ts.
@@ -22,7 +23,7 @@ import type { ColumnTypes, PolicyRegistry, ManualPredicates } from "@/lib/d1/que
  * vai trò admin thật.
  */
 
-const types = (snapshot as { columns?: ColumnTypes }).columns ?? (snapshot as unknown as ColumnTypes);
+const types = typesFromSnapshot(snapshot);
 const registry = registryJson as unknown as PolicyRegistry;
 const predicates = predicatesJson as unknown as ManualPredicates;
 
