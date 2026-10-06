@@ -9,6 +9,7 @@ import { format } from "@/lib/i18n";
 import { XP_PER_LESSON } from "@/lib/levels";
 import LiveNumber from "@/components/LiveNumber";
 import { Scramble, TypeText, useInViewOnce } from "@/components/ui/effects";
+import { Magnetic, Parallax, Reveal, useLiveGate, usePointerVars } from "@/components/ui/motion";
 import { scrollToNeeds } from "@/components/home/v2/EditorialNeeds";
 import { BAND, Crosshair, ID, INK, Mono, PAPER, RULE, SheetHead, Stamp, useCrosshair } from "@/components/home/v2/kit";
 
@@ -96,6 +97,8 @@ export function EditorialHero({
   const v = t.home.v2;
   const reduce = useReducedMotion();
   const { ref, pos } = useCrosshair<HTMLElement>();
+  usePointerVars(ref);
+  useLiveGate(ref);
   const stats = (
     [
       [v.statLearners, learners],
@@ -106,12 +109,28 @@ export function EditorialHero({
 
   return (
     <section ref={ref} data-dbg="section#hero" className={`relative overflow-hidden border-b-2 ${RULE} ${PAPER} ${INK}`}>
-      {/* Lưới bản vẽ: 12 cột kẻ mảnh, nhìn thấy được chứ không ẩn. */}
-      <div aria-hidden className="pointer-events-none absolute inset-0 mx-auto grid max-w-7xl grid-cols-6 px-4 sm:px-6 lg:grid-cols-12 lg:px-8">
-        {Array.from({ length: 12 }).map((_, i) => (
-          <div key={i} className={`border-l border-black/[0.07] dark:border-white/[0.06] ${i >= 6 ? "hidden lg:block" : ""}`} />
-        ))}
+      {/* Chiều sâu: ba orb xanh mờ trôi chậm ở các tầng parallax khác nhau.
+          Chỉ transform/opacity, dừng khi hero ra khỏi màn hình hoặc tab ẩn. */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+        <Parallax speed={-0.06} className="absolute -left-[12vw] top-[8%] h-[38vw] w-[38vw] max-h-[34rem] max-w-[34rem]">
+          <div className="thcn-orb thcn-orb-a inset-0 bg-brand-500/25 dark:bg-brand-500/20" />
+        </Parallax>
+        <Parallax speed={0.1} className="absolute -right-[10vw] top-[28%] h-[44vw] w-[44vw] max-h-[40rem] max-w-[40rem]">
+          <div className="thcn-orb thcn-orb-b inset-0 bg-brand-300/30 dark:bg-brand-600/20" />
+        </Parallax>
+        <Parallax speed={0.18} className="absolute bottom-[-6%] left-[38%] h-[22vw] w-[22vw] max-h-[20rem] max-w-[20rem]">
+          <div className="thcn-orb thcn-orb-c inset-0 bg-brand-400/20" />
+        </Parallax>
       </div>
+      <div aria-hidden className="thcn-spot hidden md:block" />
+      {/* Lưới bản vẽ: 12 cột kẻ mảnh, trôi ngược chiều cuộn rất nhẹ. */}
+      <Parallax speed={0.05} aria-hidden className="pointer-events-none absolute -inset-y-12 inset-x-0">
+        <div className="mx-auto grid h-full max-w-7xl grid-cols-6 px-4 sm:px-6 lg:grid-cols-12 lg:px-8">
+          {Array.from({ length: 12 }).map((_, i) => (
+            <div key={i} className={`border-l border-black/[0.07] dark:border-white/[0.06] ${i >= 6 ? "hidden lg:block" : ""}`} />
+          ))}
+        </div>
+      </Parallax>
       {!reduce && <Crosshair pos={pos} />}
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -136,12 +155,13 @@ export function EditorialHero({
           </h1>
 
           <div className="min-w-0 lg:col-span-5 lg:col-start-1">
-            <p className="max-w-md text-[16px] leading-7">{format(v.heroSub, { count: lessonCount })}</p>
+            <p className="thcn-rise max-w-md text-[16px] leading-7 [animation-delay:600ms]">{format(v.heroSub, { count: lessonCount })}</p>
             <div className="mt-7 flex flex-wrap items-stretch gap-0">
               {/* Nút chính cuộn xuống "Bắt đầu từ việc bạn muốn làm" thay vì
                   mở form đăng ký: người mới được thử một bài trước, và thẻ cuối
                   bài mới là chỗ mời tạo tài khoản để lưu tiến độ. Đăng ký vẫn
                   ở nút "Vào học ngay" trên thanh điều hướng. */}
+              <Magnetic>
               <a
                 href="#bat-dau"
                 onClick={(e) => {
@@ -152,14 +172,15 @@ export function EditorialHero({
                     window.history.replaceState(null, "", "#bat-dau");
                   }
                 }}
-                className="thcn-glitch group inline-flex items-center gap-3 bg-brand-600 px-6 py-4 text-[15px] font-black uppercase tracking-wide text-white transition-colors hover:bg-[#0d0e11] dark:hover:bg-brand-400 dark:hover:text-[#0d0e11]"
+                className="thcn-glitch thcn-press group inline-flex items-center gap-3 bg-brand-600 px-6 py-4 text-[15px] font-black uppercase tracking-wide text-white transition-colors hover:bg-[#0d0e11] dark:hover:bg-brand-400 dark:hover:text-[#0d0e11]"
               >
                 {v.ctaPrimary}
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </a>
+              </Magnetic>
               <a
                 href={previewHref}
-                className={`inline-flex items-center gap-2 border-2 ${RULE} px-5 py-[14px] text-[14px] font-bold transition-colors hover:bg-[#0d0e11] hover:text-[#eeebe3] dark:hover:bg-[#eeebe3] dark:hover:text-[#0d0e11]`}
+                className={`thcn-press inline-flex items-center gap-2 border-2 ${RULE} px-5 py-[14px] text-[14px] font-bold transition-colors hover:bg-[#0d0e11] hover:text-[#eeebe3] dark:hover:bg-[#eeebe3] dark:hover:text-[#0d0e11]`}
               >
                 {v.ctaSecondary}
                 <ArrowUpRight className="h-4 w-4" />
@@ -169,7 +190,9 @@ export function EditorialHero({
           </div>
 
           <div className="flex flex-col gap-4 lg:col-span-6 lg:col-start-7">
-            <BootTerminal lessonCount={lessonCount} />
+            <div className="thcn-tilt">
+              <BootTerminal lessonCount={lessonCount} />
+            </div>
             {/* Ba con số thật, xếp như bảng thông số cuối bản vẽ.
                 Ô nào đang là 0 thì không hiện: các con số chỉ được ghi đè khi
                 truy vấn trả về số khác 0, nên 0 ở đây nghĩa là "chưa tải
@@ -247,11 +270,11 @@ export function EditorialWorlds() {
       <div className="mx-auto max-w-7xl px-4 pt-12 sm:px-6 lg:px-8 lg:pt-16">
         <div className="grid items-end gap-4 lg:grid-cols-12">
           <SheetHead n={2} kicker={v.worldsKicker} title={v.worldsTitle} loading={v.loadWorlds} size="xl" className="lg:col-span-9" />
-          <p className="font-mono text-[11px] opacity-60 lg:col-span-3 lg:text-right">→ {v.worldsHint}</p>
+          <Reveal as="p" delay={300} className="font-mono text-[11px] opacity-60 lg:col-span-3 lg:text-right">→ {v.worldsHint}</Reveal>
         </div>
       </div>
 
-      <div className={`mx-auto mt-10 flex max-w-7xl flex-col border-t-2 ${RULE} lg:h-[540px] lg:flex-row`}>
+      <Reveal y={28} className={`mx-auto mt-10 flex max-w-7xl flex-col border-t-2 ${RULE} lg:h-[540px] lg:flex-row`}>
         {WORLDS.map((w, i) => {
           const copy = v.worlds[w.key];
           const on = active === i;
@@ -330,7 +353,7 @@ export function EditorialWorlds() {
             </div>
           );
         })}
-      </div>
+      </Reveal>
     </section>
   );
 }
@@ -362,12 +385,12 @@ export function EditorialOS() {
   return (
     <section data-dbg="section#os" className={`border-b-2 ${RULE} ${BAND}`}>
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-12 lg:px-8 lg:py-20">
-        <div className="min-w-0 lg:col-span-4">
+        <Reveal className="min-w-0 lg:col-span-4">
           <SheetHead n={3} dark kicker={v.osKicker} title={v.osTitle} loading={v.loadOs} />
           <p className="mt-5 max-w-sm text-[15px] leading-7 text-[#eeebe3]/70">{v.osSub}</p>
           <Link
             href="/login?mode=signup"
-            className="group mt-8 inline-flex items-center gap-3 border-2 border-[#eeebe3] px-5 py-3 text-sm font-black uppercase tracking-wide transition-colors hover:bg-[#eeebe3] hover:text-[#0d0e11]"
+            className="thcn-press group mt-8 inline-flex items-center gap-3 border-2 border-[#eeebe3] px-5 py-3 text-sm font-black uppercase tracking-wide transition-colors hover:bg-[#eeebe3] hover:text-[#0d0e11]"
           >
             {v.osCta}
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -375,9 +398,10 @@ export function EditorialOS() {
           <div className="mt-10">
             <Stamp className="thcn-stamp inline-block !border-brand-300 !text-brand-300 !outline-brand-300">{v.noteStamp}</Stamp>
           </div>
-        </div>
+        </Reveal>
 
-        <div ref={ref} className="min-w-0 border-2 border-[#eeebe3] font-mono text-[12px] lg:col-span-8">
+        <Reveal delay={150} y={26} className="min-w-0 lg:col-span-8">
+        <div ref={ref} className="min-w-0 border-2 border-[#eeebe3] font-mono text-[12px]">
           <div className="flex items-center justify-between border-b-2 border-[#eeebe3] bg-[#eeebe3] px-3 py-1.5 text-[#0d0e11]">
             <span className="font-bold">{ID.os}</span>
             <span className="flex gap-1">
@@ -452,6 +476,7 @@ export function EditorialOS() {
             <span>{ID.enc}</span>
           </div>
         </div>
+        </Reveal>
       </div>
     </section>
   );

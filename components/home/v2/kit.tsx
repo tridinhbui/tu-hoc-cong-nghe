@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n/context";
 import { LoadBar, Scramble } from "@/components/ui/effects";
 import { CropMarks, Stamp } from "@/components/ui/system";
+import { Reveal } from "@/components/ui/motion";
 
 export { CropMarks, Stamp };
 
@@ -82,17 +83,18 @@ export function SheetHead({
   className?: string;
 }) {
   const { t } = useI18n();
-  const line = dark ? "border-[#eeebe3]" : RULE;
   // Chữ hoa tiếng Việt chồng dấu (Ả, Ẫ, Ệ) lên dòng trên khi dòng khít. Tiêu
   // đề ngắn giữ chữ hoa cho khối chữ đanh; câu dài để chữ thường cho dễ đọc.
   const upper = title.length <= 34;
   return (
     <div className={`min-w-0 ${className}`}>
-      <div className={`flex items-center justify-between gap-4 border-b-2 ${line} pb-2`}>
+      <div className="relative flex items-center justify-between gap-4 pb-2.5">
         <Mono className={dark ? "text-brand-300" : "text-accent-strong"}>
           {ID.sheet(n)} — {kicker}
         </Mono>
         <Mono className="hidden opacity-50 sm:inline">{ID.doc}</Mono>
+        {/* Đường kẻ dưới đầu tờ: vẽ ra từ trái sang phải khi vào khung nhìn. */}
+        <Reveal variant="line" className={`absolute inset-x-0 bottom-0 h-0.5 ${dark ? "bg-[#eeebe3]" : "bg-[#0d0e11] dark:bg-[#eeebe3]"}`} />
       </div>
       <LoadBar label={loading} done={t.home.v2.done} className={`border-b ${dark ? "border-white/20" : "border-black/15 dark:border-white/15"} py-2`} />
       <h2

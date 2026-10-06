@@ -936,3 +936,58 @@ html [data-sonner-toaster][data-sonner-theme='dark'] {
   from { opacity: 0; transform: translateY(4px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+/* ── Lớp chuyển động trang chủ (components/ui/motion.tsx) ──────────────────
+ * Chỉ transform/opacity. Trạng thái ẩn [data-rv="pre"] chỉ do JS đặt sau khi
+ * gắn, nên không JS = đầy đủ nội dung. */
+[data-rv="pre"] { opacity: 0; transform: translate3d(0, var(--rv-y, 18px), 0); }
+[data-rv="pre"][data-rv-v="line"] { opacity: 1; transform: scaleX(0); }
+[data-rv="in"] {
+  opacity: 1; transform: none;
+  transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1) var(--rv-d, 0ms),
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1) var(--rv-d, 0ms);
+}
+[data-rv-v="line"] { transform-origin: left center; }
+[data-rv="in"][data-rv-v="line"] { transition-duration: 1.1s, 1.1s; }
+
+/* Hero: orb mờ trôi chậm, quầng sáng theo con trỏ, vệt sáng chạy trên đường kẻ. */
+@keyframes thcn-drift-a { 0%, 100% { transform: translate3d(0, 0, 0) scale(1); } 50% { transform: translate3d(5vw, 4vh, 0) scale(1.08); } }
+@keyframes thcn-drift-b { 0%, 100% { transform: translate3d(0, 0, 0) scale(1); } 50% { transform: translate3d(-6vw, -3vh, 0) scale(0.94); } }
+@keyframes thcn-drift-c { 0%, 100% { transform: translate3d(0, 0, 0); opacity: 0.5; } 50% { transform: translate3d(3vw, -5vh, 0); opacity: 0.8; } }
+.thcn-orb { position: absolute; border-radius: 9999px; filter: blur(70px); pointer-events: none; will-change: transform; animation-play-state: paused; animation-timing-function: ease-in-out; animation-iteration-count: infinite; }
+[data-live="1"] .thcn-orb { animation-play-state: running; }
+.thcn-orb-a { animation-name: thcn-drift-a; animation-duration: 26s; }
+.thcn-orb-b { animation-name: thcn-drift-b; animation-duration: 32s; }
+.thcn-orb-c { animation-name: thcn-drift-c; animation-duration: 22s; }
+.thcn-spot {
+  position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity 0.5s ease-out;
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgb(41 97 184 / 0.12), transparent 70%);
+}
+[data-hover="1"] > .thcn-spot { opacity: 1; }
+.thcn-tilt {
+  transform: perspective(1100px) rotateY(calc(var(--tx, 0) * 3deg)) rotateX(calc(var(--ty, 0) * -2deg));
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@keyframes thcn-sweep { from { transform: translateX(-120%); } to { transform: translateX(320%); } }
+.thcn-sweep { position: relative; overflow: hidden; }
+.thcn-sweep::after {
+  content: ""; position: absolute; inset: 0 auto 0 0; width: 30%;
+  background: linear-gradient(90deg, transparent, rgb(41 97 184 / 0.9), transparent);
+  animation: thcn-sweep 7s ease-in-out infinite; animation-play-state: paused;
+}
+[data-live="1"] .thcn-sweep::after { animation-play-state: running; }
+
+/* Vi tương tác: nâng nhẹ, nhấn xuống, gạch chân chạy. */
+.thcn-lift { transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.3s; }
+@media (hover: hover) { .thcn-lift:hover { transform: translate3d(0, -3px, 0); } }
+.thcn-press { transition: transform 0.15s ease-out, background-color 0.2s, color 0.2s; }
+.thcn-press:active { transform: scale(0.97); }
+.thcn-ul { background: linear-gradient(currentColor, currentColor) 0 100% / 0 2px no-repeat; transition: background-size 0.45s cubic-bezier(0.22, 1, 0.36, 1); }
+.group:hover .thcn-ul, .thcn-ul:hover { background-size: 100% 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  [data-rv] { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .thcn-orb, .thcn-sweep::after { animation: none; }
+  .thcn-tilt, .thcn-lift, .thcn-press { transition: none; transform: none; }
+  .thcn-spot { display: none; }
+}

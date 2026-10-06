@@ -1,5 +1,6 @@
 "use client";
 
+import { Reveal } from "@/components/ui/motion";
 import { useEffect } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
@@ -70,14 +71,14 @@ export function EditorialNeeds() {
     <section id={NEEDS_SECTION_ID} data-dbg="section#needs" className={`scroll-mt-16 border-b-2 ${RULE} ${PAPER} ${INK}`}>
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
         <div className="grid items-end gap-4 lg:grid-cols-12">
-          <div className="lg:col-span-8">
+          <Reveal className="lg:col-span-8">
             <Mono className="text-accent-strong">{f.homeEyebrow}</Mono>
             <h2 className="mt-3 text-[2.1rem] font-black leading-[1.05] tracking-[-0.035em] sm:text-5xl">{f.homeTitle}</h2>
             <p className="mt-4 max-w-2xl text-[16px] leading-7 opacity-80">{f.sub}</p>
-          </div>
+          </Reveal>
           <Link
             href="/hoc-theo-nhu-cau"
-            className="inline-flex items-center gap-2 text-sm font-bold underline-offset-4 hover:underline lg:col-span-4 lg:justify-self-end"
+            className="thcn-ul inline-flex items-center gap-2 text-sm font-bold underline-offset-4 hover:underline lg:col-span-4 lg:justify-self-end"
           >
             {f.homeAll}
             <ArrowRight className="h-4 w-4" />
@@ -88,15 +89,15 @@ export function EditorialNeeds() {
             từng ô: bốn thẻ xếp 1, 2 rồi 4 cột theo bề rộng, và border từng ô
             thì phải tính lại cạnh nào kẻ ở mỗi mốc. */}
         <ul className={`mt-8 grid gap-px border-2 ${RULE} bg-[#0d0e11] dark:bg-[#eeebe3] sm:grid-cols-2 lg:grid-cols-4`}>
-          {STARTER_FLOWS.map((id) => {
+          {STARTER_FLOWS.map((id, idx) => {
             const copy = f.flows[id];
             return (
-              <li key={id} className={`min-w-0 ${PAPER}`}>
+              <Reveal as="li" key={id} delay={idx * 90} y={22} className={`min-w-0 ${PAPER}`}>
                 <Link
                   href={`/hoc-theo-nhu-cau/${id}`}
                   className="group flex h-full flex-col gap-3 p-5 transition-colors hover:bg-[#0d0e11] hover:text-[#eeebe3] dark:hover:bg-[#eeebe3] dark:hover:text-[#0d0e11] sm:p-6"
                 >
-                  <span className="text-xl font-black leading-snug tracking-tight">&ldquo;{copy.need}&rdquo;</span>
+                  <span className="thcn-ul self-start text-xl font-black leading-snug tracking-tight">&ldquo;{copy.need}&rdquo;</span>
                   <span className="text-sm leading-6 opacity-80">{copy.promise}</span>
                   <span className="mt-auto border-t border-current/20 pt-3 text-[13px] leading-6 opacity-90">
                     {g.flows[id].firstBuild}
@@ -106,7 +107,7 @@ export function EditorialNeeds() {
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </span>
                 </Link>
-              </li>
+              </Reveal>
             );
           })}
         </ul>

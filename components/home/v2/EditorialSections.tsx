@@ -13,6 +13,7 @@ import PublicLeaderboardPreview from "@/components/login/PublicLeaderboardPrevie
 import InteractiveKingdomPreview from "@/components/home/InteractiveKingdomPreview";
 import ActivityPanel from "@/components/home/ActivityPanel";
 import { Scramble, TypeText, useInViewOnce } from "@/components/ui/effects";
+import { Reveal } from "@/components/ui/motion";
 import { BAND, CropMarks, ID, INK, Mono, PAPER, RULE, SheetHead, Stamp } from "@/components/home/v2/kit";
 
 /* ───────────────────────── NAV ───────────────────────── */
@@ -119,13 +120,14 @@ export function EditorialCommunity() {
     <section data-dbg="section#community" className={`border-b-2 ${RULE} ${PAPER} ${INK}`}>
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-12 lg:gap-8 lg:px-8 lg:py-20">
         {/* Chữ bên PHẢI trên desktop - section duy nhất đặt minh hoạ trước chữ. */}
-        <div className="min-w-0 lg:order-2 lg:col-span-4 lg:col-start-9">
+        <Reveal className="min-w-0 lg:order-2 lg:col-span-4 lg:col-start-9">
           <SheetHead n={4} kicker={v.communityKicker} title={t.home.social.title} loading={v.loadCommunity} />
           <p className="mt-5 text-[15px] leading-7 opacity-80">{t.home.social.sub}</p>
           <ActivityPanel />
-        </div>
+        </Reveal>
 
-        <div className={`relative min-w-0 border-2 ${RULE} lg:order-1 lg:col-span-7`}>
+        <Reveal delay={150} y={26} className="min-w-0 lg:order-1 lg:col-span-7">
+        <div className={`relative min-w-0 border-2 ${RULE}`}>
           <CropMarks className="border-brand-600" />
           <div className={`flex items-center justify-between border-b-2 ${RULE} px-3 py-1.5`}>
             <Mono>{ID.sqlFile}</Mono>
@@ -142,6 +144,7 @@ export function EditorialCommunity() {
             <PublicLeaderboardPreview />
           </div>
         </div>
+        </Reveal>
       </div>
     </section>
   );
@@ -164,12 +167,12 @@ export function EditorialKingdom() {
       <div className="relative mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
         <div className="grid gap-6 lg:grid-cols-12">
           <SheetHead n={5} dark kicker={t.home.kingdom.eyebrow} title={t.home.kingdom.title} loading={v.loadKingdom} className="lg:col-span-7" />
-          <p className="self-end text-[15px] leading-7 text-[#eeebe3]/70 lg:col-span-4 lg:col-start-9">{t.home.kingdom.sub}</p>
+          <Reveal as="p" delay={250} className="self-end text-[15px] leading-7 text-[#eeebe3]/70 lg:col-span-4 lg:col-start-9">{t.home.kingdom.sub}</Reveal>
         </div>
-        <div className="relative mt-10 border-2 border-[#eeebe3] p-2 sm:p-3">
+        <Reveal y={30} className="relative mt-10 border-2 border-[#eeebe3] p-2 sm:p-3">
           <CropMarks className="border-brand-400" />
           <InteractiveKingdomPreview />
-        </div>
+        </Reveal>
       </div>
     </section>
   );
@@ -231,7 +234,7 @@ export function EditorialMethod() {
   return (
     <section data-dbg="section#method" className={`border-b-2 ${RULE} ${PAPER} ${INK}`}>
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-12 lg:gap-8 lg:px-8 lg:py-20">
-        <div className="min-w-0 lg:col-span-4">
+        <Reveal className="min-w-0 lg:col-span-4">
           <SheetHead n={6} kicker={v.methodKicker} title={v.methodTitle} loading={v.loadMethod} />
           <p className="mt-5 text-[15px] leading-7 opacity-80">{v.methodSub}</p>
           <div className="mt-8 flex flex-wrap gap-0">
@@ -265,10 +268,11 @@ export function EditorialMethod() {
               ↺ {v.methodReset}
             </button>
           </div>
-        </div>
+        </Reveal>
 
         {/* Cửa sổ gỡ lỗi: mã với điểm dừng ở trái, biến và ngăn xếp ở phải. */}
-        <div ref={ref} className={`min-w-0 border-2 ${RULE} font-mono text-[12px] lg:col-span-8`}>
+        <Reveal delay={150} y={26} className="min-w-0 lg:col-span-8">
+        <div ref={ref} className={`min-w-0 border-2 ${RULE} font-mono text-[12px]`}>
           <div className={`flex items-center justify-between border-b-2 ${RULE} ${BAND} px-3 py-1.5`}>
             <span>{ID.debuggerFile}</span>
             <span className={finished ? "text-brand-300" : "text-brand-400"}>
@@ -339,6 +343,7 @@ export function EditorialMethod() {
             </div>
           </div>
         </div>
+        </Reveal>
       </div>
     </section>
   );
@@ -369,9 +374,9 @@ export function EditorialManifest() {
           loading={v.loadManifest}
           className="max-w-5xl"
         />
-        <p className="mt-5 max-w-2xl text-[15px] leading-7 opacity-80">{t.home.ecosystem.sub}</p>
+        <Reveal as="p" delay={200} className="mt-5 max-w-2xl text-[15px] leading-7 opacity-80">{t.home.ecosystem.sub}</Reveal>
 
-        <div className={`mt-12 grid border-2 ${RULE} lg:grid-cols-12`}>
+        <Reveal y={26} className={`mt-12 grid border-2 ${RULE} lg:grid-cols-12`}>
           {/* Cột trái: tính năng, đánh số như danh mục linh kiện. */}
           <div className={`border-b-2 ${RULE} lg:col-span-5 lg:border-b-0 lg:border-r-2`}>
             <div className={`border-b ${RULE} ${BAND} px-4 py-2`}>
@@ -381,7 +386,7 @@ export function EditorialManifest() {
               {features.map((f, i) => (
                 <li
                   key={f}
-                  className={`group grid grid-cols-[3rem_minmax(0,1fr)_auto] items-center gap-3 border-b border-black/15 px-4 py-3.5 transition-colors last:border-b-0 hover:bg-brand-600 hover:text-white dark:border-white/15`}
+                  className={`group grid grid-cols-[3rem_minmax(0,1fr)_auto] items-center gap-3 border-b border-black/15 px-4 py-3.5 transition-[background-color,color,padding] duration-300 last:border-b-0 hover:bg-brand-600 hover:pl-6 hover:text-white dark:border-white/15`}
                 >
                   <Mono className="opacity-50 group-hover:opacity-100">{ID.featureId(i + 1)}</Mono>
                   <span className="text-[17px] font-black tracking-tight">{f}</span>
@@ -399,7 +404,7 @@ export function EditorialManifest() {
               {audience.map((a, i) => (
                 <div
                   key={a.title}
-                  className={`relative border-black/15 p-5 dark:border-white/15 ${i % 2 === 0 ? "sm:border-r" : ""} ${i < 2 ? "border-b" : i === 2 ? "border-b sm:border-b-0" : ""}`}
+                  className={`thcn-lift relative border-black/15 p-5 hover:bg-black/[0.03] dark:border-white/15 dark:hover:bg-white/[0.04] ${i % 2 === 0 ? "sm:border-r" : ""} ${i < 2 ? "border-b" : i === 2 ? "border-b sm:border-b-0" : ""}`}
                 >
                   <Mono className="text-accent-strong">{"tag" in a ? (a as { tag?: string }).tag : ""}</Mono>
                   <p className="mt-2 text-2xl font-black leading-tight tracking-tight">{a.title}</p>
@@ -409,7 +414,7 @@ export function EditorialManifest() {
               ))}
             </div>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );
@@ -436,14 +441,14 @@ export function EditorialReport() {
     <>
       <section data-dbg="section#report" className={`border-b-2 ${RULE} ${PAPER} ${INK}`}>
         <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-12 lg:gap-8 lg:px-8 lg:py-20">
-          <div className="min-w-0 lg:col-span-7">
+          <Reveal className="min-w-0 lg:col-span-7">
             <SheetHead n={8} kicker={vi.eyebrow} title={vi.title} loading={v.loadReport} />
             <div className="relative mt-10">
               <Stamp className="thcn-stamp absolute -top-5 right-2 z-10 inline-block bg-[#eeebe3] dark:bg-[#0c0d10]">{v.noteStamp}</Stamp>
               {/* Ba số xếp thành ba dòng lớn thay vì bảng nhỏ: số là nhân vật chính. */}
               <ol className={`border-t-2 ${RULE}`}>
                 {rows.map((r) => (
-                  <li key={r.label} className={`grid gap-x-6 gap-y-1 border-b ${RULE} py-5 sm:grid-cols-[minmax(0,11rem)_minmax(0,1fr)]`}>
+                  <li key={r.label} className={`group grid gap-x-6 gap-y-1 border-b ${RULE} py-5 sm:grid-cols-[minmax(0,11rem)_minmax(0,1fr)]`}>
                     <span
                       className={`text-5xl font-black leading-none tracking-[-0.04em] sm:text-6xl ${r.key ? "text-accent" : ""} ${
                         /^[\d.,/%\s]+$/.test(r.value) ? "font-mono" : ""
@@ -460,9 +465,9 @@ export function EditorialReport() {
                 ))}
               </ol>
             </div>
-          </div>
+          </Reveal>
 
-          <div className="min-w-0 lg:col-span-4 lg:col-start-9 lg:pt-24">
+          <Reveal delay={200} y={26} className="min-w-0 lg:col-span-4 lg:col-start-9 lg:pt-24">
             <div className={`relative border-2 ${RULE}`}>
               <CropMarks className="border-brand-600" />
               <div className={`flex justify-between border-b-2 ${RULE} ${BAND} px-3 py-1.5`}>
@@ -476,7 +481,7 @@ export function EditorialReport() {
                 </p>
               </div>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -491,7 +496,7 @@ export function EditorialReport() {
             <p className="max-w-md text-lg font-semibold leading-snug">{v.ctaBigSub}</p>
             <Link
               href="/login?mode=signup"
-              className="thcn-glitch group inline-flex items-center justify-center gap-3 bg-[#0d0e11] px-7 py-4 text-[15px] font-black uppercase tracking-wide text-white transition-colors hover:bg-white hover:text-[#0d0e11]"
+              className="thcn-glitch thcn-press group inline-flex items-center justify-center gap-3 bg-[#0d0e11] px-7 py-4 text-[15px] font-black uppercase tracking-wide text-white transition-colors hover:bg-white hover:text-[#0d0e11]"
             >
               {vi.cta}
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
