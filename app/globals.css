@@ -991,3 +991,92 @@ html [data-sonner-toaster][data-sonner-theme='dark'] {
   .thcn-tilt, .thcn-lift, .thcn-press { transition: none; transform: none; }
   .thcn-spot { display: none; }
 }
+
+
+/* ───────────────────────────────────────────────────────────────────────────
+   DASHBOARD DỊU MẮT (2026-10-06) - `.dash-calm` là gốc của /dashboard.
+   Yêu cầu: giữ layout, giảm bão hoà / gradient / bóng, ưu tiên trắng + xanh
+   nhạt, bớt cam/hồng/badge nổi, màu đậm chỉ dành cho nút chính.
+
+   Làm bằng BIẾN trong phạm vi một gốc thay vì sửa hàng trăm lớp trong
+   DashboardClient và các widget con: tiện ích Tailwind đọc `var(--color-*)` và
+   `var(--shade-*)`, nên khai lại chúng ở đây là đủ - các màn khác không đổi.
+   Bậc xanh được giữ NGUYÊN số bậc (amber-600 -> brand-600) nên cặp chữ/nền và
+   các biến thể `dark:` vẫn đúng tương phản mà không phải viết lại.
+   Đỏ (lỗi, nguy hiểm) và xanh lá (hoàn thành) được giữ: chúng mang nghĩa.
+   ─────────────────────────────────────────────────────────────────────────── */
+.dash-calm {
+  --color-orange-50: var(--color-brand-50);   --color-orange-100: var(--color-brand-100);
+  --color-orange-200: var(--color-brand-200); --color-orange-300: var(--color-brand-300);
+  --color-orange-400: var(--color-brand-400); --color-orange-500: var(--color-brand-500);
+  --color-orange-600: var(--color-brand-600); --color-orange-700: var(--color-brand-700);
+  --color-orange-800: var(--color-brand-800); --color-orange-900: var(--color-brand-900);
+  --color-orange-950: var(--color-brand-950);
+  --color-amber-50: var(--color-brand-50);   --color-amber-100: var(--color-brand-100);
+  --color-amber-200: var(--color-brand-200); --color-amber-300: var(--color-brand-300);
+  --color-amber-400: var(--color-brand-400); --color-amber-500: var(--color-brand-500);
+  --color-amber-600: var(--color-brand-600); --color-amber-700: var(--color-brand-700);
+  --color-amber-800: var(--color-brand-800); --color-amber-900: var(--color-brand-900);
+  --color-amber-950: var(--color-brand-950);
+  --color-yellow-50: var(--color-brand-50);   --color-yellow-100: var(--color-brand-100);
+  --color-yellow-200: var(--color-brand-200); --color-yellow-300: var(--color-brand-300);
+  --color-yellow-400: var(--color-brand-400); --color-yellow-500: var(--color-brand-500);
+  --color-yellow-600: var(--color-brand-600); --color-yellow-700: var(--color-brand-700);
+  --color-yellow-800: var(--color-brand-800); --color-yellow-900: var(--color-brand-900);
+  --color-yellow-950: var(--color-brand-950);
+  --color-rose-50: var(--color-brand-50);   --color-rose-100: var(--color-brand-100);
+  --color-rose-200: var(--color-brand-200); --color-rose-300: var(--color-brand-300);
+  --color-rose-400: var(--color-brand-400); --color-rose-500: var(--color-brand-500);
+  --color-rose-600: var(--color-brand-600); --color-rose-700: var(--color-brand-700);
+  --color-rose-800: var(--color-brand-800); --color-rose-900: var(--color-brand-900);
+  --color-rose-950: var(--color-brand-950);
+  --color-pink-50: var(--color-brand-50);   --color-pink-100: var(--color-brand-100);
+  --color-pink-200: var(--color-brand-200); --color-pink-300: var(--color-brand-300);
+  --color-pink-400: var(--color-brand-400); --color-pink-500: var(--color-brand-500);
+  --color-pink-600: var(--color-brand-600); --color-pink-700: var(--color-brand-700);
+  --color-pink-800: var(--color-brand-800); --color-pink-900: var(--color-brand-900);
+  --color-pink-950: var(--color-brand-950);
+  --color-fuchsia-50: var(--color-brand-50);   --color-fuchsia-100: var(--color-brand-100);
+  --color-fuchsia-200: var(--color-brand-200); --color-fuchsia-300: var(--color-brand-300);
+  --color-fuchsia-400: var(--color-brand-400); --color-fuchsia-500: var(--color-brand-500);
+  --color-fuchsia-600: var(--color-brand-600); --color-fuchsia-700: var(--color-brand-700);
+  --color-fuchsia-800: var(--color-brand-800); --color-fuchsia-900: var(--color-brand-900);
+  --color-fuchsia-950: var(--color-brand-950);
+  --color-purple-50: var(--color-brand-50);   --color-purple-100: var(--color-brand-100);
+  --color-purple-200: var(--color-brand-200); --color-purple-300: var(--color-brand-300);
+  --color-purple-400: var(--color-brand-400); --color-purple-500: var(--color-brand-500);
+  --color-purple-600: var(--color-brand-600); --color-purple-700: var(--color-brand-700);
+  --color-purple-800: var(--color-brand-800); --color-purple-900: var(--color-brand-900);
+  --color-purple-950: var(--color-brand-950);
+  --color-violet-50: var(--color-brand-50);   --color-violet-100: var(--color-brand-100);
+  --color-violet-200: var(--color-brand-200); --color-violet-300: var(--color-brand-300);
+  --color-violet-400: var(--color-brand-400); --color-violet-500: var(--color-brand-500);
+  --color-violet-600: var(--color-brand-600); --color-violet-700: var(--color-brand-700);
+  --color-violet-800: var(--color-brand-800); --color-violet-900: var(--color-brand-900);
+  --color-violet-950: var(--color-brand-950);
+
+  /* Hai tông nhấn của hệ thống (thử thách = coral, thưởng = vàng) về xanh yên
+     tĩnh. Nút `btnEnergy` thành nút xanh, đúng ý "đậm chỉ cho nút chính". */
+  --color-energy: var(--color-brand-600);
+  --color-energy-strong: var(--color-brand-700);
+  --color-energy-soft: var(--color-brand-50);
+  --color-energy-line: var(--color-brand-200);
+  --color-reward: var(--color-brand-500);
+  --color-reward-strong: var(--color-brand-700);
+  --color-reward-soft: var(--color-brand-50);
+  --color-reward-line: var(--color-brand-200);
+}
+
+/* Hết gradient: mỗi dải đổ màu thành một màu phẳng (màu bắt đầu của nó). */
+.dash-calm [class*="bg-gradient-to-"] {
+  --tw-gradient-stops: var(--tw-gradient-from, transparent), var(--tw-gradient-from, transparent);
+}
+
+/* Bóng mảnh và nhạt hơn nhiều; chế độ tối giữ bóng riêng của nó. */
+html:not(.dark) .dash-calm {
+  --shade-1: rgb(15 34 71 / 0.025);
+  --shade-2: rgb(15 34 71 / 0.035);
+  --shade-3: rgb(15 34 71 / 0.06);
+  --shade-brand: rgb(41 97 184 / 0.12);
+  background-color: #f6f9fd; /* gần trắng, ngả xanh rất nhạt - thay cho canvas xanh băng */
+}

@@ -87,10 +87,10 @@ export function DashboardHeroBanner({
   const { t } = useI18n();
   const r = t.revampDashboard;
   return (
-    <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-200 via-brand-50 to-sky-200 p-5 shadow-[0_12px_32px_-16px_rgba(41,97,184,0.55)] ring-1 ring-brand-200 sm:p-7 lg:[@media(max-height:1199px)]:p-4 dark:from-brand-950/50 dark:via-stone-900 dark:to-stone-900 dark:ring-white/5">
-      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-brand-600 via-rose-500 to-amber-400" />
-      <div aria-hidden className="pointer-events-none absolute -left-10 -top-12 h-40 w-40 rounded-full bg-rose-300/40 blur-3xl dark:bg-rose-500/10" />
-      <div aria-hidden className="pointer-events-none absolute -bottom-16 right-24 h-44 w-44 rounded-full bg-brand-400/30 blur-3xl dark:bg-brand-500/10" />
+    <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-50 via-white to-brand-50 p-5 shadow-card ring-1 ring-accent-line sm:p-7 lg:[@media(max-height:1199px)]:p-4 dark:from-brand-950/50 dark:via-stone-900 dark:to-stone-900 dark:ring-white/5">
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-1.5 bg-brand-200" />
+      <div aria-hidden className="pointer-events-none absolute -left-10 -top-12 h-40 w-40 rounded-full bg-brand-100/60 blur-3xl dark:bg-brand-500/10" />
+      <div aria-hidden className="pointer-events-none absolute -bottom-16 right-24 h-44 w-44 rounded-full bg-brand-200/30 blur-3xl dark:bg-brand-500/10" />
       <div className="relative z-10 sm:pr-[290px] lg:pr-[330px] lg:max-xl:!pr-0 lg:[@media(max-height:1199px)]:pr-[230px]">
         <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.12em] text-accent-strong">
           {/* i18n-ignore-start: mã định vị hệ thống, cùng họ với THCN://INTERVIEW/TECH */}
@@ -229,16 +229,16 @@ export function TrophyPromoCard() {
   return (
     <Link
       href="/phong-van-ky-thuat"
-      className="group relative block overflow-hidden rounded-2xl bg-gradient-to-br from-brand-600 via-brand-700 to-brand-900 p-5 shadow-[0_14px_30px_-14px_rgba(33,78,150,0.8)] ring-1 ring-brand-500/40 transition-transform hover:-translate-y-0.5"
+      className="group relative block overflow-hidden rounded-2xl bg-accent-soft p-5 shadow-card ring-1 ring-accent-line transition-colors hover:ring-brand-300"
     >
       <div className="relative z-10 max-w-[60%]">
-        <p className="text-xl font-black leading-tight tracking-tight text-white">
+        <p className="text-xl font-black leading-tight tracking-tight text-ink-max">
           {r.promoTitle1}
           <br />
           {r.promoTitle2}
         </p>
-        <p className="mt-2 text-xs leading-relaxed text-brand-100">{r.promoBody}</p>
-        <span className="mt-3 inline-flex items-center gap-1 rounded-full bg-rose-500 px-3 py-1 text-xs font-bold text-white shadow-md shadow-rose-900/30">
+        <p className="mt-2 text-xs leading-relaxed text-ink-soft">{r.promoBody}</p>
+        <span className="mt-3 inline-flex items-center gap-1 rounded-full bg-brand-600 px-3 py-1 text-xs font-bold text-white">
           {r.promoCta}
           <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden />
         </span>

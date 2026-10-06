@@ -211,14 +211,14 @@ export default function ResumeLearningButton({ activeTrack, compact = false, use
         href={`/bai-hoc/${nextLesson.slug}`}
         onClick={() => trackFeatureClick("resume_learning_click", { label: nextLesson.slug })}
         className={hero
-          ? "group relative block overflow-hidden rounded-[20px] bg-gradient-to-br from-brand-700 via-brand-600 to-brand-800 text-white shadow-[0_18px_40px_-22px_rgba(22,60,130,0.9)] transition-[transform,box-shadow] duration-300 hover:-translate-y-0.5 hover:shadow-[0_24px_48px_-22px_rgba(22,60,130,0.95)] dark:from-brand-800 dark:via-brand-900 dark:to-stone-950"
+          ? "group relative block overflow-hidden rounded-[20px] border border-accent-line bg-white text-ink-max shadow-card transition-[border-color,box-shadow] duration-300 hover:border-brand-300 hover:shadow-card-hover dark:border-brand-900 dark:bg-stone-900"
           : "group relative block rounded-sm border border-line bg-white transition-colors hover:border-stone-400 dark:border-stone-700 dark:bg-stone-900 dark:hover:border-stone-600"}
       >
         {hero && (
           // Hai vệt sáng mờ: đủ để thẻ có chiều sâu, không đủ để thành hoạ tiết.
           <>
-            <span aria-hidden className="pointer-events-none absolute -right-16 -top-24 h-64 w-64 rounded-full bg-cyan-300/25 blur-3xl" />
-            <span aria-hidden className="pointer-events-none absolute -bottom-28 left-1/3 h-56 w-56 rounded-full bg-brand-300/20 blur-3xl" />
+            <span aria-hidden className="pointer-events-none absolute -right-16 -top-24 h-64 w-64 rounded-full bg-brand-200/30 blur-3xl" />
+            <span aria-hidden className="pointer-events-none absolute -bottom-28 left-1/3 h-56 w-56 rounded-full bg-brand-100/40 blur-3xl" />
           </>
         )}
         <div className={`relative flex flex-col gap-3 ${hero ? "p-6 sm:p-8 md:gap-10 lg:[@media(max-height:1199px)]:p-4 lg:[@media(max-height:1199px)]:gap-6" : quiet ? "p-5 sm:p-6" : compact ? "p-4" : "p-4 sm:p-5"} md:flex-row md:items-center md:gap-6`}>
@@ -226,14 +226,14 @@ export default function ResumeLearningButton({ activeTrack, compact = false, use
             <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1">
               {hero ? (
                 <>
-                  <span className="inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-white ring-1 ring-white/20">
+                  <span className="inline-flex items-center gap-2 rounded-full bg-accent-soft px-3 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-accent-strong ring-1 ring-accent-line">
                     <span className="relative flex h-2 w-2" aria-hidden>
-                      <span className="absolute inline-flex h-full w-full rounded-full bg-cyan-300 opacity-75 motion-safe:animate-ping" />
-                      <span className="relative inline-flex h-2 w-2 rounded-full bg-cyan-300" />
+                      <span className="absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-60 motion-safe:animate-ping" />
+                      <span className="relative inline-flex h-2 w-2 rounded-full bg-brand-500" />
                     </span>
                     {t.revampDashboard.heroLabel}
                   </span>
-                  <span className="inline-flex items-center gap-1 rounded-full bg-amber-300/20 px-2.5 py-1 font-mono text-[11px] font-bold tabular-nums text-amber-200 ring-1 ring-amber-200/30">
+                  <span className="inline-flex items-center gap-1 rounded-full bg-surface-raised px-2.5 py-1 font-mono text-[11px] font-bold tabular-nums text-ink-soft ring-1 ring-accent-line">
                     {format(t.resume.resumeXpBadge, { xp: XP_PER_LESSON })}
                   </span>
                 </>
@@ -251,12 +251,12 @@ export default function ResumeLearningButton({ activeTrack, compact = false, use
                 </span>
               )}
             </div>
-            <span className={`block text-xs font-semibold ${hero ? "mt-5 text-brand-100 lg:[@media(max-height:1199px)]:mt-2" : "mt-2 text-ink-faint"}`}>{lessonLabel}</span>
-            <h2 className={`mt-0.5 font-black tracking-tight leading-snug ${hero ? "text-2xl sm:text-[34px] sm:leading-tight text-white lg:[@media(max-height:1199px)]:text-xl" : "text-lg sm:text-2xl text-ink-max"}`}>
+            <span className={`block text-xs font-semibold ${hero ? "mt-5 text-ink-faint lg:[@media(max-height:1199px)]:mt-2" : "mt-2 text-ink-faint"}`}>{lessonLabel}</span>
+            <h2 className={`mt-0.5 font-black tracking-tight leading-snug ${hero ? "text-2xl sm:text-[34px] sm:leading-tight text-ink-max lg:[@media(max-height:1199px)]:text-xl" : "text-lg sm:text-2xl text-ink-max"}`}>
               {shortTitle}
             </h2>
             {nextLesson.subtitle && (
-              <p className={`line-clamp-2 leading-snug ${hero ? "mt-2 max-w-2xl text-[15px] text-brand-50/90 lg:[@media(max-height:1199px)]:hidden" : "mt-1 text-sm text-ink-muted"}`}>{nextLesson.subtitle}</p>
+              <p className={`line-clamp-2 leading-snug ${hero ? "mt-2 max-w-2xl text-[15px] text-ink-soft lg:[@media(max-height:1199px)]:hidden" : "mt-1 text-sm text-ink-muted"}`}>{nextLesson.subtitle}</p>
             )}
 
             {/* Tử số phải cùng phạm vi với mẫu số. `completedCount` đếm bài
@@ -267,21 +267,21 @@ export default function ResumeLearningButton({ activeTrack, compact = false, use
                 tiến độ đã làm, không phải hành động. */}
             <div className={`flex items-center gap-3 ${hero ? "mt-6 lg:[@media(max-height:1199px)]:mt-3" : "mt-4"}`}>
               {trackProgress && (
-                <span className={`text-xs font-medium whitespace-nowrap ${hero ? "font-semibold text-brand-50" : "text-ink-faint"}`}>
+                <span className={`text-xs font-medium whitespace-nowrap ${hero ? "font-semibold text-ink-soft" : "text-ink-faint"}`}>
                   {format(t.resume.resumeProgress, {
                     done: trackProgress.completed,
                     total: trackProgress.total,
                   })}
                 </span>
               )}
-              <div className={`flex-1 max-w-xs overflow-hidden relative ${hero ? "h-2.5 max-w-sm rounded-full bg-white/20" : "h-1.5 rounded-xs bg-surface-sunken"}`}>
+              <div className={`flex-1 max-w-xs overflow-hidden relative ${hero ? "h-2.5 max-w-sm rounded-full bg-accent-soft" : "h-1.5 rounded-xs bg-surface-sunken"}`}>
                 <div
-                  className={`h-full motion-safe:transition-[width] motion-safe:duration-700 ${hero ? "rounded-full bg-gradient-to-r from-cyan-300 to-white shadow-[0_0_12px_rgba(103,232,249,0.7)]" : "bg-cyan-400 dark:bg-cyan-600"}`}
+                  className={`h-full motion-safe:transition-[width] motion-safe:duration-700 ${hero ? "rounded-full bg-brand-500" : "bg-cyan-400 dark:bg-cyan-600"}`}
                   style={{ width: `${Math.max(2, progressPercent)}%` }}
                 />
               </div>
               {(hero || !quiet) && (
-                <span className={`text-xs font-mono tabular-nums ${hero ? "font-bold text-white" : "font-medium text-ink-muted"}`}>
+                <span className={`text-xs font-mono tabular-nums ${hero ? "font-bold text-ink-max" : "font-medium text-ink-muted"}`}>
                   {progressPercent}%
                 </span>
               )}
@@ -292,14 +292,14 @@ export default function ResumeLearningButton({ activeTrack, compact = false, use
               đã là một <Link>: một <a> lồng trong <a> là HTML không hợp lệ,
               nên đây là một cái nút TRÔNG như nút, còn cú bấm vẫn do thẻ nhận. */}
           <span className={hero
-            ? "pointer-events-none inline-flex shrink-0 items-center gap-2 self-start rounded-full bg-white px-7 py-3.5 text-[15px] font-black text-brand-700 shadow-[0_10px_24px_-10px_rgba(0,0,0,0.45)] transition-transform group-hover:scale-[1.03] md:self-center"
+            ? "pointer-events-none inline-flex shrink-0 items-center gap-2 self-start rounded-full bg-brand-600 px-7 py-3.5 text-[15px] font-black text-white shadow-card transition-transform group-hover:scale-[1.03] md:self-center"
             : `${btnPrimary} shrink-0 self-start md:self-center px-5 py-3 group-hover:bg-brand-700 dark:group-hover:bg-brand-300 pointer-events-none`}>
             {t.resume.resumeCta}
             <ArrowRight className="w-4 h-4 motion-safe:transition-transform group-hover:translate-x-0.5" />
           </span>
         </div>
         {hero && footnote && !flowNext && (
-          <div className="relative border-t border-white/10 bg-black/10 px-6 py-3 text-xs font-medium text-brand-100 sm:px-8 lg:[@media(max-height:1199px)]:py-2">
+          <div className="relative border-t border-accent-line bg-accent-wash px-6 py-3 text-xs font-medium text-ink-soft sm:px-8 lg:[@media(max-height:1199px)]:py-2">
             {footnote}
           </div>
         )}

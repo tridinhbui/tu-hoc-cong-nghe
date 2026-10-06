@@ -1164,7 +1164,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
     // văn bản và làm cả trang cuộn. Bù lại bằng lề âm, và trả chỗ đó cho vùng cuộn
     // bên trong (`pb-28`) để nút nổi vẫn không che nội dung cuối.
     // Trang /hoc-bai (isLessonsView) giữ cách cũ.
-    <div className={isLessonsView ? "min-h-screen xl:h-screen xl:overflow-y-auto" : "-mb-28 h-[calc(100dvh-3.5rem)] overflow-hidden lg:mb-0 lg:h-dvh"}>
+    <div className={`dash-calm ${isLessonsView ? "min-h-screen bg-white dark:bg-stone-950 xl:h-screen xl:overflow-y-auto" : "-mb-28 h-[calc(100dvh-3.5rem)] overflow-hidden lg:mb-0 lg:h-dvh"}`}>
 
 
       <div className={isLessonsView ? "px-4 py-4 sm:px-5 sm:py-5 xl:h-full xl:flex xl:flex-col xl:min-h-0" : "flex h-full min-h-0 flex-col px-3 py-3 sm:px-4 lg:px-5"}>
@@ -2944,7 +2944,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
             {isLessonsView && user?.id && <DailyNewsQuizWidget userId={user.id} compact quiet />}
 
             {isLessonsView && (
-              <div className="rounded-card bg-surface-raised/70 px-3.5 py-3 flex items-center justify-between gap-3 select-none dark:bg-stone-900/50">
+              <div className="rounded-card border border-line-strong bg-white px-3.5 py-3 flex items-center justify-between gap-3 select-none dark:bg-stone-900/50">
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 rounded-control bg-white flex items-center justify-center shrink-0 dark:bg-stone-950">
                     <Trophy className="w-4 h-4 text-ink-muted" />
