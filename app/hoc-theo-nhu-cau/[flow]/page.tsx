@@ -130,7 +130,7 @@ export default async function LearningFlowPage({ params }: { params: Promise<{ f
             <p className="font-mono text-[10px] font-bold uppercase tracking-wider text-ink-faint">{r.firstBuildLabel}</p>
             <CoCoSays lines={[cap.firstBuild]} className="mt-2 max-w-2xl" />
             <p className="mt-3 max-w-xl text-sm leading-6 text-ink-soft">{t.firstWinSub}</p>
-            <Link href={`/bai-hoc/${flow.firstWinSlug}`} className={`${btnPrimary} mt-3`}>
+            <Link href={`/bai-hoc/${flow.firstWinSlug}?hanh-trinh=${flow.id}`} className={`${btnPrimary} mt-3`}>
               <PlayCircle className="h-4 w-4" />
               {format(r.firstLessonCta, { minutes: minutesOf(flow.firstWinSlug) })}
             </Link>
@@ -167,7 +167,7 @@ export default async function LearningFlowPage({ params }: { params: Promise<{ f
                       return (
                         <li key={slug}>
                           <Link
-                            href={`/bai-hoc/${slug}`}
+                            href={`/bai-hoc/${slug}?hanh-trinh=${flow.id}`}
                             className="group flex items-center gap-3 px-4 py-3 transition-colors hover:bg-page dark:hover:bg-stone-800/60"
                           >
                             <span className="flex w-6 shrink-0 justify-center">
@@ -214,7 +214,7 @@ export default async function LearningFlowPage({ params }: { params: Promise<{ f
                   <p className="text-lg font-black tracking-tight text-ink-max">{title}</p>
                   <p className="mt-1 flex-1 text-sm leading-6 text-ink-soft">{body}</p>
                   {meta ? (
-                    <Link href={`/bai-hoc/${slug}`} className={`${textLink} mt-4`}>
+                    <Link href={`/bai-hoc/${slug}?hanh-trinh=${flow.id}`} className={`${textLink} mt-4`}>
                       {t.branchCta}: {cleanLessonTitle(meta.title)}
                       <ArrowRight className="h-3.5 w-3.5 shrink-0" />
                     </Link>

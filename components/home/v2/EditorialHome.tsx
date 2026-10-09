@@ -143,13 +143,13 @@ export function EditorialHero({
         <div className="grid gap-8 pb-10 pt-8 lg:grid-cols-12 lg:pb-14 lg:pt-10">
           <h1 className="relative lg:col-span-12">
             <span className="block text-[16vw] font-black uppercase leading-[0.95] tracking-[-0.045em] lg:text-[11rem]">
-              <Scramble text={v.heroLine1} duration={700} />
+              {v.heroLine1}
             </span>
             <span className="-ml-[0.04em] block whitespace-nowrap text-[16vw] font-black uppercase leading-[0.95] tracking-[-0.045em] text-accent lg:text-[11rem]">
-              <Scramble text={v.heroLine2} duration={1100} delay={150} />
+              {v.heroLine2}
             </span>
             <span className="mt-2 block text-[9vw] font-light italic leading-none tracking-tight lg:ml-[40%] lg:text-[5.5rem]">
-              <TypeText text={v.heroLine3} speed={90} delay={900} />
+              {v.heroLine3}
             </span>
             <Stamp className="thcn-stamp absolute right-0 top-2 hidden md:inline-block">{v.stamp}</Stamp>
           </h1>
@@ -252,7 +252,7 @@ const WORLDS = [
   { key: "web", slug: "web", href: "/hoc-theo-nhu-cau/website" },
   { key: "data", slug: "data", href: "/hoc-theo-nhu-cau/data-ai" },
   { key: "ai", slug: "ai", href: "/hoc-theo-nhu-cau/ai-assistant" },
-  { key: "systems", slug: "systems", href: "/hoc-theo-nhu-cau/automation" },
+  { key: "systems", slug: "systems", href: "/bai-hoc/he-dieu-hanh-lam-gi" },
 ] as const;
 
 /**

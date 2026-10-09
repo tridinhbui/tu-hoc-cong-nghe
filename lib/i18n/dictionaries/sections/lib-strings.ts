@@ -106,6 +106,9 @@ export const libStringsVi = {
     /** "Chặng 3 · Bài 12" - phần sau dấu chấm giữa. */
     stageAndNumber: "{stage} · Bài {number}",
     bonusCase: "Case chuyên sâu",
+    /** Khi người học vào bài từ một hành trình: số chặng và số bài theo hành trình đó, không theo kho bài. */
+    inFlow: "{flow} · Chặng {stage}/{stages} · Bài {number}",
+    inFlowOnly: "{flow}",
   },
   taxSchedules: {
     pre2026: "7 bậc (trước 2026)",
@@ -173,6 +176,8 @@ export const libStringsEn: typeof libStringsVi = {
   lessonLabel: {
     stageAndNumber: "{stage} · Lesson {number}",
     bonusCase: "Deep-dive case",
+    inFlow: "{flow} · Stage {stage}/{stages} · Lesson {number}",
+    inFlowOnly: "{flow}",
   },
   taxSchedules: {
     pre2026: "7 brackets (before 2026)",

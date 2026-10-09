@@ -37,7 +37,7 @@ import {
  * đúng cái người chưa biết gì bấm vào để xem mình có theo nổi không. Bài này
  * nói về email, biên bản họp và việc văn phòng, và là bài xem thử công khai
  * (lib/preview-lessons.ts mở bài đầu của mọi hành trình). */
-const FIRST_LESSON_HREF = `/bai-hoc/${LEARNING_FLOWS.find((f) => f.id === "ai-assistant")!.firstWinSlug}`;
+const FIRST_LESSON_HREF = `/bai-hoc/${LEARNING_FLOWS.find((f) => f.id === "ai-assistant")!.firstWinSlug}?hanh-trinh=ai-assistant`;
 
 export default function HomePage() {
   const { t } = useI18n();

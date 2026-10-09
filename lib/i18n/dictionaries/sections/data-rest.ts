@@ -58,18 +58,6 @@ export const dataRestVi = {
         fed: "Hiệu Năng",
       },
     },
-    lessonTour: {
-      progressTitle: "Tiến độ đọc bài",
-      progressText:
-        "Thanh này theo dõi bạn đã đọc đến đâu - tự động lưu lại, quay lại bài học lúc nào cũng thấy đúng chỗ cũ.",
-      bookmarkTitle: "Lưu bài để đọc sau",
-      bookmarkText: "Bấm vào đây để đánh dấu bài học này, xem lại nhanh trong danh sách đã lưu của bạn.",
-      taiTaiTitle: "Cơ Cơ - mẹo tự động",
-      taiTaiText: "Mỗi bài đều có một mẹo ngắn liên quan đến nội dung, tự động chọn cho bạn - không cần hỏi.",
-      quizTitle: "Kiểm tra nhanh",
-      quizText:
-        "Làm quiz ở đây để tự kiểm tra mình đã hiểu bài chưa - kết quả được lưu lại vào tiến độ học của bạn.",
-    },
     goalSelectionBanner: {
       goals: {
         foundations: {
@@ -214,17 +202,6 @@ export const dataRestEn: typeof dataRestVi = {
         cashflow: "Data",
         fed: "Performance",
       },
-    },
-    lessonTour: {
-      progressTitle: "Reading progress",
-      progressText:
-        "This bar tracks how far you've read - saved automatically, so you always come back to the same spot.",
-      bookmarkTitle: "Save for later",
-      bookmarkText: "Click here to bookmark this lesson, so you can quickly find it in your saved list.",
-      taiTaiTitle: "Cơ Cơ - automatic tip",
-      taiTaiText: "Every lesson has a short tip related to its content, picked automatically for you - no need to ask.",
-      quizTitle: "Quick check",
-      quizText: "Take the quiz here to check your own understanding - the result is saved to your learning progress.",
     },
     goalSelectionBanner: {
       goals: {

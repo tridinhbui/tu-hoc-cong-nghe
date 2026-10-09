@@ -518,9 +518,9 @@ export function EditorialFooter() {
       dir: "lo-trinh",
       title: f.tracksTitle,
       links: [
+        ["/hoc-theo-nhu-cau", f.trackNeeds],
         ["/dashboard", f.trackPersonal],
         ["/dashboard", f.trackCorporate],
-        ["/dashboard", f.trackCertification],
         ["/game", f.trackGame],
       ],
     },

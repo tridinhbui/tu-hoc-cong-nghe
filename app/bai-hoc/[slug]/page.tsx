@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import { getLessonBySlug, getNextLesson, getLessonsMeta } from "@/lib/lessons-loader";
 import { getServerLocale } from "@/lib/i18n/server";
 import LessonPageClient from "@/components/LessonPageClient";
+import { getDictionary, format } from "@/lib/i18n";
+import { getLearningFlow, locateInFlow } from "@/lib/learning-flows";
 
 // THIS ROUTE IS SERVER-RENDERED ON DEMAND, not served from the CDN.
 //
@@ -54,8 +56,15 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 // Server Component: uses dynamic import to load only the requested lesson,
 // preventing the entire 1.2MB lessons.ts from being bundled with every lesson page.
-export default async function LessonPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function LessonPage({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ "hanh-trinh"?: string | string[] }>;
+}) {
   const { slug } = await params;
+  const { "hanh-trinh": flowParam } = await searchParams;
   // A lesson with no translation for this locale comes back as Vietnamese with
   // `translated: false`, which is what LessonTranslationBadge renders from. It
   // is never withheld: hiding untranslated lessons from an English reader would
@@ -67,5 +76,19 @@ export default async function LessonPage({ params }: { params: Promise<{ slug: s
 
   const nextLesson = await getNextLesson(lesson.id, locale);
 
-  return <LessonPageClient lesson={lesson} nextLesson={nextLesson} />;
+  // Vào từ một hành trình (/hoc-theo-nhu-cau/<id>) thì nhãn bài nói theo hành
+  // trình đó - "Chặng 1/4 · Bài 2" - thay vì số chặng của kho bài ("Chặng 25"),
+  // con số khiến người mới tưởng mình đã bỏ lỡ 24 chặng. Tham số lạ thì bỏ qua.
+  const flow = typeof flowParam === "string" ? getLearningFlow(flowParam) : undefined;
+  let flowLabel: string | undefined;
+  if (flow) {
+    const dict = getDictionary(locale);
+    const where = locateInFlow(flow, slug);
+    const name = dict.learningFlows.flows[flow.id].title;
+    flowLabel = where
+      ? format(dict.lessonLabel.inFlow, { flow: name, ...where })
+      : format(dict.lessonLabel.inFlowOnly, { flow: name });
+  }
+
+  return <LessonPageClient lesson={lesson} nextLesson={nextLesson} flowLabel={flowLabel} />;
 }

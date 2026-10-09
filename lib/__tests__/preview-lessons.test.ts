@@ -106,10 +106,10 @@ describe("bài xem thử phải học được thật", () => {
   });
 
   it("đủ ít để vẫn còn lý do tạo tài khoản", () => {
-    // Bốn bài gốc cộng một bài mở đầu cho mỗi hành trình. Trần này không phải
+    // Năm bài gốc cộng một bài mở đầu cho mỗi hành trình. Trần này không phải
     // con số thiêng: nó ở đây để việc mở thêm bài là một quyết định có chủ ý,
     // không phải một dòng lặng lẽ thêm vào danh sách.
     expect(PREVIEW_LESSON_SLUGS.length).toBeGreaterThanOrEqual(3);
-    expect(PREVIEW_LESSON_SLUGS.length).toBeLessThanOrEqual(4 + LEARNING_FLOWS.length);
+    expect(PREVIEW_LESSON_SLUGS.length).toBeLessThanOrEqual(5 + LEARNING_FLOWS.length);
   });
 });

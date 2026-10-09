@@ -30,7 +30,6 @@ import { recordQuizMistake } from "@/lib/quiz-mistakes";
 import { getRecallItemsAction } from "@/lib/recall-actions";
 import type { RecallItem } from "@/lib/recall-schedule";
 import RecallCard from "@/components/RecallCard";
-import LessonTour from "@/components/LessonTour";
 import FontSizeControl, { loadFontScale } from "@/components/FontSizeControl";
 import ReadingModeControl, { loadReadingMode, type ReadingMode } from "@/components/ReadingModeControl";
 import { setTheme } from "@/lib/theme";
@@ -1379,7 +1378,6 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
           vòng getUser() chưa trả lời, và `!userId` lúc đó đúng với cả người
           đã đăng nhập, nên nút sẽ nháy lên rồi biến mất ở mỗi lần vào bài. */}
       {authState === "guest" && <FloatingContact />}
-      <LessonTour userId={userId} />
     </div>
   );
 }

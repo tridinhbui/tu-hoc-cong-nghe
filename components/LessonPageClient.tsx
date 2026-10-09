@@ -16,6 +16,7 @@ import LessonVideoPlayer from "@/components/LessonVideoPlayer";
 import { highlightGlossaryTerms } from "@/components/GlossaryTerm";
 import { LessonApplicationCard, LessonQuestionCard, LessonSummaryCard, ReviewLoopCard } from "@/components/LessonLearningBlocks";
 import { getLessonDisplayLabel, getLessonRecallDay } from "@/lib/lesson-labels";
+import { stripStageLessonPrefix } from "@/lib/lesson-stage-prefix";
 import TypingText from "@/components/TypingText";
 import { trackFeatureClick } from "@/lib/feature-events";
 import { useI18n } from "@/lib/i18n/context";
@@ -33,6 +34,8 @@ interface Props {
   // right: those pages have no translation layer at all.
   lesson: Lesson | LocalizedLesson;
   nextLesson?: { id: number; slug: string; title: string };
+  /** Nhãn theo hành trình khi vào bài từ trang hành trình; ghi đè nhãn "Chặng N · Bài M" của kho bài. */
+  flowLabel?: string;
 }
 
 /** Chọn ví von cho bài học - trả về ID, không trả câu chữ.
@@ -101,7 +104,7 @@ function metaphorOf(lesson: Props["lesson"], metaphors: Record<MetaphorId, strin
   return id ? { text: `${metaphors[id]}.`, ownSentence: false } : null;
 }
 
-export default function LessonPageClient({ lesson, nextLesson }: Props) {
+export default function LessonPageClient({ lesson, nextLesson, flowLabel }: Props) {
   const { t } = useI18n();
   const [feynmanMode, setFeynmanMode] = useState(false);
   // Staged reveal for the "Cơ Cơ giải thích" card, like a chatbot response:
@@ -130,10 +133,12 @@ export default function LessonPageClient({ lesson, nextLesson }: Props) {
     id: lesson.id,
     day: lesson.id,
     track: lesson.track,
-    label: lessonLabel,
+    label: flowLabel ?? lessonLabel,
     recallDay: getLessonRecallDay(lesson),
     accent: "stone",
-    title: lesson.title,
+    // Trong hành trình, tiền tố "Chặng 25, Bài 1:" của kho bài mâu thuẫn với nhãn
+    // ở trên, nên chỉ bỏ nó khi có nhãn hành trình; ngoài ra nó là ngữ cảnh duy nhất.
+    title: flowLabel ? stripStageLessonPrefix(lesson.title) : lesson.title,
     subtitle: lesson.subtitle,
     duration: lesson.duration,
     readingMinutes: lesson.readingMinutes,

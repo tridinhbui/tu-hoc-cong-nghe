@@ -346,7 +346,7 @@ export default function LearningGoalCard({ id, effort, quiet = false, warm = fal
             <p className="text-xs font-bold text-ink-muted">{c.nextLabel}</p>
             <p className="font-bold leading-snug text-ink-max">{cleanLessonTitle(p.next.title)}</p>
           </div>
-          <Link href={`/bai-hoc/${p.next.slug}`} className={warm ? "group inline-flex shrink-0 items-center gap-2 py-2 text-sm font-bold text-ink-muted transition-colors hover:text-accent-strong" : quiet ? "group inline-flex shrink-0 items-center gap-2 rounded-sm border border-line-strong px-3.5 py-2 text-sm font-bold text-ink-body transition-colors hover:border-line-strong hover:text-ink-max" : `${btnPrimary} shrink-0`}>
+          <Link href={`/bai-hoc/${p.next.slug}?hanh-trinh=${flow.id}`} className={warm ? "group inline-flex shrink-0 items-center gap-2 py-2 text-sm font-bold text-ink-muted transition-colors hover:text-accent-strong" : quiet ? "group inline-flex shrink-0 items-center gap-2 rounded-sm border border-line-strong px-3.5 py-2 text-sm font-bold text-ink-body transition-colors hover:border-line-strong hover:text-ink-max" : `${btnPrimary} shrink-0`}>
             {notStarted ? r.start : c.nextCta} <ArrowRight className="h-4 w-4" />
           </Link>
         </div>

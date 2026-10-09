@@ -13,7 +13,7 @@ import { LEARNING_FLOWS } from "@/lib/learning-flows";
  *  chúng ở đây mà không đổi bên kia thì lời hứa gãy lại - có bài test giữ hai
  *  danh sách khớp nhau.
  *
- *  Bốn bài gốc, cộng bài "chiến thắng đầu tiên" của mỗi hành trình học theo
+ *  Năm bài gốc, cộng bài "chiến thắng đầu tiên" của mỗi hành trình học theo
  *  nhu cầu. Trang /hoc-theo-nhu-cau/<flow> là trang công khai và hứa ngay dưới
  *  tiêu đề "Làm thứ đầu tiên · 8 phút - bài đầu ngắn và dễ" - rồi cái nút ấy
  *  đá khách về /login. Đi thử như một người chưa biết gì (2026-09-29) thì đây
@@ -34,6 +34,10 @@ const CORE_PREVIEW_SLUGS = [
   "do-phuc-tap-va-ky-hieu-o-lon", // TRACKS.professional.previewSlug
   "chuong-trinh-la-gi",
   "bien-va-phep-gan",
+  // Bài 1 của hành trình "AI làm việc cùng mình". Từng được mở nhờ là
+  // `firstWinSlug`; khi bài chiến thắng đầu tiên chuyển sang bài ngắn hơn,
+  // nút "bài 1" trên trang hành trình công khai không được vấp /login.
+  "ai-tao-sinh-lam-duoc-gi-o-van-phong",
 ] as const;
 
 export const PREVIEW_LESSON_SLUGS: readonly string[] = [

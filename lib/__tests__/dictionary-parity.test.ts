@@ -152,11 +152,9 @@ const INTENTIONALLY_UNTRANSLATED = new Set([
   "dataRest.globalSearchModal.sampleGlossary",
   // A watch. Rolex Submariner Gold is the product's name, not a description.
   "dataTables.rpgInventory.items.watch_rolex.name",
-  // A proper noun and a keyboard shortcut, plus "Cơ Cơ" inside an otherwise
-  // translated tour title.
+  // A proper noun and a keyboard shortcut.
   "dataRest.appNavbar.gameKingdomLabel",
   "dataRest.appNavbar.cmdKHint",
-  "dataRest.lessonTour.taiTaiTitle",
   // The mascot's name on the stage-tips banner.
   "dataTables.stageTips.mascotName",
   // The bare "XP" unit suffix, and a game district's proper name.

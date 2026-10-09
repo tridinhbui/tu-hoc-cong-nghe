@@ -51,7 +51,7 @@ export const revampGoalsVi = {
         skill: "Giao việc cho AI và kiểm lại trước khi gửi đi",
         output: "Bot hỏi-đáp tài liệu nội bộ của phòng bạn",
         firstBuild:
-          "Việc đầu tiên: một email bạn định viết hôm nay, do AI viết nháp - rồi bạn tự dò từng con số, tên, ngày tháng trong đó.",
+          "Việc đầu tiên: một câu AI vừa viết cho bạn, có cả số điều và tên văn bản - rồi bạn tự dò xem nó có thật không.",
       },
       "ai-agent": {
         skill: "Cho AI dùng công cụ và tự làm nhiều bước",
@@ -133,7 +133,7 @@ export const revampGoalsEn: typeof revampGoalsVi = {
         skill: "Hand work to AI and check it before it goes out",
         output: "A Q&A bot over your team's internal docs",
         firstBuild:
-          "First up: an email you meant to write today, drafted by AI - then you check every number, name and date in it yourself.",
+          "First up: a sentence AI just wrote for you, complete with an article number and a document name - then you check whether any of it is real.",
       },
       "ai-agent": {
         skill: "Give AI tools and let it work through several steps",

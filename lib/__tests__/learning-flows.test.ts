@@ -44,3 +44,13 @@ describe("learning flows", () => {
     }
   });
 });
+
+describe("locateInFlow", () => {
+  it("đánh số chặng và bài theo đúng hành trình, không theo kho bài", async () => {
+    const { LEARNING_FLOWS, locateInFlow } = await import("@/lib/learning-flows");
+    const flow = LEARNING_FLOWS.find((f) => f.id === "ai-assistant")!;
+    expect(locateInFlow(flow, flow.steps[0].lessonSlugs[0])).toEqual({ stage: 1, stages: flow.steps.length, number: 1 });
+    expect(locateInFlow(flow, flow.steps[1].lessonSlugs[2])).toEqual({ stage: 2, stages: flow.steps.length, number: 3 });
+    expect(locateInFlow(flow, "khong-co-bai-nay")).toBeNull();
+  });
+});

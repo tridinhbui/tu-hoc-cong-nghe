@@ -103,7 +103,11 @@ export const LEARNING_FLOWS: LearningFlow[] = [
     // Trước đây hành trình này trỏ vào chặng "AI trong sản phẩm" - viết cho
     // lập trình viên (đọc mã, viết commit). Người đến đây là dân văn phòng,
     // nên giờ nó đi qua chặng 25 (AI mỗi ngày), 29 (an toàn) và 28 (phòng ban).
-    firstWinSlug: "ai-tao-sinh-lam-duoc-gi-o-van-phong",
+    // Bài "Dễ" ngắn nhất dẫn vào hành trình: 13 phút. Bài mở đầu cũ
+    // (ai-tao-sinh-lam-duoc-gi-o-van-phong) dài 21 phút - ngoại lệ so với lời
+    // hứa "10-15 phút" mà 96% bài giữ đúng - nên chuyển xuống làm bài 1 của
+    // chặng đầu thay vì là bài người mới gặp trước tiên.
+    firstWinSlug: "kiem-chung-dau-ra-ai-bia",
     steps: [
       {
         id: "intern",
@@ -333,6 +337,16 @@ export function getLearningFlow(id: string): LearningFlow | undefined {
 }
 
 /** Mọi slug một hành trình trỏ tới, không trùng - dùng cho đếm bài và cho test. */
+/** Vị trí của một bài TRONG hành trình, theo đúng cách trang hành trình đánh
+ *  số: chặng k/n, rồi bài j của chặng đó. Null với bài không nằm trong một
+ *  chặng (bài chiến thắng đầu tiên đứng riêng, hai nhánh cuối) - nơi gọi tự
+ *  quyết định hiện gì cho chúng. */
+export function locateInFlow(flow: LearningFlow, slug: string): { stage: number; stages: number; number: number } | null {
+  const i = flow.steps.findIndex((s) => s.lessonSlugs.includes(slug));
+  if (i < 0) return null;
+  return { stage: i + 1, stages: flow.steps.length, number: flow.steps[i].lessonSlugs.indexOf(slug) + 1 };
+}
+
 export function flowLessonSlugs(flow: LearningFlow): string[] {
   return [...new Set([flow.firstWinSlug, ...flow.steps.flatMap((s) => s.lessonSlugs), flow.branches.deepenSlug, flow.branches.buildSlug])];
 }
