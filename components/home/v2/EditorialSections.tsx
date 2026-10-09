@@ -235,7 +235,7 @@ export function EditorialMethod() {
     <section data-dbg="section#method" className={`border-b-2 ${RULE} ${PAPER} ${INK}`}>
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-12 lg:gap-8 lg:px-8 lg:py-20">
         <Reveal className="min-w-0 lg:col-span-4">
-          <SheetHead n={6} kicker={v.methodKicker} title={v.methodTitle} loading={v.loadMethod} />
+          <SheetHead n={2} kicker={v.methodKicker} title={v.methodTitle} loading={v.loadMethod} />
           <p className="mt-5 text-[15px] leading-7 opacity-80">{v.methodSub}</p>
           <div className="mt-8 flex flex-wrap gap-0">
             <button
@@ -368,7 +368,7 @@ export function EditorialManifest() {
     <section data-dbg="section#manifest" className={`border-b-2 ${RULE} ${PAPER} ${INK}`}>
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
         <SheetHead
-          n={7}
+          n={3}
           kicker={v.manifestKicker}
           title={`${t.home.ecosystem.titlePart1} ${t.home.ecosystem.titleHighlight}`}
           loading={v.loadManifest}
@@ -442,7 +442,7 @@ export function EditorialReport() {
       <section data-dbg="section#report" className={`border-b-2 ${RULE} ${PAPER} ${INK}`}>
         <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-12 lg:gap-8 lg:px-8 lg:py-20">
           <Reveal className="min-w-0 lg:col-span-7">
-            <SheetHead n={8} kicker={vi.eyebrow} title={vi.title} loading={v.loadReport} />
+            <SheetHead n={4} kicker={vi.eyebrow} title={vi.title} loading={v.loadReport} />
             <div className="relative mt-10">
               <Stamp className="thcn-stamp absolute -top-5 right-2 z-10 inline-block bg-[#eeebe3] dark:bg-[#0c0d10]">{v.noteStamp}</Stamp>
               {/* Ba số xếp thành ba dòng lớn thay vì bảng nhỏ: số là nhân vật chính. */}

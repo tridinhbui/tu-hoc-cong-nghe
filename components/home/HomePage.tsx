@@ -6,12 +6,10 @@ import { getTotalUserCount, getTotalCompletedLessonsCount } from "@/lib/cloudfla
 import { roundedLessonCount } from "@/lib/track-totals";
 import { animateCountTo } from "@/lib/animate-count";
 import { LEARNING_FLOWS } from "@/lib/learning-flows";
-import { EditorialHero, EditorialMarquee, EditorialWorlds, EditorialOS } from "@/components/home/v2/EditorialHome";
+import { EditorialHero } from "@/components/home/v2/EditorialHome";
 import { EditorialNeeds } from "@/components/home/v2/EditorialNeeds";
 import {
   EditorialNav,
-  EditorialCommunity,
-  EditorialKingdom,
   EditorialMethod,
   EditorialManifest,
   EditorialReport,
@@ -179,13 +177,12 @@ export default function HomePage() {
           previewHref={FIRST_LESSON_HREF}
         />
         <EditorialNeeds />
-        <EditorialMarquee />
-        <EditorialWorlds />
-        <EditorialOS />
-        <EditorialCommunity />
-        <EditorialKingdom />
+        {/* Trang chủ chỉ còn việc người mới cần để quyết định thử một bài: mục
+            tiêu của họ, cách học, ai học được, vì sao làm. Bốn "thế giới" (trùng
+            khối mục tiêu), THCN_OS, bảng xếp hạng, Game Kingdom và hai dải chữ
+            chạy đã rời trang chủ sau đợt audit UX 2026-10-08; component còn
+            nguyên trong components/home/v2 để đặt lại ở trang riêng. */}
         <EditorialMethod />
-        <EditorialMarquee items={t.home.v2.marquee.slice().reverse()} reverse />
         <EditorialManifest />
         <EditorialReport />
         <EditorialFooter />
