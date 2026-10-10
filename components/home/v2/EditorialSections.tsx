@@ -68,7 +68,7 @@ export function EditorialNav({ debug, onDebug }: { debug: boolean; onDebug: () =
   return (
     <header className={`sticky top-0 z-40 border-b-2 ${RULE} ${PAPER} ${INK}`}>
       <div className="mx-auto flex h-14 max-w-7xl items-center justify-between gap-3 px-4 sm:px-6 lg:px-8">
-        <Link href="/" className="flex min-w-0 items-center gap-2.5">
+        <Link href="/" className="flex min-h-11 min-w-0 items-center gap-2.5">
           <Logo size={26} />
           <span className="truncate text-[13px] font-black uppercase tracking-[0.02em] sm:text-[15px]">{t.home.brand}</span>
         </Link>
@@ -96,7 +96,7 @@ export function EditorialNav({ debug, onDebug }: { debug: boolean; onDebug: () =
           </button>
           <Link
             href="/login"
-            className="group inline-flex shrink-0 items-center gap-2 bg-brand-600 px-3.5 py-2 text-[12px] font-black uppercase tracking-wide text-white transition-colors hover:bg-[#0d0e11] dark:hover:bg-brand-400 dark:hover:text-[#0d0e11]"
+            className="group inline-flex min-h-11 shrink-0 items-center gap-2 bg-brand-600 px-3.5 py-2 text-[12px] font-black uppercase tracking-wide text-white transition-colors hover:bg-[#0d0e11] dark:hover:bg-brand-400 dark:hover:text-[#0d0e11]"
           >
             {t.home.navCta}
             <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
@@ -245,7 +245,7 @@ export function EditorialMethod() {
                 step();
               }}
               disabled={pc >= 3}
-              className="bg-brand-600 px-4 py-2.5 font-mono text-[12px] font-bold uppercase text-white transition-colors hover:bg-[#0d0e11] disabled:opacity-40 dark:hover:bg-brand-400 dark:hover:text-[#0d0e11]"
+              className="min-h-11 bg-brand-600 px-4 py-2.5 font-mono text-[12px] font-bold uppercase text-white transition-colors hover:bg-[#0d0e11] disabled:opacity-40 dark:hover:bg-brand-400 dark:hover:text-[#0d0e11]"
             >
               ▸ {v.methodStep}
             </button>
@@ -253,7 +253,7 @@ export function EditorialMethod() {
               type="button"
               onClick={() => setRunning(true)}
               disabled={pc >= 3 || isRunning}
-              className={`border-2 ${RULE} px-4 py-2 font-mono text-[12px] font-bold uppercase transition-colors hover:bg-black/5 disabled:opacity-40 dark:hover:bg-white/10`}
+              className={`min-h-11 border-2 ${RULE} px-4 py-2 font-mono text-[12px] font-bold uppercase transition-colors hover:bg-black/5 disabled:opacity-40 dark:hover:bg-white/10`}
             >
               ▸▸ {v.methodRun}
             </button>
@@ -263,7 +263,7 @@ export function EditorialMethod() {
                 setPc(0);
                 setRunning(false);
               }}
-              className={`border-2 border-l-0 ${RULE} px-4 py-2 font-mono text-[12px] font-bold uppercase transition-colors hover:bg-black/5 dark:hover:bg-white/10`}
+              className={`min-h-11 border-2 border-l-0 ${RULE} px-4 py-2 font-mono text-[12px] font-bold uppercase transition-colors hover:bg-black/5 dark:hover:bg-white/10`}
             >
               ↺ {v.methodReset}
             </button>
@@ -563,10 +563,10 @@ export function EditorialFooter() {
             <div key={col.dir} className="lg:col-span-2 lg:first-of-type:col-start-7">
               <Mono className="text-brand-300">{ID.dir(col.dir)}</Mono>
               <p className="mt-1 text-xs font-black uppercase tracking-[0.1em]">{col.title}</p>
-              <ul className="mt-4 space-y-2.5 text-[13px] font-semibold">
+              <ul className="mt-4 space-y-0 text-[13px] font-semibold sm:space-y-2.5">
                 {col.links.map(([href, label]) => (
                   <li key={label}>
-                    <Link href={href} className="group inline-flex items-center gap-1.5 text-[#eeebe3]/60 transition-colors hover:text-white">
+                    <Link href={href} className="group inline-flex items-center gap-1.5 py-3 text-[#eeebe3]/60 sm:py-0 transition-colors hover:text-white">
                       <span className="font-mono text-brand-400 opacity-0 transition-opacity group-hover:opacity-100">›</span>
                       {label}
                     </Link>

@@ -78,7 +78,7 @@ export function EditorialNeeds() {
           </Reveal>
           <Link
             href="/hoc-theo-nhu-cau"
-            className="thcn-ul inline-flex items-center gap-2 text-sm font-bold underline-offset-4 hover:underline lg:col-span-4 lg:justify-self-end"
+            className="thcn-ul inline-flex min-h-11 items-center gap-2 text-sm font-bold underline-offset-4 hover:underline lg:col-span-4 lg:justify-self-end"
           >
             {f.homeAll}
             <ArrowRight className="h-4 w-4" />

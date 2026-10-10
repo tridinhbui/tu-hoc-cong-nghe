@@ -791,11 +791,19 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
             <FontSizeControl scale={fontScale} onChange={setFontScale} />
             <ReadingModeControl mode={readingMode} onChange={setReadingMode} />
 
-            <div data-tour="lesson-bookmark">
-              <BookmarkButton lessonId={persistedLessonId} lessonSlug={slug} lessonTitle={lesson.title} />
-            </div>
+            {/* Hai nút này chỉ có nghĩa với người có tài khoản: khách bấm vào là
+                không có gì xảy ra (đánh dấu) hoặc báo "cần đăng nhập" (cờ). Khi
+                chưa biết là ai chúng cũng không hiện, để không để lại hai ô
+                xám trống ở thanh trên cùng của điện thoại. */}
+            {authState === "member" && (
+              <>
+                <div data-tour="lesson-bookmark">
+                  <BookmarkButton lessonId={persistedLessonId} lessonSlug={slug} lessonTitle={lesson.title} />
+                </div>
 
-            <ManualLessonFlagButton lessonId={persistedLessonId} lessonSlug={slug} lessonTitle={lesson.title} />
+                <ManualLessonFlagButton lessonId={persistedLessonId} lessonSlug={slug} lessonTitle={lesson.title} />
+              </>
+            )}
 
             <LessonStatsHover />
 
@@ -824,7 +832,11 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
       </header>
 
       <div className="mx-auto max-w-7xl px-3 py-6 sm:px-4 sm:py-8 lg:px-6 lg:py-10">
-        <div className="flex flex-col items-start gap-6 sm:gap-8 xl:flex-row lg:gap-10">
+        {/* items-stretch ở cột đơn, items-start chỉ từ xl (cột bên dán dính): với
+            items-start ở cột đơn, bài đọc có kích thước vừa-nội-dung và một
+            phần tử rộng đẩy nó ra 696px trong khung 351px - chữ bị cắt ở mép
+            phải điện thoại. */}
+        <div className="flex flex-col items-stretch gap-6 sm:gap-8 xl:flex-row xl:items-start lg:gap-10">
           {/* ── TRÁI: bài đọc ───────────────────────────────────────── */}
           <div className="min-w-0 flex-1">
             <TextHighlightMenu

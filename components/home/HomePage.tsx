@@ -147,7 +147,7 @@ export default function HomePage() {
                 href="https://www.facebook.com/groups/4402614233328401"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex shrink-0 items-center gap-1 whitespace-nowrap text-xs font-bold text-white underline-offset-4 hover:underline sm:text-[13px]"
+                className="relative inline-flex shrink-0 items-center gap-1 whitespace-nowrap text-xs font-bold text-white underline-offset-4 before:absolute before:-inset-3 before:content-[''] hover:underline sm:text-[13px]"
               >
                 {/* Màn hẹp chỉ hiện biểu tượng: nhãn chữ chiếm chỗ đúng cụm "miễn
                     phí mãi mãi" - thông điệp của cả dải. Nhãn vẫn còn cho trình
@@ -160,7 +160,7 @@ export default function HomePage() {
                 type="button"
                 onClick={dismissHomeBanner}
                 aria-label={t.home.banner.dismiss}
-                className="shrink-0 rounded-xs p-1 text-white/80 transition-colors hover:bg-white/15 hover:text-white"
+                className="relative shrink-0 rounded-xs p-1 text-white/80 transition-colors before:absolute before:-inset-2.5 before:content-[''] hover:bg-white/15 hover:text-white"
               >
                 <X className="h-4 w-4" />
               </button>

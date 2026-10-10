@@ -382,7 +382,8 @@ function LoginForm() {
         </div>
 
         {/* ── Form ── */}
-        <div className="min-w-0 lg:col-span-5 lg:py-12 lg:pl-10">
+        {/* order-first: ở điện thoại form đứng trên trang bìa - người vừa bấm "Bắt đầu" cần ô nhập, không phải ba ô lợi ích. Từ lg hai cột giữ thứ tự DOM. */}
+        <div className="order-first min-w-0 lg:order-none lg:col-span-5 lg:py-12 lg:pl-10">
           <div className="relative lg:sticky lg:top-8">
             <CropMarks className="border-brand-600" />
             <Frame title={modeCode} meta={status} bodyClassName="p-5 sm:p-6 xl:p-7 space-y-4">
