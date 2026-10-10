@@ -531,6 +531,7 @@ export const en: Dictionary = {
     videoCta: "Watch the video on YouTube",
 
     scrollForQuiz: "Scroll down for the quiz →",
+    ctaDoQuiz: "Take the quick check · {done}/{total} questions",
     quickCheck: "Quick check",
     questionCounter: "Question {current} / {total}",
     answerRight: "✓ Correct",

@@ -577,6 +577,8 @@ export const vi = {
     videoCta: "Xem video bài giảng trên YouTube",
 
     scrollForQuiz: "Cuộn xuống để làm quiz →",
+    /** Nút chính cuối bài khi chưa làm hết quiz. */
+    ctaDoQuiz: "Làm kiểm tra nhanh · {done}/{total} câu",
     quickCheck: "Kiểm tra nhanh",
     questionCounter: "Câu {current} / {total}",
     answerRight: "✓ Đúng rồi!",

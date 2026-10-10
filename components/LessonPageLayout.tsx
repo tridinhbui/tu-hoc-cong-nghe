@@ -209,6 +209,22 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
   // What the reader is actually shown. Falls back to durationMin for lessons
   // that bypass the generator and so have no computed estimate.
   const readingMin = lesson.readingMinutes ?? durationMin;
+  // Admins may enter a full watch URL, a youtu.be link, or just the bare video
+  // ID (see app/admin/videos placeholder text) - normalize all of those to a
+  // real embeddable URL instead of only handling "youtube.com/watch?v=".
+  const lessonVideoUrl = adminVideoUrl ?? (lesson as { videoUrl?: string }).videoUrl ?? "";
+  const lessonVideoEmbedSrc = (() => {
+    const v = lessonVideoUrl;
+    if (!v) return "";
+    if (v.includes("/embed/")) return v;
+    const watchMatch = v.match(/[?&]v=([^&]+)/);
+    if (watchMatch) return `https://www.youtube.com/embed/${watchMatch[1]}`;
+    const pathMatch = v.match(/youtu\.be\/([^?&/]+)/);
+    if (pathMatch) return `https://www.youtube.com/embed/${pathMatch[1]}`;
+    if (/^[\w-]{6,}$/.test(v)) return `https://www.youtube.com/embed/${v}`;
+    return v;
+  })();
+  const videoSearchHref = `https://www.youtube.com/results?search_query=T%E1%BB%B1+h%E1%BB%8Dc+t%C3%A0i+ch%C3%ADnh+${encodeURIComponent(lesson.title)}`;
   const lessonLabel = lesson.label ?? getLessonDisplayLabel({ id: lesson.id, title: lesson.title, track: lesson.track }, t.lessonLabel);
 
   useEffect(() => {
@@ -977,55 +993,26 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                 <StageTipsBanner lessonId={persistedLessonId} lessonTitle={lesson.title} />
               </div>
 
-              {/* Video bài giảng */}
-              <div className={shell}>
-                <div className="flex h-9 items-center justify-between gap-3 border-b border-line-strong bg-surface px-3">
-                  <span className={label}>{t.lessonLayout.videoTitle}</span>
-                  <span className="text-[11px] font-semibold text-ink-muted">{t.lessonLayout.videoBadge}</span>
+              {/* Video bài giảng: chỉ hiện khi bài có video. Bản không-có-video từng là
+                  một thẻ chỉ chứa đường tìm kiếm YouTube, nằm ngay trên chữ đầu
+                  tiên của mọi bài; nó dời xuống cuối bài (xem `videoSearchHref`). */}
+              {lessonVideoUrl && (
+                <div className={shell}>
+                  <div className="flex h-9 items-center justify-between gap-3 border-b border-line-strong bg-surface px-3">
+                    <span className={label}>{t.lessonLayout.videoTitle}</span>
+                    <span className="text-[11px] font-semibold text-ink-muted">{t.lessonLayout.videoBadge}</span>
+                  </div>
+                  <div className="aspect-video w-full bg-black">
+                    <iframe
+                      src={lessonVideoEmbedSrc}
+                      title={lesson.title}
+                      className="h-full w-full"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  </div>
                 </div>
-
-                {(() => {
-                  const vUrl = adminVideoUrl ?? (lesson as { videoUrl?: string }).videoUrl;
-                  // Admins may enter a full watch URL, a youtu.be link, or just
-                  // the bare video ID (see app/admin/videos placeholder text) -
-                  // normalize all of those to a real embeddable URL instead of
-                  // only handling the one "youtube.com/watch?v=" shape.
-                  const embedSrc = (() => {
-                    if (!vUrl) return "";
-                    if (vUrl.includes("/embed/")) return vUrl;
-                    const watchMatch = vUrl.match(/[?&]v=([^&]+)/);
-                    if (watchMatch) return `https://www.youtube.com/embed/${watchMatch[1]}`;
-                    const pathMatch = vUrl.match(/youtu\.be\/([^?&/]+)/);
-                    if (pathMatch) return `https://www.youtube.com/embed/${pathMatch[1]}`;
-                    if (/^[\w-]{6,}$/.test(vUrl)) return `https://www.youtube.com/embed/${vUrl}`;
-                    return vUrl;
-                  })();
-                  return vUrl ? (
-                    <div className="aspect-video w-full bg-black">
-                      <iframe
-                        src={embedSrc}
-                        title={lesson.title}
-                        className="h-full w-full"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      />
-                    </div>
-                  ) : (
-                    <div className="flex flex-col items-start justify-between gap-3 p-4 sm:flex-row sm:items-center">
-                      <p className="text-sm leading-6 text-ink-body">{t.lessonLayout.videoNote}</p>
-                      <a
-                        href={`https://www.youtube.com/results?search_query=T%E1%BB%B1+h%E1%BB%8Dc+t%C3%A0i+ch%C3%ADnh+${encodeURIComponent(lesson.title)}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`${btnSecondary} shrink-0`}
-                      >
-                        <span>{t.lessonLayout.videoCta}</span>
-                        <ArrowUpRight aria-hidden className="h-4 w-4" />
-                      </a>
-                    </div>
-                  );
-                })()}
-              </div>
+              )}
 
               {/* Content - `zoom` (not fontSize) so the reading-size control
                   rescales every lesson page uniformly regardless of the
@@ -1040,13 +1027,58 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                 </LessonCompletionContext.Provider>
               </div>
 
-              <div className="mt-16 border-t border-line-strong pt-8">
+              {/* Một việc chính ở cuối bài, đặt TRƯỚC ô đánh giá và góp ý: chưa
+                  làm hết quiz thì dẫn tới quiz (điều kiện hoàn thành còn thiếu),
+                  làm xong rồi thì tới bài kế. Trước đây cuối bài chỉ có ô đánh
+                  giá, còn "bài tiếp theo" nằm trong thẻ kết quả quiz ở cột
+                  phải. Không đổi điều kiện hoàn thành hay cách chấm. */}
+              {(() => {
+                const quizPending = quiz.length > 0 && submittedCount < quiz.length;
+                if (quizPending) {
+                  return (
+                    <div className="mt-12 border-t border-line-strong pt-8">
+                      <a href="#lesson-quiz" className={`${btnPrimary} w-full sm:w-auto`}>
+                        {format(t.lessonLayout.ctaDoQuiz, { done: submittedCount, total: quiz.length })}
+                      </a>
+                    </div>
+                  );
+                }
+                if (authState === "guest") {
+                  return (
+                    <div className="mt-12 border-t border-line-strong pt-8">
+                      <Link
+                        href={`/login?mode=signup&next=${encodeURIComponent(`/bai-hoc/${lesson.slug ?? ""}`)}`}
+                        className={`${btnPrimary} w-full sm:w-auto`}
+                      >
+                        {t.lessonLayout.guestSaveCta}
+                      </Link>
+                    </div>
+                  );
+                }
+                if (lesson.nextSlug) {
+                  return (
+                    <div className="mt-12 border-t border-line-strong pt-8">
+                      <Link href={`/bai-hoc/${lesson.nextSlug}`} className={`${btnPrimary} w-full sm:w-auto`}>
+                        {t.lessonLayout.nextLesson}
+                      </Link>
+                    </div>
+                  );
+                }
+                return null;
+              })()}
+
+              <div className="mt-10 border-t border-line-strong pt-8">
                 <LessonFeedbackInline lessonId={persistedLessonId} userId={userId} />
               </div>
 
-              <div className="mt-8 border-t border-line-strong pt-6 lg:hidden">
-                <p className="text-center text-sm font-semibold text-ink-muted">{t.lessonLayout.scrollForQuiz}</p>
-              </div>
+              {!lessonVideoUrl && (
+                <p className="text-sm text-ink-muted">
+                  <a href={videoSearchHref} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 font-semibold underline-offset-4 hover:text-ink-max hover:underline">
+                    {t.lessonLayout.videoCta}
+                    <ArrowUpRight aria-hidden className="h-4 w-4" />
+                  </a>
+                </p>
+              )}
 
               {/* Bottom-of-article sentinel for IntersectionObserver-based
                   scroll completion - see the effect above. Must be the very
