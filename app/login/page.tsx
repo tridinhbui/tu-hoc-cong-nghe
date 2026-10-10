@@ -5,32 +5,18 @@ import React, { Suspense, useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import { roundedLessonCount } from "@/lib/track-totals";
 import { translateAuthErrorCode } from "@/lib/auth-error-messages";
 import { stashReferralCodeFromUrl } from "@/lib/referrals";
 import { safeNextPath } from "@/lib/safe-next-path";
 import { rememberOAuthNext } from "@/lib/oauth-next-cookie";
 import { resetCurrentUserCache } from "@/lib/current-user";
 import Logo from "@/components/Logo";
-import TrackPreviewPanel from "@/components/login/TrackPreviewPanel";
-import { TRACKS, type TrackId } from "@/lib/tracks";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
-import { CropMarks, Frame, Stamp, Sys, btnPrimary, btnSecondary } from "@/components/ui/system";
-import { LoadBar, Scramble, TypeText } from "@/components/ui/effects";
+import { CropMarks, Stamp, Sys, btnPrimary, btnSecondary } from "@/components/ui/system";
+import { LoadBar, Scramble } from "@/components/ui/effects";
 
-/* i18n-ignore-start: định danh hệ thống (đường dẫn THCN://) - cùng một chuỗi ở
-   mọi ngôn ngữ, như tên tệp; không phải chữ để dịch. */
-const SYS = {
-  root: "THCN://AUTH",
-  login: "THCN://AUTH/LOGIN",
-  signup: "THCN://AUTH/SIGNUP",
-  forgot: "THCN://AUTH/RESET",
-  id: (n: number) => String(n).padStart(2, "0"),
-  os: "THCN_OS · AUTH",
-  ok: "[ OK ]",
-};
-/* i18n-ignore-end */
+const LOAD_DONE = "[ OK ]"; // i18n-ignore: ký hiệu, không phải chữ để dịch
 
 // Viết thẳng bằng Tailwind, KHÔNG dùng .input-premium: lớp đó trong globals.css
 // đặt cứng `background: rgba(255,255,255,.88)` không có bản `.dark` (ô nhập
@@ -88,37 +74,6 @@ function LoginForm() {
   const [cooldownUntil, setCooldownUntil] = useState<number | null>(null);
   const [cooldownLeft, setCooldownLeft] = useState(0);
   const failedAttemptsRef = useRef(0);
-  const [previewTrack, setPreviewTrack] = useState<TrackId>("personal");
-  // Same endpoint HomePage.tsx uses for its live counter - kept as a plain
-  // rounded-down floor (not the animated count) since this is inline copy,
-  // not a hero stat. Falls back to null (renders nothing extra) if the
-  // fetch fails, rather than showing a stale hardcoded number.
-  // Khởi tạo bằng con số THẬT lúc build, không phải `null` rồi rơi về 360.
-  //
-  // 360 là số gõ tay từ hồi kho có ngần ấy bài; hôm nay là 813, nên lần vẽ đầu
-  // của trang đăng nhập in ra một con số lệch 450 rồi mới nhảy khi fetch về.
-  // TOTAL_LESSONS đọc từ chính kho bài lúc build nên nó không lệch được, và
-  // dùng nó thì không còn nhấp nháy.
-  //
-  // VẪN GIỮ lời gọi API bên dưới: nó đếm sau khi lọc cờ `is_visible` của bảng
-  // `lessons`, thứ chỉ biết được lúc chạy. Hằng số là điểm khởi đầu đúng, còn
-  // API là con số chính xác - xem ghi chú ở lib/track-totals.ts về việc hai
-  // con số này trả lời hai câu hỏi khác nhau.
-  const [lessonCountFloor, setLessonCountFloor] = useState<number>(roundedLessonCount());
-
-  useEffect(() => {
-    let cancelled = false;
-    fetch("/api/lesson-count")
-      .then((res) => (res.ok ? res.json() : null))
-      .then((data: { count?: number } | null) => {
-        if (cancelled || !data?.count) return;
-        setLessonCountFloor(Math.floor(data.count / 10) * 10);
-      })
-      .catch((error) => console.error("Error loading lesson count:", error));
-    return () => {
-      cancelled = true;
-    };
-  }, []);
 
   // Basic client-side throttle: after MAX_ATTEMPTS failed logins/signups, force
   // a short wait before allowing another attempt. Cloudflare also rate-limits
@@ -288,15 +243,7 @@ function LoginForm() {
     window.location.href = "/api/auth/google/start";
   }
 
-  const modeCode = mode === "login" ? SYS.login : mode === "signup" ? SYS.signup : SYS.forgot;
   const word = mode === "login" ? t.login.v2.wordLogin : mode === "signup" ? t.login.v2.wordSignup : t.login.v2.wordForgot;
-  const status = loading
-    ? t.login.v2.statusBusy
-    : error
-      ? t.login.v2.statusError
-      : resetSent
-        ? t.login.v2.statusSent
-        : t.login.v2.statusIdle;
 
   return (
     /* Cùng ngôn ngữ với trang chủ biên tập (components/home/v2/kit.tsx): giấy
@@ -311,8 +258,6 @@ function LoginForm() {
             <ArrowLeft className="h-3.5 w-3.5" />
             {t.login.backHome}
           </Link>
-          <Sys className="hidden text-ink-muted sm:inline">{t.login.v2.doc}</Sys>
-          <Sys className="text-accent-strong">{modeCode}</Sys>
         </div>
       </div>
 
@@ -334,28 +279,6 @@ function LoginForm() {
           </h1>
           <p className="mt-3 max-w-lg text-[14px] leading-6 text-ink-soft">{t.login.heroBody}</p>
 
-          {/* Terminal khởi động - cùng mô-típ với hero trang chủ. */}
-          <div className="mt-7 hidden max-w-xl border border-line bg-[#0d0e11] font-mono text-[11.5px] text-[#eeebe3] sm:block">
-            <div className="flex items-center justify-between border-b border-white/20 px-3 py-1.5">
-              <span className="text-brand-300">{SYS.os}</span>
-              <span className="thcn-blink h-2 w-2 bg-brand-400" aria-hidden />
-            </div>
-            <ol className="px-3 py-2 leading-[1.7]">
-              {t.login.v2.boot.map((line, i) => (
-                <li key={line} className="flex gap-2">
-                  <span className="text-brand-400">{SYS.ok}</span>
-                  <TypeText
-                    text={format(line, { count: lessonCountFloor })}
-                    speed={16}
-                    delay={i * 420}
-                    cursor={i === t.login.v2.boot.length - 1}
-                    className="font-sans"
-                  />
-                </li>
-              ))}
-            </ol>
-          </div>
-
           <dl className="mt-7 grid max-w-xl border border-line sm:grid-cols-3">
             {[
               { t: t.login.perk1Title, b: t.login.perk1Body },
@@ -363,22 +286,11 @@ function LoginForm() {
               { t: t.login.perk3Title, b: t.login.perk3Body },
             ].map((perk, i) => (
               <div key={perk.t} className={`p-3 ${i > 0 ? "border-t border-line-strong sm:border-l sm:border-t-0" : ""}`}>
-                <Sys className="text-accent-strong">{SYS.id(i + 1)}</Sys>
-                <dt className="mt-1 text-[13px] font-black">{perk.t}</dt>
+                <dt className="text-[13px] font-black">{perk.t}</dt>
                 <dd className="mt-0.5 text-[12px] leading-5 text-ink-soft">{perk.b}</dd>
               </div>
             ))}
           </dl>
-
-          <div className="mt-8 hidden max-w-xl lg:block">
-            <div className="flex items-baseline justify-between gap-4 border-b border-line pb-1.5">
-              <Sys className="text-accent-strong">{t.login.trackPickTitle}</Sys>
-              <span className="text-[11px] text-ink-muted">{t.login.trackPickBody}</span>
-            </div>
-            <div className="mt-3">
-              <TrackPreviewPanel previewTrack={previewTrack} setPreviewTrack={setPreviewTrack} compact />
-            </div>
-          </div>
         </div>
 
         {/* ── Form ── */}
@@ -386,7 +298,7 @@ function LoginForm() {
         <div className="order-first min-w-0 lg:order-none lg:col-span-5 lg:py-12 lg:pl-10">
           <div className="relative lg:sticky lg:top-8">
             <CropMarks className="border-brand-600" />
-            <Frame title={modeCode} meta={status} bodyClassName="p-5 sm:p-6 xl:p-7 space-y-4">
+            <div className="space-y-4 border-2 border-line-strong bg-surface p-5 sm:p-6 xl:p-7">
               <div>
                 <h2 className="text-[1.9rem] font-black uppercase leading-none tracking-[-0.03em]">
                   <Scramble key={mode} text={mode === "login" ? t.login.modeLogin : mode === "signup" ? t.login.modeSignup : t.login.modeForgot} duration={400} />
@@ -490,23 +402,9 @@ function LoginForm() {
                     {loading ? t.login.processing : mode === "login" ? t.login.modeLogin : t.login.signUp}
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </button>
-                  {loading && <LoadBar label={t.login.v2.statusBusy} done={SYS.ok} cells={14} />}
+                  {loading && <LoadBar label={t.login.v2.statusBusy} done={LOAD_DONE} cells={14} />}
                 </form>
               )}
-
-              {/* Ba con số: chỉ số nào ở đây cũng phải đếm được từ dữ liệu thật. */}
-              <dl className="grid grid-cols-3 border border-line">
-                {[
-                  { k: t.login.statLessons, v: format(t.login.statLessonsValue, { count: lessonCountFloor }) },
-                  { k: t.login.statTracks, v: format(t.login.statTracksValue, { count: Object.keys(TRACKS).length }) },
-                  { k: t.login.statPrice, v: t.login.statPriceValue },
-                ].map((stat, i) => (
-                  <div key={stat.k} className={`flex flex-col-reverse px-3 py-2 ${i > 0 ? "border-l border-line-strong" : ""}`}>
-                    <dt className="mt-0.5 font-mono text-[10px] font-medium uppercase tracking-[0.08em] text-ink-muted">{stat.k}</dt>
-                    <dd className="text-[13px] font-black tabular-nums">{stat.v}</dd>
-                  </div>
-                ))}
-              </dl>
 
               <div className="text-center text-xs text-ink-soft">
                 {mode === "login" ? (
@@ -550,7 +448,7 @@ function LoginForm() {
                 </Link>
                 .
               </p>
-            </Frame>
+            </div>
           </div>
         </div>
       </div>

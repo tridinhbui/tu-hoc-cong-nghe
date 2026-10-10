@@ -18,9 +18,22 @@
  *  "Tổng ôn chặng N" KHÔNG bị đụng tới: đó là tên bài, không phải tiền tố. */
 const STAGE_LESSON_PREFIX = /^(?:Chặng\s*\d+,\s*Bài\s*\d+|Stage\s*\d+,\s*Lesson\s*\d+)\s*:\s*/i;
 
+/** "Bài 201: Web hoạt động thế nào" - số thứ tự là id nội bộ của kho bài, không
+ *  phải vị trí trong chặng nào, nên đọc như một con số bịa ("bài 201 của cái
+ *  gì?"). Khác tiền tố chặng ở trên: không có ngữ cảnh nào mà con số này có
+ *  ích cho người học, nên bỏ ở mọi nơi hiển thị tiêu đề. */
+const BARE_LESSON_NUMBER = /^(?:Bài|Lesson)\s*\d+\s*:\s*/i;
+
 export function stripStageLessonPrefix(title: string): string {
-  const stripped = title.replace(STAGE_LESSON_PREFIX, "");
+  const stripped = title.replace(STAGE_LESSON_PREFIX, "").replace(BARE_LESSON_NUMBER, "");
   // Một tiêu đề CHỈ có tiền tố thì bỏ đi là còn chuỗi rỗng - trả lại bản gốc
   // còn hơn hiện một dòng trống.
+  return stripped.trim() ? stripped : title;
+}
+
+/** Chỉ bỏ "Bài N:" trần, giữ "Chặng N, Bài M:" - cho chỗ mà tiền tố chặng còn
+ *  là ngữ cảnh duy nhất cho biết bài nằm ở đâu. */
+export function stripBareLessonNumber(title: string): string {
+  const stripped = title.replace(BARE_LESSON_NUMBER, "");
   return stripped.trim() ? stripped : title;
 }

@@ -1325,7 +1325,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
 
                   <section className="space-y-3">
                     <SectionHeading n={2} title={t.revampDashboard.practiceTitle} hint={t.revampDashboard.practiceSub} />
-                    <PracticeModeGrid />
+                    <PracticeModeGrid lessonsDone={trackCounts.personal.done + trackCounts.professional.done} />
                   </section>
 
                   <div className="grid min-h-0 gap-4 lg:flex-1 lg:grid-cols-2 lg:grid-rows-[minmax(0,1fr)]">

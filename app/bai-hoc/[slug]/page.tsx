@@ -1,3 +1,4 @@
+import { stripStageLessonPrefix } from "@/lib/lesson-stage-prefix";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getLessonBySlug, getNextLesson, getLessonsMeta } from "@/lib/lessons-loader";
@@ -43,7 +44,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const lesson = await getLessonBySlug(slug, await getServerLocale());
   if (!lesson) return {};
 
-  const title = `${lesson.title} | Tự học Công nghệ Mỗi Ngày`;
+  // Tiêu đề tab / thẻ chia sẻ không có nhãn hành trình đi kèm, nên tiền tố
+  // "Chặng 25, Bài 5:" của kho bài đứng một mình và mâu thuẫn với "Chặng 3/4 ·
+  // Bài 1" trong trang. Bỏ cả hai kiểu tiền tố: tên bài mới là thứ nhận ra.
+  const title = `${stripStageLessonPrefix(lesson.title)} | Tự học Công nghệ Mỗi Ngày`;
   const description = lesson.subtitle || lesson.whyItMatters || undefined;
 
   return {

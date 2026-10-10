@@ -35954,15 +35954,15 @@ const BASE_LESSONS: Lesson[] = [
     "track": "personal",
     "isFundamental": true,
     "whyItMatters": "Không có bức tranh này thì mọi lỗi web đều là bí ẩn: trang trắng, ảnh không hiện, biểu mẫu gửi đi không thấy gì. Biết trang được dựng qua những bước nào giúp bạn hỏi đúng câu hỏi thay vì thử ngẫu nhiên.",
-    "openingQuestion": "Bạn sửa một dòng CSS trên máy mình và tải lại trang, nhưng giao diện không đổi. Nguyên nhân phổ biến nhất là gì?",
+    "openingQuestion": "Bạn mở một trang web trên điện thoại. Trước khi hiện ra trên màn hình, trang đó đang nằm ở đâu?",
     "openingOptions": [
-      "Trình duyệt vẫn dùng bản CSS cũ đang nằm trong bộ nhớ đệm của nó",
-      "Tệp CSS bị hỏng trong lúc lưu nên trình duyệt bỏ qua toàn bộ nội dung của nó",
-      "Máy chủ cần vài phút để nhận ra tệp đã đổi rồi mới gửi bản mới xuống cho trình duyệt",
-      "Trình duyệt chỉ đọc lại tệp CSS khi bạn đóng hẳn rồi mở lại cửa sổ trình duyệt"
+      "Trên một máy tính ở xa, máy đó gửi trang về điện thoại của bạn",
+      "Sẵn trong điện thoại của bạn, trình duyệt chỉ việc mở nó ra",
+      "Trong sóng wifi hoặc 4G, nên nó không nằm cố định ở máy nào cả",
+      "Trong trình duyệt, vì trình duyệt tự viết ra trang mỗi lần bạn mở"
     ],
     "correctOption": 0,
-    "explanation": "Trình duyệt lưu lại các tệp tĩnh để lần sau khỏi tải lại, và đó là lý do trang web mở nhanh khi bạn quay lại. Cơ chế ấy quay ra chống lại bạn lúc đang phát triển: bạn sửa tệp nhưng trình duyệt vẫn dùng bản cũ trong bộ nhớ đệm. Cách xử lý là tải lại có bỏ qua bộ nhớ đệm, hoặc bật tuỳ chọn tắt bộ nhớ đệm trong công cụ dành cho nhà phát triển. Đây là chuyện đầu tiên nên nghi ngờ khi thay đổi không hiện ra.",
+    "explanation": "Một trang web là một tệp nằm trên máy tính khác, gọi là máy chủ, thường ở rất xa bạn. Khi bạn gõ địa chỉ, trình duyệt xin máy chủ gửi trang về rồi vẽ nó ra màn hình. Đó là lý do mất mạng thì trang không mở được, và lý do cùng một trang lúc nhanh lúc chậm tuỳ đường truyền. Bài này đi qua từng bước của chuyến đi đó; hiểu nó rồi, bạn cũng sẽ biết vì sao đôi khi sửa tệp mà trang không đổi - vì trình duyệt giữ lại bản cũ trong bộ nhớ đệm.",
     "diagram": [
       {
         "label": "Trình duyệt tra địa chỉ ra số hiệu máy chủ",

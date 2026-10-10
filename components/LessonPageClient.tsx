@@ -16,7 +16,7 @@ import LessonVideoPlayer from "@/components/LessonVideoPlayer";
 import { highlightGlossaryTerms } from "@/components/GlossaryTerm";
 import { LessonApplicationCard, LessonQuestionCard, LessonSummaryCard, ReviewLoopCard } from "@/components/LessonLearningBlocks";
 import { getLessonDisplayLabel, getLessonRecallDay } from "@/lib/lesson-labels";
-import { stripStageLessonPrefix } from "@/lib/lesson-stage-prefix";
+import { stripBareLessonNumber, stripStageLessonPrefix } from "@/lib/lesson-stage-prefix";
 import TypingText from "@/components/TypingText";
 import { trackFeatureClick } from "@/lib/feature-events";
 import { useI18n } from "@/lib/i18n/context";
@@ -106,7 +106,9 @@ function metaphorOf(lesson: Props["lesson"], metaphors: Record<MetaphorId, strin
 
 export default function LessonPageClient({ lesson, nextLesson, flowLabel }: Props) {
   const { t } = useI18n();
-  const [feynmanMode, setFeynmanMode] = useState(false);
+  // Mở sẵn: người chưa biết gì cần bản giải thích dễ nhất TRƯỚC, không phải sau khi
+  // tự tìm ra một nút "Dùng ELI5". Ai không cần thì tắt một lần.
+  const [feynmanMode, setFeynmanMode] = useState(true);
   // Staged reveal for the "Cơ Cơ giải thích" card, like a chatbot response:
   // the metaphor line types itself out first, then the takeaways/mistake
   // warning fade in - instead of the whole card appearing at once.
@@ -138,7 +140,7 @@ export default function LessonPageClient({ lesson, nextLesson, flowLabel }: Prop
     accent: "stone",
     // Trong hành trình, tiền tố "Chặng 25, Bài 1:" của kho bài mâu thuẫn với nhãn
     // ở trên, nên chỉ bỏ nó khi có nhãn hành trình; ngoài ra nó là ngữ cảnh duy nhất.
-    title: flowLabel ? stripStageLessonPrefix(lesson.title) : lesson.title,
+    title: flowLabel ? stripStageLessonPrefix(lesson.title) : stripBareLessonNumber(lesson.title),
     subtitle: lesson.subtitle,
     duration: lesson.duration,
     readingMinutes: lesson.readingMinutes,

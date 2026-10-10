@@ -338,6 +338,16 @@ export const en: Dictionary = {
       ctaPrimary: "Start learning free",
       ctaSecondary: "Read a sample lesson",
       annotation: "no prior knowledge needed",
+      lessonPreview: {
+        title: "What one lesson looks like",
+        steps: [
+          { title: "An everyday question", desc: "You answer by instinct - no prior knowledge needed." },
+          { title: "Try it by hand", desc: "Click, edit, watch the result change - before any theory." },
+          { title: "A short quiz", desc: "A few questions to check you actually understood." },
+          { title: "Review at the right time", desc: "The system reminds you just before you forget." },
+        ],
+        foot: "10-15 minutes · free · no account needed to read a sample",
+      },
       statLearners: "learners",
       statLessons: "lessons",
       statCompleted: "completions",
@@ -480,7 +490,7 @@ export const en: Dictionary = {
 
     loadingQuestions: "Preparing the questions...",
     loadFailed: "Couldn't load the test right now. Please try again later.",
-    backToTrack: "← Back to choosing a track",
+    backToTrack: "← Back to choosing a path",
     noQuestions: "No questions for this selection yet. Try another track or difficulty.",
 
     questionCounter: "Question {current} / {total}",

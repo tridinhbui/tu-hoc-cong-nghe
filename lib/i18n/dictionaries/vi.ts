@@ -379,6 +379,16 @@ export const vi = {
       ctaPrimary: "Bắt đầu học miễn phí",
       ctaSecondary: "Đọc thử một bài",
       annotation: "không cần biết gì trước",
+      lessonPreview: {
+        title: "Một bài học trông như thế này",
+        steps: [
+          { title: "Một câu hỏi đời thường", desc: "Bạn trả lời bằng trực giác, chưa cần kiến thức nào." },
+          { title: "Thử tay ngay", desc: "Bấm, sửa, xem kết quả đổi - trước khi đọc lý thuyết." },
+          { title: "Quiz ngắn", desc: "Vài câu để biết mình đã hiểu hay chưa." },
+          { title: "Ôn lại đúng lúc", desc: "Hệ thống nhắc khi bạn sắp quên." },
+        ],
+        foot: "10-15 phút · miễn phí · đọc thử không cần tài khoản",
+      },
       statLearners: "người học",
       statLessons: "bài học",
       statCompleted: "lượt hoàn thành",
@@ -524,7 +534,7 @@ export const vi = {
 
     loadingQuestions: "Đang chuẩn bị câu hỏi...",
     loadFailed: "Không thể tải bài kiểm tra lúc này. Vui lòng thử lại sau.",
-    backToTrack: "← Quay lại chọn track",
+    backToTrack: "← Quay lại chọn lộ trình",
     noQuestions: "Chưa có câu hỏi nào cho lựa chọn này. Thử track hoặc độ khó khác nhé.",
 
     questionCounter: "Câu {current} / {total}",

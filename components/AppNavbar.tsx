@@ -217,6 +217,15 @@ const NAV_SECTIONS: NavSection[] = [
   // /analytics, chỉ bị bóp lại bằng cờ `compact`.
 ];
 
+/** Số bài tối thiểu trước khi các mục giải trí / xã hội hiện trong thanh bên.
+ *
+ *  Người mới mở app ra thấy Game, Thư viện 3D, Nhóm học, Thống kê, Tài liệu
+ *  trước khi đọc xong một bài: hai mươi mục cho một người chưa biết học cái gì.
+ *  Những mục này không mất đi - chúng hiện lại sau bài thứ ba, và một người
+ *  đang đứng trong chính trang đó (hoặc đi tới bằng liên kết) vẫn thấy nó. */
+const NEWCOMER_LESSONS = 3;
+const HIDDEN_FOR_NEWCOMERS = new Set(["/game", "/cong-dong", "/nhom-hoc", "/analytics", "/tai-lieu"]);
+
 /** The closed-by-default state: every section key. Derived from NAV_SECTIONS
  *  rather than listed by hand so a section added later is folded like the
  *  rest instead of being the one that hangs open. */
@@ -641,8 +650,19 @@ export default function AppNavbar() {
    *  `idPrefix` keeps the aria wiring unique - the desktop sidebar and the
    *  mobile sheet both render this list, and duplicate ids would point every
    *  header at whichever panel mounted last. */
+  // Chưa biết hồ sơ thì coi như người mới: người cũ thấy mục hiện ra khi hồ sơ
+  // về, còn ngược lại thì người mới thấy cả dãy mục nháy vào rồi biến mất.
+  const isNewcomer = !profile || profile.lessons_completed < NEWCOMER_LESSONS;
+  const linkVisible = (href: string) =>
+    !isNewcomer ||
+    !HIDDEN_FOR_NEWCOMERS.has(href) ||
+    pathname === href ||
+    pathname.startsWith(`${href}/`);
+
   const renderNavSections = (onNavigate?: () => void, idPrefix = "nav") =>
     NAV_SECTIONS.map((section) => {
+      const links = section.links.filter((l) => linkVisible(l.href));
+      if (links.length === 0) return null;
       const collapsed =
         collapsedSections.includes(section.titleKey) && !forcedOpenKeys.includes(section.titleKey);
       const panelId = `${idPrefix}-section-${section.titleKey}`;
@@ -687,7 +707,7 @@ export default function AppNavbar() {
           >
             <div className="overflow-hidden">
               <div className="flex flex-col gap-0.5 pt-1.5">
-                {section.links.map((link) => renderNavItem(link, onNavigate))}
+                {links.map((link) => renderNavItem(link, onNavigate))}
               </div>
             </div>
           </div>

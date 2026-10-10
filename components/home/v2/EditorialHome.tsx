@@ -16,66 +16,29 @@ import { BAND, Crosshair, ID, INK, Mono, PAPER, RULE, SheetHead, Stamp, useCross
 /* ───────────────────────── HERO ───────────────────────── */
 
 /**
- * Terminal khởi động: năm dòng log hiện lần lượt kèm thời gian giả lập, rồi
- * lệnh bắt đầu tự gõ và máy trả lời. Hộp có chiều cao cố định, nên chạy lại
- * log không đẩy bố cục - máy chủ kết xuất sẵn trạng thái cuối.
+ * "Một bài học trông thế nào" - bốn bước người học sẽ đi qua, nói bằng lời
+ * thường. Thay cho khung terminal khởi động giả: người chưa biết gì về công
+ * nghệ đọc `[ OK ] nạp 1500 bài vào bộ nhớ` như tín hiệu "trang này không dành
+ * cho tôi", và nó không cho họ biết thêm điều gì về việc học.
  */
-function BootTerminal({ lessonCount }: { lessonCount: number }) {
+function LessonPreview() {
   const { t } = useI18n();
-  const v = t.home.v2;
-  const reduce = useReducedMotion();
-  const { ref, seen } = useInViewOnce<HTMLDivElement>();
-  const lines = v.boot.lines.map((l) => format(l, { count: lessonCount }));
-  const [shown, setShown] = useState(lines.length);
-  const [cmdReady, setCmdReady] = useState(true);
-  const [replyReady, setReplyReady] = useState(true);
-
-  useEffect(() => {
-    if (!seen || reduce) return;
-    let i = 0;
-    let timer: number;
-    const step = () => {
-      i += 1;
-      setShown(i);
-      if (i < lines.length) timer = window.setTimeout(step, 180 + Math.random() * 220);
-      else timer = window.setTimeout(() => setCmdReady(true), 250);
-    };
-    timer = window.setTimeout(() => {
-      setShown(0);
-      setCmdReady(false);
-      setReplyReady(false);
-      timer = window.setTimeout(step, 250);
-    }, 0);
-    return () => window.clearTimeout(timer);
-  }, [seen, reduce, lines.length]);
-
+  const p = t.home.v2.lessonPreview;
   return (
-    <div ref={ref} className={`border-2 ${RULE} ${BAND} font-mono text-[11.5px]`}>
-      <div className="flex items-center justify-between border-b border-white/20 px-3 py-1.5">
-        <span className="text-brand-300">{ID.os}</span>
-        <span className="thcn-blink h-2 w-2 bg-brand-400" aria-hidden />
-      </div>
-      <ol className="h-[12.5rem] overflow-hidden px-3 py-2 leading-[1.7]">
-        {lines.slice(0, shown).map((l, i) => (
-          <li key={l} className="flex gap-2">
-            <span className="text-brand-400">{ID.ok}</span>
-            <span className="min-w-0 flex-1 truncate font-sans">{l}</span>
-            <span className="opacity-40">{ID.ms(40 + ((i * 97) % 260))}</span>
+    <div className={`border-2 ${RULE} bg-white/40 dark:bg-white/[0.03]`}>
+      <p className={`border-b ${RULE} px-4 py-3 text-[13px] font-black uppercase tracking-wide`}>{p.title}</p>
+      <ol>
+        {p.steps.map((s, i) => (
+          <li key={s.title} className={`flex gap-4 px-4 py-3 ${i > 0 ? `border-t ${RULE}` : ""}`}>
+            <span className="font-mono text-sm font-bold text-accent-strong">{i + 1}</span>
+            <span className="min-w-0">
+              <span className="block text-[15px] font-bold leading-snug">{s.title}</span>
+              <span className="block text-[13px] leading-5 opacity-75">{s.desc}</span>
+            </span>
           </li>
         ))}
-        {cmdReady && (
-          <li className="mt-1.5 flex gap-2">
-            <span className="text-brand-400">{ID.prompt}</span>
-            <TypeText text={v.heroCmd} speed={34} onDone={() => setReplyReady(true)} cursor={!replyReady} />
-          </li>
-        )}
-        {cmdReady && replyReady && (
-          <li className="flex gap-2 text-brand-200">
-            <span>›</span>
-            <TypeText text={v.heroReply} speed={18} className="font-sans" />
-          </li>
-        )}
       </ol>
+      <p className={`border-t ${RULE} px-4 py-2.5 text-[12px] font-semibold opacity-70`}>{p.foot}</p>
     </div>
   );
 }
@@ -134,12 +97,6 @@ export function EditorialHero({
       {!reduce && <Crosshair pos={pos} />}
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className={`flex items-center justify-between gap-4 border-b ${RULE} py-2`}>
-          <Mono>{ID.doc}</Mono>
-          <Mono className="hidden sm:inline">{v.heroKicker}</Mono>
-          <Mono>{ID.sheet(1)}</Mono>
-        </div>
-
         <div className="grid gap-8 pb-10 pt-8 lg:grid-cols-12 lg:pb-14 lg:pt-10">
           <h1 className="relative lg:col-span-12">
             <span className="block text-[16vw] font-black uppercase leading-[0.95] tracking-[-0.045em] lg:text-[11rem]">
@@ -151,7 +108,6 @@ export function EditorialHero({
             <span className="mt-2 block text-[9vw] font-light italic leading-none tracking-tight lg:ml-[40%] lg:text-[5.5rem]">
               {v.heroLine3}
             </span>
-            <Stamp className="thcn-stamp absolute right-0 top-2 hidden md:inline-block">{v.stamp}</Stamp>
           </h1>
 
           <div className="min-w-0 lg:col-span-5 lg:col-start-1">
@@ -186,13 +142,11 @@ export function EditorialHero({
                 <ArrowUpRight className="h-4 w-4" />
               </a>
             </div>
-            <p className="mt-3 pl-1 font-mono text-[11px] text-accent-strong">↑ {v.annotation}</p>
+            <p className="mt-3 pl-1 text-[13px] font-semibold text-accent-strong">{v.annotation}</p>
           </div>
 
           <div className="flex flex-col gap-4 lg:col-span-6 lg:col-start-7">
-            <div className="thcn-tilt">
-              <BootTerminal lessonCount={lessonCount} />
-            </div>
+            <LessonPreview />
             {/* Ba con số thật, xếp như bảng thông số cuối bản vẽ.
                 Ô nào đang là 0 thì không hiện: các con số chỉ được ghi đè khi
                 truy vấn trả về số khác 0, nên 0 ở đây nghĩa là "chưa tải

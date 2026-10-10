@@ -126,7 +126,7 @@ export function DashboardHeroBanner({
 type PracticeMode = { href: string; label: string; sub: string; icon: LucideIcon; tile: string };
 
 /** Lưới thẻ luyện tập - mỗi chế độ một ô biểu tượng mang màu riêng. */
-export function PracticeModeGrid() {
+export function PracticeModeGrid({ lessonsDone = Infinity }: { lessonsDone?: number }) {
   const { t } = useI18n();
   const r = t.revampDashboard;
   const modes: PracticeMode[] = [
@@ -136,9 +136,11 @@ export function PracticeModeGrid() {
     { href: "/thi-vuot-chang", label: t.nav.stageSkipExam, sub: r.practiceStageSkipSub, icon: Trophy, tile: "bg-gradient-to-br from-amber-400 to-orange-500 text-white shadow-md shadow-amber-500/30" },
     { href: "/game", label: t.dataRest.appNavbar.gameKingdomLabel, sub: r.practiceGameSub, icon: Gamepad2, tile: "bg-gradient-to-br from-rose-400 to-rose-600 text-white shadow-md shadow-rose-500/30" },
   ];
+  // Game Kingdom hiện sau bài thứ ba - cùng ngưỡng với thanh bên (AppNavbar).
+  const shown = lessonsDone >= 3 ? modes : modes.filter((m) => m.href !== "/game");
   return (
-    <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
-      {modes.map(({ href, label, sub, icon: Icon, tile }) => (
+    <div className={`grid grid-cols-2 gap-3 sm:grid-cols-3 ${shown.length === 5 ? "lg:grid-cols-5" : "lg:grid-cols-4"}`}>
+      {shown.map(({ href, label, sub, icon: Icon, tile }) => (
         <Link
           key={href}
           href={href}
