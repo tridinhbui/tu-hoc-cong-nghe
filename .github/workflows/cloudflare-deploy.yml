@@ -22,7 +22,17 @@ jobs:
 
       - run: npm ci
 
-      - run: npm run cf:build
+      # Token cũng phải có ở bước build, không chỉ ở bước deploy: wrangler mở
+      # một phiên proxy từ xa cho các binding `remote` ngay lúc `next build`,
+      # và trong môi trường không tương tác nó thoát với "it's necessary to set
+      # a CLOUDFLARE_API_TOKEN environment variable". Thiếu dòng này, mọi lượt
+      # deploy từ 30/09 đều đỏ ở đây và production chỉ đổi khi có người deploy
+      # tay.
+      - name: Build Worker
+        run: npm run cf:build
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
 
       - name: Deploy Worker
         run: npx wrangler deploy
