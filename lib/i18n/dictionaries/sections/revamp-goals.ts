@@ -83,6 +83,12 @@ export const revampGoalsVi = {
         firstBuild:
           "Việc đầu tiên: rà lịch sử trò chuyện AI tuần qua của bạn, xếp mỗi lần dán vào một trong bốn mức dữ liệu.",
       },
+      vibecode: {
+        skill: "Nhờ AI viết code mà vẫn đọc, sửa và giữ được bản cũ",
+        output: "Sổ tay xử lý lỗi một trang của riêng bạn",
+        firstBuild:
+          "Việc đầu tiên: liệt kê năm việc bạn làm tuần qua và với mỗi việc, ước xem mất bao lâu để biết lời giải của AI đúng hay sai.",
+      },
       "ai-builder": {
         skill: "Gọi LLM, cho nó đọc tài liệu, và đo nó chạy đúng",
         output: "Bot tài liệu nội bộ bản kỹ sư, lên production",
@@ -164,6 +170,12 @@ export const revampGoalsEn: typeof revampGoalsVi = {
         output: "A one-page AI use policy for your team",
         firstBuild:
           "First up: review last week's AI chat history and sort every paste into one of four data levels.",
+      },
+      vibecode: {
+        skill: "Have AI write code while you can still read it, fix it and keep old versions",
+        output: "A one-page error-handling notebook of your own",
+        firstBuild:
+          "First up: list five things you did last week and, for each, estimate how long it would take to tell whether an AI's answer is right.",
       },
       "ai-builder": {
         skill: "Call an LLM, give it your documents, and measure it works",

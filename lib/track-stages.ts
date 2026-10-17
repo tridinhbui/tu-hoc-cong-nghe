@@ -922,6 +922,19 @@ export const TRACK_PERSONAL = {
         { name: "Sao lưu, cập nhật và đọc lỗi", days: [2735, 2739] as [number, number] },
       ],
     },
+    {
+      // Chặng của hành trình /hoc-theo-nhu-cau/vibecode. Dải 2740-2749: mới có
+      // phần giao việc cho AI; phần đọc, sửa, giữ bản cũ đã có ở chặng 58-59.
+      label: "Chặng 67",
+      name: "Làm sản phẩm cùng AI mà vẫn kiểm soát được",
+      days: [2740, 2749] as [number, number],
+      available: true,
+      isNew: true,
+      parts: [
+        { name: "Giao việc cho AI", days: [2740, 2744] as [number, number] },
+        { name: "Đọc và kiểm tra thứ AI viết", days: [2745, 2749] as [number, number] },
+      ],
+    },
   ] satisfies Stage[],
 };
 
