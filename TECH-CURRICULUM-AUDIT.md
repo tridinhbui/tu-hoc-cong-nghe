@@ -198,15 +198,15 @@ Phát hiện phụ do người viết bài tập báo lại khi đọc 41 bài �
 | `npm run audit:exercises` | 628 khối mã chạy được, mọi lời giải khớp, không mã khởi đầu nào qua sẵn (trước: 587) |
 | `npx tsc --noEmit` | thoát 0 |
 | `npx eslint` trên tệp đã đổi | sạch |
-| `npx vitest run` | 201/202 tệp qua, 2.075/2.082 test; **1 test đỏ** |
+| `npx vitest run` | cây sạch (commit của PR): **202/202 tệp, 2.076 test qua**; cây làm việc: 1 test đỏ, không liên quan (xem dưới) |
 | `npm run build` | thoát 0 |
 
-**Test đỏ:** `lib/__tests__/kiem-tra-page.test.tsx` (`getByText("+… XP")` tìm thấy nhiều phần
-tử). Nó chạm đúng ba tệp đã sửa dở **trước khi phiên này bắt đầu**
-(`app/(app)/kiem-tra/page.tsx`, `components/DailyNewsQuizWidget.tsx`,
-`lib/i18n/dictionaries/sections/revamp-quiz.ts` — có trong `git status` đầu phiên) và
-`KE-HOACH-VIBECODE.md` đã ghi "hỏng khi working tree có thay đổi dở của session khác; trên HEAD
-sạch qua". Tôi không động tới các tệp đó và **chưa chạy lại test trên HEAD sạch** để xác nhận.
+**Test đỏ trên cây làm việc, xanh trên cây sạch:** `lib/__tests__/kiem-tra-page.test.tsx`
+(`getByText("+8 XP")` tìm thấy nhiều phần tử) đỏ khi chạy trên thư mục làm việc, nơi có ba tệp
+sửa dở **từ trước khi phiên này bắt đầu** (`app/(app)/kiem-tra/page.tsx`,
+`components/DailyNewsQuizWidget.tsx`, `lib/i18n/dictionaries/sections/revamp-quiz.ts`, có trong
+`git status` đầu phiên; tôi không động tới chúng). Trên một worktree sạch đúng tại commit của PR,
+hook pre-push chạy lại toàn bộ: **202/202 tệp, 2.076 test qua**, và bộ audit nội dung báo 0 bài lỗi.
 
 **Chưa kiểm bằng mắt:** trang bài học yêu cầu đăng nhập và binding D1 của Cloudflare, mà server
 dev cục bộ không có (`getCloudflareContext` lỗi), nên tôi không mở được trang để xem bài tập gập
