@@ -221,7 +221,7 @@ export const EXCEL_DATA_LESSONS: Lesson[] = [
           "So sánh kết quả với một truy vấn khác tính cùng chỉ số theo cách khác"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn cuối là phép kiểm mạnh nhất và nó tốn công gấp nhiều lần. Đếm số dòng mất mười giây và bắt được cả hai kiểu hỏng phổ biến nhất: nhân bản và mất dòng."
+        "explanation": "Lựa chọn “So sánh kết quả…” là phép kiểm mạnh nhất và nó tốn công gấp nhiều lần. Đếm số dòng mất mười giây và bắt được cả hai kiểu hỏng phổ biến nhất: nhân bản và mất dòng."
       },
       {
         "question": "Điều kiện lọc đặt trong phần ghép khác đặt trong phần lọc ở chỗ nào?",
@@ -232,7 +232,7 @@ export const EXCEL_DATA_LESSONS: Lesson[] = [
           "Hai cách cho cùng kết quả nhưng ngược lại khác nhau về thứ tự thực thi bên trong"
         ],
         "correct": 0,
-        "explanation": "Đây là chỗ biến một phép ghép ngoài thành một phép ghép trong mà không ai nhận ra: những dòng vốn được giữ lại với giá trị rỗng nay bị điều kiện lọc loại bỏ hết. Lựa chọn cuối đúng với phép ghép trong và sai với phép ghép ngoài."
+        "explanation": "Đây là chỗ biến một phép ghép ngoài thành một phép ghép trong mà không ai nhận ra: những dòng vốn được giữ lại với giá trị rỗng nay bị điều kiện lọc loại bỏ hết. Lựa chọn “Hai cách cho cùng…” đúng với phép ghép trong và sai với phép ghép ngoài."
       },
       {
         "question": "Vì sao so sánh với giá trị rỗng cần chú ý đặc biệt?",

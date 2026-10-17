@@ -78,6 +78,11 @@ import { R23_ADDITIONS } from "./r23";
 import { R24_ADDITIONS } from "./r24";
 import { R25_ADDITIONS } from "./r25";
 import { R26_ADDITIONS } from "./r26";
+import { T01_ADDITIONS } from "./t01";
+import { T02_ADDITIONS } from "./t02";
+import { T03_ADDITIONS } from "./t03";
+import { T04_ADDITIONS } from "./t04";
+import { T05_ADDITIONS } from "./t05";
 
 /**
  * Khối THÊM vào bài đã có (KE-HOACH-1500-BAI.md: bài nào cũng có thực hành và
@@ -187,6 +192,14 @@ const SIM_FILES: Record<string, Record<string, LessonSectionBlock[]>> = {
   r24: R24_ADDITIONS,
   r25: R25_ADDITIONS,
   r26: R26_ADDITIONS,
+  // Đợt ba (2026-10-17): bài tập chấm được (exercise) cho các chặng bảo mật, gỡ lỗi,
+  // đám mây, tự động hoá và công cụ nhỏ vốn chưa có dòng mã nào. Nối vào sau khối
+  // của các đợt trước, như đợt hai.
+  t01: T01_ADDITIONS,
+  t02: T02_ADDITIONS,
+  t03: T03_ADDITIONS,
+  t04: T04_ADDITIONS,
+  t05: T05_ADDITIONS,
 };
 
 export const LESSON_BLOCK_ADDITIONS: Record<string, LessonSectionBlock[]> = (() => {

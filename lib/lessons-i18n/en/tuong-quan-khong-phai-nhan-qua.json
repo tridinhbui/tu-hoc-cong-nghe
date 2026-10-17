@@ -39,7 +39,7 @@
         "A variable missing so many values that it has to be dropped before any analysis",
         "A variable measured in units different from the others in the same dataset"
       ],
-      "explanation": "The classic example: ice-cream sales and drowning incidents are tightly correlated, but temperature is what causes both. No ice cream ever drowned anybody. The second option describes a high-variance measurement, which affects precision rather than creating a spurious relationship. The third is a missing-data problem, handled by imputation or exclusion. The fourth is a units problem, fixed by rescaling - none of the three can manufacture a correlation out of nothing."
+      "explanation": "The classic example: ice-cream sales and drowning incidents are tightly correlated, but temperature is what causes both. No ice cream ever drowned anybody. The widely swinging variable describes a high-variance measurement, which affects precision rather than creating a spurious relationship. The variable with missing values is a missing-data problem, handled by imputation or exclusion. The mismatched-units variable is a units problem, fixed by rescaling - none of the three can manufacture a correlation out of nothing."
     },
     {
       "question": "When does survivorship bias arise?",

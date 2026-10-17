@@ -169,7 +169,7 @@
         "Each piece needs its own tests and release process so they do not interfere with one another",
         "There must be a way for one piece to keep running in a degraded mode when another stops"
       ],
-      "explanation": "The last option is one way of realising that condition rather than the condition itself. If the pieces still fail together because of a shared dependency then a degraded mode saves nothing, because there is no piece left standing."
+      "explanation": "A degraded mode is one way of realising that condition rather than the condition itself. If the pieces still fail together because of a shared dependency then a degraded mode saves nothing, because there is no piece left standing."
     },
     {
       "question": "Which shared dependency is counted least often?",

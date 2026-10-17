@@ -401,7 +401,7 @@ export const PLANNING_LESSONS: Lesson[] = [
           "Lịch cuốn chiếu chỉ ghi công việc kỹ thuật còn kế hoạch quý ghi cả mục tiêu"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn thứ hai là một tính chất thường thấy và nó là hệ quả. Việc được sửa lại liên tục mới là thứ ngăn khoảng cách giữa kế hoạch và thực tế lớn dần tới mức không ai nhìn kế hoạch nữa."
+        "explanation": "Lựa chọn “Lịch cuốn chiếu chi…” là một tính chất thường thấy và nó là hệ quả. Việc được sửa lại liên tục mới là thứ ngăn khoảng cách giữa kế hoạch và thực tế lớn dần tới mức không ai nhìn kế hoạch nữa."
       },
       {
         "question": "Vì sao một lịch kín đặc không phải dấu hiệu tốt?",
@@ -423,7 +423,7 @@ export const PLANNING_LESSONS: Lesson[] = [
           "Vì phần dự kiến có thể thay đổi nên không nên đưa vào lịch chính thức"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn thứ ba mô tả đúng sự khác biệt và không nói vì sao phải đánh dấu. Vấn đề nằm ở người đọc: một dòng trong lịch trông giống mọi dòng khác, và bên ngoài sẽ lập kế hoạch của họ dựa trên nó."
+        "explanation": "Lựa chọn “Vì hai loại có…” mô tả đúng sự khác biệt và không nói vì sao phải đánh dấu. Vấn đề nằm ở người đọc: một dòng trong lịch trông giống mọi dòng khác, và bên ngoài sẽ lập kế hoạch của họ dựa trên nó."
       },
       {
         "question": "Giá trị chính của công cụ này nằm ở đâu?",
@@ -914,7 +914,7 @@ export const PLANNING_LESSONS: Lesson[] = [
           "Vì nó đòi hỏi người viết phải hiểu cả nghiệp vụ lẫn kỹ thuật"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn cuối mô tả đúng yêu cầu và nó là lý do phần này KHÓ, không phải lý do nó bị cắt. Bị cắt là vì nó là thứ duy nhất còn lại sau khi mọi phần khác đã được máy làm - nên khi thiếu thời gian, nó là chỗ duy nhất có thể cắt."
+        "explanation": "Lựa chọn “Vì nó đòi hỏi…” mô tả đúng yêu cầu và nó là lý do phần này KHÓ, không phải lý do nó bị cắt. Bị cắt là vì nó là thứ duy nhất còn lại sau khi mọi phần khác đã được máy làm - nên khi thiếu thời gian, nó là chỗ duy nhất có thể cắt."
       },
       {
         "question": "Vì sao nên chốt số trước rồi mới bình luận?",
@@ -936,7 +936,7 @@ export const PLANNING_LESSONS: Lesson[] = [
           "Danh sách các vấn đề cần theo dõi trong tháng tiếp theo"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn cuối nghe gần với một quyết định và nó không có người và không có ngày, nên nó không tạo ra việc gì. Một buổi kết thúc bằng cái gật đầu là một giờ của tám người đã bị tiêu."
+        "explanation": "Lựa chọn “Danh sách các vấn…” nghe gần với một quyết định và nó không có người và không có ngày, nên nó không tạo ra việc gì. Một buổi kết thúc bằng cái gật đầu là một giờ của tám người đã bị tiêu."
       },
       {
         "question": "Vì sao đội vận hành nên ngồi cùng đội sản phẩm trong nhịp này?",

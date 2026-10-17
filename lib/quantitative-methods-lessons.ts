@@ -570,7 +570,7 @@ export const QUANTITATIVE_METHODS_LESSONS: Lesson[] = [
           "Vì các thuật toán khớp đường không có cơ chế phát hiện giá trị bất thường"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn thứ hai mô tả một điều kiện làm ảnh hưởng nặng thêm. Nguyên nhân gốc nằm trong chính công thức: một điểm lệch gấp mười lần đóng góp sai số gấp một trăm lần, nên nó kéo đường về phía mình."
+        "explanation": "Lựa chọn “Vì điểm ngoại lai…” mô tả một điều kiện làm ảnh hưởng nặng thêm. Nguyên nhân gốc nằm trong chính công thức: một điểm lệch gấp mười lần đóng góp sai số gấp một trăm lần, nên nó kéo đường về phía mình."
       },
       {
         "question": "Nên làm gì khi thấy một điểm ngoại lai trong dữ liệu hiệu năng?",

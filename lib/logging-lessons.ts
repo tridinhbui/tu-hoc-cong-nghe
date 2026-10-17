@@ -440,7 +440,7 @@ export const LOGGING_LESSONS: Lesson[] = [
           "Giảm mức độ chi tiết của log bằng cách bỏ bớt các trường ít dùng tới"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn thứ ba cũng tốt và nó thường đi kèm một cái bẫy: dữ liệu lạnh có thể mất hàng giờ mới lấy ra được, nên nó vô dụng trong lúc đang xử lý sự cố. Lấy mẫu có chủ đích thì giữ nguyên phần đáng giá nhất."
+        "explanation": "Lựa chọn “Chuyển log cũ sang…” cũng tốt và nó thường đi kèm một cái bẫy: dữ liệu lạnh có thể mất hàng giờ mới lấy ra được, nên nó vô dụng trong lúc đang xử lý sự cố. Lấy mẫu có chủ đích thì giữ nguyên phần đáng giá nhất."
       },
       {
         "question": "Vì sao phải kiểm tra được rằng log cũ thật sự lấy ra được?",
@@ -600,7 +600,7 @@ export const LOGGING_LESSONS: Lesson[] = [
           "Hai con số phải do hai đội khác nhau chịu trách nhiệm tính toán và kiểm tra"
         ],
         "correct": 0,
-        "explanation": "Cùng bảng, cùng truy vấn thì bạn không đối chiếu mà chỉ chạy một phép tính hai lần. Lựa chọn thứ hai là điều kiện kỹ thuật cần thiết nhưng nó không tạo ra tính độc lập."
+        "explanation": "Cùng bảng, cùng truy vấn thì bạn không đối chiếu mà chỉ chạy một phép tính hai lần. Lựa chọn “Hai con số buộc…” là điều kiện kỹ thuật cần thiết nhưng nó không tạo ra tính độc lập."
       },
       {
         "question": "Vì sao lệch nhau là bằng chứng ngay cả khi chưa biết bên nào đúng?",
@@ -611,7 +611,7 @@ export const LOGGING_LESSONS: Lesson[] = [
           "Vì việc so sánh giúp thu hẹp phạm vi tìm kiếm xuống một trong hai đường"
         ],
         "correct": 0,
-        "explanation": "Đây là điểm mạnh riêng của đối chiếu: nó cho kết luận chắc chắn về SỰ TỒN TẠI của lỗi mà không cần biết đáp án đúng. Lựa chọn cuối cũng đúng nhưng đó là lợi ích phụ."
+        "explanation": "Đây là điểm mạnh riêng của đối chiếu: nó cho kết luận chắc chắn về SỰ TỒN TẠI của lỗi mà không cần biết đáp án đúng. Lựa chọn “Vì việc so sánh…” cũng đúng nhưng đó là lợi ích phụ."
       },
       {
         "question": "Vì sao một khoản lệch nhỏ và ổn định vẫn đáng điều tra?",

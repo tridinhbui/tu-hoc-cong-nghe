@@ -926,7 +926,7 @@ export const S38_C_LESSONS: Lesson[] = [
         "133% (= 4 / 3, chia ngược tử và mẫu)",
         "25% (= 1 / 4, tính phần chưa xong)",
         "34% (= 3 + 4 = 7, lấy nhầm tổng số lần đếm)",
-        "Tỷ lệ hoàn thành bằng số việc xong chia tổng số việc: 3 / 4 = 75%. Chia ngược cho vượt 100%, còn 25% là phần chưa xong và phương án cuối tính không có ý nghĩa.",
+        "Tỷ lệ hoàn thành bằng số việc xong chia tổng số việc: 3 / 4 = 75%. Chia ngược cho vượt 100%, còn 25% là phần chưa xong và phương án “34% (= 3 +…” tính không có ý nghĩa.",
       ),
       q(
         "Vì sao nên ghi ngày kiểm lại các hành động khắc phục?",

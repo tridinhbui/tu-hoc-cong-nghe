@@ -11,10 +11,17 @@ import dynamic from "next/dynamic";
 import { recordExercisePass } from "@/lib/exercise-passes";
 import { TRACK_PERSONAL, isLessonInRange } from "@/lib/track-stages";
 
-// Hai chặng đầu của lộ trình nền tảng (máy tính, Git) dành cho người chưa định
-// lập trình: bài tập viết mã ở đó bắt đầu gập. Từ Chặng 3 (học lập trình) trở
-// đi, bài tập là phần chính của bài nên mở sẵn.
-const COLLAPSED_EXERCISE_STAGES = TRACK_PERSONAL.stages.filter((s) => s.label === "Chặng 1" || s.label === "Chặng 2");
+// Những chặng dành cho người chưa định lập trình: bài tập viết mã ở đó là phần
+// "xem cùng một logic viết thành vài dòng mã", không phải phần chính, nên bắt
+// đầu gập. Gồm hai chặng đầu của lộ trình nền tảng (máy tính, Git), chặng đám
+// mây và an toàn thông tin, và các chặng làm việc cùng AI cho người đi làm
+// (tự động hoá, bảng tính, trang web, gỡ lỗi, đưa lên mạng). Từ Chặng 3 (học
+// lập trình) trở đi, bài tập là phần chính của bài nên mở sẵn.
+const COLLAPSED_EXERCISE_LABELS = new Set([
+  "Chặng 1", "Chặng 2", "Chặng 13", "Chặng 16",
+  "Chặng 51", "Chặng 52", "Chặng 56", "Chặng 57", "Chặng 58", "Chặng 59",
+]);
+const COLLAPSED_EXERCISE_STAGES = TRACK_PERSONAL.stages.filter((s) => COLLAPSED_EXERCISE_LABELS.has(s.label));
 const exerciseStartsCollapsed = (lessonId?: number) =>
   lessonId !== undefined && COLLAPSED_EXERCISE_STAGES.some((s) => isLessonInRange(lessonId, s));
 import { useI18n } from "@/lib/i18n/context";
