@@ -24,7 +24,7 @@
  * một chặng ở đây mà thiếu chữ ở đó là lỗi `tsc`.
  */
 
-export type FlowId = "website" | "ai-assistant" | "ai-agent" | "ai-marketing" | "automation" | "data-ai" | "ai-safety" | "ai-builder";
+export type FlowId = "website" | "ai-assistant" | "ai-agent" | "ai-marketing" | "automation" | "data-ai" | "ai-safety" | "ai-builder" | "vibecode";
 
 /** `ready`: đủ bài để đi hết. `partial`: bài nền có, bài dựng hoàn chỉnh đang
  *  viết. `soon`: mới có khung và thẻ Feynman, bài chuyên đang viết. Ghi thật,
@@ -299,6 +299,57 @@ LEARNING_FLOWS.push(
       },
     ],
     branches: { deepenSlug: "mo-hinh-de-doa-cho-ung-dung-llm", buildSlug: "chinh-sach-dung-ai-mot-trang" },
+  },
+  {
+    id: "vibecode",
+    emoji: "💬",
+    // Bài nền có đủ cho hỏi - đọc - sửa - giữ - đưa lên mạng, nhưng chưa có bài
+    // "làm ra trang đầu tiên từ một câu mô tả" nên chưa ghi "Đủ bài".
+    // Không gắn công cụ nào: bài dạy thao tác (mô tả, đọc, sửa, giữ bản cũ),
+    // công cụ đổi nhanh hơn bài.
+    status: "partial",
+    firstWinSlug: "ai-trong-cong-viec-lap-trinh-bat-dau-tu-dau",
+    steps: [
+      {
+        id: "ask",
+        lessonSlugs: [
+          "giao-viec-cho-ai-nhu-giao-viec-cho-tho",
+          "mot-luot-mot-viec-chia-du-an-thanh-buoc-kiem-duoc",
+          "noi-ro-dieu-khong-duoc-doi-khi-giao-viec-cho-ai",
+          "viet-yeu-cau-cho-ai-prompt",
+        ],
+      },
+      {
+        id: "read",
+        lessonSlugs: [
+          "nghiem-thu-truoc-khi-nhan-chay-thu-va-doc-bao-cao-cua-ai",
+          "thong-bao-loi-do-tren-man-hinh-doc-tu-dau",
+          "xin-ai-giai-thich-loi-truoc-roi-moi-xin-cach-sua",
+          "doc-code-nguoi-khac-va-nhan-xet-co-ich",
+        ],
+      },
+      {
+        id: "fix",
+        lessonSlugs: [
+          "dan-thong-bao-loi-cho-ai-can-kem-nhung-gi",
+          "hoi-ai-cho-nhieu-gia-thuyet-va-cach-thu-tung-cai",
+          "sua-mot-cho-mot-lan-vi-sao-khong-nen-doi-nam-thu",
+          "ai-sua-loi-nay-lai-hong-cho-khac",
+        ],
+      },
+      {
+        id: "keep",
+        lessonSlugs: ["git-la-gi-va-giai-quyet-van-de-gi", "luu-ban-cu-truoc-khi-sua-va-cach-quay-lai", "kiem-lai-sau-khi-sua-bo-cau-hoi-thu-nhanh"],
+      },
+      {
+        id: "ship",
+        lessonSlugs: [
+          "mat-khau-va-khoa-bi-mat-la-gi-vi-sao-khong-dan-vao-ma",
+          "du-an-nho-dua-mot-trang-tinh-len-mang-thu-nghiem",
+        ],
+      },
+    ],
+    branches: { deepenSlug: "pull-request-va-code-review", buildSlug: "du-an-tong-ket-so-tay-xu-ly-loi-cua-rieng-ban" },
   },
   {
     id: "ai-builder",

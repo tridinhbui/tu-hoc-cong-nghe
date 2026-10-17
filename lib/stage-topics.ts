@@ -208,6 +208,7 @@ const PERSONAL_STAGE_TOPIC: Record<string, StageTopicId> = {
   "Chặng 64": "ai-safe-foundations",
   "Chặng 65": "ai-safe-foundations",
   "Chặng 66": "ai-safe-foundations",
+  "Chặng 67": "ai-building",
 };
 
 /** Track chuyên ngành, 43 chặng, 16 chủ đề.

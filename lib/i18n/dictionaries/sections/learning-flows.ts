@@ -417,6 +417,68 @@ export const learningFlowsVi = {
           },
         },
       },
+      vibecode: {
+        need: "Tôi muốn nhờ AI viết code mà vẫn kiểm soát được",
+        title: "Làm ra sản phẩm bằng cách nói chuyện với AI",
+        promise: "Mô tả điều bạn muốn, đọc được thứ AI viết, sửa lỗi theo từng bước nhỏ, giữ được bản cũ và đưa lên mạng an toàn.",
+        steps: {
+          ask: {
+            title: "Giao việc cho AI đơn giản hơn bạn nghĩ",
+            intro: "Nhờ AI viết code giống giao việc cho một người thợ giỏi nhưng chưa biết nhà bạn: càng nói rõ muốn gì, họ càng ít làm lại.",
+            columns: ["Việc", "Giao thợ sửa nhà", "Giao cho AI"],
+            rows: [
+              ["Nói muốn gì", "Chỉ tận nơi, nói căn phòng dùng để làm gì", "Mô tả mục đích, người dùng và kết quả mong đợi"],
+              ["Chia nhỏ", "Làm điện trước, sơn sau", "Mỗi lượt một việc nhỏ, xong mới sang việc kế"],
+              ["Hiểu nền", "Biết tường nào chịu lực", "Biết trang web gồm khung, giao diện và hành vi"],
+            ],
+            oneLiner: "AI làm nhanh, nhưng chỉ làm đúng thứ bạn nói rõ.",
+          },
+          read: {
+            title: "Đọc thứ AI viết đơn giản hơn bạn nghĩ",
+            intro: "Bạn không cần viết được từng dòng, cũng như chủ nhà không cần biết xây. Nhưng phải đọc được bản nghiệm thu: chỗ nào báo lỗi, chỗ nào thợ đang đoán.",
+            columns: ["Việc", "Nghiệm thu nhà", "Đọc kết quả của AI"],
+            rows: [
+              ["Nhìn chỗ hỏng", "Đọc dòng ghi chú đỏ trên biên bản", "Đọc dòng đầu của thông báo lỗi"],
+              ["Hỏi lại", "Nhờ thợ giải thích vì sao hỏng", "Xin AI giải thích lỗi trước, rồi mới xin cách sửa"],
+              ["Nghi ngờ", "Thợ nói chắc nhưng chưa đo", "AI đoán nguyên nhân rất tự tin, cần tự thử lại"],
+            ],
+            oneLiner: "Không đọc được thì không dám giao, nên cứ đọc từng phần nhỏ.",
+          },
+          fix: {
+            title: "Sửa lỗi cùng AI đơn giản hơn bạn nghĩ",
+            intro: "Lỗi giống tiếng kêu lạ của chiếc xe: bạn kể đủ chi tiết, thử từng nghi ngờ một, và không thay năm bộ phận cùng lúc.",
+            columns: ["Bước", "Mang xe đi sửa", "Nhờ AI sửa code"],
+            rows: [
+              ["Kể bệnh", "Nói rõ tiếng kêu khi nào, ở đâu", "Dán nguyên thông báo lỗi và các bước làm ra nó, giấu khoá bí mật"],
+              ["Thử giả thuyết", "Kiểm tra từng nghi ngờ một", "Xin vài giả thuyết, thử từng cái"],
+              ["Đổi ít một", "Thay một linh kiện rồi chạy thử", "Sửa một chỗ mỗi lần, xem lỗi khác có xuất hiện không"],
+            ],
+            oneLiner: "Mỗi lần chỉ đổi một thứ, thì mới biết thứ nào đã sửa được lỗi.",
+          },
+          keep: {
+            title: "Giữ dự án không sụp đơn giản hơn bạn nghĩ",
+            intro: "Git giống nút lưu của trò chơi: trước khi vào trận khó, bạn lưu lại. AI làm hỏng thì quay về chỗ đã lưu, không mất cả buổi.",
+            columns: ["Việc", "Trò chơi", "Dự án có AI"],
+            rows: [
+              ["Lưu", "Lưu trước trận khó", "Lưu một mốc trước mỗi lần nhờ AI sửa lớn"],
+              ["Quay lại", "Tải lại điểm lưu cũ", "Quay về mốc cũ khi bản sửa làm hỏng thêm"],
+              ["Kiểm lại", "Chơi thử đoạn vừa qua", "Chạy lại vài phép thử nhanh sau mỗi lần sửa"],
+            ],
+            oneLiner: "Mỗi bước nhỏ phải có đường quay lại.",
+          },
+          ship: {
+            title: "Đưa lên mạng đơn giản hơn bạn nghĩ",
+            intro: "Mở cửa tiệm là cho khách vào, nhưng đừng treo chìa khoá két trước cửa. Chạy được trên máy bạn chưa có nghĩa là an toàn để mọi người dùng.",
+            columns: ["Việc", "Mở cửa tiệm", "Đưa trang lên mạng"],
+            rows: [
+              ["Cho người khác vào", "Treo biển, mở cửa", "Đưa trang lên và mở thử bằng điện thoại"],
+              ["Cất chìa khoá", "Két để trong phòng kín", "Khoá bí mật không dán vào code hay chỗ công khai"],
+              ["Thử trước", "Mời người quen ghé thử", "Nhờ một người mở và báo lại điều lạ"],
+            ],
+            oneLiner: "Chạy được chưa phải là an toàn: cất khoá bí mật trước khi cho ai vào.",
+          },
+        },
+      },
       "ai-builder": {
         need: "Tôi muốn tự xây ứng dụng AI",
         title: "Xây ứng dụng có AI bên trong",
@@ -904,6 +966,68 @@ export const learningFlowsEn: typeof learningFlowsVi = {
               ["Access control", "Only hand over the right client's file", "Filter documents by permission before retrieval"],
             ],
             oneLiner: "You can't block every malicious instruction - limit the damage it can do.",
+          },
+        },
+      },
+      vibecode: {
+        need: "I want AI to write code for me and still stay in control",
+        title: "Building a product by talking to AI",
+        promise: "Describe what you want, read what AI writes, fix errors in small steps, keep your old versions and put it online safely.",
+        steps: {
+          ask: {
+            title: "Briefing an AI is simpler than you think",
+            intro: "Asking AI to write code is like briefing a skilled builder who has never seen your house: the clearer you are about what you want, the less they redo.",
+            columns: ["Task", "Briefing a builder", "Briefing an AI"],
+            rows: [
+              ["Say what you want", "Point at the room and say what it's for", "Describe the purpose, the user and the result you expect"],
+              ["Break it down", "Wiring first, paint after", "One small job per turn, then the next"],
+              ["Know the base", "Know which wall holds the roof", "Know a web page is structure, looks and behaviour"],
+            ],
+            oneLiner: "AI is fast, but it only does what you said clearly.",
+          },
+          read: {
+            title: "Reading what AI wrote is simpler than you think",
+            intro: "You don't need to write every line, just as a homeowner doesn't need to know construction. But you must read the inspection report: where it failed and where the builder is guessing.",
+            columns: ["Task", "Inspecting a house", "Reading AI's output"],
+            rows: [
+              ["Spot the fault", "Read the red note on the report", "Read the first line of the error message"],
+              ["Ask again", "Ask the builder why it failed", "Ask AI to explain the error before asking for a fix"],
+              ["Doubt", "The builder sounds sure but never measured", "AI guesses a cause with confidence, so test it yourself"],
+            ],
+            oneLiner: "If you can't read it you can't hand it over, so read it one small piece at a time.",
+          },
+          fix: {
+            title: "Fixing errors with AI is simpler than you think",
+            intro: "An error is like a strange noise from a car: you describe it in detail, test one suspicion at a time, and never replace five parts at once.",
+            columns: ["Step", "Taking a car in", "Asking AI to fix code"],
+            rows: [
+              ["Describe it", "Say when and where the noise happens", "Paste the whole error and the steps that cause it, hiding secret keys"],
+              ["Test a theory", "Check one suspicion at a time", "Ask for a few hypotheses and test each"],
+              ["Change little", "Swap one part, then run it", "Fix one place at a time and watch for new errors"],
+            ],
+            oneLiner: "Change one thing at a time, so you know which one fixed it.",
+          },
+          keep: {
+            title: "Keeping a project from collapsing is simpler than you think",
+            intro: "Git is the save button of a game: before a hard fight you save. If AI breaks something you go back to the save, not lose the whole session.",
+            columns: ["Task", "A game", "A project with AI"],
+            rows: [
+              ["Save", "Save before a hard fight", "Save a checkpoint before each big AI edit"],
+              ["Go back", "Load the old save", "Return to the old checkpoint when a fix makes things worse"],
+              ["Re-check", "Replay the part you just did", "Run a few quick checks after every fix"],
+            ],
+            oneLiner: "Every small step needs a way back.",
+          },
+          ship: {
+            title: "Putting it online is simpler than you think",
+            intro: "Opening a shop lets customers in, but you don't hang the safe key by the door. Working on your machine doesn't mean it's safe for everyone to use.",
+            columns: ["Task", "Opening a shop", "Putting a page online"],
+            rows: [
+              ["Let others in", "Hang the sign, open the door", "Publish the page and open it on your phone"],
+              ["Keep the key safe", "The safe stays in a locked room", "Never paste secret keys into code or anywhere public"],
+              ["Try it first", "Invite friends to drop by", "Ask one person to open it and report anything odd"],
+            ],
+            oneLiner: "Working isn't the same as safe: put the secret key away before anyone comes in.",
           },
         },
       },
