@@ -610,14 +610,17 @@ const OPTION_LETTER_RE = /(phương án|đáp án|lựa chọn|option|câu trả
 // CHÍNH LÀ nguyên nhân. Lời giải tự mâu thuẫn với đáp án nó đang giải thích -
 // cùng loại lỗi với `on-tap-trai-phieu` và `wacc-co-ban` ở AGENTS.md.
 //
-// `phương án trên bàn` ("a proposal on the table") là dương tính giả duy nhất còn lại sau
-// lượt sửa đầu tiên, nên nó được loại ở chính biểu thức dưới đây chứ không bằng ngoại lệ.
+// Hai dương tính giả được loại ở chính biểu thức dưới đây chứ không bằng ngoại lệ:
+// `phương án trên bàn` ("a proposal on the table") và `lựa chọn đầu tiên / cuối cùng`
+// ("first / final choice", nghĩa là thứ tự thời gian chứ không phải vị trí ô). Cái thứ hai
+// do chính lượt sửa đầu tiên làm hỏng ở 4 câu vì script thay thế khớp "lựa chọn đầu" rồi
+// bỏ lại chữ "tiên" - xem CURRICULUM-PHASE4-QA.md.
 //
 // Cách sửa là gọi phương án bằng NỘI DUNG, không bằng Ô: 'Lựa chọn “Vì thẻ được
 // lưu…”' sống sót qua mọi lần xáo. Đừng sửa bằng cách dời `correct` cho khớp chữ
 // "thứ hai": balance sẽ xáo lại ở lần sinh sau.
 const OPTION_POSITION_RE =
-  /\b(?:the (?:last|first|second|third|fourth|final|other) option|options? (?:above|below))\b|(?:phương án|đáp án|lựa chọn)\s+(?:cuối|đầu|trên(?!\s+bàn)|dưới|thứ (?:nhất|hai|ba|tư))/giu;
+  /\b(?:the (?:last|first|second|third|fourth|final|other) option|options? (?:above|below))\b|(?:phương án|đáp án|lựa chọn)\s+(?:(?:cuối|đầu)(?!\s+(?:tiên|cùng))|trên(?!\s+bàn)|dưới|thứ (?:nhất|hai|ba|tư))/giu;
 
 // Một chữ cái do CHÍNH CÂU HỎI đặt ra thì không phải tham chiếu vị trí.
 //

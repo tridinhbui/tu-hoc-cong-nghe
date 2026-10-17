@@ -1,7 +1,7 @@
 import type { LessonSectionBlock } from "../lesson-types";
 
 // Bài tập chấm được cho chặng còn thiếu mã - đợt t04. Một người viết cho một tệp.
-export const T04_ADDITIONS: Record<string, LessonSectionBlock[]> =  {
+export const T04_ADDITIONS: Record<string, LessonSectionBlock[]> = {
   "doc-bang-tra-loi-va-dem-nhanh-theo-nhom": [
     {
       "type": "heading",
@@ -18,12 +18,8 @@ export const T04_ADDITIONS: Record<string, LessonSectionBlock[]> =  {
       "hints": [
         "Chuỗi \"Hà Nội\" sau normalize(\"NFD\") là chữ cái gốc cộng thêm các dấu rời; replace(/[\\u0300-\\u036f]/g, \"\") xoá chúng đi. Chữ đ thì replace riêng.",
         "Làm theo thứ tự trim, toLowerCase, bỏ dấu, rồi mới tra bảng viết tắt, vì khoá của bảng viết tắt là chữ thường không dấu."
-      ]
-    },
-    {
-      "type": "callout",
-      "label": "Vì sao đúng",
-      "text": "Chuẩn hoá đưa mọi cách viết của cùng một nơi về một khoá duy nhất rồi mới đếm. normalize(\"NFD\") tách mỗi chữ có dấu thành chữ gốc cộng dấu rời, và các dấu của tiếng Việt nằm trong khoảng \\u0300-\\u036f nên bị xoá sạch; riêng đ không có dạng tách nên phải đổi bằng tay. Mã khởi đầu đếm chuỗi thô nên \"Hà Nội\", \"HN\" và \" ha noi \" thành ba nhóm khác nhau, vậy mà tổng các nhóm vẫn bằng 11, nên phép cộng đối chiếu không bắt được lỗi này; phải nhìn danh sách nhóm mới thấy."
+      ],
+      "explanation": "Chuẩn hoá đưa mọi cách viết của cùng một nơi về một khoá duy nhất rồi mới đếm. normalize(\"NFD\") tách mỗi chữ có dấu thành chữ gốc cộng dấu rời, và các dấu của tiếng Việt nằm trong khoảng \\u0300-\\u036f nên bị xoá sạch; riêng đ không có dạng tách nên phải đổi bằng tay. Mã khởi đầu đếm chuỗi thô nên \"Hà Nội\", \"HN\" và \" ha noi \" thành ba nhóm khác nhau, vậy mà tổng các nhóm vẫn bằng 11, nên phép cộng đối chiếu không bắt được lỗi này; phải nhìn danh sách nhóm mới thấy."
     }
   ],
   "loc-ban-ghi-trung-do-nguoi-dien-hai-lan": [
@@ -42,12 +38,8 @@ export const T04_ADDITIONS: Record<string, LessonSectionBlock[]> =  {
       "hints": [
         "So sánh bằng email đã trim() và toLowerCase(), không so chuỗi thô. Cũng nhớ in email đã chuẩn hoá chứ không in bản gốc.",
         "Bước một: Map từ chìa khoá sang chỉ số dòng cuối cùng có chìa khoá đó (set ghi đè lần trước). Bước hai: một dòng được giữ khi chỉ số của nó đúng bằng chỉ số lưu trong Map."
-      ]
-    },
-    {
-      "type": "callout",
-      "label": "Vì sao đúng",
-      "text": "Hai dòng là cùng một người khi email giống nhau sau khi chuẩn hoá, nên chìa khoá phải là email đã trim và đổi chữ thường, không phải chuỗi thô. Sáu dòng cho ra bốn người (Lan, Minh, Hoa, Tuấn) và hai dòng bị bỏ. Mã khởi đầu so chuỗi thô nên coi cả sáu email là khác nhau, giữ nguyên sáu dòng và báo đã bỏ 0 dòng, trong khi số người thật bị đếm dư. Giữ dòng sau cùng vì người điền lại thường là để sửa thông tin, nên số điện thoại 0900 000 333 và 0900 000 555 thắng bản cũ; đó là một quy ước, không phải luật. Trong việc thật hãy ghi lý do loại dòng thay vì xoá lặng lẽ."
+      ],
+      "explanation": "Hai dòng là cùng một người khi email giống nhau sau khi chuẩn hoá, nên chìa khoá phải là email đã trim và đổi chữ thường, không phải chuỗi thô. Sáu dòng cho ra bốn người (Lan, Minh, Hoa, Tuấn) và hai dòng bị bỏ. Mã khởi đầu so chuỗi thô nên coi cả sáu email là khác nhau, giữ nguyên sáu dòng và báo đã bỏ 0 dòng, trong khi số người thật bị đếm dư. Giữ dòng sau cùng vì người điền lại thường là để sửa thông tin, nên số điện thoại 0900 000 333 và 0900 000 555 thắng bản cũ; đó là một quy ước, không phải luật. Trong việc thật hãy ghi lý do loại dòng thay vì xoá lặng lẽ."
     }
   ],
   "cong-thuc-tinh-tong-theo-dieu-kien-cho-thu-chi": [
@@ -66,12 +58,8 @@ export const T04_ADDITIONS: Record<string, LessonSectionBlock[]> =  {
       "hints": [
         "Với mỗi dòng, kiểm điều kiện hạng mục trước (nếu hang_muc không phải None mà hm khác thì continue), rồi kiểm điều kiện tháng.",
         "ngay[:7] lấy 7 ký tự đầu của \"2026-03-15\", tức \"2026-03\". Đừng so cả chuỗi ngày."
-      ]
-    },
-    {
-      "type": "callout",
-      "label": "Vì sao đúng",
-      "text": "SUMIF cộng một cột nhưng chỉ ở những dòng thoả điều kiện; SUMIFS làm vậy với nhiều điều kiện cùng lúc, và hàm trên làm đúng điều đó bằng hai câu if. Ví dụ Ăn uống tháng 03 là 65.000 + 120.000 + 85.000 = 270.000; hai khoản Ăn uống của tháng 02 và tháng 04 chỉ được tính ở dòng \"mọi tháng\" (430.000). Mã khởi đầu bỏ cả hai điều kiện nên mọi dòng đều cộng đúng một con số, tổng toàn bảng 6.525.000, và ba hạng mục in ra cùng một giá trị. Đây cũng là cách tự kiểm: cộng tay vài dòng rồi so với kết quả hàm."
+      ],
+      "explanation": "SUMIF cộng một cột nhưng chỉ ở những dòng thoả điều kiện; SUMIFS làm vậy với nhiều điều kiện cùng lúc, và hàm trên làm đúng điều đó bằng hai câu if. Ví dụ Ăn uống tháng 03 là 65.000 + 120.000 + 85.000 = 270.000; hai khoản Ăn uống của tháng 02 và tháng 04 chỉ được tính ở dòng \"mọi tháng\" (430.000). Mã khởi đầu bỏ cả hai điều kiện nên mọi dòng đều cộng đúng một con số, tổng toàn bảng 6.525.000, và ba hạng mục in ra cùng một giá trị. Đây cũng là cách tự kiểm: cộng tay vài dòng rồi so với kết quả hàm."
     }
   ],
   "cong-thuc-tra-cuu-gia-tu-bang-san-pham": [
@@ -90,12 +78,8 @@ export const T04_ADDITIONS: Record<string, LessonSectionBlock[]> =  {
       "hints": [
         "Dùng sanPham.has(ma) để hỏi \"mã này có trong bảng không\", đừng dùng giá trị trả về để suy ra điều đó.",
         "Vì SP04 có giá 0, kiểm if (!gia) sẽ coi nó là mã lạ. Kiểm có/không bằng has, rồi mới lấy giá bằng get."
-      ]
-    },
-    {
-      "type": "callout",
-      "label": "Vì sao đúng",
-      "text": "VLOOKUP khớp chính xác trả về lỗi khi không thấy mã (#N/A), và đó là kết quả đúng: nó báo cho bạn biết. Bản Map ở trên làm tương tự bằng has(): mã SP09 được báo \"khong co gia\" và không cộng vào tổng, nên tổng là 75.000 + 80.000 + 0 + 150.000 = 305.000. Mã khởi đầu dùng `|| 0` nên mã lạ lặng lẽ thành giá 0 và dòng SP09 in ra \"0 x 5 = 0\" trông như một dòng hợp lệ. Giá 0 thật của SP04 và \"không có giá\" là hai chuyện khác nhau, vì vậy phải hỏi has() trước thay vì đoán từ giá trị."
+      ],
+      "explanation": "VLOOKUP khớp chính xác trả về lỗi khi không thấy mã (#N/A), và đó là kết quả đúng: nó báo cho bạn biết. Bản Map ở trên làm tương tự bằng has(): mã SP09 được báo \"khong co gia\" và không cộng vào tổng, nên tổng là 75.000 + 80.000 + 0 + 150.000 = 305.000. Mã khởi đầu dùng `|| 0` nên mã lạ lặng lẽ thành giá 0 và dòng SP09 in ra \"0 x 5 = 0\" trông như một dòng hợp lệ. Giá 0 thật của SP04 và \"không có giá\" là hai chuyện khác nhau, vì vậy phải hỏi has() trước thay vì đoán từ giá trị."
     }
   ],
   "cong-thuc-lan-lon-kieu-so-va-chu-trong-o": [
@@ -114,12 +98,8 @@ export const T04_ADDITIONS: Record<string, LessonSectionBlock[]> =  {
       "hints": [
         "Dùng re.fullmatch với mẫu [0-9]+ hoặc [0-9]{1,3}(\\.[0-9]{3})+ trên chuỗi đã strip(). Ô không khớp thì đưa vào nghi_ngo cùng vị trí.",
         "Ô khớp thì s.replace(\".\", \"\") rồi int(). int() trần trụi bỏ sót \"1.200\" và \"2.500\" vì chúng chứa dấu chấm."
-      ]
-    },
-    {
-      "type": "callout",
-      "label": "Vì sao đúng",
-      "text": "Ô \"1200\", \" 1.200 \", \"950\" và \"2.500\" khớp quy ước, nên tổng là 1.200 + 1.200 + 950 + 2.500 = 5.850 trên 4 ô. Ba ô còn lại bị chặn vì ba lý do khác nhau: \"1,200\" có dấu phẩy mơ hồ, \"12OO\" dùng chữ O thay số 0, và \"1.20\" có nhóm sau dấu chấm không đủ ba chữ số. Mã khởi đầu chỉ dùng int() nên bỏ lặng lẽ cả hai ô có dấu chấm hàng nghìn và chẳng liệt kê ô nào, giống công thức cộng của bảng tính cũng bỏ qua ô văn bản mà không báo lỗi, nên tổng thấp hơn mà không ai hay. Cách tốt là luôn in danh sách ô bị bỏ để người đọc quyết định, không để chúng biến mất."
+      ],
+      "explanation": "Ô \"1200\", \" 1.200 \", \"950\" và \"2.500\" khớp quy ước, nên tổng là 1.200 + 1.200 + 950 + 2.500 = 5.850 trên 4 ô. Ba ô còn lại bị chặn vì ba lý do khác nhau: \"1,200\" có dấu phẩy mơ hồ, \"12OO\" dùng chữ O thay số 0, và \"1.20\" có nhóm sau dấu chấm không đủ ba chữ số. Mã khởi đầu chỉ dùng int() nên bỏ lặng lẽ cả hai ô có dấu chấm hàng nghìn và chẳng liệt kê ô nào, giống công thức cộng của bảng tính cũng bỏ qua ô văn bản mà không báo lỗi, nên tổng thấp hơn mà không ai hay. Cách tốt là luôn in danh sách ô bị bỏ để người đọc quyết định, không để chúng biến mất."
     }
   ],
   "gui-email-nhac-han-tu-bang-theo-lo-nho": [
@@ -138,12 +118,8 @@ export const T04_ADDITIONS: Record<string, LessonSectionBlock[]> =  {
       "hints": [
         "Cắt danh sách thành hai phần ngay từ đầu: slice(0, HAN_MUC) là người của hôm nay, slice(HAN_MUC) là phần còn lại.",
         "Lô cuối chỉ có 2 người vì chỉ còn 2 suất trong hạn mức: slice(i, i + LO) tự dừng ở cuối mảng."
-      ]
-    },
-    {
-      "type": "callout",
-      "label": "Vì sao đúng",
-      "text": "Hạn mức là trần của cả ngày, còn lô là cách chia nhỏ bên trong trần đó, nên phải cắt danh sách theo hạn mức trước rồi mới chia lô: 10 người thành các lô 4, 4, 2, còn ba người (nam, oanh, phuc) để lại cho ngày mai. Mã khởi đầu chia lô nhưng không cắt theo hạn mức, nên cả 13 người đều bị đưa vào lần chạy; ngoài đời, các email vượt trần sẽ lỗi giữa chừng và bạn không biết ai đã nhận, ai chưa. Con số 10 và 4 chỉ là ví dụ: hạn mức thật phải đọc trong tài liệu chính thức của Apps Script cho đúng loại tài khoản của bạn, và nên đánh dấu từng người đã nhắc trong một cột để lần sau không gửi trùng."
+      ],
+      "explanation": "Hạn mức là trần của cả ngày, còn lô là cách chia nhỏ bên trong trần đó, nên phải cắt danh sách theo hạn mức trước rồi mới chia lô: 10 người thành các lô 4, 4, 2, còn ba người (nam, oanh, phuc) để lại cho ngày mai. Mã khởi đầu chia lô nhưng không cắt theo hạn mức, nên cả 13 người đều bị đưa vào lần chạy; ngoài đời, các email vượt trần sẽ lỗi giữa chừng và bạn không biết ai đã nhận, ai chưa. Con số 10 và 4 chỉ là ví dụ: hạn mức thật phải đọc trong tài liệu chính thức của Apps Script cho đúng loại tài khoản của bạn, và nên đánh dấu từng người đã nhắc trong một cột để lần sau không gửi trùng."
     }
   ],
   "kich-ban-chay-cham-hoac-het-han-muc-cua-ngay": [
@@ -162,12 +138,8 @@ export const T04_ADDITIONS: Record<string, LessonSectionBlock[]> =  {
       "hints": [
         "Đầu hàm chay, đặt bat_dau = checkpoint[\"xong\"] để lần sau chạy tiếp từ chỗ lần trước dừng.",
         "Trong vòng lặp, sau khi làm xong việc thứ i (đánh số từ 0), ghi checkpoint[\"xong\"] = i + 1. Ghi ngay, đừng chờ đến cuối lần chạy."
-      ]
-    },
-    {
-      "type": "callout",
-      "label": "Vì sao đúng",
-      "text": "Lần chạy thứ nhất làm các việc 1 đến 7 (2+3+1+2+2+1+3 = 14 giây); việc 8 tốn 2 giây sẽ đẩy tổng lên 16, vượt trần 15 nên dừng trước khi làm. Vì checkpoint đã ghi số 7 nên lần hai bắt đầu từ việc 8 và làm nốt 8 đến 12 (10 giây): đủ 12 việc, không lặp, không sót. Mã khởi đầu luôn bắt đầu từ 0 nên lần hai làm lại việc 1 đến 7 và bỏ sót 5 việc cuối: đúng cảnh chạy lại mà vẫn làm lại từ đầu. Ghi checkpoint ngay sau từng việc để nếu kịch bản bị dừng giữa chừng thì tối đa chỉ phải làm lại một việc. Với việc có tác động ra ngoài như gửi email, khoảnh khắc giữa lúc gửi và lúc ghi vẫn có thể bị cắt, nên ngoài checkpoint còn cần cột đã nhắc cho từng người."
+      ],
+      "explanation": "Lần chạy thứ nhất làm các việc 1 đến 7 (2+3+1+2+2+1+3 = 14 giây); việc 8 tốn 2 giây sẽ đẩy tổng lên 16, vượt trần 15 nên dừng trước khi làm. Vì checkpoint đã ghi số 7 nên lần hai bắt đầu từ việc 8 và làm nốt 8 đến 12 (10 giây): đủ 12 việc, không lặp, không sót. Mã khởi đầu luôn bắt đầu từ 0 nên lần hai làm lại việc 1 đến 7 và bỏ sót 5 việc cuối: đúng cảnh chạy lại mà vẫn làm lại từ đầu. Ghi checkpoint ngay sau từng việc để nếu kịch bản bị dừng giữa chừng thì tối đa chỉ phải làm lại một việc. Với việc có tác động ra ngoài như gửi email, khoảnh khắc giữa lúc gửi và lúc ghi vẫn có thể bị cắt, nên ngoài checkpoint còn cần cột đã nhắc cho từng người."
     }
   ],
   "bieu-mau-cho-nhap-sai-ngay-thang-va-so-dien-thoai": [
@@ -186,12 +158,8 @@ export const T04_ADDITIONS: Record<string, LessonSectionBlock[]> =  {
       "hints": [
         "Làm theo thứ tự: bo trong trước, rồi tách theo loại. Với ngày, dùng match để lấy ba nhóm số, chuyển sang Number.",
         "Mảng số ngày tối đa của 12 tháng, với tháng 2 là 29 hoặc 28 tuỳ năm nhuận. Kiểm tháng nằm trong 1 đến 12 trước khi tra mảng."
-      ]
-    },
-    {
-      "type": "callout",
-      "label": "Vì sao đúng",
-      "text": "Mỗi đầu vào phải qua ba cửa theo thứ tự: bỏ trống, đúng khuôn, rồi mới đến \"có thật\". Khuôn đúng chưa đủ: 31/04/2026 khớp khuôn dd/mm/yyyy nhưng tháng 4 chỉ có 30 ngày. 29/02/2024 hợp lệ vì 2024 chia hết cho 4 mà không chia hết cho 100; 29/02/2023 không hợp lệ; 29/02/1900 cũng không hợp lệ vì 1900 chia hết cho 100 mà không chia hết cho 400. Mã khởi đầu chỉ xem hình dạng nên cho qua 31/04, tháng 13, và chỉ cần đủ 9 ký tự thì coi là số điện thoại, kể cả chuỗi có chữ cái, và không bắt ô bỏ trống. Luật số điện thoại ở đây chỉ kiểm hình dạng, không xác nhận số có thật hay đúng nhà mạng."
+      ],
+      "explanation": "Mỗi đầu vào phải qua ba cửa theo thứ tự: bỏ trống, đúng khuôn, rồi mới đến \"có thật\". Khuôn đúng chưa đủ: 31/04/2026 khớp khuôn dd/mm/yyyy nhưng tháng 4 chỉ có 30 ngày. 29/02/2024 hợp lệ vì 2024 chia hết cho 4 mà không chia hết cho 100; 29/02/2023 không hợp lệ; 29/02/1900 cũng không hợp lệ vì 1900 chia hết cho 100 mà không chia hết cho 400. Mã khởi đầu chỉ xem hình dạng nên cho qua 31/04, tháng 13, và chỉ cần đủ 9 ký tự thì coi là số điện thoại, kể cả chuỗi có chữ cái, và không bắt ô bỏ trống. Luật số điện thoại ở đây chỉ kiểm hình dạng, không xác nhận số có thật hay đúng nhà mạng."
     }
   ],
   "may-tinh-bao-gia-nhieu-dong-va-chiet-khau": [
@@ -210,12 +178,8 @@ export const T04_ADDITIONS: Record<string, LessonSectionBlock[]> =  {
       "hints": [
         "Thứ tự đúng: tam_tinh, rồi giam = tam_tinh * GIAM // 100, rồi sau_giam = tam_tinh - giam, rồi mới vat.",
         "VAT tính trên sau_giam chứ không phải tam_tinh. Dùng // để cắt phần lẻ ở mỗi bước, không dùng số thực."
-      ]
-    },
-    {
-      "type": "callout",
-      "label": "Vì sao đúng",
-      "text": "Tổng phụ là 1.350.000 + 2.190.000 + 358.000 + 86.415 = 3.984.415. Giảm 5% là 3.984.415 × 5 ÷ 100 = 199.220,75, cắt xuống 199.220, nên còn 3.785.195; VAT 8% trên số đó là 302.815,6, cắt xuống 302.815, tổng cuối 4.088.010. Mã khởi đầu tính VAT trên tổng phụ chưa giảm nên VAT là 318.753 và tổng cuối 4.103.948, lệch 15.938 đồng: đúng loại lệch tự tính tay hai dòng mới thấy. Hai quy ước (giảm trên tổng, làm tròn xuống) và mức 5%, 8% là ví dụ của bài, hoá đơn thật phải theo quy định và cách kế toán của bạn."
+      ],
+      "explanation": "Tổng phụ là 1.350.000 + 2.190.000 + 358.000 + 86.415 = 3.984.415. Giảm 5% là 3.984.415 × 5 ÷ 100 = 199.220,75, cắt xuống 199.220, nên còn 3.785.195; VAT 8% trên số đó là 302.815,6, cắt xuống 302.815, tổng cuối 4.088.010. Mã khởi đầu tính VAT trên tổng phụ chưa giảm nên VAT là 318.753 và tổng cuối 4.103.948, lệch 15.938 đồng: đúng loại lệch tự tính tay hai dòng mới thấy. Hai quy ước (giảm trên tổng, làm tròn xuống) và mức 5%, 8% là ví dụ của bài, hoá đơn thật phải theo quy định và cách kế toán của bạn."
     }
   ],
   "xuat-nhap-du-lieu-ra-file-de-khong-bi-nhot": [
@@ -234,12 +198,8 @@ export const T04_ADDITIONS: Record<string, LessonSectionBlock[]> =  {
       "hints": [
         "Chỉ bao nháy khi ô thật sự cần: có dấu phẩy, nháy kép hoặc xuống dòng. Các ô thường để nguyên.",
         "Trong ô được bao nháy, thay mỗi \" bằng \"\" trước khi bao. Thứ tự: nhân đôi nháy trong ô, rồi mới thêm cặp nháy ngoài."
-      ]
-    },
-    {
-      "type": "callout",
-      "label": "Vì sao đúng",
-      "text": "Một dấu phẩy trong ô trông giống dấu ngăn cột, nên CSV quy ước rằng ô chứa dấu phẩy, nháy kép hoặc xuống dòng phải được bao trong nháy kép, và nháy kép bên trong được viết thành hai nháy liên tiếp. Nhờ vậy người đọc phân biệt được \"Lan, Nguyen\" là một ô chứ không phải hai, và ô hai dòng không bị tách thành hai bản ghi. Mã khởi đầu chỉ nối bằng dấu phẩy nên \"Lan, Nguyen\" sinh ra một cột thừa và ô xuống dòng tách thành hai dòng, vì vậy đọc lại ra 6 dòng và Khop: False. Phép thử đúng của một tệp xuất là đọc lại và so sánh với dữ liệu gốc, đó là điều dòng cuối kiểm. Trong dự án thật, hãy dùng csv.writer có sẵn thay vì tự dựng; bài này tự dựng chỉ để thấy quy tắc."
+      ],
+      "explanation": "Một dấu phẩy trong ô trông giống dấu ngăn cột, nên CSV quy ước rằng ô chứa dấu phẩy, nháy kép hoặc xuống dòng phải được bao trong nháy kép, và nháy kép bên trong được viết thành hai nháy liên tiếp. Nhờ vậy người đọc phân biệt được \"Lan, Nguyen\" là một ô chứ không phải hai, và ô hai dòng không bị tách thành hai bản ghi. Mã khởi đầu chỉ nối bằng dấu phẩy nên \"Lan, Nguyen\" sinh ra một cột thừa và ô xuống dòng tách thành hai dòng, vì vậy đọc lại ra 6 dòng và Khop: False. Phép thử đúng của một tệp xuất là đọc lại và so sánh với dữ liệu gốc, đó là điều dòng cuối kiểm. Trong dự án thật, hãy dùng csv.writer có sẵn thay vì tự dựng; bài này tự dựng chỉ để thấy quy tắc."
     }
   ],
   "du-an-nho-cong-cu-co-nho-lai-du-lieu-sau-khi-tat-may": [
@@ -258,12 +218,8 @@ export const T04_ADDITIONS: Record<string, LessonSectionBlock[]> =  {
       "hints": [
         "Dòng đầu tiên in ra bạn đã thấy ngay được lưu thành chuỗi gì. JSON.parse trả về đúng chuỗi đó, không phải Date.",
         "Dựng lại bằng doc.ngay = new Date(doc.ngay). Chuỗi ISO có hậu tố Z nên không phụ thuộc múi giờ máy."
-      ]
-    },
-    {
-      "type": "callout",
-      "label": "Vì sao đúng",
-      "text": "JSON chỉ có chuỗi, số, true/false, null, mảng và đối tượng. Khi lưu, Date tự đổi thành chuỗi ISO \"2026-03-15T08:30:00.000Z\" (nhờ phương thức toJSON của nó), khoá có giá trị undefined biến mất hẳn, còn undefined nằm trong mảng thành null để giữ nguyên vị trí. Khi đọc lại, JSON.parse không biết chuỗi nào từng là ngày, nên phải tự dựng bằng new Date(chuỗi); chuỗi ISO có chữ Z là giờ UTC nên cho đúng thời điểm gốc ở mọi múi giờ. Mã khởi đầu bỏ bước dựng lại nên doc.ngay vẫn là chuỗi: nhìn trên màn hình trông giống ngày, nhưng sắp xếp hay tính toán với nó sẽ sai."
+      ],
+      "explanation": "JSON chỉ có chuỗi, số, true/false, null, mảng và đối tượng. Khi lưu, Date tự đổi thành chuỗi ISO \"2026-03-15T08:30:00.000Z\" (nhờ phương thức toJSON của nó), khoá có giá trị undefined biến mất hẳn, còn undefined nằm trong mảng thành null để giữ nguyên vị trí. Khi đọc lại, JSON.parse không biết chuỗi nào từng là ngày, nên phải tự dựng bằng new Date(chuỗi); chuỗi ISO có chữ Z là giờ UTC nên cho đúng thời điểm gốc ở mọi múi giờ. Mã khởi đầu bỏ bước dựng lại nên doc.ngay vẫn là chuỗi: nhìn trên màn hình trông giống ngày, nhưng sắp xếp hay tính toán với nó sẽ sai."
     }
   ],
   "thay-chu-mau-bang-noi-dung-that-cua-ban": [
@@ -282,12 +238,8 @@ export const T04_ADDITIONS: Record<string, LessonSectionBlock[]> =  {
       "hints": [
         "Đưa cả chữ mẫu và dòng về chữ thường trước khi so: p.lower() in dong.lower().",
         "Bộ đếm số dòng dùng set để một dòng chứa hai chữ mẫu vẫn chỉ tính là một dòng."
-      ]
-    },
-    {
-      "type": "callout",
-      "label": "Vì sao đúng",
-      "text": "So sánh sau khi đổi cả hai vế sang chữ thường thì \"LOREM IPSUM\", \"xxx\", \"todo\" và \"tên của bạn\" đều bị bắt, cho 7 chỗ trên 6 dòng (dòng 9 chứa hai chữ mẫu). Mã khởi đầu so khớp đúng từng chữ hoa thường nên chỉ thấy số điện thoại ở dòng 4 và hai chữ mẫu viết đúng kiểu ở dòng 9, bỏ sót phần lớn còn lại. Đoạn mã chỉ bắt được những chữ mẫu bạn đã liệt kê. Số điện thoại, giờ mở cửa hay giá do AI tự đoán nhưng trông như thật thì không có trong danh sách nào, nên vẫn phải đối chiếu từng dòng với bảng thông tin thật của bạn."
+      ],
+      "explanation": "So sánh sau khi đổi cả hai vế sang chữ thường thì \"LOREM IPSUM\", \"xxx\", \"todo\" và \"tên của bạn\" đều bị bắt, cho 7 chỗ trên 6 dòng (dòng 9 chứa hai chữ mẫu). Mã khởi đầu so khớp đúng từng chữ hoa thường nên chỉ thấy số điện thoại ở dòng 4 và hai chữ mẫu viết đúng kiểu ở dòng 9, bỏ sót phần lớn còn lại. Đoạn mã chỉ bắt được những chữ mẫu bạn đã liệt kê. Số điện thoại, giờ mở cửa hay giá do AI tự đoán nhưng trông như thật thì không có trong danh sách nào, nên vẫn phải đối chiếu từng dòng với bảng thông tin thật của bạn."
     }
   ]
 };

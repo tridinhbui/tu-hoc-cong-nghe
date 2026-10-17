@@ -18,12 +18,8 @@ export const T03_ADDITIONS: Record<string, LessonSectionBlock[]> = {
       "hints": [
         "Mức miễn phí trừ vào số GB trước khi nhân giá, không trừ vào số tiền.",
         "Bộ cân bằng tải tính theo giờ nó tồn tại: 720 giờ nhân 3 xu, dù lưu lượng bằng không."
-      ]
-    },
-    {
-      "type": "callout",
-      "label": "Vì sao đúng",
-      "text": "Phí dữ liệu đi ra chỉ tính trên phần vượt mức miễn phí: 1.200 - 100 = 1.100 GB nhân 9 xu là 9.900 xu, chứ không phải 10.800 xu. Bộ cân bằng tải quên tắt vẫn cộng 720 × 3 = 2.160 xu, vì nhiều dịch vụ tính theo số giờ tồn tại chứ không theo lượng truy cập; đó chính là kiểu khoản chạy mà không ai dùng. Hai lỗi của mã khởi đầu lệch ngược chiều nhau (thừa 900, thiếu 2.160) nên tổng nhìn gần đúng mà từng dòng đều sai, và đó là lý do cần đọc hoá đơn theo dòng."
+      ],
+      "explanation": "Phí dữ liệu đi ra chỉ tính trên phần vượt mức miễn phí: 1.200 - 100 = 1.100 GB nhân 9 xu là 9.900 xu, chứ không phải 10.800 xu. Bộ cân bằng tải quên tắt vẫn cộng 720 × 3 = 2.160 xu, vì nhiều dịch vụ tính theo số giờ tồn tại chứ không theo lượng truy cập; đó chính là kiểu khoản chạy mà không ai dùng. Hai lỗi của mã khởi đầu lệch ngược chiều nhau (thừa 900, thiếu 2.160) nên tổng nhìn gần đúng mà từng dòng đều sai, và đó là lý do cần đọc hoá đơn theo dòng."
     }
   ],
   "tiet-kiem-ha-tang-cach-nao-that-su-hieu-qua": [
@@ -42,12 +38,8 @@ export const T03_ADDITIONS: Record<string, LessonSectionBlock[]> = {
       "hints": [
         "Máy cần hạ cỡ là máy dùng ÍT, tức CPU nhỏ hơn ngưỡng.",
         "Đúng 20% không phải \"dưới 20%\": dùng < chứ không dùng <=."
-      ]
-    },
-    {
-      "type": "callout",
-      "label": "Vì sao đúng",
-      "text": "Điều kiện cpu < 20 chọn đúng những máy đang rảnh: web-1, batch và cache, tiết kiệm 40 + 60 + 30 = 130 USD. Mã khởi đầu dùng > nên chọn máy đang bận nhất (web-2 ở 45%) và bỏ sót cả ba máy rảnh; hạ cỡ web-2 sẽ làm chậm dịch vụ thật. db nằm đúng ở 20% nên giữ nguyên vì quy tắc là \"dưới\". Trung bình thấp mới là điểm khởi đầu: trước khi hạ cỡ thật vẫn nên xem cả mức dùng cao nhất, vì một máy trung bình 19% vẫn có thể có đỉnh ngắn rất cao."
+      ],
+      "explanation": "Điều kiện cpu < 20 chọn đúng những máy đang rảnh: web-1, batch và cache, tiết kiệm 40 + 60 + 30 = 130 USD. Mã khởi đầu dùng > nên chọn máy đang bận nhất (web-2 ở 45%) và bỏ sót cả ba máy rảnh; hạ cỡ web-2 sẽ làm chậm dịch vụ thật. db nằm đúng ở 20% nên giữ nguyên vì quy tắc là \"dưới\". Trung bình thấp mới là điểm khởi đầu: trước khi hạ cỡ thật vẫn nên xem cả mức dùng cao nhất, vì một máy trung bình 19% vẫn có thể có đỉnh ngắn rất cao."
     }
   ],
   "vung-va-khu-kha-dung": [
@@ -66,12 +58,8 @@ export const T03_ADDITIONS: Record<string, LessonSectionBlock[]> = {
       "hints": [
         "Dịch vụ chỉ sập khi TẤT CẢ bản sao cùng hỏng, nên nhân xác suất hỏng (1 - a) với nhau, rồi lấy 1 trừ đi.",
         "Hai bản cùng khu: nhân z ra ngoài vì khu hỏng thì cả hai hỏng; hai khu: mỗi bản chỉ sống khi cả khu lẫn bản sao đều sống (z × a), rồi mới áp công thức dự phòng."
-      ]
-    },
-    {
-      "type": "callout",
-      "label": "Vì sao đúng",
-      "text": "Nhân độ sẵn sàng (a^n) là công thức cho chuỗi mà MỌI mắt xích phải sống, nên thêm bản sao làm nó tệ đi; dự phòng thì ngược lại, chỉ cần một bản sống nên nhân các xác suất hỏng: 0,01 × 0,01 còn 0,0001, tức 99,99%. Hai bản cùng một khu bị chặn trên bởi chính khu đó: 0,999 × 0,9999 ≈ 99,89%, thấp hơn 99,9% của khu. Đặt mỗi bản ở một khu thì xác suất hỏng của một bản là 1 - 0,999 × 0,99 = 0,01099, cả hai cùng hỏng còn khoảng 0,000121, ra 99,9879%. Các con số này giả định hỏng độc lập; lỗi trong mã chạy giống nhau ở mọi khu nên không nằm trong phép tính."
+      ],
+      "explanation": "Nhân độ sẵn sàng (a^n) là công thức cho chuỗi mà MỌI mắt xích phải sống, nên thêm bản sao làm nó tệ đi; dự phòng thì ngược lại, chỉ cần một bản sống nên nhân các xác suất hỏng: 0,01 × 0,01 còn 0,0001, tức 99,99%. Hai bản cùng một khu bị chặn trên bởi chính khu đó: 0,999 × 0,9999 ≈ 99,89%, thấp hơn 99,9% của khu. Đặt mỗi bản ở một khu thì xác suất hỏng của một bản là 1 - 0,999 × 0,99 = 0,01099, cả hai cùng hỏng còn khoảng 0,000121, ra 99,9879%. Các con số này giả định hỏng độc lập; lỗi trong mã chạy giống nhau ở mọi khu nên không nằm trong phép tính."
     }
   ],
   "do-tre-va-khoang-cach-vat-ly": [
@@ -90,12 +78,8 @@ export const T03_ADDITIONS: Record<string, LessonSectionBlock[]> = {
       "hints": [
         "Một yêu cầu phải đi tới máy chủ và phản hồi phải quay về, nên quãng đường tính là 2 × d.",
         "RTT = 2 × km ÷ 200; điều kiện đạt là RTT nhỏ hơn hoặc bằng 35."
-      ]
-    },
-    {
-      "type": "callout",
-      "label": "Vì sao đúng",
-      "text": "Một chiều 3.500 km mất 17,5 ms, nhưng yêu cầu cần cả đi lẫn về nên RTT tối thiểu là 35 ms; mã khởi đầu quên nhân đôi nên báo 17 ms cho Tokyo và 45 ms cho Frankfurt, chỉ còn khoảng một nửa sự thật. Con số này là SÀN, không phải mức thực tế: đường cáp thật dài hơn đường thẳng và còn đi qua nhiều thiết bị mạng, nên Hà Nội - Tokyo \"đạt\" ở 35 ms chỉ là đạt về mặt lý thuyết, còn Frankfurt thì không ngân sách nào cứu được. Với những cặp như vậy chỉ còn hai cách đi vòng: đi ít lượt hơn hoặc đặt dữ liệu gần người dùng hơn."
+      ],
+      "explanation": "Một chiều 3.500 km mất 17,5 ms, nhưng yêu cầu cần cả đi lẫn về nên RTT tối thiểu là 35 ms; mã khởi đầu quên nhân đôi nên báo 17 ms cho Tokyo và 45 ms cho Frankfurt, chỉ còn khoảng một nửa sự thật. Con số này là SÀN, không phải mức thực tế: đường cáp thật dài hơn đường thẳng và còn đi qua nhiều thiết bị mạng, nên Hà Nội - Tokyo \"đạt\" ở 35 ms chỉ là đạt về mặt lý thuyết, còn Frankfurt thì không ngân sách nào cứu được. Với những cặp như vậy chỉ còn hai cách đi vòng: đi ít lượt hơn hoặc đặt dữ liệu gần người dùng hơn."
     }
   ],
   "chon-dich-vu-quan-ly-san-hay-tu-dung": [
@@ -114,12 +98,8 @@ export const T03_ADDITIONS: Record<string, LessonSectionBlock[]> = {
       "hints": [
         "Tổng cộng dồn của tự dựng sau m tháng = công dựng ban đầu + m × (máy chủ + giờ vận hành × giá giờ).",
         "Công dựng ban đầu là 20 giờ × 40 USD, chỉ tính một lần, không nhân với số tháng."
-      ]
-    },
-    {
-      "type": "callout",
-      "label": "Vì sao đúng",
-      "text": "Tự dựng sau m tháng tốn 800 + m × (150 + 40 × giờ), quản lý sẵn tốn 600 × m. Với 6 giờ, mỗi tháng tự dựng rẻ hơn 210 USD nên cần 800 ÷ 210 ≈ 3,8, tức tháng 4 mới bù được công dựng; với 8 giờ chênh 130 USD mỗi tháng nên tháng 7; với 12 giờ tự dựng tốn 630 USD mỗi tháng, đắt hơn 600 nên không bao giờ hoà vốn. Mã khởi đầu bỏ công kỹ sư nên báo rẻ hơn ngay tháng 1 ở mọi trường hợp: đúng kiểu so giá thuê mà bỏ qua thời gian vận hành. Phép tính này chỉ so tiền; nó chưa tính rủi ro mất dữ liệu hay việc phải khôi phục lúc hai giờ sáng."
+      ],
+      "explanation": "Tự dựng sau m tháng tốn 800 + m × (150 + 40 × giờ), quản lý sẵn tốn 600 × m. Với 6 giờ, mỗi tháng tự dựng rẻ hơn 210 USD nên cần 800 ÷ 210 ≈ 3,8, tức tháng 4 mới bù được công dựng; với 8 giờ chênh 130 USD mỗi tháng nên tháng 7; với 12 giờ tự dựng tốn 630 USD mỗi tháng, đắt hơn 600 nên không bao giờ hoà vốn. Mã khởi đầu bỏ công kỹ sư nên báo rẻ hơn ngay tháng 1 ở mọi trường hợp: đúng kiểu so giá thuê mà bỏ qua thời gian vận hành. Phép tính này chỉ so tiền; nó chưa tính rủi ro mất dữ liệu hay việc phải khôi phục lúc hai giờ sáng."
     }
   ],
   "o-trong-o-sai-khi-du-lieu-thieu": [
@@ -138,12 +118,8 @@ export const T03_ADDITIONS: Record<string, LessonSectionBlock[]> = {
       "hints": [
         "Dùng trim() trước khi kiểm: chuỗi chỉ có khoảng trắng vẫn là chuỗi \"có giá trị\" nếu chưa trim.",
         "Kiểm thiếu trước, và chỉ khi cả hai ô đều có mới kiểm xem email có @ không; gom các ô thiếu vào một mảng rồi nối bằng \" và \"."
-      ]
-    },
-    {
-      "type": "callout",
-      "label": "Vì sao đúng",
-      "text": "Trong JavaScript, chuỗi \"  \" (chỉ khoảng trắng) là giá trị đúng khi đặt trong điều kiện, nên !d.email không bắt được nó; mã khởi đầu vì vậy cho dòng 3 (email chỉ có dấu cách) và dòng 5 (email không có @) đi tiếp, còn các dòng bị giữ lại thì chỉ nhận một lý do chung chung. Bỏ khoảng trắng bằng trim() rồi mới kiểm mới coi \"chỉ có dấu cách\" là ô trống. Ô trống và ô sai là hai loại khác nhau: dòng 5 có điền email nhưng thiếu @ nên cần lý do riêng. Dòng thiếu dữ liệu được đưa vào danh sách xem lại thay vì bị xoá hay tự điền, nên người phụ trách vẫn thấy khách và quyết định hỏi lại."
+      ],
+      "explanation": "Trong JavaScript, chuỗi \"  \" (chỉ khoảng trắng) là giá trị đúng khi đặt trong điều kiện, nên !d.email không bắt được nó; mã khởi đầu vì vậy cho dòng 3 (email chỉ có dấu cách) và dòng 5 (email không có @) đi tiếp, còn các dòng bị giữ lại thì chỉ nhận một lý do chung chung. Bỏ khoảng trắng bằng trim() rồi mới kiểm mới coi \"chỉ có dấu cách\" là ô trống. Ô trống và ô sai là hai loại khác nhau: dòng 5 có điền email nhưng thiếu @ nên cần lý do riêng. Dòng thiếu dữ liệu được đưa vào danh sách xem lại thay vì bị xoá hay tự điền, nên người phụ trách vẫn thấy khách và quyết định hỏi lại."
     }
   ],
   "dinh-dang-ngay-so-tien-lech-giua-hai-noi": [
@@ -162,12 +138,8 @@ export const T03_ADDITIONS: Record<string, LessonSectionBlock[]> = {
       "hints": [
         "Quy tắc phải rẽ nhánh theo nguồn: cùng một dấu chấm, ở A là ngăn hàng nghìn, ở B là dấu thập phân.",
         "datetime.strptime(chuoi, \"%d/%m/%Y\") đọc ngày/tháng/năm; \"%Y-%m-%d\" đọc năm-tháng-ngày; .date().isoformat() cho ra yyyy-mm-dd."
-      ]
-    },
-    {
-      "type": "callout",
-      "label": "Vì sao đúng",
-      "text": "Cùng một dấu chấm mang hai nghĩa: ở nguồn A, \"1.250.000\" bỏ dấu chấm thành 1250000; ở nguồn B, \"1250000.50\" phải giữ nguyên dấu chấm làm dấu thập phân. Áp quy tắc của A cho B biến 1250000.50 thành 125000050, sai gấp trăm lần mà không báo lỗi. Với ngày, chỉ định rõ khuôn dạng bằng strptime làm \"05/06/2026\" luôn là ngày 5 tháng 6, còn đọc theo thứ tự khác thì đổi nó thành ngày lạ mà vẫn hợp lệ. Dùng Decimal thay cho số thực để các số tiền có phần lẻ cộng ra chính xác."
+      ],
+      "explanation": "Cùng một dấu chấm mang hai nghĩa: ở nguồn A, \"1.250.000\" bỏ dấu chấm thành 1250000; ở nguồn B, \"1250000.50\" phải giữ nguyên dấu chấm làm dấu thập phân. Áp quy tắc của A cho B biến 1250000.50 thành 125000050, sai gấp trăm lần mà không báo lỗi. Với ngày, chỉ định rõ khuôn dạng bằng strptime làm \"05/06/2026\" luôn là ngày 5 tháng 6, còn đọc theo thứ tự khác thì đổi nó thành ngày lạ mà vẫn hợp lệ. Dùng Decimal thay cho số thực để các số tiền có phần lẻ cộng ra chính xác."
     }
   ],
   "rai-nhanh-khi-dieu-kien-khong-ai-nghi-toi": [
@@ -186,12 +158,8 @@ export const T03_ADDITIONS: Record<string, LessonSectionBlock[]> = {
       "hints": [
         "Đặt giá trị mặc định cho nhánh ngay trước vòng lặp, để khi không từ khoá nào khớp thì nó vẫn còn đó.",
         "Đổi yêu cầu sang chữ thường bằng toLowerCase() một lần rồi mới so với từ khoá viết thường."
-      ]
-    },
-    {
-      "type": "callout",
-      "label": "Vì sao đúng",
-      "text": "Giá trị mặc định \"Người xem tay\" được đặt trước vòng lặp, nên yêu cầu không khớp từ khoá nào (hoá đơn công ty, và cả chuỗi rỗng) vẫn có đích đến thay vì mang null; trong mã khởi đầu đó là yêu cầu im lặng bị rơi mất. Chuyển sang chữ thường trước khi so làm \"VẬN CHUYỂN\" khớp \"vận chuyển\". Yêu cầu có cả hoàn tiền lẫn giao hàng đi vào Hoàn tiền vì nhánh đầu tiên khớp thì thắng, nên thứ tự quy tắc là một quyết định cần chủ ý. Nhánh còn lại cũng là nơi lộ ra loại yêu cầu mới đáng có nhánh riêng."
+      ],
+      "explanation": "Giá trị mặc định \"Người xem tay\" được đặt trước vòng lặp, nên yêu cầu không khớp từ khoá nào (hoá đơn công ty, và cả chuỗi rỗng) vẫn có đích đến thay vì mang null; trong mã khởi đầu đó là yêu cầu im lặng bị rơi mất. Chuyển sang chữ thường trước khi so làm \"VẬN CHUYỂN\" khớp \"vận chuyển\". Yêu cầu có cả hoàn tiền lẫn giao hàng đi vào Hoàn tiền vì nhánh đầu tiên khớp thì thắng, nên thứ tự quy tắc là một quyết định cần chủ ý. Nhánh còn lại cũng là nơi lộ ra loại yêu cầu mới đáng có nhánh riêng."
     }
   ],
   "gioi-han-so-lan-chay-va-chi-phi-an": [
@@ -210,12 +178,8 @@ export const T03_ADDITIONS: Record<string, LessonSectionBlock[]> = {
       "hints": [
         "Một giờ có 60 lần kiểm mỗi phút và 4 lần kiểm mỗi 15 phút; nhân với số giờ mỗi ngày rồi với 30 ngày.",
         "Chỉ phần vượt 1.000 lượt mới tính tiền, và phần dư tính tròn một khối: dùng phép chia làm tròn lên."
-      ]
-    },
-    {
-      "type": "callout",
-      "label": "Vì sao đúng",
-      "text": "Kiểm mỗi phút là 60 × 24 × 30 = 43.200 lượt, trừ 1.000 miễn phí còn 42.200 lượt, tức 422 khối 100 lượt, ra 2.110 xu; mã khởi đầu chỉ đếm 720 lượt nên hoàn toàn không thấy vấn đề. Mỗi 15 phút còn 2.880 lượt, phần vượt 1.880 lượt cần 19 khối vì 18,8 phải làm tròn lên, ra 95 xu. Giới hạn khung giờ còn 14.400 lượt, giảm hai phần ba so với chạy cả ngày, còn chạy khi có thay đổi (750 lượt) nằm trong hạn mức nên miễn phí. Phần lớn lượt của luồng kiểm mỗi phút là lượt trống vì không có gì mới."
+      ],
+      "explanation": "Kiểm mỗi phút là 60 × 24 × 30 = 43.200 lượt, trừ 1.000 miễn phí còn 42.200 lượt, tức 422 khối 100 lượt, ra 2.110 xu; mã khởi đầu chỉ đếm 720 lượt nên hoàn toàn không thấy vấn đề. Mỗi 15 phút còn 2.880 lượt, phần vượt 1.880 lượt cần 19 khối vì 18,8 phải làm tròn lên, ra 95 xu. Giới hạn khung giờ còn 14.400 lượt, giảm hai phần ba so với chạy cả ngày, còn chạy khi có thay đổi (750 lượt) nằm trong hạn mức nên miễn phí. Phần lớn lượt của luồng kiểm mỗi phút là lượt trống vì không có gì mới."
     }
   ],
   "luong-gui-nham-nguoi-va-cach-chan-truoc": [
@@ -234,12 +198,8 @@ export const T03_ADDITIONS: Record<string, LessonSectionBlock[]> = {
       "hints": [
         "Chuẩn hoá trước (trim và toLowerCase) rồi mới so sánh, để \"An@congty.vn\" và \"an@congty.vn\" là cùng một người.",
         "Dùng endsWith(\"@congty.vn\") chứ không dùng includes: tên miền phải KẾT THÚC bằng @congty.vn, và kiểm số người đã nhận trước khi thêm người mới."
-      ]
-    },
-    {
-      "type": "callout",
-      "label": "Vì sao đúng",
-      "text": "includes(\"congty.vn\") cho qua lan@congty.vn.example.com vì chuỗi đó có nằm trong địa chỉ, dù tên miền thật là example.com; endsWith(\"@congty.vn\") kiểm đúng phần cuối nên chặn được nó. Chuẩn hoá chữ thường và bỏ khoảng trắng làm An@congty.vn trùng an@congty.vn, và \" chi@congty.vn \" vẫn được nhận dạng đúng; tên miền của địa chỉ thư không phân biệt hoa thường, còn phần tên trước @ thì hầu hết nhà cung cấp cũng coi như vậy. Nhờ giới hạn 4, eo@congty.vn bị giữ lại dù hợp lệ, và vì chạy thử chỉ in kết quả nên người duyệt thấy toàn bộ danh sách TRƯỚC khi có thư nào đi."
+      ],
+      "explanation": "includes(\"congty.vn\") cho qua lan@congty.vn.example.com vì chuỗi đó có nằm trong địa chỉ, dù tên miền thật là example.com; endsWith(\"@congty.vn\") kiểm đúng phần cuối nên chặn được nó. Chuẩn hoá chữ thường và bỏ khoảng trắng làm An@congty.vn trùng an@congty.vn, và \" chi@congty.vn \" vẫn được nhận dạng đúng; tên miền của địa chỉ thư không phân biệt hoa thường, còn phần tên trước @ thì hầu hết nhà cung cấp cũng coi như vậy. Nhờ giới hạn 4, eo@congty.vn bị giữ lại dù hợp lệ, và vì chạy thử chỉ in kết quả nên người duyệt thấy toàn bộ danh sách TRƯỚC khi có thư nào đi."
     }
-  ],
+  ]
 };

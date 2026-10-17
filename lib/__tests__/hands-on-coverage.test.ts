@@ -58,12 +58,12 @@ describe("đợt t01-t05 của lib/lesson-block-additions", () => {
     expect(total).toBeGreaterThanOrEqual(41);
   });
 
-  it("mỗi bài là heading -> exercise -> callout 'Vì sao đúng', và mã khởi đầu khác lời giải", () => {
+  it("mỗi bài là heading -> exercise có explanation (không phải callout lộ đáp án ngay dưới đề)", () => {
     for (const [slug, blocks] of batch) {
-      expect(blocks.map((b) => b.type), slug).toEqual(["heading", "exercise", "callout"]);
-      const [, ex, note] = blocks;
-      if (ex.type !== "exercise" || note.type !== "callout") continue;
-      expect(note.label, slug).toBe("Vì sao đúng");
+      expect(blocks.map((b) => b.type), slug).toEqual(["heading", "exercise"]);
+      const ex = blocks[1];
+      if (ex.type !== "exercise") continue;
+      expect((ex.explanation ?? "").length, slug).toBeGreaterThan(80);
       expect(ex.starter.trim(), slug).not.toBe(ex.solution.trim());
       expect(ex.expectedOutput.trim().length, slug).toBeGreaterThan(0);
       expect(ex.hints?.length ?? 0, slug).toBeGreaterThanOrEqual(1);
@@ -71,10 +71,26 @@ describe("đợt t01-t05 của lib/lesson-block-additions", () => {
   });
 });
 
+describe("lời giải quiz không bị script thay thế cắt cụt", () => {
+  // Lượt sửa đầu tiên thay "lựa chọn đầu" bằng phần trích nội dung phương án và bỏ lại
+  // "tiên" / "cùng" của "đầu tiên" / "cuối cùng": "lựa chọn “Đó là dấu vết…” tiên".
+  const TRUNCATED = /(?:phương án|đáp án|lựa chọn) “[^”]*” (?:tiên|cùng)\b/u;
+
+  it("không còn câu nào có dạng 'lựa chọn “…” tiên/cùng'", () => {
+    const bad: string[] = [];
+    for (const lesson of LESSONS) {
+      (lesson.quiz ?? []).forEach((q, i) => {
+        if (q.explanation && TRUNCATED.test(q.explanation)) bad.push(`${lesson.slug} #${i + 1}`);
+      });
+    }
+    expect(bad).toEqual([]);
+  });
+});
+
 describe("lời giải quiz không gọi phương án bằng vị trí", () => {
   // Cùng biểu thức với OPTION_POSITION_RE. Giữ hai bản đồng bộ bằng mắt là chấp
   // nhận được: bản trong audit có chú thích dài và một ngoại lệ ("phương án trên bàn").
-  const POSITION = /(?:phương án|đáp án|lựa chọn)\s+(?:cuối|đầu|trên(?!\s+bàn)|dưới|thứ (?:nhất|hai|ba|tư))/iu;
+  const POSITION = /(?:phương án|đáp án|lựa chọn)\s+(?:(?:cuối|đầu)(?!\s+(?:tiên|cùng))|trên(?!\s+bàn)|dưới|thứ (?:nhất|hai|ba|tư))/iu;
 
   it("0 câu quiz trong kho nói 'lựa chọn thứ ba', 'phương án cuối'...", () => {
     const bad: string[] = [];

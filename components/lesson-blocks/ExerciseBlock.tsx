@@ -17,6 +17,8 @@ interface Props {
   solution: string;
   expectedOutput: string;
   hints?: string[];
+  /** Hiện sau khi qua bài hoặc mở lời giải, không trước đó. */
+  explanation?: string;
   /** Gọi mỗi lần đầu ra khớp. Lưu là việc của nơi gọi (có id bài). */
   onPass?: () => void;
   /** Bắt đầu GẬP sau một nút "Thử tự viết code". Dùng ở các chặng đầu của
@@ -32,7 +34,7 @@ const INDENT = "    ";
 // chữ theo một luật. Cuộn ngang thì textarea cuộn một mình, lớp màu đứng yên.
 const EDITOR_TEXT = CODE_TEXT.replace("whitespace-pre", "whitespace-pre-wrap [overflow-wrap:anywhere]");
 
-export default function ExerciseBlock({ language, title, task, starter, solution, expectedOutput, hints = [], onPass, collapsed = false }: Props) {
+export default function ExerciseBlock({ language, title, task, starter, solution, expectedOutput, hints = [], explanation, onPass, collapsed = false }: Props) {
   const { t } = useI18n();
   const c = t.lessonCode;
   const [open, setOpen] = useState(!collapsed);
@@ -204,6 +206,12 @@ export default function ExerciseBlock({ language, title, task, starter, solution
           <pre className={`${CODE_TEXT} overflow-x-auto rounded-sm bg-[#1e1e1e] px-4 py-3`}>
             <HighlightedCode code={solution} language={language} />
           </pre>
+        ) : null}
+        {explanation && (grade?.pass || solutionOpen) ? (
+          <div className="rounded-sm border-l-4 border-accent bg-surface-raised px-4 py-3 dark:bg-stone-800">
+            <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-accent-strong">{c.explanationLabel}</p>
+            <p className="mt-1 max-w-[68ch] text-sm leading-6 text-ink-body">{explanation}</p>
+          </div>
         ) : null}
       </footer>
     </section>

@@ -1,7 +1,7 @@
 import type { LessonSectionBlock } from "../lesson-types";
 
 // Bài tập chấm được cho chặng làm trang web cùng AI - đợt t05. Một người viết cho một tệp.
-export const T05_ADDITIONS: Record<string, LessonSectionBlock[]> =  {
+export const T05_ADDITIONS: Record<string, LessonSectionBlock[]> = {
   "phan-lien-he-va-nut-goi-nhan-tin": [
     {
       "type": "heading",
@@ -18,12 +18,8 @@ export const T05_ADDITIONS: Record<string, LessonSectionBlock[]> =  {
       "hints": [
         "Hãy nhìn các liên kết mã khởi đầu in ra: còn dấu ngoặc, dấu gạch nối, số 0 đầu, và cả những số quá ngắn hay quá dài vẫn được nhận. Một cách làm sạch gọn là s.replace(/[^0-9+]/g, \"\"), giữ lại chữ số và dấu +.",
         "Sau khi làm sạch, kiểm hai dạng bằng biểu thức chính quy: /^\\+84\\d{9}$/ thì trả về nguyên số; /^0\\d{9}$/ thì trả về \"+84\" + so.slice(1); còn lại trả về null."
-      ]
-    },
-    {
-      "type": "callout",
-      "label": "Vì sao đúng",
-      "text": "Số 0 đầu là cách quay số trong nước, còn +84 là dạng quốc tế: 0900000111 và +84900000111 là cùng một số, nhưng chỉ dạng +84 còn đúng khi người bấm đang dùng sim nước khác hoặc ở nước ngoài, nên liên kết tel: và sms: nên viết theo dạng này. Mã khởi đầu chỉ bỏ dấu cách và dấu chấm nên dấu ngoặc và gạch nối vẫn lọt vào liên kết, số 0 đầu vẫn nằm đó, và các số thiếu chữ số hay thừa số 0 sau +84 (một lỗi hay gặp) cũng được nhận. Phép kiểm này chỉ xét hình dạng của số: nó không biết số có đúng là của bạn hay là số mẫu của người khác, và cách một liên kết sms: mở ra còn tuỳ thiết bị, nên vẫn phải bấm thử từng nút trên điện thoại thật như bài đã dặn."
+      ],
+      "explanation": "Số 0 đầu là cách quay số trong nước, còn +84 là dạng quốc tế: 0900000111 và +84900000111 là cùng một số, nhưng chỉ dạng +84 còn đúng khi người bấm đang dùng sim nước khác hoặc ở nước ngoài, nên liên kết tel: và sms: nên viết theo dạng này. Mã khởi đầu chỉ bỏ dấu cách và dấu chấm nên dấu ngoặc và gạch nối vẫn lọt vào liên kết, số 0 đầu vẫn nằm đó, và các số thiếu chữ số hay thừa số 0 sau +84 (một lỗi hay gặp) cũng được nhận. Phép kiểm này chỉ xét hình dạng của số: nó không biết số có đúng là của bạn hay là số mẫu của người khác, và cách một liên kết sms: mở ra còn tuỳ thiết bị, nên vẫn phải bấm thử từng nút trên điện thoại thật như bài đã dặn."
     }
   ],
   "hinh-anh-that-nhe-va-co-chu-thich": [
@@ -42,12 +38,8 @@ export const T05_ADDITIONS: Record<string, LessonSectionBlock[]> =  {
       "hints": [
         "Chỉ hỏi thẻ có chứa chuỗi alt là không đủ: banh-malt.jpg chứa alt trong tên tệp và data-alt cũng chứa alt. Hãy tìm đúng thuộc tính bằng the.match(/\\salt=\"([^\"]*)\"/): dấu cách phía trước loại được data-alt, và kết quả null nghĩa là thiếu alt.",
         "Khi đã có nhóm bắt alt[1], kiểm theo đúng thứ tự trong đề: rỗng thì in kết luận ở bước (2); không rỗng thì kiểm tên tệp bằng /\\.(jpe?g|png|gif|webp|svg)$|^(img|dsc)_?\\d+/i.test(alt[1].trim())."
-      ]
-    },
-    {
-      "type": "callout",
-      "label": "Vì sao đúng",
-      "text": "Mỗi kết luận đến từ một nội dung cụ thể của thẻ: cua-tiem.jpg, banh-malt.jpg và gio-hoa.jpg đều không có thuộc tính alt thật (tên tệp có chữ alt trong banh-malt, và data-alt là thuộc tính khác); IMG_2041.jpg và DSC_0099 là tên do máy ảnh đặt, không mô tả gì cho người nghe bằng trình đọc màn hình. Hai ảnh có alt rỗng không bị coi là lỗi chắc chắn: theo đặc tả HTML, alt rỗng là cách hợp lệ để báo ảnh chỉ trang trí, nhưng cũng là chỗ người ta hay quên viết mô tả, và máy không phân biệt được hai trường hợp nên đánh dấu để con người xem lại. Mã khởi đầu in ok cho bảy trong tám ảnh, chỉ bắt được ảnh cua-tiem.jpg, vì nó chỉ tìm chữ alt. Hãy xem đây là phép sàng lọc: nó không đánh giá được mô tả có đúng với ảnh hay không (AI vẫn có thể bịa một chi tiết không có trong ảnh), và biểu thức này không đọc được thẻ viết bằng nháy đơn hay thuộc tính xuống dòng, nên công cụ kiểm thật dùng trình phân tích HTML và con người vẫn phải đọc lại."
+      ],
+      "explanation": "Mỗi kết luận đến từ một nội dung cụ thể của thẻ: cua-tiem.jpg, banh-malt.jpg và gio-hoa.jpg đều không có thuộc tính alt thật (tên tệp có chữ alt trong banh-malt, và data-alt là thuộc tính khác); IMG_2041.jpg và DSC_0099 là tên do máy ảnh đặt, không mô tả gì cho người nghe bằng trình đọc màn hình. Hai ảnh có alt rỗng không bị coi là lỗi chắc chắn: theo đặc tả HTML, alt rỗng là cách hợp lệ để báo ảnh chỉ trang trí, nhưng cũng là chỗ người ta hay quên viết mô tả, và máy không phân biệt được hai trường hợp nên đánh dấu để con người xem lại. Mã khởi đầu in ok cho bảy trong tám ảnh, chỉ bắt được ảnh cua-tiem.jpg, vì nó chỉ tìm chữ alt. Hãy xem đây là phép sàng lọc: nó không đánh giá được mô tả có đúng với ảnh hay không (AI vẫn có thể bịa một chi tiết không có trong ảnh), và biểu thức này không đọc được thẻ viết bằng nháy đơn hay thuộc tính xuống dòng, nên công cụ kiểm thật dùng trình phân tích HTML và con người vẫn phải đọc lại."
     }
   ],
   "dua-trang-len-mang-can-nhac-gi-truoc": [
@@ -66,12 +58,8 @@ export const T05_ADDITIONS: Record<string, LessonSectionBlock[]> =  {
       "hints": [
         "Số điện thoại viết nhiều kiểu, nên hãy bỏ dấu cách, dấu chấm và dấu gạch nối khỏi bản sao của dòng trước: gon = re.sub(r\"[ .\\-]\", \"\", dong). Rồi tìm trên bản gọn mẫu (?<!\\d)(?:\\+84|0)[35789]\\d{8}(?!\\d).",
         "Dùng (?<!\\d) và (?!\\d) quanh dãy số để một mã vận đơn 13 chữ số không bị nhận nhầm là số điện thoại hay CCCD. CCCD tìm bằng (?<!\\d)\\d{12}(?!\\d) trên dòng gốc; địa chỉ nhà thì kiểm dong.lower() có chứa từng dấu hiệu."
-      ]
-    },
-    {
-      "type": "callout",
-      "label": "Vì sao đúng",
-      "text": "Mỗi dòng bị báo là một dòng bạn cần tự quyết: giữ, bỏ hay xin phép, vì máy chỉ nhận ra hình dạng chứ không biết số nào là số riêng hay số bán hàng. Số điện thoại phải bỏ dấu phân cách trước khi tìm, nếu không 0900 000 123 và 0900.000.456 trượt khỏi mẫu; dòng 9 có +84 và dòng 8 có dấu gạch nối là các dạng viết khác của cùng một thứ. Mã vận đơn 0900000123456 có 13 chữ số nên không bị tính là số điện thoại hay CCCD nhờ phần chặn chữ số ở hai đầu. Mã khởi đầu bỏ sót bốn trong sáu dòng vì chỉ tìm email. Danh sách rỗng không chứng minh trang sạch: tên người, ảnh và số viết bằng chữ đều không bị bắt, nên đây chỉ là một lượt rà trước khi bạn đọc lại cả trang."
+      ],
+      "explanation": "Mỗi dòng bị báo là một dòng bạn cần tự quyết: giữ, bỏ hay xin phép, vì máy chỉ nhận ra hình dạng chứ không biết số nào là số riêng hay số bán hàng. Số điện thoại phải bỏ dấu phân cách trước khi tìm, nếu không 0900 000 123 và 0900.000.456 trượt khỏi mẫu; dòng 9 có +84 và dòng 8 có dấu gạch nối là các dạng viết khác của cùng một thứ. Mã vận đơn 0900000123456 có 13 chữ số nên không bị tính là số điện thoại hay CCCD nhờ phần chặn chữ số ở hai đầu. Mã khởi đầu bỏ sót bốn trong sáu dòng vì chỉ tìm email. Danh sách rỗng không chứng minh trang sạch: tên người, ảnh và số viết bằng chữ đều không bị bắt, nên đây chỉ là một lượt rà trước khi bạn đọc lại cả trang."
     }
   ],
   "cap-nhat-trang-khi-gia-hoac-gio-doi": [
@@ -90,12 +78,8 @@ export const T05_ADDITIONS: Record<string, LessonSectionBlock[]> =  {
       "hints": [
         "Chạy thử và đọc trang in ra: dòng nào còn nguyên {{ }} và dòng nào còn 45.000? Có hai nguyên nhân khác nhau cho hai loại lỗi đó.",
         "Dòng ghi cứng 45.000 phải đổi thành {{gia}}. Còn String.replace với chuỗi chỉ thay lần đầu tiên; hãy thay mọi lần bằng trang.split(\"{{\" + khoa + \"}}\").join(thongTin[khoa]) (hoặc replaceAll)."
-      ]
-    },
-    {
-      "type": "callout",
-      "label": "Vì sao đúng",
-      "text": "Giá chỉ được viết đúng một lần, trong thongTin, còn trang chỉ nhắc tới nó qua {{gia}}; đổi một giá trị thì mọi chỗ cùng đổi và không thể có hai giá khác nhau trên một trang. Mã khởi đầu hỏng theo hai kiểu: dòng ghi cứng 45.000 không bao giờ nhận giá mới, và replace với chuỗi chỉ thay lần xuất hiện đầu tiên nên {{gia}} ở thực đơn và các chỗ trống lặp lại vẫn hiện nguyên. Dòng cuối là phép đếm đối chiếu: chuỗi 45.000 còn bao nhiêu lần trong trang đã dựng. Đây chỉ bắt được đúng cách viết 45.000; một giá cũ viết thành 45k hay 45 nghìn sẽ lọt qua, nên sau khi sửa vẫn phải đọc lại các chỗ nhắc giá như bài đã dặn."
+      ],
+      "explanation": "Giá chỉ được viết đúng một lần, trong thongTin, còn trang chỉ nhắc tới nó qua {{gia}}; đổi một giá trị thì mọi chỗ cùng đổi và không thể có hai giá khác nhau trên một trang. Mã khởi đầu hỏng theo hai kiểu: dòng ghi cứng 45.000 không bao giờ nhận giá mới, và replace với chuỗi chỉ thay lần xuất hiện đầu tiên nên {{gia}} ở thực đơn và các chỗ trống lặp lại vẫn hiện nguyên. Dòng cuối là phép đếm đối chiếu: chuỗi 45.000 còn bao nhiêu lần trong trang đã dựng. Đây chỉ bắt được đúng cách viết 45.000; một giá cũ viết thành 45k hay 45 nghìn sẽ lọt qua, nên sau khi sửa vẫn phải đọc lại các chỗ nhắc giá như bài đã dặn."
     }
   ]
 };

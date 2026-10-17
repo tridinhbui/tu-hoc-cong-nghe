@@ -1291,7 +1291,7 @@ export const S63_B_LESSONS: Lesson[] = [
           "Hai đội bằng nhau là 130 triệu (= trung bình của 120 và 140, xoá chênh lệch)"
         ],
         "correct": 0,
-        "explanation": "720 ÷ 6 = 120 và 560 ÷ 4 = 140. Đáp án “Đội Nam 140 triệu…” so tổng; đáp án chia chéo ghép doanh số của đội Bắc với số người của đội Nam; đáp án trung bình thì gộp hai con số khác nhau thành một."
+        "explanation": "720 ÷ 6 = 120 và 560 ÷ 4 = 140. Đáp án “Đội Bắc hơn vì…” so tổng; đáp án chia chéo ghép doanh số của đội Bắc với số người của đội Nam; đáp án trung bình thì gộp hai con số khác nhau thành một."
       },
       {
         "question": "Dòng ghi chú 'điểm chưa công bằng' dưới bảng để làm gì?",

@@ -237,6 +237,7 @@ export default function LessonSections({
             solution={block.solution}
             expectedOutput={block.expectedOutput}
             hints={block.hints}
+            explanation={block.explanation}
             onPass={lessonId ? () => void recordExercisePass(lessonId, i) : undefined}
             collapsed={exerciseStartsCollapsed(lessonId)}
           />

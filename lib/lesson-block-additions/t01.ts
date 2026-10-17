@@ -18,12 +18,8 @@ export const T01_ADDITIONS: Record<string, LessonSectionBlock[]> = {
       "hints": [
         "Tên miền đọc từ phải sang trái: phần quyết định trang thuộc về ai nằm ở cuối host, không phải ở đầu.",
         "slice(0, 2) lấy hai nhãn đầu. Hãy lấy hai nhãn cuối bằng slice(-2)."
-      ]
-    },
-    {
-      "type": "callout",
-      "label": "Vì sao đúng",
-      "text": "Miền gốc là hai nhãn cuối của host, nên ngan-hang-abc.vn.xac-minh.net thuộc về xac-minh.net: phần ngan-hang-abc.vn chỉ là tên con do chủ xac-minh.net tự đặt. Mã khởi đầu lấy hai nhãn đầu nên bị tên thật đứng ở đầu đánh lừa, đúng thói quen đọc từ trái sang phải mà kẻ gian lợi dụng. Cổng :8080 và chuỗi ?ref=ngan-hang-abc.vn không thay đổi chủ của trang, nên liên kết cuối vẫn thuộc vi-minh-an.vn. Lưu ý đây là cách đơn giản hoá: với đuôi nhiều tầng như .com.vn, công cụ thật phải dùng danh sách hậu tố công cộng (public suffix list) chứ không đếm hai nhãn."
+      ],
+      "explanation": "Miền gốc là hai nhãn cuối của host, nên ngan-hang-abc.vn.xac-minh.net thuộc về xac-minh.net: phần ngan-hang-abc.vn chỉ là tên con do chủ xac-minh.net tự đặt. Mã khởi đầu lấy hai nhãn đầu nên bị tên thật đứng ở đầu đánh lừa, đúng thói quen đọc từ trái sang phải mà kẻ gian lợi dụng. Cổng :8080 và chuỗi ?ref=ngan-hang-abc.vn không thay đổi chủ của trang, nên liên kết cuối vẫn thuộc vi-minh-an.vn. Lưu ý đây là cách đơn giản hoá: với đuôi nhiều tầng như .com.vn, công cụ thật phải dùng danh sách hậu tố công cộng (public suffix list) chứ không đếm hai nhãn."
     }
   ],
   "trang-dang-nhap-gia-va-ma-otp": [
@@ -42,12 +38,8 @@ export const T01_ADDITIONS: Record<string, LessonSectionBlock[]> = {
       "hints": [
         "endswith chỉ hỏi chuỗi có kết thúc bằng tên miền hay không, không hỏi ranh giới giữa các nhãn. evilngan-hang-abc.vn cũng kết thúc bằng ngan-hang-abc.vn.",
         "Tên con hợp lệ phải có dấu chấm ngay trước tên miền: dùng host == MIEN hoặc host.endswith(\".\" + MIEN), và đổi host sang chữ thường trước khi so."
-      ]
-    },
-    {
-      "type": "callout",
-      "label": "Vì sao đúng",
-      "text": "Một tên con thật luôn có dấu chấm ngăn với tên miền, nên quy tắc đúng là bằng hẳn tên miền hoặc kết thúc bằng \".ngan-hang-abc.vn\". evilngan-hang-abc.vn và xngan-hang-abc.vn chỉ là hai tên miền khác mà ai cũng đăng ký được, nhưng chúng kết thúc bằng cùng chuỗi ký tự nên endswith trần nhận nhầm. ngan-hang-abc.vn.xac-minh.net thì dù có chứa tên thật vẫn bị loại vì không kết thúc bằng nó. Tên máy chủ không phân biệt hoa thường nên NGAN-HANG-ABC.VN là host hợp lệ, vì vậy phải đổi sang chữ thường trước khi so."
+      ],
+      "explanation": "Một tên con thật luôn có dấu chấm ngăn với tên miền, nên quy tắc đúng là bằng hẳn tên miền hoặc kết thúc bằng \".ngan-hang-abc.vn\". evilngan-hang-abc.vn và xngan-hang-abc.vn chỉ là hai tên miền khác mà ai cũng đăng ký được, nhưng chúng kết thúc bằng cùng chuỗi ký tự nên endswith trần nhận nhầm. ngan-hang-abc.vn.xac-minh.net thì dù có chứa tên thật vẫn bị loại vì không kết thúc bằng nó. Tên máy chủ không phân biệt hoa thường nên NGAN-HANG-ABC.VN là host hợp lệ, vì vậy phải đổi sang chữ thường trước khi so."
     }
   ],
   "bao-mat-tai-khoan-toi-thieu": [
@@ -66,12 +58,8 @@ export const T01_ADDITIONS: Record<string, LessonSectionBlock[]> = {
       "hints": [
         "Mỗi vị trí trong mật khẩu có bo_ky_tu lựa chọn độc lập, và có do_dai vị trí, nên các lựa chọn nhân với nhau chứ không cộng hay nhân hai con số.",
         "Dùng toán tử luỹ thừa ** của Python: to_hop = bo_ky_tu ** do_dai."
-      ]
-    },
-    {
-      "type": "callout",
-      "label": "Vì sao đúng",
-      "text": "Mỗi ký tự thêm vào nhân số tổ hợp lên bo_ky_tu lần, nên nó tăng theo luỹ thừa: 12 ký tự trong bộ 62 ký tự là 62 mũ 12, khoảng 3,2 nghìn tỷ tỷ tổ hợp. Mã khởi đầu nhân bo_ky_tu với do_dai, cho con số nhỏ đến mức mọi mật khẩu đều trông như vỡ trong chưa tới một giây. Cần nhớ giới hạn của phép tính: nó chỉ đúng với mật khẩu chọn ngẫu nhiên, và tốc độ 10 tỷ lần thử mỗi giây là một giả định cho kiểu tấn công thử trên kho mật khẩu đã lấy cắp. Mật khẩu người đặt như 12345678 nằm sẵn trong danh sách mật khẩu phổ biến nên vỡ ngay dù tổ hợp lý thuyết là bao nhiêu."
+      ],
+      "explanation": "Mỗi ký tự thêm vào nhân số tổ hợp lên bo_ky_tu lần, nên nó tăng theo luỹ thừa: 12 ký tự trong bộ 62 ký tự là 62 mũ 12, khoảng 3,2 nghìn tỷ tỷ tổ hợp. Mã khởi đầu nhân bo_ky_tu với do_dai, cho con số nhỏ đến mức mọi mật khẩu đều trông như vỡ trong chưa tới một giây. Cần nhớ giới hạn của phép tính: nó chỉ đúng với mật khẩu chọn ngẫu nhiên, và tốc độ 10 tỷ lần thử mỗi giây là một giả định cho kiểu tấn công thử trên kho mật khẩu đã lấy cắp. Mật khẩu người đặt như 12345678 nằm sẵn trong danh sách mật khẩu phổ biến nên vỡ ngay dù tổ hợp lý thuyết là bao nhiêu."
     }
   ],
   "o-khoa-https-nghia-la-gi-va-khong-nghia-la-gi": [
@@ -90,12 +78,8 @@ export const T01_ADDITIONS: Record<string, LessonSectionBlock[]> = {
       "hints": [
         "Việc có https hay không và việc tên miền có thuộc danh sách của bạn là hai thông tin độc lập; cột cuối không được phụ thuộc vào maHoa.",
         "Cột cuối dùng quen.includes(goc) thay cho maHoa."
-      ]
-    },
-    {
-      "type": "callout",
-      "label": "Vì sao đúng",
-      "text": "Trong kết quả, hai địa chỉ giả (xac-minh.net và tro-giup.org) đều có mã hoá: co nhưng domain quen: khong, và một trang trên miền quen vẫn có thể là http không mã hoá. Điều này khớp với cách HTTPS hoạt động: chứng nhận chỉ cho biết đường truyền được mã hoá tới chủ của tên miền hiện trên thanh địa chỉ, và ai sở hữu một tên miền, kể cả tên miền nhái, cũng xin được chứng nhận cho nó. Mã khởi đầu coi mã hoá là bằng chứng đáng tin nên gán nhầm \"quen\" cho hai trang giả. Đây cũng chỉ là một phép kiểm tên miền, không thay cho việc tự gõ địa chỉ hoặc dùng dấu trang."
+      ],
+      "explanation": "Trong kết quả, hai địa chỉ giả (xac-minh.net và tro-giup.org) đều có mã hoá: co nhưng domain quen: khong, và một trang trên miền quen vẫn có thể là http không mã hoá. Điều này khớp với cách HTTPS hoạt động: chứng nhận chỉ cho biết đường truyền được mã hoá tới chủ của tên miền hiện trên thanh địa chỉ, và ai sở hữu một tên miền, kể cả tên miền nhái, cũng xin được chứng nhận cho nó. Mã khởi đầu coi mã hoá là bằng chứng đáng tin nên gán nhầm \"quen\" cho hai trang giả. Đây cũng chỉ là một phép kiểm tên miền, không thay cho việc tự gõ địa chỉ hoặc dùng dấu trang."
     }
   ],
   "mat-khau-va-khoa-bi-mat-la-gi-vi-sao-khong-dan-vao-ma": [
@@ -114,12 +98,8 @@ export const T01_ADDITIONS: Record<string, LessonSectionBlock[]> = {
       "hints": [
         "Tên nghe như bí mật chưa đủ: cần xem giá trị. Tách dòng bằng split(\"=\", 1), rồi kiểm giá trị có mở đầu bằng nháy đơn hoặc nháy kép và có nội dung bên trong không.",
         "Bỏ qua dòng bắt đầu bằng # trước khi tách, và chỉ in khi giá trị là chuỗi chữ không rỗng (độ dài lớn hơn 2 tính cả hai nháy)."
-      ]
-    },
-    {
-      "type": "callout",
-      "label": "Vì sao đúng",
-      "text": "Khoá nằm trong mã hoặc tệp cấu hình đã nộp lên kho chung là khoá lộ, nên điều cần bắt là dòng gán một chuỗi chữ cụ thể cho một tên giống bí mật. Dòng đọc từ biến môi trường không chứa khoá thật trong tệp, dòng chú thích không chạy nhưng khoá trong đó vẫn nằm trong lịch sử, và chuỗi rỗng chưa là bí mật nào cả. Mã khởi đầu chỉ so tên nên báo cả dòng đọc từ môi trường và dòng chú thích. Đây là phép dò theo mẫu, có thể sót hoặc báo thừa, nên nếu đã lộ khoá thật thì xoá dòng chưa đủ: phải thu hồi và tạo khoá mới."
+      ],
+      "explanation": "Khoá nằm trong mã hoặc tệp cấu hình đã nộp lên kho chung là khoá lộ, nên điều cần bắt là dòng gán một chuỗi chữ cụ thể cho một tên giống bí mật. Dòng đọc từ biến môi trường không chứa khoá thật trong tệp, dòng chú thích không chạy nhưng khoá trong đó vẫn nằm trong lịch sử, và chuỗi rỗng chưa là bí mật nào cả. Mã khởi đầu chỉ so tên nên báo cả dòng đọc từ môi trường và dòng chú thích. Đây là phép dò theo mẫu, có thể sót hoặc báo thừa, nên nếu đã lộ khoá thật thì xoá dòng chưa đủ: phải thu hồi và tạo khoá mới."
     }
   ],
   "kiem-tra-tai-khoan-quan-tri-co-bat-hai-lop-chua": [
@@ -138,12 +118,8 @@ export const T01_ADDITIONS: Record<string, LessonSectionBlock[]> = {
       "hints": [
         "Dòng CHUA 2FA phải in cho admin có hai_lop là False, tức là điều kiện cần dùng not. Hãy kiểm tra xem mã đang in cho nhóm nào.",
         "Cả hai kiểm tra chỉ áp dụng cho admin: bỏ qua mọi tài khoản có quyền khác ngay đầu vòng lặp, và mốc 90 ngày tính cả đúng 90 (>=)."
-      ]
-    },
-    {
-      "type": "callout",
-      "label": "Vì sao đúng",
-      "text": "Hai điều kiện độc lập nhau: một admin có thể thiếu 2FA, bỏ quên, hoặc cả hai (dung nhận cả hai dòng). Quyền admin là điều kiện chung nên phải lọc trước, vì biên tập viên hay người chỉ xem thiếu 2FA là chuyện khác và không thuộc danh sách quyền cao. Mốc 90 ngày chỉ là một chính sách chọn trước, không phải chuẩn bắt buộc, nên chi (đúng 90) bị thu hồi còn giang (89) thì chưa. Xác thực hai lớp làm kẻ xâm nhập khó hơn nhiều chứ không bảo đảm tuyệt đối, và quyền cao không dùng là cửa vẫn mở mà không ai trông; thu hồi quyền khỏi người không cần là cách giảm bề mặt tấn công."
+      ],
+      "explanation": "Hai điều kiện độc lập nhau: một admin có thể thiếu 2FA, bỏ quên, hoặc cả hai (dung nhận cả hai dòng). Quyền admin là điều kiện chung nên phải lọc trước, vì biên tập viên hay người chỉ xem thiếu 2FA là chuyện khác và không thuộc danh sách quyền cao. Mốc 90 ngày chỉ là một chính sách chọn trước, không phải chuẩn bắt buộc, nên chi (đúng 90) bị thu hồi còn giang (89) thì chưa. Xác thực hai lớp làm kẻ xâm nhập khó hơn nhiều chứ không bảo đảm tuyệt đối, và quyền cao không dùng là cửa vẫn mở mà không ai trông; thu hồi quyền khỏi người không cần là cách giảm bề mặt tấn công."
     }
-  ],
+  ]
 };

@@ -7306,7 +7306,7 @@ const BASE_LESSONS: Lesson[] = [
           "Đó là hiện tượng bình thường vì ngày sinh không phân bố đều quanh năm"
         ],
         "correct": 0,
-        "explanation": "Giá trị mặc định của biểu mẫu, lựa chọn “Đó là dấu vết…” tiên trong danh sách, hay một giá trị canh gác do lập trình viên đặt đều tạo ra đỉnh nhọn kiểu này. Nó là dấu vết của cách dữ liệu được thu thập."
+        "explanation": "Giá trị mặc định của biểu mẫu, lựa chọn đầu tiên trong danh sách, hay một giá trị canh gác do lập trình viên đặt đều tạo ra đỉnh nhọn kiểu này. Nó là dấu vết của cách dữ liệu được thu thập."
       },
       {
         "question": "Bốn phép kiểm cơ bản nên chạy định kỳ trên một bảng quan trọng là gì?",
@@ -32527,7 +32527,7 @@ const BASE_LESSONS: Lesson[] = [
           "Thứ tự xử lý bị đảo lộn khi có nhiều người tiêu thụ cùng nhận tin nhắn"
         ],
         "correct": 0,
-        "explanation": "Hai cách xác nhận cho hai kiểu hỏng đối lập, và không có lựa chọn “Hàng đợi bị tồn…”: hoặc bạn chấp nhận có thể mất việc, hoặc chấp nhận có thể làm hai lần. Phần lớn hệ thống chọn cái thứ hai."
+        "explanation": "Hai cách xác nhận cho hai kiểu hỏng đối lập, và không có cách thứ ba: hoặc bạn chấp nhận có thể mất việc, hoặc chấp nhận có thể làm hai lần. Phần lớn hệ thống chọn cái thứ hai."
       },
       {
         "question": "Vì sao thời gian chờ xác nhận cần được đặt đúng?",
@@ -36277,7 +36277,7 @@ const BASE_LESSONS: Lesson[] = [
           "Chỉ ở phần đầu tài liệu, nơi cần nhóm các khai báo về trang lại với nhau"
         ],
         "correct": 0,
-        "explanation": "Nó là lựa chọn “Chỉ ở phần đầu…” cùng chứ không phải mặc định. Một trang toàn thẻ chia khối chung chung không nói được gì cho máy đọc màn hình hay công cụ tìm kiếm. Hãy tìm thẻ ngữ nghĩa phù hợp trước - đầu trang, thanh điều hướng, nội dung chính, bài viết - rồi mới dùng tới nó."
+        "explanation": "Nó là lựa chọn cuối cùng chứ không phải mặc định. Một trang toàn thẻ chia khối chung chung không nói được gì cho máy đọc màn hình hay công cụ tìm kiếm. Hãy tìm thẻ ngữ nghĩa phù hợp trước - đầu trang, thanh điều hướng, nội dung chính, bài viết - rồi mới dùng tới nó."
       }
     ],
     "keyTakeaways": [
@@ -48083,7 +48083,7 @@ const BASE_LESSONS: Lesson[] = [
           "Đếm số bước mà thuật toán thực hiện rồi so với cận dưới lý thuyết của bài toán"
         ],
         "correct": 0,
-        "explanation": "Ý tưởng là chứng minh bạn luôn có thể đổi lựa chọn “Chỉ ra rằng lựa…” tiên của một lời giải tối ưu bất kỳ thành lựa chọn tham lam mà không làm nó tệ đi. Chạy thử nhiều bộ dữ liệu không phải chứng minh - nó chỉ chưa tìm ra phản ví dụ."
+        "explanation": "Ý tưởng là chứng minh bạn luôn có thể đổi lựa chọn đầu tiên của một lời giải tối ưu bất kỳ thành lựa chọn tham lam mà không làm nó tệ đi. Chạy thử nhiều bộ dữ liệu không phải chứng minh - nó chỉ chưa tìm ra phản ví dụ."
       }
     ],
     "keyTakeaways": [
