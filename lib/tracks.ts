@@ -88,6 +88,7 @@ export const TRACKS = {
       "Chặng 64 - Dùng AI có trách nhiệm trong tổ chức",
       "Chặng 65 - Quyền riêng tư và dữ liệu cá nhân trong công việc",
       "Chặng 66 - Nền tảng công nghệ cho người đi làm",
+      "Chặng 67 - Làm sản phẩm cùng AI mà vẫn kiểm soát được",
     ],
     previewSlug: "he-dieu-hanh-lam-gi",
     previewLabel: "Chặng 1: Hệ điều hành làm gì khi bạn không nhìn",

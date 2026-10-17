@@ -445,6 +445,11 @@ export const trackStagesVi = {
           name: "Nền tảng công nghệ cho người đi làm",
           parts: ["Chiếc máy tính bạn đang dùng", "Mạng và Wi-Fi ở chỗ làm", "Đám mây, mật khẩu và lừa đảo", "Sao lưu, cập nhật và đọc lỗi"],
         },
+        {
+          label: "Chặng 67",
+          name: "Làm sản phẩm cùng AI mà vẫn kiểm soát được",
+          parts: ["Giao việc cho AI", "Đọc và kiểm tra thứ AI viết"],
+        },
       ],
     },
     professional: {
@@ -1182,6 +1187,11 @@ export const trackStagesEn: typeof trackStagesVi = {
           label: "Stage 66",
           name: "Tech foundations for working adults",
           parts: ["The computer you use every day", "Networks and Wi-Fi at work", "The cloud, passwords and scams", "Backups, updates and reading errors"],
+        },
+        {
+          label: "Stage 67",
+          name: "Building with AI while staying in control",
+          parts: ["Briefing the AI", "Reading and checking what AI wrote"],
         },
       ],
     },

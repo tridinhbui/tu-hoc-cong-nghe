@@ -84,6 +84,7 @@ const MISSIONS: Record<FlowId, { starter: boolean; level: 0 | 1 | 2 | 3; tone: T
   automation: { starter: false, level: 2, tone: "navy" },
   "ai-agent": { starter: false, level: 2, tone: "sky" },
   "ai-safety": { starter: false, level: 2, tone: "blue" },
+  vibecode: { starter: false, level: 1, tone: "sky" },
   "ai-builder": { starter: false, level: 3, tone: "brand" },
 };
 

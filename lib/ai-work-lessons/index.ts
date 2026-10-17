@@ -147,6 +147,10 @@ import { S66_A_LESSONS } from "./s66-a";
 import { S66_B_LESSONS } from "./s66-b";
 import { S66_C_LESSONS } from "./s66-c";
 import { S66_D_LESSONS } from "./s66-d";
+import { S67_A_LESSONS } from "./s67-a";
+import { S67_B_LESSONS } from "./s67-b";
+import { S67_C_LESSONS } from "./s67-c";
+import { S67_D_LESSONS } from "./s67-d";
 
 // 37 chặng x 20 bài (id 2000-2739): AI thực tế cho công việc, công cụ AI, tự
 // động hoá, làm sản phẩm với AI, dữ liệu, dùng AI an toàn. Mỗi tệp s<chặng>-<a-d>
@@ -301,4 +305,8 @@ export const AI_WORK_LESSONS: Lesson[] = [
   ...S66_B_LESSONS,
   ...S66_C_LESSONS,
   ...S66_D_LESSONS,
+  ...S67_A_LESSONS,
+  ...S67_B_LESSONS,
+  ...S67_C_LESSONS,
+  ...S67_D_LESSONS,
 ];

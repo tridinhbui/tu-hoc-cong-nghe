@@ -1,0 +1,279 @@
+{
+  "slug": "doc-ma-ai-viet-tung-buoc-va-noi-lai-bang-loi-cua-minh",
+  "title": "Stage 67, Lesson 6: Read the code AI writes - step by step, then say it in your own words",
+  "subtitle": "You do not need to write code, but do not accept code you cannot read.",
+  "whyItMatters": "When you receive code from AI, the biggest temptation is to see it work on one example and use it right away. But code you cannot read is code you cannot check, cannot fix, and cannot tell when it breaks. Reading code does not require programming skills: most code AI writes for you does just three familiar things, filter, change and join, like the steps in a cooking recipe.",
+  "openingQuestion": "AI hands you a six-line function that gives the right answer for the first example, but you do not understand what it does. What should you do?",
+  "openingOptions": [
+    "Accept it, because the function already gave the right result for the first example",
+    "Ask the AI to rewrite it shorter until it no longer looks complicated",
+    "Ask the AI whether the function has bugs, and use it if the AI says no",
+    "Ask the AI to explain each line, then say it back in your own words"
+  ],
+  "explanation": "Truly understanding means you can say each step back in your own words and predict the right result for a new input. One working example only proves the function is right for that example. A shorter version does not make you understand more, and asking the AI about its own bugs means trusting a claim nobody has checked. Having each line explained and then saying it back yourself is the only way to get evidence of your own understanding.",
+  "diagram": [
+    {
+      "label": "Read code like a recipe: filter, change, join"
+    },
+    {
+      "label": "Ask the AI to explain each line in plain words"
+    },
+    {
+      "label": "Say it back in your own words, without looking at the explanation"
+    },
+    {
+      "label": "Predict the output for a new input, then run to check"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Illustrative scenario",
+    "description": "Illustrative scenario: someone asks AI to write code that summarizes a shopping cart and sees it print correctly for a three-item cart. They paste it into their product right away. A week later, a cart with an item of quantity 0 shows the line \"0 x Banh mi\" on a customer's screen. Next time they ask the AI to explain each line and say it back, and immediately notice that the code never filters out items with quantity 0."
+  },
+  "quiz": [
+    {
+      "question": "Which three moves often appear when reading AI code that handles a list?",
+      "options": [
+        "Download, install and test the code on another computer",
+        "Filter out unneeded items, change each item into a new form, then join them",
+        "Read, edit and gradually delete the lines you do not fully understand",
+        "Open, close and save a file after every run of the program"
+      ],
+      "explanation": "Most code that handles lists follows three steps: filter the items you need, change each one into the form you want, then join them into a result. Spotting these steps lets you read code like a recipe. Installing, opening files or deleting lines you do not understand is not a way of reading code."
+    },
+    {
+      "question": "What gives you evidence that you truly understand a piece of code?",
+      "options": [
+        "Rereading the AI's explanation several more times until you know it by heart",
+        "Running the code and seeing the right result for the example the AI gave",
+        "Saying each step back in your own words, without looking at the explanation",
+        "Finding the AI's explanation reasonable and counting that as understanding"
+      ],
+      "explanation": "Saying it back in your own words without looking forces you to rebuild it in your head, so gaps show up immediately. Rereading creates a feeling of familiarity, not understanding. Getting the right answer on an example the AI chose also tells you little. The feeling that something \"sounds right\" is the easiest sign to be fooled by."
+    },
+    {
+      "question": "Which sign shows you have not understood the code?",
+      "options": [
+        "You read the code more slowly than the AI read it to you the first time",
+        "You do not know the name of every command in the code you are reading",
+        "You needed to read it twice before seeing how the code flows",
+        "You cannot predict the output for a specific input"
+      ],
+      "explanation": "Understanding code means predicting what it does with specific data. Not knowing command names or reading twice is normal, everyone new to code does that. Reading speed is not the measure. Being wrong, or unable to predict, the output is the signal to stop."
+    },
+    {
+      "question": "The AI explained, but you still do not understand one line. What should you do?",
+      "options": [
+        "Ask for that line alone to be explained again with a concrete number example",
+        "Accept the code, because one test case already gave the expected result",
+        "Skip that line because it is only a small detail",
+        "Delete the line to see if the code still runs, then figure it out later"
+      ],
+      "explanation": "A concrete number example, run step by step, is the easiest way to see what one line does. Skipping a confusing line is where bugs like to hide. One green test case does not prove every other case is right. And deleting until something breaks teaches you nothing about what the line means."
+    },
+    {
+      "question": "Why should you not accept code that you cannot read?",
+      "options": [
+        "Because the AI penalizes users who accept code without reading it first",
+        "When it breaks later, you will not know where to look and cannot check it",
+        "Because longer code always runs slower, so you must read it to shorten it",
+        "Because AI code is always wrong in the places users do not read"
+      ],
+      "explanation": "Code you cannot read is code you cannot check, cannot fix, and cannot tell when it is wrong. The AI does not penalize anyone. Length does not decide speed in such a simple way. And AI code is not wrong by a rule of \"unread places\"; it is just that if there is a bug in a place nobody reads, nobody catches it."
+    }
+  ],
+  "keyTakeaways": [
+    "Code that handles lists usually does three things: filter, change, join. Read it like a cooking recipe.",
+    "Ask the AI to explain each line, then say it back in your own words without looking at the explanation.",
+    "Truly understanding means predicting the output for a new input.",
+    "Signs you have not understood: you cannot predict the output, or you predict it wrongly.",
+    "Do not accept code you cannot read; ask for another explanation with a concrete number example."
+  ],
+  "practicePrompt": {
+    "question": "A function keeps numbers greater than 0, doubles each one, and joins them with commas. For the list 0, 3, 5, what does it print?",
+    "options": [
+      "0, 6, 10 (forgot to filter out the 0)",
+      "6, 10 (filter, then double)",
+      "3, 5 (forgot the doubling step)",
+      "16 (added the two numbers instead of joining)"
+    ],
+    "explanation": "The filter keeps 3 and 5, doubling gives 6 and 10, and joining with a comma gives \"6, 10\". The result \"0, 6, 10\" forgets the filter, so the 0 stays. The result \"3, 5\" forgets the doubling step. The result \"16\" reads \"join\" as \"add\"."
+  },
+  "summary": {
+    "keyIdea": "Read the AI's code step by step, then say it back in your own words to know you truly understand it.",
+    "formula": "Filter → change → join; ask for an explanation → say it back → predict a new output.",
+    "commonMistake": "Accepting code because it works on one example, without understanding what it does in other cases.",
+    "action": "Next time the AI gives you code, ask for a line-by-line explanation and write three sentences in your own words."
+  },
+  "application": {
+    "title": "Do it now in 10 minutes",
+    "message": "Take a piece of code the AI once wrote for you, or ask the AI to write a small function. Ask it to explain each line in plain words. Then cover the explanation and write three sentences saying what the function does. Finally, predict the output for a new input and run it to check.",
+    "secondary": "If your guess is wrong, that is not failure: it points at exactly the line you have not understood."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The AI returns code that prints the right result. But if you do not understand what it does, you do not know why it is right and you cannot tell when it will be wrong. This lesson gives you a way to read code without knowing how to program."
+    },
+    {
+      "type": "feynman",
+      "title": "Reading code is simpler than you think",
+      "intro": "Read a cooking recipe: pick good ingredients, prepare each one, then mix them together. Most code that handles lists follows exactly those three steps.",
+      "columns": [
+        "Step",
+        "In the kitchen",
+        "In code"
+      ],
+      "rows": [
+        [
+          "Filter",
+          "Throw away the spoiled fruit",
+          "Keep the lines with a quantity greater than 0"
+        ],
+        [
+          "Change",
+          "Cut each fruit into pieces",
+          "Turn each line into a sentence like \"2 x Milk coffee\""
+        ],
+        [
+          "Join",
+          "Mix the pieces into one bowl",
+          "Put the sentences together in one line, separated by commas"
+        ],
+        [
+          "If nothing is left",
+          "No fruit left means no dish",
+          "An empty list prints \"empty cart\""
+        ]
+      ],
+      "oneLiner": "Code is a recipe: read it step by step, then say it back in your own words."
+    },
+    {
+      "type": "flow",
+      "title": "From unfamiliar code to real understanding",
+      "steps": [
+        {
+          "label": "Receive the code",
+          "detail": "Do not run it or accept it yet: read it first."
+        },
+        {
+          "label": "Find the three steps",
+          "detail": "Which line filters, which changes, which joins."
+        },
+        {
+          "label": "Ask the AI to explain each line",
+          "detail": "Ask in plain words, with an example that has numbers."
+        },
+        {
+          "label": "Cover the explanation and say it back",
+          "detail": "Write three sentences in your own words."
+        },
+        {
+          "label": "Predict the output, then run to check",
+          "detail": "If you guess right, you truly understand; if wrong, you know which line you missed."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Signs you have not understood"
+    },
+    {
+      "type": "list",
+      "items": [
+        "You cannot predict the output when you change one input.",
+        "You can only repeat the AI's own wording and cannot put it in your own words.",
+        "You predict the output, run it, and get something different without knowing why.",
+        "There is a line you want to skip \"to save time\"."
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Accept because one example worked",
+        "text": "The code printed correctly for a cart with three items, so you use it. A cart with a quantity-0 item shows an extra line, and you do not know which line to look at to fix it."
+      },
+      "right": {
+        "label": "Read, then say it back in your own words",
+        "text": "You say it back: \"drop items with quantity 0, join the rest\". You immediately predict what a cart holding only a quantity-0 item will print, then run it to check."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Do not accept code you cannot read",
+      "text": "Not being able to read it means not being able to check it. Keep asking the AI to explain again with a numbered example, as many times as it takes, until you can say it back."
+    },
+    {
+      "type": "aiLab",
+      "mode": "spotError",
+      "title": "Which of the AI's explanations is wrong?",
+      "task": "The function tomTatGio filters lines with a quantity greater than 0, turns each line into a sentence like \"2 x Milk coffee\", then joins them with commas; if the result is empty it prints \"empty cart\". This is the AI's explanation. Click the sentences that are wrong about this function, then submit.",
+      "segments": [
+        {
+          "text": "The first step keeps the lines in the cart with a quantity greater than 0."
+        },
+        {
+          "text": "The second step removes items with long names from the cart to make the summary shorter.",
+          "error": "Wrong: this step turns each line into a sentence, and does not remove any item by name length."
+        },
+        {
+          "text": "The third step joins the sentences into one line, separated by commas."
+        },
+        {
+          "text": "If the cart has an item with quantity 0, the function still prints that item with \"0 x\".",
+          "error": "Wrong: the quantity-0 item is already filtered out in the first step, so it does not appear."
+        },
+        {
+          "text": "If no lines are left after filtering, the function prints \"empty cart\"."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Running project: the Alley coffee shop - step 6/10",
+      "text": "Step 6: read the tomTatGio function the AI wrote and guess what it prints for four carts. You do not need to write code, only read it: filter, change, join."
+    },
+    {
+      "type": "exercise",
+      "title": "Project step 6: read the AI's function and guess what it prints",
+      "task": "The AI wrote a function tomTatGio to show a cart summary to the customer. You do not have to write the function, but you must be able to read it. Read each step (filter, change, join), then fill the doan array with the result you think the function returns for the four calls. The program runs the real function and tells you whether each guess is right or wrong, without revealing the answer.",
+      "starter": "// TEN = \"names\", gio = \"cart\", soLuong = \"quantity\", mon = \"item\", doan = \"guess\", lanGoi = \"calls\"\nconst TEN = { \"ca-phe-den\": \"Black coffee\", \"ca-phe-sua\": \"Milk coffee\", \"tra-dao\": \"Peach tea\", \"banh-mi\": \"Banh mi\" };\n\n// Function written by the AI. Read it step by step, do not edit.\nfunction tomTatGio(gio) {\n  return gio\n    .filter((d) => d.soLuong > 0)\n    .map((d) => d.soLuong + \" x \" + TEN[d.mon])\n    .join(\", \") || \"empty cart\";\n}\n\nconst lanGoi = [\n  [{ mon: \"ca-phe-sua\", soLuong: 2 }, { mon: \"banh-mi\", soLuong: 0 }],\n  [],\n  [{ mon: \"tra-dao\", soLuong: 1 }, { mon: \"ca-phe-den\", soLuong: 3 }],\n  [{ mon: \"banh-mi\", soLuong: 0 }],\n];\n\n// Fill in the four results you think the function returns, exact text, in the order of the four calls.\nconst doan = [\"\", \"\", \"\", \"\"];\n\nlanGoi.forEach((gio, i) => {\n  console.log(\"Round \" + (i + 1) + \": \" + (tomTatGio(gio) === doan[i] ? \"correct\" : \"wrong\"));\n});",
+      "solution": "// TEN = \"names\", gio = \"cart\", soLuong = \"quantity\", mon = \"item\", doan = \"guess\", lanGoi = \"calls\"\nconst TEN = { \"ca-phe-den\": \"Black coffee\", \"ca-phe-sua\": \"Milk coffee\", \"tra-dao\": \"Peach tea\", \"banh-mi\": \"Banh mi\" };\n\n// Function written by the AI.\nfunction tomTatGio(gio) {\n  return gio\n    .filter((d) => d.soLuong > 0)\n    .map((d) => d.soLuong + \" x \" + TEN[d.mon])\n    .join(\", \") || \"empty cart\";\n}\n\nconst lanGoi = [\n  [{ mon: \"ca-phe-sua\", soLuong: 2 }, { mon: \"banh-mi\", soLuong: 0 }],\n  [],\n  [{ mon: \"tra-dao\", soLuong: 1 }, { mon: \"ca-phe-den\", soLuong: 3 }],\n  [{ mon: \"banh-mi\", soLuong: 0 }],\n];\n\n// Fill in the four results you think the function returns, exact text, in the order of the four calls.\nconst doan = [\"2 x Milk coffee\", \"empty cart\", \"1 x Peach tea, 3 x Black coffee\", \"empty cart\"];\n\nlanGoi.forEach((gio, i) => {\n  console.log(\"Round \" + (i + 1) + \": \" + (tomTatGio(gio) === doan[i] ? \"correct\" : \"wrong\"));\n});",
+      "expectedOutput": "Round 1: correct\nRound 2: correct\nRound 3: correct\nRound 4: correct",
+      "hints": [
+        "filter keeps the lines with soLuong greater than 0; map turns each line into a sentence; join puts the sentences together with commas.",
+        "Round 4: after filtering no lines are left, and join on an empty list gives an empty string. When the string is empty, || replaces it with the part after it.",
+        "The text must match character for character, including capital letters."
+      ]
+    },
+    {
+      "type": "scenario",
+      "title": "The function works on the example, but you do not understand it",
+      "nodes": {
+        "s1": {
+          "text": "The AI gives you a six-line function that prints correctly for the first example. You see a line with '||' that you do not understand, and you are in a hurry.",
+          "choices": [
+            {
+              "label": "Ask the AI to explain that line with a number example, then say it back yourself"
+            },
+            {
+              "label": "Skip that line since the function printed correctly, and use it to save time"
+            }
+          ]
+        },
+        "bad_skip": {
+          "text": "An empty cart makes the customer's screen show a blank box instead of the words \"empty cart\". The very line you skipped handles that, and you do not know where to look."
+        },
+        "good": {
+          "text": "The AI gives an example: an empty cart leaves the left side blank, so it takes the right side, \"empty cart\". You say it back in your own words and correctly predict the empty cart too. Now you know what that line does."
+        }
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Read it like a recipe: filter, change, join. You truly understand when you can say it back and predict a new output.",
+        "Next lesson: three kinds of mistakes AI often makes, and how to spot them when reading."
+      ]
+    }
+  ]
+}

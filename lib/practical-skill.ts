@@ -220,6 +220,7 @@ export const STAGE_AREAS: Record<"personal" | "professional", Record<number, Ski
     64: "security", // dùng AI có trách nhiệm
     65: "security", // dữ liệu cá nhân
     66: "cloud", // nền tảng: mạng, đám mây, mật khẩu
+    67: "code", // làm sản phẩm cùng AI, đọc và kiểm tra thứ AI viết
   },
   professional: {
     1: "data", // nền tảng dữ liệu

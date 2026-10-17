@@ -4,6 +4,10 @@
     "subtitle": "Control groups, sample size, statistical significance, and the traps that make a result look convincing while being wrong",
     "duration": "12 min"
   },
+  "ba-kieu-loi-ai-hay-tao-ra-sai-o-moc-sai-thu-tu-ham-khong-co-that": {
+    "title": "Stage 67, Lesson 7: Three kinds of mistakes AI makes - off-by-one boundaries, wrong order, functions that don't exist",
+    "subtitle": "AI-written code looks tidy and is reported as done, but the mistakes tend to fall in exactly three places."
+  },
   "bien-va-phep-gan": {
     "title": "Lesson 2: Variables and assignment",
     "subtitle": "A variable is not a box holding a value. Getting this right early saves you a lot of trouble.",
@@ -18,6 +22,10 @@
     "title": "Operational quality: the pillar nobody mentions",
     "subtitle": "Why the hardest pillar to see is the one that warns of incidents earliest",
     "duration": "8 min"
+  },
+  "chay-bo-thu-doc-bao-loi-va-sua-tung-cho-mot": {
+    "title": "Stage 67, Lesson 9: Run the tests, read the error report, fix one thing at a time",
+    "subtitle": "A test suite is your code's scoreboard: each ✗ line points at exactly one failing case, so you can fix things one by one."
   },
   "chi-phi-co-dinh-va-theo-luong-dung": {
     "title": "Fixed cost and cost that scales with usage",
@@ -109,10 +117,18 @@
     "subtitle": "You cannot plan around hours you have never checked you actually have",
     "duration": "7 min"
   },
+  "doc-git-diff-ai-doi-gi-o-tep-nao": {
+    "title": "Stage 67, Lesson 8: Reading git diff - what the AI changed, and in which file",
+    "subtitle": "A comparison of two versions shows every change, including the ones the AI's report doesn't mention."
+  },
   "doc-hieu-chi-bao-kinh-te-vi-mo": {
     "title": "Leading indicators and lagging indicators",
     "subtitle": "Which one warns and which one only confirms, and why every team tracks the second",
     "duration": "9 min"
+  },
+  "doc-ma-ai-viet-tung-buoc-va-noi-lai-bang-loi-cua-minh": {
+    "title": "Stage 67, Lesson 6: Read the code AI writes - step by step, then say it in your own words",
+    "subtitle": "You do not need to write code, but do not accept code you cannot read."
   },
   "du-bao-lan": {
     "title": "Engineering Lead & Operations, Lesson 2: Rolling forecasts",
@@ -123,6 +139,10 @@
     "title": "Pooled spare capacity: why no team should hold its own",
     "subtitle": "Gathering several services' spare capacity into one pool, and the condition for it to work",
     "duration": "9 min"
+  },
+  "giao-viec-cho-ai-nhu-giao-viec-cho-tho": {
+    "title": "Stage 67, Lesson 1: Hand off work to AI like you would to a tradesperson - say what you want and what it is for",
+    "subtitle": "The same AI, two different requests, two completely different results."
   },
   "he-thong-dang-co-gi": {
     "title": "What the system holds and where its capacity comes from",
@@ -209,10 +229,26 @@
     "subtitle": "Three kinds of system where the familiar arithmetic gives a badly wrong answer",
     "duration": "9 min"
   },
+  "mot-luot-mot-viec-chia-du-an-thanh-buoc-kiem-duoc": {
+    "title": "Stage 67, Lesson 2: One thing at a time - split a project into steps you can check",
+    "subtitle": "Ask for the whole project in one sentence and the bugs are everywhere; ask step by step and every bug has an address."
+  },
+  "nghiem-thu-truoc-khi-nhan-chay-thu-va-doc-bao-cao-cua-ai": {
+    "title": "Stage 67, Lesson 4: Check the work before you accept it - run it and read the AI's report",
+    "subtitle": "\"Done\" is a claim. Running it is the evidence."
+  },
+  "nghiem-thu-va-ban-giao-kiem-ca-quy-trinh-truoc-khi-dua-cho-khach": {
+    "title": "Stage 67, Lesson 10: Acceptance and handover: test the whole workflow before it goes to the customer",
+    "subtitle": "Each part being right is not enough: bugs often hide where the parts are joined together."
+  },
   "nhieu-dich-vu-nho-hay-mot-dich-vu-lon": {
     "title": "Many small services or one large one",
     "subtitle": "Splitting only reduces risk when the pieces fail independently",
     "duration": "9 min"
+  },
+  "noi-ro-dieu-khong-duoc-doi-khi-giao-viec-cho-ai": {
+    "title": "Stage 67, Lesson 3: Say what must not change - keep the working parts safe when you ask AI for a fix",
+    "subtitle": "When AI fixes one spot, it will happily change others unless you say not to."
   },
   "on-tap-quy-loi-ich-tuong-lai-ve-hien-tai": {
     "title": "Review: bringing future benefit back to today",
@@ -288,6 +324,10 @@
     "title": "Load testing and extreme scenarios",
     "subtitle": "Designing a test for the worst day, not for an average day multiplied by two",
     "duration": "9 min"
+  },
+  "viet-ca-thu-truoc-khi-nho-ai-lam-tinh-nang": {
+    "title": "Stage 67, Lesson 5: Write test cases before asking AI - know what \"done\" means",
+    "subtitle": "Say what \"done\" means before the AI starts, and you can check its work when it finishes."
   },
   "vong-lap-for-va-while": {
     "title": "Lesson 7: Loops",

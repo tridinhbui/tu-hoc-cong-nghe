@@ -1,0 +1,320 @@
+{
+  "slug": "chay-bo-thu-doc-bao-loi-va-sua-tung-cho-mot",
+  "title": "Stage 67, Lesson 9: Run the tests, read the error report, fix one thing at a time",
+  "subtitle": "A test suite is your code's scoreboard: each ✗ line points at exactly one failing case, so you can fix things one by one.",
+  "whyItMatters": "When code is wrong, the worst move is to change everything at once and hope. A test suite gives you what the AI does not have on its own: a scoreboard saying which case failed, what the function returned and what it should have returned. Reading one ✗ line and fixing one thing at a time, re-running after each fix, turns a pile of errors into a few small jobs, and it keeps you in control when an AI writes the code.",
+  "openingQuestion": "The shop takes orders from 7 to 21. The test suite prints: ✗ exactly 21:00: got \"outside order hours\", expected \"ok\". What does this line tell you?",
+  "openingOptions": [
+    "It expected \"outside order hours\" but the function returned \"ok\", so it accepts hour 21 by mistake",
+    "The function is right and the test is wrong for hour 21, so fix the test before anything else",
+    "For hour 21 the function returns \"outside order hours\" instead of \"ok\"",
+    "The whole suite is broken and every other case fails too, so rewrite the entire function from scratch"
+  ],
+  "explanation": "Each ✗ line has three parts: the case name (exactly 21:00), what the function really returned (got) and what the table expected (expected). Here the function rejects hour 21 while the shop's rule still accepts orders through the end of hour 21. So the suspect is the hour comparison at the top of the function, not the test. Swapping got and expected would read the error backwards. A ✗ line speaks only about its own case, so there is nothing to conclude yet about the other cases.",
+  "diagram": [
+    {
+      "label": "Run the tests: many cases in one go"
+    },
+    {
+      "label": "Read the ✗ line: which case, got what, expected what"
+    },
+    {
+      "label": "Fix ONE thing that causes that failure"
+    },
+    {
+      "label": "Re-run the whole suite: that case passes, nothing else breaks"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Illustrative scenario",
+    "description": "Illustrative scenario: someone asks an AI to write an order-checking function, runs a six-case test suite and gets \"Passed 4/6\". They change three things at once, re-run and get 3/6, with no idea which change broke something. The next time they read the first ✗ line, fix exactly the hour condition, re-run and reach 5/6, then fix the last problem. Two small fixes were faster than one big one."
+  },
+  "quiz": [
+    {
+      "question": "The suite finishes with \"Passed 4/6\" and two ✗ lines. What should you do first?",
+      "options": [
+        "Read the first ✗ line, find what causes that case to fail and fix only that",
+        "Fix every suspicious spot at the same time, then re-run exactly once at the end to save time",
+        "Delete the old function and ask the AI to write a fresh one so everything starts clean",
+        "Remove the hard case from the suite so more cases pass"
+      ],
+      "explanation": "The ✗ line tells you which case failed and how, so that is where you start. Fixing one thing and re-running shows you which change worked. Fixing many things at once leaves you unsure which one was right, rewriting from scratch throws away the parts that already work, and dropping the hard case only makes the scoreboard look better, not the code."
+    },
+    {
+      "question": "You just fixed one spot in the function. What is a sensible next step?",
+      "options": [
+        "Re-run only the fixed case; if it passes, the suite has passed",
+        "Re-run the whole suite and check that case and the others still pass",
+        "Fix the next spot at once and re-run everything at the end",
+        "Paste the old results to the AI so it recalls the old failures"
+      ],
+      "explanation": "Running the whole suite shows both the case you fixed and whether cases that used to pass broke again. Running only the fixed case misses new bugs introduced elsewhere. Postponing the run to the end stacks errors on top of each other, and pasting old results to the AI is pointless before you have new results."
+    },
+    {
+      "question": "When is it right to paste the error report to an AI and ask for a fix?",
+      "options": [
+        "Right at the first ✗, because the AI fixes things faster than a person can read the line",
+        "When you want the AI to also rework other finished functions in the same style as this one",
+        "After you read the failing case and still cannot find the cause",
+        "Only once the whole suite has passed, so the AI can explain again why everything is correct"
+      ],
+      "explanation": "Read the ✗ line first, because many small bugs, such as a comparison that is off by one, you can spot yourself in a minute. Pasting the report is worth it when you understand the failing case but are still stuck. Pasting at every moment kills your reading habit, and asking the AI to rework finished functions widens the scope, which is exactly what the earlier lesson warned against."
+    },
+    {
+      "question": "You paste the error to the AI. Which package of information is both complete and safe?",
+      "options": [
+        "The entire settings file so that the AI understands everything, secret keys included",
+        "A screenshot of the whole screen, with every open window in it",
+        "Just \"it does not work\", since the AI will guess the error itself",
+        "The ✗ line, the related code and the test case, with secret keys removed"
+      ],
+      "explanation": "The AI needs to see the failing case, the related code and what you expected, and secret keys (passwords, access codes) are never needed for that. \"It does not work\" is missing every fact. A settings file may hold secret keys, so pasting it leaks them, and a full-screen screenshot adds extra information and can leak unrelated things too."
+    },
+    {
+      "question": "The AI fixes the hour-21 case and says \"fixed\". What is the most trustworthy evidence?",
+      "options": [
+        "You re-run the suite: that case passes and the others still pass",
+        "The AI's own statement that it is fixed, plus a fluent explanation",
+        "The new code looks shorter and tidier than the old code",
+        "No red error messages show up in the editor when you open the file that holds the code"
+      ],
+      "explanation": "The evidence is the run result: the failing case turns into a pass and the cases that passed before are unchanged. The AI's \"it is done\" is not evidence, and tidy code does not mean correct code. No red errors only tells you the code can be read, not that it returns the right results."
+    }
+  ],
+  "keyTakeaways": [
+    "A test suite is a scoreboard: many cases run at once, and each ✗ line is one failing case.",
+    "A ✗ line has three parts: the case name, what the function returned (got) and what the table expected (expected).",
+    "Fix one thing at a time and re-run the whole suite after every fix.",
+    "Paste the error to the AI when you have read it and are still stuck, with the test case attached and secret keys removed.",
+    "After a fix, check that cases which passed before and functions already finished are still intact."
+  ],
+  "practicePrompt": {
+    "question": "The test suite shows ✗ on two different cases. Which way of fixing is most sensible?",
+    "options": [
+      "Fix both cases at once so you run the suite only one time",
+      "Fix what breaks the first case, re-run, and only then move to the second",
+      "Ask the AI to rewrite the whole function so both cases pass",
+      "Fix the easy case first and leave the hard one to the AI"
+    ],
+    "explanation": "Fixing one case and re-running tells you the fix worked and did not break the other case. Fixing both at once mixes up the causes, asking the AI to rewrite throws away the parts that already work, and leaving it to the AI hands control away."
+  },
+  "summary": {
+    "keyIdea": "Read each ✗ line, fix one thing, re-run the whole suite, and only then fix the next.",
+    "formula": "✗ line = case name + what the function returned (got) + what the table expected (expected).",
+    "commonMistake": "Changing many things at once and then not knowing which change broke something more.",
+    "action": "Next time the suite reports errors, fix only the first ✗ line and re-run before doing anything else."
+  },
+  "application": {
+    "title": "Do it now in 10 minutes",
+    "message": "Take any function you have and write six test cases: normal, edge and wrong-input ones. Run them, read each ✗ line, fix one thing, re-run, and write down the number of passing cases after each run to watch it climb.",
+    "secondary": "If the passing count drops after a fix, undo that fix and think again."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The AI finishes a function and you run the test suite: a wall of red text appears. This lesson teaches you to read that wall as a scoreboard and to fix things one at a time instead of at random."
+    },
+    {
+      "type": "feynman",
+      "title": "A test suite is simpler than you think",
+      "intro": "A school test has many questions and each question has its own score. A test suite works the same way: many cases run at once, and every failing case is marked.",
+      "columns": [
+        "What to do",
+        "With a school test",
+        "With a test suite"
+      ],
+      "rows": [
+        [
+          "See the score",
+          "Read the score sheet: which questions were wrong",
+          "Read the ✗ lines: which cases failed"
+        ],
+        [
+          "Understand the error",
+          "Compare your answer with the correct one",
+          "Compare the got part (what the function returned) with the expected part"
+        ],
+        [
+          "Fix it",
+          "Study exactly the part you got wrong, then retry",
+          "Fix exactly what causes the failing case, then re-run"
+        ],
+        [
+          "Check again",
+          "Questions you got right are still right",
+          "Cases that passed still pass, other functions unchanged"
+        ]
+      ],
+      "oneLiner": "The test suite gives you a scoreboard; read it, fix one thing, re-run."
+    },
+    {
+      "type": "flow",
+      "title": "One round of reading errors and fixing",
+      "steps": [
+        {
+          "label": "Run the test suite",
+          "detail": "Look at the total line, for example \"Passed 4/6\", then at the ✗ lines."
+        },
+        {
+          "label": "Pick one ✗ line",
+          "detail": "Start from the first one and do not jump around."
+        },
+        {
+          "label": "Read the three parts",
+          "detail": "Which case, got what, expected what: from that, work out where to suspect."
+        },
+        {
+          "label": "Fix one thing",
+          "detail": "Only what causes that failing case; do not tidy anything else."
+        },
+        {
+          "label": "Re-run the whole suite",
+          "detail": "Does that case pass now? Do the cases that passed still pass?"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Reading one ✗ line"
+    },
+    {
+      "type": "paragraph",
+      "text": "Take this line: ✗ name is only spaces: got \"ok\", expected \"missing name\". The case has a name box that holds nothing but spaces. The function returns \"ok\", meaning it treats a few spaces as a real name. The table expected \"missing name\". This one line already narrows things down: the name check does not trim extra spaces. You do not need to read the whole function yet."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Fixing many things at once",
+        "text": "You change three conditions, re-run and get 3/6. A new case fails and you cannot tell which change caused it. You cannot even tell what to undo."
+      },
+      "right": {
+        "label": "Fixing one thing at a time",
+        "text": "You fix exactly the hour condition, re-run and get 5/6. Only one ✗ line is left to deal with. Every run gives you a clear conclusion."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "Fix it yourself or ask the AI?"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Fix it yourself when the ✗ line shows an obvious cause, such as a comparison that is off by one or a missing trim step.",
+        "Ask the AI when you have read the three parts of the ✗ line and still cannot tell what produces that result.",
+        "When you ask, paste the ✗ line, the related code and the test case, and say clearly to change only that function.",
+        "After every version the AI returns, still re-run the whole suite: \"I fixed it\" is not evidence."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Hide secret keys before you paste",
+      "text": "If passwords, access codes or connection keys sit in a settings file, delete them or replace them with the words \"(hidden)\" before pasting to the AI. To fix a bug, the AI never needs to see them."
+    },
+    {
+      "type": "aiLab",
+      "mode": "prompt",
+      "title": "Build a request that asks the AI to fix exactly one failing case",
+      "task": "The test suite shows ✗ on the case \"name is only spaces\". You have read it and still are not sure what is wrong. Put together your request to the AI.",
+      "parts": [
+        {
+          "label": "Evidence to send",
+          "options": [
+            {
+              "text": "The order-checking function does not work right, please fix it for me.",
+              "feedback": "The failing case and your expectation are missing: the AI has to guess the error."
+            },
+            {
+              "text": "The ✗ line: name is only spaces, got \"ok\", expected \"missing name\"; plus the name-checking code.",
+              "feedback": "It has the failing case, the real result and the expected result, so the AI can narrow down the cause."
+            }
+          ]
+        },
+        {
+          "label": "Sensitive data",
+          "options": [
+            {
+              "text": "Paste the whole settings file so that the AI sees all of the background.",
+              "feedback": "A settings file may contain secret keys: pasting it leaks them."
+            },
+            {
+              "text": "Paste only the related code; keys and passwords are hidden.",
+              "feedback": "The AI has enough to fix the bug without seeing what it does not need."
+            }
+          ]
+        },
+        {
+          "label": "Scope of the fix",
+          "options": [
+            {
+              "text": "Change only the function kiemTraDon, leave the other functions as they are and list the lines you changed.",
+              "feedback": "Clear boundary: afterwards you can compare, and the other functions are not touched."
+            },
+            {
+              "text": "Make it cleaner and better while you are at it, I trust you.",
+              "feedback": "This widens the scope: functions that work may be changed with nobody being told."
+            }
+          ]
+        }
+      ],
+      "responses": [
+        {
+          "text": "This case fails because the name check does not trim extra spaces, so a string of only spaces still counts as a name. I only change the name-check line in kiemTraDon so that it trims the spaces before comparing with the empty string.\nChanges: (1) one line in kiemTraDon; (2) no other function is changed.\n(Re-run the whole suite to confirm.)"
+        },
+        {
+          "text": "I fixed kiemTraDon for the case where the name is only spaces and listed the changed line below.\n(The fix is right, but the first paste may leak secret keys if the file contains any.)"
+        },
+        {
+          "text": "I rewrote the order-checking function to be tidier and also adjusted a few other functions. Please try it.\n(It does not say which case was failing or what changed: hard to check.)"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Running project: the Alley coffee shop - step 9/10",
+      "text": "Step 9: the AI wrote the order-checking function but the test suite shows it is still wrong in two places. Read the ✗ lines, fix one thing at a time and re-run until all six cases pass. The program also checks that the finished functions are still intact."
+    },
+    {
+      "type": "exercise",
+      "title": "Project step 9: fix the errors by reading the test suite, one thing at a time",
+      "task": "The AI wrote kiemTraDon for the order-taking feature, but the test suite shows it is not good enough. Treat the run output as the \"error report\": each ✗ line is one failing case. Fix kiemTraDon one thing at a time, re-run after each fix, until all six cases pass. The three functions tongTien, apGiamGia and phiGiao were finished earlier: the program also checks that you did not accidentally change them.",
+      "starter": "// tongTien = \"total amount\", gio = \"cart\", apGiamGia = \"apply discount\", phiGiao = \"delivery fee\",\n// kiemTraDon = \"check order\", boThu = \"test suite\", don = \"order\", ten = \"name\", sdt = \"phone\"\nconst MENU = { \"ca-phe-den\": 25000, \"ca-phe-sua\": 29000, \"tra-dao\": 34500, \"banh-mi\": 20000 };\n\nfunction tongTien(gio) {\n  let tong = 0;\n  for (const dong of gio) tong += MENU[dong.mon] * dong.soLuong;\n  return tong;\n}\n\nfunction apGiamGia(tong, ma) {\n  if (ma === \"GIAM10\" && tong >= 100000) return tong - tong / 10;\n  return tong;\n}\n\nfunction phiGiao(tong) {\n  if (tong < 0) return \"invalid total\";\n  if (tong >= 500000) return 0;\n  return 30000;\n}\n\n// Function written by the AI. The test suite shows where it is wrong.\nfunction kiemTraDon(don) {\n  if (!don.ten) return \"missing name\";\n  if (!/^0\\d{9}$/.test(don.sdt)) return \"invalid phone number\";\n  if (don.gio < 7 || don.gio >= 21) return \"outside order hours\";\n  return \"ok\";\n}\n\nconst boThu = [\n  [\"normal order\", { ten: \"An\", sdt: \"0901234567\", gio: 9 }, \"ok\"],\n  [\"exactly 7:00\", { ten: \"An\", sdt: \"0901234567\", gio: 7 }, \"ok\"],\n  [\"exactly 21:00\", { ten: \"An\", sdt: \"0901234567\", gio: 21 }, \"ok\"],\n  [\"22:00\", { ten: \"An\", sdt: \"0901234567\", gio: 22 }, \"outside order hours\"],\n  [\"name is only spaces\", { ten: \"   \", sdt: \"0901234567\", gio: 9 }, \"missing name\"],\n  [\"phone with 9 digits\", { ten: \"An\", sdt: \"090123456\", gio: 9 }, \"invalid phone number\"],\n];\n\nlet qua = 0;\nfor (const [ten, don, mong] of boThu) {\n  const that = kiemTraDon(don);\n  if (that === mong) qua++;\n  else console.log(\"✗ \" + ten + \": got \\\"\" + that + \"\\\", expected \\\"\" + mong + \"\\\"\");\n}\nconsole.log(\"Passed \" + qua + \"/\" + boThu.length);\n\n// ---- Check that the finished functions were not changed; nothing to fix here ----\nconst nguyenVen =\n  tongTien([{ mon: \"tra-dao\", soLuong: 1 }]) === 34500 &&\n  apGiamGia(100000, \"GIAM10\") === 90000 &&\n  phiGiao(500000) === 0;\nconsole.log(\"Finished functions still intact: \" + (nguyenVen ? \"yes\" : \"no\"));",
+      "solution": "// tongTien = \"total amount\", gio = \"cart\", apGiamGia = \"apply discount\", phiGiao = \"delivery fee\",\n// kiemTraDon = \"check order\", boThu = \"test suite\", don = \"order\", ten = \"name\", sdt = \"phone\"\nconst MENU = { \"ca-phe-den\": 25000, \"ca-phe-sua\": 29000, \"tra-dao\": 34500, \"banh-mi\": 20000 };\n\nfunction tongTien(gio) {\n  let tong = 0;\n  for (const dong of gio) tong += MENU[dong.mon] * dong.soLuong;\n  return tong;\n}\n\nfunction apGiamGia(tong, ma) {\n  if (ma === \"GIAM10\" && tong >= 100000) return tong - tong / 10;\n  return tong;\n}\n\nfunction phiGiao(tong) {\n  if (tong < 0) return \"invalid total\";\n  if (tong >= 500000) return 0;\n  return 30000;\n}\n\nfunction kiemTraDon(don) {\n  if (don.ten.trim() === \"\") return \"missing name\";\n  if (!/^0\\d{9}$/.test(don.sdt)) return \"invalid phone number\";\n  if (don.gio < 7 || don.gio > 21) return \"outside order hours\";\n  return \"ok\";\n}\n\nconst boThu = [\n  [\"normal order\", { ten: \"An\", sdt: \"0901234567\", gio: 9 }, \"ok\"],\n  [\"exactly 7:00\", { ten: \"An\", sdt: \"0901234567\", gio: 7 }, \"ok\"],\n  [\"exactly 21:00\", { ten: \"An\", sdt: \"0901234567\", gio: 21 }, \"ok\"],\n  [\"22:00\", { ten: \"An\", sdt: \"0901234567\", gio: 22 }, \"outside order hours\"],\n  [\"name is only spaces\", { ten: \"   \", sdt: \"0901234567\", gio: 9 }, \"missing name\"],\n  [\"phone with 9 digits\", { ten: \"An\", sdt: \"090123456\", gio: 9 }, \"invalid phone number\"],\n];\n\nlet qua = 0;\nfor (const [ten, don, mong] of boThu) {\n  const that = kiemTraDon(don);\n  if (that === mong) qua++;\n  else console.log(\"✗ \" + ten + \": got \\\"\" + that + \"\\\", expected \\\"\" + mong + \"\\\"\");\n}\nconsole.log(\"Passed \" + qua + \"/\" + boThu.length);\n\nconst nguyenVen =\n  tongTien([{ mon: \"tra-dao\", soLuong: 1 }]) === 34500 &&\n  apGiamGia(100000, \"GIAM10\") === 90000 &&\n  phiGiao(500000) === 0;\nconsole.log(\"Finished functions still intact: \" + (nguyenVen ? \"yes\" : \"no\"));",
+      "expectedOutput": "Passed 6/6\nFinished functions still intact: yes",
+      "hints": [
+        "Run it first: the two ✗ lines tell you which cases fail and how the result you got differs from the expected one. Fix them one case at a time.",
+        "A name made only of spaces still counts as \"has a name\" for !don.ten. Cut the spaces at both ends with .trim() before comparing.",
+        "\"Accept from 7 to 21\" means 21 is still accepted: reject only when the hour is greater than 21."
+      ]
+    },
+    {
+      "type": "scenario",
+      "title": "Two ✗ lines in the test suite",
+      "nodes": {
+        "s1": {
+          "text": "The suite prints \"Passed 4/6\" with two ✗ lines: one about hour 21 and one about the name made only of spaces. You have to choose how to proceed.",
+          "choices": [
+            {
+              "label": "Read the ✗ line about hour 21, fix the hour condition, then re-run the whole suite"
+            },
+            {
+              "label": "Ask the AI to fix everything at once, take the new version and send it straight to the customer"
+            }
+          ]
+        },
+        "bad_blind": {
+          "text": "The new version looks fine and the AI says \"done\", but you do not re-run. Two days later the customer reports that an order at 21:00 is still rejected."
+        },
+        "good": {
+          "text": "The re-run shows 5/6: the hour-21 case passes and the others still pass. You fix the name check next, re-run to get 6/6, and the older functions are still intact."
+        }
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Read the ✗ line, fix one thing, re-run the whole suite, and only then move to the next.",
+        "Next lesson: put the pieces together into one workflow and accept it before handing it to the customer."
+      ]
+    }
+  ]
+}

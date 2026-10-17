@@ -188,6 +188,7 @@ export const revampDashboardVi = {
         { tag: "AI CÓ TRÁCH NHIỆM", headline: "Dùng AI có trách nhiệm trong tổ chức", outcome: "Viết chính sách dùng AI · đánh giá rủi ro · lập danh sách công cụ được duyệt · ghi nhật ký sử dụng và xử lý sự cố" },
         { tag: "QUYỀN RIÊNG TƯ", headline: "Giữ dữ liệu cá nhân đúng cách ở nơi làm việc", outcome: "Nắm nguyên tắc dữ liệu cá nhân · thu thập tối thiểu và xin đồng ý · ẩn danh · quyết định lưu và xoá · biết lúc nào phải hỏi pháp chế" },
         { tag: "NỀN TẢNG", headline: "Nắm nền tảng công nghệ của người đi làm", outcome: "Hiểu máy tính, lưu trữ, mạng và đám mây · dùng mật khẩu và xác thực hai lớp · nhận ra lừa đảo · sao lưu, cập nhật và đọc thông báo lỗi" },
+        { tag: "AI CODE", headline: "Nhờ AI viết code mà vẫn kiểm soát được", outcome: "Giao việc rõ cho AI · chia nhỏ từng lượt · đọc và hỏi lại thứ AI viết · biết khi nào cần tự kiểm tra" },
       ] as StageOutcome[],
       professional: [
         { tag: "DATA", headline: "Mô hình hoá dữ liệu không mất, không sai", outcome: "Chọn kiểu tránh tràn số và sai số thực · thiết kế lược đồ và khoá ngoại · chuẩn hoá bảng · dùng chỉ mục và giao dịch · sao lưu rồi khôi phục thử" },
@@ -398,6 +399,7 @@ export const revampDashboardEn: typeof revampDashboardVi = {
         { tag: "RESPONSIBLE AI", headline: "Use AI responsibly in an organisation", outcome: "Write an AI use policy · assess risk · keep a list of approved tools · log usage and handle incidents" },
         { tag: "PRIVACY", headline: "Handle personal data properly at work", outcome: "Know the principles of personal data · collect the minimum and get consent · anonymise · decide what to keep and delete · know when to ask legal" },
         { tag: "FOUNDATIONS", headline: "Tech foundations for working adults", outcome: "Understand computers, storage, networks and the cloud · use passwords and two-factor sign-in · recognise scams · back up, update and read error messages" },
+        { tag: "AI CODE", headline: "Have AI write code while staying in control", outcome: "Brief the AI clearly · split work into small turns · read and question what it wrote · know when to check it yourself" },
       ] as StageOutcome[],
       professional: [
         { tag: "DATA", headline: "Model data without losing or corrupting it", outcome: "Choose types that avoid overflow and float error · design schemas and foreign keys · normalise tables · use indexes and transactions · back up and test a restore" },
