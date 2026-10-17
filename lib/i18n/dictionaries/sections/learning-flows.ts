@@ -49,6 +49,10 @@ export const learningFlowsVi = {
     minutes: "{minutes} phút",
 
     partialNote: "Các bài nền đã có đủ. Bài hướng dẫn dựng một agent hoàn chỉnh từ đầu đến cuối đang được viết.",
+    // Mỗi hành trình "partial" thiếu một thứ khác nhau; câu chung ở trên nói về agent.
+    partialNoteByFlow: {
+      vibecode: "Các bài nền đã có đủ. Phần đọc, kiểm tra thứ AI viết và một dự án xuyên suốt đang được viết thêm.",
+    },
     soonNote: "Chặng chuyên cho marketing đang được viết. Trong lúc chờ, các bài dưới đây dùng được ngay.",
 
     branchesTitle: "Khi đã thấy mình làm được: chọn hướng của bạn",
@@ -601,6 +605,9 @@ export const learningFlowsEn: typeof learningFlowsVi = {
     minutes: "{minutes} min",
 
     partialNote: "The foundation lessons are all here. An end-to-end lesson on building a complete agent is being written.",
+    partialNoteByFlow: {
+      vibecode: "The foundation lessons are all here. More lessons on reading and checking what AI writes, and one project that runs through the whole journey, are still being written.",
+    },
     soonNote: "Marketing-specific chapters are being written. Meanwhile, the lessons below are ready to use.",
 
     branchesTitle: "Once you know you can do it: choose your direction",

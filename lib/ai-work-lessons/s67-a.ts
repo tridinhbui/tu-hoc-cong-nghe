@@ -731,6 +731,19 @@ export const S67_A_LESSONS: Lesson[] = [
         ],
       },
       {
+        type: "aiLab",
+        mode: "spotError",
+        title: "Đối chiếu danh sách thay đổi với phạm vi đã dặn",
+        task: "Bạn chỉ nhờ AI sửa nút Gửi và dặn giữ nguyên phần khác. Đây là bản liệt kê AI gửi lại. Bấm vào những dòng đi quá phạm vi, rồi nộp.",
+        segments: [
+          { text: "Đã thêm 3 dòng gắn hành động khi bấm cho nút Gửi trong biểu mẫu liên hệ." },
+          { text: "Đã đổi màu tiêu đề từ xanh sang cam cho nổi bật hơn.", error: "Ngoài phạm vi: bạn chỉ nhờ sửa nút Gửi, không ai nhờ đổi màu tiêu đề." },
+          { text: "Các ô nhập và bố cục của trang được giữ nguyên như cũ." },
+          { text: "Đã sửa luôn cách tính tổng tiền ở trang giỏ hàng cho gọn hơn.", error: "Ngoài phạm vi và rủi ro: đây là trang khác, lại là phần tính tiền, và không ai nhờ." },
+          { text: "Không đổi tên tệp hay thư mục nào trong dự án." },
+        ],
+      },
+      {
         type: "scenario",
         title: "Bản sửa có vẻ ổn nhưng khác đi",
         start: "s1",
@@ -978,6 +991,40 @@ export const S67_A_LESSONS: Lesson[] = [
           {
             text: "Tôi sẽ kiểm tra lại toàn bộ cách tính phí vận chuyển và các điều kiện miễn phí để đảm bảo mọi thứ hoạt động tốt.\n(Chung chung vì không có dữ kiện cụ thể.)",
           },
+        ],
+      },
+      {
+        type: "exercise",
+        language: "javascript",
+        title: "Nghiệm thu bản sửa phí vận chuyển bằng bốn đơn thử",
+        task: "AI báo đã sửa xong: đơn từ 500000 đồng trở lên được miễn phí vận chuyển, còn lại tính 30000 đồng. Chương trình dưới đây chạy bốn đơn thử và in kết quả. Bạn chạy nó, đối chiếu với điều mong đợi, rồi sửa hàm phiVanChuyen: đơn đúng 500000 phải miễn phí, và tổng tiền âm phải in ra \"tổng tiền không hợp lệ\". Bạn không cần viết lại từ đầu, chỉ sửa hai chỗ trong hàm.",
+        starter: `function phiVanChuyen(tong) {
+  if (tong > 500000) return 0;
+  return 30000;
+}
+
+const donThu = [200000, 500000, 800000, -1000];
+for (const tong of donThu) {
+  console.log(tong + " -> " + phiVanChuyen(tong));
+}`,
+        solution: `function phiVanChuyen(tong) {
+  if (tong < 0) return "tổng tiền không hợp lệ";
+  if (tong >= 500000) return 0;
+  return 30000;
+}
+
+const donThu = [200000, 500000, 800000, -1000];
+for (const tong of donThu) {
+  console.log(tong + " -> " + phiVanChuyen(tong));
+}`,
+        expectedOutput: `200000 -> 30000
+500000 -> 0
+800000 -> 0
+-1000 -> tổng tiền không hợp lệ`,
+        hints: [
+          "Chạy trước khi sửa: dòng của đơn 500000 đang in ra gì, và bạn mong đợi gì?",
+          "Dấu > nghĩa là lớn hơn hẳn; dấu >= nghĩa là lớn hơn hoặc bằng.",
+          "Thêm một dòng đầu hàm: nếu tong nhỏ hơn 0 thì trả về chữ \"tổng tiền không hợp lệ\".",
         ],
       },
       {
