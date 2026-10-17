@@ -6,7 +6,9 @@ import { ArrowLeft, ArrowRight, CheckCircle2, Hammer, Mic2, PlayCircle } from "l
 import Glyph from "@/components/Glyph";
 import { getDictionary, format } from "@/lib/i18n";
 import { getServerLocale } from "@/lib/i18n/server";
-import { getLessonsMeta } from "@/lib/lessons-loader";
+import { getLessonById, getLessonsMeta } from "@/lib/lessons-loader";
+import { VIBECODE_PROJECT_LESSON_IDS, buildProjectSteps } from "@/lib/vibecode-project";
+import VibecodeProjectPanel from "@/components/learning-flows/VibecodeProjectPanel";
 import { createServerCloudflareClient } from "@/lib/cloudflare-server";
 import { LEARNING_FLOWS, getLearningFlow } from "@/lib/learning-flows";
 import FeynmanCard, { type FeynmanCopy } from "@/components/learning-flows/FeynmanCard";
@@ -58,6 +60,8 @@ export default async function LearningFlowPage({ params }: { params: Promise<{ f
   // việc làm thêm khi có phiên, và hỏng thì bỏ qua chứ không làm hỏng trang.
   const completed = new Set<string>();
   let signedIn = false;
+  // Hành trình vibecode: các lần qua bài tập của người học, cho bảng tiến độ dự án.
+  let exercisePasses: { lesson_id: number; block_index: number }[] = [];
   try {
     const cloudflare = await createServerCloudflareClient();
     const {
@@ -68,10 +72,23 @@ export default async function LearningFlowPage({ params }: { params: Promise<{ f
       const { data } = await cloudflare.from("user_progress").select("lesson_id").eq("user_id", user.id).eq("completed", true);
       const ids = new Set((data ?? []).map((r) => r.lesson_id as number));
       for (const m of metas) if (ids.has(m.id)) completed.add(m.slug);
+      if (flow.id === "vibecode") {
+        const { data: passes } = await cloudflare.rpc("get_my_exercise_passes", {});
+        if (Array.isArray(passes)) exercisePasses = passes as typeof exercisePasses;
+      }
     }
   } catch {
     // Không có phiên hoặc không có D1 - hiện trang như với khách.
   }
+
+  // Các bước dự án: tải đủ bài (có `sections`) để biết khối bài tập nằm ở đâu.
+  const projectSteps =
+    flow.id === "vibecode"
+      ? buildProjectSteps(
+          (await Promise.all(VIBECODE_PROJECT_LESSON_IDS.map((id) => getLessonById(id, locale)))).flatMap((l) => (l ? [l] : [])),
+          exercisePasses
+        )
+      : [];
 
   const minutesOf = (slug: string) => {
     const m = bySlug.get(slug);
@@ -137,6 +154,8 @@ export default async function LearningFlowPage({ params }: { params: Promise<{ f
             </Link>
           </section>
         ) : null}
+
+        {flow.id === "vibecode" ? <VibecodeProjectPanel steps={projectSteps} signedIn={signedIn} copy={t.vibecodeProject} /> : null}
 
         {/* ── Các chặng ── */}
         <ol className="space-y-14">

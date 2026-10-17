@@ -94,7 +94,7 @@ export const DEVREL_LESSONS: Lesson[] = [
           "Vì họ có kỹ năng viết nội dung kỹ thuật rõ ràng cho người ngoài đọc"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn cuối mô tả năng lực, không phải nghĩa vụ. Vế then chốt là niềm tin đã được xây: một kênh mà người ta tin thì im lặng ở đó cũng là một thông điệp, và nó là thông điệp xấu nhất."
+        "explanation": "Lựa chọn “Vì họ có kỹ…” mô tả năng lực, không phải nghĩa vụ. Vế then chốt là niềm tin đã được xây: một kênh mà người ta tin thì im lặng ở đó cũng là một thông điệp, và nó là thông điệp xấu nhất."
       },
       {
         "question": "Điều gì xảy ra khi đội này bị đo bằng chỉ số tiếp thị?",
@@ -448,7 +448,7 @@ export const DEVREL_LESSONS: Lesson[] = [
         ],
         correct: 0,
         explanation:
-          "Điều chỉnh sớm là tin xấu; im lặng rồi trễ là tin xấu cộng với mất niềm tin. Riêng phương án cuối còn là cung cấp thông tin không công bằng cho phần cộng đồng còn lại.",
+          "Điều chỉnh sớm là tin xấu; im lặng rồi trễ là tin xấu cộng với mất niềm tin. Riêng phương án “Báo riêng trước cho…” còn là cung cấp thông tin không công bằng cho phần cộng đồng còn lại.",
       },
       {
         question: "Điều gì làm cộng đồng tha thứ cho một lần trễ hẹn?",
@@ -583,7 +583,7 @@ export const DEVREL_LESSONS: Lesson[] = [
           "Vì nó tạo cảm giác né tránh và làm giảm mức độ tin cậy của người nói"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn thứ hai đúng và nó vô hại. Vấn đề là câu đó nghe như một cam kết mềm: người nghe không phân biệt được lộ trình nội bộ với một lời hứa, và họ không có lý do gì để phân biệt."
+        "explanation": "Lựa chọn “Vì nó không cung…” đúng và nó vô hại. Vấn đề là câu đó nghe như một cam kết mềm: người nghe không phân biệt được lộ trình nội bộ với một lời hứa, và họ không có lý do gì để phân biệt."
       },
       {
         "question": "Vì sao nói điều kiện ưu tiên lại hữu ích hơn một mốc thời gian?",
@@ -627,7 +627,7 @@ export const DEVREL_LESSONS: Lesson[] = [
           "Chuyển hướng sang những khía cạnh mà sản phẩm làm tốt hơn đối thủ"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn thứ ba nghe hợp lý và nó rất dễ trượt thành né tránh - người nghe phân biệt được hai chuyện đó ngay. Với đối tượng kiểm được, trả lời thẳng là lựa chọn rẻ nhất tính theo tổng thời gian."
+        "explanation": "Lựa chọn “Nêu bối cảnh để…” nghe hợp lý và nó rất dễ trượt thành né tránh - người nghe phân biệt được hai chuyện đó ngay. Với đối tượng kiểm được, trả lời thẳng là lựa chọn rẻ nhất tính theo tổng thời gian."
       }
     ],
     "keyTakeaways": [

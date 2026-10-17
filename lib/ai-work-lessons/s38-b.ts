@@ -1363,7 +1363,7 @@ export const S38_B_LESSONS: Lesson[] = [
           "1,8% (= 252 ÷ 14.000)"
         ],
         "correct": 3,
-        "explanation": "Tỷ lệ lỗi là số lỗi chia cho số sản phẩm: 252 ÷ 14.000 = 0,018, tức 1,8%. Hai phương án đầu đều dịch dấu phẩy một bậc; phương án cuối chia ngược nên ra số sản phẩm trên mỗi lỗi chứ không phải tỷ lệ. (Số liệu minh hoạ.)"
+        "explanation": "Tỷ lệ lỗi là số lỗi chia cho số sản phẩm: 252 ÷ 14.000 = 0,018, tức 1,8%. Hai phương án “18%…” và “0,18%…” đều dịch dấu phẩy một bậc; phương án “55,6…” chia ngược nên ra số sản phẩm trên mỗi lỗi chứ không phải tỷ lệ. (Số liệu minh hoạ.)"
       },
       {
         "question": "Trang một trang gửi sếp nên có phần nào bên cạnh kết luận?",

@@ -18,6 +18,12 @@ export const learningPathVi = {
     backToDashboard: "Về Dashboard",
     title: "Bắt đầu từ đâu",
     subtitle: "Trang này trả lời ba câu: học gì, mỗi ngày bao lâu, và hôm nay làm gì.",
+    intro: "Chọn việc bạn muốn làm, xem đường đi tới đó, rồi mở bài đầu tiên.",
+    stepMilestonesTitle: "Các mốc trên đường",
+    milestoneLessons: "{done}/{total} bài",
+    milestonesMore: "và {count} chặng nữa phía sau.",
+    stepFirstTitle: "Bài đầu tiên của bạn",
+    moreTitle: "Cách học một bài, và những điều hay lo",
 
     // Câu trả lời trước, giải thích sau.
     guideTitle: "Lần đầu? Xem cách học một bài, chưa tới một phút",
@@ -128,6 +134,12 @@ export const learningPathEn: typeof learningPathVi = {
     backToDashboard: "Back to dashboard",
     title: "Where to start",
     subtitle: "This page answers three things: what to learn, how long a day, and what to do today.",
+    intro: "Pick what you want to build, see the road to it, then open your first lesson.",
+    stepMilestonesTitle: "Milestones on the way",
+    milestoneLessons: "{done}/{total} lessons",
+    milestonesMore: "and {count} more stages after these.",
+    stepFirstTitle: "Your first lesson",
+    moreTitle: "How a lesson works, and common worries",
 
     guideTitle: "First time? See how a lesson works, in under a minute",
     guideBody: "Four steps, three lessons to try, and where to say so when you get stuck.",

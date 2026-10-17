@@ -55,7 +55,7 @@ export const CONSTRUCTION_CONTRACTOR_LESSONS: Lesson[] = [
           "Vì áp lực thời gian ở giai đoạn cuối làm chất lượng công việc giảm"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn thứ hai cũng đúng và nó nói về lựa chọn của đội. Cái này là tính chất của công việc: bốn phần đó không làm được sớm vì chúng cần những thứ khác đã tồn tại trước, nên chúng dồn về cuối bất kể đội chọn thứ tự nào."
+        "explanation": "Lựa chọn “Vì đội thường làm…” cũng đúng và nó nói về lựa chọn của đội. Cái này là tính chất của công việc: bốn phần đó không làm được sớm vì chúng cần những thứ khác đã tồn tại trước, nên chúng dồn về cuối bất kể đội chọn thứ tự nào."
       },
       {
         "question": "Chữ xong nên được định nghĩa thế nào?",
@@ -99,7 +99,7 @@ export const CONSTRUCTION_CONTRACTOR_LESSONS: Lesson[] = [
           "Tiến độ thực tế chậm hơn so với kế hoạch ban đầu đã đặt ra"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn thứ hai trông xấu hơn và nó trung thực hơn. Con số tăng đều mà không có gì chạy được thì nó đang đo lượng công việc đã bỏ ra, không đo kết quả - và hai thứ đó chỉ trùng nhau ở cuối."
+        "explanation": "Lựa chọn “Con số tiến độ đứng…” trông xấu hơn và nó trung thực hơn. Con số tăng đều mà không có gì chạy được thì nó đang đo lượng công việc đã bỏ ra, không đo kết quả - và hai thứ đó chỉ trùng nhau ở cuối."
       }
     ],
     "keyTakeaways": [
@@ -227,7 +227,7 @@ export const CONSTRUCTION_CONTRACTOR_LESSONS: Lesson[] = [
           "Chi phí phối hợp phụ thuộc vào văn hoá làm việc còn chi phí thêm đội thì không"
         ],
         "correct": 0,
-        "explanation": "Ba lựa chọn kia đều đúng và đều là đặc điểm phụ. Hai vế trong lựa chọn đầu quyết định hình dạng của bài toán: một khoản trả một lần thì lớn tới đâu cũng chịu được, còn một khoản tăng theo bình phương thì sớm muộn cũng vượt phần lợi ích."
+        "explanation": "Ba lựa chọn kia đều đúng và đều là đặc điểm phụ. Hai vế trong lựa chọn “Chi phí thêm đội trả…” quyết định hình dạng của bài toán: một khoản trả một lần thì lớn tới đâu cũng chịu được, còn một khoản tăng theo bình phương thì sớm muộn cũng vượt phần lợi ích."
       },
       {
         "question": "Cách chữa đúng cho chi phí phối hợp là gì?",
@@ -238,7 +238,7 @@ export const CONSTRUCTION_CONTRACTOR_LESSONS: Lesson[] = [
           "Chỉ định một người điều phối chung cho các đội có phụ thuộc lẫn nhau"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn thứ ba là phản xạ phổ biến nhất và nó làm chi phí tăng chứ không giảm - họp là chi phí phối hợp ở dạng thuần tuý nhất. Cắt số đường thì giữ được lợi ích của việc có nhiều đội."
+        "explanation": "Lựa chọn “Tăng tần suất họp…” là phản xạ phổ biến nhất và nó làm chi phí tăng chứ không giảm - họp là chi phí phối hợp ở dạng thuần tuý nhất. Cắt số đường thì giữ được lợi ích của việc có nhiều đội."
       },
       {
         "question": "Điều gì làm hai đội gần như không cần nói chuyện với nhau?",
@@ -422,7 +422,7 @@ export const CONSTRUCTION_CONTRACTOR_LESSONS: Lesson[] = [
           "Số lần triển khai lên môi trường thật trong mỗi tuần làm việc"
         ],
         "correct": 0,
-        "explanation": "Rút ngắn nó đòi hỏi cải thiện thật ở toàn bộ chuỗi - từ làm rõ yêu cầu, viết mã, rà soát, kiểm thử tới phát hành. Lựa chọn cuối là chỉ số tốt và nó làm đẹp được bằng cách triển khai nhiều bản nhỏ vô nghĩa."
+        "explanation": "Rút ngắn nó đòi hỏi cải thiện thật ở toàn bộ chuỗi - từ làm rõ yêu cầu, viết mã, rà soát, kiểm thử tới phát hành. Lựa chọn “Số lần triển khai…” là chỉ số tốt và nó làm đẹp được bằng cách triển khai nhiều bản nhỏ vô nghĩa."
       },
       {
         "question": "Vì sao cắt phạm vi âm thầm nguy hiểm hơn trễ hạn?",
@@ -444,7 +444,7 @@ export const CONSTRUCTION_CONTRACTOR_LESSONS: Lesson[] = [
           "Như một con số cần được nhân thêm hệ số dự phòng trước khi dùng"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn cuối là cách xử lý phổ biến và nó chuyển phần dự phòng sang một chỗ khác mà vẫn giấu mức không chắc chắn. Một khoảng thì nói thẳng điều đó, và nó cho phép người nhận quyết định dựa trên rủi ro thật."
+        "explanation": "Lựa chọn “Như một con số…” là cách xử lý phổ biến và nó chuyển phần dự phòng sang một chỗ khác mà vẫn giấu mức không chắc chắn. Một khoảng thì nói thẳng điều đó, và nó cho phép người nhận quyết định dựa trên rủi ro thật."
       }
     ],
     "keyTakeaways": [

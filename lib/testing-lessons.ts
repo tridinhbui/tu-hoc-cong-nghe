@@ -59,7 +59,7 @@ export const TESTING_LESSONS: Lesson[] = [
           "Vì môi trường kiểm thử chỉ mô phỏng được một phần của môi trường thật"
         ],
         "correct": 0,
-        "explanation": "Số trạng thái có thể của một hệ thống thực tế là vô hạn, còn số phép kiểm thì hữu hạn. Lựa chọn thứ tư mô tả một hạn chế khác cũng thật, nhưng nó nói về CHẤT lượng của mẫu chứ không nói vì sao nó là mẫu."
+        "explanation": "Số trạng thái có thể của một hệ thống thực tế là vô hạn, còn số phép kiểm thì hữu hạn. Lựa chọn “Vì môi trường kiểm…” mô tả một hạn chế khác cũng thật, nhưng nó nói về CHẤT lượng của mẫu chứ không nói vì sao nó là mẫu."
       },
       {
         "question": "Loại kết luận thứ ba là gì và vì sao nó nguy hiểm?",
@@ -251,7 +251,7 @@ export const TESTING_LESSONS: Lesson[] = [
           "Nó nằm ở ngay trong phần đã được người dùng phản ánh nhiều nhất qua kênh hỗ trợ"
         ],
         "correct": 0,
-        "explanation": "Bốn dấu hiệu này đo được từ lịch sử kho mã mà không cần phán đoán. Lựa chọn thứ hai là hệ quả chứ không phải nguyên nhân, và lựa chọn thứ tư là chỉ báo trễ - nó cho biết chỗ đã hỏng rồi."
+        "explanation": "Bốn dấu hiệu này đo được từ lịch sử kho mã mà không cần phán đoán. Lựa chọn “Nó có độ bao…” là hệ quả chứ không phải nguyên nhân, và lựa chọn “Nó nằm ở ngay…” là chỉ báo trễ - nó cho biết chỗ đã hỏng rồi."
       },
       {
         "question": "Mức nghiêm trọng khác mức ưu tiên ở chỗ nào?",
@@ -262,7 +262,7 @@ export const TESTING_LESSONS: Lesson[] = [
           "Nghiêm trọng nói về mức độ ảnh hưởng còn ưu tiên nói về thời hạn phải sửa xong"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn thứ hai mô tả đúng ai thường điền vào ô nào, nhưng đó là hệ quả của phân biệt trên chứ không phải bản chất. Gộp hai thang lại thì hoặc bạn hoãn phát hành vì một lỗi hiếm, hoặc bạn phát hành kèm một lỗi phổ biến."
+        "explanation": "Lựa chọn “Nghiêm trọng do đội…” mô tả đúng ai thường điền vào ô nào, nhưng đó là hệ quả của phân biệt trên chứ không phải bản chất. Gộp hai thang lại thì hoặc bạn hoãn phát hành vì một lỗi hiếm, hoặc bạn phát hành kèm một lỗi phổ biến."
       },
       {
         "question": "Vì sao thang nghiêm trọng cần định nghĩa bằng ví dụ cụ thể?",
@@ -461,7 +461,7 @@ export const TESTING_LESSONS: Lesson[] = [
           "Chờ cho có đủ bằng chứng thật mạnh trước khi ra quyết định phát hành cho người dùng"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn cuối là điều không làm được: bằng chứng mạnh nhất chỉ có SAU khi phát hành. Đó chính là lý do phát hành dần tồn tại - nó là cách lấy bằng chứng mạnh với một phần nhỏ người dùng."
+        "explanation": "Lựa chọn “Chờ cho có đủ…” là điều không làm được: bằng chứng mạnh nhất chỉ có SAU khi phát hành. Đó chính là lý do phát hành dần tồn tại - nó là cách lấy bằng chứng mạnh với một phần nhỏ người dùng."
       }
     ],
     "keyTakeaways": [
@@ -614,7 +614,7 @@ export const TESTING_LESSONS: Lesson[] = [
           "Vì nó giúp phát hiện những lỗi chỉ xuất hiện với các tổ hợp dữ liệu hiếm"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn cuối là một biểu hiện cụ thể của ý này. Điểm chung: chọn theo biên và theo rủi ro đều bắt đầu từ một mô hình về chỗ lỗi nằm, và mô hình đó chính là thứ có thể sai."
+        "explanation": "Lựa chọn “Vì nó giúp phát…” là một biểu hiện cụ thể của ý này. Điểm chung: chọn theo biên và theo rủi ro đều bắt đầu từ một mô hình về chỗ lỗi nằm, và mô hình đó chính là thứ có thể sai."
       },
       {
         "question": "Rủi ro lớn nhất của một mẫu chọn sai là gì?",
@@ -803,7 +803,7 @@ export const TESTING_LESSONS: Lesson[] = [
           "Vì nó do đúng một đội khác thực hiện nên rốt cuộc tránh được thiên kiến của đội phát triển"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn cuối gần đúng và nó nói về con người; điểm mấu chốt thì về logic. Hai đường tính độc lập cho hai kết quả khác nhau là bằng chứng chắc chắn có gì đó sai, kể cả khi không ai biết đúng phải là bao nhiêu."
+        "explanation": "Lựa chọn “Vì nó do đúng…” gần đúng và nó nói về con người; điểm mấu chốt thì về logic. Hai đường tính độc lập cho hai kết quả khác nhau là bằng chứng chắc chắn có gì đó sai, kể cả khi không ai biết đúng phải là bao nhiêu."
       },
       {
         "question": "Hệ quả thực tế của việc thừa nhận giới hạn này là gì?",
@@ -814,7 +814,7 @@ export const TESTING_LESSONS: Lesson[] = [
           "Tăng thời gian dành cho việc viết đặc tả trước khi bắt đầu phát triển"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn cuối cải thiện được tỷ lệ nhưng nó vẫn nằm trong cùng vòng lặp kín: đặc tả kỹ hơn vẫn có thể sai theo cùng một hướng. Lớp thứ hai phải dựa trên một nguồn thông tin ĐỘC LẬP với đặc tả."
+        "explanation": "Lựa chọn “Tăng thời gian dành…” cải thiện được tỷ lệ nhưng nó vẫn nằm trong cùng vòng lặp kín: đặc tả kỹ hơn vẫn có thể sai theo cùng một hướng. Lớp thứ hai phải dựa trên một nguồn thông tin ĐỘC LẬP với đặc tả."
       }
     ],
     "keyTakeaways": [
@@ -966,7 +966,7 @@ export const TESTING_LESSONS: Lesson[] = [
           "Chạy kiểm thử cuối cùng trên môi trường thật trước khi cho phép phát hành"
         ],
         "correct": 0,
-        "explanation": "Khi tuyến hai viết thay, họ trở thành nút thắt cho mọi bản phát hành, và các đội ngừng nghĩ về chất lượng vì đã có người nghĩ hộ. Lựa chọn thứ ba và thứ tư đều dẫn tới cùng kết cục đó qua đường khác."
+        "explanation": "Khi tuyến hai viết thay, họ trở thành nút thắt cho mọi bản phát hành, và các đội ngừng nghĩ về chất lượng vì đã có người nghĩ hộ. Lựa chọn “Rà soát và phê…” và “Chạy kiểm thử cuối…” đều dẫn tới cùng kết cục đó qua đường khác."
       },
       {
         "question": "Vì sao tuyến thứ ba phải báo cáo cho người khác?",
@@ -988,7 +988,7 @@ export const TESTING_LESSONS: Lesson[] = [
           "Chất lượng của sản phẩm có đạt mức mà thị trường yêu cầu hay không"
         ],
         "correct": 0,
-        "explanation": "Phân biệt này quyết định tuyến ba làm gì hằng ngày: nó lấy mẫu, đối chiếu, và tìm chỗ mà quy trình được ghi ra khác với quy trình thật sự chạy. Lựa chọn thứ ba gần đúng nhưng tuân thủ hình thức không bằng hiệu lực thật."
+        "explanation": "Phân biệt này quyết định tuyến ba làm gì hằng ngày: nó lấy mẫu, đối chiếu, và tìm chỗ mà quy trình được ghi ra khác với quy trình thật sự chạy. Lựa chọn “Các đội có tuân…” gần đúng nhưng tuân thủ hình thức không bằng hiệu lực thật."
       },
       {
         "question": "Điều gì xảy ra khi ranh giới giữa ba tuyến bị mờ?",

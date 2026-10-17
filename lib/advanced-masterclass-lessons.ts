@@ -249,7 +249,7 @@ export const ADVANCED_MASTERCLASS_LESSONS: Lesson[] = [
           "Hai đường có băng thông không đủ để một cái gánh toàn bộ khi cái kia hỏng"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn cuối là một vấn đề thật và khác loại - nó là chuyện dung lượng chứ không phải nguyên nhân chung. Điểm vào toà nhà thì kiểm được bằng cách đi bộ xuống tầng hầm và nhìn."
+        "explanation": "Lựa chọn “Hai đường có băng…” là một vấn đề thật và khác loại - nó là chuyện dung lượng chứ không phải nguyên nhân chung. Điểm vào toà nhà thì kiểm được bằng cách đi bộ xuống tầng hầm và nhìn."
       },
       {
         "question": "Điều gì cần đọc kỹ nhất trong một cam kết mức độ dịch vụ?",

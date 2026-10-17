@@ -227,7 +227,7 @@ export const DATA_TOOLS_LESSONS: Lesson[] = [
         ],
         correct: 1,
         explanation:
-          "Đây là cách diễn đạt tự nhiên của phần lớn phép biến đổi dữ liệu, và cũng là cách nhanh nhất. Vòng lặp qua từng dòng nên là lựa chọn cuối cùng, không phải đầu tiên.",
+          "Đây là cách diễn đạt tự nhiên của phần lớn phép biến đổi dữ liệu, và cũng là cách nhanh nhất. Vòng lặp qua từng dòng nên là lựa chọn “Chuyển vị bảng dữ…” cùng, không phải đầu tiên.",
       },
       {
         question: "Vì sao nên khai báo đúng kiểu dữ liệu cho từng cột ngay từ đầu?",

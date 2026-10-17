@@ -28,11 +28,21 @@ if (!file) {
   process.exit(2);
 }
 
-// Nạp tệp .ts: chỉ có `import type` nên sau khi biên dịch không còn require nào.
-const source = readFileSync(path.resolve(root, file), "utf8");
-const js = ts.transpileModule(source, { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 } }).outputText;
-const mod = { exports: {} };
-new Function("module", "exports", "require", js)(mod, mod.exports, createRequire(import.meta.url));
+// Nạp tệp .ts. Chỉ nạp được import TƯƠNG ĐỐI sang tệp .ts khác cùng thư mục
+// (ví dụ ./s67-project, nơi chứa bài tập dùng chung); import kiểu (`import
+// type`) biến mất khi biên dịch, còn gói ngoài đi qua `require` thật.
+const nodeRequire = createRequire(import.meta.url);
+const cache = new Map();
+function loadTs(abs) {
+  if (cache.has(abs)) return cache.get(abs).exports;
+  const js = ts.transpileModule(readFileSync(abs, "utf8"), { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 } }).outputText;
+  const m = { exports: {} };
+  cache.set(abs, m);
+  const req = (spec) => (spec.startsWith(".") ? loadTs(path.resolve(path.dirname(abs), spec.endsWith(".ts") ? spec : `${spec}.ts`)) : nodeRequire(spec));
+  new Function("module", "exports", "require", js)(m, m.exports, req);
+  return m.exports;
+}
+const mod = { exports: loadTs(path.resolve(root, file)) };
 const lessons = Object.values(mod.exports).find(Array.isArray);
 if (!lessons) {
   console.error(`${file}: không tìm thấy mảng bài học được export`);

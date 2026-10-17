@@ -57,7 +57,7 @@ export const AUTH_LESSONS: Lesson[] = [
           "Vì thẻ không chứa mã định danh nên không xác định được thẻ nào cần thu hồi"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn thứ hai mô tả đúng chỗ lưu nhưng không phải nguyên nhân - phiên tra cứu cũng lưu ở phía người dùng và vẫn thu hồi được. Nguyên nhân là phép kiểm không đi qua chỗ nào có thể nói không nữa."
+        "explanation": "Lựa chọn “Vì thẻ được lưu…” mô tả đúng chỗ lưu nhưng không phải nguyên nhân - phiên tra cứu cũng lưu ở phía người dùng và vẫn thu hồi được. Nguyên nhân là phép kiểm không đi qua chỗ nào có thể nói không nữa."
       },
       {
         "question": "Vì sao thời gian sống của thẻ là một đánh đổi chứ không phải một lựa chọn tối ưu?",
@@ -90,7 +90,7 @@ export const AUTH_LESSONS: Lesson[] = [
           "Bộ nhớ phiên của trình duyệt vì nó tự xoá khi tab được đóng lại"
         ],
         "correct": 0,
-        "explanation": "Bộ nhớ cục bộ đọc được bằng mã kịch bản, nên một lỗ hổng chèn mã trên bất kỳ trang nào cũng lấy được thẻ. Lựa chọn thứ ba an toàn trước chuyện đó nhưng nó buộc đăng nhập lại mỗi lần tải trang."
+        "explanation": "Bộ nhớ cục bộ đọc được bằng mã kịch bản, nên một lỗ hổng chèn mã trên bất kỳ trang nào cũng lấy được thẻ. Lựa chọn “Biến trong bộ nhớ…” an toàn trước chuyện đó nhưng nó buộc đăng nhập lại mỗi lần tải trang."
       },
       {
         "question": "Điều gì cần kiểm khi rà soát một hệ thống xác thực?",

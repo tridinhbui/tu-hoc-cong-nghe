@@ -1,0 +1,311 @@
+{
+  "slug": "viet-ca-thu-truoc-khi-nho-ai-lam-tinh-nang",
+  "title": "Stage 67, Lesson 5: Write test cases before asking AI - know what \"done\" means",
+  "subtitle": "Say what \"done\" means before the AI starts, and you can check its work when it finishes.",
+  "whyItMatters": "Many people ask AI to build a feature and only then wonder how to check it, so all they can do is look at the result and think \"looks right\". If you write a few test situations with expected answers first, you tell the AI exactly what you want and you also get a ruler for catching mistakes when the code comes back. Writing test cases is the cheapest way to take back control.",
+  "openingQuestion": "You are about to ask AI to build an order-taking feature for your shop. What should you do first so you can check the result later?",
+  "openingOptions": [
+    "Write a few test cases: which orders get accepted, which get rejected",
+    "Ask the AI to build the whole feature first, then think about how to check it",
+    "Pick the most powerful AI tool, because a good tool gets it right the first time",
+    "Ask the AI to propose the order rules itself, then trust those rules"
+  ],
+  "explanation": "Test cases are concrete situations with expected answers, written before the AI works. They tell the AI what \"correct\" means, and afterwards they are the ruler you check its result against. Thinking about checks after the code exists lets the code steer you, so you only test what it already does. A strong tool cannot replace your own definition of \"done\". And letting the AI invent the rules means you give up the decision yourself.",
+  "diagram": [
+    {
+      "label": "Write \"done means...\" as a few criteria"
+    },
+    {
+      "label": "Make a short plan: what first, what next"
+    },
+    {
+      "label": "Write test cases: normal, edge, wrong input"
+    },
+    {
+      "label": "Ask the AI to build it, then run the cases to accept it"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Illustrative scenario",
+    "description": "Illustrative scenario: a shop owner asks AI to write the order-taking part and only says \"accept orders during opening hours\". The result works fine for an order at 9 a.m., so he uses it. That evening a customer orders at exactly 21:00 and is turned away. Next time he writes three cases first: 9:00 accepted, 21:00 accepted, 22:00 rejected. The new version is caught failing the 21:00 case before it ever reaches a customer."
+  },
+  "quiz": [
+    {
+      "question": "What is an acceptance criterion for a feature?",
+      "options": [
+        "A concrete condition that lets you tell at a glance whether the job is done",
+        "A list of features you want the AI to add little by little after the first version",
+        "The report the AI gives after finishing, so you can relax and accept the version",
+        "The price agreed between you and the AI for each code change"
+      ],
+      "explanation": "An acceptance criterion answers \"what do I look at to know it is done?\". A feature list says what to build, not what counts as correct. The AI's report is a claim nobody has checked. And price has nothing to do with the quality of the code."
+    },
+    {
+      "question": "Why write test cases before asking the AI to build something?",
+      "options": [
+        "Because the AI will only work after receiving a full set of test cases",
+        "They show what correct looks like, so the AI follows your intent more closely",
+        "Because with test cases you no longer need to run the AI's code yourself",
+        "Because test cases written first make the code run about twice as fast"
+      ],
+      "explanation": "Test cases written first turn the idea in your head into concrete examples, so the AI understands what you want and you already have a way to check the code when it arrives. The AI can still work without them, it just drifts more easily. You still have to run the cases on the new code. And test cases do not make code faster."
+    },
+    {
+      "question": "What are the three kinds of test case every feature should have?",
+      "options": [
+        "One fast case, one slow case, and one with a huge amount of data",
+        "Three normal cases with three different sets of data, to be safe",
+        "One normal case, one edge case, and one wrong-input case",
+        "Three edge cases, since bugs usually sit at the edges and other cases are unnecessary"
+      ],
+      "explanation": "The normal case shows the feature does its main job. The edge case catches off-by-one mistakes, for example whether 21:00 is accepted. The wrong-input case checks that rejection works. Three normal cases of the same kind feel safe but catch no extra bugs. Speed and data volume are a different matter. Testing only edges forgets the normal case."
+    },
+    {
+      "question": "Orders are accepted from 7 to 21, and both ends count. Which case sits on the edge?",
+      "options": [
+        "An order at 12 noon, which must be accepted",
+        "An order at 3 a.m., which must be rejected because it is far outside opening hours",
+        "An order at exactly 21:00, which must be rejected because it is close to closing time",
+        "An order at exactly 21:00, which must be accepted like any other order"
+      ],
+      "explanation": "An edge is a value sitting exactly on the boundary of the rule, here 21:00, and by the rule it is accepted. 12 noon is a normal case in the middle of the allowed range. 3 a.m. is a wrong-input case far outside the range. Rejecting 21:00 contradicts the stated rule."
+    },
+    {
+      "question": "The AI says it is done, but one test case fails. What should you do?",
+      "options": [
+        "Send the AI the failing case and the actual result so it can fix it",
+        "Change the expected answer in the test case to match what the code currently returns",
+        "Trust the AI, since it says it checked everything carefully before reporting it done",
+        "Delete the failing case so the results turn green, then accept that version"
+      ],
+      "explanation": "Once you are sure the case is written correctly, sending it with the actual result to the AI is the fastest fix, because the bug now has an address. Deleting the case or changing the answer to match hides the bug instead of fixing it. The AI's report is not evidence, especially while a test is red."
+    }
+  ],
+  "keyTakeaways": [
+    "Say what \"done\" means in a few concrete criteria before asking the AI.",
+    "Make a short plan: what first, what next, with each step checkable.",
+    "Write test cases first: one normal, one edge, one wrong input.",
+    "Cases written first help the AI follow your intent and help you catch errors on delivery.",
+    "When a case fails, fix the code, not the answer that makes it match."
+  ],
+  "practicePrompt": {
+    "question": "Delivery costs 30,000 VND, free when the basket is 500,000 VND or more. Which case tests the edge?",
+    "options": [
+      "Basket of exactly 500,000 VND, fee must be 0 (free because the basket reaches the threshold)",
+      "Basket of 800,000 VND, fee must be 0 (free because it is well past the threshold)",
+      "Basket of 50,000 VND, fee must be 30,000 (small basket, far from the threshold)",
+      "Basket of exactly 500,000 VND, fee must be 30,000 (has not passed the threshold)"
+    ],
+    "explanation": "The edge is the number 500,000 itself, and the rule says \"500,000 or more\", so the fee is 0. The 800,000 and 50,000 baskets are normal cases far from the edge and cannot catch an off-by-one bug. Reading \"from 500,000\" as \"above 500,000\" (the fee stays 30,000) is a common misreading."
+  },
+  "summary": {
+    "keyIdea": "Write down what \"done\" means first, then ask the AI to build it and run the test cases to accept it.",
+    "formula": "Criteria + short plan + normal, edge and wrong cases → only then ask the AI.",
+    "commonMistake": "Asking the AI first and thinking about checks afterwards, so you only test what the code already does.",
+    "action": "Pick a feature you plan to build and write three test cases for it before you type the request."
+  },
+  "application": {
+    "title": "Do it now in 10 minutes",
+    "message": "Pick a small job you plan to ask AI to do, such as computing a delivery fee or validating a phone number. Write three lines: one normal case, one edge case, one wrong case, each with an input and an expected result. Paste them into your request to the AI.",
+    "secondary": "When you get the code back, run exactly those three cases before doing anything else."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "In the last lesson you learned to accept work by running it. But run what? If you only think of tests after the code is done, you will test exactly what the code can already do. This lesson teaches the reverse: say what \"done\" means first."
+    },
+    {
+      "type": "feynman",
+      "title": "Writing test cases first is simpler than you think",
+      "intro": "When you ask a tailor for a shirt, you give your measurements before they cut the cloth. With measurements, both sides know what \"fits\" means. Test cases are the measurements of software.",
+      "columns": [
+        "Step",
+        "With a tailor",
+        "With AI writing code"
+      ],
+      "rows": [
+        [
+          "Say what done means",
+          "The shirt fits the shoulders and ends at the waist",
+          "An order at 21:00 must be accepted, at 22:00 rejected"
+        ],
+        [
+          "Give measurements first",
+          "The tailor cuts to size, few fixes needed",
+          "The AI follows your intent because it has concrete examples"
+        ],
+        [
+          "Check on delivery",
+          "Try it on and see if it matches the measurements",
+          "Run the test cases and see if the code gives the right answers"
+        ],
+        [
+          "No measurements",
+          "You can only say \"looks okay\"",
+          "You can only say \"probably right\", with no evidence"
+        ]
+      ],
+      "oneLiner": "With test cases written first, you do not have to trust anyone: the code proves itself right or wrong."
+    },
+    {
+      "type": "flow",
+      "title": "From a vague request to a job you can accept",
+      "steps": [
+        {
+          "label": "Start from a vague request",
+          "detail": "Accept food orders during opening hours."
+        },
+        {
+          "label": "Write \"done means...\"",
+          "detail": "Name not empty, phone number is 10 digits starting with 0, hour from 7 to 21."
+        },
+        {
+          "label": "Make a short plan",
+          "detail": "Build the name check, then the phone check, then the hour check; test after each."
+        },
+        {
+          "label": "Write test cases",
+          "detail": "Each case is one order and an expected result: ok or error."
+        },
+        {
+          "label": "Ask the AI to build it, then run the cases",
+          "detail": "Any red case goes back to the AI with the actual result."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Three kinds of test case"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Normal case: an ordinary order, such as 9 a.m. with a valid phone number. Result: accepted.",
+        "Edge case: exactly on the boundary of a rule, such as 7:00 and 21:00. This is where off-by-one bugs live.",
+        "Wrong-input case: invalid input, such as an 11-digit phone number or a name made only of spaces. Result: rejected."
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Think about checks later",
+        "text": "The code is done, then you try a few familiar orders. They all pass, so you feel safe. The bug at the edge sleeps until a real customer hits it."
+      },
+      "right": {
+        "label": "Write test cases first",
+        "text": "You already have the 21:00 and 22:00 cases when the AI starts. The AI gets the edge right straight away, or is caught in a single run."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "A case fails: fix the code, not the answer",
+      "text": "When a case goes red, first check that you wrote the expected answer correctly. If you did, the code is wrong. Changing the answer to match the code is the fastest way to fool yourself."
+    },
+    {
+      "type": "aiLab",
+      "mode": "prompt",
+      "title": "Assemble a request with criteria and test cases",
+      "task": "You ask AI to write a check for food orders. Pick each part to assemble a request whose result can be accepted or rejected.",
+      "parts": [
+        {
+          "label": "Criteria for done",
+          "options": [
+            {
+              "text": "Check orders really well and let no bad order slip through.",
+              "feedback": "Nothing to measure: everyone understands \"well\" differently."
+            },
+            {
+              "text": "Done when: name is not empty, phone number is 10 digits starting with 0, hour is from 7 to 21 (both ends accepted).",
+              "feedback": "Every clause is checkable, including the 7 and 21 edges."
+            }
+          ]
+        },
+        {
+          "label": "Short plan",
+          "options": [
+            {
+              "text": "Build all three checks and report to me once.",
+              "feedback": "Three parts at once: bugs pile up and it is hard to tell which part caused them."
+            },
+            {
+              "text": "Build the name check first and stop so I can test it; then the phone number, then the hour.",
+              "feedback": "Each step is small and has a stopping point to run a test."
+            }
+          ]
+        },
+        {
+          "label": "Test cases",
+          "options": [
+            {
+              "text": "Sample cases: An, 0901234567, 9 o'clock is ok; 21 is ok; 22 is error; an 11-digit number is error.",
+              "feedback": "It has a normal, an edge and a wrong case, each with an answer."
+            },
+            {
+              "text": "Think up the cases to try yourself and tell me they all passed.",
+              "feedback": "If the writer of the code also does the checking, you lose independent evidence."
+            }
+          ]
+        }
+      ],
+      "responses": [
+        {
+          "text": "I'll start with the name check: an empty or all-space name returns \"missing name\". I'll stop here so you can test it, and not do the phone number yet.\nYour cases need to pass: An, 9 o'clock is ok; 21 is ok; 22 is error.\n(On target: criteria, steps and test cases to accept against.)"
+        },
+        {
+          "text": "I wrote a function that checks all three things: name, phone number and order hour. I tested everything myself and it all works.\n(Follows the rules but in one go, and \"I tested it myself\" is not evidence.)"
+        },
+        {
+          "text": "I wrote an order-checking function. It checks the basic information and returns valid or not.\n(Vague: no hour limits, and no cases to run.)"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Running project: the Alley coffee shop - step 5/10",
+      "text": "Step 5: write test cases for the order-taking feature before asking AI. The program runs your cases against one standard version and five faulty versions the AI wrote; a good set of cases catches all five."
+    },
+    {
+      "type": "exercise",
+      "title": "Project step 5: write test cases before asking AI for the order feature",
+      "task": "New feature: take food orders. Rules: the name must not be empty (only spaces counts as empty); the phone number is exactly 10 digits and starts with 0; the order hour is from 7 to 21 (both 7 and 21 are accepted). Before asking the AI to write it, you write the test cases: each case is [order, expected result], and the result is \"ok\" or \"error\". The program grades by running your cases against a standard version and five faulty versions: good cases pass the standard version and catch all five faulty ones.",
+      "starter": "// ten = \"name\", sdt = \"phone number\", gio = \"hour\"\n// Each case: [order, \"ok\" or \"error\"]. Add cases until all five faulty versions are caught.\nconst testCases = [\n  [{ ten: \"An\", sdt: \"0901234567\", gio: 9 }, \"ok\"],\n];\n\n// ---- Grading part, no need to read or edit ----\nconst standard = (d) =>\n  d.ten.trim() === \"\" ? \"error\"\n  : !/^0\\d{9}$/.test(d.sdt) ? \"error\"\n  : d.gio < 7 || d.gio > 21 ? \"error\" : \"ok\";\nconst buggy = [\n  [\"wrong at hour 21\", (d) => (d.ten.trim() === \"\" || !/^0\\d{9}$/.test(d.sdt) || d.gio < 7 || d.gio >= 21 ? \"error\" : \"ok\")],\n  [\"accepts an 11-digit phone number\", (d) => (d.ten.trim() === \"\" || !/^0\\d{9,10}$/.test(d.sdt) || d.gio < 7 || d.gio > 21 ? \"error\" : \"ok\")],\n  [\"accepts a name made only of spaces\", (d) => (!d.ten || !/^0\\d{9}$/.test(d.sdt) || d.gio < 7 || d.gio > 21 ? \"error\" : \"ok\")],\n  [\"accepts a number not starting with 0\", (d) => (d.ten.trim() === \"\" || !/^\\d{10}$/.test(d.sdt) || d.gio < 7 || d.gio > 21 ? \"error\" : \"ok\")],\n  [\"wrong at hour 22\", (d) => (d.ten.trim() === \"\" || !/^0\\d{9}$/.test(d.sdt) || d.gio < 7 || d.gio > 22 ? \"error\" : \"ok\")],\n];\nconst passesAll = (f) => testCases.every(([order, expected]) => f(order) === expected);\nconsole.log(\"Standard version passes all your cases: \" + (passesAll(standard) ? \"yes\" : \"no\"));\nfor (const [name, f] of buggy) {\n  console.log(\"Faulty version (\" + name + \"): \" + (passesAll(f) ? \"slipped through\" : \"caught\"));\n}",
+      "solution": "// ten = \"name\", sdt = \"phone number\", gio = \"hour\"\nconst testCases = [\n  [{ ten: \"An\", sdt: \"0901234567\", gio: 9 }, \"ok\"],\n  [{ ten: \"An\", sdt: \"0901234567\", gio: 7 }, \"ok\"],\n  [{ ten: \"An\", sdt: \"0901234567\", gio: 21 }, \"ok\"],\n  [{ ten: \"An\", sdt: \"0901234567\", gio: 6 }, \"error\"],\n  [{ ten: \"An\", sdt: \"0901234567\", gio: 22 }, \"error\"],\n  [{ ten: \"An\", sdt: \"09012345678\", gio: 9 }, \"error\"],\n  [{ ten: \"An\", sdt: \"1901234567\", gio: 9 }, \"error\"],\n  [{ ten: \"   \", sdt: \"0901234567\", gio: 9 }, \"error\"],\n];\n\n// ---- Grading part, no need to read or edit ----\nconst standard = (d) =>\n  d.ten.trim() === \"\" ? \"error\"\n  : !/^0\\d{9}$/.test(d.sdt) ? \"error\"\n  : d.gio < 7 || d.gio > 21 ? \"error\" : \"ok\";\nconst buggy = [\n  [\"wrong at hour 21\", (d) => (d.ten.trim() === \"\" || !/^0\\d{9}$/.test(d.sdt) || d.gio < 7 || d.gio >= 21 ? \"error\" : \"ok\")],\n  [\"accepts an 11-digit phone number\", (d) => (d.ten.trim() === \"\" || !/^0\\d{9,10}$/.test(d.sdt) || d.gio < 7 || d.gio > 21 ? \"error\" : \"ok\")],\n  [\"accepts a name made only of spaces\", (d) => (!d.ten || !/^0\\d{9}$/.test(d.sdt) || d.gio < 7 || d.gio > 21 ? \"error\" : \"ok\")],\n  [\"accepts a number not starting with 0\", (d) => (d.ten.trim() === \"\" || !/^\\d{10}$/.test(d.sdt) || d.gio < 7 || d.gio > 21 ? \"error\" : \"ok\")],\n  [\"wrong at hour 22\", (d) => (d.ten.trim() === \"\" || !/^0\\d{9}$/.test(d.sdt) || d.gio < 7 || d.gio > 22 ? \"error\" : \"ok\")],\n];\nconst passesAll = (f) => testCases.every(([order, expected]) => f(order) === expected);\nconsole.log(\"Standard version passes all your cases: \" + (passesAll(standard) ? \"yes\" : \"no\"));\nfor (const [name, f] of buggy) {\n  console.log(\"Faulty version (\" + name + \"): \" + (passesAll(f) ? \"slipped through\" : \"caught\"));\n}",
+      "expectedOutput": "Standard version passes all your cases: yes\nFaulty version (wrong at hour 21): caught\nFaulty version (accepts an 11-digit phone number): caught\nFaulty version (accepts a name made only of spaces): caught\nFaulty version (accepts a number not starting with 0): caught\nFaulty version (wrong at hour 22): caught",
+      "hints": [
+        "Run it first: a single correct case catches none of the faulty versions. Each faulty version needs at least one case aimed at exactly where it is wrong.",
+        "Aim at the edges: hours 7 and 21 (accepted), hours 6 and 22 (rejected).",
+        "For phone and name: try an 11-digit number, a number starting with 1, and a name with only spaces. Remember to write \"error\" for cases that must be rejected."
+      ]
+    },
+    {
+      "type": "scenario",
+      "title": "The AI's version comes back, the 21:00 case is red",
+      "nodes": {
+        "s1": {
+          "text": "You wrote three cases first. The AI says \"done, works fine\". You run the three cases: two are green, and the 21:00 case (must be accepted) is red because the code rejects it. You decide what to do next.",
+          "choices": [
+            {
+              "label": "Send the AI the 21:00 case, the expected answer and the actual result so it can fix it"
+            },
+            {
+              "label": "Change the 21:00 case's answer to \"error\" so all three cases turn green"
+            }
+          ]
+        },
+        "bad_edit": {
+          "text": "All three are green and you accept that version. That evening a customer who orders at 21:00 is turned away, and the test case was changed at exactly the spot where it could have protected you."
+        },
+        "good": {
+          "text": "The AI fixes the hour comparison and all three cases turn green. The bug is caught before reaching a customer, and you have evidence, not just a report."
+        }
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Say what \"done\" means first, write the three kinds of test case, then ask the AI.",
+        "Next lesson: when the AI sends code back, read it step by step and say it back in your own words."
+      ]
+    }
+  ]
+}

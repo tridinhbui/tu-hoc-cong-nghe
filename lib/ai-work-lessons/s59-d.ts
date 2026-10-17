@@ -1434,7 +1434,7 @@ export const S59_D_LESSONS: Lesson[] = [
           "Địa chỉ và HTTPS, vì các mục còn lại làm sau ngày công bố cũng được"
         ],
         "correct": 0,
-        "explanation": "Bảy mục trong phương án đúng là những thứ sự cố hay bắt đầu từ đó: địa chỉ, mã hoá, bí mật, sao lưu, theo dõi, chi phí và người trực. Hai danh sách kia tập trung vào vẻ ngoài và tính năng, còn phương án cuối hoãn những việc chỉ rẻ khi làm trước."
+        "explanation": "Bảy mục trong phương án đúng là những thứ sự cố hay bắt đầu từ đó: địa chỉ, mã hoá, bí mật, sao lưu, theo dõi, chi phí và người trực. Hai danh sách kia tập trung vào vẻ ngoài và tính năng, còn phương án “Địa chỉ và HTTPS…” hoãn những việc chỉ rẻ khi làm trước."
       },
       {
         "question": "Ngày công bố, ai nên là người trực đầu tiên?",

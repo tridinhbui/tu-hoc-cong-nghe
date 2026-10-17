@@ -91,7 +91,7 @@ export const RUNTIME_INTERNALS_LESSONS: Lesson[] = [
           "Vì nó giảm số lượng khung ngăn xếp cần tạo ra trong quá trình chạy"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn thứ hai là lợi ích trực tiếp và nó nhỏ hơn nhiều. Lợi ích thật là gián tiếp: sau khi gắn thẳng, các tối ưu như loại bỏ tính toán thừa hay đưa biểu thức bất biến ra ngoài vòng lặp mới áp dụng được."
+        "explanation": "Lựa chọn “Vì nó loại bỏ…” là lợi ích trực tiếp và nó nhỏ hơn nhiều. Lợi ích thật là gián tiếp: sau khi gắn thẳng, các tối ưu như loại bỏ tính toán thừa hay đưa biểu thức bất biến ra ngoài vòng lặp mới áp dụng được."
       },
       {
         "question": "Hệ quả nào cho việc viết mã hiệu năng cao?",
@@ -102,7 +102,7 @@ export const RUNTIME_INTERNALS_LESSONS: Lesson[] = [
           "Gộp các hàm nhỏ lại thành hàm lớn để giảm số lượt gọi trong vòng lặp"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn cuối là điều nhiều người làm theo trực giác và nó NGƯỢC: hàm lớn quá ngưỡng thì không được gắn thẳng, nên gộp tay lại làm mất chính tối ưu mà bạn đang cố đạt."
+        "explanation": "Lựa chọn “Gộp các hàm nhỏ…” là điều nhiều người làm theo trực giác và nó NGƯỢC: hàm lớn quá ngưỡng thì không được gắn thẳng, nên gộp tay lại làm mất chính tối ưu mà bạn đang cố đạt."
       }
     ],
     "keyTakeaways": [
@@ -267,7 +267,7 @@ export const RUNTIME_INTERNALS_LESSONS: Lesson[] = [
           "Vì các khối ở xa nhau thường nằm trên các thanh bộ nhớ vật lý khác nhau"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn thứ hai cũng là một yếu tố thật và bộ xử lý hiện đại dự đoán được cả bước nhảy đều. Vấn đề cốt lõi là lãng phí: bạn trả giá cho cả khối và chỉ dùng một phần nhỏ của nó."
+        "explanation": "Lựa chọn “Vì bộ xử lý…” cũng là một yếu tố thật và bộ xử lý hiện đại dự đoán được cả bước nhảy đều. Vấn đề cốt lõi là lãng phí: bạn trả giá cho cả khối và chỉ dùng một phần nhỏ của nó."
       },
       {
         "question": "Khi nào nên nghĩ tới bố cục bộ nhớ?",
@@ -278,7 +278,7 @@ export const RUNTIME_INTERNALS_LESSONS: Lesson[] = [
           "Khi hệ thống chạy trên phần cứng có dung lượng bộ nhớ đệm nhỏ"
         ],
         "correct": 0,
-        "explanation": "Với dữ liệu nhỏ, mọi thứ nằm gọn trong bộ nhớ đệm và bố cục không quan trọng. Lựa chọn thứ hai nghe cẩn thận nhưng nó dẫn tới việc tối ưu sớm ở khắp nơi, đúng cái mà bài về hồ sơ CPU đã cảnh báo."
+        "explanation": "Với dữ liệu nhỏ, mọi thứ nằm gọn trong bộ nhớ đệm và bố cục không quan trọng. Lựa chọn “Ngay từ đầu, vì…” nghe cẩn thận nhưng nó dẫn tới việc tối ưu sớm ở khắp nơi, đúng cái mà bài về hồ sơ CPU đã cảnh báo."
       }
     ],
     "keyTakeaways": [
@@ -608,7 +608,7 @@ export const RUNTIME_INTERNALS_LESSONS: Lesson[] = [
           "Không còn tìm thấy điểm nghẽn nào rõ ràng trong hồ sơ hiệu năng"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn thứ hai là chi phí thật nhưng nó là hệ quả chứ không phải tiêu chí dừng. Lựa chọn thứ ba giả định mục tiêu ban đầu đặt đúng, còn tiêu chí này thì tự nó đúng bất kể mục tiêu đặt thế nào."
+        "explanation": "Lựa chọn “Mã đã trở nên…” là chi phí thật nhưng nó là hệ quả chứ không phải tiêu chí dừng. Lựa chọn “Đã đạt được mục…” giả định mục tiêu ban đầu đặt đúng, còn tiêu chí này thì tự nó đúng bất kể mục tiêu đặt thế nào."
       },
       {
         "question": "Vì sao điểm nghẽn tiếp theo có thể là chính đội ngũ?",
@@ -619,7 +619,7 @@ export const RUNTIME_INTERNALS_LESSONS: Lesson[] = [
           "Vì thời gian dành cho tối ưu lấy mất thời gian làm tính năng mới"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn thứ ba là một cách diễn đạt hẹp hơn của cùng ý này. Điều đáng nói là nó áp dụng cho MỌI thay đổi sau đó, không chỉ cho việc tối ưu tiếp - nên chi phí lan ra toàn bộ vòng đời còn lại."
+        "explanation": "Lựa chọn “Vì số người hiểu…” là một cách diễn đạt hẹp hơn của cùng ý này. Điều đáng nói là nó áp dụng cho MỌI thay đổi sau đó, không chỉ cho việc tối ưu tiếp - nên chi phí lan ra toàn bộ vòng đời còn lại."
       },
       {
         "question": "Cách nào thường cho cải thiện lớn hơn tối ưu mã?",

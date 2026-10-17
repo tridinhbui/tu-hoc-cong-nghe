@@ -1450,7 +1450,7 @@ export const S54_A_LESSONS: Lesson[] = [
           "Quy tắc bỏ sót 2 thư vì 10 − 8 = 2"
         ],
         "correct": 0,
-        "explanation": "Bắt nhầm = 10 − 8 = 2. Bỏ sót là 4 thư nằm ngoài nhóm bị bắt. Tính 80% chỉ nói về thư đã bắt, bỏ qua thư sót. Đáp án thứ hai nhầm \"đúng\" thành \"nhầm\", đáp án thứ ba nhầm nhầm-với-sót."
+        "explanation": "Bắt nhầm = 10 − 8 = 2. Bỏ sót là 4 thư nằm ngoài nhóm bị bắt. Tính 80% chỉ nói về thư đã bắt, bỏ qua thư sót. Đáp án “Quy tắc đúng 80%…” nhầm \"đúng\" thành \"nhầm\", đáp án “Quy tắc bắt nhầm 8…” nhầm nhầm-với-sót."
       },
       {
         "question": "Bộ năm quy tắc đầu tiên nên gồm loại việc nào?",

@@ -49,6 +49,16 @@ export const learningFlowsVi = {
     minutes: "{minutes} phút",
 
     partialNote: "Các bài nền đã có đủ. Bài hướng dẫn dựng một agent hoàn chỉnh từ đầu đến cuối đang được viết.",
+    // Bảng tiến độ dự án quán cà phê của hành trình vibecode (Chặng 67).
+    vibecodeProject: {
+      title: "Dự án xuyên suốt: phần mềm đặt món cho quán cà phê",
+      sub: "Mười bài, mười bước. Mỗi bước là một bài tập chạy được, chấm bằng kết quả thật chứ không bằng cách chọn đáp án, và bước sau dùng lại phần bạn vừa làm xong.",
+      progress: "Đã xong {done}/{total} bước",
+      step: "Bước {n}",
+      done: "Đã xong",
+      rule: "Một bước chỉ tính là xong khi bài tập của nó chạy ra đúng kết quả. Mở bài hay bỏ qua bài tập thì bước đó chưa tính.",
+      signIn: "Đăng nhập để lưu tiến độ từng bước.",
+    },
     // Mỗi hành trình "partial" thiếu một thứ khác nhau; câu chung ở trên nói về agent.
     partialNoteByFlow: {
       vibecode: "Các bài nền đã có đủ. Phần đọc, kiểm tra thứ AI viết và một dự án xuyên suốt đang được viết thêm.",
@@ -605,6 +615,16 @@ export const learningFlowsEn: typeof learningFlowsVi = {
     minutes: "{minutes} min",
 
     partialNote: "The foundation lessons are all here. An end-to-end lesson on building a complete agent is being written.",
+    // Progress panel for the coffee-shop project of the vibecode journey (Stage 67).
+    vibecodeProject: {
+      title: "The running project: an ordering system for a coffee shop",
+      sub: "Ten lessons, ten steps. Each step is a hands-on exercise graded on its real output, not by picking an answer, and each step reuses what you just finished.",
+      progress: "{done}/{total} steps done",
+      step: "Step {n}",
+      done: "Done",
+      rule: "A step only counts once its exercise produces the right output. Opening a lesson or skipping the exercise does not count.",
+      signIn: "Sign in to save your progress step by step.",
+    },
     partialNoteByFlow: {
       vibecode: "The foundation lessons are all here. More lessons on reading and checking what AI writes, and one project that runs through the whole journey, are still being written.",
     },
