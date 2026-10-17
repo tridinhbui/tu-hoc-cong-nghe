@@ -1,0 +1,330 @@
+{
+  "slug": "noi-ro-dieu-khong-duoc-doi-khi-giao-viec-cho-ai",
+  "title": "Stage 67, Lesson 3: Say what must not change - keep the working parts safe when you ask AI for a fix",
+  "subtitle": "When AI fixes one spot, it will happily change others unless you say not to.",
+  "whyItMatters": "Asking AI to fix one thing is when you lose the most work: it spots another part that looks \"not optimal\" and rewrites that too. The part you already checked and that worked suddenly looks different, and nobody tells you. Learning to set a boundary - fix this, leave that alone - is the habit that protects your effort.",
+  "openingQuestion": "Your page works well; only the \"Send\" button is broken. You ask \"fix my page\" and the AI hands back a page with a new layout, new colours and a new button. What was missing?",
+  "openingOptions": [
+    "A scope: the request never said to fix only the Send button and keep the rest as it is",
+    "An apology before asking, because AI does better work when you ask it politely and kindly",
+    "The newest AI model name, because older versions tend to change parts nobody asked about",
+    "A much longer request, because AI only takes care when it has plenty of words to read"
+  ],
+  "explanation": "\"Fix the page\" gives the AI the whole page to work with. It changes whatever it thinks could be better, because nobody told it to stop. One sentence of scope - fix only the Send button, don't touch the layout or colours - turns that into a small change you can check. Politeness doesn't change this behaviour, neither does the model name, and a longer request is no substitute for the right sentence in the right place.",
+  "diagram": [
+    {
+      "label": "Say what to fix: the Send button does nothing"
+    },
+    {
+      "label": "Say what to keep: layout, colours, other buttons"
+    },
+    {
+      "label": "Ask it to list what changed"
+    },
+    {
+      "label": "You compare: only the allowed spots changed"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Illustrative scenario",
+    "description": "Illustrative scenario: someone asks AI to \"fix the order button\" on a small shop page. The AI fixes the button and also changes how prices are calculated on another page because it looked \"untidy\". Three days later a customer reports a wrong price. Next time they write: \"Only fix the order button, don't change the price calculation, and list every line you changed.\" The result differs in exactly three lines."
+  },
+  "quiz": [
+    {
+      "question": "When you ask AI to fix a bug, what else should you tell it?",
+      "options": [
+        "Just decide for yourself which parts to change, since you understand the code better than I do",
+        "Improve whatever you notice along the way",
+        "Fix only this spot and leave everything else as it is",
+        "Rewrite the whole file to be clean and tidy first, and only then fix this bug"
+      ],
+      "explanation": "A scope sentence keeps the change small and checkable. The other three options give the AI permission to edit more than you asked: exactly how working parts get changed without anyone noticing."
+    },
+    {
+      "question": "Why does AI often change things you did not ask about?",
+      "options": [
+        "It is programmed to always break the parts of a project that already work well",
+        "It cannot read the rest of the file you pasted, so it has to guess at it",
+        "Fixes are billed per line changed",
+        "It sees something it could improve and no boundary stops it"
+      ],
+      "explanation": "AI tries to make the result better in its own way, and without a boundary it treats the whole file as its scope. It doesn't break things on purpose, isn't billed per line, and can usually read the entire file - which is why it is able to edit things you never meant."
+    },
+    {
+      "question": "The AI says \"fixed it\". What should you ask for to check the scope?",
+      "options": [
+        "An exact list of the lines or spots that changed compared with the old version",
+        "A promise that next time it will not change more than the part you asked for",
+        "A general summary of the quality of the whole code base after the fix",
+        "A full rewrite of the file so it is easy to compare with the first version"
+      ],
+      "explanation": "A list of changes lets you compare against the scope you set: anything outside the allowed spots is a sign the AI went too far. A promise about next time can't be checked. A quality summary says nothing about scope. A full rewrite is even harder to compare."
+    },
+    {
+      "question": "What should you tell the AI \"must not change\" when asking it to fix the Send button?",
+      "options": [
+        "The Send button itself, because it is the broken part that needs handling",
+        "The parts that already work: layout, colours and the other buttons",
+        "Your own name, because the AI would otherwise change it to whatever it likes",
+        "Everything in the project, so that the AI definitely cannot break anything at all"
+      ],
+      "explanation": "The working parts are what you want to protect, so those are what to freeze. The Send button is what needs fixing, so you can't forbid changing it. Saying \"nothing may change\" leaves the AI nothing to fix."
+    },
+    {
+      "question": "You asked it to leave everything else alone, but the result still changed a colour. What should you do?",
+      "options": [
+        "Accept it, since the new colour is nicer",
+        "Delete everything and ask the AI to redo the whole page so the colour is surely new",
+        "Point out the unwanted change and ask it to put the old version back there",
+        "Guess the cause yourself and rename the colour file in the project folder at random"
+      ],
+      "explanation": "Pointing to the exact change outside the scope and asking for it to be restored is the cleanest fix, and it reminds the AI about the boundary. Accepting an unwanted change means losing control. Redoing the whole page throws away the good parts. Renaming files at random solves nothing."
+    }
+  ],
+  "keyTakeaways": [
+    "With no boundary, AI treats the whole file as fair game to edit.",
+    "Say two things: what to fix and what to keep.",
+    "Ask the AI to list every change so you can compare it with your scope.",
+    "If something changed outside the scope, point it out and ask for it to be restored.",
+    "Protecting what already works matters as much as fixing what is broken."
+  ],
+  "practicePrompt": {
+    "question": "Your page's price table is correct; only the \"Buy\" button's text wraps onto a second line. Which request sets the best boundary?",
+    "options": [
+      "Fix only the wrapping text on the Buy button, keep the price table, list the lines changed",
+      "Fix the page so it looks nice and is correct, since you know better than I do what to do",
+      "Fix the Buy button and, while you are at it, optimise every other part of the page as well",
+      "Rewrite the whole sales page from scratch so that text can never wrap onto a new line again"
+    ],
+    "explanation": "The first request names what to fix, what to keep and asks for a list of changes. The other three widen the scope: handing over the decision, optimising on the side, or rewriting the whole page. Each one puts the working price table at risk."
+  },
+  "summary": {
+    "keyIdea": "Say what to fix and what to keep, then compare the list of changes.",
+    "formula": "Fix only [spot A]; keep [spots B, C] as they are; list every line you changed.",
+    "commonMistake": "Saying \"fix it for me\" without a scope, so the AI changes other spots too.",
+    "action": "Next time you ask AI for a fix, add one \"do not change...\" sentence and one \"list the changes\" sentence."
+  },
+  "application": {
+    "title": "Do it now in 10 minutes",
+    "message": "Take a small bug in your product or exercise. Write a request with three parts: what to fix, what to keep, and a request to list the changes. Send it and compare the list with what you expected.",
+    "secondary": "If the list has something you did not ask for, ask why it changed and then decide whether to keep it or go back."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "You ask AI to fix one button and it hands back a whole new page. The parts that worked now look different, and you don't know where. This lesson teaches how to say \"only here\" properly."
+    },
+    {
+      "type": "feynman",
+      "title": "Setting a boundary is simpler than you think",
+      "intro": "When you call a plumber for a leaking tap, you don't want them knocking down the next wall because the bricks look old. You have to say so in advance.",
+      "columns": [
+        "What to say",
+        "With a plumber",
+        "With AI fixing code"
+      ],
+      "rows": [
+        [
+          "What to fix",
+          "The tap in the bathroom is leaking",
+          "The Send button does nothing"
+        ],
+        [
+          "What to keep",
+          "Don't touch the tiles and the wiring",
+          "Layout, colours and other buttons stay exactly as they were"
+        ],
+        [
+          "Report back",
+          "Tell me which part you replaced",
+          "List every line you changed"
+        ],
+        [
+          "If you say nothing",
+          "The plumber may fix more than you expected",
+          "The AI changes anything it thinks is not optimal"
+        ]
+      ],
+      "oneLiner": "If you don't say, the AI treats the whole file as its own."
+    },
+    {
+      "type": "heading",
+      "text": "The instruction has three parts"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Fix only: name the exact spot, like \"the Send button in the contact form\".",
+        "Keep: list what you do not want touched.",
+        "Report back: ask for a list of what changed so you can compare."
+      ]
+    },
+    {
+      "type": "flow",
+      "title": "One fix request with a boundary",
+      "steps": [
+        {
+          "label": "Describe the bug",
+          "detail": "Clicking the Send button does nothing."
+        },
+        {
+          "label": "Set the boundary",
+          "detail": "Fix only the Send button; keep the layout, colours and other buttons."
+        },
+        {
+          "label": "Get the fix and the change list",
+          "detail": "Ask the AI to list each spot it changed."
+        },
+        {
+          "label": "Compare",
+          "detail": "Anything outside the boundary: ask about it or ask to go back."
+        }
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "No boundary",
+        "text": "\"Fix my page.\" The AI fixes the button and also changes the layout and colours. You don't know what is different now."
+      },
+      "right": {
+        "label": "With a boundary",
+        "text": "\"Fix only the Send button, keep the rest, list the lines you changed.\" A small change you can check."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "AI does not break things on purpose",
+      "text": "It is only trying to do better in its own way. Your boundary is the only thing that tells it where \"better\" should stop."
+    },
+    {
+      "type": "aiLab",
+      "title": "Assemble a fix request for the Send button with a boundary",
+      "task": "The page works; only the Send button is broken. Put together a request so the AI fixes exactly the right spot.",
+      "parts": [
+        {
+          "label": "What to fix",
+          "options": [
+            {
+              "text": "The contact page is broken, please fix it.",
+              "feedback": "It names no spot: the AI could change anywhere."
+            },
+            {
+              "text": "The Send button in the contact form does nothing when clicked.",
+              "feedback": "It names the exact spot and the symptom."
+            }
+          ]
+        },
+        {
+          "label": "What to keep",
+          "options": [
+            {
+              "text": "Keep the layout, colours and input fields; change only what the button needs to work.",
+              "feedback": "A clear boundary: the working parts are protected."
+            },
+            {
+              "text": "Just make the whole page the best it can be.",
+              "feedback": "It widens the scope: the AI will change things that already worked."
+            }
+          ]
+        },
+        {
+          "label": "Report back",
+          "options": [
+            {
+              "text": "Give me a list of every line you changed.",
+              "feedback": "You can compare it with the scope you set straight away."
+            },
+            {
+              "text": "Tell me when it's done and fine.",
+              "feedback": "\"Fine\" tells you nothing about what changed."
+            }
+          ]
+        }
+      ],
+      "responses": [
+        {
+          "text": "The Send button fails because the step that attaches an action to the click is missing. I only added that step.\nChanges: (1) added 3 lines attaching the click event to the Send button; (2) did not change the layout, colours or input fields.\n(Within scope and checkable.)"
+        },
+        {
+          "text": "I fixed the Send button and also tidied the layout and changed the button colour to make it easier to see.\n(Right spot, but beyond the scope because there was no boundary.)"
+        },
+        {
+          "text": "I rewrote the contact page with a new structure, new colours and a working Send button.\n(It does not say what changed, so you cannot compare.)"
+        }
+      ]
+    },
+    {
+      "type": "aiLab",
+      "title": "Compare the change list with the scope you set",
+      "task": "You asked the AI to fix only the Send button and keep everything else. Here is the change list it sent back. Click the lines that go beyond the scope, then submit.",
+      "segments": [
+        {
+          "text": "Added 3 lines attaching a click action to the Send button in the contact form."
+        },
+        {
+          "text": "Changed the heading colour from blue to orange so it stands out more.",
+          "error": "Out of scope: you only asked for the Send button to be fixed; nobody asked for a heading colour change."
+        },
+        {
+          "text": "The input fields and the page layout were kept exactly as before."
+        },
+        {
+          "text": "Also fixed how the total is calculated on the cart page to make it tidier.",
+          "error": "Out of scope and risky: this is another page, it handles money, and nobody asked for it."
+        },
+        {
+          "text": "No file or folder in the project was renamed."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Running project: the Alley coffee shop - step 3/10",
+      "text": "Step 3: add a discount code without changing the total function that already works."
+    },
+    {
+      "type": "exercise",
+      "title": "Project step 3: add a discount code without changing what already works",
+      "task": "You asked the AI to add the code GIAM10 (10% off for orders of 100000 VND or more) and told it to \"keep tongTien as it is\". The AI's version only did half the job: it also changed tongTien (rounding down to the nearest thousand) and set the wrong threshold of 100000. Compare the result with the scope you gave, then restore tongTien and fix the threshold in apGiamGia. Only two spots need to change.",
+      "starter": "// tongTien = \"total amount\", gio = \"cart\", apGiamGia = \"apply discount\", mon = \"item\", soLuong = \"quantity\"\nconst MENU = { \"ca-phe-den\": 25000, \"ca-phe-sua\": 29000, \"tra-dao\": 34500, \"banh-mi\": 20000 };\n\nfunction tongTien(gio) {\n  let tong = 0;\n  for (const dong of gio) tong += MENU[dong.mon] * dong.soLuong;\n  return Math.floor(tong / 1000) * 1000;\n}\n\nfunction apGiamGia(tong, ma) {\n  if (ma === \"GIAM10\" && tong > 100000) return tong - tong / 10;\n  return tong;\n}\n\nconst kiem = [\n  [\"tongTien keeps its old behaviour\", tongTien([{ mon: \"tra-dao\", soLuong: 1 }]), 34500],\n  [\"GIAM10 with a 200000 order\", apGiamGia(200000, \"GIAM10\"), 180000],\n  [\"GIAM10 with an order of exactly 100000\", apGiamGia(100000, \"GIAM10\"), 90000],\n  [\"GIAM10 with a 99000 order\", apGiamGia(99000, \"GIAM10\"), 99000],\n  [\"no code\", apGiamGia(200000, \"\"), 200000],\n];\nfor (const [ten, that, mong] of kiem) {\n  console.log(ten + \": \" + (that === mong ? \"pass\" : \"fail (got \" + that + \", expected \" + mong + \")\"));\n}",
+      "solution": "// tongTien = \"total amount\", gio = \"cart\", apGiamGia = \"apply discount\", mon = \"item\", soLuong = \"quantity\"\nconst MENU = { \"ca-phe-den\": 25000, \"ca-phe-sua\": 29000, \"tra-dao\": 34500, \"banh-mi\": 20000 };\n\nfunction tongTien(gio) {\n  let tong = 0;\n  for (const dong of gio) tong += MENU[dong.mon] * dong.soLuong;\n  return tong;\n}\n\nfunction apGiamGia(tong, ma) {\n  if (ma === \"GIAM10\" && tong >= 100000) return tong - tong / 10;\n  return tong;\n}\n\nconst kiem = [\n  [\"tongTien keeps its old behaviour\", tongTien([{ mon: \"tra-dao\", soLuong: 1 }]), 34500],\n  [\"GIAM10 with a 200000 order\", apGiamGia(200000, \"GIAM10\"), 180000],\n  [\"GIAM10 with an order of exactly 100000\", apGiamGia(100000, \"GIAM10\"), 90000],\n  [\"GIAM10 with a 99000 order\", apGiamGia(99000, \"GIAM10\"), 99000],\n  [\"no code\", apGiamGia(200000, \"\"), 200000],\n];\nfor (const [ten, that, mong] of kiem) {\n  console.log(ten + \": \" + (that === mong ? \"pass\" : \"fail (got \" + that + \", expected \" + mong + \")\"));\n}",
+      "expectedOutput": "tongTien keeps its old behaviour: pass\nGIAM10 with a 200000 order: pass\nGIAM10 with an order of exactly 100000: pass\nGIAM10 with a 99000 order: pass\nno code: pass",
+      "hints": [
+        "Run it first and read the top line: 1 peach tea costs 34500 but tongTien returns 34000. Which line of the AI's code causes that?",
+        "The part to keep as it was is tongTien: delete the rounding line so the function ends with return tong.",
+        "\"From 100000 VND\" means greater than or equal: change > to >= in apGiamGia."
+      ]
+    },
+    {
+      "type": "scenario",
+      "title": "The fix looks fine but something is different",
+      "nodes": {
+        "s1": {
+          "text": "You asked for a Send button fix and told the AI to keep everything else. It says it is done. You open the page: the button works, but the heading colour looks slightly different.",
+          "choices": [
+            {
+              "label": "Ask for the list of changed lines and compare it with the scope you set"
+            },
+            {
+              "label": "Ignore it because the new colour is fine too, and publish the page right away"
+            }
+          ]
+        },
+        "bad_skip": {
+          "text": "A few days later you notice many more spots changed without anyone telling you, including how shipping fees are calculated. You lose time hunting down what the AI edited."
+        },
+        "good": {
+          "text": "The list shows two lines changing the heading colour, which is outside the scope. You ask for those two to be restored and keep the button fix. The page is exactly what you wanted."
+        }
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Fix only this spot, keep that one as it is, list what changed.",
+        "Next lesson: accept the work only after checking it - run it and read what the AI says it did."
+      ]
+    }
+  ]
+}

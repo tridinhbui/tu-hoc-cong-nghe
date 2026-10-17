@@ -71,11 +71,13 @@ Tổng ước tính: ~24 bài mới, phần lớn mức Dễ/Vừa.
 
 ## Tiến độ (2026-10-17)
 
-- GĐ1 xong: hành trình `vibecode` (5 chặng, "Đang bổ sung") trong `lib/learning-flows.ts`, chữ vi/en, bộ chọn nhiệm vụ.
-- GĐ2 một phần: Chặng 67 "Làm sản phẩm cùng AI mà vẫn kiểm soát được" (ids 2740-2749,
-  `lib/ai-work-lessons/s67-a.ts`), đã có 4 bài Dễ (2740-2743: giao việc, chia bước, đặt ranh giới,
-  nghiệm thu). Plumbing: `track-stages.ts`, `tracks.ts`, từ điển track-stages vi/en,
-  `stage-topics.ts` (ai-building), `practical-skill.ts`, `revampDashboard.stages` vi/en.
-- Còn: 2744 (bài 5 của phần giao việc), dải 2745-2749 (đọc và kiểm tra thứ AI viết), bản dịch en của 4 bài,
-  bài tự làm không AI ở mỗi chặng, dự án xuyên suốt.
-- Lưu ý: toàn bộ test lib còn 1 test hỏng có sẵn (`kiem-tra-page`, "+8 XP" trùng), không do phần này.
+- GĐ1 xong: hành trình `vibecode` (5 chặng, "Đủ bài") trong `lib/learning-flows.ts`, chữ vi/en, bộ chọn nhiệm vụ.
+- Chặng 67 "Làm sản phẩm cùng AI mà vẫn kiểm soát được" xong 10 bài (ids 2740-2749,
+  `lib/ai-work-lessons/s67-a..d.ts`), đủ plumbing (track-stages, tracks, từ điển track-stages vi/en,
+  stage-topics, practical-skill, revampDashboard.stages) và bản dịch tiếng Anh đầy đủ.
+- Dự án xuyên suốt "giỏ hàng quán cà phê Hẻm": mỗi bài một bước là một bài tập JavaScript chấm theo đầu ra
+  (`lib/ai-work-lessons/s67-project.ts`), bước sau dùng lại hàm của bước trước. Tiến độ từng bước lấy từ
+  `recordExercisePass` (chỉ ghi khi đạt), hiển thị ở trang hành trình (`lib/vibecode-project.ts`).
+- Còn lại: bài "làm ra trang đầu tiên từ một câu mô tả" (id 2750-2759 còn trống), bài tự làm không AI mỗi
+  chặng, và chấm phía máy chủ (bài tập chấm trong trình duyệt nên bản ghi "đạt" là lời khai của client).
+- Lưu ý: test `kiem-tra-page` hỏng khi working tree có thay đổi dở của session khác; trên HEAD sạch qua.
