@@ -1,0 +1,316 @@
+{
+  "slug": "giao-viec-cho-ai-nhu-giao-viec-cho-tho",
+  "title": "Stage 67, Lesson 1: Hand off work to AI like you would to a tradesperson - say what you want and what it is for",
+  "subtitle": "The same AI, two different requests, two completely different results.",
+  "whyItMatters": "Most people who think AI writes \"useless\" code have actually briefed it the way you would brief a stranger: one short sentence, no word on what it is for or who will use it. Even the best builder makes a generic room if all they hear is \"build me a room\". Learning to brief clearly is the cheapest skill, and it makes the biggest difference when you build a product with AI.",
+  "openingQuestion": "You type to the AI: \"Make me a website that sells things.\" You get a generic page full of placeholder text. What is the main cause?",
+  "openingOptions": [
+    "The AI model is still too weak, so you should wait for a newer version before trying again",
+    "The request is missing the purpose, the audience and the result you expect",
+    "You did not use terms like HTML or CSS in the request, so the AI could not understand it",
+    "A shop page is too complicated, and the AI can only build an introduction page"
+  ],
+  "explanation": "The AI does not know what you sell, who you sell to, or what device your customers use. Without that, it fills the gaps with the most common values - exactly the generic page with placeholder text. Waiting for a newer model will not replace information you never gave. Technical terms are not needed either: plain words that make the idea clear are enough. And a shop page is not too complex, because the AI can build a simple shop page if you describe it fully.",
+  "diagram": [
+    {
+      "label": "Purpose: what is this page for?"
+    },
+    {
+      "label": "Users: who opens it, on what, and when?"
+    },
+    {
+      "label": "Expected result: what does it look like when done?"
+    },
+    {
+      "label": "A clear brief: the AI hits the mark and you fix less"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Illustrative scenario",
+    "description": "Illustrative scenario: a coffee shop owner asks an AI to \"make a website for my shop\" and gets back a page full of placeholder text about a company. The second time she writes: \"A small intro page for the shop, customers view it on their phones, I need opening hours, the address and a call button.\" The result is usable after two small edits. Same AI; the only difference is the three things she spelled out."
+  },
+  "quiz": [
+    {
+      "question": "Which of these requests briefs the AI best?",
+      "options": [
+        "A small coffee shop page, viewed on phones, with opening hours and a call button",
+        "A really professional, nice and modern website, like the big brands have",
+        "A coffee shop website using modern HTML and CSS, with plenty of motion effects",
+        "A coffee shop website with as many features as possible, the more the better"
+      ],
+      "explanation": "The request that names the viewer, the phone and the must-haves gives the AI the three things it needs: what the page is for (introducing the shop), who views it and on what (customers, phones), and what must be on it (opening hours, call button). The first distractor uses vague praise and the second uses jargon, and neither says what the page is for. The last one, \"as many features as possible\", makes the AI stuff in things you do not need."
+    },
+    {
+      "question": "Why should you say what the website is for?",
+      "options": [
+        "The longer the purpose, the faster the model runs and the less it costs you",
+        "The AI picks the layout, wording and content to fit the purpose you state",
+        "The model only works when the request has at least three sentences in it",
+        "The purpose is only there so you remember later; the AI does not use it"
+      ],
+      "explanation": "The purpose is what the AI uses to decide what goes at the top of the page, which tone to write in, and what to leave out. Request length does not make a model faster or cheaper, and there is no \"three sentences\" rule. The AI does read the purpose; it is the most important part of the request."
+    },
+    {
+      "question": "You wrote \"make this for me\" and the AI asks a few questions back. What should you do?",
+      "options": [
+        "Ignore them and hit regenerate until a version you like appears on the first try",
+        "Answer \"anything is fine\" so the AI chooses everything on your behalf",
+        "Answer each question, because the questions help the result fit what you want",
+        "Close the conversation, because a question back means the AI cannot do the job"
+      ],
+      "explanation": "A question back is the AI asking for exactly the information that is missing, so answering is the fastest way to get the right version. Regenerating adds no information, so it only gives random variations. Answering \"anything is fine\" hands every decision to the AI. Asking back does not mean it is helpless; it means it needs more facts."
+    },
+    {
+      "question": "What are the three things a good brief should include?",
+      "options": [
+        "The delivery date, the person who approves it and the budget for the software",
+        "The tool name, the programming language name and the newest version",
+        "The maximum length, the tone of voice and how many questions it may ask back",
+        "What it is for, who will use it, and what it looks like when done"
+      ],
+      "explanation": "Purpose, users and expected result are three things the AI cannot guess correctly. Tool names and versions are technical details the AI can propose and you can approve. Delivery date and budget are project management between people, and the AI does not use them. Tone and length help when writing text, but they are not the core of briefing a product."
+    },
+    {
+      "question": "You want to \"build a money app\". Which added sentence helps most?",
+      "options": [
+        "For personal spending, entered by hand each evening, with a weekly total",
+        "Use the newest technology and the best security",
+        "Make it really smart, easy to use and packed with every function that might be needed",
+        "Build it very fast, and I will fix whatever is not quite right afterwards by myself"
+      ],
+      "explanation": "The follow-up sentence says who uses it (one person), how (typed in each evening) and what result is needed (a weekly total), so the AI knows right away what to build and what to skip. The others are wishes or vague promises and add no fact for the AI to decide on."
+    }
+  ],
+  "keyTakeaways": [
+    "The AI fills gaps with the most common values; the less you say, the more generic the result.",
+    "Three things to say: what it is for, who uses it, and what it looks like when done.",
+    "Use plain words that make the idea clear; jargon does not make a request better.",
+    "When the AI asks questions back, answer each one: they are the missing facts.",
+    "Adjectives like \"nice\" or \"smart\" are not information; concrete examples are."
+  ],
+  "practicePrompt": {
+    "question": "You ask the AI to write an email reminding a customer to pay. What should you add first?",
+    "options": [
+      "Who the customer is, the payment deadline, and a friendly or firm tone",
+      "The exact word count and the name of the font you want in the email",
+      "The name of the AI model you are using and the date it was trained",
+      "Whether the email is sent from your phone or from your desktop computer"
+    ],
+    "explanation": "Who the customer is, the deadline and the tone decide what the email says and how it reads. Word count and font are formatting details you can change later. The model name or the sending device has no effect on what should be written."
+  },
+  "summary": {
+    "keyIdea": "The AI hits the mark when you state the purpose, the user and the expected result.",
+    "formula": "A good request = what it is for + who uses it (on what) + what it looks like when done.",
+    "commonMistake": "Using praise words (\"nice\", \"professional\") instead of concrete facts.",
+    "action": "Rewrite one of your old requests using the three points above, then compare the two results."
+  },
+  "application": {
+    "title": "Do it now in 10 minutes",
+    "message": "Pick one task where the AI's answer came back generic. Rewrite the request in three lines: what it is for, who uses it and on what, and what it looks like when done. Send it again and put the two results side by side to see the difference.",
+    "secondary": "Keep both versions of the request: the best way to write is the one you can compare."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "You tell the AI \"make me a website\" and get back something everyone has seen before. The fault is rarely the AI. This lesson gives you three questions that turn a one-line request into a proper brief."
+    },
+    {
+      "type": "feynman",
+      "title": "Briefing an AI is simpler than you think",
+      "intro": "Imagine hiring a skilled builder who has never been inside your house. Told \"fix up my room\", they will make the room everyone makes. The AI does the same.",
+      "columns": [
+        "What to say",
+        "To a builder",
+        "To an AI"
+      ],
+      "rows": [
+        [
+          "What it is for",
+          "Is this room for sleeping or for working",
+          "Is this page for introducing the shop or for selling"
+        ],
+        [
+          "Who uses it",
+          "Young children and older people live here",
+          "Customers view it on their phones, mostly while on the move"
+        ],
+        [
+          "What it looks like when done",
+          "Show a photo of a room you like",
+          "List the must-haves: opening hours, call button"
+        ],
+        [
+          "If you do not say",
+          "The builder does it the way they usually do",
+          "The AI fills it in with the most common style"
+        ]
+      ],
+      "oneLiner": "The AI works fast, but it only does what you say clearly."
+    },
+    {
+      "type": "flow",
+      "title": "From a vague idea to a brief",
+      "steps": [
+        {
+          "label": "Start from a vague idea",
+          "detail": "\"Make me a website for the shop.\""
+        },
+        {
+          "label": "Answer: what is it for?",
+          "detail": "Introduce a small shop so customers know the opening hours."
+        },
+        {
+          "label": "Answer: who uses it, on what?",
+          "detail": "Customers in the neighbourhood, on their phones."
+        },
+        {
+          "label": "Answer: what does it look like when done?",
+          "detail": "Opening hours, address and a call button at the top of the page."
+        },
+        {
+          "label": "Send it",
+          "detail": "The three answers put together are the brief."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Three questions before you send"
+    },
+    {
+      "type": "paragraph",
+      "text": "Before you press send, ask yourself: what is this page (or app) for? Who will open it, on what device? When it is done, where do I look to know it is right? Those three answers are your request, written in plain words."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "One-line request",
+        "text": "\"Make me a coffee shop website.\" The AI has to guess everything, so you get a generic result and need many rounds of fixes."
+      },
+      "right": {
+        "label": "Three-part request",
+        "text": "\"A small intro page for the shop, customers view it on phones, I need opening hours and a call button.\" The AI knows what goes first, and you fix little."
+      }
+    },
+    {
+      "type": "list",
+      "items": [
+        "Say what it is for, not just what it is.",
+        "Say who uses it and on what, especially when it is a phone.",
+        "Name one or two must-haves; do not list a dozen.",
+        "When the AI asks back, answer fully before asking for a new version."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Adjectives are not information",
+      "text": "\"Nice\", \"modern\", \"professional\" mean something different to everyone. \"Light background, large text, a big call button at the top\" has only one reading."
+    },
+    {
+      "type": "aiLab",
+      "mode": "prompt",
+      "title": "Build a brief for a coffee shop page",
+      "task": "You need an intro page for the shop. Choose each part to assemble the request and see how the AI answers.",
+      "parts": [
+        {
+          "label": "Purpose",
+          "options": [
+            {
+              "text": "Make me a nice website.",
+              "feedback": "\"Nice\" does not tell the AI what the page is for, so it has to guess."
+            },
+            {
+              "text": "This page introduces my small coffee shop so customers know the opening hours and the seating.",
+              "feedback": "A clear purpose: the AI knows what information goes at the top."
+            }
+          ]
+        },
+        {
+          "label": "Users",
+          "options": [
+            {
+              "text": "Customers in the neighbourhood, usually opening the page on their phones while out on the street.",
+              "feedback": "The AI understands it needs large text, a single-column layout and buttons that are easy to tap."
+            },
+            {
+              "text": "Anyone on the internet, everybody can view it.",
+              "feedback": "Too broad: the AI does not know which device or need to design for."
+            }
+          ]
+        },
+        {
+          "label": "Expected result",
+          "options": [
+            {
+              "text": "Opening hours, the address and a call button at the top; light background, large text.",
+              "feedback": "You can check each point when you receive the result."
+            },
+            {
+              "text": "Looks really professional and has everything a shop needs.",
+              "feedback": "You cannot check it: \"professional\" and \"everything\" mean different things to different people."
+            }
+          ]
+        }
+      ],
+      "responses": [
+        {
+          "text": "Here is a single-column page for phones: at the top, the shop name, the opening hours and a big \"Call the shop\" button; below it, the address, a photo of the shop and a few main drinks. I used a light background and large text. Would you like a map too?\n(A close match: because the request spelled out three things.)"
+        },
+        {
+          "text": "Here is a shop intro page with a header, a menu and a contact section. I chose a common layout and neutral colours.\n(On the right track but generic, because it does not know who views it or what must be on it.)"
+        },
+        {
+          "text": "Here is a modern website with a large banner, three service columns and lorem ipsum filler text for you to replace later.\n(Generic because the request said nothing specific.)"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Running project: the Alley coffee shop - step 1/10",
+      "text": "Throughout this stage you build an ordering tool for a small coffee shop. Each lesson adds one step and one exercise that runs; your progress is saved when the exercise passes. Step 1 is the brief for the AI."
+    },
+    {
+      "type": "exercise",
+      "title": "Project step 1: write the brief for the coffee shop page",
+      "task": "The Alley coffee shop needs an intro page. You are the one briefing the AI. Fill in three blanks: the purpose (what it is for), the users (who uses it, on what) and the result (things you can check). The program checks that your brief has all three: customers view it on a phone, the page must have opening hours and a call button, and it must not use vague adjectives such as \"nice\" or \"professional\".",
+      "starter": "// Fill in the three blanks below. The checking code is underneath; no need to change it.\n// yeuCau = \"request\", mucDich = \"purpose\", nguoiDung = \"users\", ketQua = \"result\"\nconst yeuCau = {\n  mucDich: \"\",\n  nguoiDung: \"\",\n  ketQua: [],\n};\n\nfunction kiemTra(y) {\n  const loi = [];\n  if (y.mucDich.trim().length < 15) loi.push(\"purpose is too short or empty\");\n  if (!y.nguoiDung.toLowerCase().includes(\"phone\")) loi.push(\"you did not say customers view it on a phone\");\n  const ds = y.ketQua.map((k) => k.toLowerCase());\n  if (!ds.some((k) => k.includes(\"opening hours\"))) loi.push(\"missing: opening hours\");\n  if (!ds.some((k) => k.includes(\"call button\"))) loi.push(\"missing: call button\");\n  if (ds.some((k) => [\"nice\", \"modern\", \"professional\"].some((t) => k.includes(t)))) {\n    loi.push(\"vague adjective found: state something you can check\");\n  }\n  return loi;\n}\n\nconst loi = kiemTra(yeuCau);\nconsole.log(loi.length === 0 ? \"Brief passed: the AI has all three things it needs to hit the mark.\" : \"Not yet:\");\nfor (const l of loi) console.log(\"- \" + l);",
+      "solution": "// yeuCau = \"request\", mucDich = \"purpose\", nguoiDung = \"users\", ketQua = \"result\"\nconst yeuCau = {\n  mucDich: \"Introduce a small coffee shop so customers know the opening hours and the seating\",\n  nguoiDung: \"Customers in the neighbourhood, opening the page on a phone while out on the street\",\n  ketQua: [\"Opening hours at the top of the page\", \"A big, easy-to-tap call button\", \"Large text, light background\"],\n};\n\nfunction kiemTra(y) {\n  const loi = [];\n  if (y.mucDich.trim().length < 15) loi.push(\"purpose is too short or empty\");\n  if (!y.nguoiDung.toLowerCase().includes(\"phone\")) loi.push(\"you did not say customers view it on a phone\");\n  const ds = y.ketQua.map((k) => k.toLowerCase());\n  if (!ds.some((k) => k.includes(\"opening hours\"))) loi.push(\"missing: opening hours\");\n  if (!ds.some((k) => k.includes(\"call button\"))) loi.push(\"missing: call button\");\n  if (ds.some((k) => [\"nice\", \"modern\", \"professional\"].some((t) => k.includes(t)))) {\n    loi.push(\"vague adjective found: state something you can check\");\n  }\n  return loi;\n}\n\nconst loi = kiemTra(yeuCau);\nconsole.log(loi.length === 0 ? \"Brief passed: the AI has all three things it needs to hit the mark.\" : \"Not yet:\");\nfor (const l of loi) console.log(\"- \" + l);",
+      "expectedOutput": "Brief passed: the AI has all three things it needs to hit the mark.",
+      "hints": [
+        "Run it first: the program lists each missing item, so handle them one line at a time.",
+        "The result is a list of text, for example: [\"Opening hours at the top of the page\", ...]. Each entry names one thing you can look at to tell whether it is right.",
+        "Avoid the words \"nice\", \"modern\" and \"professional\" in the result part."
+      ]
+    },
+    {
+      "type": "scenario",
+      "title": "The first version is not what you wanted",
+      "nodes": {
+        "s1": {
+          "text": "You send \"make a website for the shop\" and get back a page full of placeholder text. You are annoyed and must decide what to do next.",
+          "choices": [
+            {
+              "label": "Rewrite it: a small intro page for the shop, viewed on phones, with opening hours and a call button"
+            },
+            {
+              "label": "Keep pressing regenerate until a version you like shows up"
+            }
+          ]
+        },
+        "bad_retry": {
+          "text": "After five tries, every version is generic in a different way. You have lost a whole afternoon and still have no usable page."
+        },
+        "good": {
+          "text": "The new version has opening hours and a call button right at the top. You only need to change two lines of text. You realise you added exactly the things the AI cannot guess."
+        }
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Three questions before you send: what it is for, who uses it, what it looks like when done.",
+        "Next lesson: a clear request that is too big still makes the AI fail - how to split it into small steps."
+      ]
+    }
+  ]
+}

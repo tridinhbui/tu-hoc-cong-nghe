@@ -1,0 +1,303 @@
+{
+  "slug": "mot-luot-mot-viec-chia-du-an-thanh-buoc-kiem-duoc",
+  "title": "Stage 67, Lesson 2: One thing at a time - split a project into steps you can check",
+  "subtitle": "Ask for the whole project in one sentence and the bugs are everywhere; ask step by step and every bug has an address.",
+  "whyItMatters": "A clear request can still be too big. Ask the AI for a whole application in one go and you get hundreds of lines of code that fail, with no idea where the failure comes from. Splitting the work is the only way to keep understanding what is being built, and to know which step broke which.",
+  "openingQuestion": "In one sentence you ask the AI for a spending-tracker app with login, charts, debt reminders and Excel export. The result fails everywhere. What is the better way to handle it?",
+  "openingOptions": [
+    "Rewrite the request twice as long so the AI does not leave out any feature",
+    "Switch to a different model and paste the exact same original request again",
+    "Ask for the spending entry part first, test it, and only then ask for the next part",
+    "Ask the AI to regenerate the whole app several times, then pick the version with the fewest bugs"
+  ],
+  "explanation": "Four features at once stack their errors on top of each other, so it is hard to tell which one caused which. If you build the spending entry first, test it, confirm it works, and only then add the next part, any new error can only come from the step you just added. A longer request makes the problem bigger. Switching models or regenerating only changes the random result and does nothing about the size of the problem.",
+  "diagram": [
+    {
+      "label": "Pick one small step: one screen, one feature"
+    },
+    {
+      "label": "Ask the AI for exactly that step"
+    },
+    {
+      "label": "Run it: does it do what you wanted?"
+    },
+    {
+      "label": "If right, go to the next step; if wrong, fix it right here"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Illustrative scenario",
+    "description": "Illustrative scenario: someone asks an AI for a spending-tracker app with seven features in one go, and gets back three code files and four different errors. Two evenings pass and it still will not run. They start over from the screen that enters an expense and test after every step, and have a working version after one session, because every time something broke they knew which step caused it."
+  },
+  "quiz": [
+    {
+      "question": "Why split a project into small steps when working with an AI?",
+      "options": [
+        "The model only allows one task per turn of the conversation",
+        "Each step can be tested, so errors show up early and are easy to pin down",
+        "Small steps make the AI charge less, so the result is much better",
+        "A short request forces the AI to do exactly what each word says"
+      ],
+      "explanation": "The main value of a small step is that you can check it: any error appears right after the step you just did, so it is easy to find. There is no one-task-per-turn limit; cost and quality do not improve just because a request is short; and the AI does not follow every word just because the request is brief."
+    },
+    {
+      "question": "A step has just finished and it runs. What should you do before moving to the next one?",
+      "options": [
+        "Ask for the next step straight away, since every bug will show up at the end anyway",
+        "Delete the conversation history so the AI is not confused by the old step",
+        "Confirm the step works the way you wanted, then ask for the next one",
+        "Ask the AI to check itself, and if it says it is fine, move on without running it"
+      ],
+      "explanation": "Only you running it and looking at the result can confirm the step is right. Leaving all the checking to the end makes errors stack up. Deleting the history makes the AI lose the project's context. Trusting an AI saying \"looks fine\" without running it means trusting a claim nobody has checked."
+    },
+    {
+      "question": "For a spending-tracker app, what is the most sensible first step?",
+      "options": [
+        "The login with accounts, because every app needs one",
+        "The entire database for every feature that will ever exist",
+        "Designing a logo and colour palette for the whole application first",
+        "One screen to enter an expense, with no login or charts yet"
+      ],
+      "explanation": "Entering one expense is the core of the app and can be tested right away. Building a whole database for the future means building before you know what you need. A logo and colours do not make the app run. Login is an important feature, but it is not what confirms the idea works."
+    },
+    {
+      "question": "A step you just built has an error. Which way of handling it makes sense?",
+      "options": [
+        "Paste the error message with the step you just did, and fix it before moving on",
+        "Ignore the small error, ask for the next step, and fix everything together at the end of the project",
+        "Ask the AI to rewrite everything from scratch to wipe out every old error at once",
+        "Rename the files in the project and run it again to see whether the error goes away"
+      ],
+      "explanation": "The error has a clear address (the step you just did), so fixing it there is fastest. Rewriting from scratch throws away the part that works. Leaving errors for the end makes them stack up. Renaming files at random has no reason to make an error disappear."
+    },
+    {
+      "question": "How big should a good step be?",
+      "options": [
+        "As many features as possible, to avoid asking again later",
+        "Small enough that you can check it yourself in a few minutes",
+        "Exactly one line of code, so the AI cannot get it wrong",
+        "Half the project, so you can build the other half yourself"
+      ],
+      "explanation": "The measure is whether you can check it: if you cannot check it in a few minutes, the step is still too big. Too many features lose the benefit of splitting; one line of code is too tiny to mean anything; and half a project is still a huge step."
+    }
+  ],
+  "keyTakeaways": [
+    "A clear request that is too big still gives errors stacked on errors.",
+    "One small task per turn: test it, then move to the next.",
+    "A small step is measured by whether you can check it in a few minutes.",
+    "After a small step, an error always has an address: the step you just did.",
+    "Run it and look at the result yourself; the AI saying \"it is fine\" does not replace that."
+  ],
+  "practicePrompt": {
+    "question": "You want a hair salon booking page with time selection, text message reminders and payment. What should you ask the AI for first?",
+    "options": [
+      "A time selection page showing the free time slots",
+      "The whole page, with time selection, text reminders and payment",
+      "Online payment first, because it is the hardest part",
+      "The colour palette and fonts for every later page"
+    ],
+    "explanation": "Choosing a time is the core of the page and you can check it by eye right away. Asking for all three features at once recreates errors stacked on errors. Starting with payment when there is nothing to pay for is doing things in the wrong order; colours and fonts can wait until the features work."
+  },
+  "summary": {
+    "keyIdea": "Split the project into steps small enough for you to check yourself, then go one step at a time.",
+    "formula": "One small step → the AI builds it → you run it → if right, the next step.",
+    "commonMistake": "Asking for the whole project in one go and then not knowing where the error is.",
+    "action": "Split a project you plan to build into 4-5 steps, each checkable in a few minutes."
+  },
+  "application": {
+    "title": "Do it now in 15 minutes",
+    "message": "Choose a small product you want to build. Write 5 steps, one line each, and next to each write \"I will check it by...\". Ask the AI for step one and test it before asking for step two.",
+    "secondary": "If you do not know how to check a step, it is a sign that the step is still too big or unclear."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "Your request was clear, the AI understood, and still the whole application it built does not run. This time the problem is size: too much in one turn. This lesson teaches you to cut the work into slices you can check."
+    },
+    {
+      "type": "feynman",
+      "title": "Splitting into steps is simpler than you think",
+      "intro": "You do not pour a whole building at once: you lay the foundation, check it, and only then build the walls. Working with an AI is the same.",
+      "columns": [
+        "Task",
+        "Building a house",
+        "Building a product with AI"
+      ],
+      "rows": [
+        [
+          "Build in parts",
+          "Foundation first, walls next, roof last",
+          "The entry screen first, the chart next, file export last"
+        ],
+        [
+          "Check each part",
+          "Measure that the foundation is level before building on it",
+          "Test the entry screen before asking for more"
+        ],
+        [
+          "When it breaks",
+          "You know right away it was the part you just built",
+          "An error can only come from the step you just added"
+        ],
+        [
+          "Do it all at once",
+          "A cracked wall and no idea if the foundation or the roof is to blame",
+          "Errors on top of errors, and no idea where to start fixing"
+        ]
+      ],
+      "oneLiner": "One task per turn, small enough to check, and every error has an address."
+    },
+    {
+      "type": "heading",
+      "text": "A working loop"
+    },
+    {
+      "type": "flow",
+      "title": "From a big idea to a working app",
+      "steps": [
+        {
+          "label": "Write the big idea in one sentence",
+          "detail": "For example: a daily personal spending tracker."
+        },
+        {
+          "label": "Cut it into small steps",
+          "detail": "Enter an expense, see the list, weekly total, and only then anything else."
+        },
+        {
+          "label": "Ask the AI for step one",
+          "detail": "Only step one, and say clearly where it ends."
+        },
+        {
+          "label": "Test it",
+          "detail": "Enter a few real expenses; move on only if it is right."
+        },
+        {
+          "label": "Go to the next step",
+          "detail": "Repeat until done; whenever something breaks, fix it right away."
+        }
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "The whole project in one go",
+        "text": "Hundreds of lines of code, a few errors piled together, no idea where to start fixing, and an easy reason to give up halfway."
+      },
+      "right": {
+        "label": "Small steps",
+        "text": "A few dozen lines per turn, checkable right away, every error has an address, and you always understand what you are building."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "A sign the step is still too big",
+      "text": "If you cannot think of a way to check the step in a few minutes, cut it smaller."
+    },
+    {
+      "type": "aiLab",
+      "mode": "prompt",
+      "title": "Build the request for the first step",
+      "task": "You are building a spending-tracker app. Choose how to ask the AI for the first step so the result can be checked.",
+      "parts": [
+        {
+          "label": "Scope of the step",
+          "options": [
+            {
+              "text": "Build the whole app: spending entry, login, charts, debt reminders and Excel export.",
+              "feedback": "Too big: errors will stack up and you will not know where to fix them."
+            },
+            {
+              "text": "Build only one screen to enter an expense, with an amount, a note and a date.",
+              "feedback": "Small and checkable: you enter something and know right away if it works."
+            }
+          ]
+        },
+        {
+          "label": "Stopping point",
+          "options": [
+            {
+              "text": "When you are done, keep going with whatever else you think is needed.",
+              "feedback": "The AI will add features on its own, and the step is no longer small."
+            },
+            {
+              "text": "Stop once an expense can be entered and shows up in a list; do nothing else yet.",
+              "feedback": "A clear stopping point tells you when this step is done."
+            }
+          ]
+        },
+        {
+          "label": "How to check",
+          "options": [
+            {
+              "text": "Tell me how to test this step myself in a few minutes.",
+              "feedback": "You get a concrete way to check right in the answer."
+            },
+            {
+              "text": "Just do it, I will look at the result when I have time.",
+              "feedback": "There is no way to check, so errors wait until many things are piled up."
+            }
+          ]
+        }
+      ],
+      "responses": [
+        {
+          "text": "Here is the expense entry screen with three fields: amount, note and date. When you press Save, the expense appears in the list below. I have not built login or charts.\nHow to test: enter three different expenses, close the page and reopen it, and see whether they are still there.\n(A small step, with a stopping point and a way to check.)"
+        },
+        {
+          "text": "Here is the expense entry screen, and I also added a monthly list and a small chart to be helpful.\n(On the right track, but the AI added extras because there was no stopping point.)"
+        },
+        {
+          "text": "Here is the whole application in seven files: login, spending entry, charts, debt reminders, Excel export... Please try running it.\n(Too big to check part by part.)"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Running project: the Alley coffee shop - step 2/10",
+      "text": "Step 2: a function that totals the cart, one small thing you can test."
+    },
+    {
+      "type": "exercise",
+      "title": "Project step 2: one small task - total the cart",
+      "task": "The first small task for the cart: the function tongTien adds up each item's price times its quantity. The AI has only written the empty frame of the function. Finish the function and run three test carts: an empty cart, one cup, and two items. Only when all three pass do you move on to the next step.",
+      "starter": "// tongTien = \"total amount\", gio = \"cart\", mon = \"item\", soLuong = \"quantity\"\nconst MENU = { \"ca-phe-den\": 25000, \"ca-phe-sua\": 29000, \"tra-dao\": 34500, \"banh-mi\": 20000 };\n\nfunction tongTien(gio) {\n  // gio is a list of rows { mon, soLuong }. Add up price of item times quantity.\n  return 0;\n}\n\nconst gioThu = [\n  { ten: \"empty cart\", gio: [], mong: 0 },\n  { ten: \"one cup\", gio: [{ mon: \"ca-phe-sua\", soLuong: 1 }], mong: 29000 },\n  { ten: \"two items\", gio: [{ mon: \"ca-phe-den\", soLuong: 2 }, { mon: \"banh-mi\", soLuong: 1 }], mong: 70000 },\n];\nfor (const c of gioThu) {\n  const that = tongTien(c.gio);\n  console.log(c.ten + \": \" + (that === c.mong ? \"pass\" : \"wrong (got \" + that + \", expected \" + c.mong + \")\"));\n}",
+      "solution": "// tongTien = \"total amount\", gio = \"cart\", mon = \"item\", soLuong = \"quantity\"\nconst MENU = { \"ca-phe-den\": 25000, \"ca-phe-sua\": 29000, \"tra-dao\": 34500, \"banh-mi\": 20000 };\n\nfunction tongTien(gio) {\n  let tong = 0;\n  for (const dong of gio) tong += MENU[dong.mon] * dong.soLuong;\n  return tong;\n}\n\nconst gioThu = [\n  { ten: \"empty cart\", gio: [], mong: 0 },\n  { ten: \"one cup\", gio: [{ mon: \"ca-phe-sua\", soLuong: 1 }], mong: 29000 },\n  { ten: \"two items\", gio: [{ mon: \"ca-phe-den\", soLuong: 2 }, { mon: \"banh-mi\", soLuong: 1 }], mong: 70000 },\n];\nfor (const c of gioThu) {\n  const that = tongTien(c.gio);\n  console.log(c.ten + \": \" + (that === c.mong ? \"pass\" : \"wrong (got \" + that + \", expected \" + c.mong + \")\"));\n}",
+      "expectedOutput": "empty cart: pass\none cup: pass\ntwo items: pass",
+      "hints": [
+        "Run it before changing anything: the empty cart already passes because 0 is the right answer, but the other two are wrong.",
+        "Use a variable tong that starts at 0, then for each row add MENU[dong.mon] * dong.soLuong.",
+        "End the function with return tong."
+      ]
+    },
+    {
+      "type": "scenario",
+      "title": "Step two has an error",
+      "nodes": {
+        "s1": {
+          "text": "Step one worked well. You ask for step two, the weekly total, and the page shows a red error.",
+          "choices": [
+            {
+              "label": "Paste the error, say you just added the weekly total, and ask for a fix to that part only"
+            },
+            {
+              "label": "Ask the AI for two more features, hoping they will cover up the error"
+            }
+          ]
+        },
+        "bad_stack": {
+          "text": "Three errors are stacked up and nobody knows which came first. You have to go back to step one and start over."
+        },
+        "good": {
+          "text": "Because step one still works, you and the AI know the error is in the totalling code. It is fixed in a few minutes, and you go on to step three with a version that runs correctly."
+        }
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "One small task per turn: test it, then move on.",
+        "Next lesson: telling the AI what it must NOT touch."
+      ]
+    }
+  ]
+}
