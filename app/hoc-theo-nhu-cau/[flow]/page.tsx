@@ -51,7 +51,8 @@ export default async function LearningFlowPage({ params }: { params: Promise<{ f
   const bySlug = new Map(metas.map((m) => [m.slug, m]));
   const stats = flowStats(flow, bySlug);
   const firstWin = bySlug.get(flow.firstWinSlug);
-  const note = flow.status === "partial" ? t.partialNote : flow.status === "soon" ? t.soonNote : null;
+  const partialNote = (t.partialNoteByFlow as Record<string, string>)[flow.id] ?? t.partialNote;
+  const note = flow.status === "partial" ? partialNote : flow.status === "soon" ? t.soonNote : null;
 
   // Trang công khai: khách chưa đăng nhập vẫn xem được, nên đọc tiến độ là
   // việc làm thêm khi có phiên, và hỏng thì bỏ qua chứ không làm hỏng trang.
