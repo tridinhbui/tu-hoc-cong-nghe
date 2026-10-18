@@ -1,0 +1,140 @@
+{
+ "persona": "p5",
+ "name": "Đã biết công nghệ, tìm nâng cao",
+ "vp": "desktop",
+ "goal": "Tôi đã biết lập trình",
+ "advanced": true,
+ "stages": {
+  "A_landing_signup": {
+   "actions": 6,
+   "overlays": 0,
+   "deadEnds": [],
+   "screensScrolled": 0,
+   "wordsScanned": 311,
+   "ms": 6539,
+   "notes": [
+    "đăng ký xong vào /dashboard"
+   ],
+   "estHumanSec": 93
+  },
+  "B_onboarding_to_lesson1": {
+   "actions": 5,
+   "overlays": 2,
+   "deadEnds": [],
+   "screensScrolled": 0,
+   "wordsScanned": 615,
+   "ms": 10829,
+   "notes": [
+    "bài đầu: /bai-hoc/kieu-du-lieu-la-gi"
+   ],
+   "estHumanSec": 133
+  },
+  "C_lesson_and_quiz": {
+   "actions": 18,
+   "overlays": 0,
+   "deadEnds": [],
+   "screensScrolled": 10.1,
+   "wordsScanned": 285,
+   "ms": 10279,
+   "notes": [
+    "h1=\"Kiểu dữ liệu: vì sao máy phải biết trước\"; 1922 chữ; 10.1 màn hình; 31 điều khiển trong màn đầu",
+    "trả lời 6 câu quiz",
+    "quiz xong nhưng bài CHƯA hoàn thành: còn câu 'Dừng & Kiểm tra' giữa bài",
+    "có phản hồi hoàn thành/XP trên màn hình"
+   ],
+   "estHumanSec": 116
+  },
+  "D_practice_tool": {
+   "actions": 3,
+   "overlays": 0,
+   "deadEnds": [],
+   "screensScrolled": 0,
+   "wordsScanned": 701,
+   "ms": 4502,
+   "notes": [
+    "/cong-cu: 232 chữ trong màn đầu",
+    "có gợi ý công cụ nên bắt đầu",
+    "vào /cong-cu/editor"
+   ],
+   "estHumanSec": 128
+  },
+  "E_progress": {
+   "actions": 1,
+   "overlays": 0,
+   "deadEnds": [],
+   "screensScrolled": 0,
+   "wordsScanned": 469,
+   "ms": 2619,
+   "notes": [
+    "khối tiến độ: Thi thăng cấp LV02"
+   ],
+   "estHumanSec": 120
+  },
+  "F_return_next_day": {
+   "actions": 2,
+   "overlays": 1,
+   "deadEnds": [],
+   "screensScrolled": 0,
+   "wordsScanned": 265,
+   "ms": 10078,
+   "notes": [
+    "tiếp tục ở /bai-hoc/kieu-du-lieu-la-gi"
+   ],
+   "estHumanSec": 71
+  }
+ },
+ "total": {
+  "actions": 35,
+  "overlays": 3,
+  "deadEnds": 0,
+  "estSec": 672
+ },
+ "log": [
+  "[A_landing_signup] VÀO HỌC NGAY",
+  "[A_landing_signup] chuyển sang Đăng ký",
+  "[A_landing_signup] điền tên",
+  "[A_landing_signup] điền email",
+  "[A_landing_signup] điền mật khẩu",
+  "[A_landing_signup] bấm Đăng ký",
+  "[A_landing_signup] note: đăng ký xong vào /dashboard",
+  "[B_onboarding_to_lesson1] chọn mục tiêu: Tôi đã biết lập trình",
+  "[B_onboarding_to_lesson1] tour: Bỏ qua",
+  "[B_onboarding_to_lesson1] menu: Học bài",
+  "[B_onboarding_to_lesson1] chọn lộ trình chuyên sâu",
+  "[B_onboarding_to_lesson1] bấm Học tiếp",
+  "[B_onboarding_to_lesson1] note: bài đầu: /bai-hoc/kieu-du-lieu-la-gi",
+  "[C_lesson_and_quiz] note: h1=\"Kiểu dữ liệu: vì sao máy phải biết trước\"; 1922 chữ; 10.1 màn hình; 31 điều khiển trong màn đầu",
+  "[C_lesson_and_quiz] chọn đáp án",
+  "[C_lesson_and_quiz] Kiểm tra đáp án",
+  "[C_lesson_and_quiz] Câu tiếp",
+  "[C_lesson_and_quiz] chọn đáp án",
+  "[C_lesson_and_quiz] Kiểm tra đáp án",
+  "[C_lesson_and_quiz] Câu tiếp",
+  "[C_lesson_and_quiz] chọn đáp án",
+  "[C_lesson_and_quiz] Kiểm tra đáp án",
+  "[C_lesson_and_quiz] Câu tiếp",
+  "[C_lesson_and_quiz] chọn đáp án",
+  "[C_lesson_and_quiz] Kiểm tra đáp án",
+  "[C_lesson_and_quiz] Câu tiếp",
+  "[C_lesson_and_quiz] chọn đáp án",
+  "[C_lesson_and_quiz] Kiểm tra đáp án",
+  "[C_lesson_and_quiz] Câu tiếp",
+  "[C_lesson_and_quiz] chọn đáp án",
+  "[C_lesson_and_quiz] Kiểm tra đáp án",
+  "[C_lesson_and_quiz] Câu tiếp",
+  "[C_lesson_and_quiz] note: trả lời 6 câu quiz",
+  "[C_lesson_and_quiz] note: quiz xong nhưng bài CHƯA hoàn thành: còn câu 'Dừng & Kiểm tra' giữa bài",
+  "[C_lesson_and_quiz] note: có phản hồi hoàn thành/XP trên màn hình",
+  "[D_practice_tool] trang bài không có menu - bấm Quay lại",
+  "[D_practice_tool] menu: Mô phỏng công cụ",
+  "[D_practice_tool] note: /cong-cu: 232 chữ trong màn đầu",
+  "[D_practice_tool] note: có gợi ý công cụ nên bắt đầu",
+  "[D_practice_tool] Bắt đầu công cụ đầu tiên",
+  "[D_practice_tool] note: vào /cong-cu/editor",
+  "[E_progress] menu: ^Dashboard$|Trang chính|Tổng quan",
+  "[E_progress] note: khối tiến độ: Thi thăng cấp LV02",
+  "[F_return_next_day] tour: Bỏ qua",
+  "[F_return_next_day] Học tiếp",
+  "[F_return_next_day] note: tiếp tục ở /bai-hoc/kieu-du-lieu-la-gi"
+ ]
+}

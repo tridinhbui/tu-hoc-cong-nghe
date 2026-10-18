@@ -77,14 +77,13 @@ interface Props {
   children: React.ReactNode;
 }
 
-/* i18n-ignore-start: định danh máy trên khung soạn thảo của bài - tên tệp và
-   đường dẫn, cùng một chuỗi ở mọi ngôn ngữ, như trên trang giới thiệu
-   (components/home/HomePage.tsx, hằng SYS). */
+/* i18n-ignore-start: ký hiệu cùng một chuỗi ở mọi ngôn ngữ.
+   Tên tệp giả ("<slug>.md", "quiz.ts", "notes.md") và đường dẫn
+   "THCN://LESSON/..." từng đứng ở đây, trên đầu MỌI bài học. Với người chưa
+   biết lập trình chúng là chữ lạ ở đúng chỗ đầu tiên họ nhìn - đi thử như năm
+   kiểu người học (DEEP-UX-USABILITY-AUDIT.md) thì đây là thứ đầu tiên phải
+   đoán nghĩa. Nhãn giờ là chữ thường ngày, lấy từ từ điển. */
 const SYS = {
-  path: (slug: string) => `THCN://LESSON/${slug.toUpperCase()}`,
-  file: (slug: string) => `${slug}.md`,
-  quiz: "quiz.ts",
-  notes: "notes.md",
   xp: (n: number) => `+${n} XP`,
   letters: ["A", "B", "C", "D", "E", "F"],
 };
@@ -798,7 +797,6 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
               <span className="hidden sm:inline">{t.lessonLayout.back}</span>
             </Link>
             <div className="min-w-0">
-              {slug && <Sys className="hidden truncate text-ink-muted sm:block">{SYS.path(slug)}</Sys>}
               <p className="line-clamp-1 text-base font-black leading-tight tracking-tight text-ink-max sm:text-[17px]">{lesson.title}</p>
             </div>
           </div>
@@ -871,15 +869,15 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                   <div className="flex min-w-0">
                     <span className="relative flex min-w-0 items-center border-r border-line-strong bg-white px-3.5 dark:bg-stone-900">
                       <span aria-hidden className="absolute inset-x-0 top-0 h-[2px] bg-brand-600 dark:bg-brand-500" />
-                      <Sys className="truncate normal-case text-ink">{slug ? SYS.file(slug) : lessonLabel}</Sys>
+                      <span className="truncate text-xs font-bold text-ink">{t.lessonLayout.tabLesson}</span>
                     </span>
                     {quiz.length > 0 && (
                       <a href="#lesson-quiz" className="hidden items-center border-r border-line-strong px-3.5 hover:bg-white dark:hover:bg-stone-900 sm:flex">
-                        <Sys className="normal-case text-ink-muted">{SYS.quiz}</Sys>
+                        <span className="text-xs font-semibold text-ink-muted">{t.lessonLayout.quickCheck}</span>
                       </a>
                     )}
                     <a href="#lesson-notes" className="hidden items-center border-r border-line-strong px-3.5 hover:bg-white dark:hover:bg-stone-900 md:flex">
-                      <Sys className="normal-case text-ink-muted">{SYS.notes}</Sys>
+                      <span className="text-xs font-semibold text-ink-muted">{t.lessonLayout.tabNotes}</span>
                     </a>
                   </div>
                   <div className="flex shrink-0 items-center gap-3 px-3">
@@ -1121,7 +1119,6 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                 className="flex h-9 w-full items-center justify-between border-b border-line-strong bg-surface px-3 transition-colors hover:bg-surface-raised"
               >
                 <span className="flex min-w-0 items-center gap-3">
-                  <Sys className="normal-case text-ink">{SYS.quiz}</Sys>
                   <span className={label}>{t.lessonLayout.quickCheck}</span>
                 </span>
                 <span className="flex items-center gap-2">
@@ -1280,7 +1277,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                       <StatusDot tone={score === quiz.length ? "brand" : "muted"} />
                       <span className={label}>{t.lessonLayout.quickCheck}</span>
                     </div>
-                    <h3 className="mt-2 text-xl font-black tracking-tight text-ink-max">{t.lessonLayout.doneTitle}</h3>
+                    <h3 className="mt-2 text-xl font-black tracking-tight text-ink-max">{score * 2 >= quiz.length ? t.lessonLayout.doneTitle : t.lessonLayout.doneTitleLow}</h3>
                     <p className={`mt-1 text-sm font-semibold ${score === quiz.length ? "text-accent-strong" : "text-ink-soft"}`}>
                       {format(t.lessonLayout.doneScore, { score, total: quiz.length })}
                     </p>

@@ -159,7 +159,67 @@ export type LessonSectionBlock =
       seriesLabels: string[];
     }
   // Sơ đồ chạy từng bước: bấm "Bước tiếp" để thấy dữ liệu đi qua từng khâu.
-  | { type: "flow"; title: string; steps: { label: string; detail: string }[] };
+  | { type: "flow"; title: string; steps: { label: string; detail: string }[] }
+  // Phòng thí nghiệm máy: người học SỬA chương trình / chỉnh tham số, máy chạy
+  // thật (bộ thông dịch tự viết ở lib/lesson-blocks/machine.js, không eval) và
+  // khối chấm theo KẾT QUẢ CHẠY. Hai kiểu:
+  //  - "cpu": CPU đồ chơi 4 thanh ghi, 8 ô nhớ. `starter` chạy được nhưng sai
+  //    mục tiêu; `solution` đạt mục tiêu (CI chạy cả hai - validate.js).
+  //  - "scheduler": lập lịch round-robin; người học chọn quantum sao cho thoả
+  //    cả hai giới hạn trong `goal` (phản hồi nhanh VÀ tổng thời gian ngắn).
+  | {
+      type: "machine";
+      kind: "cpu";
+      title: string;
+      task: string;
+      memory: number[];
+      starter: string[];
+      solution: string[];
+      goal: { cells: { cell: number; value: number }[] };
+      hints?: string[];
+      explanation?: string;
+    }
+  | {
+      type: "machine";
+      kind: "scheduler";
+      title: string;
+      task: string;
+      procs: { name: string; arrival: number; burst: number }[];
+      switchCost: number;
+      quantum: { min: number; max: number; value: number };
+      solutionQuantum: number;
+      goal: { maxAvgResponse: number; maxTotal: number };
+      hints?: string[];
+      explanation?: string;
+    }
+  // "http": máy chủ giả (luật nằm trong `server.routes`); người học dựng yêu cầu
+  // (phương thức, đường dẫn, xác thực, thân JSON) cho tới khi nhận đúng mã `goal.status`.
+  | {
+      type: "machine";
+      kind: "http";
+      title: string;
+      task: string;
+      server: { routes: { method: string; path: string; auth?: boolean; fields?: string[] }[] };
+      starter: { method: string; path: string; auth: "none" | "bad" | "good"; body: string };
+      solution: { method: string; path: string; auth: "none" | "bad" | "good"; body: string };
+      goal: { status: number };
+      hints?: string[];
+      explanation?: string;
+    }
+  // "dns": một máy khách tra tên theo `lookups`; tại `changeAt` bản ghi đổi IP.
+  // Người học chọn TTL: quá ngắn thì hỏi máy chủ quá nhiều, quá dài thì còn thấy IP cũ.
+  | {
+      type: "machine";
+      kind: "dns";
+      title: string;
+      task: string;
+      zone: { name: string; oldIp: string; newIp: string; changeAt: number; lookups: number[] };
+      ttl: { min: number; max: number; step: number; value: number };
+      solutionTtl: number;
+      goal: { maxStale: number; maxQueries: number };
+      hints?: string[];
+      explanation?: string;
+    };
 
 /** Trình mô phỏng nhúng được vào bài - cùng id với lib/tools/<id>/. */
 export type SimToolId = "terminal" | "editor" | "sql" | "api" | "cloud";
@@ -410,7 +470,9 @@ export type TranslatedSectionBlock =
       data?: { label?: string }[];
       seriesLabels?: string[];
     }
-  | { type: "flow"; title?: string; steps?: { label?: string; detail?: string }[] };
+  | { type: "flow"; title?: string; steps?: { label?: string; detail?: string }[] }
+  // machine: chỉ chữ dịch được; chương trình, số liệu, mục tiêu đọc từ bản Việt.
+  | { type: "machine"; title?: string; task?: string; hints?: string[]; explanation?: string; procs?: { name?: string }[] };
 
 /** A lesson plus the provenance of the text it carries. */
 export interface LocalizedLesson extends Lesson {

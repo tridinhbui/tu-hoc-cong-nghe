@@ -18,6 +18,10 @@ export const revampToolsVi = {
       finished: "Đã đóng hết",
       notStarted: "Chưa mở ticket nào",
       localNote: "Tiến độ lưu trên trình duyệt này.",
+      // Năm công cụ đứng ngang hàng thì người mới không biết chọn cái nào, và
+      // "ticket" là tiếng lóng của dân làm phần mềm - nói nó là gì ngay tại đây.
+      beginnerHint: "Mới bắt đầu? Thử Trình soạn mã trước: sửa một trang web và thấy nó đổi ngay. Mỗi ticket là một việc nhỏ, làm xong được chấm tự động.",
+      beginnerChip: "Hợp cho người mới",
     },
     shell: {
       sandbox: "Sandbox",
@@ -126,6 +130,8 @@ export const revampToolsEn: typeof revampToolsVi = {
       finished: "All closed",
       notStarted: "No tickets opened yet",
       localNote: "Progress is saved in this browser.",
+      beginnerHint: "New to this? Try the Code Editor first: edit a web page and see it change instantly. Each ticket is one small task, checked automatically.",
+      beginnerChip: "Good first pick",
     },
     shell: {
       sandbox: "Sandbox",

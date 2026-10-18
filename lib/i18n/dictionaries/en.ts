@@ -578,6 +578,8 @@ export const en: Dictionary = {
     scrollForQuiz: "Scroll down for the quiz →",
     ctaDoQuiz: "Take the quick check · {done}/{total} questions",
     quickCheck: "Quick check",
+    tabLesson: "Lesson",
+    tabNotes: "Notes",
     questionCounter: "Question {current} / {total}",
     answerRight: "✓ Correct",
     answerWrong: "✗ Not quite",
@@ -593,6 +595,7 @@ export const en: Dictionary = {
     seeResults: "See results →",
 
     doneTitle: "Complete",
+    doneTitleLow: "Done - review the ones you missed",
     doneScore: "{score}/{total} correct",
     firstAttemptScore: "Recorded: {score}/{total} (first attempt)",
     firstAttemptNote:

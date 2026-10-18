@@ -1,0 +1,135 @@
+{
+ "persona": "p4",
+ "name": "Người đi làm, muốn dùng AI",
+ "vp": "desktop",
+ "goal": "Làm việc với bảng số liệu",
+ "card": "Tôi muốn phân tích số liệu",
+ "stages": {
+  "A_landing_signup": {
+   "actions": 8,
+   "overlays": 0,
+   "deadEnds": [],
+   "screensScrolled": 0,
+   "wordsScanned": 671,
+   "ms": 10951,
+   "notes": [
+    "CTA chính không mở đăng ký mà cuộn tới khu chọn nhu cầu",
+    "đăng ký xong vào /dashboard"
+   ],
+   "estHumanSec": 140
+  },
+  "B_onboarding_to_lesson1": {
+   "actions": 2,
+   "overlays": 1,
+   "deadEnds": [],
+   "screensScrolled": 0,
+   "wordsScanned": 236,
+   "ms": 6530,
+   "notes": [
+    "bài đầu: /bai-hoc/lam-sach-bang-truoc-khi-hoi-ai"
+   ],
+   "estHumanSec": 64
+  },
+  "C_lesson_and_quiz": {
+   "actions": 12,
+   "overlays": 0,
+   "deadEnds": [],
+   "screensScrolled": 10,
+   "wordsScanned": 282,
+   "ms": 7867,
+   "notes": [
+    "h1=\"Làm sạch bảng trước khi hỏi AI\"; 1933 chữ; 10 màn hình; 27 điều khiển trong màn đầu",
+    "trả lời 4 câu quiz",
+    "quiz xong nhưng bài CHƯA hoàn thành: còn câu 'Dừng & Kiểm tra' giữa bài",
+    "có phản hồi hoàn thành/XP trên màn hình"
+   ],
+   "estHumanSec": 101
+  },
+  "D_practice_tool": {
+   "actions": 3,
+   "overlays": 0,
+   "deadEnds": [],
+   "screensScrolled": 0,
+   "wordsScanned": 701,
+   "ms": 4664,
+   "notes": [
+    "/cong-cu: 232 chữ trong màn đầu",
+    "có gợi ý công cụ nên bắt đầu",
+    "vào /cong-cu/editor"
+   ],
+   "estHumanSec": 128
+  },
+  "E_progress": {
+   "actions": 1,
+   "overlays": 0,
+   "deadEnds": [],
+   "screensScrolled": 0,
+   "wordsScanned": 140,
+   "ms": 825,
+   "notes": [
+    "khối tiến độ: Thi thăng cấp LV02"
+   ],
+   "estHumanSec": 38
+  },
+  "F_return_next_day": {
+   "actions": 2,
+   "overlays": 1,
+   "deadEnds": [],
+   "screensScrolled": 0,
+   "wordsScanned": 244,
+   "ms": 11581,
+   "notes": [
+    "tiếp tục ở /bai-hoc/lam-sach-bang-truoc-khi-hoi-ai"
+   ],
+   "estHumanSec": 66
+  }
+ },
+ "total": {
+  "actions": 28,
+  "overlays": 2,
+  "deadEnds": 0,
+  "estSec": 548
+ },
+ "log": [
+  "[A_landing_signup] CTA Bắt đầu học miễn phí",
+  "[A_landing_signup] note: CTA chính không mở đăng ký mà cuộn tới khu chọn nhu cầu",
+  "[A_landing_signup] chọn thẻ nhu cầu: Tôi muốn phân tích số liệu",
+  "[A_landing_signup] lời mời đăng ký trong bài thử",
+  "[A_landing_signup] chuyển sang Đăng ký",
+  "[A_landing_signup] điền tên",
+  "[A_landing_signup] điền email",
+  "[A_landing_signup] điền mật khẩu",
+  "[A_landing_signup] bấm Đăng ký",
+  "[A_landing_signup] note: đăng ký xong vào /dashboard",
+  "[B_onboarding_to_lesson1] chọn mục tiêu: Làm việc với bảng số liệu",
+  "[B_onboarding_to_lesson1] Bắt đầu bài đầu tiên",
+  "[B_onboarding_to_lesson1] note: bài đầu: /bai-hoc/lam-sach-bang-truoc-khi-hoi-ai",
+  "[C_lesson_and_quiz] note: h1=\"Làm sạch bảng trước khi hỏi AI\"; 1933 chữ; 10 màn hình; 27 điều khiển trong màn đầu",
+  "[C_lesson_and_quiz] chọn đáp án",
+  "[C_lesson_and_quiz] Kiểm tra đáp án",
+  "[C_lesson_and_quiz] Câu tiếp",
+  "[C_lesson_and_quiz] chọn đáp án",
+  "[C_lesson_and_quiz] Kiểm tra đáp án",
+  "[C_lesson_and_quiz] Câu tiếp",
+  "[C_lesson_and_quiz] chọn đáp án",
+  "[C_lesson_and_quiz] Kiểm tra đáp án",
+  "[C_lesson_and_quiz] Câu tiếp",
+  "[C_lesson_and_quiz] chọn đáp án",
+  "[C_lesson_and_quiz] Kiểm tra đáp án",
+  "[C_lesson_and_quiz] Câu tiếp",
+  "[C_lesson_and_quiz] note: trả lời 4 câu quiz",
+  "[C_lesson_and_quiz] note: quiz xong nhưng bài CHƯA hoàn thành: còn câu 'Dừng & Kiểm tra' giữa bài",
+  "[C_lesson_and_quiz] note: có phản hồi hoàn thành/XP trên màn hình",
+  "[D_practice_tool] trang bài không có menu - bấm Quay lại",
+  "[D_practice_tool] menu: Mô phỏng công cụ",
+  "[D_practice_tool] note: /cong-cu: 232 chữ trong màn đầu",
+  "[D_practice_tool] note: có gợi ý công cụ nên bắt đầu",
+  "[D_practice_tool] Bắt đầu công cụ đầu tiên",
+  "[D_practice_tool] note: vào /cong-cu/editor",
+  "[E_progress] menu: ^Dashboard$|Trang chính|Tổng quan",
+  "[E_progress] note: khối tiến độ: Thi thăng cấp LV02",
+  "[F_return_next_day] tour: Bỏ qua",
+  "[F_return_next_day] Học tiếp",
+  "[F_return_next_day] note: tiếp tục ở /bai-hoc/lam-sach-bang-truoc-khi-hoi-ai"
+ ]
+}

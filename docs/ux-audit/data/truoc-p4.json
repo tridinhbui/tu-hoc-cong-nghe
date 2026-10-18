@@ -1,0 +1,150 @@
+{
+ "persona": "p4",
+ "name": "Người đi làm, muốn dùng AI",
+ "vp": "desktop",
+ "goal": "Làm việc với bảng số liệu",
+ "card": "Tôi muốn phân tích số liệu",
+ "stages": {
+  "A_landing_signup": {
+   "actions": 10,
+   "overlays": 0,
+   "deadEnds": [
+    "bài thử không có lời mời đăng ký/lưu tiến độ thấy được - phải tự quay lại trang chủ"
+   ],
+   "screensScrolled": 0,
+   "wordsScanned": 788,
+   "ms": 11638,
+   "notes": [
+    "CTA chính không mở đăng ký mà cuộn tới khu chọn nhu cầu",
+    "đăng ký xong vào /dashboard"
+   ],
+   "estHumanSec": 145
+  },
+  "B_onboarding_to_lesson1": {
+   "actions": 9,
+   "overlays": 7,
+   "deadEnds": [
+    "nút Bắt đầu bài đầu tiên bị lớp tour che, bấm không ăn"
+   ],
+   "screensScrolled": 0,
+   "wordsScanned": 81,
+   "ms": 12541,
+   "notes": [
+    "bài đầu: /bai-hoc/lam-sach-bang-truoc-khi-hoi-ai"
+   ],
+   "estHumanSec": 43
+  },
+  "C_lesson_and_quiz": {
+   "actions": 12,
+   "overlays": 0,
+   "deadEnds": [],
+   "screensScrolled": 10,
+   "wordsScanned": 281,
+   "ms": 7851,
+   "notes": [
+    "h1=\"Chặng 26, Bài 1: Làm sạch bảng trước khi hỏi AI\"; 1932 chữ; 10 màn hình; 27 điều khiển trong màn đầu",
+    "trả lời 4 câu quiz",
+    "quiz xong nhưng bài CHƯA hoàn thành: còn câu 'Dừng & Kiểm tra' giữa bài",
+    "có phản hồi hoàn thành/XP trên màn hình"
+   ],
+   "estHumanSec": 100
+  },
+  "D_practice_tool": {
+   "actions": 3,
+   "overlays": 0,
+   "deadEnds": [],
+   "screensScrolled": 0,
+   "wordsScanned": 489,
+   "ms": 4468,
+   "notes": [
+    "/cong-cu: 208 chữ trong màn đầu",
+    "KHÔNG có gợi ý nên chọn công cụ nào - 5 lựa chọn ngang hàng",
+    "vào /cong-cu/terminal"
+   ],
+   "estHumanSec": 128
+  },
+  "E_progress": {
+   "actions": 1,
+   "overlays": 0,
+   "deadEnds": [],
+   "screensScrolled": 0,
+   "wordsScanned": 47,
+   "ms": 1579,
+   "notes": [
+    "khối tiến độ: Thi thăng cấp LV02"
+   ],
+   "estHumanSec": 14
+  },
+  "F_return_next_day": {
+   "actions": 2,
+   "overlays": 1,
+   "deadEnds": [],
+   "screensScrolled": 0,
+   "wordsScanned": 265,
+   "ms": 8908,
+   "notes": [
+    "tiếp tục ở /bai-hoc/lam-sach-bang-truoc-khi-hoi-ai"
+   ],
+   "estHumanSec": 71
+  }
+ },
+ "total": {
+  "actions": 37,
+  "overlays": 8,
+  "deadEnds": 2,
+  "estSec": 512
+ },
+ "log": [
+  "[A_landing_signup] CTA Bắt đầu học miễn phí",
+  "[A_landing_signup] note: CTA chính không mở đăng ký mà cuộn tới khu chọn nhu cầu",
+  "[A_landing_signup] chọn thẻ nhu cầu: Tôi muốn phân tích số liệu",
+  "[A_landing_signup] Làm thứ đầu tiên (thử bài khi chưa đăng nhập)",
+  "[A_landing_signup] DEAD END: bài thử không có lời mời đăng ký/lưu tiến độ thấy được - phải tự quay lại trang chủ",
+  "[A_landing_signup] quay lại trang chủ",
+  "[A_landing_signup] VÀO HỌC NGAY",
+  "[A_landing_signup] chuyển sang Đăng ký",
+  "[A_landing_signup] điền tên",
+  "[A_landing_signup] điền email",
+  "[A_landing_signup] điền mật khẩu",
+  "[A_landing_signup] bấm Đăng ký",
+  "[A_landing_signup] note: đăng ký xong vào /dashboard",
+  "[B_onboarding_to_lesson1] onboarding: Tiếp theo",
+  "[B_onboarding_to_lesson1] onboarding: Tiếp theo",
+  "[B_onboarding_to_lesson1] onboarding: Tiếp theo",
+  "[B_onboarding_to_lesson1] onboarding: Tiếp theo",
+  "[B_onboarding_to_lesson1] onboarding: Bắt đầu học",
+  "[B_onboarding_to_lesson1] chọn mục tiêu: Làm việc với bảng số liệu",
+  "[B_onboarding_to_lesson1] bấm Bắt đầu bài đầu tiên - KHÔNG phản hồi (bị lớp khác che)",
+  "[B_onboarding_to_lesson1] DEAD END: nút Bắt đầu bài đầu tiên bị lớp tour che, bấm không ăn",
+  "[B_onboarding_to_lesson1] tìm ra và bấm Bỏ qua của tour",
+  "[B_onboarding_to_lesson1] Bắt đầu bài đầu tiên",
+  "[B_onboarding_to_lesson1] note: bài đầu: /bai-hoc/lam-sach-bang-truoc-khi-hoi-ai",
+  "[C_lesson_and_quiz] note: h1=\"Chặng 26, Bài 1: Làm sạch bảng trước khi hỏi AI\"; 1932 chữ; 10 màn hình; 27 điều khiển trong màn đầu",
+  "[C_lesson_and_quiz] chọn đáp án",
+  "[C_lesson_and_quiz] Kiểm tra đáp án",
+  "[C_lesson_and_quiz] Câu tiếp",
+  "[C_lesson_and_quiz] chọn đáp án",
+  "[C_lesson_and_quiz] Kiểm tra đáp án",
+  "[C_lesson_and_quiz] Câu tiếp",
+  "[C_lesson_and_quiz] chọn đáp án",
+  "[C_lesson_and_quiz] Kiểm tra đáp án",
+  "[C_lesson_and_quiz] Câu tiếp",
+  "[C_lesson_and_quiz] chọn đáp án",
+  "[C_lesson_and_quiz] Kiểm tra đáp án",
+  "[C_lesson_and_quiz] Câu tiếp",
+  "[C_lesson_and_quiz] note: trả lời 4 câu quiz",
+  "[C_lesson_and_quiz] note: quiz xong nhưng bài CHƯA hoàn thành: còn câu 'Dừng & Kiểm tra' giữa bài",
+  "[C_lesson_and_quiz] note: có phản hồi hoàn thành/XP trên màn hình",
+  "[D_practice_tool] trang bài không có menu - bấm Quay lại",
+  "[D_practice_tool] menu: Mô phỏng công cụ",
+  "[D_practice_tool] note: /cong-cu: 208 chữ trong màn đầu",
+  "[D_practice_tool] note: KHÔNG có gợi ý nên chọn công cụ nào - 5 lựa chọn ngang hàng",
+  "[D_practice_tool] Bắt đầu công cụ đầu tiên",
+  "[D_practice_tool] note: vào /cong-cu/terminal",
+  "[E_progress] menu: ^Dashboard$|Trang chính|Tổng quan",
+  "[E_progress] note: khối tiến độ: Thi thăng cấp LV02",
+  "[F_return_next_day] đóng popup Mời bạn học cùng",
+  "[F_return_next_day] Học tiếp",
+  "[F_return_next_day] note: tiếp tục ở /bai-hoc/lam-sach-bang-truoc-khi-hoi-ai"
+ ]
+}

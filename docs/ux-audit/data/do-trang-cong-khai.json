@@ -1,0 +1,230 @@
+[
+ {
+  "url": "/",
+  "title": "Tự học Công nghệ Mỗi Ngày",
+  "h1": [
+   "TỰ HỌC\nCÔNG NGHỆ\ntừ số 0."
+  ],
+  "words": 1972,
+  "foldWords": 157,
+  "interactive": 41,
+  "foldInteractive": 7,
+  "primaryCtasInFold": [
+   "VÀO HỌC NGAY",
+   "BẮT ĐẦU HỌC MIỄN PHÍ"
+  ],
+  "smallTargets": 7,
+  "smallText": 179,
+  "lowContrast": 43,
+  "lowSamples": [
+   "miễn phí mãi mãi (3.28)",
+   "$ (1.59)",
+   "01 (1.59)",
+   "02 (1.59)",
+   "03 (1.59)",
+   "04 (1.59)"
+  ],
+  "overflowX": false,
+  "scrollScreens": 9.7,
+  "vp": "desktop",
+  "loadMs": 1991,
+  "errors": []
+ },
+ {
+  "url": "/",
+  "title": "Tự học Công nghệ Mỗi Ngày",
+  "h1": [
+   "TỰ HỌC\nCÔNG NGHỆ\ntừ số 0."
+  ],
+  "words": 1972,
+  "foldWords": 169,
+  "interactive": 41,
+  "foldInteractive": 7,
+  "primaryCtasInFold": [
+   "VÀO HỌC NGAY",
+   "BẮT ĐẦU HỌC MIỄN PHÍ"
+  ],
+  "smallTargets": 7,
+  "smallText": 179,
+  "lowContrast": 43,
+  "lowSamples": [
+   "miễn phí mãi mãi (3.28)",
+   "$ (1.59)",
+   "01 (1.59)",
+   "02 (1.59)",
+   "03 (1.59)",
+   "04 (1.59)"
+  ],
+  "overflowX": false,
+  "scrollScreens": 10.3,
+  "vp": "tablet",
+  "loadMs": 1704,
+  "errors": []
+ },
+ {
+  "url": "/",
+  "title": "Tự học Công nghệ Mỗi Ngày",
+  "h1": [
+   "TỰ HỌC\nCÔNG NGHỆ\ntừ số 0."
+  ],
+  "words": 1894,
+  "foldWords": 110,
+  "interactive": 41,
+  "foldInteractive": 7,
+  "primaryCtasInFold": [
+   "VÀO HỌC NGAY",
+   "BẮT ĐẦU HỌC MIỄN PHÍ"
+  ],
+  "smallTargets": 3,
+  "smallText": 170,
+  "lowContrast": 42,
+  "lowSamples": [
+   "miễn phí mãi mãi (3.28)",
+   "$ (1.59)",
+   "01 (1.59)",
+   "02 (1.59)",
+   "03 (1.59)",
+   "04 (1.59)"
+  ],
+  "overflowX": false,
+  "scrollScreens": 15.6,
+  "vp": "m375",
+  "loadMs": 1910,
+  "errors": []
+ },
+ {
+  "url": "/",
+  "title": "Tự học Công nghệ Mỗi Ngày",
+  "h1": [
+   "TỰ HỌC\nCÔNG NGHỆ\ntừ số 0."
+  ],
+  "words": 1894,
+  "foldWords": 122,
+  "interactive": 41,
+  "foldInteractive": 7,
+  "primaryCtasInFold": [
+   "VÀO HỌC NGAY",
+   "BẮT ĐẦU HỌC MIỄN PHÍ"
+  ],
+  "smallTargets": 3,
+  "smallText": 170,
+  "lowContrast": 42,
+  "lowSamples": [
+   "miễn phí mãi mãi (3.28)",
+   "$ (1.59)",
+   "01 (1.59)",
+   "02 (1.59)",
+   "03 (1.59)",
+   "04 (1.59)"
+  ],
+  "overflowX": false,
+  "scrollScreens": 14.7,
+  "vp": "m390",
+  "loadMs": 1671,
+  "errors": []
+ },
+ {
+  "url": "/login",
+  "title": "Tự học Công nghệ Mỗi Ngày",
+  "h1": [
+   "Học công nghệ theo cách gọn, rõ và đủ động lực để theo lâu dài"
+  ],
+  "words": 155,
+  "foldWords": 155,
+  "interactive": 9,
+  "foldInteractive": 9,
+  "primaryCtasInFold": [],
+  "smallTargets": 5,
+  "smallText": 14,
+  "lowContrast": 4,
+  "lowSamples": [
+   "Đăng nhập (1.00)",
+   "Bằng việc tiếp tục, bạn đồng ý với (3.19)",
+   "Điều khoản sử dụng (3.19)",
+   "Chính sách bảo mật (3.19)"
+  ],
+  "overflowX": false,
+  "scrollScreens": 1,
+  "vp": "desktop",
+  "loadMs": 1493,
+  "errors": []
+ },
+ {
+  "url": "/login",
+  "title": "Tự học Công nghệ Mỗi Ngày",
+  "h1": [
+   "Học công nghệ theo cách gọn, rõ và đủ động lực để theo lâu dài"
+  ],
+  "words": 155,
+  "foldWords": 155,
+  "interactive": 9,
+  "foldInteractive": 9,
+  "primaryCtasInFold": [],
+  "smallTargets": 5,
+  "smallText": 14,
+  "lowContrast": 4,
+  "lowSamples": [
+   "Đăng nhập (1.00)",
+   "Bằng việc tiếp tục, bạn đồng ý với (3.19)",
+   "Điều khoản sử dụng (3.19)",
+   "Chính sách bảo mật (3.19)"
+  ],
+  "overflowX": false,
+  "scrollScreens": 1,
+  "vp": "tablet",
+  "loadMs": 1483,
+  "errors": []
+ },
+ {
+  "url": "/login",
+  "title": "Tự học Công nghệ Mỗi Ngày",
+  "h1": [
+   "Học công nghệ theo cách gọn, rõ và đủ động lực để theo lâu dài"
+  ],
+  "words": 151,
+  "foldWords": 85,
+  "interactive": 9,
+  "foldInteractive": 9,
+  "primaryCtasInFold": [],
+  "smallTargets": 5,
+  "smallText": 13,
+  "lowContrast": 4,
+  "lowSamples": [
+   "Đăng nhập (1.00)",
+   "Bằng việc tiếp tục, bạn đồng ý với (3.19)",
+   "Điều khoản sử dụng (3.19)",
+   "Chính sách bảo mật (3.19)"
+  ],
+  "overflowX": false,
+  "scrollScreens": 1.4,
+  "vp": "m375",
+  "loadMs": 1451,
+  "errors": []
+ },
+ {
+  "url": "/login",
+  "title": "Tự học Công nghệ Mỗi Ngày",
+  "h1": [
+   "Học công nghệ theo cách gọn, rõ và đủ động lực để theo lâu dài"
+  ],
+  "words": 151,
+  "foldWords": 112,
+  "interactive": 9,
+  "foldInteractive": 9,
+  "primaryCtasInFold": [],
+  "smallTargets": 5,
+  "smallText": 13,
+  "lowContrast": 4,
+  "lowSamples": [
+   "Đăng nhập (1.00)",
+   "Bằng việc tiếp tục, bạn đồng ý với (3.19)",
+   "Điều khoản sử dụng (3.19)",
+   "Chính sách bảo mật (3.19)"
+  ],
+  "overflowX": false,
+  "scrollScreens": 1.4,
+  "vp": "m390",
+  "loadMs": 1463,
+  "errors": []
+ }
+]

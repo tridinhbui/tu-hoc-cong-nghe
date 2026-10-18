@@ -11,6 +11,8 @@ import { btnPrimary, btnSecondary } from "@/components/ui/system";
 import { copyToClipboard } from "@/lib/copy-to-clipboard";
 import { format } from "@/lib/i18n";
 import { getCurrentUser } from "@/lib/current-user";
+import { getNavState } from "@/lib/cloudflare-nav-state";
+import { usePathname } from "next/navigation";
 
 // Referral is fully wired end-to-end (lib/referrals.ts). It's a permanent
 // floating round button (mirrors ChatWithAdminWidget's bottom-right chat
@@ -54,17 +56,34 @@ export default function ReferralPromptModal({
     });
   }, []);
 
+  // Tự bật chỉ khi đã học xong ít nhất một bài, và không bao giờ giữa trang bài
+  // học. Trước đây nó bật 2 giây sau lần đăng nhập đầu - tức đè lên màn hướng
+  // dẫn của người vừa đăng ký, và trên điện thoại che mất nút của màn đó. Mời
+  // người chưa học bài nào đi rủ bạn là mời họ quảng cáo thứ họ chưa thử; phần
+  // thưởng của chính lời mời cũng chỉ trao khi người được mời học xong bài đầu.
+  const pathname = usePathname();
+  const onLessonPage = pathname?.startsWith("/bai-hoc/") ?? false;
   useEffect(() => {
-    if (!userId) return;
+    if (!userId || onLessonPage) return;
     if (typeof window === "undefined") return;
     if (window.sessionStorage.getItem(AUTO_OPEN_KEY)) return;
 
-    const timer = window.setTimeout(() => {
-      setOpen(true);
-      window.sessionStorage.setItem(AUTO_OPEN_KEY, "1");
-    }, 2000);
-    return () => window.clearTimeout(timer);
-  }, [userId]);
+    let cancelled = false;
+    let timer: number | undefined;
+    getNavState(userId)
+      .then((nav) => {
+        if (cancelled || (nav.profile?.lessons_completed ?? 0) < 1) return;
+        timer = window.setTimeout(() => {
+          setOpen(true);
+          window.sessionStorage.setItem(AUTO_OPEN_KEY, "1");
+        }, 2000);
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+      if (timer) window.clearTimeout(timer);
+    };
+  }, [userId, onLessonPage]);
 
   if (!userId) return null;
 

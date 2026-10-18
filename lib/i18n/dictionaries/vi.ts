@@ -625,6 +625,9 @@ export const vi = {
     /** Nút chính cuối bài khi chưa làm hết quiz. */
     ctaDoQuiz: "Làm kiểm tra nhanh · {done}/{total} câu",
     quickCheck: "Kiểm tra nhanh",
+    /** Tab đầu bài - trước đây là tên tệp "<slug>.md". */
+    tabLesson: "Bài đọc",
+    tabNotes: "Ghi chú",
     questionCounter: "Câu {current} / {total}",
     answerRight: "✓ Đúng rồi!",
     answerWrong: "✗ Chưa đúng",
@@ -640,6 +643,8 @@ export const vi = {
     seeResults: "Xem kết quả →",
 
     doneTitle: "Hoàn thành!",
+    /** Đúng dưới một nửa: "Hoàn thành!" lúc 0/4 câu đúng là khen nhầm chỗ. */
+    doneTitleLow: "Đã làm xong - xem lại các câu sai nhé",
     doneScore: "{score}/{total} câu đúng",
     firstAttemptScore: "Điểm ghi nhận: {score}/{total} (lần trả lời đầu)",
     firstAttemptNote:
