@@ -88,6 +88,10 @@ export type LessonSectionBlock =
       solution: string;
       expectedOutput: string;
       hints?: string[];
+      // Vì sao lời giải đúng và mã khởi đầu sai ở đâu. CHỈ hiện sau khi người học qua bài
+      // hoặc đã mở lời giải: một khối `callout` đặt ngay sau bài tập thì lộ đáp án
+      // trước cả gợi ý.
+      explanation?: string;
     }
   // ── Khối tương tác (KE-HOACH-1500-BAI.md, giai đoạn 1) ──────────────────
   // Luật chung: KHÔNG gọi AI thật, KHÔNG eval chuỗi thành mã. Mọi phản hồi
@@ -380,6 +384,7 @@ export type TranslatedSectionBlock =
       solution?: string;
       expectedOutput?: string;
       hints?: string[];
+      explanation?: string;
     }
   // Khối tương tác: chỉ chữ cho người đọc là dịch được. Cấu trúc - `tool`,
   // `mission`, `good`, `requires`, `start`, `next`, `ending`, `expr`, số liệu -

@@ -62,7 +62,7 @@ export const READING_STATEMENTS_LESSONS: Lesson[] = [
           "Vì lý là do khá thường xuyên ngắn hơn nên tương đối ít có chỗ để trở nên không chính xác"
         ],
         "correct": 0,
-        "explanation": "Một hàm được viết lại ba lần trong hai năm; ràng buộc buộc nó phải xử lý đồng thời thì vẫn nguyên. Lựa chọn thứ ba gần đúng và nó nói về tần suất, còn đây là lý do cấu trúc."
+        "explanation": "Một hàm được viết lại ba lần trong hai năm; ràng buộc buộc nó phải xử lý đồng thời thì vẫn nguyên. Lựa chọn “Vì các quyết định…” gần đúng và nó nói về tần suất, còn đây là lý do cấu trúc."
       },
       {
         "question": "Chú thích nào đáng viết nhất khi kết thúc một việc khó?",
@@ -420,7 +420,7 @@ export const READING_STATEMENTS_LESSONS: Lesson[] = [
           "Vì người ngoài đội không có quyền truy cập vào lịch sử rà soát nội bộ"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn thứ ba đúng một phần và tra được nếu bạn biết mình cần tra. Vấn đề thật là người đọc mã sáu tháng sau không biết rằng có một cuộc thảo luận để mà đi tìm."
+        "explanation": "Lựa chọn “Vì chú thích nằm…” đúng một phần và tra được nếu bạn biết mình cần tra. Vấn đề thật là người đọc mã sáu tháng sau không biết rằng có một cuộc thảo luận để mà đi tìm."
       },
       {
         "question": "Nhiều vòng sửa trong một lượt rà soát nói lên điều gì?",

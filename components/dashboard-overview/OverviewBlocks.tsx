@@ -42,12 +42,16 @@ const SECTION_CHIPS = [
   "bg-gradient-to-br from-emerald-400 to-emerald-600 shadow-emerald-500/30",
 ];
 
-export function SectionHeading({ n, title, hint, action }: { n: number; title: string; hint?: string; action?: ReactNode }) {
+export function SectionHeading({ n, title, hint, action, quiet = false }: { n?: number; title: string; hint?: string; action?: ReactNode; quiet?: boolean }) {
   return (
     <div className="flex flex-wrap items-end justify-between gap-x-4 gap-y-1">
       <div className="min-w-0">
-        <h2 className="flex items-center gap-2.5 text-lg font-black tracking-tight text-ink-max">
-          <span className={`inline-flex h-7 min-w-7 items-center justify-center rounded-lg px-1.5 font-mono text-[13px] font-bold tabular-nums text-white shadow-md ${SECTION_CHIPS[(n - 1) % SECTION_CHIPS.length]}`}>{String(n).padStart(2, "0")}</span>
+        {/* `quiet`: khu phụ - chữ nhỏ, không chip số. Chỉ khu chính (Học tiếp)
+            giữ cỡ tiêu đề đầy đủ, để trang có một thứ bậc rõ. */}
+        <h2 className={quiet ? "text-xs font-bold uppercase tracking-[0.1em] text-ink-muted" : "flex items-center gap-2.5 text-lg font-black tracking-tight text-ink-max"}>
+          {n !== undefined && (
+            <span className={`inline-flex h-7 min-w-7 items-center justify-center rounded-lg px-1.5 font-mono text-[13px] font-bold tabular-nums text-white shadow-md ${SECTION_CHIPS[(n - 1) % SECTION_CHIPS.length]}`}>{String(n).padStart(2, "0")}</span>
+          )}
           {title}
         </h2>
         {hint && <p className="mt-0.5 text-sm text-ink-muted lg:[@media(max-height:1199px)]:hidden">{hint}</p>}
@@ -126,7 +130,7 @@ export function DashboardHeroBanner({
 type PracticeMode = { href: string; label: string; sub: string; icon: LucideIcon; tile: string };
 
 /** Lưới thẻ luyện tập - mỗi chế độ một ô biểu tượng mang màu riêng. */
-export function PracticeModeGrid() {
+export function PracticeModeGrid({ lessonsDone = Infinity }: { lessonsDone?: number }) {
   const { t } = useI18n();
   const r = t.revampDashboard;
   const modes: PracticeMode[] = [
@@ -136,9 +140,11 @@ export function PracticeModeGrid() {
     { href: "/thi-vuot-chang", label: t.nav.stageSkipExam, sub: r.practiceStageSkipSub, icon: Trophy, tile: "bg-gradient-to-br from-amber-400 to-orange-500 text-white shadow-md shadow-amber-500/30" },
     { href: "/game", label: t.dataRest.appNavbar.gameKingdomLabel, sub: r.practiceGameSub, icon: Gamepad2, tile: "bg-gradient-to-br from-rose-400 to-rose-600 text-white shadow-md shadow-rose-500/30" },
   ];
+  // Game Kingdom hiện sau bài thứ ba - cùng ngưỡng với thanh bên (AppNavbar).
+  const shown = lessonsDone >= 3 ? modes : modes.filter((m) => m.href !== "/game");
   return (
-    <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
-      {modes.map(({ href, label, sub, icon: Icon, tile }) => (
+    <div className={`grid grid-cols-2 gap-3 ${shown.length === 5 ? "sm:grid-cols-3 lg:grid-cols-5" : "sm:grid-cols-4"}`}>
+      {shown.map(({ href, label, sub, icon: Icon, tile }) => (
         <Link
           key={href}
           href={href}

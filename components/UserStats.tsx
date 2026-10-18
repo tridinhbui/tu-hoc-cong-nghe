@@ -329,20 +329,11 @@ export default function UserStats({
 
       {/* Bảng số liệu: nhãn trái, số mono căn phải - cùng khuôn StatTable của
           trang giới thiệu, thay cho hai ô màu xanh da trời / xanh thương hiệu. */}
-      {quiet ? (
-        <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-ink-muted">
-          <span className="inline-flex items-center gap-1.5">
-            <BookOpen className="h-3.5 w-3.5 shrink-0 text-ink-faint" aria-hidden />
-            {t.userStats.lessons}
-            <span className="font-mono tabular-nums text-ink-body">{lessonsCompleted}/{totalLessons}</span>
-          </span>
-          <span className="inline-flex items-center gap-1.5">
-            <Target className="h-3.5 w-3.5 shrink-0 text-ink-faint" aria-hidden />
-            {t.userStats.quizAvg}
-            <span className="font-mono tabular-nums text-ink-body">{Math.round(avgQuizScore)}%</span>
-          </span>
-        </p>
-      ) : (
+      {/* `quiet` (dashboard): không in dòng "Bài học x/y · Quiz TB z%". Thẻ
+          "Tiến độ của bạn" ngay phía trên đã có cả hai con số, và dòng này đếm
+          trên TỔNG KHO (0/1507) và không che điểm quiz khi chưa học bài nào
+          (8% cạnh một dấu gạch) - nên hai chỗ ghi hai con số cho một câu hỏi. */}
+      {quiet ? null : (
       <StatTable
         className={`border-y border-line ${sidebar ? "mb-2.5" : "mb-4"}`}
         rows={[

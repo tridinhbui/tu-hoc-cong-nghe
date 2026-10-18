@@ -14,7 +14,7 @@ export async function POST(req: Request) {
   const user = await getCurrentUser();
   try {
     const r = await createD1Rpc(getDb(), user?.id ?? null)(body.name, params);
-    return Response.json({ data: r.data, error: r.error ? { message: r.error.message } : null });
+    return Response.json({ data: r.data, error: r.error ? { message: r.error.message, code: (r.error as { code?: string }).code } : null });
   } catch (err) {
     return Response.json({ data: null, error: { message: (err as Error).message } }, { status: 403 });
   }

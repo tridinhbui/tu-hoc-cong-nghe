@@ -8,13 +8,7 @@ import { animateCountTo } from "@/lib/animate-count";
 import { LEARNING_FLOWS } from "@/lib/learning-flows";
 import { EditorialHero } from "@/components/home/v2/EditorialHome";
 import { EditorialNeeds } from "@/components/home/v2/EditorialNeeds";
-import {
-  EditorialNav,
-  EditorialMethod,
-  EditorialManifest,
-  EditorialReport,
-  EditorialFooter,
-} from "@/components/home/v2/EditorialSections";
+import { EditorialNav, EditorialFooter } from "@/components/home/v2/EditorialSections";
 import { useI18n } from "@/lib/i18n/context";
 import {
   dismissHomeBanner,
@@ -39,8 +33,6 @@ const FIRST_LESSON_HREF = `/bai-hoc/${LEARNING_FLOWS.find((f) => f.id === "ai-as
 
 export default function HomePage() {
   const { t } = useI18n();
-  // Công tắc DEBUG trên thanh nav: bật khung nét đứt cho mọi phần tử.
-  const [debug, setDebug] = useState(false);
   const [displayedUserCount, setDisplayedUserCount] = useState(0);
   const [displayedLessonCount, setDisplayedLessonCount] = useState(0);
   const [displayedCompletedCount, setDisplayedCompletedCount] = useState(0);
@@ -116,9 +108,7 @@ export default function HomePage() {
 
   return (
     <div
-      className={`relative min-h-screen overflow-x-clip bg-[#eeebe3] text-[#0d0e11] dark:bg-[#0c0d10] dark:text-[#eeebe3] ${
-        debug ? "thcn-debug" : ""
-      }`}
+      className="relative min-h-screen overflow-x-clip bg-[#eeebe3] text-[#0d0e11] dark:bg-[#0c0d10] dark:text-[#eeebe3]"
     >
       <div className="paper-grain pointer-events-none absolute inset-0 z-0" />
 
@@ -168,7 +158,7 @@ export default function HomePage() {
           </div>
         )}
 
-        <EditorialNav debug={debug} onDebug={() => setDebug((d) => !d)} />
+        <EditorialNav />
         <EditorialHero
           lessonCount={lessonCountFloor ?? roundedLessonCount()}
           learners={displayedUserCount}
@@ -177,14 +167,12 @@ export default function HomePage() {
           previewHref={FIRST_LESSON_HREF}
         />
         <EditorialNeeds />
-        {/* Trang chủ chỉ còn việc người mới cần để quyết định thử một bài: mục
-            tiêu của họ, cách học, ai học được, vì sao làm. Bốn "thế giới" (trùng
-            khối mục tiêu), THCN_OS, bảng xếp hạng, Game Kingdom và hai dải chữ
-            chạy đã rời trang chủ sau đợt audit UX 2026-10-08; component còn
-            nguyên trong components/home/v2 để đặt lại ở trang riêng. */}
-        <EditorialMethod />
-        <EditorialManifest />
-        <EditorialReport />
+        {/* Trang chủ chỉ còn ba việc: bạn làm được gì (EditorialNeeds), một bài
+            trông thế nào (LessonPreview trong hero), bấm đâu để bắt đầu. Tờ
+            "Phương pháp" (debugger giả), "Hệ sinh thái" và "Báo cáo" (số liệu
+            thị trường Malaysia, ManpowerGroup) đã rời trang: chúng thuyết phục
+            nhà đầu tư, không giúp người học quyết định thử một bài. Component
+            còn nguyên trong components/home/v2 để đặt lại ở trang riêng. */}
         <EditorialFooter />
       </div>
     </div>

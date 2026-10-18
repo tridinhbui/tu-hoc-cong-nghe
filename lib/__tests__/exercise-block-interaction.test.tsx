@@ -22,7 +22,7 @@ afterEach(() => {
   runCode.mockReset();
 });
 
-function renderBlock(onPass?: () => void) {
+function renderBlock(onPass?: () => void, explanation?: string) {
   return render(
     <I18nProvider initialLocale="vi">
       <ExerciseBlock
@@ -33,6 +33,7 @@ function renderBlock(onPass?: () => void) {
         solution={"print('LOI-GIAI')"}
         expectedOutput={"2\n1"}
         hints={["GOI-Y-1"]}
+        explanation={explanation}
         onPass={onPass}
       />
     </I18nProvider>,
@@ -69,6 +70,28 @@ describe("ExerciseBlock", () => {
     expect(await screen.findByText(/Chưa khớp ở dòng 2/)).toBeTruthy();
     fireEvent.click(screen.getByRole("button", { name: /Xem một lời giải/ }));
     expect(screen.getByText("LOI-GIAI", { exact: false })).toBeTruthy();
+  });
+
+  it("keeps the explanation hidden until the learner passes or opens the solution", async () => {
+    runCode.mockResolvedValueOnce({ ok: true, stdout: "2\n3" }).mockResolvedValueOnce({ ok: true, stdout: "2\n1" });
+    renderBlock(undefined, "GIAI-THICH-DAP-AN");
+    expect(screen.queryByText("GIAI-THICH-DAP-AN")).toBeNull();
+    fireEvent.click(screen.getByRole("button", { name: /Chạy và kiểm tra/ }));
+    await screen.findByText(/Chưa khớp/);
+    // đã chạy nhưng chưa qua và chưa mở lời giải: vẫn ẩn
+    expect(screen.queryByText("GIAI-THICH-DAP-AN")).toBeNull();
+    fireEvent.click(screen.getByRole("button", { name: /Chạy và kiểm tra/ }));
+    await screen.findByText(/Đúng rồi!/);
+    expect(screen.getByText("GIAI-THICH-DAP-AN")).toBeTruthy();
+  });
+
+  it("shows the explanation once the solution is opened, even without a pass", async () => {
+    runCode.mockResolvedValue({ ok: true, stdout: "2\n3" });
+    renderBlock(undefined, "GIAI-THICH-DAP-AN");
+    fireEvent.click(screen.getByRole("button", { name: /Chạy và kiểm tra/ }));
+    await screen.findByText(/Chưa khớp/);
+    fireEvent.click(screen.getByRole("button", { name: /Xem một lời giải/ }));
+    expect(screen.getByText("GIAI-THICH-DAP-AN")).toBeTruthy();
   });
 
   it("a crash shows the error, not a misleading 'does not match'", async () => {

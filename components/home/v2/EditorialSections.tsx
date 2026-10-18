@@ -19,52 +19,12 @@ import { BAND, CropMarks, ID, INK, Mono, PAPER, RULE, SheetHead, Stamp } from "@
 /* ───────────────────────── NAV ───────────────────────── */
 
 /**
- * Thanh điều hướng: đường dẫn tờ đang đọc, phần trăm đã cuộn, công tắc DEBUG
- * và nút vào học. Phần trăm và thanh tiến độ ghi thẳng vào DOM qua ref - cuộn
- * là sự kiện dày, dựng lại cả thanh nav mỗi khung hình thì phí.
+ * Thanh điều hướng: tên, và MỘT nút vào học. Từng có thêm đường dẫn tờ đang
+ * đọc (`THCN://.../HERO`), phần trăm đã cuộn và công tắc DEBUG - ba thứ chỉ
+ * dân kỹ thuật đọc ra, trên một trang nhắm tới người chưa biết gì về công nghệ.
  */
-export function EditorialNav({ debug, onDebug }: { debug: boolean; onDebug: () => void }) {
+export function EditorialNav() {
   const { t } = useI18n();
-  const v = t.home.v2;
-  const barRef = useRef<HTMLDivElement>(null);
-  const pctRef = useRef<HTMLSpanElement>(null);
-  const [where, setWhere] = useState("hero");
-
-  useEffect(() => {
-    let raf = 0;
-    const update = () => {
-      raf = 0;
-      const max = document.documentElement.scrollHeight - window.innerHeight;
-      const p = max > 0 ? Math.min(1, window.scrollY / max) : 0;
-      if (barRef.current) barRef.current.style.transform = `scaleX(${p})`;
-      if (pctRef.current) pctRef.current.textContent = ID.pct(Math.round(p * 100));
-    };
-    const onScroll = () => {
-      if (!raf) raf = requestAnimationFrame(update);
-    };
-    update();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-      cancelAnimationFrame(raf);
-    };
-  }, []);
-
-  // Tờ đang đọc: section nào chiếm vạch giữa màn hình.
-  useEffect(() => {
-    const sections = [...document.querySelectorAll<HTMLElement>("[data-dbg^='section#']")];
-    const io = new IntersectionObserver(
-      (entries) => {
-        for (const e of entries) if (e.isIntersecting) setWhere((e.target as HTMLElement).dataset.dbg!.slice(8));
-      },
-      { rootMargin: "-50% 0px -50% 0px" }
-    );
-    sections.forEach((s) => io.observe(s));
-    return () => io.disconnect();
-  }, []);
-
   return (
     <header className={`sticky top-0 z-40 border-b-2 ${RULE} ${PAPER} ${INK}`}>
       <div className="mx-auto flex h-14 max-w-7xl items-center justify-between gap-3 px-4 sm:px-6 lg:px-8">
@@ -72,38 +32,14 @@ export function EditorialNav({ debug, onDebug }: { debug: boolean; onDebug: () =
           <Logo size={26} />
           <span className="truncate text-[13px] font-black uppercase tracking-[0.02em] sm:text-[15px]">{t.home.brand}</span>
         </Link>
-        <div className="hidden min-w-0 flex-1 items-center gap-3 md:flex">
-          <span className="h-4 w-px bg-current opacity-30" />
-          <Mono className="truncate opacity-70">
-            {ID.path}
-            <span className="text-accent">{where.toUpperCase()}</span>
-          </Mono>
-        </div>
-        <div className="flex items-center gap-2 sm:gap-3">
-          <Mono className="hidden tabular-nums opacity-60 lg:inline">
-            {v.scroll} <span ref={pctRef}>{ID.pct(0)}</span>
-          </Mono>
-          <button
-            type="button"
-            onClick={onDebug}
-            aria-pressed={debug}
-            aria-label={v.debugAria}
-            className={`hidden border px-2 py-1 font-mono text-[10.5px] font-bold uppercase tracking-[0.06em] transition-colors sm:inline-block ${
-              debug ? "border-brand-600 bg-brand-600 text-white" : `${RULE} hover:bg-black/5 dark:hover:bg-white/10`
-            }`}
-          >
-            {debug ? v.debugOn : v.debugOff}
-          </button>
-          <Link
-            href="/login"
-            className="group inline-flex min-h-11 shrink-0 items-center gap-2 bg-brand-600 px-3.5 py-2 text-[12px] font-black uppercase tracking-wide text-white transition-colors hover:bg-[#0d0e11] dark:hover:bg-brand-400 dark:hover:text-[#0d0e11]"
-          >
-            {t.home.navCta}
-            <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
-          </Link>
-        </div>
+        <Link
+          href="/login"
+          className="group inline-flex min-h-11 shrink-0 items-center gap-2 bg-brand-600 px-3.5 py-2 text-[12px] font-black uppercase tracking-wide text-white transition-colors hover:bg-[#0d0e11] dark:hover:bg-brand-400 dark:hover:text-[#0d0e11]"
+        >
+          {t.home.navCta}
+          <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+        </Link>
       </div>
-      <div ref={barRef} aria-hidden className="absolute -bottom-[2px] left-0 h-[2px] w-full origin-left scale-x-0 bg-brand-600 dark:bg-brand-500" />
     </header>
   );
 }
@@ -513,28 +449,16 @@ export function EditorialReport() {
 export function EditorialFooter() {
   const { t } = useI18n();
   const f = t.home.footer;
+  // Chỉ những trang khách mở được. Cột "hệ sinh thái" (nhóm học, bảng tin, cửa
+  // hàng) và hai dòng /dashboard, /game từng ở đây, và cả bốn đều đưa khách thẳng
+  // sang trang đăng nhập: một liên kết ghi "Lộ trình học" mà không cho xem lộ
+  // trình. Đã học vài bài thì chúng nằm trong thanh bên của ứng dụng.
   const cols = [
     {
-      dir: "lo-trinh",
       title: f.tracksTitle,
-      links: [
-        ["/hoc-theo-nhu-cau", f.trackNeeds],
-        ["/dashboard", f.trackPersonal],
-        ["/dashboard", f.trackCorporate],
-        ["/game", f.trackGame],
-      ],
+      links: [["/hoc-theo-nhu-cau", f.trackNeeds]],
     },
     {
-      dir: "he-sinh-thai",
-      title: f.ecoTitle,
-      links: [
-        ["/nhom-hoc", f.ecoStudyRoom],
-        ["/bang-tin", f.ecoFeed],
-        ["/cua-hang", f.ecoShop],
-      ],
-    },
-    {
-      dir: "ho-tro",
       title: f.supportTitle,
       links: [
         ["/dieu-khoan", f.terms],
@@ -560,9 +484,8 @@ export function EditorialFooter() {
             </p>
           </div>
           {cols.map((col) => (
-            <div key={col.dir} className="lg:col-span-2 lg:first-of-type:col-start-7">
-              <Mono className="text-brand-300">{ID.dir(col.dir)}</Mono>
-              <p className="mt-1 text-xs font-black uppercase tracking-[0.1em]">{col.title}</p>
+            <div key={col.title} className="lg:col-span-3 lg:first-of-type:col-start-7">
+              <p className="text-xs font-black uppercase tracking-[0.1em]">{col.title}</p>
               <ul className="mt-4 space-y-0 text-[13px] font-semibold sm:space-y-2.5">
                 {col.links.map(([href, label]) => (
                   <li key={label}>
@@ -590,7 +513,6 @@ export function EditorialFooter() {
           <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-[#eeebe3]/50">
             <span>{f.copyright}</span>
             <span className="hidden sm:inline">{f.tagline}</span>
-            <Mono className="text-[#eeebe3]/40">{ID.build}</Mono>
           </div>
         </div>
       </div>

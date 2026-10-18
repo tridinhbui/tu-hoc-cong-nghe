@@ -17,6 +17,8 @@ interface Props {
   solution: string;
   expectedOutput: string;
   hints?: string[];
+  /** Hiện sau khi qua bài hoặc mở lời giải, không trước đó. */
+  explanation?: string;
   /** Gọi mỗi lần đầu ra khớp. Lưu là việc của nơi gọi (có id bài). */
   onPass?: () => void;
   /** Bắt đầu GẬP sau một nút "Thử tự viết code". Dùng ở các chặng đầu của
@@ -32,7 +34,7 @@ const INDENT = "    ";
 // chữ theo một luật. Cuộn ngang thì textarea cuộn một mình, lớp màu đứng yên.
 const EDITOR_TEXT = CODE_TEXT.replace("whitespace-pre", "whitespace-pre-wrap [overflow-wrap:anywhere]");
 
-export default function ExerciseBlock({ language, title, task, starter, solution, expectedOutput, hints = [], onPass, collapsed = false }: Props) {
+export default function ExerciseBlock({ language, title, task, starter, solution, expectedOutput, hints = [], explanation, onPass, collapsed = false }: Props) {
   const { t } = useI18n();
   const c = t.lessonCode;
   const [open, setOpen] = useState(!collapsed);
@@ -111,8 +113,11 @@ export default function ExerciseBlock({ language, title, task, starter, solution
         <p className="max-w-[68ch] text-sm leading-6 text-ink-muted">{c.exerciseHint}</p>
       </header>
 
+      {/* min-w-0: một mục lưới mặc định không co nhỏ hơn nội dung của nó, nên dòng đầu ra dài
+          làm cả khối rộng hơn khung (section có overflow-hidden) và bị cắt cụt ở 375px thay
+          vì cuộn ngang trong <pre>. */}
       <div className="grid gap-0 border-b border-line-strong">
-        <div className="px-4 py-3 sm:px-5">
+        <div className="min-w-0 px-4 py-3 sm:px-5">
           <p className="mb-1 text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">{c.expected}</p>
           <pre className="overflow-x-auto rounded-sm bg-stone-100 px-3 py-2 font-mono text-[13px] leading-6 text-ink-max dark:bg-stone-800">
             {expectedOutput}
@@ -204,6 +209,12 @@ export default function ExerciseBlock({ language, title, task, starter, solution
           <pre className={`${CODE_TEXT} overflow-x-auto rounded-sm bg-[#1e1e1e] px-4 py-3`}>
             <HighlightedCode code={solution} language={language} />
           </pre>
+        ) : null}
+        {explanation && (grade?.pass || solutionOpen) ? (
+          <div className="rounded-sm border-l-4 border-accent bg-surface-raised px-4 py-3 dark:bg-stone-800">
+            <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-accent-strong">{c.explanationLabel}</p>
+            <p className="mt-1 max-w-[68ch] text-sm leading-6 text-ink-body">{explanation}</p>
+          </div>
         ) : null}
       </footer>
     </section>

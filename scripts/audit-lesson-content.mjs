@@ -601,10 +601,26 @@ const OPTION_LETTER_RE = /(phương án|đáp án|lựa chọn|option|câu trả
 // xếp lại cả mảng, và mọi tham chiếu vị trí trong phần giải thích của bài đó
 // lặng lẽ trỏ sang ô khác. Không cổng nào đỏ, vì không cổng nào đang đếm.
 //
-// ĐẾM chứ không GÁC, đúng như dòng chữ cái ngay trên: 31 chỗ hiện có đều đang
-// đúng, nên một cổng ở mức 0 sẽ đỏ ngay từ lượt chạy đầu và bị học cách phớt lờ.
+// ĐÃ TỪNG chỉ đếm ("31 chỗ hiện có đều đang đúng") và bây giờ GÁC ở mức 0, vì
+// cái mong manh ở trên đã xảy ra thật chứ không còn là dự đoán. Khi đo lại
+// (2026-10-17) có 168 câu quiz tiếng Việt nói "lựa chọn thứ ba / phương án cuối"
+// trong phần giải thích, và với 46 câu trong số đó balanceLessonQuizzes đã đổi
+// chỗ đáp án đúng với một phương án nhiễu: người học đọc "Lựa chọn thứ hai mô
+// tả đúng chỗ lưu nhưng không phải nguyên nhân" ngay bên dưới một đáp án thứ hai
+// CHÍNH LÀ nguyên nhân. Lời giải tự mâu thuẫn với đáp án nó đang giải thích -
+// cùng loại lỗi với `on-tap-trai-phieu` và `wacc-co-ban` ở AGENTS.md.
+//
+// Hai dương tính giả được loại ở chính biểu thức dưới đây chứ không bằng ngoại lệ:
+// `phương án trên bàn` ("a proposal on the table") và `lựa chọn đầu tiên / cuối cùng`
+// ("first / final choice", nghĩa là thứ tự thời gian chứ không phải vị trí ô). Cái thứ hai
+// do chính lượt sửa đầu tiên làm hỏng ở 4 câu vì script thay thế khớp "lựa chọn đầu" rồi
+// bỏ lại chữ "tiên" - xem CURRICULUM-PHASE4-QA.md.
+//
+// Cách sửa là gọi phương án bằng NỘI DUNG, không bằng Ô: 'Lựa chọn “Vì thẻ được
+// lưu…”' sống sót qua mọi lần xáo. Đừng sửa bằng cách dời `correct` cho khớp chữ
+// "thứ hai": balance sẽ xáo lại ở lần sinh sau.
 const OPTION_POSITION_RE =
-  /\b(?:the (?:last|first|second|third|fourth|final|other) option|options? (?:above|below))\b|(?:phương án|đáp án|lựa chọn)\s+(?:cuối|đầu|trên|dưới|thứ (?:nhất|hai|ba|tư))/giu;
+  /\b(?:the (?:last|first|second|third|fourth|final|other) option|options? (?:above|below))\b|(?:phương án|đáp án|lựa chọn)\s+(?:(?:cuối|đầu)(?!\s+(?:tiên|cùng))|trên(?!\s+bàn)|dưới|thứ (?:nhất|hai|ba|tư))/giu;
 
 // Một chữ cái do CHÍNH CÂU HỎI đặt ra thì không phải tham chiếu vị trí.
 //
@@ -764,6 +780,7 @@ const miskeyedNumeric = [];
 /** Mọi tham chiếu chữ cái - nợ tiềm ẩn, chỉ báo cáo. */
 const letterRefs = [];
 const positionRefs = [];
+const MAX_POSITION_REFS = 0;
 /** Chữ cái trỏ đúng vào đáp án đúng - gate ở đây. */
 const contradictoryLetterRefs = [];
 /** Baselined lessons that now pass, so the baseline must shrink. */
@@ -1674,8 +1691,20 @@ console.log(
 );
 console.log(
   `Option-position refs in explanations: ${positionRefs.length}` +
-    ` (\u0111\u1ebfm, kh\u00f4ng g\u00e1c - xem ch\u00fa th\u00edch \u1edf OPTION_POSITION_RE)`
+    ` (g\u00e1c \u1edf m\u1ee9c ${MAX_POSITION_REFS} - xem ch\u00fa th\u00edch \u1edf OPTION_POSITION_RE)`
 );
+if (positionRefs.length > MAX_POSITION_REFS) {
+  tellFailures.push(
+    `${positionRefs.length} lời giải gọi phương án bằng VỊ TRÍ ("phương án cuối", "lựa chọn thứ ba"):\n` +
+      positionRefs
+        .slice(0, 30)
+        .map((row) => `    ${row.slug} - "${row.question}"`)
+        .join("\n") +
+      `\n  balanceLessonQuizzes đổi chỗ đáp án đúng với một phương án nhiễu ở phần lớn câu hỏi, nên một` +
+      ` tham chiếu vị trí viết lúc soạn sẽ trỏ sang ô khác khi hiển thị. Gọi phương án bằng nội dung` +
+      ` ('Lựa chọn “Vì thẻ được lưu…”'). Ngân sách là 0.`
+  );
+}
 if (letterRefs.length > contradictoryLetterRefs.length) {
   console.log(
     `  Số còn lại chưa chứng minh được là sai, nhưng chữ cái không sống sót qua` +

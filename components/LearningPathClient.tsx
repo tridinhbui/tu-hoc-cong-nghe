@@ -1,11 +1,9 @@
 "use client";
 
 import LearningGoalCard, { type FlowEffort } from "@/components/learning-flows/LearningGoalCard";
-import CoCoSays from "@/components/CoCoSays";
-import ExercisePracticeCard from "@/components/ExercisePracticeCard";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, CalendarDays, CheckCircle2, Compass, Flame, HelpCircle, ListChecks, Sparkles } from "lucide-react";
+import { ArrowLeft, ArrowRight, CheckCircle2, ChevronDown } from "lucide-react";
 import { getDashboardGreetingAction } from "@/app/(app)/dashboard/actions";
 import { saveLearningPathPrefs } from "@/app/(app)/lo-trinh/actions";
 import { getLessonShortTitle } from "@/lib/lesson-labels";
@@ -21,12 +19,12 @@ import {
 } from "@/lib/learning-pace";
 import { format, intlLocale } from "@/lib/i18n";
 import type { StageTopicId } from "@/lib/stage-topics";
-import { IconTile, Sys, panel, panelFocus, btnPrimary, textLink } from "@/components/ui/system";
-
-/** Mã định vị mono ở đầu trang: chính đường dẫn của route, không phải nhãn dịch. */
-const ROUTE_CODE = "THCN://APP/LO-TRINH";
+import { btnPrimary, textLink } from "@/components/ui/system";
 
 type Track = "personal" | "professional";
+
+/** Số mốc hiện ra trước; phần còn lại gộp thành một dòng "và N chặng nữa". */
+const MILESTONES_SHOWN = 4;
 
 /** Trung vị `totalMinutes` của cả kho, đo lúc viết trang này (n=722, khoảng
  *  4-11). Một con số đo được giữ được lòng tin; "nhẹ nhàng thôi" thì không.
@@ -52,6 +50,7 @@ export default function LearningPathClient({
   savedTrack,
   savedPace,
   flowEffort,
+  milestones,
 }: {
   counts: Record<Track, number>;
   done: Record<Track, number>;
@@ -61,6 +60,9 @@ export default function LearningPathClient({
   savedPace: Pace | null;
   /** Số bài và tổng phút của từng lối học theo nhu cầu, cho thẻ chọn mục tiêu. */
   flowEffort?: FlowEffort;
+  /** Các chặng của từng hướng theo thứ tự, kèm số bài (đếm ở server bằng cùng
+   *  luật với `counts`, nên tổng các chặng khớp tổng hướng). */
+  milestones?: Record<Track, { total: number; done: number }[]>;
 }) {
   const { t, locale } = useI18n();
   const p = t.learningPath;
@@ -153,129 +155,39 @@ export default function LearningPathClient({
   // client cho ra cùng một kết quả: không có dòng nào.
   const finishAt = today ? finishDate(remaining, pace, today) : null;
 
+  const stageCopy = t.revampDashboard.stages[track] ?? [];
+  const stageList = milestones?.[track] ?? [];
+  const shownStages = stageList.slice(0, MILESTONES_SHOWN);
+  const pct = total > 0 ? Math.round((done[track] / total) * 100) : 0;
+
   return (
     // pb-28 chứ không pb-8: ConnectMenu là một nút tròn `fixed bottom-6` cao
-    // 56px, mount toàn app từ app/layout.tsx. Nội dung chạy sát đáy thì thẻ
-    // cuối nằm dưới nó, và trên màn hình hẹp cái bị che là đúng phần "chủ đề
-    // yếu nhất" - phần vừa được cho link để bấm.
-    <div className="mx-auto max-w-6xl space-y-3 px-4 pt-5 pb-20 sm:px-6 lg:px-8">
+    // 56px, mount toàn app từ app/layout.tsx. Nội dung chạy sát đáy thì khối
+    // cuối nằm dưới nó.
+    //
+    // Một cột hẹp, bốn bước đánh số theo đúng câu hỏi trong đầu người mới:
+    // làm gì -> đi đường nào -> dọc đường có những mốc gì -> bài đầu tiên.
+    // Phần giải thích (cách học một bài, ba nỗi lo) gập lại ở cuối: ai cần thì
+    // mở, ai không cần thì không phải cuộn qua.
+    <div className="mx-auto max-w-3xl px-4 pt-5 pb-28 sm:px-6">
       <header>
-        {/* Lối ra. Trang này là một trang riêng chứ không phải tab dashboard,
-            nên không có gì đưa người dùng về ngoài nút Back của trình duyệt -
-            mà vào đây bằng cách bấm thẻ trên dashboard thì Back là thao tác
-            người ta phải NGHĨ ra, không phải thao tác nhìn thấy. */}
-        <Link
-          href="/dashboard"
-          className={textLink}
-        >
+        <Link href="/dashboard" className={textLink}>
           <ArrowLeft className="h-4 w-4" />
           {p.backToDashboard}
         </Link>
-        <div className="mt-2.5 border-b border-line-strong pb-1.5">
-          <Sys className="text-ink-muted">{ROUTE_CODE}</Sys>
-        </div>
-        <h1 className="mt-2 text-2xl font-black leading-[1.15] tracking-tight text-ink-max sm:text-[1.75rem]">{p.title}</h1>
-        {/* Cơ Cơ hỏi câu mở đầu thay cho dòng phụ đề cứng: cùng một câu hỏi
-            "bạn muốn làm được gì", nhưng nói với người đọc chứ không dán lên tường. */}
-        <CoCoSays lines={t.coco.loTrinh} size={36} className="mt-2.5 max-w-3xl" />
+        <h1 className="mt-4 text-3xl font-black leading-[1.1] tracking-tight text-ink-max sm:text-4xl">{p.title}</h1>
+        <p className="mt-2 max-w-[56ch] text-base leading-7 text-ink-soft">{p.intro}</p>
       </header>
 
-      {/* Câu hỏi nhu cầu đứng TRƯỚC mục lục và mọi khối về track/nhịp: người
-          non-tech biết mình muốn LÀM gì trước khi biết mình thuộc track nào.
-          Xem lib/learning-flows.ts. */}
-      <LearningGoalCard id="goal" effort={flowEffort} mission />
+      <Step n={1} title={p.tocGoal}>
+        <LearningGoalCard id="goal" effort={flowEffort} mission />
+      </Step>
 
-      {/* Cạnh các con số đọc hiểu (bài đã xong, quiz): bài tập tự viết mã. */}
-      <ExercisePracticeCard />
-
-      {/* Mục lục. Sáu khối, và người quay lại lần thứ hai gần như luôn chỉ muốn
-          sửa nhịp - trước đây họ phải cuộn qua bốn khối để tới đó.
-
-          Dùng <a href="#..."> chứ không phải <Link>: đây là nhảy trong cùng
-          một trang, và next/link sẽ chạy qua router cho một việc mà trình duyệt
-          làm sẵn tốt hơn - kèm cả `scroll-margin` khi quay lại bằng nút Back. */}
-      <nav aria-label={p.tocTitle} className={`${panel} px-4 py-2.5`}>
-        <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
-          <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">
-            {p.tocTitle}
-          </p>
-          {[
-            ["goal", p.tocGoal],
-            ["pick", p.stepPickTitle],
-            ["pace", p.stepPaceTitle],
-            ["how", p.stepHowTitle],
-            ["worry", p.stepWorryTitle],
-            ["check", p.stepCheckTitle],
-            ["adjust", p.stepAdjustTitle],
-          ].map(([id, label]) => (
-            <a
-              key={id}
-              href={`#${id}`}
-              className={`${textLink} text-xs`}
-            >
-              {label}
-            </a>
-          ))}
-        </div>
-      </nav>
-
-      {/* Lối vào trang hướng dẫn: đứng trên cả câu trả lời "mỗi ngày bao lâu"
-          vì người mới cần biết MỘT BÀI HỌC TRÔNG RA SAO trước khi quan tâm tới
-          nhịp học. Một dải mỏng, không phải một khối - xem /lo-trinh/huong-dan. */}
-      <Link href="/lo-trinh/huong-dan" className={`${panelFocus} group flex items-center gap-3 p-3.5 transition-colors hover:border-accent`}>
-        <IconTile className="h-10 w-10">
-          <Sparkles className="h-5 w-5" strokeWidth={2.1} />
-        </IconTile>
-        <span className="min-w-0 flex-1">
-          <span className="block text-sm font-black leading-snug text-ink-max">{p.guideTitle}</span>
-          <span className="block text-[13px] leading-5 text-ink-soft">{p.guideBody}</span>
-        </span>
-        <span className="inline-flex shrink-0 items-center gap-1 text-sm font-bold text-accent-strong">
-          <span className="hidden sm:inline">{p.guideOpen}</span>
-          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden />
-        </span>
-      </Link>
-
-      {/* Câu trả lời trước tiên: mỗi ngày 10-15 phút, và hôm nay là bài này. */}
-      <section className={`${panel} grid gap-3 p-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-center`}>
-        <div>
-        <div className="flex items-center gap-2">
-          <Flame className="h-5 w-5 shrink-0 text-ink-muted" />
-          <p className="text-xl font-black tracking-tight text-ink-max">{p.heroMinutes}</p>
-        </div>
-        <p className="mt-1 max-w-[68ch] text-sm leading-6 text-ink-body">{p.heroBody}</p>
-        </div>
-
-        <div className="rounded-sm border border-line-strong bg-white p-3.5 dark:bg-stone-950">
-          {loading ? (
-            <p className="text-sm text-ink-muted">{p.heroLoading}</p>
-          ) : !nextLesson ? (
-            <p className="text-sm leading-6 text-ink-soft">{p.heroNoLesson}</p>
-          ) : (
-            <>
-              <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">{p.heroTodayLabel}</p>
-              <p className="mt-1 text-base font-bold leading-snug text-ink">
-                {getLessonShortTitle({ title: nextLesson.title })}
-              </p>
-              <Link
-                href={`/bai-hoc/${nextLesson.slug}`}
-                className={`${btnPrimary} mt-2.5`}
-              >
-                {p.heroOpen} <ArrowRight className="h-4 w-4" />
-              </Link>
-            </>
-          )}
-        </div>
-      </section>
-
-      {/* Sáu khối cài đặt/giải thích chia hai cột trên màn rộng: mỗi khối đọc
-          độc lập, nên xếp dọc một cột hẹp chỉ tạo khoảng trống hai bên. Thứ tự
-          đọc (trái→phải, trên→dưới) giữ đúng thứ tự mục lục. */}
-      <div className="grid gap-3 lg:grid-cols-2 lg:items-start">
-      <Card id="pick" icon={<Compass className="h-4 w-4" />} title={p.stepPickTitle} hint={p.stepPickHint}>
+      <Step n={2} title={p.stepPickTitle} hint={p.stepPickHint} id="pick">
         <div className="grid gap-3 sm:grid-cols-2">
           {(["personal", "professional"] as const).map((id) => {
             const picked = track === id;
+            const left = Math.max(0, counts[id] - done[id]);
             return (
               <button
                 key={id}
@@ -285,55 +197,28 @@ export default function LearningPathClient({
                 className={`group cursor-pointer rounded-sm p-4 text-left transition-colors duration-200 ${
                   picked
                     ? "border border-brand-600 bg-brand-50 ring-1 ring-brand-600 dark:border-brand-400 dark:bg-brand-950/40 dark:ring-brand-400"
-                    : "border border-line-strong hover:border-line-strong dark:border-stone-800 dark:hover:border-stone-700"
+                    : "border border-line-strong hover:border-brand-400 dark:border-stone-800 dark:hover:border-stone-700"
                 }`}
               >
-                <div className="flex items-start justify-between gap-2">
-                  <span className={`text-base font-black tracking-tight transition-colors ${picked ? "text-brand-950 dark:text-brand-50" : "text-ink-soft group-hover:text-ink-max"}`}>
+                <span className="flex items-start justify-between gap-2">
+                  <span className={`text-base font-black tracking-tight ${picked ? "text-brand-950 dark:text-brand-50" : "text-ink-heading"}`}>
                     {id === "personal" ? p.trackPersonalName : p.trackProfessionalName}
                   </span>
-                  {picked && <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-accent" />}
-                </div>
-                <p className={`mt-1.5 text-sm leading-6 ${picked ? "text-ink-body" : "text-ink-muted"}`}>
+                  {picked && <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-accent" aria-hidden />}
+                </span>
+                <span className="mt-1.5 block text-sm leading-6 text-ink-soft">
                   {id === "personal" ? p.trackPersonalFor : p.trackProfessionalFor}
-                </p>
-                {/* Thẻ ĐANG CHỌN đếm số bài còn lại, thẻ kia đếm tổng.
-                    Trước đây cả hai đếm tổng, nên thẻ đang chọn ghi "137 bài ·
-                    khoảng 28 tuần" ngay phía trên ô ước lượng ghi "còn 97 bài ·
-                    khoảng 20 tuần". Hai con số đúng theo hai cách đo khác nhau,
-                    đặt cách nhau ba dòng, không cái nào nói mình đang đo gì.
-
-                    Thẻ CHƯA chọn vẫn dùng tổng, và đó không phải cẩu thả: câu
-                    hỏi ở đó là "hướng này to cỡ nào", không phải "tôi còn bao
+                </span>
+                {/* Thẻ ĐANG CHỌN đếm số bài còn lại, thẻ kia đếm tổng: câu hỏi ở
+                    thẻ kia là "hướng này to cỡ nào", không phải "tôi còn bao
                     nhiêu" - người đọc chưa học bài nào của nó. */}
-                <p className={`mt-3 text-xs font-bold tabular-nums ${picked ? "text-ink-muted" : "text-ink-muted"}`}>
-                  {picked
-                    ? format(p.trackLessonsLeft, { count: Math.max(0, counts[id] - done[id]) })
-                    : format(p.trackLessons, { count: counts[id] })}{" "}
-                  ·{" "}
+                <span className="mt-3 block text-xs font-bold tabular-nums text-ink-muted">
+                  {picked ? format(p.trackLessonsLeft, { count: left }) : format(p.trackLessons, { count: counts[id] })}
+                  {" · "}
                   {format(p.trackTime, {
-                    weeks: weeksFor(
-                      picked ? Math.max(0, counts[id] - done[id]) : counts[id],
-                      pace.perDay,
-                      pace.daysPerWeek,
-                    ),
+                    weeks: weeksFor(picked ? left : counts[id], pace.perDay, pace.daysPerWeek),
                   })}
-                </p>
-                {/* Thẻ đã chọn: một nhãn trạng thái. Thẻ chưa chọn: một viên
-                    trông bấm được.
-
-                    Cả hai từng là cùng một dòng chữ xanh đậm, tức "Chọn hướng
-                    này" đọc như một liên kết nằm trong thẻ - nhưng nó không
-                    phải, cả thẻ mới là nút. Người dùng nhắm vào đúng mấy chữ đó
-                    thì vẫn trúng, nên lỗi này không bao giờ lộ ra thành khiếu
-                    nại; nó chỉ làm chỗ bấm trông nhỏ hơn thực tế. */}
-                {picked ? (
-                  <p className="mt-2 text-xs font-bold text-accent-strong">{p.trackPicked}</p>
-                ) : (
-                  <span className="mt-2 inline-flex items-center gap-1 text-xs font-semibold text-ink-muted transition-colors group-hover:text-accent-strong">
-                    {p.trackPick}
-                  </span>
-                )}
+                </span>
               </button>
             );
           })}
@@ -344,218 +229,219 @@ export default function LearningPathClient({
           </p>
         )}
 
-        {/* Lối học song song nào thêm sau này phải là LINK, không phải mục
-            trong dãy chọn chặng: `pickTrack` ghi vào `activeTrack`, khoá mà
-            dashboard đọc để quyết định hiện chặng nào, nên nhét một giá trị lạ
-            vào đó là gài bẫy cho dashboard. */}
-      </Card>
-
-      <Card id="pace" icon={<CalendarDays className="h-4 w-4" />} title={p.stepPaceTitle} hint={p.stepPaceHint}>
-        <div className="flex flex-wrap gap-5">
-          <Field label={p.paceLessonsPerDay}>
-            {([1, 2] as const).map((n) => (
-              <Pill key={n} active={pace.perDay === n} onClick={() => savePace({ ...pace, perDay: n })}>
-                {n === 1 ? p.paceOne : p.paceTwo}
-              </Pill>
-            ))}
-          </Field>
-          <Field label={p.paceDaysPerWeek}>
-            {[3, 4, 5, 6, 7].map((d) => (
-              <Pill key={d} active={pace.daysPerWeek === d} onClick={() => savePace({ ...pace, daysPerWeek: d })}>
-                {format(p.paceDays, { days: d })}
-              </Pill>
-            ))}
-          </Field>
-        </div>
-        <div className="mt-3 rounded-sm border border-line-strong bg-white p-3 dark:bg-stone-950">
-          <p className="text-sm font-bold tabular-nums text-ink-heading">
+        {/* Nhịp học: cùng bước với hướng đi vì cả hai cùng trả lời "bao giờ thì
+            xong", và con số ước lượng nằm ngay dưới hai bộ chọn. */}
+        <div id="pace" className="mt-6 scroll-mt-6">
+          <h3 className="text-sm font-black text-ink-heading">{p.stepPaceTitle}</h3>
+          <div className="mt-3 flex flex-wrap gap-x-6 gap-y-3">
+            <Field label={p.paceLessonsPerDay}>
+              {([1, 2] as const).map((n) => (
+                <Pill key={n} active={pace.perDay === n} onClick={() => savePace({ ...pace, perDay: n })}>
+                  {n === 1 ? p.paceOne : p.paceTwo}
+                </Pill>
+              ))}
+            </Field>
+            <Field label={p.paceDaysPerWeek}>
+              {[3, 4, 5, 6, 7].map((d) => (
+                <Pill key={d} active={pace.daysPerWeek === d} onClick={() => savePace({ ...pace, daysPerWeek: d })}>
+                  {format(p.paceDays, { days: d })}
+                </Pill>
+              ))}
+            </Field>
+          </div>
+          <p className="mt-4 text-sm font-bold tabular-nums text-ink-heading">
             {format(p.paceEstimate, { count: remaining, weeks })}
+            {/* Ngày cụ thể cạnh con số tuần: "khoảng 28 tuần" đòi người đọc tự
+                mở lịch ra cộng. Đi qua intlLocale, không viết cứng "vi-VN". */}
+            {finishAt && (
+              <span className="font-normal text-ink-muted">
+                {" "}
+                {format(p.paceFinishBy, {
+                  date: finishAt.toLocaleDateString(intlLocale(locale), { month: "long", year: "numeric" }),
+                })}
+              </span>
+            )}
           </p>
           <p className="mt-0.5 text-sm text-ink-muted">
             {format(p.paceMinutes, { minutes: pace.perDay * MEDIAN_LESSON_MINUTES })}
           </p>
-          {/* Một ngày cụ thể, cạnh con số tuần. "Khoảng 28 tuần" đòi người đọc
-              tự mở lịch ra cộng; phần lớn sẽ không cộng, và con số ấy trôi qua
-              mà không neo vào đâu cả.
-
-              Giữ CẢ HAI chứ không thay: số tuần là thứ so sánh được giữa hai
-              hướng học ngay trên màn hình này, còn ngày thì không - hai hướng
-              cùng "xong khoảng tháng 3" không nói được cái nào ngắn hơn.
-
-              Ngày đi qua intlLocale, không phải "vi-VN" viết cứng: bản tiếng
-              Anh dùng en-GB để giữ thứ tự ngày trước tháng, nếu không thì 03/04
-              đổi nghĩa giữa hai ngôn ngữ mà không ai thấy. */}
-          {finishAt && (
-            <p className="mt-0.5 text-sm text-ink-muted">
-              {format(p.paceFinishBy, {
-                date: finishAt.toLocaleDateString(intlLocale(locale), { month: "long", year: "numeric" }),
-              })}
+          {/* Trạng thái ghi: viên nhịp đổi màu ngay khi bấm, và màu ấy chỉ nói
+              "đang chọn" chứ không nói "đã lưu". */}
+          {saveState !== "idle" && (
+            <p role="status" className={`mt-2 text-xs font-bold ${saveState === "saved" ? "text-accent-strong" : "text-alert-strong"}`}>
+              {saveState === "saved" ? p.paceSaved : p.paceSaveFailed}
             </p>
           )}
+          <div className="mt-2">
+            <Disclosure question={p.paceWarnTitle} answer={p.paceWarnBody} />
+          </div>
         </div>
-        {/* Trạng thái ghi. Viên nhịp đổi màu ngay khi bấm, và màu ấy chỉ nói
-            "đang chọn" chứ không nói "đã lưu" - hai chuyện khác nhau kể từ khi
-            nhịp đi lên server. */}
-        {saveState !== "idle" && (
-          <p
-            role="status"
-            className={`mt-2 text-xs font-bold ${
-              saveState === "saved"
-                ? "text-accent-strong"
-                : "text-alert-strong"
-            }`}
-          >
-            {saveState === "saved" ? p.paceSaved : p.paceSaveFailed}
-          </p>
-        )}
-        <Disclosure question={p.paceWarnTitle} answer={p.paceWarnBody} />
-      </Card>
+      </Step>
 
-      <Card id="how" icon={<ListChecks className="h-4 w-4" />} title={p.stepHowTitle}>
-        <ol className="space-y-2.5">
-          {[
-            [p.howReadTitle, p.howReadBody],
-            [p.howQuizTitle, p.howQuizBody],
-            [p.howPracticeTitle, p.howPracticeBody],
-          ].map(([title, body], i) => (
-            <li key={title} className="flex gap-3">
-              <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center font-mono text-xs font-medium tabular-nums text-ink-muted">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <div>
-                <p className="text-sm font-bold text-ink">{title}</p>
-                <p className="mt-1 max-w-[68ch] text-sm leading-6 text-ink-soft">{body}</p>
-              </div>
-            </li>
-          ))}
-        </ol>
-      </Card>
+      {shownStages.length > 0 && (
+        <Step n={3} title={p.stepMilestonesTitle} id="milestones">
+          <ol className="divide-y divide-line-strong border-y border-line-strong">
+            {shownStages.map((stage, i) => {
+              const copy = stageCopy[i];
+              return (
+                <li key={i} className="flex gap-4 py-3.5">
+                  <span className="w-16 shrink-0 pt-0.5 font-mono text-xs font-bold uppercase tabular-nums text-ink-muted">
+                    {format(t.dashboard.stageLabel, { n: i + 1 })}
+                  </span>
+                  <span className="min-w-0 flex-1">
+                    <span className="block font-bold leading-snug text-ink-max">{copy?.headline ?? t.trackStages[track]?.stages[i]?.name}</span>
+                    {copy?.outcome && <span className="mt-0.5 hidden text-sm sm:block leading-6 text-ink-soft">{copy.outcome}</span>}
+                  </span>
+                  <span className="shrink-0 pt-0.5 text-xs font-bold tabular-nums text-ink-muted">
+                    {format(p.milestoneLessons, { done: stage.done, total: stage.total })}
+                  </span>
+                </li>
+              );
+            })}
+          </ol>
+          {stageList.length > shownStages.length && (
+            <p className="mt-2 text-sm text-ink-muted">{format(p.milestonesMore, { count: stageList.length - shownStages.length })}</p>
+          )}
+        </Step>
+      )}
 
-      {/* Trả lời cả điều họ chưa hỏi nhưng đang lo. */}
-      <Card id="worry" icon={<HelpCircle className="h-4 w-4" />} title={p.stepWorryTitle}>
-        <div className="space-y-1">
-          <Disclosure question={p.worrySkipQ} answer={p.worrySkipA} />
-          <Disclosure question={p.worrySlowQ} answer={p.worrySlowA} />
-          <Disclosure question={p.worryWrongQ} answer={p.worryWrongA} />
+      <Step n={shownStages.length > 0 ? 4 : 3} title={p.stepFirstTitle} hint={p.heroMinutes} id="first">
+        <div className="rounded-sm border border-brand-600 bg-brand-50 p-5 dark:border-brand-400 dark:bg-brand-950/40">
+          {loading ? (
+            <p className="text-sm text-ink-muted">{p.heroLoading}</p>
+          ) : !nextLesson ? (
+            <p className="text-sm leading-6 text-ink-soft">{p.heroNoLesson}</p>
+          ) : (
+            <>
+              <p className="text-xs font-bold uppercase tracking-[0.08em] text-ink-muted">
+                {p.heroTodayLabel}
+              </p>
+              <p className="mt-1.5 text-xl font-black leading-snug tracking-tight text-ink-max">
+                {getLessonShortTitle({ title: nextLesson.title })}
+              </p>
+              <Link href={`/bai-hoc/${nextLesson.slug}`} className={`${btnPrimary} mt-4`}>
+                {p.heroOpen} <ArrowRight className="h-4 w-4" />
+              </Link>
+            </>
+          )}
         </div>
-      </Card>
-
-      <Card id="check" icon={<CheckCircle2 className="h-4 w-4" />} title={p.stepCheckTitle}>
-        <p className="max-w-[68ch] text-sm leading-6 text-ink-soft">{p.stepCheckBody}</p>
-        <p className="mt-4 text-sm font-bold text-ink-heading">{p.weekRhythmTitle}</p>
-        <ul className="mt-1.5 space-y-1 text-sm leading-6 text-ink-soft">
-          <li>· {format(p.weekStudy, { days: Math.max(1, pace.daysPerWeek - 1) })}</li>
-          <li>· {p.weekReview}</li>
-          <li>· {p.weekRest}</li>
-        </ul>
-      </Card>
-
-      <Card id="adjust" icon={<Flame className="h-4 w-4" />} title={p.stepAdjustTitle}>
-        {loading ? (
-          <p className="text-sm text-ink-muted">{p.adjustLoading}</p>
-        ) : !nextLesson ? (
-          <p className="text-sm leading-6 text-ink-soft">{p.adjustNoData}</p>
-        ) : (
-          <div className="space-y-3.5">
-            <p className="text-sm font-bold tabular-nums text-ink-heading">
-              {format(p.adjustProgress, { done: done[track], total })}
-            </p>
-            {/* Hai <div> trần không nói gì với trình đọc màn hình, mà đây là
-                con số chính của cả trang: dòng chữ ngay trên nó ghi "đã học X
-                trên Y", còn thanh này thì hoàn toàn im lặng. `aria-valuenow`
-                cho nó tiếng nói, và `aria-label` nói con số đó là gì. */}
+        {/* Cùng chỗ với "bài đầu tiên" cho người đã học: tiến độ hướng này, và
+            chủ đề yếu nếu có - mỗi viên dẫn tới bài CHƯA HỌC đầu tiên của chủ
+            đề đó. Không có dữ liệu thì không in gì (không còn khối riêng). */}
+        {!loading && nextLesson && (
+          <div className="mt-4">
+            <p className="text-sm font-bold tabular-nums text-ink-heading">{format(p.adjustProgress, { done: done[track], total })}</p>
             <div
               role="progressbar"
               aria-valuemin={0}
               aria-valuemax={total}
               aria-valuenow={done[track]}
               aria-label={format(p.progressAria, { done: done[track], total })}
-              className="h-1 w-full overflow-hidden bg-surface-sunken"
+              className="mt-1.5 h-1 w-full overflow-hidden bg-surface-sunken"
             >
-              <div
-                className="h-full bg-cyan-500 motion-safe:transition-[width] motion-safe:duration-700 dark:bg-cyan-400"
-                style={{ width: `${total > 0 ? Math.round((done[track] / total) * 100) : 0}%` }}
-              />
+              <div className="h-full bg-cyan-500 motion-safe:transition-[width] motion-safe:duration-700 dark:bg-cyan-400" style={{ width: `${pct}%` }} />
             </div>
-            <div>
-              <p className="text-sm font-bold text-ink-heading">{p.adjustWeakest}</p>
-              {gaps.length === 0 ? (
-                <p className="mt-1 text-sm text-ink-muted">{p.adjustEmptyGaps}</p>
-              ) : (
-                <>
-                  {/* Mỗi viên dẫn thẳng tới bài CHƯA HỌC đầu tiên của chủ đề
-                      đó. Trước đây chúng là <span>: đỏ, nổi bật, bấm không
-                      được. Đây là phần duy nhất trên trang nói về điểm yếu của
-                      riêng người đọc, và nó là phần duy nhất không có đường đi
-                      tiếp - nêu vấn đề rồi để họ tự đi tìm.
-
-                      Chủ đề không tra được bài nào thì vẫn là <span>, không
-                      phải một link chết. Xảy ra khi mọi bài của chủ đề đó đã
-                      học xong mà điểm vẫn còn yếu - lúc ấy thứ cần là ôn lại,
-                      không phải một bài mới, và trang chưa có chỗ nào làm việc
-                      đó nên nói ít hơn là đúng hơn. */}
-                  <div className="mt-2 flex flex-wrap gap-1.5">
-                    {gaps.map((g: { topicId: StageTopicId; count: number }) => {
-                      const entry = topicEntry[track]?.[g.topicId];
-                      const chip =
-                        "rounded-sm border border-red-300 bg-white px-2.5 py-1 text-xs font-bold text-red-700 dark:border-red-900 dark:bg-stone-900 dark:text-red-300";
-                      return entry ? (
-                        <Link
-                          key={g.topicId}
-                          href={`/bai-hoc/${entry.slug}`}
-                          title={`${p.adjustWeakestOpen}: ${entry.title}`}
-                          className={`${chip} inline-flex items-center gap-1 transition-colors hover:border-red-600 dark:hover:border-red-400`}
-                        >
-                          {t.topics[g.topicId]}
-                          <ArrowRight className="h-3 w-3" />
-                        </Link>
-                      ) : (
-                        <span key={g.topicId} className={chip}>
-                          {t.topics[g.topicId]}
-                        </span>
-                      );
-                    })}
-                  </div>
-                  <p className="mt-2 max-w-[68ch] text-sm leading-6 text-ink-muted">
-                    {p.adjustWeakestHint}
-                  </p>
-                </>
-              )}
-            </div>
+            {gaps.length > 0 && (
+              <div className="mt-4">
+                <p className="text-sm font-bold text-ink-heading">{p.adjustWeakest}</p>
+                <div className="mt-2 flex flex-wrap gap-1.5">
+                  {gaps.map((g: { topicId: StageTopicId; count: number }) => {
+                    const entry = topicEntry[track]?.[g.topicId];
+                    const chip =
+                      "rounded-sm border border-red-300 bg-white px-2.5 py-1 text-xs font-bold text-red-700 dark:border-red-900 dark:bg-stone-900 dark:text-red-300";
+                    return entry ? (
+                      <Link
+                        key={g.topicId}
+                        href={`/bai-hoc/${entry.slug}`}
+                        title={`${p.adjustWeakestOpen}: ${entry.title}`}
+                        className={`${chip} inline-flex items-center gap-1 transition-colors hover:border-red-600 dark:hover:border-red-400`}
+                      >
+                        {t.topics[g.topicId]}
+                        <ArrowRight className="h-3 w-3" />
+                      </Link>
+                    ) : (
+                      <span key={g.topicId} className={chip}>
+                        {t.topics[g.topicId]}
+                      </span>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
           </div>
         )}
-      </Card>
-      </div>
+        <Link href="/lo-trinh/huong-dan" className={`mt-4 ${textLink}`}>
+          {p.guideTitle} <ArrowRight className="h-3.5 w-3.5" />
+        </Link>
+      </Step>
+
+      {/* Phần giải thích: gập lại. `details` của trình duyệt - không cần JS, và
+          nội dung vẫn nằm trong HTML nên trình đọc màn hình và tìm kiếm thấy. */}
+      <details className="group mt-10 border-t border-line-strong pt-4">
+        <summary className="flex cursor-pointer list-none items-center justify-between gap-3 text-sm font-bold text-ink-heading marker:content-none">
+          {p.moreTitle}
+          <ChevronDown className="h-4 w-4 text-ink-muted transition-transform group-open:rotate-180" aria-hidden />
+        </summary>
+        <div className="mt-5 space-y-8">
+          <div id="how" className="scroll-mt-6">
+            <h3 className="text-sm font-black text-ink-heading">{p.stepHowTitle}</h3>
+            <ol className="mt-3 space-y-3">
+              {[
+                [p.howReadTitle, p.howReadBody],
+                [p.howQuizTitle, p.howQuizBody],
+                [p.howPracticeTitle, p.howPracticeBody],
+              ].map(([title, body], i) => (
+                <li key={title} className="flex gap-3">
+                  <span className="mt-0.5 w-6 shrink-0 font-mono text-xs font-medium tabular-nums text-ink-muted">{String(i + 1).padStart(2, "0")}</span>
+                  <div>
+                    <p className="text-sm font-bold text-ink">{title}</p>
+                    <p className="mt-0.5 max-w-[68ch] text-sm leading-6 text-ink-soft">{body}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
+          <div id="worry" className="scroll-mt-6">
+            <h3 className="text-sm font-black text-ink-heading">{p.stepWorryTitle}</h3>
+            <div className="mt-2 space-y-1">
+              <Disclosure question={p.worrySkipQ} answer={p.worrySkipA} />
+              <Disclosure question={p.worrySlowQ} answer={p.worrySlowA} />
+              <Disclosure question={p.worryWrongQ} answer={p.worryWrongA} />
+            </div>
+          </div>
+          <div id="check" className="scroll-mt-6">
+            <h3 className="text-sm font-black text-ink-heading">{p.stepCheckTitle}</h3>
+            <p className="mt-2 max-w-[68ch] text-sm leading-6 text-ink-soft">{p.stepCheckBody}</p>
+          </div>
+        </div>
+      </details>
     </div>
   );
 }
 
-function Card({
-  id,
-  icon,
+/** Một bước của trang: số mono + tiêu đề lớn, ngăn bằng đường kẻ trên và
+ *  khoảng trắng - không bọc khung, để thứ bậc đến từ chữ chứ không từ viền. */
+function Step({
+  n,
   title,
   hint,
+  id,
   children,
 }: {
-  id: string;
-  icon: React.ReactNode;
+  n: number;
   title: string;
   hint?: string;
+  id?: string;
   children: React.ReactNode;
 }) {
   return (
-    // `scroll-mt-6` để tiêu đề khối không dính sát mép trên sau khi nhảy neo -
-    // không có nó thì dòng chữ đầu tiên nằm đúng ranh giới khung nhìn và đọc
-    // như bị cắt.
-    <section id={id} className={`scroll-mt-6 ${panel} p-4`}>
-      <div className="flex items-center gap-2.5">
-        <span className="flex shrink-0 items-center text-ink-muted">
-          {icon}
-        </span>
-        <h2 className="text-base font-black tracking-tight text-ink-max">{title}</h2>
-      </div>
-      {hint && <p className="mt-1.5 max-w-[68ch] text-sm leading-6 text-ink-soft">{hint}</p>}
-      <div className="mt-3">{children}</div>
+    <section id={id} className="mt-10 scroll-mt-6 border-t border-line-strong pt-6 first-of-type:mt-8">
+      <h2 className="flex items-baseline gap-3 text-xl font-black tracking-tight text-ink-max sm:text-2xl">
+        <span className="font-mono text-sm font-bold tabular-nums text-accent">{String(n).padStart(2, "0")}</span>
+        {title}
+      </h2>
+      {hint && <p className="mt-1.5 max-w-[60ch] text-sm leading-6 text-ink-soft">{hint}</p>}
+      <div className="mt-4">{children}</div>
     </section>
   );
 }

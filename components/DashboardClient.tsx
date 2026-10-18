@@ -30,7 +30,6 @@ import ResumeLearningButton from "@/components/ResumeLearningButton";
 import YesterdayTaskCard from "@/components/YesterdayTaskCard";
 import LearningFocusHero from "@/components/LearningFocusHero";
 import {
-  DashboardHeroBanner,
   OverviewTopBar,
   PracticeModeGrid,
   ProgressSideCard,
@@ -1277,18 +1276,12 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
               <div className="grid min-h-0 flex-1 grid-cols-1 content-start gap-4 overflow-y-auto pb-28 [scrollbar-width:thin] lg:pb-0 lg:grid-cols-[minmax(0,1fr)_300px] lg:grid-rows-[minmax(0,1fr)] lg:overflow-hidden xl:grid-cols-[minmax(0,1fr)_340px]">
                 {/* ── Cột chính: 01 Học tiếp, 02 Luyện tập, 03 Cấp độ, 04 Lộ trình ── */}
                 <div className="flex min-w-0 flex-col gap-4 lg:h-full lg:min-h-0">
-                  <DashboardHeroBanner
-                    cocoLines={!heroLesson ? (anyDone ? t.coco.dashboardDone : t.coco.dashboardFirst) : anyDone ? t.coco.dashboardNext : t.coco.dashboardFirst}
-                    cocoVars={heroLesson ? { lesson: stripStageLessonPrefix(heroLesson.title) } : undefined}
-                    progressPct={pathPct}
-                    xp={userXp}
-                  />
                   {/* Hỏi lại việc "Làm ngay" của bài hôm qua TRƯỚC khi mời học
                       bài mới - xem components/YesterdayTaskCard.tsx. Tự ẩn
                       khi không có việc nào trong cửa sổ 6-72 giờ. */}
                   <div className="lg:max-h-[22dvh] lg:overflow-y-auto"><YesterdayTaskCard /></div>
                   <section className="space-y-3">
-                  <SectionHeading n={1} title={t.revampDashboard.sectionContinue} hint={t.revampDashboard.sectionContinueHint} />
+                  <SectionHeading title={t.revampDashboard.sectionContinue} />
                   <div data-tour="resume-learning">
                     <ResumeLearningButton
                       showCoCo={false}
@@ -1324,17 +1317,28 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                   </section>
 
                   <section className="space-y-3">
-                    <SectionHeading n={2} title={t.revampDashboard.practiceTitle} hint={t.revampDashboard.practiceSub} />
-                    <PracticeModeGrid />
+                    <SectionHeading quiet title={t.revampDashboard.practiceTitle} />
+                    <PracticeModeGrid lessonsDone={trackCounts.personal.done + trackCounts.professional.done} />
                   </section>
 
                   <div className="grid min-h-0 gap-4 lg:flex-1 lg:grid-cols-2 lg:grid-rows-[minmax(0,1fr)]">
                   <section className="space-y-3 lg:min-h-0 lg:overflow-y-auto lg:pr-1 [scrollbar-width:thin]">
-                  <SectionHeading n={3} title={t.revampDashboard.sectionLevel} hint={t.revampDashboard.sectionLevelHint} />
+                  <SectionHeading quiet title={t.revampDashboard.sectionLevel} />
                   {/* ── Tiến độ: cấp, XP, chuỗi ngày trong một mặt nền.
                       Dải cấp đầy đủ và danh sách người ở từng cấp chỉ mở khi
                       bấm "Xem các cấp". */}
-                  <div className={`${softCard} p-5 sm:p-6`}>
+                  <div className={`${softCard} ${levelsOpen ? "p-5 sm:p-6" : "p-4"}`}>
+                    {!levelsOpen ? (
+                      <p className="text-sm leading-6 text-ink-body dark:text-stone-300">
+                        <span className="font-black text-ink-max dark:text-stone-100">
+                          LV{String(currentUserLevel).padStart(2, "0")} · {t.levelTitles[currentUserLevel] ?? LEVELS[currentUserLevel - 1]?.name}
+                        </span>
+                        {" · "}
+                        {nextLvl
+                          ? format(t.dashboard.nextUnlockLine, { level: String(nextLvl.level).padStart(2, "0"), name: t.levelTitles[nextLvl.level] ?? nextLvl.name, xp: xpLeft })
+                          : t.dashboard.maxLevelLine}
+                      </p>
+                    ) : (
                     <div className="flex flex-wrap items-center justify-between gap-x-8 gap-y-5">
                       <div className="flex min-w-0 items-center gap-5">
                         <div className="relative shrink-0">
@@ -1382,12 +1386,13 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                         </div>
                       </div>
                     </div>
+                    )}
 
                     <button
                       type="button"
                       onClick={() => setLevelsOpen((v) => !v)}
                       aria-expanded={levelsOpen}
-                      className="mt-4 inline-flex cursor-pointer items-center gap-1 text-xs font-semibold text-brand-700 transition-colors hover:text-brand-900 dark:text-brand-300 dark:hover:text-brand-200"
+                      className={`${levelsOpen ? "mt-4" : "mt-2"} inline-flex cursor-pointer items-center gap-1 text-xs font-semibold text-brand-700 transition-colors hover:text-brand-900 dark:text-brand-300 dark:hover:text-brand-200`}
                     >
                       {levelsOpen ? t.revampDashboard.hideDetails : t.revampDashboard.showLevels}
                       <ChevronDown className={`h-3.5 w-3.5 transition-transform ${levelsOpen ? "rotate-180" : ""}`} aria-hidden />
@@ -1569,9 +1574,8 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                   {/* ── Lộ trình: mục tiêu đã chọn và gợi ý học tiếp, một khu. */}
                   <section className="space-y-5 lg:min-h-0 lg:overflow-y-auto lg:pr-1 [scrollbar-width:thin]">
                     <SectionHeading
-                      n={4}
+                      quiet
                       title={t.revampDashboard.roadmapTitle}
-                      hint={t.revampDashboard.roadmapSub}
                       action={
                       <Link
                         href="/lo-trinh"
@@ -1584,7 +1588,6 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                       }
                     />
                     <div className="space-y-8 px-1">
-                      <LearningGoalCard quiet warm />
                       <DashboardRecommendations />
                     </div>
                   </section>
@@ -1627,8 +1630,6 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                         lessonsTotal={trackCounts[activeTrack].total}
                         avgQuizScore={anyDone ? avgQuizScore : null}
                       />
-                      <TrophyPromoCard />
-
                       {showOptional && <DailyNewsQuizWidget userId={user.id} compact quiet />}
 
                       <div className="space-y-5 px-1">
@@ -1669,6 +1670,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
 
                   {isFullPreset && sideTab === "rewards" && (
                     <div className="space-y-4">
+                      <TrophyPromoCard />
                       <CombinedRewardsWidget userId={user.id} defaultExpanded={false} compact />
                       <DailyMotivationWidget userId={user.id} quiet />
                     </div>

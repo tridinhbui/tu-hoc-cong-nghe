@@ -68,7 +68,7 @@ export const PERFORMANCE_TUNING_LESSONS: Lesson[] = [
           "Vì chỉ trên tải thật mới xác định được phần trăm sử dụng CPU của tiến trình"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn thứ ba cũng đúng và nó là điều kiện kỹ thuật. Cái này nói về bản chất: ba hiện tượng nêu ra chỉ xuất hiện khi có nhiều việc chạy cùng lúc, và chúng thường là nguyên nhân thật của chỗ chậm."
+        "explanation": "Lựa chọn “Vì các công cụ…” cũng đúng và nó là điều kiện kỹ thuật. Cái này nói về bản chất: ba hiện tượng nêu ra chỉ xuất hiện khi có nhiều việc chạy cùng lúc, và chúng thường là nguyên nhân thật của chỗ chậm."
       },
       {
         "question": "Vì sao hồ sơ lấy mẫu được dùng phổ biến hơn hồ sơ đếm từng lượt gọi?",
@@ -252,7 +252,7 @@ export const PERFORMANCE_TUNING_LESSONS: Lesson[] = [
           "Tỷ lệ phần trăm thời gian CPU mà bộ thu gom rác đang sử dụng"
         ],
         "correct": 0,
-        "explanation": "Mức bộ nhớ đang dùng có thể phẳng trong khi hệ thống cấp phát và bỏ đi hàng gigabyte mỗi phút. Lựa chọn cuối là hệ quả và nó tới muộn - tỷ lệ cấp phát là nguyên nhân và nó chỉ thẳng vào chỗ cần sửa."
+        "explanation": "Mức bộ nhớ đang dùng có thể phẳng trong khi hệ thống cấp phát và bỏ đi hàng gigabyte mỗi phút. Lựa chọn “Tỷ lệ phần trăm…” là hệ quả và nó tới muộn - tỷ lệ cấp phát là nguyên nhân và nó chỉ thẳng vào chỗ cần sửa."
       },
       {
         "question": "Chỗ nào nên tìm đầu tiên khi muốn giảm cấp phát?",
@@ -429,7 +429,7 @@ export const PERFORMANCE_TUNING_LESSONS: Lesson[] = [
           "Vì tất cả các tham số ảnh hưởng lẫn nhau nên rốt cuộc độ nhạy thay đổi mỗi khi tham số khác đổi"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn cuối cũng đúng và nó nói về tương tác giữa các tham số. Ngưỡng thì rõ hơn: số kết nối có thể vô hại từ hai mươi tới năm mươi rồi thành quan trọng nhất khi vượt sức chịu của cơ sở dữ liệu phía sau."
+        "explanation": "Lựa chọn “Vì tất cả các tham…” cũng đúng và nó nói về tương tác giữa các tham số. Ngưỡng thì rõ hơn: số kết nối có thể vô hại từ hai mươi tới năm mươi rồi thành quan trọng nhất khi vượt sức chịu của cơ sở dữ liệu phía sau."
       },
       {
         "question": "Vì sao cần ghi lại lý do đằng sau mỗi giá trị cấu hình?",
@@ -639,7 +639,7 @@ export const PERFORMANCE_TUNING_LESSONS: Lesson[] = [
           "Giảm thời gian chờ tối đa để các lượt gọi chậm bị cắt sớm hơn"
         ],
         "correct": 0,
-        "explanation": "Kỹ thuật này đổi tài nguyên lấy đuôi ngắn và nó hiệu quả vì các lượt chậm thường do nguyên nhân cục bộ trên một máy. Lựa chọn cuối làm con số đẹp lên mà không giúp gì - yêu cầu bị cắt là một yêu cầu thất bại."
+        "explanation": "Kỹ thuật này đổi tài nguyên lấy đuôi ngắn và nó hiệu quả vì các lượt chậm thường do nguyên nhân cục bộ trên một máy. Lựa chọn “Giảm thời gian chờ…” làm con số đẹp lên mà không giúp gì - yêu cầu bị cắt là một yêu cầu thất bại."
       }
     ],
     "keyTakeaways": [

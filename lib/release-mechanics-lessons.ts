@@ -283,7 +283,7 @@ export const RELEASE_MECHANICS_LESSONS: Lesson[] = [
           "Giữ nguyên giá trị đọc được lần gần nhất dù nó đã cũ bao lâu đi nữa"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn cuối nghe hợp lý và nó nguy hiểm theo cách khó thấy: khi hệ thống cờ hỏng, mỗi máy chủ sẽ giữ một giá trị cũ khác nhau, nên hành vi của hệ thống trở nên không xác định thay vì sai một cách nhất quán."
+        "explanation": "Lựa chọn “Giữ nguyên giá trị…” nghe hợp lý và nó nguy hiểm theo cách khó thấy: khi hệ thống cờ hỏng, mỗi máy chủ sẽ giữ một giá trị cũ khác nhau, nên hành vi của hệ thống trở nên không xác định thay vì sai một cách nhất quán."
       }
     ],
     "keyTakeaways": [
@@ -415,7 +415,7 @@ export const RELEASE_MECHANICS_LESSONS: Lesson[] = [
           "So sánh chỉ số của cùng khoảng thời gian này với tuần trước và tháng trước"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn thứ hai đo được dao động theo thời gian nhưng không đo được dao động do chia nhóm, vốn là thứ bạn cần. Phép kiểm hai nhóm cùng phiên bản đo đúng cái gây nhầm lẫn, và nó gần như không tốn gì."
+        "explanation": "Lựa chọn “Tính độ lệch chuẩn…” đo được dao động theo thời gian nhưng không đo được dao động do chia nhóm, vốn là thứ bạn cần. Phép kiểm hai nhóm cùng phiên bản đo đúng cái gây nhầm lẫn, và nó gần như không tốn gì."
       },
       {
         "question": "Vì sao phải gắn nhóm theo người dùng chứ không theo từng yêu cầu?",

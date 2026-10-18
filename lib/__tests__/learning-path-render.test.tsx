@@ -71,17 +71,17 @@ describe("trang /lo-trinh dựng ra chữ gì", () => {
     expect(minutes).toBeLessThan(howTo);
   });
 
-  it("đặt câu trả lời hôm-nay-làm-gì trước phần chọn lộ trình", async () => {
+  it("đi theo thứ tự mục tiêu -> hướng đi -> bài đầu tiên -> phần giải thích", async () => {
     const html = await markup("vi");
-    // Render tĩnh thì effect chưa chạy, nên khối này đang ở trạng thái ĐANG ĐỌC
-    // tiến độ - không phải trạng thái "chưa có dữ liệu". Bản đầu của phép kiểm
-    // tìm câu dẫn của trạng thái thứ hai và đỏ vì tìm sai state, không vì thứ
-    // tự sai. Điều đáng canh là VỊ TRÍ của khối, nên tìm chữ luôn có mặt.
-    const today = html.indexOf("Đang xem bạn đang ở đâu");
+    // Render tĩnh thì effect chưa chạy, nên khối bài đầu tiên ở trạng thái ĐANG
+    // ĐỌC tiến độ. Điều đáng canh là VỊ TRÍ của khối: sau bước chọn hướng, và
+    // trước mọi phần giải thích (đã gập vào `details`).
     const pick = html.indexOf('id="pick"');
-    expect(today).toBeGreaterThan(-1);
+    const first = html.indexOf('id="first"');
+    const howTo = html.indexOf('id="how"');
     expect(pick).toBeGreaterThan(-1);
-    expect(today).toBeLessThan(pick);
+    expect(first).toBeGreaterThan(pick);
+    expect(howTo).toBeGreaterThan(first);
   });
 
   it("hiện số bài thật của từng hướng, không phải số viết cứng", async () => {
@@ -124,12 +124,31 @@ describe("trang /lo-trinh dựng ra chữ gì", () => {
     expect(html).not.toContain("progressbar\"></div>");
   });
 
-  it("mục lục trỏ tới đúng sáu khối có thật", async () => {
+  it("các khối có neo thật, và phần giải thích gập lại chứ không bị bỏ", async () => {
     const html = await markup("vi");
-    for (const id of ["pick", "pace", "how", "worry", "check", "adjust"]) {
-      expect(html, id).toContain(`href="#${id}"`);
+    for (const id of ["pick", "pace", "first", "how", "worry", "check"]) {
       expect(html, id).toContain(`id="${id}"`);
     }
+    expect(html).toContain("<details");
+  });
+
+  it("mỗi chặng hiện số bài đã học trên tổng, theo hướng đang chọn", async () => {
+    const { default: LearningPathClient } = await import("@/components/LearningPathClient");
+    const node = (
+      <LearningPathClient
+        counts={COUNTS}
+        done={DONE}
+        userId="u1"
+        topicEntry={NO_ENTRY}
+        savedTrack={null}
+        savedPace={null}
+        milestones={{ personal: [{ total: 9, done: 2 }, { total: 8, done: 0 }], professional: [{ total: 5, done: 0 }] }}
+      />
+    ) as ReactElement;
+    const html = renderToStaticMarkup(<I18nProvider initialLocale="vi">{node}</I18nProvider>);
+    expect(html).toContain("2/9 bài");
+    expect(html).toContain("0/8 bài");
+    expect(html).not.toContain("0/5 bài");
   });
 
   it("ba câu người học đang lo đều có mặt", async () => {
