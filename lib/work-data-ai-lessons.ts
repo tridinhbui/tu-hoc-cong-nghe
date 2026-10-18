@@ -146,7 +146,7 @@ export const WORK_DATA_AI_LESSONS: Lesson[] = [
     sections: [
       {
         type: "lead",
-        text: "Chị Lan làm kế toán công nợ. Cuối tháng chị xuất bảng từ phần mềm, dán vào ChatGPT và hỏi \"khách nào nợ nhiều nhất\". AI trả lời \"Cộng nhóm Miền Nam\" - vì với nó, đó cũng là một dòng có con số lớn nhất. Chặng này bắt đầu từ bước mà ai cũng muốn bỏ qua.",
+        text: "Chị Lan dán bảng công nợ xuất từ phần mềm vào ChatGPT, hỏi \"khách nào nợ nhiều nhất\" và nhận về \"Cộng nhóm Miền Nam\". Lỗi không nằm ở AI mà ở bảng - chặng này bắt đầu từ bước ai cũng muốn bỏ qua.",
       },
       {
         type: "feynman",
@@ -165,51 +165,44 @@ export const WORK_DATA_AI_LESSONS: Lesson[] = [
       {
         type: "list",
         items: [
-          "Ô gộp (merged cells): giá trị chỉ nằm ở ô đầu. Sửa: bỏ gộp, điền giá trị xuống mọi dòng.",
-          "Số lưu dạng chữ: căn lề trái, hàm SUM bỏ qua. Hay do dấu chấm và dấu phẩy không khớp cài đặt vùng. Sửa: đổi cả cột về kiểu số và kiểm lại tổng.",
-          "Ngày lộn định dạng: 03/04 là 3/4 hay 4/3? Tìm một ngày có phần đầu lớn hơn 12 để biết quy ước, rồi đưa cả cột về một kiểu, tốt nhất là YYYY-MM-DD.",
-          "Dòng tổng xen giữa: \"Cộng nhóm\", \"Tổng Quý 1\". Sửa: xoá hết - công cụ và AI sẽ tự cộng.",
-          "Dòng trùng: hỏi vì sao trùng trước. Hai giao dịch thật thì giữ, lỗi nhập thì xoá, lỗi ghép bảng thì sửa ở bước ghép.",
+          "Ô gộp (merged cells): giá trị chỉ nằm ở ô đầu, các dòng dưới trống. Bỏ gộp, điền giá trị xuống mọi dòng.",
+          "Số lưu dạng chữ: căn lề trái, hàm SUM bỏ qua - hay do dấu chấm, dấu phẩy lệch cài đặt vùng. Đổi cả cột về kiểu số.",
+          "Ngày lộn định dạng: 03/04 là 3/4 hay 4/3? Tìm một ngày có phần đầu lớn hơn 12 để biết quy ước, rồi đưa cả cột về YYYY-MM-DD.",
+          "Dòng tổng xen giữa (\"Cộng nhóm\", \"Tổng Quý 1\"): xoá hết, để công cụ tự cộng.",
+          "Dòng trùng: hỏi vì sao trùng trước - giao dịch thật thì giữ, lỗi nhập thì xoá, lỗi ghép bảng thì sửa ở bước ghép.",
         ],
       },
       {
         type: "comparison",
         left: {
           label: "Bảng để đọc",
-          text: "Có tiêu đề nhiều tầng, ô gộp cho đẹp, dòng cộng nhóm, màu sắc đánh dấu. Tốt để in ra và trình bày.",
+          text: "Tiêu đề nhiều tầng, ô gộp, dòng cộng nhóm, tô màu. Để in và trình bày.",
         },
         right: {
-          label: "Bảng để phân tích (dữ liệu gọn - tidy data)",
-          text: "Một dòng tiêu đề, mỗi dòng một bản ghi, mỗi cột một kiểu dữ liệu, không ô gộp, không dòng tổng. Tốt để lọc, làm bảng tổng hợp và hỏi AI.",
+          label: "Bảng để phân tích (tidy data)",
+          text: "Một dòng tiêu đề, mỗi dòng một bản ghi, mỗi cột một kiểu dữ liệu. Để lọc, làm bảng tổng hợp và hỏi AI.",
         },
       },
       {
         type: "paragraph",
-        text: "Giữ hai thứ tách nhau: một sheet dữ liệu gọn làm nguồn, và các bảng trình bày tính ra từ nó. Đừng dọn trực tiếp trên bảng trình bày rồi lại tô vẽ tiếp.",
+        text: "Dọn trên một bản sao làm sheet nguồn, rồi đối chiếu hai con số với sổ gốc: tổng tiền và số dòng. Lệch là còn sót dòng tổng, dòng trùng hoặc số dạng chữ.",
       },
       { type: "heading", text: "Nhờ AI tìm vết bẩn, không phải nhờ nó tự dọn" },
       {
         type: "code",
         language: "text",
-        caption: "Prompt mẫu: dán tiêu đề và khoảng 20 dòng đầu (đã che tên khách), không dán cả tệp.",
-        code: `Dưới đây là 20 dòng đầu của một bảng công nợ, xuất từ phần mềm kế toán.
-Tên khách đã được thay bằng mã.
-
-Đừng tính gì cả. Hãy liệt kê những vấn đề có thể làm sai phép tính:
-- ô trống bất thường (có thể do ô gộp)
-- số có thể đang lưu dạng chữ
-- cột ngày có thể bị lẫn quy ước ngày/tháng
-- dòng trông như dòng tổng hoặc dòng cộng nhóm
-- dòng trùng lặp
-
-Với mỗi vấn đề, ghi số dòng và lý do bạn nghi ngờ.
+        caption: "Prompt mẫu: dán tiêu đề và khoảng 20 dòng đầu, không dán cả tệp.",
+        code: `Dưới đây là 20 dòng đầu của một bảng công nợ (tên khách đã thay bằng mã).
+Đừng tính gì cả. Liệt kê những chỗ có thể làm sai phép tính: ô gộp,
+số dạng chữ, ngày lẫn quy ước, dòng tổng, dòng trùng.
+Với mỗi chỗ, ghi số dòng và lý do bạn nghi ngờ.
 
 [dán dữ liệu ở đây]`,
       },
       {
         type: "callout",
         label: "Dữ liệu nhạy cảm",
-        text: "Bảng công nợ, lương, hợp đồng có tên khách và số tiền thật. Trước khi dán vào một công cụ AI, thay tên bằng mã và chỉ dán vài chục dòng mẫu. Với tệp thật, dùng công cụ AI mà công ty đã duyệt, không dùng tài khoản cá nhân.",
+        text: "Thay tên khách bằng mã, chỉ dán vài chục dòng mẫu. Với tệp thật, dùng công cụ AI công ty đã duyệt, không dùng tài khoản cá nhân.",
       },
       {
         type: "closing",

@@ -145,7 +145,7 @@ export const WORK_AUTOMATION_LESSONS: Lesson[] = [
     sections: [
       {
         type: "lead",
-        text: "Tự động hoá nghe như việc của kỹ sư. Thực ra phần lớn việc lặp lại ở văn phòng chỉ là: có chuyện gì đó xảy ra, kiểm tra một điều, rồi làm một vài việc. Bài này cho bạn cách nhìn ra cấu trúc đó trước khi đụng tới công cụ nào.",
+        text: "Phần lớn việc lặp lại ở văn phòng chỉ là: có chuyện xảy ra, kiểm tra một điều, rồi làm vài việc. Nhìn ra cấu trúc đó trước, công cụ tính sau.",
       },
       {
         type: "feynman",
@@ -161,16 +161,16 @@ export const WORK_AUTOMATION_LESSONS: Lesson[] = [
         ],
         oneLiner: "Workflow là một dây chuyền: có việc tới, phân loại, xử lý, báo lại - và phiếu ghi tên đi theo suốt.",
       },
-      { type: "heading", text: "Vấn đề: 3 phút mỗi đơn, nhân lên cả tháng" },
+      { type: "heading", text: "Vấn đề: 3 phút mỗi đơn" },
       {
         type: "paragraph",
-        text: "Một cửa hàng nhận 30 đơn mỗi ngày qua biểu mẫu. Mỗi đơn mất khoảng 3 phút để chép sang bảng tính và nhắn cho kho - tức 90 phút mỗi ngày cho việc không cần suy nghĩ. Chép tay lâu ngày còn sinh lỗi: gõ nhầm số điện thoại, quên báo một đơn.",
+        text: "30 đơn mỗi ngày, mỗi đơn 3 phút chép sang bảng tính và nhắn kho - 90 phút mỗi ngày cho việc không cần suy nghĩ, chưa kể gõ nhầm số điện thoại hay quên báo một đơn.",
       },
       { type: "heading", text: "Bốn mảnh ghép" },
       {
         type: "conceptTable",
         title: "Từ vựng chung của mọi công cụ tự động hoá",
-        subtitle: "n8n, Zapier, Make, Power Automate đều dùng bốn khái niệm này, chỉ khác tên gọi",
+        subtitle: "Công cụ nào cũng dùng bốn khái niệm này, chỉ khác tên gọi",
         concepts: [
           { vi: "Trình kích hoạt", en: "Trigger", def: "Sự kiện làm workflow chạy: có biểu mẫu mới, có email tới, hoặc đến giờ hẹn (chạy theo lịch)." },
           { vi: "Điều kiện", en: "IF / Filter", def: "Bước kiểm tra một giá trị rồi quyết định đi nhánh nào, hoặc dừng." },
@@ -181,23 +181,17 @@ export const WORK_AUTOMATION_LESSONS: Lesson[] = [
       { type: "heading", text: "Công cụ" },
       {
         type: "paragraph",
-        text: "n8n là công cụ chính của chặng này: có bản cloud và bản tự cài trên máy chủ riêng, và mỗi bước (node) hiện rõ dữ liệu vào, dữ liệu ra - rất hợp để học. Nếu công ty bạn đã dùng Zapier, Make hay Power Automate (đi kèm Microsoft 365), mọi khái niệm trong chặng dùng được y nguyên. Với việc chỉ quanh Google Sheets, Apps Script có sẵn trong bảng tính là đủ.",
+        text: "Chặng này dùng n8n: có bản cloud lẫn bản tự cài trên máy chủ riêng, và mỗi bước (node) hiện rõ dữ liệu vào, dữ liệu ra. Zapier, Make, Power Automate dùng y nguyên các khái niệm đó, chỉ khác giao diện và cách tính phí. Việc chỉ quanh Google Sheets thì Apps Script có sẵn là đủ.",
       },
-      { type: "heading", text: "Dựng thế nào: từ giấy tới công cụ" },
+      { type: "heading", text: "Giấy trước, công cụ sau" },
       {
-        type: "list",
-        items: [
-          "Viết quy trình làm tay hiện tại, mỗi bước một dòng.",
-          "Khoanh sự kiện mở đầu - đó là trình kích hoạt.",
-          "Đánh dấu chỗ bạn phải \"xem rồi quyết định\" - đó là điều kiện.",
-          "Liệt kê các việc bạn làm - đó là hành động; ghi mỗi việc cần dữ liệu gì.",
-          "Chỉ lúc này mới mở công cụ và kéo các bước vào đúng thứ tự.",
-        ],
+        type: "paragraph",
+        text: "Viết quy trình làm tay ra, mỗi bước một dòng. Sự kiện mở đầu là trình kích hoạt; chỗ bạn phải \"xem rồi quyết định\" là điều kiện; các việc còn lại là hành động, ghi kèm dữ liệu mỗi việc cần. Chỉ lúc đó mới mở công cụ.",
       },
       {
         type: "callout",
         label: "Rủi ro: tự động hoá cả cái sai",
-        text: "Workflow làm đúng những gì bạn dặn, nhanh và không mệt - kể cả khi bạn dặn sai. Một quy trình tay đang lộn xộn sẽ thành một quy trình tự động lộn xộn, chạy nhiều lần hơn. Gọn quy trình trước, tự động sau.",
+        text: "Workflow làm đúng điều bạn dặn, kể cả khi dặn sai - quy trình tay lộn xộn thành quy trình tự động lộn xộn. Bỏ bước thừa trước, tự động sau.",
       },
       {
         type: "closing",

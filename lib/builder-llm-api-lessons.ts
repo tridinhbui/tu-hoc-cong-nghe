@@ -139,7 +139,7 @@ export const BUILDER_LLM_API_LESSONS: Lesson[] = [
     sections: [
       {
         type: "lead",
-        text: "Chặng này dạy bạn gọi mô hình ngôn ngữ lớn (LLM) từ mã của mình như một kỹ sư: biết mỗi lời gọi tốn bao nhiêu, chậm bao lâu, hỏng ra sao và làm gì khi hỏng. Bài đầu đặt nền: mô hình nhìn từ phía API trông như thế nào.",
+        text: "Chặng này dạy bạn gọi mô hình ngôn ngữ lớn (LLM) từ mã như một kỹ sư: mỗi lời gọi tốn bao nhiêu, chậm bao lâu, hỏng ra sao. Bài đầu đặt nền: mô hình trông thế nào từ phía API.",
       },
       {
         type: "feynman",
@@ -157,14 +157,14 @@ export const BUILDER_LLM_API_LESSONS: Lesson[] = [
       { type: "heading", text: "Token: đơn vị của mọi thứ" },
       {
         type: "paragraph",
-        text: "Mô hình không đọc chữ, nó đọc token (mẩu văn bản do bộ tách từ cắt ra). Một từ tiếng Anh phổ biến thường là một token; từ tiếng Việt có dấu thường bị cắt thành nhiều mẩu hơn. Mỗi nhà cung cấp có bộ tách từ riêng, nên cùng một câu cho số token khác nhau giữa các mô hình. Khi cần con số chính xác, dùng API đếm token của nhà cung cấp hoặc đọc trường usage trong phản hồi; khi ước lượng nhanh, dùng tỷ lệ ký tự trên token đo từ chính dữ liệu của bạn.",
+        text: "Mô hình đọc token - mẩu văn bản do bộ tách từ cắt ra, có khi cả từ, có khi một phần từ. Tiếng Việt có dấu thường tốn nhiều token hơn tiếng Anh. Cửa sổ ngữ cảnh, max tokens và giá đều tính bằng token, nên ước lượng bằng token chứ không bằng từ; số chính xác nằm ở trường usage trong phản hồi.",
       },
       { type: "heading", text: "Không trạng thái: lịch sử là việc của bạn" },
       {
         type: "code",
         language: "javascript",
         runnable: true,
-        caption: "Token vào mỗi lượt khi gửi lại toàn bộ lịch sử (ước lượng thô: mỗi tin 60 token, system prompt 400 token)",
+        caption: "Token vào mỗi lượt khi gửi lại cả lịch sử (giả định: 60 token mỗi tin, system prompt 400)",
         code: `const SYSTEM = 400;
 const MOI_TIN = 60;
 let tongVao = 0;
@@ -181,7 +181,7 @@ console.log("Cả hội thoại: " + tongVao + " token vào");`,
       },
       {
         type: "paragraph",
-        text: "Lượt 30 tốn gấp khoảng mười lần lượt 1, dù người dùng chỉ gõ một câu ngắn. Đây là lý do mọi sản phẩm chat nghiêm túc đều có chiến lược lịch sử: cửa sổ trượt, tóm tắt phần cũ, hoặc chỉ giữ những gì liên quan.",
+        text: "Mô hình không nhớ gì, nên lượt 30 mang theo cả 29 lượt trước và tốn gấp khoảng mười lần lượt 1.",
       },
       {
         type: "conceptTable",
@@ -189,13 +189,13 @@ console.log("Cả hội thoại: " + tongVao + " token vào");`,
         concepts: [
           { vi: "Cửa sổ ngữ cảnh", en: "Context window", def: "Trần token vào + ra của một lời gọi. Hiểu lầm hay gặp: nghĩ là chỉ giới hạn đầu vào." },
           { vi: "Max tokens", en: "Max tokens", def: "Trần token đầu ra của lời gọi này. Hiểu lầm hay gặp: nghĩ là độ dài mô hình sẽ viết." },
-          { vi: "Nhiệt độ", en: "Temperature", def: "Độ ngẫu nhiên khi lấy mẫu token. Hiểu lầm hay gặp: nghĩ nhiệt độ 0 thì không bịa." },
+          { vi: "Nhiệt độ", en: "Temperature", def: "Độ ngẫu nhiên khi lấy mẫu token: thấp thì ổn định hơn, không đúng hơn. Hiểu lầm hay gặp: nghĩ nhiệt độ 0 thì không bịa." },
         ],
       },
       {
         type: "callout",
-        label: "Nhiệt độ không phải núm chống bịa",
-        text: "Nhiệt độ thấp làm đầu ra ổn định hơn giữa các lần gọi, nhưng một câu trả lời sai có xác suất cao vẫn sẽ được chọn đều đặn. Chống bịa là việc của ngữ cảnh đúng, đầu ra có cấu trúc và kiểm tra - các bài sau.",
+        label: "Sắp chạm trần thì làm gì",
+        text: "Giữ vài lượt gần nhất, tóm tắt phần cũ. Đừng tăng max tokens - nó chỉ nới phần đầu ra và ăn thêm chỗ của lịch sử.",
       },
       {
         type: "closing",

@@ -127,6 +127,88 @@ p2 lượt sau có một ngõ cụt ở bước landing: "bài thử không có 
 Đây là F-11. Nó chập chờn từ trước (p1 lượt trước cũng gặp), và nằm ở phần code
 lượt này không đụng tới.
 
+### Lượt ba: thân bài ngắn lại (nội dung), chín bài đầu hành trình
+
+Lượt hai kết luận rằng phần còn lại là nội dung. Lượt này thử điều đó trên bài
+`firstWinSlug` của cả chín hành trình trong `lib/learning-flows.ts`, bằng cùng
+hai script: `lesson-heights.mjs` (khách, 390×844) cho từng bài, `journey.mjs`
+cho p1, p2, p4. "Trước" đo lại trên chính commit của lượt hai (khớp số của lượt
+hai: 11,3 và 7,5). Dữ liệu thô: `docs/ux-audit/data/than-bai-truoc/` và
+`than-bai-sau/`. Bảng dưới do `docs/ux-audit/scripts/lesson-floor.mjs` in ra;
+số chữ giảng do `lesson-words.mjs` đếm (chữ trong các khối không tương tác của
+`sections`).
+
+**Đính chính lượt hai trước.** "Khoảng 1.000 chữ giảng" là sai. Bài chuẩn có
+**622** chữ giảng, và cả chín bài đã ở 216–622 chữ trước khi sửa, tức đã ngang
+hoặc dưới mức "khoảng 600" mà lượt hai đề xuất. Chữ chỉ chiếm 3.371px trong
+5.835px thân bài; phần còn lại là câu giữa bài (605), tình huống (709) và sơ
+đồ từng bước (747). Vậy viết ngắn tới 600 chữ không phải đòn bẩy, vì chữ đã ở
+đó rồi.
+
+**Chọn viết ngắn, không tách bài.** Tách bài làm mọi thứ tệ hơn, và lý do đo
+được: mỗi trang bài mang một khung cố định ngoài `sections` cao **3.678–4.226px**
+(đầu bài, "Vì sao bài này quan trọng", câu mở đầu, ví dụ thực tế, "Học sâu
+hơn", nút kiểm tra nhanh, góp ý, cột ghi chú và quiz), tức 4,4–5 màn hình trước
+dòng giảng đầu tiên. Cộng câu giữa bài, một khối thực hành và một khối hình ở
+mạch chính thì nửa bài nào cũng ≥ 6,6 màn hình. Tách đôi bài chuẩn cho hai
+trang khoảng 7 màn hình thay cho một trang 10, nên tổng quãng cuộn tăng. Nó còn
+cần 5 câu quiz mới cho nửa sau (`MIN_QUIZ_COUNT`), một id mới, và đánh số lại
+chặng.
+
+**Một ràng buộc đề bài không nhắc: vị trí khối thực hành là khoá dữ liệu.**
+`recordExercisePass(bài, vị trí khối)` ghi lần qua của exercise, sim, aiLab,
+scenario và machine theo chỉ số trong `sections`. Bằng chứng kỹ năng cũng khoá
+theo `bài:vị trí`. Xoá một khối giảng đứng trước khối thực hành là dời chỉ số:
+lần qua cũ của người học trỏ vào khối khác, và không có lỗi nào báo. Bài
+`kiem-chung-dau-ra-ai-bia` là chiến thắng đầu tiên của hai hành trình, nên đây
+có thể là khối tình huống được qua nhiều nhất trong kho. Vì vậy cả chín bài
+**giữ nguyên số khối đứng trước mọi khối thực hành**. Khối dài được thay bằng
+khối ngắn chứ không bị xoá. Ở bài chuẩn, ba khối trùng được bỏ: đoạn chuyện
+chuyên viên pháp chế (trùng nút đầu của tình huống), danh sách "Năm cách bắt"
+(trùng năm bước của sơ đồ từng bước) và callout Mata kiện Avianca (trùng ví dụ
+thực tế). Bù vào là hai khối ngắn, một đoạn hai câu và một tiêu đề, để tình
+huống vẫn ở vị trí 11. Sơ đồ từng bước được đặt trước tình huống, để người học
+thấy cách kiểm trước khi thử.
+
+| Bài | Màn hình trước → sau | `sections` (px) | Chữ giảng (px) | Khung ngoài `sections` (px) | Sàn khi bỏ hết chữ giảng |
+|---|---|---|---|---|---|
+| `kiem-chung-dau-ra-ai-bia` | 11,3 → **10,1** | 5.835 → 4.831 | 3.371 → 2.383 | 3.678 | 7,3 |
+| `web-hoat-dong-the-nao` | 9,6 → **9,0** | 4.148 → 3.697 | 2.538 → 2.087 | 3.941 | 6,6 |
+| `vong-lap-cua-mot-ai-agent` | 8,2 → **8,1** | 2.979 → 2.880 | 1.103 → 1.004 | 3.938 | 6,9 |
+| `marketing-voi-ai-bat-dau-tu-dau` | 8,8 → **8,7** | 3.462 → 3.368 | 1.469 → 1.374 | 3.987 | 7,1 |
+| `giai-phau-mot-workflow-tu-dong` | 10,5 → **10,0** | 4.718 → 4.280 | 2.546 → 2.109 | 4.155 | 7,5 |
+| `lam-sach-bang-truoc-khi-hoi-ai` | 10,5 → **10,0** | 4.642 → 4.228 | 2.465 → 2.051 | 4.222 | 7,6 |
+| `du-lieu-nao-khong-duoc-dan-vao-ai` | 11,4 → **10,9** | 5.382 → 4.970 | 3.175 → 2.763 | 4.226 | 7,6 |
+| `ai-trong-cong-viec-lap-trinh-bat-dau-tu-dau` | 9,0 → **8,6** | 3.509 → 3.221 | 1.831 → 1.543 | 4.065 | 6,8 |
+| `llm-nhin-tu-phia-api` | 10,3 → **10,0** | 4.646 → 4.363 | 2.457 → 2.173 | 4.037 | 7,4 |
+
+Chữ giảng, theo cùng thứ tự: 622 → **396**, 506 → 354, 216 → 202, 268 → 248,
+465 → 368, 507 → 399, 556 → 455, 399 → 293, 485 → 397. Tổng 4.024 → 3.112
+(−23%). Hai bài ngắn nhất (`vong-lap…`, `marketing…`) gần như không có gì
+trùng để bỏ, và đã được để yên đúng như vậy. Khi cắt, năm bài lộ ra câu quiz
+mà mạch chính chưa từng dạy: chỉ lời giải của chính câu đó, hoặc thẻ Feynman
+đã gập, nói tới ý đó. Đó là HTTPS ở `web-hoat-dong…`, chatbot khác agent và
+"chạy tay để thấy cần công cụ nào" ở `vong-lap…`, "chỉ khác giao diện và cách
+tính phí" ở `giai-phau…`, xử lý khi sắp chạm trần ngữ cảnh ở `llm-nhin…`, và
+hai câu của `du-lieu-nao…`. Các ý đó giờ nằm trong thân bài.
+
+`journey.mjs`, cùng máy, `next dev`:
+
+| Persona | Bài | Màn hình | Chữ trên trang | Màn hình phải cuộn |
+|---|---|---|---|---|
+| p2 35–50 tuổi | `kiem-chung-dau-ra-ai-bia` | m390 | 1.392 → **1.166** | 11,3 → **10,1** |
+| p1 người mới | `kiem-chung-dau-ra-ai-bia` | desktop | 1.409 → **1.183** | 7,5 → **6,8** |
+| p4 người đi làm | `lam-sach-bang-truoc-khi-hoi-ai` | desktop | 1.439 → **1.331** | 7,3 → **6,9** |
+
+**Mục tiêu "dưới 6 màn hình ở 390px" vẫn không đạt, và không đạt được bằng nội
+dung.** Cột cuối của bảng là chiều cao trang nếu xoá hết chữ giảng mà giữ câu
+giữa bài, khối thực hành và khối hình: **6,6–7,6 màn hình**. Không cách viết
+nào, ngắn hay tách, xuống dưới cột đó. Lượt hai đọc đúng con số 5.835 > 5.064,
+nhưng bỏ sót vế còn lại: 5.064px phải chứa cả khung 3.678px, nên thân bài chỉ
+còn khoảng 1.400px. Đó là ít hơn tổng của tình huống, sơ đồ từng bước và câu
+giữa bài cộng lại (2.061px). Bước tiếp theo vì thế lại là trình bày, chỉ có
+điều lần này là khung bài chứ không phải khối (xem mục 8).
+
 ---
 
 ## 3. Journey map (trước khi sửa, p1, desktop)
@@ -247,7 +329,8 @@ dung/sư phạm), **KT** (kỹ thuật), **TM** (thẩm mỹ).
 - **Ảnh hưởng:** "10–15 phút" trên landing là lời hứa khó giữ trên mobile.
 - **Vì sao lượt một chưa sửa:** muốn bớt khối thì phải chọn khối nào ở lại cho từng loại bài. Đó là quyết định nội dung, và nó chạm tới các gate trong `scripts/audit-lesson-content.mjs`.
 - **Đã làm (lượt hai): ngân sách khối, chỉ ở phần trình bày.** `lib/lesson-block-budget.ts` chia các khối của bài thành hai nhóm. Mạch chính giữ **một** khối thực hành và **một** khối hình. Khối thực hành chính là bài tập viết mã nếu bài có; nếu không có thì là khối thực hành đầu tiên tác giả đặt. Đếm trên 1.513 bài: 539 bài có `aiLab+scenario`, 364 bài có `exercise+scenario`, nên quy tắc "khối đầu tiên" đơn thuần sẽ giấu bài tập chính của track lập trình ở 8 bài `scenario+exercise`. Mọi khối khác vào mục gập "Học sâu hơn" ở cuối bài: thẻ Feynman/lớp 5 (bỏ luôn công tắc bật/tắt riêng), khối `feynman`, khối thực hành và khối hình thứ hai, sơ đồ tĩnh khi đã có chart/flow, "Luyện tập ngay" khi đã có khối thực hành, widget mô phỏng cũ, đổ não 60 giây kèm ba thẻ tóm tắt, và thẻ mẹo Cơ Cơ. Không khối nào bị xoá khỏi `lib/lessons*`: `audit:lessons` vẫn báo 0/1.513 bài thiếu khối thực hành hay khối hình. Một test mới chạy trên toàn bộ dữ liệu thật để chắc rằng mạch chính của mọi bài vẫn có khối thực hành và khối hình. Câu giữa bài không bao giờ vào mục gập, vì nó là một vế của điều kiện hoàn thành. Chỉ số khối giữ nguyên chỉ số gốc, vì `exercise_passes` khoá theo vị trí khối. Trên mobile, thân bài dùng chữ 16/28 thay cho 18/32, và khoảng cách giữa các khối nhỏ lại. Từ `sm` trở lên thì không đổi.
-- **Còn lại:** 11,3 màn hình ở 390px, chưa đạt mục tiêu 6. Phần còn lại là chính thân bài (xem mục 2, lượt hai), nên bước tiếp theo là quyết định nội dung: viết ngắn lại hoặc tách bài.
+- **Đã làm (lượt ba): thân bài ngắn lại ở chín bài đầu hành trình.** Bỏ khối giảng trùng với khối tương tác hoặc ví dụ thực tế, giữ nguyên vị trí mọi khối thực hành vì `exercise_passes` khoá theo đó. Bài chuẩn 11,3 → 10,1 màn hình ở 390px, chữ giảng 622 → 396 (mục 2, lượt ba).
+- **Còn lại:** 10,1 màn hình, chưa đạt 6, và nội dung không đưa được tới đó: bỏ hết chữ giảng thì sàn vẫn là 6,6–7,6 màn hình, vì khung bài ngoài `sections` đã cao 3.678–4.226px. Bước tiếp theo là khung bài (mục 8).
 
 #### F-9 · Làm xong quiz vẫn chưa xong bài, và hệ thống khen nhầm
 - **Bằng chứng:** `07-truoc-khen-hoan-thanh-khi-0-4.png`. Tiêu đề "Hoàn thành!" hiện cùng "0/4 câu đúng", và cùng lúc toast báo "Còn trả lời câu hỏi giữa bài". 10/10 lượt chạy kết thúc với bài chưa hoàn thành, nên hôm sau "Học tiếp" quay về đúng bài cũ.
@@ -372,7 +455,7 @@ Nhận diện màu: đề bài nhắc "cam đất / cam vàng", nhưng thương 
 
 Xếp theo mức giảm tải nhận thức trên mỗi đơn vị công sức.
 
-1. **Bài học gọn lại (F-8, P1). Phần trình bày đã xong (14,8 → 11,3 màn hình ở 390px). Phần còn lại là nội dung.** Thân bài một mình đã 5.835px ≈ 6,9 màn hình. Muốn xuống dưới 6 thì phải viết bài ngắn hơn (khoảng 600 chữ giảng thay cho 1.000), hoặc tách bài dài làm hai. Bắt đầu từ các bài đầu của mỗi hành trình, vì đó là bài người mới gặp trước.
+1. **Bài học gọn lại (F-8, P1). Khối đã gom (14,8 → 11,3), thân bài đã ngắn lại ở chín bài đầu hành trình (11,3 → 10,1 ở bài chuẩn). Phần còn lại là khung bài.** Đo ở lượt ba (mục 2): xoá hết chữ giảng thì sàn vẫn là 6,6–7,6 màn hình, nên "dưới 6" không còn là việc của người viết bài. Khung ngoài `sections` ở bài chuẩn, 390px: đầu bài 493px, "Vì sao bài này quan trọng" 290, câu mở đầu 521, ví dụ thực tế 396, "Học sâu hơn" 175, nút kiểm tra nhanh 73, góp ý 431, và cột ghi chú + quiz 720. Trên mobile cột này nằm dưới cả phần góp ý. Những chỗ đáng thử trước, **chưa đo**: (a) trên mobile đưa cột quiz lên ngay sau thân bài, gộp với nút "Làm kiểm tra nhanh" (hai thứ đang chỉ cùng một chỗ); (b) thu "Góp ý bài học" thành một dòng mở ra khi bấm; (c) cân nhắc gộp câu giữa bài vào quiz (cũng là mục 2 bên dưới), vì nó chiếm 605–731px và là một trong ba khối không gập được. Viết ngắn tiếp các bài khác vẫn đáng làm vì bớt chữ phải đọc, nhưng không được kỳ vọng nó đổi số màn hình nhiều: trung bình −0,5 màn hình mỗi bài. Và luôn giữ nguyên vị trí khối thực hành.
 2. **Hoàn thành bài rõ ràng (F-9, P1). Thẻ kết quả đã nói vế còn thiếu.** Còn lại: cân nhắc gộp câu giữa bài vào quiz, để điều kiện hoàn thành chỉ còn hai vế.
 3. **Dashboard cho người 0–3 bài (F-15, P2).** Chỉ hiện thẻ Học tiếp + tiến độ của hành trình. Ẩn chỉ số cấp/XP/xếp hạng tới bài thứ 3, như menu đã làm.
 4. **Một nơi điều phối lần đầu vào.** Để F-1 không tái diễn khi ai đó thêm popup thứ năm: một hook `useFirstRunSlot()` cấp quyền hiện cho đúng một lớp phủ mỗi lượt vào.

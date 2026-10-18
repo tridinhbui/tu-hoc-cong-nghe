@@ -1032,7 +1032,7 @@ Yêu cầu:
         type: "closing",
         lines: [
           "AI tìm và đọc; bạn mở và kiểm.",
-          "Bài sau: nhận diện AI bịa trông ra sao, và năm cách bắt nó.",
+          "Bài sau: nhận diện AI bịa trông ra sao, và năm bước kiểm nó.",
         ],
       },
     ],
@@ -1161,41 +1161,42 @@ Yêu cầu:
     application: {
       title: "Làm ngay trong 20 phút",
       message:
-        "Hỏi AI (chế độ chat thường, không tìm web) một câu về ngành của bạn và yêu cầu kèm 3 số liệu có nguồn. Kiểm cả 3 bằng năm cách ở trên. Ghi lại: bao nhiêu số tìm được nguồn gốc, bao nhiêu không.",
+        "Hỏi AI (chế độ chat thường, không tìm web) một câu về ngành của bạn và yêu cầu kèm 3 số liệu có nguồn. Kiểm cả 3 theo năm bước ở trên. Ghi lại: bao nhiêu số tìm được nguồn gốc, bao nhiêu không.",
       secondary: "Làm lại với chế độ tìm kiếm web và so kết quả - đó là lý do bài 4 bắt bật tìm web.",
     },
     sections: [
       {
         type: "lead",
-        text: "Bài này không dạy bạn nghi ngờ mọi thứ AI viết - việc đó mất hết lợi ích của AI. Nó dạy bạn biết chỗ nào cần kiểm, kiểm bằng cách nào, và khi nào tuyệt đối không được bỏ qua.",
+        text: "Bài này không dạy bạn nghi ngờ mọi thứ AI viết - làm vậy thì mất hết lợi ích của AI. Nó chỉ ra chỗ nào cần kiểm, kiểm bằng cách nào, và khi nào không được bỏ qua.",
       },
-      { type: "heading", text: "Vấn đề: câu bịa không có dấu hiệu gì" },
+      { type: "heading", text: "Câu bịa trông y như câu đúng" },
       {
         type: "paragraph",
-        text: "Một chuyên viên pháp chế nhờ AI soạn thư trả lời khách về điều khoản bảo hành, kèm căn cứ pháp lý. Thư có số điều, tên văn bản, năm ban hành - trông rất chuyên nghiệp. Một trong ba căn cứ không tồn tại. Nếu không mở văn bản gốc, không cách nào nhận ra, vì câu bịa được viết cùng giọng với hai câu đúng.",
+        text: "Câu bịa không có dấu hiệu gì: nó được viết cùng giọng tự tin với câu đúng, nên đọc kỹ đến đâu cũng không nhận ra. Nó hay nằm ở bốn chỗ.",
       },
-      { type: "heading", text: "AI bịa (hallucination) trông thế nào" },
       {
         type: "conceptTable",
         title: "Bốn kiểu bịa hay gặp ở văn phòng",
         concepts: [
-          { vi: "Số liệu", en: "Statistics", def: "Tỷ lệ phần trăm, quy mô thị trường, \"theo khảo sát\" - cụ thể tới số lẻ nhưng không có nguồn gốc." },
-          { vi: "Trích dẫn", en: "Quotes and citations", def: "Lời một người nổi tiếng, tên bài báo, tên tác giả, đường dẫn trông thật mà không mở ra được hoặc nói chuyện khác." },
-          { vi: "Tên văn bản pháp lý", en: "Legal references", def: "Số hiệu nghị định, thông tư, số điều - có thể không tồn tại, đã hết hiệu lực, hoặc nói điều khác." },
-          { vi: "Tài liệu không tồn tại", en: "Fabricated sources", def: "Báo cáo, bản án, nghiên cứu có đủ tên, năm, tác giả - nhưng chưa từng được công bố." },
+          { vi: "Số liệu", en: "Statistics", def: "Tỷ lệ, quy mô thị trường, \"theo khảo sát\" - cụ thể tới số lẻ mà không có nguồn." },
+          { vi: "Trích dẫn", en: "Quotes and citations", def: "Lời người nổi tiếng, tên bài báo, đường dẫn không mở được hoặc nói chuyện khác." },
+          { vi: "Tên văn bản pháp lý", en: "Legal references", def: "Số nghị định, thông tư, số điều - không tồn tại, hết hiệu lực, hoặc nói điều khác." },
+          { vi: "Tài liệu không tồn tại", en: "Fabricated sources", def: "Báo cáo, bản án, nghiên cứu đủ tên, năm, tác giả - nhưng chưa từng được công bố." },
         ],
       },
-      { type: "heading", text: "Năm cách bắt" },
+      { type: "heading", text: "Chỗ nào không được bỏ qua" },
       {
-        type: "list",
-        items: [
-          "Mở nguồn và tìm đúng câu: Ctrl+F câu trích hoặc con số trong trang. Đường dẫn mở được chưa đủ.",
-          "Tra văn bản pháp lý trên cổng thông tin chính thức: đọc đúng điều được trích, xem còn hiệu lực không.",
-          "Tính lại con số bằng Excel hoặc Google Sheets: tổng, tỷ lệ, tăng trưởng - đừng tin phép tính trong khung chat.",
-          "Bắt AI tách hai loại: \"đánh dấu [CHẮC] cho điều có trong tài liệu tôi đưa, [ĐOÁN] cho điều bạn suy ra\" - rồi kiểm hết mọi dòng [ĐOÁN].",
-          "So với dữ liệu nội bộ hoặc hỏi người trong nghề: số doanh thu so với sổ sách, điều khoản so với phòng pháp chế.",
-        ],
+        type: "comparison",
+        left: {
+          label: "Dùng được sau khi đọc lại",
+          text: "Động não, dàn ý, viết lại câu, sửa chính tả, email nội bộ không có số liệu. Sai thì thấy ngay, hậu quả nhỏ.",
+        },
+        right: {
+          label: "Tuyệt đối không dùng khi chưa kiểm",
+          text: "Hợp đồng, hồ sơ thuế, báo cáo tài chính, thư gửi khách hay cơ quan nhà nước. Người ký là người chịu trách nhiệm.",
+        },
       },
+      { type: "heading", text: "Giảm bịa ngay từ prompt" },
       {
         type: "code",
         language: "text",
@@ -1207,24 +1208,9 @@ Yêu cầu:
       },
       {
         type: "paragraph",
-        text: "Đoạn trên làm AI bịa ít hơn và làm chỗ nghi ngờ dễ thấy hơn - nhưng không làm việc kiểm thành thừa. AI không biết chắc khi nào mình đang bịa, nên không tự đánh dấu hết được.",
+        text: "Đoạn này làm AI bịa ít hơn và làm chỗ nghi ngờ dễ thấy hơn, nhưng không thay được việc kiểm: AI không biết chắc khi nào mình đang bịa. Hỏi lại chính AI cũng không phải kiểm - kiểm là đi tới một nguồn nằm ngoài AI, theo năm bước dưới đây.",
       },
-      {
-        type: "comparison",
-        left: {
-          label: "Dùng được sau khi đọc lại",
-          text: "Động não ý tưởng, dàn ý, viết lại câu, sửa chính tả, email nội bộ không có số liệu. Sai thì bạn thấy ngay, hậu quả nhỏ.",
-        },
-        right: {
-          label: "Tuyệt đối không dùng khi chưa kiểm",
-          text: "Hợp đồng, hồ sơ thuế, báo cáo tài chính, thư gửi khách hoặc cơ quan nhà nước, tài liệu có căn cứ pháp lý, số liệu đưa lên mạng xã hội công ty. Người ký là người chịu trách nhiệm.",
-        },
-      },
-      {
-        type: "callout",
-        label: "Rủi ro: hỏi lại chính AI không phải kiểm chứng",
-        text: "Trong vụ Mata kiện Avianca, luật sư đã hỏi ChatGPT các bản án có thật không, và nó trả lời có. Một hệ thống sinh ra câu bịa cũng sinh ra được câu xác nhận nó. Kiểm chứng luôn là đi tới một nguồn nằm ngoài AI.",
-      },
+      { type: "heading", text: "Năm bước kiểm một chi tiết" },
       {
         type: "closing",
         lines: [

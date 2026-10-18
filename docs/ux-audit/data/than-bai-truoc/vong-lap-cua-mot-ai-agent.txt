@@ -1,0 +1,19 @@
+{"H":6917,"screens":8.2,"words":981,"aside":748}
+493 Bài đọc +10 XP Dễ Chặng 23, Bài 1: Vòng lặp của một AI Agent
+4701 VÌ SAO BÀI NÀY QUAN TRỌNG Mọi agent, từ trợ lý đặt lịch tới 
+  254 VÌ SAO BÀI NÀY QUAN TRỌNG Mọi agent, từ trợ lý đặt lịch tới 
+  492 BẮT ĐẦU BẰNG MỘT CÂU HỎI Bạn hỏi agent: "Ngày mai Đà Lạt có 
+  2979 Chặng này ghép những gì bạn đã học về API và cách giao việc 
+    216 Chặng này ghép những gì bạn đã học về API và cách giao việc 
+    56 Chạy thử một vòng bằng tay
+    342 Vòng 1 - Quan sát: "Ngày mai Đà Lạt có mưa không, có thì nhắ
+    126 Ba vòng, hai công cụ, một điều kiện dừng. Mọi agent phức tạp
+    173 LUÔN CÓ GIỚI HẠN SỐ BƯỚC Một agent kẹt sẽ lặp mãi và tốn tiề
+    1032 BÀI TẬP · PYTHON · Không bắt buộc Đặt số bước tối đa cho age
+    637 Dừng & Kiểm tra ĐIỂM GIỮA BÀI Vì sao agent cần một điều kiện
+    190 Agent không phải phép màu - nó là một vòng lặp có kỷ luật. B
+  414 SƠ ĐỒ TRỰC QUAN 01 Quan sát: yêu cầu và kết quả mới nhất 02 
+  252 VÍ DỤ THỰC TẾ · TRỢ LÝ LẬP TRÌNH TRONG TRÌNH SOẠN MÃ Khi bạn
+  175 Học sâu hơn Giải thích kiểu lớp 5 · Thực hành thêm · Sơ đồ ·
+73 LÀM KIỂM TRA NHANH · 0/4 CÂU
+431 Góp ý bài học Bài học này thế nào? Đánh giá giúp chúng mình 

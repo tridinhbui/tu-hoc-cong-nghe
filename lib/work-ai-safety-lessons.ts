@@ -143,7 +143,7 @@ export const WORK_AI_SAFETY_LESSONS: Lesson[] = [
     sections: [
       {
         type: "lead",
-        text: "Chị Lan ở phòng kế toán mất 40 phút mỗi tháng để tính thuế thu nhập cá nhân cho 120 người. Một đồng nghiệp gợi ý: dán cả bảng lương vào ChatGPT, hai phút là xong. Nhanh thật - và đó cũng là 120 mức lương có họ tên vừa ra khỏi công ty. Chặng này nói về những chỗ AI làm nhanh việc, đồng thời làm nhanh cả sự cố.",
+        text: "Chị Lan ở phòng kế toán mất 40 phút mỗi tháng tính thuế thu nhập cá nhân cho 120 người. Đồng nghiệp gợi ý dán cả bảng lương vào ChatGPT, hai phút là xong. Nhanh thật - và 120 mức lương có họ tên vừa ra khỏi công ty.",
       },
       {
         type: "feynman",
@@ -164,46 +164,46 @@ export const WORK_AI_SAFETY_LESSONS: Lesson[] = [
       {
         type: "conceptTable",
         title: "Phân loại trước khi dán",
-        subtitle: "Công ty bạn có thể gọi tên khác, nhưng gần như nơi nào cũng có bốn mức này",
+        subtitle: "Tên gọi có thể khác, nhưng nơi nào cũng có bốn mức này",
         concepts: [
-          { vi: "Công khai", en: "Public", def: "Đã đăng ra ngoài: website, thông cáo, tin tuyển dụng. Dán vào đâu cũng được." },
-          { vi: "Nội bộ", en: "Internal", def: "Quy trình, biên bản họp thường, số liệu chưa công bố. Chỉ dán vào tài khoản AI của công ty." },
-          { vi: "Mật", en: "Confidential", def: "Hợp đồng, giá vốn, kế hoạch sáp nhập, mã nguồn, báo cáo tài chính chưa công bố. Chỉ công cụ được duyệt riêng cho loại này, hoặc không dán." },
-          { vi: "Dữ liệu cá nhân", en: "Personal data", def: "Mọi thứ gắn với một người cụ thể: họ tên, CCCD, lương, sức khoẻ, số tài khoản. Ẩn danh trước khi dán, và có quy định pháp luật riêng." },
+          { vi: "Công khai", en: "Public", def: "Đã đăng ra ngoài: website, thông cáo, tin tuyển dụng. Dán đâu cũng được." },
+          { vi: "Nội bộ", en: "Internal", def: "Quy trình, biên bản họp, số liệu chưa công bố. Chỉ dán vào tài khoản AI công ty." },
+          { vi: "Mật", en: "Confidential", def: "Hợp đồng, giá vốn, biên lợi nhuận, mã nguồn, kế hoạch chưa công bố. Chỉ công cụ được duyệt riêng, hoặc không dán." },
+          { vi: "Dữ liệu cá nhân", en: "Personal data", def: "Mọi thứ gắn với một người: họ tên, CCCD, lương, sức khoẻ, số tài khoản. Ẩn danh trước khi dán; pháp luật có quy định riêng." },
         ],
       },
-      { type: "heading", text: "Tài khoản cá nhân và tài khoản doanh nghiệp" },
+      { type: "heading", text: "Tài khoản cá nhân hay doanh nghiệp" },
       {
         type: "comparison",
         left: {
           label: "Tài khoản cá nhân",
-          text: "ChatGPT, Claude, Gemini đăng nhập bằng Gmail riêng. Tuỳ cài đặt, nội dung có thể được dùng để cải thiện mô hình. Công ty không thấy, không quản lý, không thu hồi được khi bạn nghỉ.",
+          text: "Đăng nhập bằng Gmail riêng. Nội dung có thể được dùng để huấn luyện mô hình; tắt lịch sử thì dữ liệu vẫn nằm trên máy chủ nhà cung cấp. Công ty không thấy, không thu hồi được.",
         },
         right: {
           label: "Tài khoản doanh nghiệp",
-          text: "Gói dành cho doanh nghiệp của ChatGPT, Claude, Gemini, hoặc Microsoft Copilot đăng nhập bằng tài khoản công ty. Có hợp đồng về lưu trữ và thường cam kết không huấn luyện trên dữ liệu; quản trị viên quản lý được ai dùng gì.",
+          text: "Đăng nhập bằng tài khoản công ty. Có hợp đồng về lưu trữ, thường cam kết không huấn luyện, quản trị viên biết ai dùng gì - nhưng danh mục cấm vẫn áp dụng.",
         },
       },
       { type: "heading", text: "Ẩn danh hoá trong ba bước" },
       {
         type: "list",
         items: [
-          "Hỏi: AI có thật sự cần dữ liệu thật không? Nhờ viết công thức, sửa giọng văn, dựng khung báo cáo thì chỉ cần cấu trúc - dùng dữ liệu giả cùng định dạng.",
-          "Nếu cần dữ liệu thật: thay họ tên bằng mã (NV01), tên đối tác bằng [Khách A], bỏ hẳn CCCD, số tài khoản, số điện thoại.",
-          "Rà lần cuối những thứ ghép lại ra người: chức danh duy nhất, địa điểm cụ thể, ngày sinh. Bỏ hoặc gộp nhóm chúng.",
+          "AI có cần dữ liệu thật không? Viết công thức, sửa giọng văn, dựng khung báo cáo chỉ cần cấu trúc - dùng dữ liệu giả cùng định dạng.",
+          "Cần dữ liệu thật: thay họ tên bằng mã (NV01), đối tác bằng [Khách A], bỏ hẳn CCCD, số tài khoản, số điện thoại.",
+          "Rà những thứ ghép lại ra người: chức danh duy nhất, địa điểm, ngày sinh - bỏ hoặc gộp nhóm.",
         ],
       },
       {
         type: "code",
         language: "text",
-        caption: "Prompt mẫu: nhờ AI về cấu trúc, không đưa dữ liệu thật",
+        caption: "Prompt mẫu: chỉ đưa cấu trúc và dữ liệu giả",
         code:
-          "Tôi có bảng lương trong Google Sheets với các cột:\nA: Mã NV | B: Lương gộp | C: Số người phụ thuộc | D: Bảo hiểm bắt buộc\n\nDữ liệu giả để minh hoạ:\nNV01 | 25.000.000 | 1 | 2.625.000\nNV02 | 12.000.000 | 0 | 1.260.000\n\nViết công thức cho cột E tính thu nhập tính thuế.\nMức giảm trừ tôi sẽ tự điền vào ô H1 (bản thân) và H2 (mỗi người phụ thuộc).",
+          "Bảng lương có các cột:\nA: Mã NV | B: Lương gộp | C: Người phụ thuộc | D: Bảo hiểm\n\nDữ liệu giả: NV01 | 25.000.000 | 1 | 2.625.000\n\nViết công thức cột E tính thu nhập tính thuế.\nGiảm trừ bản thân ở H1, mỗi người phụ thuộc ở H2.",
       },
       {
         type: "callout",
         label: "Rủi ro hay bị quên",
-        text: "Ảnh chụp màn hình, tệp PDF đính kèm và bản ghi âm cuộc họp cũng là dữ liệu. AI đọc chữ trong ảnh và nghe được giọng nói - đổi định dạng không làm dữ liệu bớt mật.",
+        text: "Ảnh chụp màn hình, PDF và bản ghi âm cũng là dữ liệu: AI đọc được chữ trong ảnh và nghe được giọng nói.",
       },
       {
         type: "closing",

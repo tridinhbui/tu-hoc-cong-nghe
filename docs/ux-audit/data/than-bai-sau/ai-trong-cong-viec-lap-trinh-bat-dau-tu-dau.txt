@@ -1,0 +1,23 @@
+{"H":7286,"screens":8.6,"words":1058,"aside":844}
+460 Bài đọc +10 XP Dễ AI trong sản phẩm, Bài 1: Bắt đầu từ đâu K
+5007 VÌ SAO BÀI NÀY QUAN TRỌNG Phần lớn người dùng AI để viết mã 
+  218 VÌ SAO BÀI NÀY QUAN TRỌNG Phần lớn người dùng AI để viết mã 
+  520 BẮT ĐẦU BẰNG MỘT CÂU HỎI Việc nào AI hỗ trợ viết mã làm tốt 
+  3221 Bài đầu của chặng không dạy câu lệnh nào - nó dạy cách phân 
+    144 Bài đầu của chặng không dạy câu lệnh nào - nó dạy cách phân 
+    56 Rủi ro gốc
+    205 NÓ SAI VỚI VẺ TỰ TIN Y HỆT LÚC NÓ ĐÚNG Người không chắc thì 
+    56 Tiêu chí phân loại
+    95 Đừng hỏi việc này tốn bao lâu. Hãy hỏi: nếu có ai đưa lời gi
+    426 KIỂM CHỨNG NHANH - GIAO ĐƯỢC Đọc mã lạ, sinh khuôn mẫu, đề x
+    126 AI không biết đội bạn có mấy người hay hệ thống cũ nào phải 
+    731 Dừng & Kiểm tra ĐIỂM GIỮA BÀI Vì sao dùng AI để đọc mã nguồn
+    56 Điều ngược trực giác
+    126 Chỗ bạn yếu nhất không phải chỗ AI giúp nhiều nhất mà là chỗ
+    614 TÌNH HUỐNG Ba việc, một trợ lý AI Sáng thứ hai bạn nhận ba v
+    253 Nó vẫn dùng được ở lĩnh vực bạn chưa biết, nhưng với một mục
+  482 SƠ ĐỒ TRỰC QUAN 01 Tiêu chí: bạn đánh giá được kết quả nhanh
+  257 VÍ DỤ THỰC TẾ · ĐỌC MỘT KHO MÃ LẠ Nhận bàn giao một dự án kh
+  175 Học sâu hơn Giải thích kiểu lớp 5 · Thực hành thêm · Sơ đồ ·
+73 LÀM KIỂM TRA NHANH · 0/4 CÂU
+431 Góp ý bài học Bài học này thế nào? Đánh giá giúp chúng mình 

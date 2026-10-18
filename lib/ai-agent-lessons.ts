@@ -141,7 +141,7 @@ export const AI_AGENT_LESSONS: Lesson[] = [
     sections: [
       {
         type: "lead",
-        text: "Chặng này ghép những gì bạn đã học về API và cách giao việc cho AI thành một agent chạy được. Bài đầu không có mã - bạn sẽ đóng vai agent bằng giấy bút, vì đó là cách nhanh nhất để hiểu nó.",
+        text: "Chatbot trả lời một lần rồi dừng; agent tự gọi công cụ và lặp tới khi xong việc. Trước khi viết mã, hãy đóng vai agent bằng giấy bút - đó là cách nhanh nhất để hiểu nó.",
       },
       {
         type: "feynman",
@@ -160,19 +160,19 @@ export const AI_AGENT_LESSONS: Lesson[] = [
       {
         type: "list",
         items: [
-          "Vòng 1 - Quan sát: \"Ngày mai Đà Lạt có mưa không, có thì nhắc tôi.\" Suy luận: cần thời tiết. Hành động: gọi công cụ tra thời tiết.",
-          "Vòng 2 - Quan sát: công cụ trả về \"mưa chiều\". Suy luận: có mưa nên cần nhắc. Hành động: gọi công cụ đặt lời nhắc.",
-          "Vòng 3 - Quan sát: lời nhắc đã đặt. Suy luận: xong việc. Dừng và trả lời người dùng.",
+          "Vòng 1 - Quan sát: yêu cầu. Suy luận: cần thời tiết. Hành động: gọi công cụ tra thời tiết.",
+          "Vòng 2 - Quan sát: \"mưa chiều\". Suy luận: có mưa nên cần nhắc. Hành động: gọi công cụ đặt lời nhắc.",
+          "Vòng 3 - Quan sát: lời nhắc đã đặt. Suy luận: xong việc. Dừng và trả lời.",
         ],
       },
       {
         type: "paragraph",
-        text: "Ba vòng, hai công cụ, một điều kiện dừng. Mọi agent phức tạp hơn cũng chỉ là nhiều vòng hơn và nhiều công cụ hơn - cấu trúc không đổi.",
+        text: "Ba vòng, hai công cụ, một điều kiện dừng - chạy tay một lần là thấy trước agent cần công cụ nào và dừng ở đâu. Agent phức tạp hơn chỉ nhiều vòng và nhiều công cụ hơn.",
       },
       {
         type: "callout",
         label: "Luôn có giới hạn số bước",
-        text: "Một agent kẹt sẽ lặp mãi và tốn tiền mỗi vòng. Đặt số bước tối đa ngay từ đầu, ví dụ mười vòng, rồi dừng và báo lại nếu chưa xong.",
+        text: "Agent kẹt sẽ lặp mãi và tốn tiền mỗi vòng. Cho nó dừng khi xong việc, khi hết số bước tối đa, hoặc khi gặp lỗi không tự sửa được.",
       },
       {
         type: "closing",

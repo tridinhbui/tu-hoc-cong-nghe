@@ -36073,7 +36073,7 @@ const BASE_LESSONS: Lesson[] = [
     "sections": [
       {
         "type": "lead",
-        "text": "Chặng này bạn sẽ dựng thứ nhìn thấy được. Nhưng trước khi viết thẻ HTML đầu tiên, hãy dành vài phút cho câu hỏi mà rất ít người mới đặt ra: từ lúc gõ một địa chỉ tới lúc trang hiện ra, chuyện gì thật sự xảy ra?"
+        "text": "Trước khi viết thẻ HTML đầu tiên, hãy trả lời một câu ít người mới đặt ra: từ lúc gõ địa chỉ tới lúc trang hiện ra, chuyện gì xảy ra?"
       },
       {
         "type": "feynman",
@@ -36115,16 +36115,16 @@ const BASE_LESSONS: Lesson[] = [
       {
         "type": "list",
         "items": [
-          "Trình duyệt tra địa chỉ bạn gõ ra số hiệu của máy chủ cần liên hệ.",
-          "Nó gửi một yêu cầu qua giao thức HTTP, kèm đường dẫn cụ thể bạn muốn lấy.",
-          "Máy chủ trả về tệp HTML, kèm một mã trạng thái nói việc đó thành công hay không.",
-          "Trình duyệt đọc HTML, tải thêm những gì HTML nhắc tới, rồi dựng cây và vẽ ra."
+          "Tra địa chỉ bạn gõ ra số hiệu máy chủ (DNS).",
+          "Gửi yêu cầu HTTP kèm đường dẫn cần lấy - HTTPS là bản mã hoá, người ở giữa không đọc hay sửa được.",
+          "Máy chủ trả về HTML kèm một mã trạng thái.",
+          "Trình duyệt đọc HTML, tải thêm những gì nó nhắc tới, dựng cây rồi vẽ ra."
         ]
       },
       {
         "type": "callout",
         "label": "Một trang là nhiều yêu cầu",
-        "text": "Đây là điểm hay bị hiểu sai nhất. Máy chủ không gửi cả trang trong một gói. Nó gửi HTML, và trình duyệt đọc HTML rồi gửi thêm yêu cầu cho từng tệp CSS, từng ảnh, từng phông chữ. Một trang bình thường tạo ra hàng chục tới hàng trăm yêu cầu riêng biệt."
+        "text": "Máy chủ không gửi cả trang trong một gói. Nó gửi HTML, rồi trình duyệt xin thêm từng tệp CSS, từng ảnh, từng phông chữ - mỗi thứ một yêu cầu riêng."
       },
       {
         "type": "heading",
@@ -36137,28 +36137,28 @@ const BASE_LESSONS: Lesson[] = [
           {
             "vi": "Nhóm 2",
             "en": "200",
-            "def": "Thành công. Máy chủ đã trả về đúng thứ bạn yêu cầu."
+            "def": "Thành công."
           },
           {
             "vi": "Nhóm 3",
             "en": "301, 302",
-            "def": "Chuyển hướng. Nội dung đã sang địa chỉ khác, trình duyệt tự đi theo."
+            "def": "Chuyển hướng - trình duyệt tự đi theo địa chỉ mới."
           },
           {
             "vi": "Nhóm 4",
             "en": "404, 403",
-            "def": "Lỗi phía người gửi yêu cầu: không tìm thấy, hoặc không có quyền."
+            "def": "Lỗi phía người gửi: không tìm thấy, không có quyền."
           },
           {
             "vi": "Nhóm 5",
             "en": "500, 502",
-            "def": "Lỗi phía máy chủ. Yêu cầu của bạn hợp lệ nhưng máy chủ xử lý hỏng."
+            "def": "Lỗi phía máy chủ khi xử lý một yêu cầu hợp lệ."
           }
         ]
       },
       {
         "type": "paragraph",
-        "text": "Nhìn chữ số đầu là biết ngay nên đi tìm nguyên nhân ở phía nào. Với 404, đáng nhớ là máy chủ vẫn sống và vẫn trả lời bạn - nó chỉ nói đường dẫn này không có gì. Khác hẳn với mất mạng hay máy chủ chết, và hai chuyện đó cần hai cách xử lý khác nhau."
+        "text": "404 nghĩa là máy chủ vẫn sống và vẫn trả lời - chỉ đường dẫn là không có gì. Khác hẳn mất mạng hay máy chủ chết, và cần cách xử lý khác."
       },
       {
         "type": "heading",
@@ -36166,12 +36166,12 @@ const BASE_LESSONS: Lesson[] = [
       },
       {
         "type": "paragraph",
-        "text": "HTML là văn bản, nhưng trình duyệt không vẽ thẳng từ văn bản. Nó phân tích HTML thành một cấu trúc cây trong bộ nhớ - mỗi thẻ là một nút, thẻ lồng nhau thành nhánh - rồi vẽ từ cây đó. Mã lệnh chạy trên trang cũng thao tác lên cây này chứ không sửa tệp gốc, và đó là lý do nội dung trang đổi được mà không cần tải lại."
+        "text": "Trình duyệt không vẽ thẳng từ văn bản HTML. Nó dựng một cây trong bộ nhớ - mỗi thẻ là một nút - rồi vẽ từ cây đó. Mã lệnh trên trang sửa cây này chứ không sửa tệp gốc, nên nội dung đổi được mà không cần tải lại."
       },
       {
         "type": "callout",
         "label": "Bộ nhớ đệm, kẻ thù lúc học",
-        "text": "Trình duyệt lưu lại các tệp tĩnh để lần sau khỏi tải - rất tốt cho người dùng, rất phiền cho bạn lúc đang sửa. Bạn đổi CSS mà giao diện không nhúc nhích thì hãy nghi nó trước tiên. Tải lại có bỏ qua bộ nhớ đệm, hoặc bật tuỳ chọn tắt đệm trong công cụ nhà phát triển."
+        "text": "Trình duyệt giữ lại tệp tĩnh để lần sau khỏi tải. Đổi CSS mà giao diện không nhúc nhích thì nghi nó trước tiên."
       },
       {
         "type": "closing",
@@ -77449,7 +77449,7 @@ const BASE_LESSONS: Lesson[] = [
     "sections": [
       {
         "type": "lead",
-        "text": "Chặng này về việc dùng trợ lý AI trong công việc viết mã. Bài đầu không dạy câu lệnh nào cả - nó dạy cách phân loại việc, vì đó là thứ quyết định mọi thứ còn lại."
+        "text": "Bài đầu của chặng không dạy câu lệnh nào - nó dạy cách phân loại việc. Câu lệnh khéo chỉ có ích khi bạn đã biết việc đó nên giao."
       },
       {
         "type": "feynman",
@@ -77491,7 +77491,7 @@ const BASE_LESSONS: Lesson[] = [
       {
         "type": "callout",
         "label": "Nó sai với vẻ tự tin y hệt lúc nó đúng",
-        "text": "Một người không chắc thì giọng họ lộ ra. Mô hình ngôn ngữ thì không - câu trả lời sai và câu trả lời đúng có cùng độ trôi chảy, cùng cấu trúc, cùng vẻ chắc chắn. Mọi kỹ thuật trong chặng này đều xoay quanh việc bù cho đặc điểm đó."
+        "text": "Người không chắc thì giọng lộ ra. Mô hình ngôn ngữ thì không - câu sai và câu đúng trôi chảy, chắc chắn như nhau. Mọi kỹ thuật trong chặng đều để bù cho điều đó."
       },
       {
         "type": "heading",
@@ -77499,22 +77499,22 @@ const BASE_LESSONS: Lesson[] = [
       },
       {
         "type": "paragraph",
-        "text": "Câu hỏi không phải việc này tốn bao nhiêu thời gian, mà: nếu có ai đưa cho tôi lời giải, tôi mất bao lâu để biết nó đúng hay sai? Vì AI sai một cách khó nhận ra, giá trị thật chỉ xuất hiện khi bạn phát hiện được cái sai nhanh."
+        "text": "Đừng hỏi việc này tốn bao lâu. Hãy hỏi: nếu có ai đưa lời giải, tôi mất bao lâu để biết nó đúng hay sai?"
       },
       {
         "type": "comparison",
         "left": {
           "label": "Kiểm chứng nhanh - giao được",
-          "text": "Đọc mã lạ và giải thích nó làm gì. Sinh khuôn mẫu lặp lại. Đề xuất trường hợp biên cho một hàm. Dịch một đoạn mã sang ngôn ngữ khác. Với cả bốn, bạn có sẵn thứ để đối chiếu."
+          "text": "Đọc mã lạ, sinh khuôn mẫu, đề xuất trường hợp biên, dịch mã sang ngôn ngữ khác - luôn có sẵn thứ để đối chiếu."
         },
         "right": {
           "label": "Kiểm chứng chậm - tự làm",
-          "text": "Quyết định kiến trúc, chọn giữa hai cách tổ chức dữ liệu, đánh giá đánh đổi dài hạn. Chúng phụ thuộc vào ràng buộc riêng mà chỉ đội bạn biết."
+          "text": "Quyết định kiến trúc, chọn cách tổ chức dữ liệu, đánh đổi dài hạn - phụ thuộc ràng buộc riêng mà chỉ đội bạn biết."
         }
       },
       {
         "type": "paragraph",
-        "text": "Cột bên phải có một lý do cụ thể: AI không biết đội bạn có mấy người, hệ thống cũ nào phải tương thích, hay quyết định nào đã bị bác từ năm ngoái. Nó đưa ra phương án hợp lý chung chung - và hợp lý chung chung là thứ sai một cách khó thấy nhất."
+        "text": "AI không biết đội bạn có mấy người hay hệ thống cũ nào phải tương thích, nên nó đưa ra phương án hợp lý chung chung - thứ sai khó thấy nhất."
       },
       {
         "type": "heading",
@@ -77522,7 +77522,7 @@ const BASE_LESSONS: Lesson[] = [
       },
       {
         "type": "paragraph",
-        "text": "Người ta hay nghĩ AI hữu ích nhất ở chỗ mình yếu nhất. Thực ra đó là chỗ nguy hiểm nhất: khi bạn chưa biết làm, bạn không có gì để đối chiếu, nên sai hay đúng bạn cũng chấp nhận như nhau."
+        "text": "Chỗ bạn yếu nhất không phải chỗ AI giúp nhiều nhất mà là chỗ nguy hiểm nhất: chưa biết làm thì không có gì để đối chiếu, sai hay đúng bạn cũng nhận."
       },
       {
         "type": "closing",
