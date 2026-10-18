@@ -8,7 +8,7 @@ import { randomBytes } from "node:crypto";
 import { mkdirSync, writeFileSync } from "node:fs";
 import { measure } from "./measure.mjs";
 
-const BASE = "http://localhost:4000";
+const BASE = process.env.BASE ?? "http://localhost:4000";
 const PERSONAS = {
   p1: { name: "Người mới hoàn toàn", vp: "desktop", goal: "Chưa rõ - tôi chỉ muốn", card: "Tôi muốn AI làm việc cùng mình" },
   p2: { name: "35-50 tuổi, ít dùng công nghệ", vp: "m390", goal: "Dùng AI cho công việc văn phòng", card: "Tôi muốn AI làm việc cùng mình" },

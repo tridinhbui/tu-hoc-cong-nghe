@@ -18,8 +18,9 @@ qua tới 9 lớp phủ chồng lên nhau trước bài đầu tiên. Ở 3/5 l�
 trong các lớp đó còn làm nút chính bấm không được.** Mình đã sửa phần
 onboarding và một số chỗ khó hiểu trên trang bài học và trang công cụ. Phần
 nặng nhất còn lại là **trang bài học quá dày** (1.700 chữ, 9–15 màn hình, 27
-nút trong màn đầu). Phần đó cần quyết định về nội dung chứ không sửa nhanh
-được (mục 8).
+nút trong màn đầu). Lượt hai đã gom các khối phụ vào một mục gập (14,8 → 11,3
+màn hình ở 390px). Phần còn lại là độ dài của chính thân bài, và đó là quyết
+định về nội dung (mục 2 và mục 8).
 
 ---
 
@@ -76,8 +77,55 @@ Tiêu đề bài đầu tiên mà người học thấy:
 
 Những gì **không** cải thiện, nói thẳng:
 - Thời gian ước lượng theo KLM gần như không đổi, có persona còn tăng. Bản sau có thêm một dòng gợi ý trên trang công cụ, và trang công cụ giờ dẫn vào Trình soạn mã, trang có nhiều chữ hơn Dòng lệnh. Số thao tác giảm rõ, nhưng lượng chữ phải đọc thì không.
-- Trang bài học vẫn 1.700 chữ, 9,4 màn hình desktop / 14,8 màn hình mobile, 27 điều khiển trong màn đầu desktop (F-8, chưa sửa).
-- Cả 10 lượt chạy đều kết thúc với bài **chưa hoàn thành** dù đã làm xong quiz (F-9, chưa sửa).
+- Trang bài học vẫn 1.700 chữ, 9,4 màn hình desktop / 14,8 màn hình mobile, 27 điều khiển trong màn đầu desktop (F-8, chưa sửa ở lượt này; xem lượt hai bên dưới).
+- Cả 10 lượt chạy đều kết thúc với bài **chưa hoàn thành** dù đã làm xong quiz (F-9, chưa sửa ở lượt này; xem lượt hai bên dưới).
+
+### Lượt hai: F-8 (ngân sách khối) và F-9 (thẻ kết quả nói vế còn thiếu)
+
+Cùng `journey.mjs`, cùng máy, `next dev` của nhánh sửa. Đo "trước" ngay trước
+khi sửa, trên đúng commit đã có lượt một (`c3d066a`). Dữ liệu thô:
+`docs/ux-audit/data/f8-truoc/` và `f8-sau/`. Bảng chiều cao từng khối do
+`docs/ux-audit/scripts/lesson-heights.mjs` đo (khách, chưa bấm gì).
+
+| Persona | Bài | Màn hình | Chữ trên trang | Màn hình phải cuộn | Điều khiển trong màn đầu |
+|---|---|---|---|---|---|
+| p2 35–50 tuổi | `kiem-chung-dau-ra-ai-bia` | m390 | 1.680 → **1.392** | 14,8 → **11,3** | 8 → 8 |
+| p1 người mới | `kiem-chung-dau-ra-ai-bia` | desktop | 1.697 → **1.409** | 9,4 → **7,5** | 27 → 27 |
+| p3 sinh viên | `do-thoi-gian-truoc-khi-lap-ke-hoach-hoc` | m390 | 1.471 → **992** | 12,5 → **8,3** | 8 → 8 |
+
+Chiều cao trang `kiem-chung-dau-ra-ai-bia` ở 390×844 (khách): **12.491px →
+9.514px**. Khối tương tác ở mạch chính, không tính quiz: 8 (câu mở đầu, Feynman
+lớp 5, tình huống, câu giữa bài, sơ đồ từng bước, sơ đồ tĩnh, "Luyện tập ngay",
+đổ não 60 giây) → **4** (câu mở đầu, tình huống, câu giữa bài, sơ đồ từng bước).
+
+**Mục tiêu "dưới 6 màn hình ở 390px" không đạt: 11,3.** Nói thẳng lý do, vì nó
+quyết định bước tiếp theo. 6 màn hình là 5.064px. Riêng thân bài (`sections`)
+sau khi đã dời khối phụ ra vẫn cao **5.835px**, gồm khoảng 1.000 chữ giảng
+và ba khối mà chỉ số đo chiều cao cho thấy là phần dạy chính (bảng "Bốn kiểu
+bịa" 850px, danh sách "Năm cách bắt" 558px, sơ đồ từng bước 747px). Cộng thêm
+ba thứ không thể gập là câu mở đầu (521px), câu giữa bài (605px, một vế của
+điều kiện hoàn thành) và cột quiz (720px) thì đã quá 6 màn hình trước khi tính
+một dòng nào khác. Ngân sách khối đã lấy đi gần hết những gì gập được mà không
+đụng nội dung. Xuống dưới 6 thì phải viết bài ngắn hơn hoặc tách bài, tức là
+quyết định nội dung trong `lib/lessons*`, nằm ngoài phạm vi của lượt sửa chỉ
+về trình bày này.
+
+Desktop vẫn 27 điều khiển trong màn đầu: con số đó đến từ thanh công cụ và
+khung bài (đầu trang, mục lục, cột quiz đang mở), không phải từ các khối đã gập.
+
+F-9, cùng script: 3/3 lượt vẫn kết thúc với bài chưa hoàn thành, **và đó là
+đúng**, vì script cố ý không trả lời câu giữa bài, còn điều kiện hoàn thành
+thì không đổi. Điều thay đổi là thứ người học thấy lúc đó. Kiểm tra riêng bằng
+một tài khoản test, ở cả 390px và 1440px: làm hết quiz mà bỏ qua câu giữa bài
+thì thẻ kết quả hiện "Bài chưa tính là xong", liệt kê đúng vế còn thiếu, và nút
+"Tới câu giữa bài" đặt câu đó ở đỉnh khung nhìn (đo được 96–97px, tức đúng
+`scroll-mt-24`). Trả lời câu đó và đọc hết bài thì bài được lưu là hoàn thành,
+còn khối "còn thiếu" tự biến mất. Ảnh: `10-sau-f9-the-ket-qua-mobile.png`,
+`11a-…`, `11b-sau-f8-hoc-sau-hon-mo.png`.
+
+p2 lượt sau có một ngõ cụt ở bước landing: "bài thử không có lời mời đăng ký".
+Đây là F-11. Nó chập chờn từ trước (p1 lượt trước cũng gặp), và nằm ở phần code
+lượt này không đụng tới.
 
 ---
 
@@ -193,17 +241,21 @@ dung/sư phạm), **KT** (kỹ thuật), **TM** (thẩm mỹ).
 - **Giải pháp (đã làm):** đưa Trình soạn mã lên đầu, gắn nhãn "Hợp cho người mới", thêm một câu giải thích "ticket". Câu này chỉ hiện khi chưa làm ticket nào. `06b-sau-menu-va-cong-cu.png`.
 - **Còn lại (ND):** người chọn mục tiêu "Dùng AI cho văn phòng" không có công cụ nào khớp với mục tiêu của họ. Cả năm công cụ là công cụ của dân kỹ thuật (xem lộ trình).
 
-#### F-8 · Trang bài học quá dày cho một buổi học 10–15 phút (**chưa sửa**)
+#### F-8 · Trang bài học quá dày cho một buổi học 10–15 phút (**đã sửa phần trình bày; mục tiêu 6 màn hình chưa đạt**)
 - **Bằng chứng:** 1.680–1.930 chữ. Desktop 9,4–10 màn hình, mobile 12,5–14,8 màn hình. 27–31 điều khiển trong màn đầu desktop. Một bài có khoảng 7 khối tương tác khác nhau: quiz cột phải, câu mở đầu, "Luyện tập ngay", "Đố não 60 giây", tình huống, sơ đồ từng bước, chế độ Feynman, giải thích "cho học sinh lớp 5". Thêm vào đó là một thẻ "Cơ Cơ · mẹo tự động" có nội dung không liên quan tới bài ("Dự án thật là nơi lý thuyết gặp thực tế lộn xộn…" trên bài về AI bịa).
 - **Nguyên nhân gốc (ND):** mỗi đợt cải tiến *thêm* một khối (`lib/lesson-block-additions` đảm bảo mọi bài có khối thực hành + khối hình). Không đợt nào *bớt* khối. Thứ tự sư phạm "trực giác → ví dụ → khái niệm → thực hành" vẫn còn, nhưng bị chia nhỏ bởi các khối chen giữa.
 - **Ảnh hưởng:** "10–15 phút" trên landing là lời hứa khó giữ trên mobile.
-- **Vì sao chưa sửa:** muốn bớt khối thì phải chọn khối nào ở lại cho từng loại bài. Đó là quyết định nội dung, và nó chạm tới các gate trong `scripts/audit-lesson-content.mjs`. Đề xuất ở mục 8.
+- **Vì sao lượt một chưa sửa:** muốn bớt khối thì phải chọn khối nào ở lại cho từng loại bài. Đó là quyết định nội dung, và nó chạm tới các gate trong `scripts/audit-lesson-content.mjs`.
+- **Đã làm (lượt hai): ngân sách khối, chỉ ở phần trình bày.** `lib/lesson-block-budget.ts` chia các khối của bài thành hai nhóm. Mạch chính giữ **một** khối thực hành và **một** khối hình. Khối thực hành chính là bài tập viết mã nếu bài có; nếu không có thì là khối thực hành đầu tiên tác giả đặt. Đếm trên 1.513 bài: 539 bài có `aiLab+scenario`, 364 bài có `exercise+scenario`, nên quy tắc "khối đầu tiên" đơn thuần sẽ giấu bài tập chính của track lập trình ở 8 bài `scenario+exercise`. Mọi khối khác vào mục gập "Học sâu hơn" ở cuối bài: thẻ Feynman/lớp 5 (bỏ luôn công tắc bật/tắt riêng), khối `feynman`, khối thực hành và khối hình thứ hai, sơ đồ tĩnh khi đã có chart/flow, "Luyện tập ngay" khi đã có khối thực hành, widget mô phỏng cũ, đổ não 60 giây kèm ba thẻ tóm tắt, và thẻ mẹo Cơ Cơ. Không khối nào bị xoá khỏi `lib/lessons*`: `audit:lessons` vẫn báo 0/1.513 bài thiếu khối thực hành hay khối hình. Một test mới chạy trên toàn bộ dữ liệu thật để chắc rằng mạch chính của mọi bài vẫn có khối thực hành và khối hình. Câu giữa bài không bao giờ vào mục gập, vì nó là một vế của điều kiện hoàn thành. Chỉ số khối giữ nguyên chỉ số gốc, vì `exercise_passes` khoá theo vị trí khối. Trên mobile, thân bài dùng chữ 16/28 thay cho 18/32, và khoảng cách giữa các khối nhỏ lại. Từ `sm` trở lên thì không đổi.
+- **Còn lại:** 11,3 màn hình ở 390px, chưa đạt mục tiêu 6. Phần còn lại là chính thân bài (xem mục 2, lượt hai), nên bước tiếp theo là quyết định nội dung: viết ngắn lại hoặc tách bài.
 
 #### F-9 · Làm xong quiz vẫn chưa xong bài, và hệ thống khen nhầm
 - **Bằng chứng:** `07-truoc-khen-hoan-thanh-khi-0-4.png`. Tiêu đề "Hoàn thành!" hiện cùng "0/4 câu đúng", và cùng lúc toast báo "Còn trả lời câu hỏi giữa bài". 10/10 lượt chạy kết thúc với bài chưa hoàn thành, nên hôm sau "Học tiếp" quay về đúng bài cũ.
 - **Nguyên nhân gốc (UX + ND):** điều kiện hoàn thành có ba vế. Vế "Dừng & Kiểm tra giữa bài" là một khối giữa bài, rất dễ cuộn qua. Còn thẻ kết quả quiz thì dùng một tiêu đề cố định, không phụ thuộc điểm.
 - **Đã làm:** đúng dưới một nửa thì tiêu đề là "Đã làm xong - xem lại các câu sai nhé".
-- **Chưa làm:** cho thẻ kết quả quiz nói rõ vế còn thiếu và cuộn tới khối đó. Việc này đổi luồng hoàn thành bài, vốn đang nuôi XP và cổng mở bài, nên cần kiểm thử riêng.
+- **Đã làm (lượt hai):** khi quiz xong mà bài chưa đủ điều kiện, thẻ kết quả hiện khối "Bài chưa tính là xong". Khối này liệt kê đúng vế còn thiếu và có một nút chính: "Tới câu giữa bài" (nhảy thẳng tới `#lesson-midpoint`), hoặc "Đọc tiếp chỗ đang dừng" (về chỗ xa nhất đã đọc, theo đúng phép đo của tiêu chí đọc). Tiêu đề đổi thành "Đã làm xong quiz" thay cho "Hoàn thành!". "Bài tiếp" lùi xuống nút phụ, còn nút chia sẻ "đã hoàn thành" chỉ hiện khi bài đã xong thật. Khách không thấy khối này, vì với họ không có gì được lưu hay cộng XP. **Điều kiện hoàn thành, cách chấm điểm và XP không đổi.** Khối dựa trên đúng `allCriteriaMet` / `midpointCriterionMet` / `scrolledFully` mà luồng hoàn thành dùng, nên nó không thể nói một đằng mà dữ liệu lưu một nẻo.
+- **Một chi tiết đo được:** bản đầu dùng cuộn mượt và dừng cách đích 1.000–2.500px. Trình duyệt huỷ cuộn mượt đường dài khi bố cục phía trên đổi trong lúc trượt. Bản cuối nhảy thẳng tới đích.
+- **Chưa làm:** gộp câu giữa bài vào quiz (mục 8).
 
 #### F-10 · Người đã biết công nghệ không có lối vào phần nâng cao ở câu hỏi đầu
 - **Bằng chứng:** p5 trước khi sửa: chọn "Công nghệ chuyên sâu" ở màn 5 bước, rồi câu tiếp theo không có đáp án nào phù hợp. Gần nhất là "Học bài bản…", và màn kết quả của nó lại nói "Lộ trình nền tảng: đi từ máy tính và dòng lệnh".
@@ -289,6 +341,10 @@ tiến độ đứng ở 0/1036.
 | `components/LessonPageLayout.tsx` | Bỏ đường dẫn/tên tệp giả, đổi nhãn tab. Tiêu đề kết quả quiz phụ thuộc điểm. | F-6, F-9 |
 | `components/tools/CongCuClient.tsx` | Trình soạn mã lên đầu, nhãn "Hợp cho người mới", câu giải thích "ticket" | F-7 |
 | `lib/i18n/dictionaries/{vi,en}.ts`, `sections/placement-focus.ts`, `sections/revamp-tools.ts` | Chuỗi mới, có đủ cả hai ngôn ngữ | — |
+| `lib/lesson-block-budget.ts` (mới), `components/LessonPageClient.tsx`, `components/LessonSections.tsx` | Ngân sách khối: mạch chính giữ một khối thực hành + một khối hình, các khối phụ vào "Học sâu hơn" gập sẵn. `LessonSections` nhận `indices`. Chữ thân bài 16/28 trên mobile | F-8 |
+| `components/LessonPageLayout.tsx`, `components/MidpointInteractive.tsx` | Thẻ kết quả quiz nói vế còn thiếu, có nút tới câu giữa bài / chỗ đang đọc. `stageTipsInBody` để thẻ mẹo vào mục gập | F-8, F-9 |
+| `lib/__tests__/lesson-block-budget.test.ts` | Test quy tắc ngân sách, và kiểm tra trên dữ liệu thật rằng mạch chính của mọi bài còn khối thực hành + khối hình | F-8 |
+| `docs/ux-audit/scripts/journey.mjs`, `lesson-heights.mjs` (mới) | `BASE` đọc từ biến môi trường (để đo ở cổng khác khi cổng 4000 đang bận). Script đo chiều cao từng khối | — |
 
 Không chức năng nào bị xoá. Popup mời bạn vẫn mở được từ menu Kết nối. Tour vẫn
 chạy ở lượt vào sau. Lộ trình chuyên sâu vẫn chọn được, giờ là ngay ở câu hỏi
@@ -308,6 +364,7 @@ Nhận diện màu: đề bài nhắc "cam đất / cam vàng", nhưng thương 
 | `eslint` trên các file đã sửa | 3 lỗi, đều ở các dòng `LessonPageLayout.tsx` không bị đụng tới (372, 480, 510), đã có từ trước |
 | `npm test` | 203/204 file qua. Lỗi duy nhất: `lib/__tests__/kiem-tra-page.test.tsx`, test của `/kiem-tra` và `DailyNewsQuizWidget`, hai file đã có thay đổi chưa commit **từ trước phiên audit này** và không nằm trong thay đổi này |
 | Hành trình Playwright | 5/5 persona tới được bài đầu tiên, 0 ngõ cụt ở bước onboarding (trước: 3/5 bị nút bấm không ăn) |
+| Lượt hai (F-8, F-9) | `tsc --noEmit` 0 lỗi · `npm test` 205/205 file qua (thêm `lesson-block-budget.test.ts`) · `npm run audit:lessons` exit 0, thiếu thực hành 0/1.513, thiếu hình ảnh 0/1.513 · eslint: không lỗi mới (các lỗi ở `LessonPageLayout.tsx` vẫn là các lỗi cũ đã ghi ở trên) · `i18n-coverage` 0 chuỗi cứng trong `LessonPageClient`/`LessonPageLayout` |
 
 ---
 
@@ -315,8 +372,8 @@ Nhận diện màu: đề bài nhắc "cam đất / cam vàng", nhưng thương 
 
 Xếp theo mức giảm tải nhận thức trên mỗi đơn vị công sức.
 
-1. **Bài học gọn lại (F-8, P1).** Đặt ngân sách cho mỗi bài: tối đa 3 khối tương tác ngoài quiz, và một khối thực hành *chính* đặt ngay sau phần ví dụ. Các khối khác (Feynman, lớp 5, đố não 60 giây) gom vào một mục "Học sâu hơn" gập sẵn. Đo lại bằng `journey.mjs`. Mục tiêu: dưới 6 màn hình ở 390px.
-2. **Hoàn thành bài rõ ràng (F-9, P1).** Thẻ kết quả quiz liệt kê vế còn thiếu và có nút cuộn tới câu giữa bài. Cân nhắc gộp câu giữa bài vào quiz.
+1. **Bài học gọn lại (F-8, P1). Phần trình bày đã xong (14,8 → 11,3 màn hình ở 390px). Phần còn lại là nội dung.** Thân bài một mình đã 5.835px ≈ 6,9 màn hình. Muốn xuống dưới 6 thì phải viết bài ngắn hơn (khoảng 600 chữ giảng thay cho 1.000), hoặc tách bài dài làm hai. Bắt đầu từ các bài đầu của mỗi hành trình, vì đó là bài người mới gặp trước.
+2. **Hoàn thành bài rõ ràng (F-9, P1). Thẻ kết quả đã nói vế còn thiếu.** Còn lại: cân nhắc gộp câu giữa bài vào quiz, để điều kiện hoàn thành chỉ còn hai vế.
 3. **Dashboard cho người 0–3 bài (F-15, P2).** Chỉ hiện thẻ Học tiếp + tiến độ của hành trình. Ẩn chỉ số cấp/XP/xếp hạng tới bài thứ 3, như menu đã làm.
 4. **Một nơi điều phối lần đầu vào.** Để F-1 không tái diễn khi ai đó thêm popup thứ năm: một hook `useFirstRunSlot()` cấp quyền hiện cho đúng một lớp phủ mỗi lượt vào.
 5. **UX writing (F-12, F-14, F-17).** Một lượt đổi nhãn: Dashboard → Trang chính, nhãn tiếng Anh thành phụ đề, "Bài thử đầu tiên" cho bài mở đầu hành trình.

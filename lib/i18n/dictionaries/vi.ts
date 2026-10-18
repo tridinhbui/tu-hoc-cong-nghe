@@ -646,6 +646,13 @@ export const vi = {
     /** Đúng dưới một nửa: "Hoàn thành!" lúc 0/4 câu đúng là khen nhầm chỗ. */
     doneTitleLow: "Đã làm xong - xem lại các câu sai nhé",
     doneScore: "{score}/{total} câu đúng",
+    /** Thẻ kết quả quiz khi bài CHƯA đủ điều kiện hoàn thành (F-9). Không đổi
+     *  điều kiện, chỉ nói vế nào còn thiếu và đưa người học tới đó. */
+    doneTitleQuizOnly: "Đã làm xong quiz",
+    incompleteTitle: "Bài chưa tính là xong",
+    incompleteBody: "Quiz đã xong. Làm nốt phần dưới đây để bài được tính là hoàn thành và nhận XP:",
+    goToMidpoint: "Tới câu giữa bài",
+    goToReading: "Đọc tiếp chỗ đang dừng",
     firstAttemptScore: "Điểm ghi nhận: {score}/{total} (lần trả lời đầu)",
     firstAttemptNote:
       "Số ở trên là kết quả sau khi thử lại. Điểm lưu vào hồ sơ lấy lần trả lời đầu, để phần trăm năng lực ở Sự nghiệp phản ánh đúng những gì bạn đã nắm được.",
