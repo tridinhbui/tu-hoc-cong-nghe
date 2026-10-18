@@ -1,5 +1,7 @@
 # Rà soát giáo trình công nghệ — 2026-10-17
 
+> **Cập nhật Phase 4:** bản đầu của báo cáo này có sai sót; phần đã sửa và các phát hiện mới nằm ở `CURRICULUM-PHASE4-QA.md`. Đáng chú ý: lượt sửa lời giải quiz đầu tiên tự làm hỏng 4 câu và ánh xạ sai 3 câu (đã sửa), và "72 bài EN" đúng ra là 71.
+
 > Nhánh `chuyen-sang-cong-nghe`. Mọi con số dưới đây được **đo** bằng script trên cây làm
 > việc hôm nay, không chép từ tài liệu cũ. `TON-KHO-NOI-DUNG.md` (643 bài, đo 2026-09-23) đã
 > lỗi thời: kho hiện có **1.513 bài**.
@@ -15,7 +17,7 @@
 | F2 | Đám mây (Chặng 13) 0/8 bài có bài tập viết mã; an toàn thông tin 2/18; tự động hoá/bảng tính 5/110; làm sản phẩm cùng AI 10/90 | P0 | **Đã bổ sung 41 bài tập chấm được** (mục 4) |
 | F3 | Các chặng cho người không lập trình hiển thị bài tập viết mã mở sẵn | P1 | **Đã sửa**: 10 chặng bắt đầu gập |
 | F4 | HTML/CSS không chấm được: `exercise` chỉ có `python` và `javascript`; Chặng 4 có 8/20 bài tập | P1 | Mở — cần bộ chấm DOM |
-| F5 | Bản tiếng Anh phủ 72/1.513 bài (4,8%); nền tảng máy tính 3/19, API 0/10, CSDL 0/10 | P1 | Mở |
+| F5 | Bản tiếng Anh phủ 71/1.513 bài (4,7%); nền tảng máy tính 3/19, API 0/10, CSDL 0/10 | P1 | Mở |
 | F6 | Từ vựng mạng (DNS, TCP, TLS, cổng) xuất hiện ở Chặng 9 trước khi Chặng 12 dạy | P2 | Mở — nên thêm tiền đề, không đánh số lại |
 | F7 | Kiểm tra độ chính xác kỹ thuật: không tìm thấy nội dung lỗi thời hay mô tả AI quá khả năng (mục 5) | Thông tin | Đã đo |
 
@@ -27,9 +29,9 @@
 | Chặng | 67 (personal) + 41 (professional) |
 | Câu quiz cuối bài | 7.627 |
 | Khối nội dung | `paragraph` 1.955 · `scenario` 1.320 · `flow` 1.042 · `comparison` 1.027 · `feynman` 987 · `aiLab` 748 · `exercise` 467→508 · `chart` 333 · `sim` 134 · `code` 177 |
-| Khối mã chạy được, chấm bằng CI | 587 → **628** (`npm run audit:exercises`) |
+| Khối mã chạy được, chấm bằng CI | 587 → **628** (`npm run audit:exercises`): 567 ở bản tiếng Việt (508 `exercise` + 59 `code` có `runnable`) + 61 ở các bản dịch đã gộp |
 | Độ khó | Dễ 467 · Trung bình 843 · Khó 203 |
-| Bài có bản dịch tiếng Anh | 72 |
+| Bài có bản dịch tiếng Anh | 71 (`lib/lessons-i18n/en` có 72 tệp, một tệp là `_index.json`) |
 | Bài tập viết mã | `python` 291→317 · `javascript` 176→191 (không có ngôn ngữ nào khác) |
 | Tệp test | 202 tệp, 2.082 test |
 
@@ -58,7 +60,7 @@ liệu). "Có bài tập" là số bài chứa ít nhất một khối `exercise
 | **Làm sản phẩm cùng AI** (vibecoding) | 90 | **10 (11%)** | **31 (34%)** | 10 |
 | Chuyên sâu: LLM, RAG, agent, evals | 56 | 38 (67%) | 38 (67%) | 0 |
 | Chuyên sâu: Docker, CI/CD, gỡ lỗi | 18 | 17 (94%) | 17 (94%) | 0 |
-| **Tổng** | 1.513 | **467** | **508** | 72 |
+| **Tổng** | 1.513 | **467** | **508** | 71 |
 
 Đọc bảng:
 
@@ -127,7 +129,7 @@ và chúng đang đúng; cổng chỉ phủ `quiz`.
 
 Năm đợt, mỗi đợt một tệp trong `lib/lesson-block-additions/` (`t01`–`t05`), cộng vào bài đã có
 bằng cơ chế sẵn có (chèn trước khối `closing`, không đổi `id`, slug, thứ tự quiz hay tiến độ).
-Mỗi bài thêm đúng ba khối: `heading` → `exercise` → `callout "Vì sao đúng"`. Mọi bài tập:
+Mỗi bài thêm hai khối: `heading` → `exercise`, và lời giải thích nằm trong trường `exercise.explanation` — chỉ hiện sau khi người học qua bài hoặc mở lời giải (xem `CURRICULUM-PHASE4-QA.md`: bản đầu dùng khối `callout` ngay dưới đề và làm lộ đáp án trước cả gợi ý). Mọi bài tập:
 mã khởi đầu **chạy được nhưng in sai** (đúng hình dạng, sai giá trị), lời giải khớp
 `expectedOutput`, có ít nhất hai gợi ý, dữ liệu giả hoàn toàn.
 
