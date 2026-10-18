@@ -57,9 +57,11 @@ function lessonsStepsOf(t: Dictionary): TourStep[] {
 export default function DashboardTour({
   userId,
   view = "overview",
+  paused = false,
 }: {
   userId?: string | null;
   view?: "overview" | "lessons";
+  paused?: boolean;
 }) {
   const { t } = useI18n();
   const overviewSteps = useMemo(() => overviewStepsOf(t), [t]);
@@ -71,6 +73,7 @@ export default function DashboardTour({
       storageKey={isLessons ? "lessons_tour_seen_v1" : "dashboard_tour_seen_v1"}
       userId={userId}
       remoteKey={isLessons ? "lessons" : "dashboard"}
+      paused={paused}
     />
   );
 }

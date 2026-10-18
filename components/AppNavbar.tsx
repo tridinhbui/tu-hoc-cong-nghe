@@ -231,6 +231,15 @@ const HIDDEN_FOR_NEWCOMERS = new Set(["/game", "/cong-dong", "/nhom-hoc", "/anal
  *  rest instead of being the one that hangs open. */
 const ALL_SECTION_KEYS = NAV_SECTIONS.map((section) => section.titleKey);
 
+/** Mặc định cho người chưa từng gập/mở mục nào: chỉ nhóm Học tập mở.
+ *
+ *  Gập hết rồi để huy hiệu tự bung từng nhóm nghe hợp lý, nhưng huy hiệu
+ *  "TIN MỚI" của Kiểm tra sáng gần như cả ngày - nên thực tế người mới LUÔN
+ *  thấy nhóm Thực hành mở (Kiểm tra, Thi vượt chặng, Phỏng vấn kỹ thuật, Mô
+ *  phỏng công cụ) còn nhóm Học tập - nơi có "Bắt đầu từ đâu" và "Học bài" -
+ *  bị gập. Đo bằng Playwright trên 5 hành trình người mới: cả năm lần đều thế. */
+const DEFAULT_COLLAPSED_KEYS = ALL_SECTION_KEYS.filter((key) => key !== "sectionLearn");
+
 /** Vỏ chung của năm huy hiệu trong dòng điều hướng.
  *
  *  Trước đây mỗi cái tự viết lại chuỗi lớp của mình và chúng đã trôi khỏi nhau:
@@ -280,7 +289,7 @@ export default function AppNavbar() {
   // Still stored as the COLLAPSED set rather than the open one, so the stored
   // preference of a reader who folded things away before this default changed
   // is still read correctly.
-  const [collapsedSections, setCollapsedSections] = useState<string[]>(ALL_SECTION_KEYS);
+  const [collapsedSections, setCollapsedSections] = useState<string[]>(DEFAULT_COLLAPSED_KEYS);
   // Nhóm mà người đọc đã tự tay gập/mở trong phiên này.
   const [manuallyToggled, setManuallyToggled] = useState<string[]>([]);
   // Until localStorage has been read, the sections render in their default

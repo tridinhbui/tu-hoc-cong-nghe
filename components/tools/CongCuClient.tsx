@@ -17,9 +17,14 @@ import { readToolProgress } from "@/lib/tools/progress";
  * localStorage của từng công cụ (lib/tools/progress.ts), không có bảng D1 nào,
  * nên đọc sau khi mount: phía máy chủ luôn thấy 0.
  */
+// Trình soạn mã đứng đầu và mang nhãn "Hợp cho người mới": nó là công cụ duy
+// nhất mà kết quả nhìn thấy được ngay (trang web đổi bên cạnh), không cần biết
+// dòng lệnh hay SQL trước. Dòng lệnh từng đứng đầu, nên ai bấm thẻ đầu tiên -
+// cả năm hành trình người mới đo được đều thế - rơi vào Linux, Git và Docker.
+const BEGINNER_TOOL: ToolId = "editor";
 const TOOLS: { id: ToolId; href: string; icon: LucideIcon }[] = [
-  { id: "terminal", href: "/cong-cu/terminal", icon: TerminalSquare },
   { id: "editor", href: "/cong-cu/editor", icon: Code2 },
+  { id: "terminal", href: "/cong-cu/terminal", icon: TerminalSquare },
   { id: "sql", href: "/cong-cu/sql", icon: Database },
   { id: "api", href: "/cong-cu/api", icon: Send },
   { id: "cloud", href: "/cong-cu/cloud", icon: Cloud },
@@ -47,6 +52,7 @@ export default function CongCuClient() {
         <p className="font-mono text-[11px] font-black uppercase tracking-widest text-accent-strong">{r.eyebrow}</p>
         <h1 className="mt-1 text-2xl font-black text-ink-max sm:text-3xl">{r.title}</h1>
         <CoCoSays lines={t.coco.tools} className="mt-4" />
+        {done === 0 && <p className="mt-4 max-w-[60ch] text-sm leading-relaxed text-ink-body">{r.beginnerHint}</p>}
 
         {/* Đầu danh sách: tổng ticket là tiến độ học -> một thanh xanh ngay dưới. */}
         <div className="mt-8">
@@ -83,6 +89,9 @@ export default function CongCuClient() {
                     <span className="flex flex-wrap items-baseline gap-x-2">
                       <span className="font-mono text-[11px] font-bold uppercase tracking-widest text-accent">{copy.name}</span>
                       <span className="font-bold text-ink-max transition-colors group-hover:text-accent-strong">{copy.title}</span>
+                      {id === BEGINNER_TOOL && done === 0 && (
+                        <span className="rounded-full bg-accent-wash px-2 py-0.5 text-[11px] font-bold text-accent-strong">{r.beginnerChip}</span>
+                      )}
                     </span>
                     <span className="mt-0.5 block text-sm leading-relaxed text-ink-soft">{copy.subtitle}</span>
                     <span className="mt-3 flex items-center gap-3">

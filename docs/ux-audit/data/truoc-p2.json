@@ -1,0 +1,149 @@
+{
+ "persona": "p2",
+ "name": "35-50 tuổi, ít dùng công nghệ",
+ "vp": "m390",
+ "goal": "Dùng AI cho công việc văn phòng",
+ "card": "Tôi muốn AI làm việc cùng mình",
+ "stages": {
+  "A_landing_signup": {
+   "actions": 8,
+   "overlays": 0,
+   "deadEnds": [],
+   "screensScrolled": 0,
+   "wordsScanned": 382,
+   "ms": 9528,
+   "notes": [
+    "CTA chính không mở đăng ký mà cuộn tới khu chọn nhu cầu",
+    "đăng ký xong vào /dashboard"
+   ],
+   "estHumanSec": 116
+  },
+  "B_onboarding_to_lesson1": {
+   "actions": 9,
+   "overlays": 7,
+   "deadEnds": [
+    "ô chọn mục tiêu bị lớp tour che"
+   ],
+   "screensScrolled": 0,
+   "wordsScanned": 40,
+   "ms": 10250,
+   "notes": [
+    "bài đầu: /bai-hoc/kiem-chung-dau-ra-ai-bia"
+   ],
+   "estHumanSec": 33
+  },
+  "C_lesson_and_quiz": {
+   "actions": 12,
+   "overlays": 0,
+   "deadEnds": [],
+   "screensScrolled": 14.8,
+   "wordsScanned": 113,
+   "ms": 8759,
+   "notes": [
+    "h1=\"Chặng 25, Bài 5: Kiểm chứng - khi AI bịa trông như thật\"; 1681 chữ; 14.8 màn hình; 8 điều khiển trong màn đầu",
+    "trả lời 4 câu quiz",
+    "quiz xong nhưng bài CHƯA hoàn thành: còn câu 'Dừng & Kiểm tra' giữa bài",
+    "có phản hồi hoàn thành/XP trên màn hình"
+   ],
+   "estHumanSec": 58
+  },
+  "D_practice_tool": {
+   "actions": 3,
+   "overlays": 0,
+   "deadEnds": [
+    "không có nút Bắt đầu ở /cong-cu"
+   ],
+   "screensScrolled": 0,
+   "wordsScanned": 164,
+   "ms": 6161,
+   "notes": [
+    "/cong-cu: 164 chữ trong màn đầu",
+    "KHÔNG có gợi ý nên chọn công cụ nào - 5 lựa chọn ngang hàng"
+   ],
+   "estHumanSec": 49
+  },
+  "E_progress": {
+   "actions": 1,
+   "overlays": 0,
+   "deadEnds": [
+    "không thấy Dashboard trong menu"
+   ],
+   "screensScrolled": 0,
+   "wordsScanned": 107,
+   "ms": 30615,
+   "notes": [
+    "khối tiến độ: "
+   ],
+   "estHumanSec": 29
+  },
+  "F_return_next_day": {
+   "actions": 2,
+   "overlays": 1,
+   "deadEnds": [],
+   "screensScrolled": 0,
+   "wordsScanned": 149,
+   "ms": 8979,
+   "notes": [
+    "tiếp tục ở /bai-hoc/kiem-chung-dau-ra-ai-bia"
+   ],
+   "estHumanSec": 42
+  }
+ },
+ "total": {
+  "actions": 35,
+  "overlays": 8,
+  "deadEnds": 3,
+  "estSec": 338
+ },
+ "log": [
+  "[A_landing_signup] CTA Bắt đầu học miễn phí",
+  "[A_landing_signup] note: CTA chính không mở đăng ký mà cuộn tới khu chọn nhu cầu",
+  "[A_landing_signup] chọn thẻ nhu cầu: Tôi muốn AI làm việc cùng mình",
+  "[A_landing_signup] lời mời đăng ký trong bài thử",
+  "[A_landing_signup] chuyển sang Đăng ký",
+  "[A_landing_signup] điền tên",
+  "[A_landing_signup] điền email",
+  "[A_landing_signup] điền mật khẩu",
+  "[A_landing_signup] bấm Đăng ký",
+  "[A_landing_signup] note: đăng ký xong vào /dashboard",
+  "[B_onboarding_to_lesson1] onboarding: Tiếp theo",
+  "[B_onboarding_to_lesson1] onboarding: Tiếp theo",
+  "[B_onboarding_to_lesson1] onboarding: Tiếp theo",
+  "[B_onboarding_to_lesson1] onboarding: Tiếp theo",
+  "[B_onboarding_to_lesson1] onboarding: Bắt đầu học",
+  "[B_onboarding_to_lesson1] chọn mục tiêu: Dùng AI cho công việc văn phòng",
+  "[B_onboarding_to_lesson1] bấm mục tiêu - KHÔNG phản hồi (bị lớp tour che)",
+  "[B_onboarding_to_lesson1] DEAD END: ô chọn mục tiêu bị lớp tour che",
+  "[B_onboarding_to_lesson1] tìm ra và bấm Bỏ qua của tour",
+  "[B_onboarding_to_lesson1] Bắt đầu bài đầu tiên",
+  "[B_onboarding_to_lesson1] note: bài đầu: /bai-hoc/kiem-chung-dau-ra-ai-bia",
+  "[C_lesson_and_quiz] note: h1=\"Chặng 25, Bài 5: Kiểm chứng - khi AI bịa trông như thật\"; 1681 chữ; 14.8 màn hình; 8 điều khiển trong màn đầu",
+  "[C_lesson_and_quiz] chọn đáp án",
+  "[C_lesson_and_quiz] Kiểm tra đáp án",
+  "[C_lesson_and_quiz] Câu tiếp",
+  "[C_lesson_and_quiz] chọn đáp án",
+  "[C_lesson_and_quiz] Kiểm tra đáp án",
+  "[C_lesson_and_quiz] Câu tiếp",
+  "[C_lesson_and_quiz] chọn đáp án",
+  "[C_lesson_and_quiz] Kiểm tra đáp án",
+  "[C_lesson_and_quiz] Câu tiếp",
+  "[C_lesson_and_quiz] chọn đáp án",
+  "[C_lesson_and_quiz] Kiểm tra đáp án",
+  "[C_lesson_and_quiz] Câu tiếp",
+  "[C_lesson_and_quiz] note: trả lời 4 câu quiz",
+  "[C_lesson_and_quiz] note: quiz xong nhưng bài CHƯA hoàn thành: còn câu 'Dừng & Kiểm tra' giữa bài",
+  "[C_lesson_and_quiz] note: có phản hồi hoàn thành/XP trên màn hình",
+  "[D_practice_tool] trang bài không có menu - bấm Quay lại",
+  "[D_practice_tool] mở menu",
+  "[D_practice_tool] menu: Mô phỏng công cụ",
+  "[D_practice_tool] note: /cong-cu: 164 chữ trong màn đầu",
+  "[D_practice_tool] note: KHÔNG có gợi ý nên chọn công cụ nào - 5 lựa chọn ngang hàng",
+  "[D_practice_tool] DEAD END: không có nút Bắt đầu ở /cong-cu",
+  "[E_progress] mở menu",
+  "[E_progress] DEAD END: không thấy Dashboard trong menu",
+  "[E_progress] note: khối tiến độ: ",
+  "[F_return_next_day] đóng popup Mời bạn học cùng",
+  "[F_return_next_day] Học tiếp",
+  "[F_return_next_day] note: tiếp tục ở /bai-hoc/kiem-chung-dau-ra-ai-bia"
+ ]
+}

@@ -208,7 +208,7 @@ export default function ResumeLearningButton({ activeTrack, compact = false, use
           nói gì về bài học, và cái giá của nó là tiêu đề bài bị ép hẹp ở
           1024-1279px. Chỗ đó giờ là của bài học và nút hành động. */}
       <Link
-        href={`/bai-hoc/${nextLesson.slug}`}
+        href={flowNext && goalState?.goal ? `/bai-hoc/${nextLesson.slug}?hanh-trinh=${goalState.goal}` : `/bai-hoc/${nextLesson.slug}`}
         onClick={() => trackFeatureClick("resume_learning_click", { label: nextLesson.slug })}
         className={hero
           ? "group relative block overflow-hidden rounded-[20px] border border-accent-line bg-white text-ink-max shadow-card transition-[border-color,box-shadow] duration-300 hover:border-brand-300 hover:shadow-card-hover dark:border-brand-900 dark:bg-stone-900"

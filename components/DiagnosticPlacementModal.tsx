@@ -28,7 +28,12 @@ import { LEARNING_GOAL_CHANGED } from "@/lib/learning-goal-events";
  */
 
 
-type Choice = { key: string; goal: FlowId | null };
+/** `track` chỉ khác "personal" ở một lựa chọn: người đã biết lập trình. Trước
+ *  đây họ chọn "Công nghệ chuyên sâu" ở màn hướng dẫn 5 bước, rồi câu hỏi này
+ *  không có đáp án nào cho họ - gần nhất là "Học bài bản...", và màn kết quả
+ *  của nó nói "Lộ trình nền tảng: đi từ máy tính và dòng lệnh", ngược với điều
+ *  họ vừa chọn. Giờ đây là màn hỏi duy nhất, nên nó phải có lối cho họ. */
+type Choice = { key: string; goal: FlowId | null; track?: "personal" | "professional" };
 
 const CHOICES: Choice[] = [
   { key: "goalOffice", goal: "ai-assistant" },
@@ -37,16 +42,21 @@ const CHOICES: Choice[] = [
   { key: "goalMarketing", goal: "ai-marketing" },
   { key: "goalWebsite", goal: "website" },
   { key: "goalCareer", goal: null },
+  { key: "goalAdvanced", goal: null, track: "professional" },
 ];
 
 export default function DiagnosticPlacementModal({
   userId,
   isOpen,
   onClose,
+  onTrackChosen,
 }: {
   userId: string;
   isOpen: boolean;
   onClose: () => void;
+  /** Ghi hoàn tất onboarding + lộ trình đang học. Đây là màn hỏi duy nhất của
+   *  người mới, nên hoàn tất onboarding là việc của nó. */
+  onTrackChosen?: (track: "personal" | "professional") => void;
 }) {
   const router = useRouter();
   const { t } = useI18n();
@@ -72,7 +82,8 @@ export default function DiagnosticPlacementModal({
     const res = await saveLearningGoal(choice.goal).catch(() => ({ ok: false }));
     setSaving(false);
     if (!res.ok) setFailed(true);
-    remember(choice.goal ?? "personal");
+    remember(choice.goal ?? choice.track ?? "personal");
+    onTrackChosen?.(choice.track ?? "personal");
     window.dispatchEvent(new CustomEvent(LEARNING_GOAL_CHANGED));
     setPicked(choice);
   };
@@ -81,8 +92,11 @@ export default function DiagnosticPlacementModal({
 
   const startFirst = () => {
     onClose();
-    if (flow) router.push(`/bai-hoc/${flow.firstWinSlug}`);
-    else router.push("/dashboard?track=personal");
+    // `?hanh-trinh=` để trang bài gọi đúng vị trí trong hành trình ("Bài 1/13")
+    // thay vì số chặng của kho bài ("Chặng 25, Bài 5") - con số khiến người mới
+    // tưởng mình đã bỏ lỡ 24 chặng.
+    if (flow) router.push(`/bai-hoc/${flow.firstWinSlug}?hanh-trinh=${flow.id}`);
+    else router.push("/hoc-bai");
   };
 
   if (!isOpen) return null;
@@ -166,9 +180,13 @@ export default function DiagnosticPlacementModal({
                       <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-accent shadow-sm dark:bg-stone-900">
                         <Sprout className="h-5 w-5" aria-hidden />
                       </span>
-                      <p className="font-black tracking-tight text-ink-max">{d.goalCareerLead}</p>
+                      <p className="font-black tracking-tight text-ink-max">
+                        {picked?.track === "professional" ? d.goalAdvancedLead : d.goalCareerLead}
+                      </p>
                     </div>
-                    <p className="mt-3 text-sm leading-6 text-ink-body">{d.goalCareerDesc}</p>
+                    <p className="mt-3 text-sm leading-6 text-ink-body">
+                      {picked?.track === "professional" ? d.goalAdvancedDesc : d.goalCareerDesc}
+                    </p>
                   </div>
                 )}
                 {failed && <p className="text-xs font-semibold text-warn-strong">{d.goalSaveFailed}</p>}

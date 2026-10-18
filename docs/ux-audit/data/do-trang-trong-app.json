@@ -1,0 +1,660 @@
+[
+ {
+  "url": "/dashboard",
+  "title": "Tự học Công nghệ Mỗi Ngày",
+  "h1": [],
+  "words": 143,
+  "foldWords": 143,
+  "interactive": 32,
+  "foldInteractive": 32,
+  "primaryCtasInFold": [],
+  "smallTargets": 12,
+  "smallText": 11,
+  "lowContrast": 6,
+  "lowSamples": [
+   "Dashboard (1.00)",
+   "Túi vàng (3.80)",
+   "Tiếp theo (1.00)",
+   "1/5 thành viên hoạt động (1.24)",
+   "Chưa có tin nhắn nào. (3.19)",
+   "Xem thêm → (1.00)"
+  ],
+  "overflowX": false,
+  "scrollScreens": 1,
+  "vp": "desktop",
+  "loadMs": 3110,
+  "errors": []
+ },
+ {
+  "url": "/dashboard",
+  "title": "Tự học Công nghệ Mỗi Ngày",
+  "h1": [],
+  "words": 108,
+  "foldWords": 108,
+  "interactive": 22,
+  "foldInteractive": 22,
+  "primaryCtasInFold": [],
+  "smallTargets": 12,
+  "smallText": 5,
+  "lowContrast": 5,
+  "lowSamples": [
+   "Tự Học Công Nghệ (1.34)",
+   "Tiếp theo (1.00)",
+   "1/5 thành viên hoạt động (1.24)",
+   "Chưa có tin nhắn nào. (3.19)",
+   "Xem thêm → (1.00)"
+  ],
+  "overflowX": false,
+  "scrollScreens": 1,
+  "vp": "tablet",
+  "loadMs": 2899,
+  "errors": []
+ },
+ {
+  "url": "/dashboard",
+  "title": "Tự học Công nghệ Mỗi Ngày",
+  "h1": [],
+  "words": 102,
+  "foldWords": 102,
+  "interactive": 22,
+  "foldInteractive": 22,
+  "primaryCtasInFold": [],
+  "smallTargets": 14,
+  "smallText": 5,
+  "lowContrast": 4,
+  "lowSamples": [
+   "Tiếp theo (1.00)",
+   "1/5 thành viên hoạt động (1.24)",
+   "Chưa có tin nhắn nào. (3.19)",
+   "Xem thêm → (1.00)"
+  ],
+  "overflowX": false,
+  "scrollScreens": 1,
+  "vp": "m375",
+  "loadMs": 2807,
+  "errors": []
+ },
+ {
+  "url": "/dashboard",
+  "title": "Tự học Công nghệ Mỗi Ngày",
+  "h1": [],
+  "words": 102,
+  "foldWords": 102,
+  "interactive": 22,
+  "foldInteractive": 22,
+  "primaryCtasInFold": [],
+  "smallTargets": 14,
+  "smallText": 5,
+  "lowContrast": 4,
+  "lowSamples": [
+   "Tiếp theo (1.00)",
+   "1/5 thành viên hoạt động (1.24)",
+   "Chưa có tin nhắn nào. (3.19)",
+   "Xem thêm → (1.00)"
+  ],
+  "overflowX": false,
+  "scrollScreens": 1,
+  "vp": "m390",
+  "loadMs": 2680,
+  "errors": []
+ },
+ {
+  "url": "/lo-trinh",
+  "title": "Tự học Công nghệ Mỗi Ngày",
+  "h1": [
+   "Bắt đầu từ đâu"
+  ],
+  "words": 1118,
+  "foldWords": 345,
+  "interactive": 58,
+  "foldInteractive": 42,
+  "primaryCtasInFold": [
+   "Bắt đầu xây",
+   "Bắt đầu xây",
+   "Bắt đầu xây",
+   "Bắt đầu xây"
+  ],
+  "smallTargets": 21,
+  "smallText": 65,
+  "lowContrast": 6,
+  "lowSamples": [
+   "Bắt đầu từ đâu (1.00)",
+   "Túi vàng (3.80)",
+   "Mở bài học (1.08)",
+   "1/5 thành viên hoạt động (1.24)",
+   "Chưa có tin nhắn nào. (3.19)",
+   "Xem thêm → (1.00)"
+  ],
+  "overflowX": false,
+  "scrollScreens": 2.6,
+  "vp": "desktop",
+  "loadMs": 3174,
+  "errors": []
+ },
+ {
+  "url": "/lo-trinh",
+  "title": "Tự học Công nghệ Mỗi Ngày",
+  "h1": [
+   "Bắt đầu từ đâu"
+  ],
+  "words": 1083,
+  "foldWords": 366,
+  "interactive": 48,
+  "foldInteractive": 33,
+  "primaryCtasInFold": [
+   "Bắt đầu xây",
+   "Bắt đầu xây",
+   "Bắt đầu xây",
+   "Bắt đầu xây"
+  ],
+  "smallTargets": 21,
+  "smallText": 59,
+  "lowContrast": 5,
+  "lowSamples": [
+   "Tự Học Công Nghệ (1.34)",
+   "Mở bài học (1.08)",
+   "1/5 thành viên hoạt động (1.24)",
+   "Chưa có tin nhắn nào. (3.19)",
+   "Xem thêm → (1.00)"
+  ],
+  "overflowX": false,
+  "scrollScreens": 2.4,
+  "vp": "tablet",
+  "loadMs": 2557,
+  "errors": []
+ },
+ {
+  "url": "/lo-trinh",
+  "title": "Tự học Công nghệ Mỗi Ngày",
+  "h1": [
+   "Bắt đầu từ đâu"
+  ],
+  "words": 953,
+  "foldWords": 195,
+  "interactive": 48,
+  "foldInteractive": 26,
+  "primaryCtasInFold": [],
+  "smallTargets": 22,
+  "smallText": 59,
+  "lowContrast": 4,
+  "lowSamples": [
+   "Mở bài học (1.08)",
+   "1/5 thành viên hoạt động (1.24)",
+   "Chưa có tin nhắn nào. (3.19)",
+   "Xem thêm → (1.00)"
+  ],
+  "overflowX": false,
+  "scrollScreens": 3.5,
+  "vp": "m375",
+  "loadMs": 2868,
+  "errors": []
+ },
+ {
+  "url": "/lo-trinh",
+  "title": "Tự học Công nghệ Mỗi Ngày",
+  "h1": [
+   "Bắt đầu từ đâu"
+  ],
+  "words": 953,
+  "foldWords": 210,
+  "interactive": 48,
+  "foldInteractive": 27,
+  "primaryCtasInFold": [],
+  "smallTargets": 22,
+  "smallText": 59,
+  "lowContrast": 4,
+  "lowSamples": [
+   "Mở bài học (1.08)",
+   "1/5 thành viên hoạt động (1.24)",
+   "Chưa có tin nhắn nào. (3.19)",
+   "Xem thêm → (1.00)"
+  ],
+  "overflowX": false,
+  "scrollScreens": 3.3,
+  "vp": "m390",
+  "loadMs": 2621,
+  "errors": []
+ },
+ {
+  "url": "/hoc-bai",
+  "title": "Tự học Công nghệ Mỗi Ngày",
+  "h1": [],
+  "words": 143,
+  "foldWords": 143,
+  "interactive": 32,
+  "foldInteractive": 32,
+  "primaryCtasInFold": [],
+  "smallTargets": 12,
+  "smallText": 11,
+  "lowContrast": 6,
+  "lowSamples": [
+   "Học bài (1.00)",
+   "Túi vàng (3.80)",
+   "Tiếp theo (1.00)",
+   "1/5 thành viên hoạt động (1.24)",
+   "Chưa có tin nhắn nào. (3.19)",
+   "Xem thêm → (1.00)"
+  ],
+  "overflowX": false,
+  "scrollScreens": 1,
+  "vp": "desktop",
+  "loadMs": 3381,
+  "errors": []
+ },
+ {
+  "url": "/hoc-bai",
+  "title": "Tự học Công nghệ Mỗi Ngày",
+  "h1": [],
+  "words": 108,
+  "foldWords": 108,
+  "interactive": 22,
+  "foldInteractive": 22,
+  "primaryCtasInFold": [],
+  "smallTargets": 12,
+  "smallText": 5,
+  "lowContrast": 5,
+  "lowSamples": [
+   "Tự Học Công Nghệ (1.34)",
+   "Tiếp theo (1.00)",
+   "1/5 thành viên hoạt động (1.24)",
+   "Chưa có tin nhắn nào. (3.19)",
+   "Xem thêm → (1.00)"
+  ],
+  "overflowX": false,
+  "scrollScreens": 1,
+  "vp": "tablet",
+  "loadMs": 2769,
+  "errors": []
+ },
+ {
+  "url": "/hoc-bai",
+  "title": "Tự học Công nghệ Mỗi Ngày",
+  "h1": [],
+  "words": 102,
+  "foldWords": 102,
+  "interactive": 22,
+  "foldInteractive": 22,
+  "primaryCtasInFold": [],
+  "smallTargets": 14,
+  "smallText": 5,
+  "lowContrast": 4,
+  "lowSamples": [
+   "Tiếp theo (1.00)",
+   "1/5 thành viên hoạt động (1.24)",
+   "Chưa có tin nhắn nào. (3.19)",
+   "Xem thêm → (1.00)"
+  ],
+  "overflowX": false,
+  "scrollScreens": 1,
+  "vp": "m375",
+  "loadMs": 2814,
+  "errors": []
+ },
+ {
+  "url": "/hoc-bai",
+  "title": "Tự học Công nghệ Mỗi Ngày",
+  "h1": [],
+  "words": 102,
+  "foldWords": 102,
+  "interactive": 22,
+  "foldInteractive": 22,
+  "primaryCtasInFold": [],
+  "smallTargets": 14,
+  "smallText": 5,
+  "lowContrast": 4,
+  "lowSamples": [
+   "Tiếp theo (1.00)",
+   "1/5 thành viên hoạt động (1.24)",
+   "Chưa có tin nhắn nào. (3.19)",
+   "Xem thêm → (1.00)"
+  ],
+  "overflowX": false,
+  "scrollScreens": 1,
+  "vp": "m390",
+  "loadMs": 2756,
+  "errors": []
+ },
+ {
+  "url": "/cong-cu",
+  "title": "Tự học Công nghệ Mỗi Ngày",
+  "h1": [
+   "Làm việc trong môi trường nghề"
+  ],
+  "words": 262,
+  "foldWords": 232,
+  "interactive": 29,
+  "foldInteractive": 29,
+  "primaryCtasInFold": [],
+  "smallTargets": 8,
+  "smallText": 26,
+  "lowContrast": 11,
+  "lowSamples": [
+   "Mô phỏng công cụ (1.00)",
+   "Túi vàng (3.80)",
+   "CƠ CƠ (2.87)",
+   "0/24 ticket (3.19)",
+   "0/21 ticket (3.19)",
+   "0/28 ticket (3.19)"
+  ],
+  "overflowX": false,
+  "scrollScreens": 1.2,
+  "vp": "desktop",
+  "loadMs": 2374,
+  "errors": []
+ },
+ {
+  "url": "/cong-cu",
+  "title": "Tự học Công nghệ Mỗi Ngày",
+  "h1": [
+   "Làm việc trong môi trường nghề"
+  ],
+  "words": 227,
+  "foldWords": 223,
+  "interactive": 19,
+  "foldInteractive": 19,
+  "primaryCtasInFold": [],
+  "smallTargets": 8,
+  "smallText": 20,
+  "lowContrast": 10,
+  "lowSamples": [
+   "Tự Học Công Nghệ (1.34)",
+   "CƠ CƠ (2.87)",
+   "0/24 ticket (3.19)",
+   "0/21 ticket (3.19)",
+   "0/28 ticket (3.19)",
+   "0/18 ticket (3.19)"
+  ],
+  "overflowX": false,
+  "scrollScreens": 1.2,
+  "vp": "tablet",
+  "loadMs": 2256,
+  "errors": []
+ },
+ {
+  "url": "/cong-cu",
+  "title": "Tự học Công nghệ Mỗi Ngày",
+  "h1": [
+   "Làm việc trong môi trường nghề"
+  ],
+  "words": 258,
+  "foldWords": 165,
+  "interactive": 23,
+  "foldInteractive": 20,
+  "primaryCtasInFold": [],
+  "smallTargets": 12,
+  "smallText": 20,
+  "lowContrast": 10,
+  "lowSamples": [
+   "CƠ CƠ (2.87)",
+   "0/24 ticket (3.19)",
+   "0/21 ticket (3.19)",
+   "0/28 ticket (3.19)",
+   "0/18 ticket (3.19)",
+   "0/20 ticket (3.19)"
+  ],
+  "overflowX": false,
+  "scrollScreens": 2,
+  "vp": "m375",
+  "loadMs": 2662,
+  "errors": []
+ },
+ {
+  "url": "/cong-cu",
+  "title": "Tự học Công nghệ Mỗi Ngày",
+  "h1": [
+   "Làm việc trong môi trường nghề"
+  ],
+  "words": 210,
+  "foldWords": 125,
+  "interactive": 19,
+  "foldInteractive": 17,
+  "primaryCtasInFold": [],
+  "smallTargets": 10,
+  "smallText": 20,
+  "lowContrast": 9,
+  "lowSamples": [
+   "CƠ CƠ (2.87)",
+   "0/24 ticket (3.19)",
+   "0/21 ticket (3.19)",
+   "0/28 ticket (3.19)",
+   "0/18 ticket (3.19)",
+   "0/20 ticket (3.19)"
+  ],
+  "overflowX": false,
+  "scrollScreens": 1.8,
+  "vp": "m390",
+  "loadMs": 2040,
+  "errors": []
+ },
+ {
+  "url": "/kiem-tra",
+  "title": "Tự học Công nghệ Mỗi Ngày",
+  "h1": [
+   "Kiểm tra kiến thức"
+  ],
+  "words": 375,
+  "foldWords": 375,
+  "interactive": 44,
+  "foldInteractive": 44,
+  "primaryCtasInFold": [
+   "CHẠY PHIÊN LUYỆN\nNền tảng công nghệ · Tấ"
+  ],
+  "smallTargets": 12,
+  "smallText": 43,
+  "lowContrast": 16,
+  "lowSamples": [
+   "Kiểm tra (1.00)",
+   "Túi vàng (3.80)",
+   "Hôm nay (2.87)",
+   "+8 XP (1.08)",
+   "Gửi câu trả lời (2.87)",
+   "+8 XP (2.87)"
+  ],
+  "overflowX": false,
+  "scrollScreens": 1,
+  "vp": "desktop",
+  "loadMs": 3018,
+  "errors": []
+ },
+ {
+  "url": "/kiem-tra",
+  "title": "Tự học Công nghệ Mỗi Ngày",
+  "h1": [
+   "Kiểm tra kiến thức"
+  ],
+  "words": 300,
+  "foldWords": 263,
+  "interactive": 30,
+  "foldInteractive": 24,
+  "primaryCtasInFold": [],
+  "smallTargets": 10,
+  "smallText": 37,
+  "lowContrast": 14,
+  "lowSamples": [
+   "Tự Học Công Nghệ (1.34)",
+   "Hôm nay (2.87)",
+   "+8 XP (1.08)",
+   "Gửi câu trả lời (2.87)",
+   "+8 XP (2.87)",
+   "+5 XP / câu đúng (1.08)"
+  ],
+  "overflowX": false,
+  "scrollScreens": 1.1,
+  "vp": "tablet",
+  "loadMs": 2199,
+  "errors": []
+ },
+ {
+  "url": "/kiem-tra",
+  "title": "Tự học Công nghệ Mỗi Ngày",
+  "h1": [
+   "Kiểm tra kiến thức"
+  ],
+  "words": 272,
+  "foldWords": 177,
+  "interactive": 30,
+  "foldInteractive": 22,
+  "primaryCtasInFold": [],
+  "smallTargets": 12,
+  "smallText": 32,
+  "lowContrast": 11,
+  "lowSamples": [
+   "+8 XP (1.08)",
+   "Gửi câu trả lời (2.87)",
+   "+8 XP (2.87)",
+   "+5 XP / câu đúng (1.08)",
+   "CƠ CƠ (2.87)",
+   "Dễ (1.83)"
+  ],
+  "overflowX": false,
+  "scrollScreens": 1.1,
+  "vp": "m375",
+  "loadMs": 2284,
+  "errors": []
+ },
+ {
+  "url": "/kiem-tra",
+  "title": "Tự học Công nghệ Mỗi Ngày",
+  "h1": [
+   "Kiểm tra kiến thức"
+  ],
+  "words": 272,
+  "foldWords": 184,
+  "interactive": 30,
+  "foldInteractive": 22,
+  "primaryCtasInFold": [],
+  "smallTargets": 12,
+  "smallText": 32,
+  "lowContrast": 11,
+  "lowSamples": [
+   "+8 XP (1.08)",
+   "Gửi câu trả lời (2.87)",
+   "+8 XP (2.87)",
+   "+5 XP / câu đúng (1.08)",
+   "CƠ CƠ (2.87)",
+   "Dễ (1.83)"
+  ],
+  "overflowX": false,
+  "scrollScreens": 1.1,
+  "vp": "m390",
+  "loadMs": 2318,
+  "errors": []
+ },
+ {
+  "url": "/lo-trinh",
+  "title": "Tự học Công nghệ Mỗi Ngày",
+  "h1": [
+   "Bắt đầu từ đâu"
+  ],
+  "words": 1118,
+  "foldWords": 345,
+  "interactive": 58,
+  "foldInteractive": 42,
+  "primaryCtasInFold": [
+   "Bắt đầu xây",
+   "Bắt đầu xây",
+   "Bắt đầu xây",
+   "Bắt đầu xây"
+  ],
+  "smallTargets": 21,
+  "smallText": 65,
+  "lowContrast": 6,
+  "lowSamples": [
+   "Bắt đầu từ đâu (1.00)",
+   "Túi vàng (3.80)",
+   "Mở bài học (1.08)",
+   "1/5 thành viên hoạt động (1.24)",
+   "Chưa có tin nhắn nào. (3.19)",
+   "Xem thêm → (1.00)"
+  ],
+  "overflowX": false,
+  "scrollScreens": 2.6,
+  "vp": "desktop",
+  "loadMs": 3078,
+  "errors": []
+ },
+ {
+  "url": "/lo-trinh",
+  "title": "Tự học Công nghệ Mỗi Ngày",
+  "h1": [
+   "Bắt đầu từ đâu"
+  ],
+  "words": 1083,
+  "foldWords": 366,
+  "interactive": 48,
+  "foldInteractive": 33,
+  "primaryCtasInFold": [
+   "Bắt đầu xây",
+   "Bắt đầu xây",
+   "Bắt đầu xây",
+   "Bắt đầu xây"
+  ],
+  "smallTargets": 21,
+  "smallText": 59,
+  "lowContrast": 5,
+  "lowSamples": [
+   "Tự Học Công Nghệ (1.34)",
+   "Mở bài học (1.08)",
+   "1/5 thành viên hoạt động (1.24)",
+   "Chưa có tin nhắn nào. (3.19)",
+   "Xem thêm → (1.00)"
+  ],
+  "overflowX": false,
+  "scrollScreens": 2.4,
+  "vp": "tablet",
+  "loadMs": 3223,
+  "errors": []
+ },
+ {
+  "url": "/lo-trinh",
+  "title": "Tự học Công nghệ Mỗi Ngày",
+  "h1": [
+   "Bắt đầu từ đâu"
+  ],
+  "words": 953,
+  "foldWords": 195,
+  "interactive": 48,
+  "foldInteractive": 26,
+  "primaryCtasInFold": [],
+  "smallTargets": 22,
+  "smallText": 59,
+  "lowContrast": 4,
+  "lowSamples": [
+   "Mở bài học (1.08)",
+   "1/5 thành viên hoạt động (1.24)",
+   "Chưa có tin nhắn nào. (3.19)",
+   "Xem thêm → (1.00)"
+  ],
+  "overflowX": false,
+  "scrollScreens": 3.5,
+  "vp": "m375",
+  "loadMs": 3016,
+  "errors": []
+ },
+ {
+  "url": "/lo-trinh",
+  "title": "Tự học Công nghệ Mỗi Ngày",
+  "h1": [
+   "Bắt đầu từ đâu"
+  ],
+  "words": 953,
+  "foldWords": 210,
+  "interactive": 48,
+  "foldInteractive": 27,
+  "primaryCtasInFold": [],
+  "smallTargets": 22,
+  "smallText": 59,
+  "lowContrast": 4,
+  "lowSamples": [
+   "Mở bài học (1.08)",
+   "1/5 thành viên hoạt động (1.24)",
+   "Chưa có tin nhắn nào. (3.19)",
+   "Xem thêm → (1.00)"
+  ],
+  "overflowX": false,
+  "scrollScreens": 3.3,
+  "vp": "m390",
+  "loadMs": 2518,
+  "errors": []
+ }
+]

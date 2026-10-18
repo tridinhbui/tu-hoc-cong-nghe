@@ -25,7 +25,6 @@ import UserStats from "@/components/UserStats";
 import ChatWithAdminWidget from "@/components/ChatWithAdminWidget";
 import FloatingStudyGroupChat from "@/components/FloatingStudyGroupChat";
 import LessonAppealModal from "@/components/LessonAppealModal";
-import OnboardingFlow from "@/components/OnboardingFlow";
 import ResumeLearningButton from "@/components/ResumeLearningButton";
 import YesterdayTaskCard from "@/components/YesterdayTaskCard";
 import LearningFocusHero from "@/components/LearningFocusHero";
@@ -164,7 +163,7 @@ function formatLessonTime(
 }
 
 // Local fast-path/fallback cache for the onboarding modal's "seen" state -
-// see handleOnboardingSkip for why this exists.
+// a skip used to be remembered only here when the server check failed open.
 const ONBOARDING_LOCAL_KEY = "onboarding_seen_v1";
 
 /* ─── Component ─────────────────────────────────────────────────── */
@@ -411,8 +410,6 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
   const [openStages, setOpenStages] = useState<Set<string>>(new Set());
   const [openParts, setOpenParts] = useState<Set<string>>(new Set());
   const [stageSearchQuery, setStageSearchQuery] = useState("");
-  const [showOnboarding, setShowOnboarding] = useState(false);
-  const [onboardingChecked, setOnboardingChecked] = useState(false);
   const [challengePassedIds, setChallengePassedIds] = useState<Set<number>>(new Set());
   const [unlockModalLesson, setUnlockModalLesson] = useState<LessonMeta | null>(null);
   const [challengeGateLesson, setChallengeGateLesson] = useState<LessonMeta | null>(null);
@@ -444,12 +441,19 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
   const [showBossBattle, setShowBossBattle] = useState(false);
   const [showPvpModal, setShowPvpModal] = useState(false);
   const [showPlacementModal, setShowPlacementModal] = useState(false);
+  // Lượt vào nào đã hỏi "Bạn học để làm gì?" thì không chạy tour nữa: người
+  // mới vừa trả lời xong là bấm sang bài đầu, tour chen vào lúc đó chỉ là một
+  // lớp phủ nữa - và nó tự đánh dấu "đã xem" dù chưa ai kịp đọc.
+  const [placementAskedThisVisit, setPlacementAskedThisVisit] = useState(false);
 
   useEffect(() => {
     if (user?.id) {
       try {
         const saved = localStorage.getItem(`thtcdn_placement_test_${user.id}`);
-        if (!saved) setShowPlacementModal(true);
+        if (!saved) {
+          setShowPlacementModal(true);
+          setPlacementAskedThisVisit(true);
+        }
       } catch (e) {}
     }
   }, [user?.id]);
@@ -741,6 +745,9 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
 
   const handleOnboardingComplete = async (selectedTrack: "personal" | "professional") => {
     if (user?.id) {
+      // Ghi lộ trình xuống máy TRƯỚC khi chờ máy chủ: người học bấm "Bắt đầu"
+      // ngay sau khi chọn, và trang kế tiếp đọc lộ trình từ localStorage.
+      setActiveTrack(selectedTrack);
       try {
         await completeOnboarding(user.id, selectedTrack);
         // setActiveTrack, not setActiveTrackState: the track drives which
@@ -751,7 +758,6 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
         // the branch pills never appeared, and no reload fixed it because the key was never written.
         setActiveTrack(selectedTrack);
         localStorage.setItem(ONBOARDING_LOCAL_KEY, "1");
-        setShowOnboarding(false);
       } catch (error) {
         // Lưu lên server hỏng thì vẫn cho vào học: đóng màn hướng dẫn, giữ
         // lộ trình vừa chọn và nhớ trên máy như nút "Bỏ qua". Trước đây lỗi
@@ -760,21 +766,10 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
         console.error("Error completing onboarding:", error);
         setActiveTrack(selectedTrack);
         localStorage.setItem(ONBOARDING_LOCAL_KEY, "1");
-        setShowOnboarding(false);
       }
     }
   };
 
-  const handleOnboardingSkip = () => {
-    // Previously this only closed the modal for the current page view -
-    // nothing was ever persisted, so a plain reload (or the DB-backed check
-    // failing open because the user_onboarding migration hasn't been applied
-    // on this environment yet) brought the exact same modal right back on
-    // every single dashboard visit. Remember "skipped" locally too, so it
-    // never resurfaces regardless of what the server-side check reports.
-    localStorage.setItem(ONBOARDING_LOCAL_KEY, "1");
-    setShowOnboarding(false);
-  };
 
   // Synchronize stats & progress with database using optimized batch RPCs and caching
   const syncProgressAndXP = useCallback(async function syncProgressAndXP(userId: string) {
@@ -802,15 +797,8 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
       setExamCreditedIds(new Set(cachedLessonState.exam_credited_lessons ?? []));
       setBookmarks(cachedLessonState.bookmarks.slice(0, 6));
 
-      if (window.localStorage.getItem(ONBOARDING_LOCAL_KEY)) {
-        setOnboardingChecked(true);
-      } else {
-        setOnboardingChecked(true);
-        if (cachedSummary.has_completed_onboarding) {
-          window.localStorage.setItem(ONBOARDING_LOCAL_KEY, "1");
-        } else {
-          setShowOnboarding(true);
-        }
+      if (!window.localStorage.getItem(ONBOARDING_LOCAL_KEY) && cachedSummary.has_completed_onboarding) {
+        window.localStorage.setItem(ONBOARDING_LOCAL_KEY, "1");
       }
     }
 
@@ -842,15 +830,8 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
       setExamCreditedIds(new Set(lessonState.exam_credited_lessons ?? []));
       setBookmarks(lessonState.bookmarks.slice(0, 6));
 
-      if (window.localStorage.getItem(ONBOARDING_LOCAL_KEY)) {
-        setOnboardingChecked(true);
-      } else {
-        setOnboardingChecked(true);
-        if (summary.has_completed_onboarding) {
-          window.localStorage.setItem(ONBOARDING_LOCAL_KEY, "1");
-        } else {
-          setShowOnboarding(true);
-        }
+      if (!window.localStorage.getItem(ONBOARDING_LOCAL_KEY) && summary.has_completed_onboarding) {
+        window.localStorage.setItem(ONBOARDING_LOCAL_KEY, "1");
       }
 
       // Fetch RPG Equipped gear
@@ -992,15 +973,12 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
     );
   }
 
-  // Show onboarding if not completed
-  if (showOnboarding && onboardingChecked) {
-    return (
-      <OnboardingFlow
-        onComplete={handleOnboardingComplete}
-        onSkip={handleOnboardingSkip}
-      />
-    );
-  }
+  // Màn hướng dẫn 5 bước (OnboardingFlow) không còn hiện. Người mới từng gặp
+  // nó, rồi NGAY SAU đó là câu "Bạn học để làm gì?", popup "Mời bạn học cùng"
+  // và tour 3 bước - bốn lớp phủ trước bài đầu tiên, và lớp thứ hai hỏi lại
+  // đúng câu lớp thứ nhất vừa hỏi (chọn lộ trình), có khi đặt ngược lại lựa
+  // chọn vừa xong. Giờ câu "Bạn học để làm gì?" là bước duy nhất, và chính nó
+  // ghi hoàn tất onboarding (onTrackChosen bên dưới).
 
   // Client-side lock check - must stay in sync with lib/lesson-lock-rule.ts.
   // Site-wide: lesson locking is disabled for everyone (see
@@ -3085,8 +3063,11 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
         <LessonAppealModal userId={user.id} lesson={appealTarget} onClose={() => setAppealTarget(null)} />
       )}
 
-      {/* One-time spotlight walkthrough for brand-new users */}
-      <DashboardTour userId={user?.id} view={view} />
+      {/* One-time spotlight walkthrough for brand-new users. Chờ câu "Bạn học
+          để làm gì?" đóng lại: lớp làm tối của tour nằm TRÊN hộp thoại đó, nên
+          khi cả hai cùng mở thì nút "Bắt đầu bài đầu tiên" bấm không ăn - người
+          mới bị kẹt ngay ở bước đầu (đo bằng Playwright, DEEP-UX-USABILITY-AUDIT.md). */}
+      <DashboardTour userId={user?.id} view={view} paused={showPlacementModal || placementAskedThisVisit} />
 
       {/* Unlock request modal - shown when clicking a locked lesson */}
       {unlockModalLesson && user?.id && (
@@ -3205,6 +3186,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
           userId={user.id}
           isOpen={showPlacementModal}
           onClose={() => setShowPlacementModal(false)}
+          onTrackChosen={(track) => void handleOnboardingComplete(track)}
         />
       )}
     </div>

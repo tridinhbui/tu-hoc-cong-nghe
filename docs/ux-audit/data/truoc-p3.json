@@ -1,0 +1,139 @@
+{
+ "persona": "p3",
+ "name": "Sinh viên tự học từ 0",
+ "vp": "m390",
+ "goal": "Học bài bản để đi làm nghề",
+ "stages": {
+  "A_landing_signup": {
+   "actions": 6,
+   "overlays": 0,
+   "deadEnds": [],
+   "screensScrolled": 0,
+   "wordsScanned": 210,
+   "ms": 6866,
+   "notes": [
+    "đăng ký xong vào /dashboard"
+   ],
+   "estHumanSec": 68
+  },
+  "B_onboarding_to_lesson1": {
+   "actions": 9,
+   "overlays": 8,
+   "deadEnds": [],
+   "screensScrolled": 0,
+   "wordsScanned": 40,
+   "ms": 8224,
+   "notes": [
+    "bài đầu: /bai-hoc/do-thoi-gian-truoc-khi-lap-ke-hoach-hoc"
+   ],
+   "estHumanSec": 33
+  },
+  "C_lesson_and_quiz": {
+   "actions": 12,
+   "overlays": 0,
+   "deadEnds": [],
+   "screensScrolled": 12.5,
+   "wordsScanned": 138,
+   "ms": 8189,
+   "notes": [
+    "h1=\"Chặng 1, Bài 1: Đo thời gian - đo trước khi phân bổ\"; 1449 chữ; 12.5 màn hình; 6 điều khiển trong màn đầu",
+    "trả lời 4 câu quiz",
+    "quiz xong nhưng bài CHƯA hoàn thành: còn câu 'Dừng & Kiểm tra' giữa bài",
+    "có phản hồi hoàn thành/XP trên màn hình"
+   ],
+   "estHumanSec": 65
+  },
+  "D_practice_tool": {
+   "actions": 4,
+   "overlays": 0,
+   "deadEnds": [],
+   "screensScrolled": 0,
+   "wordsScanned": 189,
+   "ms": 8078,
+   "notes": [
+    "/cong-cu: 107 chữ trong màn đầu",
+    "KHÔNG có gợi ý nên chọn công cụ nào - 5 lựa chọn ngang hàng",
+    "vào /cong-cu/terminal"
+   ],
+   "estHumanSec": 57
+  },
+  "E_progress": {
+   "actions": 2,
+   "overlays": 0,
+   "deadEnds": [],
+   "screensScrolled": 0,
+   "wordsScanned": 82,
+   "ms": 3180,
+   "notes": [
+    "khối tiến độ: Thi thăng cấp LV02"
+   ],
+   "estHumanSec": 26
+  },
+  "F_return_next_day": {
+   "actions": 2,
+   "overlays": 1,
+   "deadEnds": [],
+   "screensScrolled": 0,
+   "wordsScanned": 163,
+   "ms": 12316,
+   "notes": [
+    "tiếp tục ở /bai-hoc/do-thoi-gian-truoc-khi-lap-ke-hoach-hoc"
+   ],
+   "estHumanSec": 46
+  }
+ },
+ "total": {
+  "actions": 35,
+  "overlays": 9,
+  "deadEnds": 0,
+  "estSec": 306
+ },
+ "log": [
+  "[A_landing_signup] VÀO HỌC NGAY",
+  "[A_landing_signup] chuyển sang Đăng ký",
+  "[A_landing_signup] điền tên",
+  "[A_landing_signup] điền email",
+  "[A_landing_signup] điền mật khẩu",
+  "[A_landing_signup] bấm Đăng ký",
+  "[A_landing_signup] note: đăng ký xong vào /dashboard",
+  "[B_onboarding_to_lesson1] onboarding: Tiếp theo",
+  "[B_onboarding_to_lesson1] onboarding: Tiếp theo",
+  "[B_onboarding_to_lesson1] onboarding: Tiếp theo",
+  "[B_onboarding_to_lesson1] onboarding: Tiếp theo",
+  "[B_onboarding_to_lesson1] onboarding: Bắt đầu học",
+  "[B_onboarding_to_lesson1] chọn mục tiêu: Học bài bản để đi làm nghề",
+  "[B_onboarding_to_lesson1] tour: Bỏ qua",
+  "[B_onboarding_to_lesson1] tour: Bỏ qua",
+  "[B_onboarding_to_lesson1] bấm Học tiếp",
+  "[B_onboarding_to_lesson1] note: bài đầu: /bai-hoc/do-thoi-gian-truoc-khi-lap-ke-hoach-hoc",
+  "[C_lesson_and_quiz] note: h1=\"Chặng 1, Bài 1: Đo thời gian - đo trước khi phân bổ\"; 1449 chữ; 12.5 màn hình; 6 điều khiển trong màn đầu",
+  "[C_lesson_and_quiz] chọn đáp án",
+  "[C_lesson_and_quiz] Kiểm tra đáp án",
+  "[C_lesson_and_quiz] Câu tiếp",
+  "[C_lesson_and_quiz] chọn đáp án",
+  "[C_lesson_and_quiz] Kiểm tra đáp án",
+  "[C_lesson_and_quiz] Câu tiếp",
+  "[C_lesson_and_quiz] chọn đáp án",
+  "[C_lesson_and_quiz] Kiểm tra đáp án",
+  "[C_lesson_and_quiz] Câu tiếp",
+  "[C_lesson_and_quiz] chọn đáp án",
+  "[C_lesson_and_quiz] Kiểm tra đáp án",
+  "[C_lesson_and_quiz] Câu tiếp",
+  "[C_lesson_and_quiz] note: trả lời 4 câu quiz",
+  "[C_lesson_and_quiz] note: quiz xong nhưng bài CHƯA hoàn thành: còn câu 'Dừng & Kiểm tra' giữa bài",
+  "[C_lesson_and_quiz] note: có phản hồi hoàn thành/XP trên màn hình",
+  "[D_practice_tool] trang bài không có menu - bấm Quay lại",
+  "[D_practice_tool] mở menu",
+  "[D_practice_tool] menu: Mô phỏng công cụ",
+  "[D_practice_tool] note: /cong-cu: 107 chữ trong màn đầu",
+  "[D_practice_tool] note: KHÔNG có gợi ý nên chọn công cụ nào - 5 lựa chọn ngang hàng",
+  "[D_practice_tool] Bắt đầu công cụ đầu tiên",
+  "[D_practice_tool] note: vào /cong-cu/terminal",
+  "[E_progress] mở menu",
+  "[E_progress] menu: ^Dashboard$|Trang chính|Tổng quan",
+  "[E_progress] note: khối tiến độ: Thi thăng cấp LV02",
+  "[F_return_next_day] đóng popup Mời bạn học cùng",
+  "[F_return_next_day] Học tiếp",
+  "[F_return_next_day] note: tiếp tục ở /bai-hoc/do-thoi-gian-truoc-khi-lap-ke-hoach-hoc"
+ ]
+}

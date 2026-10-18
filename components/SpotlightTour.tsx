@@ -21,6 +21,9 @@ interface Props {
   userId?: string | null;
   /** Key inside user_profiles.tour_flags for this specific tour, e.g. "dashboard". */
   remoteKey?: string;
+  /** Đừng bắt đầu khi một hộp thoại khác đang mở: lớp làm tối của tour nằm
+   *  trên mọi thứ, kể cả nút của hộp thoại ấy. Hết `paused` thì tour mới chạy. */
+  paused?: boolean;
 }
 
 // Generic one-time spotlight walkthrough: dims the whole screen except the
@@ -37,7 +40,7 @@ interface Props {
 // was already seen, so it can resurface on almost every login. The server
 // flag is the actual source of truth; localStorage just avoids a network
 // round trip on the common case where it's already known to be seen.
-export default function SpotlightTour({ steps, storageKey, userId, remoteKey }: Props) {
+export default function SpotlightTour({ steps, storageKey, userId, remoteKey, paused = false }: Props) {
   const { t } = useI18n();
   const [stepIndex, setStepIndex] = useState(-1);
   const [rect, setRect] = useState<DOMRect | null>(null);
@@ -54,6 +57,7 @@ export default function SpotlightTour({ steps, storageKey, userId, remoteKey }: 
 
   useEffect(() => {
     if (typeof window === "undefined") return;
+    if (paused) return;
     if (window.localStorage.getItem(storageKey)) return;
 
     let cancelled = false;
@@ -92,7 +96,7 @@ export default function SpotlightTour({ steps, storageKey, userId, remoteKey }: 
       if (startTimer) clearTimeout(startTimer);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [storageKey, userId, remoteKey]);
+  }, [storageKey, userId, remoteKey, paused]);
 
   // The browser can restore this exact page (including this component's
   // still-mid-tour React state) straight from the back/forward cache when
