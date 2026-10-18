@@ -139,7 +139,7 @@ export function EditorialJourney({ n }: { n: number }) {
           <span aria-hidden className="absolute bottom-6 left-5 top-6 w-px bg-black/15 dark:bg-white/15 sm:left-7" />
           <span
             aria-hidden
-            className="absolute bottom-6 left-5 top-6 w-0.5 -translate-x-px origin-top bg-brand-600 dark:bg-brand-400 sm:left-7"
+            className="absolute bottom-6 left-5 top-6 w-0.5 -translate-x-px origin-top bg-brand-600 dark:bg-brand-500 sm:left-7"
             style={{ transform: "scaleY(var(--p, 1))" }}
           />
           {v.journeySteps.map((s, i) => (
