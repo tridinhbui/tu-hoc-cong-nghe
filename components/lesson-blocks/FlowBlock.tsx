@@ -7,8 +7,12 @@ import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 import { Sys, btnPrimary, btnSecondary } from "@/components/ui/system";
 
-/** Khối `flow` - xem lib/lesson-types.ts. Sơ đồ chạy từng bước: ngang trên
- *  máy tính, dọc trên điện thoại; một chấm chạy dọc đường nối tới bước đang mở. */
+/** Khối `flow` - xem lib/lesson-types.ts. Sơ đồ chạy từng bước, nằm ngang ở
+ *  mọi cỡ màn hình; một chấm chạy dọc đường nối tới bước đang mở.
+ *
+ *  Dưới `sm` chỉ còn hàng số: nhãn của từng bước chỉ để trình đọc màn hình
+ *  đọc, vì ô chi tiết ngay bên dưới đã ghi nhãn của bước đang mở. Bản dọc kèm
+ *  nhãn cũ cao ~320px cho năm bước (F-8, lượt năm, DEEP-UX-USABILITY-AUDIT.md). */
 export type FlowBlockProps = Extract<LessonSectionBlock, { type: "flow" }> & { onPass?: () => void };
 
 const RUN_INTERVAL_MS = 1100;
@@ -100,28 +104,26 @@ export default function FlowBlock({ title, steps, onPass }: FlowBlockProps) {
         </div>
         <Sys className="text-ink-muted">{format(t.lessonBlockVisual.stepOf, { n: active + 1, total: n })}</Sys>
       </div>
-      <h4 className="mb-4 text-base font-bold text-ink-max">{title}</h4>
+      <h4 className="mb-3 text-base font-bold text-ink-max sm:mb-4">{title}</h4>
 
-      <ol aria-label={t.lessonBlockVisual.stepListLabel} onKeyDown={onKey} className="flex flex-col sm:flex-row">
+      <ol aria-label={t.lessonBlockVisual.stepListLabel} onKeyDown={onKey} className="flex flex-row">
         {steps.map((s, i) => {
           const done = i < active;
           const isActive = i === active;
           const segFilled = i < active;
           const dotHere = i === active - 1;
           return (
-            <li key={i} className="relative flex flex-row gap-3 pb-6 last:pb-0 sm:flex-1 sm:flex-col sm:items-center sm:gap-2 sm:pb-0 sm:text-center">
+            <li key={i} className="relative flex flex-1 flex-col items-center gap-2 text-center">
               {i < lastIdx && (
                 <span
                   aria-hidden
-                  className="absolute left-4 top-9 bottom-1 w-0.5 -translate-x-1/2 bg-line sm:left-[calc(50%+22px)] sm:right-auto sm:top-4 sm:bottom-auto sm:h-0.5 sm:w-[calc(100%-44px)] sm:translate-x-0 sm:-translate-y-1/2"
+                  className="absolute left-[calc(50%+22px)] top-4 h-0.5 w-[calc(100%-44px)] -translate-y-1/2 bg-line"
                 >
                   <span
-                    className={`absolute left-0 top-0 w-full bg-brand-600 dark:bg-brand-500 sm:h-full ${motion} ${
-                      segFilled ? "h-full sm:w-full" : "h-0 sm:w-0"
-                    }`}
+                    className={`absolute left-0 top-0 h-full bg-brand-600 dark:bg-brand-500 ${motion} ${segFilled ? "w-full" : "w-0"}`}
                   >
                     {dotHere && (
-                      <span className="absolute bottom-0 left-1/2 h-2.5 w-2.5 -translate-x-1/2 translate-y-1/2 rounded-full bg-brand-600 dark:bg-brand-500 sm:bottom-auto sm:left-auto sm:right-0 sm:top-1/2 sm:translate-x-1/2 sm:-translate-y-1/2" />
+                      <span className="absolute right-0 top-1/2 h-2.5 w-2.5 translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-600 dark:bg-brand-500" />
                     )}
                   </span>
                 </span>
@@ -150,7 +152,7 @@ export default function FlowBlock({ title, steps, onPass }: FlowBlockProps) {
                 <span className="relative">{i + 1}</span>
               </button>
               <span
-                className={`pt-1 text-sm sm:px-1 sm:pt-0 ${isActive ? "font-bold text-ink-max" : done ? "text-ink" : "text-ink-muted"}`}
+                className={`text-sm max-sm:sr-only sm:px-1 ${isActive ? "font-bold text-ink-max" : done ? "text-ink" : "text-ink-muted"}`}
               >
                 {s.label}
               </span>
@@ -159,7 +161,7 @@ export default function FlowBlock({ title, steps, onPass }: FlowBlockProps) {
         })}
       </ol>
 
-      <div className="mt-5 rounded-control border border-accent-line bg-accent-soft p-3 sm:p-4" aria-live="polite">
+      <div className="mt-4 rounded-control sm:mt-5 border border-accent-line bg-accent-soft p-3 sm:p-4" aria-live="polite">
         <p className="mb-1 text-sm font-bold text-accent-strong">
           {active + 1}. {current?.label}
         </p>
@@ -171,7 +173,9 @@ export default function FlowBlock({ title, steps, onPass }: FlowBlockProps) {
       <div className="mt-4 flex flex-wrap gap-2">
         <button type="button" className={btnSecondary} onClick={() => go(active - 1)} disabled={active === 0}>
           <ChevronLeft className="h-4 w-4" aria-hidden />
-          {t.lessonBlockVisual.prev}
+          {/* Dưới `sm` nút lùi và nút chạy hết chỉ còn biểu tượng, để ba nút nằm
+              trên một hàng; nút "Bước tiếp" giữ chữ vì là việc chính. */}
+          <span className="max-sm:sr-only">{t.lessonBlockVisual.prev}</span>
         </button>
         <button type="button" className={btnPrimary} onClick={() => go(active + 1)} disabled={active >= lastIdx}>
           {t.lessonBlockVisual.next}
@@ -179,7 +183,7 @@ export default function FlowBlock({ title, steps, onPass }: FlowBlockProps) {
         </button>
         <button type="button" className={btnSecondary} onClick={runAll} disabled={running}>
           {active >= lastIdx ? <RotateCcw className="h-4 w-4" aria-hidden /> : <Play className="h-4 w-4" aria-hidden />}
-          {active >= lastIdx ? t.lessonBlockVisual.restart : t.lessonBlockVisual.runAll}
+          <span className="max-sm:sr-only">{active >= lastIdx ? t.lessonBlockVisual.restart : t.lessonBlockVisual.runAll}</span>
         </button>
       </div>
     </section>

@@ -1,0 +1,20 @@
+{"H":7027,"screens":8.3,"words":1173,"aside":624}
+288 Trung bình · 14 phút đọc · 4 câu quiz LLM API, Bài 1: Mô hìn
+5645 VÌ SAO BÀI NÀY QUAN TRỌNG Từ phía giao diện chat, mô hình có
+  227 VÌ SAO BÀI NÀY QUAN TRỌNG Từ phía giao diện chat, mô hình có
+  449 BẮT ĐẦU BẰNG MỘT CÂU HỎI Người dùng chat 20 lượt với bot của
+  4219 Chặng này dạy bạn gọi mô hình ngôn ngữ lớn (LLM) từ mã như m
+    180 Chặng này dạy bạn gọi mô hình ngôn ngữ lớn (LLM) từ mã như m
+    56 Token: đơn vị của mọi thứ
+    252 Mô hình đọc token - mẩu văn bản do bộ tách từ cắt ra, có khi
+    84 Không trạng thái: lịch sử là việc của bạn
+    555 JAVASCRIPT Chép const SYSTEM = 400; const MOI_TIN = 60; let 
+    95 Mô hình không nhớ gì, nên lượt 30 mang theo cả 29 lượt trước
+    619 Ba tham số hay bị hiểu lầm Chạm hoặc di chuột vào từng dòng 
+    142 SẮP CHẠM TRẦN THÌ LÀM GÌ Giữ vài lượt gần nhất, tóm tắt phần
+    1257 BÀI TẬP · JAVASCRIPT · Không bắt buộc Cửa sổ trượt cho lịch 
+    502 Dừng & Kiểm tra ĐIỂM GIỮA BÀI Vì sao chi phí mỗi lượt chat t
+    190 Từ phía API, mô hình là một hàm: token vào, token ra, không 
+  437 SƠ ĐỒ TRỰC QUAN 01 Văn bản được tách thành token 02 Lịch sử 
+  54 VÍ DỤ THỰC TẾ · BOT CHĂM SÓC KHÁCH HÀNG NỘI BỘ
+  123 Học sâu hơn Giải thích kiểu lớp 5 · Thực hành thêm · Sơ đồ ·

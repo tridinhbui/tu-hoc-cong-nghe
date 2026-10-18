@@ -1,0 +1,22 @@
+{"H":6160,"screens":7.3,"words":957,"aside":652}
+258 Dễ · 10 phút đọc · 4 câu quiz Web hoạt động thế nào Từ lúc b
+4778 VÌ SAO BÀI NÀY QUAN TRỌNG Không có bức tranh này thì mọi lỗi
+  196 VÌ SAO BÀI NÀY QUAN TRỌNG Không có bức tranh này thì mọi lỗi
+  449 BẮT ĐẦU BẰNG MỘT CÂU HỎI Bạn mở một trang web trên điện thoạ
+  3362 Trước khi viết thẻ HTML đầu tiên, hãy trả lời một câu ít ngư
+    144 Trước khi viết thẻ HTML đầu tiên, hãy trả lời một câu ít ngư
+    56 Bốn bước
+    325 Tra địa chỉ bạn gõ ra số hiệu máy chủ (DNS). Gửi yêu cầu HTT
+    173 MỘT TRANG LÀ NHIỀU YÊU CẦU Máy chủ không gửi cả trang trong 
+    56 Mã trạng thái - đọc chữ số đầu
+    537 Bạn sẽ đọc chúng mỗi ngày Nhóm 2 200 Thành công. Nhóm 3 301,
+    126 404 nghĩa là máy chủ vẫn sống và vẫn trả lời - chỉ đường dẫn
+    502 Dừng & Kiểm tra ĐIỂM GIỮA BÀI Nhóm mã trạng thái bắt đầu bằn
+    56 Từ HTML tới cây tài liệu
+    189 Trình duyệt không vẽ thẳng từ văn bản HTML. Nó dựng một cây 
+    142 BỘ NHỚ ĐỆM, KẺ THÙ LÚC HỌC Trình duyệt giữ lại tệp tĩnh để l
+    511 TÌNH HUỐNG Sửa CSS mà trang không chịu đổi Bạn đổi màu nền t
+    222 Bốn bước này lặp lại mỗi lần bạn mở một trang, và chúng là b
+  482 SƠ ĐỒ TRỰC QUAN 01 Trình duyệt tra địa chỉ ra số hiệu máy ch
+  32 VÍ DỤ THỰC TẾ · MỌI TRANG BẠN MỞ
+  123 Học sâu hơn Giải thích kiểu lớp 5 · Thực hành thêm · Sơ đồ ·

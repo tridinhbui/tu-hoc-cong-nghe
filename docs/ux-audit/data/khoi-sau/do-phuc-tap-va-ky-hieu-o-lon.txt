@@ -1,0 +1,23 @@
+{"H":8194,"screens":9.7,"words":1455,"aside":624}
+288 Trung bình · 15 phút đọc · 4 câu quiz Độ phức tạp và ký hiệu
+6811 VÌ SAO BÀI NÀY QUAN TRỌNG Đo trên máy mình cho một con số đú
+  227 VÌ SAO BÀI NÀY QUAN TRỌNG Đo trên máy mình cho một con số đú
+  420 BẮT ĐẦU BẰNG MỘT CÂU HỎI Thuật toán A chạy một nghìn bước, t
+  5901 Phần đầu chặng nói về cấu trúc dữ liệu Data Structure + Lưu 
+    217 Phần đầu chặng nói về cấu trúc dữ liệu Data Structure + Lưu 
+    56 Vì sao không đo bằng giây
+    189 Đo trên máy bạn cho một con số đúng với đúng máy đó, đúng ng
+    236 CÁCH RÚT GỌN Đếm số thao tác theo n, rồi bỏ hằng số nhân và 
+    56 Sáu bậc bạn sẽ gặp
+    854 Từ rẻ tới đắt Hằng số O(1) Không phụ thuộc n. Tra bảng băm, 
+    56 Giới hạn phải nhớ
+    458 KÝ HIỆU NÓI GÌ Hành vi khi n tiến ra rất lớn. Nó cho bạn so 
+    221 Bằng chứng rõ nhất cho cột bên phải: thư viện chuẩn của hầu 
+    189 Cuối cùng, đừng quên độ phức tạp không gian: lượng bộ nhớ TH
+    393 JAVASCRIPT Chép function dem(n) { let tuyenTinh = 0, binhPhu
+    1239 BÀI TẬP · JAVASCRIPT · Không bắt buộc Tìm cặp có tổng bằng m
+    529 Dừng & Kiểm tra ĐIỂM GIỮA BÀI Vì sao n nhân logarit n được c
+    560 BIỂU ĐỒ Số thao tác của năm bậc khi n = 1.000 O(1) O(log n) 
+    253 Độ phức tạp cho bạn hình dạng; phép đo cho bạn con số. Bạn c
+  32 VÍ DỤ THỰC TẾ · BẢNG SO SÁNH TRÊN GIẤY
+  123 Học sâu hơn Giải thích kiểu lớp 5 · Thực hành thêm · Sơ đồ ·

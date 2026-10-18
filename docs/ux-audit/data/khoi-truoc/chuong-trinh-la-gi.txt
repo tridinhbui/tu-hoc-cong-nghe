@@ -1,0 +1,22 @@
+{"H":7702,"screens":9.1,"words":1262,"aside":748}
+258 Dễ · 14 phút đọc · 4 câu quiz Chương trình là gì Từ một tệp 
+6224 VÌ SAO BÀI NÀY QUAN TRỌNG Người mới thường học cú pháp trước
+  227 VÌ SAO BÀI NÀY QUAN TRỌNG Người mới thường học cú pháp trước
+  485 BẮT ĐẦU BẰNG MỘT CÂU HỎI Bạn gõ một tệp văn bản chứa mã nguồ
+  4808 Trước khi gõ dòng mã đầu tiên, có một câu hỏi đáng dừng lại 
+    252 Trước khi gõ dòng mã đầu tiên, có một câu hỏi đáng dừng lại 
+    56 Máy không hiểu ngôn ngữ của bạn
+    252 Bộ xử lý chỉ hiểu lệnh máy: những dãy số quy định sẵn cho từ
+    521 TRÌNH BIÊN DỊCH Dịch trọn chương trình thành lệnh máy trước,
+    268 MÃ NGUỒN CHỈ LÀ VĂN BẢN Điều này làm nhiều người mới ngạc nh
+    312 PYTHON Chép # Dòng bắt đầu bằng # là chú thích - máy bỏ qua 
+    56 Hai loại lỗi, và loại nào đáng sợ hơn
+    189 Phân biệt này sẽ theo bạn suốt sự nghiệp, nên nắm ngay từ bà
+    252 Lỗi logic thì khác hẳn: mã đúng cú pháp hoàn toàn, chạy trơn
+    828 Từ vựng của bài đầu tiên Chạm hoặc di chuột vào từng dòng 01
+    502 Dừng & Kiểm tra ĐIỂM GIỮA BÀI Cú pháp của một ngôn ngữ lập t
+    726 BÀI TẬP · PYTHON · Không bắt buộc Sửa lỗi cú pháp đầu tiên c
+    253 Chuỗi mã nguồn - trình dịch - lệnh máy - tiến trình là bản đ
+  414 SƠ ĐỒ TRỰC QUAN 01 Mã nguồn: văn bản bạn gõ ra 02 Trình biên
+  32 VÍ DỤ THỰC TẾ · TRÌNH DUYỆT BẠN ĐANG MỞ
+  123 Học sâu hơn Giải thích kiểu lớp 5 · Thực hành thêm · Sơ đồ ·

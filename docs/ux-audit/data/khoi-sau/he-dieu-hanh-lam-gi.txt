@@ -1,0 +1,25 @@
+{"H":8459,"screens":10,"words":1487,"aside":776}
+288 Dễ · 18 phút đọc · 4 câu quiz Chặng 1, Bài 2: Hệ điều hành l
+6924 VÌ SAO BÀI NÀY QUAN TRỌNG Gần như mọi lỗi khó chịu của người
+  322 VÌ SAO BÀI NÀY QUAN TRỌNG Gần như mọi lỗi khó chịu của người
+  594 BẮT ĐẦU BẰNG MỘT CÂU HỎI Bạn mở cùng lúc trình duyệt, trình 
+  5259 Có một câu hỏi mà gần như không ai đặt ra trước khi học lập 
+    288 Có một câu hỏi mà gần như không ai đặt ra trước khi học lập 
+    56 Ba việc hệ điều hành làm
+    158 Bỏ qua giao diện đồ hoạ, cửa sổ và biểu tượng - đó là lớp tr
+    311 Chia thời gian bộ xử lý: quyết định tiến trình nào được chạy
+    268 VÌ SAO PHẢI ĐI QUA NHÂN Nếu chương trình được phép ra lệnh t
+    84 Tiến trình, luồng và ảo giác song song
+    284 Máy của bạn có thể có 8 lõi và đang chạy 300 tiến trình. Khô
+    489 TIẾN TRÌNH Có vùng nhớ riêng. Hai tiến trình muốn trao đổi d
+    900 Từ vựng bạn sẽ gặp lại suốt khoá học Đây là những từ xuất hi
+    637 Dừng & Kiểm tra ĐIỂM GIỮA BÀI Bộ nhớ ảo (virtual memory) giả
+    84 Vì sao điều này quan trọng với bạn ngay bây giờ
+    350 Bạn chưa viết dòng mã nào, nhưng ba khái niệm trên đã đủ để 
+    315 DÒNG LỆNH Chép $ uname -a # nhân hệ điều hành và kiến trúc m
+    242 BÀI TẬP Không bắt buộc Tự làm bộ lập lịch chia lát thời gian
+    56 Thử làm bộ lập lịch của hệ điều hành
+    316 Hệ điều hành không phải thứ bạn sẽ viết. Nó là thứ bạn sẽ li
+  459 SƠ ĐỒ TRỰC QUAN 01 Chương trình của bạn xin tài nguyên 02 Hệ
+  32 VÍ DỤ THỰC TẾ · MÁY CỦA BẠN
+  123 Học sâu hơn Giải thích kiểu lớp 5 · Thực hành thêm · Sơ đồ ·

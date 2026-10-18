@@ -6,7 +6,12 @@ import type { LessonSectionBlock } from "@/lib/lesson-types";
 import { useI18n } from "@/lib/i18n/context";
 import { btnPrimary, btnSecondary, panel, Sys } from "@/components/ui/system";
 
-/** Khối `scenario` - xem lib/lesson-types.ts. */
+/** Khối `scenario` - xem lib/lesson-types.ts.
+ *
+ *  Dưới `sm`, ô cảnh trải hết bề ngang thẻ thay vì là một ô có viền lồng
+ *  trong thẻ: hai lớp lề trong ăn mất ~26px bề ngang chữ, tức một dòng cho mỗi
+ *  đoạn cảnh. Dòng "Bạn sẽ làm gì?" chỉ còn cho trình đọc màn hình, vì đoạn
+ *  cảnh đã kết thúc bằng chính câu hỏi đó (F-8, lượt năm). */
 export type ScenarioBlockProps = Extract<LessonSectionBlock, { type: "scenario" }> & { onPass?: () => void };
 
 type Step = { from: string; label: string };
@@ -57,8 +62,8 @@ export default function ScenarioBlock({ title, start, nodes, onPass }: ScenarioB
   }
 
   return (
-    <section className={`my-8 overflow-hidden ${panel}`}>
-      <header className="space-y-2 border-b border-line-strong px-4 py-3 sm:px-5">
+    <section className={`my-6 overflow-hidden sm:my-8 ${panel}`}>
+      <header className="space-y-1 border-b border-line-strong px-4 py-3 sm:space-y-2 sm:px-5">
         <p className="flex items-center gap-2 text-accent-strong">
           <GitBranch className="h-3.5 w-3.5" aria-hidden />
           <Sys>{c.kindScenario}</Sys>
@@ -66,7 +71,7 @@ export default function ScenarioBlock({ title, start, nodes, onPass }: ScenarioB
         <h3 className="text-lg font-black tracking-tight text-ink-max">{title}</h3>
       </header>
 
-      <div className="space-y-4 px-4 py-4 sm:px-5">
+      <div className="space-y-3 px-4 py-4 sm:space-y-4 sm:px-5">
         {path.length > 0 && (
           <nav aria-label={c.pathLabel}>
             <Sys className="text-ink-muted">{c.pathLabel}</Sys>
@@ -86,7 +91,7 @@ export default function ScenarioBlock({ title, start, nodes, onPass }: ScenarioB
           ref={sceneRef}
           tabIndex={-1}
           aria-live="polite"
-          className={`rounded-control border px-3 py-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 ${
+          className={`-mx-4 border-y px-4 py-3 focus:outline-none sm:mx-0 sm:rounded-control sm:border sm:px-3 focus-visible:ring-2 focus-visible:ring-brand-600 ${
             ending === "good"
               ? "border-cyan-600 bg-cyan-50 dark:bg-cyan-950/40"
               : ending === "bad"
@@ -105,7 +110,7 @@ export default function ScenarioBlock({ title, start, nodes, onPass }: ScenarioB
 
         {!ending && node.choices && (
           <div role="group" aria-label={c.choicesLabel} className="space-y-2">
-            <p className="text-sm font-bold text-ink-muted">{c.choicesLabel}</p>
+            <p className="text-sm font-bold text-ink-muted max-sm:sr-only">{c.choicesLabel}</p>
             {node.choices.map((ch, i) => (
               <button
                 key={i}
