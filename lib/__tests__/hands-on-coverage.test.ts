@@ -69,6 +69,17 @@ describe("đợt t01-t05 của lib/lesson-block-additions", () => {
       expect(ex.hints?.length ?? 0, slug).toBeGreaterThanOrEqual(1);
     }
   });
+
+  it("văn xuôi của bài tập không dùng dấu ` (giao diện không dựng markdown, dấu ` hiện nguyên)", () => {
+    const bad: string[] = [];
+    for (const [slug, blocks] of batch) {
+      for (const b of blocks) {
+        const prose = b.type === "exercise" ? [b.title, b.task, b.explanation ?? "", ...(b.hints ?? [])] : b.type === "heading" ? [b.text] : [];
+        if (prose.some((t) => t.includes("`"))) bad.push(slug);
+      }
+    }
+    expect(bad).toEqual([]);
+  });
 });
 
 describe("lời giải quiz không bị script thay thế cắt cụt", () => {

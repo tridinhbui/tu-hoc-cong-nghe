@@ -101,7 +101,17 @@ async function loadDefaults(db: D1Database, table: string): Promise<Record<strin
   return out;
 }
 
-export class D1QueryError extends Error {}
+export class D1QueryError extends Error {
+  /** Mã tương thích PostgREST: 22 chỗ trong lib/ đọc `error.code === "PGRST116"` để coi
+   *  "không có hàng" là bình thường (chưa có bookmark, chưa có tiến độ đọc...). Thiếu mã này,
+   *  `.single()` trên hàng chưa tồn tại ném lỗi thật, và `updateReadingProgress` không bao giờ
+   *  ghi được hàng đầu tiên của một người học. */
+  constructor(message: string, public readonly code?: string) {
+    super(message);
+  }
+}
+
+export const NO_ROWS_CODE = "PGRST116";
 
 /** Vi pham chinh sach truy cap - tach rieng de khong lan voi loi SQL. */
 export class D1PolicyError extends Error {}
@@ -765,7 +775,7 @@ class Builder implements PromiseLike<{ data: Row[] | Row | null; error: Error | 
         this.checkRows = (pre.results ?? []) as Row[];
         if (!this.checkRows.length) {
           return this.wantSingle === "one"
-            ? { data: null, error: new D1QueryError("single() cần đúng 1 hàng, nhận 0"), count }
+            ? { data: null, error: new D1QueryError("single() cần đúng 1 hàng, nhận 0", NO_ROWS_CODE), count }
             : { data: this.wantSingle === "maybe" ? null : [], error: null, count };
         }
       }
@@ -788,7 +798,8 @@ class Builder implements PromiseLike<{ data: Row[] | Row | null; error: Error | 
 
       if (this.wantSingle === "one") {
         if (rows.length !== 1) {
-          return { data: null, error: new D1QueryError(`single() cần đúng 1 hàng, nhận ${rows.length}`) };
+          // Chỉ trường hợp KHÔNG có hàng mới mang mã "bình thường"; nhiều hơn một hàng là dữ liệu hỏng.
+          return { data: null, error: new D1QueryError(`single() cần đúng 1 hàng, nhận ${rows.length}`, rows.length === 0 ? NO_ROWS_CODE : undefined) };
         }
         return { data: rows[0], error: null, count };
       }

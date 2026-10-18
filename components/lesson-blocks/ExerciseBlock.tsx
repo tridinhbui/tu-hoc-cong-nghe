@@ -113,8 +113,11 @@ export default function ExerciseBlock({ language, title, task, starter, solution
         <p className="max-w-[68ch] text-sm leading-6 text-ink-muted">{c.exerciseHint}</p>
       </header>
 
+      {/* min-w-0: một mục lưới mặc định không co nhỏ hơn nội dung của nó, nên dòng đầu ra dài
+          làm cả khối rộng hơn khung (section có overflow-hidden) và bị cắt cụt ở 375px thay
+          vì cuộn ngang trong <pre>. */}
       <div className="grid gap-0 border-b border-line-strong">
-        <div className="px-4 py-3 sm:px-5">
+        <div className="min-w-0 px-4 py-3 sm:px-5">
           <p className="mb-1 text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">{c.expected}</p>
           <pre className="overflow-x-auto rounded-sm bg-stone-100 px-3 py-2 font-mono text-[13px] leading-6 text-ink-max dark:bg-stone-800">
             {expectedOutput}

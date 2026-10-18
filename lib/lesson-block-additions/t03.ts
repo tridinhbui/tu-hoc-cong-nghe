@@ -1,7 +1,7 @@
 import type { LessonSectionBlock } from "../lesson-types";
 
 // Bài tập chấm được cho chặng còn thiếu mã - đợt t03. Một người viết cho một tệp.
-export const T03_ADDITIONS: Record<string, LessonSectionBlock[]> = {
+export const T03_ADDITIONS: Record<string, LessonSectionBlock[]> =  {
   "hoa-don-dam-may-nhung-khoan-khong-thay-truoc": [
     {
       "type": "heading",
@@ -151,7 +151,7 @@ export const T03_ADDITIONS: Record<string, LessonSectionBlock[]> = {
       "type": "exercise",
       "language": "javascript",
       "title": "Mọi yêu cầu đều có chỗ đến",
-      "task": "Luồng phân loại yêu cầu khách theo từ khoá, kiểm theo thứ tự và nhánh đầu tiên khớp thì thắng: \"hoàn tiền\" -> Hoàn tiền; \"giao hàng\" hoặc \"vận chuyển\" -> Giao hàng; \"bảo hành\" -> Bảo hành. Từ khoá khớp không phân biệt chữ hoa chữ thường. Yêu cầu không khớp nhánh nào phải đi vào nhánh còn lại \"Người xem tay\", tuyệt đối không bị bỏ rơi. In 6 yêu cầu theo mẫu `1. \"Tôi muốn hoàn tiền đơn 123\" -> Hoàn tiền`, rồi dòng \"Chuyển người xem tay: x\". Mã khởi đầu không có nhánh còn lại và phân biệt chữ hoa chữ thường.",
+      "task": "Luồng phân loại yêu cầu khách theo từ khoá, kiểm theo thứ tự và nhánh đầu tiên khớp thì thắng: \"hoàn tiền\" -> Hoàn tiền; \"giao hàng\" hoặc \"vận chuyển\" -> Giao hàng; \"bảo hành\" -> Bảo hành. Từ khoá khớp không phân biệt chữ hoa chữ thường. Yêu cầu không khớp nhánh nào phải đi vào nhánh còn lại \"Người xem tay\", tuyệt đối không bị bỏ rơi. In 6 yêu cầu theo mẫu “1. \"Tôi muốn hoàn tiền đơn 123\" -> Hoàn tiền”, rồi dòng \"Chuyển người xem tay: x\". Mã khởi đầu không có nhánh còn lại và phân biệt chữ hoa chữ thường.",
       "starter": "const quyTac = [\n  [\"hoàn tiền\", \"Hoàn tiền\"],\n  [\"giao hàng\", \"Giao hàng\"],\n  [\"vận chuyển\", \"Giao hàng\"],\n  [\"bảo hành\", \"Bảo hành\"],\n];\nconst yeuCau = [\n  \"Tôi muốn hoàn tiền đơn 123\",\n  \"VẬN CHUYỂN bao lâu vậy?\",\n  \"Máy lỗi, cần bảo hành\",\n  \"Cho tôi xuất hoá đơn công ty\",\n  \"Hoàn tiền và giao hàng đều chưa thấy\",\n  \"\",\n];\nlet nguoiXem = 0;\nyeuCau.forEach((nd, i) => {\n  let nhanh = null;\n  for (const [tuKhoa, ten] of quyTac) {\n    if (nd.includes(tuKhoa)) { nhanh = ten; break; }\n  }\n  if (nhanh === \"Người xem tay\") nguoiXem++;\n  console.log(`${i + 1}. \"${nd}\" -> ${nhanh}`);\n});\nconsole.log(\"Chuyển người xem tay: \" + nguoiXem);",
       "solution": "const quyTac = [\n  [\"hoàn tiền\", \"Hoàn tiền\"],\n  [\"giao hàng\", \"Giao hàng\"],\n  [\"vận chuyển\", \"Giao hàng\"],\n  [\"bảo hành\", \"Bảo hành\"],\n];\nconst yeuCau = [\n  \"Tôi muốn hoàn tiền đơn 123\",\n  \"VẬN CHUYỂN bao lâu vậy?\",\n  \"Máy lỗi, cần bảo hành\",\n  \"Cho tôi xuất hoá đơn công ty\",\n  \"Hoàn tiền và giao hàng đều chưa thấy\",\n  \"\",\n];\nlet nguoiXem = 0;\nyeuCau.forEach((nd, i) => {\n  const chu = nd.toLowerCase();\n  let nhanh = \"Người xem tay\"; // nhánh còn lại\n  for (const [tuKhoa, ten] of quyTac) {\n    if (chu.includes(tuKhoa)) { nhanh = ten; break; }\n  }\n  if (nhanh === \"Người xem tay\") nguoiXem++;\n  console.log(`${i + 1}. \"${nd}\" -> ${nhanh}`);\n});\nconsole.log(\"Chuyển người xem tay: \" + nguoiXem);",
       "expectedOutput": "1. \"Tôi muốn hoàn tiền đơn 123\" -> Hoàn tiền\n2. \"VẬN CHUYỂN bao lâu vậy?\" -> Giao hàng\n3. \"Máy lỗi, cần bảo hành\" -> Bảo hành\n4. \"Cho tôi xuất hoá đơn công ty\" -> Người xem tay\n5. \"Hoàn tiền và giao hàng đều chưa thấy\" -> Hoàn tiền\n6. \"\" -> Người xem tay\nChuyển người xem tay: 2",

@@ -1,7 +1,7 @@
 import type { LessonSectionBlock } from "../lesson-types";
 
 // Bài tập chấm được cho chặng còn thiếu mã - đợt t04. Một người viết cho một tệp.
-export const T04_ADDITIONS: Record<string, LessonSectionBlock[]> = {
+export const T04_ADDITIONS: Record<string, LessonSectionBlock[]> =  {
   "doc-bang-tra-loi-va-dem-nhanh-theo-nhom": [
     {
       "type": "heading",
@@ -79,7 +79,7 @@ export const T04_ADDITIONS: Record<string, LessonSectionBlock[]> = {
         "Dùng sanPham.has(ma) để hỏi \"mã này có trong bảng không\", đừng dùng giá trị trả về để suy ra điều đó.",
         "Vì SP04 có giá 0, kiểm if (!gia) sẽ coi nó là mã lạ. Kiểm có/không bằng has, rồi mới lấy giá bằng get."
       ],
-      "explanation": "VLOOKUP khớp chính xác trả về lỗi khi không thấy mã (#N/A), và đó là kết quả đúng: nó báo cho bạn biết. Bản Map ở trên làm tương tự bằng has(): mã SP09 được báo \"khong co gia\" và không cộng vào tổng, nên tổng là 75.000 + 80.000 + 0 + 150.000 = 305.000. Mã khởi đầu dùng `|| 0` nên mã lạ lặng lẽ thành giá 0 và dòng SP09 in ra \"0 x 5 = 0\" trông như một dòng hợp lệ. Giá 0 thật của SP04 và \"không có giá\" là hai chuyện khác nhau, vì vậy phải hỏi has() trước thay vì đoán từ giá trị."
+      "explanation": "VLOOKUP khớp chính xác trả về lỗi khi không thấy mã (#N/A), và đó là kết quả đúng: nó báo cho bạn biết. Bản Map ở trên làm tương tự bằng has(): mã SP09 được báo \"khong co gia\" và không cộng vào tổng, nên tổng là 75.000 + 80.000 + 0 + 150.000 = 305.000. Mã khởi đầu dùng “|| 0” nên mã lạ lặng lẽ thành giá 0 và dòng SP09 in ra \"0 x 5 = 0\" trông như một dòng hợp lệ. Giá 0 thật của SP04 và \"không có giá\" là hai chuyện khác nhau, vì vậy phải hỏi has() trước thay vì đoán từ giá trị."
     }
   ],
   "cong-thuc-lan-lon-kieu-so-va-chu-trong-o": [
