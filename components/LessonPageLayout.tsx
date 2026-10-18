@@ -810,8 +810,12 @@ export default function LessonPageLayout({ lesson, quiz, children, stageTipsInBo
           <div className="h-full bg-brand-600 transition-[width] duration-150 dark:bg-brand-500" style={{ width: `${readPct}%` }} />
         </div>
 
-        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:px-6">
-          <div className="flex min-w-0 items-center gap-3 sm:gap-4">
+        {/* Một hàng ở mọi cỡ màn hình. Trên điện thoại từng là hai hàng (tên
+            bài, rồi nút điều khiển), cao 115px và dán dính suốt bài (F-8, lượt
+            bốn); tên bài giờ co lại nhường chỗ cho nút, vì ngay dưới đã là
+            tiêu đề lớn của bài. */}
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-2 px-3 py-2 sm:gap-3 sm:px-6 sm:py-3">
+          <div className="flex min-w-0 flex-1 items-center gap-2 sm:gap-4">
             <Link
               href="/hoc-bai"
               aria-label={t.lessonLayout.backAria}
@@ -825,7 +829,7 @@ export default function LessonPageLayout({ lesson, quiz, children, stageTipsInBo
             </div>
           </div>
 
-          <div className="flex w-full flex-wrap items-center gap-2 sm:w-auto sm:justify-end sm:gap-3">
+          <div className="flex flex-shrink-0 items-center justify-end gap-1.5 sm:gap-3">
             <FontSizeControl scale={fontScale} onChange={setFontScale} />
             <ReadingModeControl mode={readingMode} onChange={setReadingMode} />
 
@@ -864,7 +868,7 @@ export default function LessonPageLayout({ lesson, quiz, children, stageTipsInBo
                 </Sys>
               </div>
             )}
-            <Sys className="text-ink-muted">{lessonLabel}</Sys>
+            <Sys className="hidden text-ink-muted sm:inline">{lessonLabel}</Sys>
           </div>
         </div>
       </header>
@@ -874,9 +878,18 @@ export default function LessonPageLayout({ lesson, quiz, children, stageTipsInBo
             items-start ở cột đơn, bài đọc có kích thước vừa-nội-dung và một
             phần tử rộng đẩy nó ra 696px trong khung 351px - chữ bị cắt ở mép
             phải điện thoại. */}
-        <div className="flex flex-col items-stretch gap-6 sm:gap-8 xl:flex-row xl:items-start lg:gap-10">
+        {/* Dưới xl mọi thứ xếp một cột theo đúng thứ tự trong DOM: bài đọc,
+            cột quiz, rồi chân bài (góp ý, video). Trước đây chân bài nằm trong
+            bài đọc, nên trên điện thoại quiz đứng dưới cả phần góp ý, cách thân
+            bài hơn 1.000px (F-8, lượt bốn). Từ xl là lưới: chân bài về lại dưới
+            bài đọc ở cột trái, cột quiz dán dính bên phải trải hai hàng. */}
+        <div
+          className={`flex flex-col items-stretch gap-6 sm:gap-8 xl:grid xl:items-start xl:gap-10 ${
+            hasToc ? "xl:grid-cols-[minmax(0,1fr)_16rem_440px]" : "xl:grid-cols-[minmax(0,1fr)_440px]"
+          }`}
+        >
           {/* ── TRÁI: bài đọc ───────────────────────────────────────── */}
-          <div className="min-w-0 flex-1">
+          <div className="min-w-0 xl:col-start-1 xl:row-start-1">
             <TextHighlightMenu
               containerRef={articleRef}
               lessonId={persistedLessonId}
@@ -884,12 +897,15 @@ export default function LessonPageLayout({ lesson, quiz, children, stageTipsInBo
               onCreated={(h) => setHighlights((prev) => [...prev, h])}
             />
 
-            <article ref={articleRef} className="min-w-0 flex-1 space-y-8 pb-20 sm:space-y-10 lg:pb-0">
+            <article ref={articleRef} className="min-w-0 space-y-6 sm:space-y-10">
               {/* Đầu bài: một cửa sổ soạn thảo, đúng khuôn HeroEditor ở trang
                   giới thiệu - tab tệp, thân bài, thanh trạng thái. Các tab
                   quiz.ts / notes.md là liên kết thật tới cột bên phải. */}
               <div className={shell}>
-                <div className={titleBar}>
+                {/* Thanh tab chỉ từ sm: trên điện thoại nó là 36px trang trí
+                    (tab "quiz.ts"/"notes.md" đã ẩn sẵn ở cỡ đó), ngay dưới
+                    thanh trên cùng cũng mang tên bài (F-8, lượt bốn). */}
+                <div className={`${titleBar} hidden sm:flex`}>
                   <div className="flex min-w-0">
                     <span className="relative flex min-w-0 items-center border-r border-line-strong bg-white px-3.5 dark:bg-stone-900">
                       <span aria-hidden className="absolute inset-x-0 top-0 h-[2px] bg-brand-600 dark:bg-brand-500" />
@@ -910,17 +926,23 @@ export default function LessonPageLayout({ lesson, quiz, children, stageTipsInBo
                   </div>
                 </div>
 
-                <div className="p-5 sm:p-8">
+                <div className="p-4 sm:p-8">
                   <div className="flex flex-wrap items-center gap-2">
                     <StatusDot tone={readPct > 0 ? "brand" : "muted"} />
                     <span className="text-[11px] font-semibold text-ink-muted">{lesson.difficulty}</span>
+                    {/* Trên điện thoại hai số của hàng ba ô bên dưới đi chung
+                        dòng này; ô thứ ba (đã đọc bao nhiêu) là thanh 2px dán
+                        dính trên cùng. */}
+                    <span className="text-[11px] font-semibold text-ink-muted sm:hidden">
+                      · {format(t.lessonLayout.durationRead, { duration: lesson.duration })} · {format(t.lessonLayout.quizCount, { count: quiz.length })}
+                    </span>
                   </div>
-                  <h1 className="mt-3 text-[1.9rem] font-black leading-[1.1] tracking-tight text-ink-max sm:text-[2.6rem]">
+                  <h1 className="mt-2 text-[1.6rem] font-black leading-[1.15] tracking-tight text-ink-max sm:mt-3 sm:text-[2.6rem] sm:leading-[1.1]">
                     {lesson.title}
                   </h1>
-                  <p className="mt-4 max-w-[68ch] text-lg leading-8 text-ink-body">{lesson.subtitle}</p>
+                  <p className="mt-2 max-w-[68ch] text-base leading-7 text-ink-body sm:mt-4 sm:text-lg sm:leading-8">{lesson.subtitle}</p>
 
-                  <div className="mt-6 grid grid-cols-3 border-y border-line-strong text-sm">
+                  <div className="mt-6 hidden grid-cols-3 border-y border-line-strong text-sm sm:grid">
                     {[
                       format(t.lessonLayout.durationRead, { duration: lesson.duration }),
                       format(t.lessonLayout.quizCount, { count: quiz.length }),
@@ -936,11 +958,11 @@ export default function LessonPageLayout({ lesson, quiz, children, stageTipsInBo
                     ))}
                   </div>
 
-                  <div data-tour="lesson-progress" className="mt-4 h-1 bg-surface-sunken">
+                  <div data-tour="lesson-progress" className="mt-4 hidden h-1 bg-surface-sunken sm:block">
                     <div className="h-full bg-brand-600 transition-[width] duration-150 dark:bg-brand-500" style={{ width: `${readPct}%` }} />
                   </div>
                   {readPct > 0 && readPct < 100 && (
-                    <p className="mt-2 text-sm text-ink-soft">
+                    <p className="mt-2 hidden text-sm text-ink-soft sm:block">
                       {t.lessonLayout.remainingPart1}
                       <strong className="font-semibold text-ink-max">{format(t.lessonLayout.remainingMinutes, { minutes: remainMin })}</strong>
                       {t.lessonLayout.remainingPart2}
@@ -973,12 +995,12 @@ export default function LessonPageLayout({ lesson, quiz, children, stageTipsInBo
 
                     return (
                       <div
-                        className={`mt-6 border-l-2 pl-4 ${
+                        className={`mt-4 border-l-2 pl-4 sm:mt-6 ${
                           allDoneNow ? "border-brand-600 dark:border-brand-400" : "border-line-strong"
                         }`}
                       >
                         <p className={`${label} ${allDoneNow ? "text-accent-strong" : ""}`}>{t.lessonLayout.checklistTitle}</p>
-                        <ul className="mt-2 space-y-1.5">
+                        <ul className="mt-1.5 space-y-1 sm:mt-2 sm:space-y-1.5">
                           {checklistItems.map((item, i) => (
                             <li key={i} className="flex items-center gap-2.5">
                               <span
@@ -1051,70 +1073,13 @@ export default function LessonPageLayout({ lesson, quiz, children, stageTipsInBo
                 </LessonCompletionContext.Provider>
               </div>
 
-              {/* Một việc chính ở cuối bài, đặt TRƯỚC ô đánh giá và góp ý: chưa
-                  làm hết quiz thì dẫn tới quiz (điều kiện hoàn thành còn thiếu),
-                  làm xong rồi thì tới bài kế. Trước đây cuối bài chỉ có ô đánh
-                  giá, còn "bài tiếp theo" nằm trong thẻ kết quả quiz ở cột
-                  phải. Không đổi điều kiện hoàn thành hay cách chấm. */}
-              {(() => {
-                const quizPending = quiz.length > 0 && submittedCount < quiz.length;
-                if (quizPending) {
-                  return (
-                    <div className="mt-12 border-t border-line-strong pt-8">
-                      <a href="#lesson-quiz" className={`${btnPrimary} w-full sm:w-auto`}>
-                        {format(t.lessonLayout.ctaDoQuiz, { done: submittedCount, total: quiz.length })}
-                      </a>
-                    </div>
-                  );
-                }
-                if (authState === "guest") {
-                  return (
-                    <div className="mt-12 border-t border-line-strong pt-8">
-                      <Link
-                        href={`/login?mode=signup&next=${encodeURIComponent(`/bai-hoc/${lesson.slug ?? ""}`)}`}
-                        className={`${btnPrimary} w-full sm:w-auto`}
-                      >
-                        {t.lessonLayout.guestSaveCta}
-                      </Link>
-                    </div>
-                  );
-                }
-                if (lesson.nextSlug) {
-                  return (
-                    <div className="mt-12 border-t border-line-strong pt-8">
-                      <Link href={`/bai-hoc/${lesson.nextSlug}`} className={`${btnPrimary} w-full sm:w-auto`}>
-                        {t.lessonLayout.nextLesson}
-                      </Link>
-                    </div>
-                  );
-                }
-                return null;
-              })()}
-
-              <div className="mt-10 border-t border-line-strong pt-8">
-                <LessonFeedbackInline lessonId={persistedLessonId} userId={userId} />
-              </div>
-
-              {!lessonVideoUrl && (
-                <p className="text-sm text-ink-muted">
-                  <a href={videoSearchHref} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 font-semibold underline-offset-4 hover:text-ink-max hover:underline">
-                    {t.lessonLayout.videoCta}
-                    <ArrowUpRight aria-hidden className="h-4 w-4" />
-                  </a>
-                </p>
-              )}
-
-              {/* Bottom-of-article sentinel for IntersectionObserver-based
-                  scroll completion - see the effect above. Must be the very
-                  last thing in the article. */}
-              <div ref={bottomSentinelRef} className="h-px" aria-hidden="true" />
             </article>
           </div>
 
           {/* ── PHẢI: mục lục (XL+) - chỉ giữ chỗ khi thật sự có mục lục,
               nếu không cột trống 256px bóp hẹp cả bài lẫn quiz trên laptop. */}
           {hasToc && (
-            <div className="hidden w-64 flex-shrink-0 xl:block">
+            <div className="hidden xl:col-start-2 xl:row-span-2 xl:row-start-1 xl:block">
               <LessonTableOfContents sections={lesson.sections} />
             </div>
           )}
@@ -1126,16 +1091,24 @@ export default function LessonPageLayout({ lesson, quiz, children, stageTipsInBo
           <aside
             id="lesson-quiz"
             data-tour="lesson-quiz"
-            className="w-full flex-shrink-0 scroll-mt-24 space-y-6 xl:sticky xl:top-24 xl:max-h-[calc(100vh-7rem)] xl:w-[440px] xl:overflow-y-auto"
+            className={`flex w-full flex-col gap-6 scroll-mt-24 xl:sticky xl:top-24 xl:row-span-2 xl:row-start-1 xl:max-h-[calc(100vh-7rem)] xl:overflow-y-auto ${
+              hasToc ? "xl:col-start-3" : "xl:col-start-2"
+            }`}
           >
-            <div id="lesson-notes" className="scroll-mt-24">
+            {/* Ghi chú và đoạn đánh dấu xuống dưới quiz khi một cột: ở đó cột
+                này nối thẳng sau thân bài, và việc kế tiếp là quiz. */}
+            <div id="lesson-notes" className="order-last scroll-mt-24 xl:order-none">
               <LessonNotes lessonId={persistedLessonId} lessonSlug={slug} />
             </div>
 
-            <LessonHighlightsList
-              highlights={highlights}
-              onDeleted={(id) => setHighlights((prev) => prev.filter((h) => h.id !== id))}
-            />
+            {highlights.length > 0 && (
+              <div className="order-last xl:order-none">
+                <LessonHighlightsList
+                  highlights={highlights}
+                  onDeleted={(id) => setHighlights((prev) => prev.filter((h) => h.id !== id))}
+                />
+              </div>
+            )}
 
             {/* Cửa sổ quiz: thanh tiêu đề là nút thu gọn dải tiến độ. */}
             <div className={shell}>
@@ -1442,9 +1415,11 @@ export default function LessonPageLayout({ lesson, quiz, children, stageTipsInBo
                 </div>
               )}
 
-              {/* Danh sách câu: số mono, câu đang mở là mực, đúng xanh, sai đỏ. */}
+              {/* Danh sách câu: số mono, câu đang mở là mực, đúng xanh, sai đỏ.
+                  Chỉ từ xl: dải tiến độ ở đầu cửa sổ quiz cũng bấm được từng
+                  câu, nên dưới xl đây là bản lặp cao gần 90px. */}
               {(!finished || reviewMode) && quiz.length > 1 && (
-                <div className="border-t border-line-strong p-4">
+                <div className="hidden border-t border-line-strong p-4 xl:block">
                   <div className={`${label} mb-2.5`}>{t.lessonLayout.questionList}</div>
                   <div className="grid grid-cols-5 gap-1.5">
                     {quiz.map((_, i) => (
@@ -1470,6 +1445,74 @@ export default function LessonPageLayout({ lesson, quiz, children, stageTipsInBo
               )}
             </div>
           </aside>
+
+          {/* ── Chân bài: dưới cột quiz khi một cột, dưới bài đọc từ xl.
+              pb-20 chừa chỗ cho hai nút nổi góc dưới trên điện thoại. */}
+          <div className="min-w-0 space-y-6 pb-20 sm:space-y-10 lg:pb-0 xl:col-start-1 xl:row-start-2">
+              {/* Một việc chính ở cuối bài, đặt TRƯỚC ô đánh giá và góp ý: chưa
+                  làm hết quiz thì dẫn tới quiz (điều kiện hoàn thành còn thiếu),
+                  làm xong rồi thì tới bài kế. Trước đây cuối bài chỉ có ô đánh
+                  giá, còn "bài tiếp theo" nằm trong thẻ kết quả quiz ở cột
+                  phải. Không đổi điều kiện hoàn thành hay cách chấm.
+
+                  Dưới xl thì không: ở đó cột quiz đứng ngay trên chỗ này, và
+                  thẻ kết quả của nó đã mang đúng nút đăng ký / bài kế. Nút này
+                  chỉ có việc khi quiz ở cột khác (xl) hoặc bài không có quiz. */}
+              {(() => {
+                const wrap = `mt-12 border-t border-line-strong pt-8 ${quiz.length > 0 ? "hidden xl:block" : ""}`;
+                const quizPending = quiz.length > 0 && submittedCount < quiz.length;
+                if (quizPending) {
+                  return (
+                    <div className={wrap}>
+                      <a href="#lesson-quiz" className={`${btnPrimary} w-full sm:w-auto`}>
+                        {format(t.lessonLayout.ctaDoQuiz, { done: submittedCount, total: quiz.length })}
+                      </a>
+                    </div>
+                  );
+                }
+                if (authState === "guest") {
+                  return (
+                    <div className={wrap}>
+                      <Link
+                        href={`/login?mode=signup&next=${encodeURIComponent(`/bai-hoc/${lesson.slug ?? ""}`)}`}
+                        className={`${btnPrimary} w-full sm:w-auto`}
+                      >
+                        {t.lessonLayout.guestSaveCta}
+                      </Link>
+                    </div>
+                  );
+                }
+                if (lesson.nextSlug) {
+                  return (
+                    <div className={wrap}>
+                      <Link href={`/bai-hoc/${lesson.nextSlug}`} className={`${btnPrimary} w-full sm:w-auto`}>
+                        {t.lessonLayout.nextLesson}
+                      </Link>
+                    </div>
+                  );
+                }
+                return null;
+              })()}
+
+              <div className="border-t border-line-strong pt-6 sm:mt-10 sm:pt-8">
+                <LessonFeedbackInline lessonId={persistedLessonId} userId={userId} />
+              </div>
+
+              {!lessonVideoUrl && (
+                <p className="text-sm text-ink-muted">
+                  <a href={videoSearchHref} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 font-semibold underline-offset-4 hover:text-ink-max hover:underline">
+                    {t.lessonLayout.videoCta}
+                    <ArrowUpRight aria-hidden className="h-4 w-4" />
+                  </a>
+                </p>
+              )}
+
+              {/* Bottom-of-page sentinel for IntersectionObserver-based
+                  scroll completion - see the effect above. Must be the very
+                  last thing in this footer, which is the last thing on the
+                  page at every breakpoint. */}
+              <div ref={bottomSentinelRef} className="h-px" aria-hidden="true" />
+          </div>
         </div>
       </div>
       {/* Chỉ cho KHÁCH. Nút này ngồi ở `bottom-6 right-6` cỡ 64px, z-50 -

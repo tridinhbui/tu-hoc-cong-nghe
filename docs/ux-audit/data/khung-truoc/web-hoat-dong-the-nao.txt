@@ -1,0 +1,24 @@
+{"H":7638,"screens":9,"words":1054,"aside":748}
+460 Bài đọc +10 XP Dễ Web hoạt động thế nào Từ lúc bạn gõ một đị
+5456 VÌ SAO BÀI NÀY QUAN TRỌNG Không có bức tranh này thì mọi lỗi
+  218 VÌ SAO BÀI NÀY QUAN TRỌNG Không có bức tranh này thì mọi lỗi
+  492 BẮT ĐẦU BẰNG MỘT CÂU HỎI Bạn mở một trang web trên điện thoạ
+  3697 Trước khi viết thẻ HTML đầu tiên, hãy trả lời một câu ít ngư
+    144 Trước khi viết thẻ HTML đầu tiên, hãy trả lời một câu ít ngư
+    56 Bốn bước
+    325 Tra địa chỉ bạn gõ ra số hiệu máy chủ (DNS). Gửi yêu cầu HTT
+    173 MỘT TRANG LÀ NHIỀU YÊU CẦU Máy chủ không gửi cả trang trong 
+    56 Mã trạng thái - đọc chữ số đầu
+    598 Bạn sẽ đọc chúng mỗi ngày Chạm hoặc di chuột vào từng dòng 0
+    126 404 nghĩa là máy chủ vẫn sống và vẫn trả lời - chỉ đường dẫn
+    700 Dừng & Kiểm tra ĐIỂM GIỮA BÀI Nhóm mã trạng thái bắt đầu bằn
+    56 Từ HTML tới cây tài liệu
+    189 Trình duyệt không vẽ thẳng từ văn bản HTML. Nó dựng một cây 
+    142 BỘ NHỚ ĐỆM, KẺ THÙ LÚC HỌC Trình duyệt giữ lại tệp tĩnh để l
+    551 TÌNH HUỐNG Sửa CSS mà trang không chịu đổi Bạn đổi màu nền t
+    222 Bốn bước này lặp lại mỗi lần bạn mở một trang, và chúng là b
+  482 SƠ ĐỒ TRỰC QUAN 01 Trình duyệt tra địa chỉ ra số hiệu máy ch
+  257 VÍ DỤ THỰC TẾ · MỌI TRANG BẠN MỞ Mở công cụ dành cho nhà phá
+  175 Học sâu hơn Giải thích kiểu lớp 5 · Thực hành thêm · Sơ đồ ·
+73 LÀM KIỂM TRA NHANH · 0/4 CÂU
+431 Góp ý bài học Bài học này thế nào? Đánh giá giúp chúng mình 

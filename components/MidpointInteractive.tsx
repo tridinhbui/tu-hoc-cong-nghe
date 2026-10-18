@@ -48,24 +48,24 @@ export default function MidpointInteractive({
       viewport={{ once: true }}
       // Đích của nút "Tới câu giữa bài" trên thẻ kết quả quiz.
       id="lesson-midpoint"
-      className="scroll-mt-24 rounded-md border border-line-strong bg-surface-raised dark:bg-stone-950 p-6 my-8"
+      className="scroll-mt-24 rounded-md border border-line-strong bg-surface-raised dark:bg-stone-950 p-4 my-6 sm:p-6 sm:my-8"
     >
-      <div className="flex items-center gap-2 mb-4 border-b border-line-strong pb-2">
+      <div className="flex items-center gap-2 mb-3 border-b border-line-strong pb-2 sm:mb-4">
         <h3 className="text-base font-bold text-ink">{t.finalOne.midpointInteractive.stopAndCheck}</h3>
         <span className="eyebrow ml-auto text-ink-muted">
           {t.finalOne.midpointInteractive.midpointBadge}
         </span>
       </div>
 
-      <p className="text-ink-heading font-semibold mb-4">{question.question}</p>
+      <p className="text-ink-heading font-semibold mb-3 sm:mb-4">{question.question}</p>
 
-      <div className="space-y-2 mb-4">
+      <div className="space-y-2 mb-3 sm:mb-4">
         {question.options.map((opt, i) => (
           <button
             key={i}
             disabled={submitted}
             onClick={() => setSelected(i)}
-            className={`w-full text-left px-4 py-3 rounded-sm border transition-colors cursor-pointer ${
+            className={`w-full text-left px-3 py-2 text-[15px] leading-6 sm:px-4 sm:py-3 sm:text-base sm:leading-7 rounded-sm border transition-colors cursor-pointer ${
               submitted
                 ? i === question.correct
                   ? "border-brand-600 dark:border-brand-400 bg-accent-soft text-ink-max font-semibold"

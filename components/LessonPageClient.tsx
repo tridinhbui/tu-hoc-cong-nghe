@@ -118,6 +118,9 @@ export default function LessonPageClient({ lesson, nextLesson, flowLabel }: Prop
   const [deep, setDeep] = useState<{ slug?: string; open: boolean }>({ open: false });
   const deepMounted = deep.slug === lesson.slug;
   const deepOpen = deepMounted && deep.open;
+  // Ví dụ thực tế gập trên điện thoại - cũng gắn theo slug, cùng lý do.
+  const [example, setExample] = useState<{ slug?: string; open: boolean }>({ open: false });
+  const exampleOpen = example.slug === lesson.slug && example.open;
   // Staged reveal for the "Cơ Cơ giải thích" card, like a chatbot response:
   // the metaphor line types itself out first, then the takeaways/mistake
   // warning fade in - instead of the whole card appearing at once.
@@ -276,7 +279,7 @@ export default function LessonPageClient({ lesson, nextLesson, flowLabel }: Prop
           <p className="mb-1.5 text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">
             {t.lessonPage.whyItMattersTitle}
           </p>
-          <p className="max-w-[68ch] text-base leading-8 text-ink-max sm:text-lg">
+          <p className="max-w-[68ch] text-base leading-7 text-ink-max sm:text-lg sm:leading-8">
             {lesson.whyItMatters}
           </p>
         </div>
@@ -347,13 +350,28 @@ export default function LessonPageClient({ lesson, nextLesson, flowLabel }: Prop
         </div>
       )}
 
-      {/* 5. Real-life Example block */}
+      {/* 5. Real-life Example block.
+          Trên điện thoại chỉ còn dòng tiêu đề, chạm để mở: đoạn ví dụ cao gần
+          400px ở 390px, và nó đứng ngay trước quiz - đúng chỗ người học đang
+          đi tới việc chính (F-8, lượt bốn). Từ sm trở lên thì mở sẵn như cũ,
+          nên nút chạm chỉ có ở cỡ nhỏ. */}
       {lesson.realWorldExample && lesson.realWorldExample.company && (
-        <div className="space-y-2 border-l border-line-strong pl-4 sm:pl-5">
-          <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">
+        <div className="border-l border-line-strong pl-4 sm:space-y-2 sm:pl-5">
+          <button
+            type="button"
+            onClick={() => setExample({ slug: lesson.slug, open: !exampleOpen })}
+            aria-expanded={exampleOpen}
+            className="flex w-full cursor-pointer items-center justify-between gap-3 py-1 text-left sm:hidden"
+          >
+            <span className="text-[11px] font-bold uppercase leading-5 tracking-[0.08em] text-ink-muted">
+              {format(t.lessonPage.realWorldExampleTitle, { company: lesson.realWorldExample.company })}
+            </span>
+            <ChevronDown aria-hidden className={`h-4 w-4 shrink-0 text-ink-muted transition-transform ${exampleOpen ? "rotate-180" : ""}`} />
+          </button>
+          <p className="hidden text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted sm:block">
             {format(t.lessonPage.realWorldExampleTitle, { company: lesson.realWorldExample.company })}
           </p>
-          <p className="max-w-[68ch] text-base leading-8 text-ink-body sm:text-lg">
+          <p className={`mt-2 max-w-[68ch] text-base leading-7 text-ink-body sm:mt-0 sm:block sm:text-lg sm:leading-8 ${exampleOpen ? "block" : "hidden"}`}>
             {lesson.realWorldExample.description}
           </p>
         </div>
@@ -380,11 +398,11 @@ export default function LessonPageClient({ lesson, nextLesson, flowLabel }: Prop
             onClick={() => setDeep({ slug: lesson.slug, open: !deepOpen })}
             aria-expanded={deepOpen}
             aria-controls="lesson-deep-dive"
-            className="flex w-full cursor-pointer items-center justify-between gap-4 px-4 py-4 text-left transition-colors hover:bg-surface-raised sm:px-5"
+            className="flex w-full cursor-pointer items-center justify-between gap-4 px-4 py-3 text-left transition-colors hover:bg-surface-raised sm:px-5 sm:py-4"
           >
             <span className="min-w-0">
-              <span className="block text-lg font-black tracking-tight text-ink-max">{t.lessonPage.deepDiveTitle}</span>
-              <span className="mt-1 block text-sm leading-6 text-ink-body">{deepLabels.join(" · ")}</span>
+              <span className="block text-base font-black tracking-tight text-ink-max sm:text-lg">{t.lessonPage.deepDiveTitle}</span>
+              <span className="mt-0.5 block text-xs leading-5 text-ink-body sm:mt-1 sm:text-sm sm:leading-6">{deepLabels.join(" · ")}</span>
               <span className="mt-0.5 block text-xs text-ink-muted">{t.lessonPage.deepDiveHint}</span>
             </span>
             <span className="flex shrink-0 items-center gap-1.5 text-xs font-bold text-ink-muted">
