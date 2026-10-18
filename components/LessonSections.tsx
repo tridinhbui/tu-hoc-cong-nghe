@@ -168,12 +168,17 @@ export default function LessonSections({
           <div key={i} className="my-6 overflow-hidden rounded-md border border-line-strong bg-white dark:bg-stone-900">
             <div className="border-b border-line-strong px-4 py-3 sm:px-5">
               <p className="text-lg font-black tracking-tight text-ink-max">{block.title}</p>
-              <p className="mt-0.5 text-sm text-ink-soft">{block.subtitle ?? t.finalTwo.lessonSections.defaultConceptTableSubtitle}</p>
+              {/* Câu mặc định hứa "chạm hoặc di chuột", nhưng dòng nào cũng đã mở sẵn
+                  và chạm vào không làm gì. Dưới `sm` thì bỏ hẳn lời hứa ấy (F-8, lượt năm). */}
+              <p className={`mt-0.5 text-sm text-ink-soft ${block.subtitle ? "" : "hidden sm:block"}`}>
+                {block.subtitle ?? t.finalTwo.lessonSections.defaultConceptTableSubtitle}
+              </p>
             </div>
             <dl className="divide-y divide-line">
               {block.concepts.map(({ vi, en, def }, j) => (
-                <div key={en} className="flex items-baseline gap-4 px-4 py-4 sm:px-5">
-                  <Sys className="flex-shrink-0 text-ink-muted">{String(j + 1).padStart(2, "0")}</Sys>
+                <div key={en} className="flex items-baseline gap-4 px-4 py-3 sm:px-5 sm:py-4">
+                  {/* Số thứ tự chỉ để trang trí; dưới `sm` cột này lấy mất bề ngang của lời định nghĩa. */}
+                  <Sys className="hidden flex-shrink-0 text-ink-muted sm:block">{String(j + 1).padStart(2, "0")}</Sys>
                   <div className="min-w-0 flex-1">
                     <dt className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
                       <span className="text-base font-bold text-ink-max">{vi}</span>

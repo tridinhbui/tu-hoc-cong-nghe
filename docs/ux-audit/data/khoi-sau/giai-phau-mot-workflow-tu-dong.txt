@@ -1,0 +1,22 @@
+{"H":6973,"screens":8.3,"words":1048,"aside":652}
+317 Dễ · 13 phút đọc · 4 câu quiz Chặng 27, Bài 1: Giải phẫu một
+5533 VÌ SAO BÀI NÀY QUAN TRỌNG Người đi làm mất hàng giờ mỗi tuần
+  259 VÌ SAO BÀI NÀY QUAN TRỌNG Người đi làm mất hàng giờ mỗi tuần
+  479 BẮT ĐẦU BẰNG MỘT CÂU HỎI Mỗi khi có đơn mới trong Google For
+  4091 Phần lớn việc lặp lại ở văn phòng chỉ là: có chuyện xảy ra, 
+    144 Phần lớn việc lặp lại ở văn phòng chỉ là: có chuyện xảy ra, 
+    56 Vấn đề: 3 phút mỗi đơn
+    158 30 đơn mỗi ngày, mỗi đơn 3 phút chép sang bảng tính và nhắn 
+    56 Bốn mảnh ghép
+    710 Từ vựng chung của mọi công cụ tự động hoá Công cụ nào cũng d
+    56 Công cụ
+    221 Chặng này dùng n8n: có bản cloud lẫn bản tự cài trên máy chủ
+    502 Dừng & Kiểm tra ĐIỂM GIỮA BÀI Bước gửi email cần tên khách. 
+    56 Giấy trước, công cụ sau
+    189 Viết quy trình làm tay ra, mỗi bước một dòng. Sự kiện mở đầu
+    173 RỦI RO: TỰ ĐỘNG HOÁ CẢ CÁI SAI Workflow làm đúng điều bạn dặ
+    1207 BÀI TẬP · PYTHON · Không bắt buộc Viết workflow: kích hoạt, 
+    222 Ba loại mảnh, một dòng dữ liệu chảy qua - đó là toàn bộ bộ k
+  392 SƠ ĐỒ TRỰC QUAN 01 Trình kích hoạt: có đơn mới 02 Điều kiện:
+  54 VÍ DỤ THỰC TẾ · TÌNH HUỐNG: CỬA HÀNG ONLINE 3 NGƯỜI
+  123 Học sâu hơn Giải thích kiểu lớp 5 · Thực hành thêm · Sơ đồ ·

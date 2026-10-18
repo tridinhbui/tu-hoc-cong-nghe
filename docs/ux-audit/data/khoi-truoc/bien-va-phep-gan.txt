@@ -1,0 +1,23 @@
+{"H":7208,"screens":8.5,"words":1252,"aside":624}
+286 Dễ · 14 phút đọc · 4 câu quiz Biến và phép gán Biến không ph
+5827 VÌ SAO BÀI NÀY QUAN TRỌNG Biến là thứ đầu tiên ai cũng học v
+  227 VÌ SAO BÀI NÀY QUAN TRỌNG Biến là thứ đầu tiên ai cũng học v
+  420 BẮT ĐẦU BẰNG MỘT CÂU HỎI Bạn viết a = 5 rồi b = a rồi a = 9.
+  4475 Biến là thứ đầu tiên mọi khoá học đều dạy, và cũng là thứ bị
+    288 Biến là thứ đầu tiên mọi khoá học đều dạy, và cũng là thứ bị
+    56 Biến là cái tên gắn vào một giá trị
+    221 Thay vì nghĩ biến là cái hộp chứa số 5, hãy nghĩ nó là một n
+    299 DẤU BẰNG KHÔNG PHẢI DẤU BẰNG TRONG TOÁN Trong toán học, a = 
+    84 Gán là một sự kiện, không phải một liên kết
+    426 BẢNG TÍNH Ô B1 đặt công thức bằng A1 sẽ tự đổi mỗi lần A1 đổ
+    366 PYTHON Chép a = 5 b = a # b nhận giá trị 5 ngay tại dòng này
+    221 Có một ngoại lệ quan trọng sẽ gặp ở bài về danh sách: với dữ
+    84 Đặt tên, và biết khi nào không cần đổi
+    249 Tên nói được nội dung: tongTien thay vì t, danhSachHocVien t
+    221 Cuối cùng là phạm vi: một biến khai báo bên trong một khối m
+    856 BÀI TẬP · PYTHON · Không bắt buộc Đổi chỗ hai giá trị Hai bi
+    524 Dừng & Kiểm tra ĐIỂM GIỮA BÀI Hằng số khác biến thường ở chỗ
+    222 Biến là cái tên gắn vào giá trị, và phép gán đổi chỗ gắn đó 
+  392 SƠ ĐỒ TRỰC QUAN 01 a = 5: tên a gắn vào giá trị 5 02 b = a: 
+  54 VÍ DỤ THỰC TẾ · BẢNG TÍNH SO VỚI CHƯƠNG TRÌNH
+  123 Học sâu hơn Giải thích kiểu lớp 5 · Thực hành thêm · Sơ đồ ·
