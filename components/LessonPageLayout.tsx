@@ -547,7 +547,10 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
     setSubmitted(newSubmitted);
     setFirstResults(newFirst);
 
-    void recordQuizMistake(persistedLessonId, qi, ok, quiz[qi].question);
+    // `userId`, không phải `authState !== "guest"`: lúc "unknown" cũng chưa có
+    // ai để ghi cho. RPC này cần người gọi, nên gọi nó cho khách chỉ đổi lấy
+    // một 403 mỗi câu trả lời và một lỗi đỏ trong console.
+    if (userId) void recordQuizMistake(persistedLessonId, qi, ok, quiz[qi].question);
     saveQuizAnswers(persistedLessonId, {
       selected,
       submitted: newSubmitted,

@@ -70,11 +70,14 @@ export async function updateStreak(userId: string): Promise<UserStreak & { freez
   const currentStreak = await getUserStreak(userId);
   
   if (!currentStreak) {
-    // Create new streak record
+    // Create new streak record. D1: "id" là TEXT NOT NULL không có mặc định
+    // (migrations-d1/0001_schema.sql - gen_random_uuid() của Postgres không đi
+    // theo), nên phải tự sinh, như completeOnboarding.
     const { data, error } = await cloudflare
       .from("user_streaks")
       .insert([
         {
+          id: crypto.randomUUID(),
           user_id: userId,
           current_streak: 1,
           longest_streak: 1,
@@ -283,6 +286,7 @@ export async function freezeStreakManually(userId: string): Promise<UserStreak> 
         .from("user_streaks")
         .insert([
           {
+            id: crypto.randomUUID(), // xem updateStreak
             user_id: userId,
             current_streak: 1,
             longest_streak: 1,

@@ -522,7 +522,8 @@ export default function TechnicalInterviewPage() {
       });
     }
     setSubmitted(true);
-    void recordQuizMistake(q.lessonId, 0, ok, q.question);
+    // Khách không có chỗ để ghi câu sai - RPC trả 403 (xem LessonPageLayout).
+    if (userId) void recordQuizMistake(q.lessonId, 0, ok, q.question);
   }
 
   /** Quay lại câu trước để ĐỌC LẠI, không phải để trả lời lại.
