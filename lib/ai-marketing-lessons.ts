@@ -140,7 +140,7 @@ export const AI_MARKETING_LESSONS: Lesson[] = [
     sections: [
       {
         type: "lead",
-        text: "Chặng này dành cho người muốn dùng AI để bán hàng, làm nội dung, hay quảng bá một dự án nhỏ. Bài đầu không dạy công cụ nào - nó chỉ ra AI đứng ở đâu trong việc marketing, vì đặt sai chỗ là lý do phổ biến nhất khiến người mới thất vọng.",
+        text: "Chặng này dành cho người muốn dùng AI để bán hàng, làm nội dung hay quảng bá một dự án nhỏ. Bài đầu chưa dạy công cụ nào - nó chỉ ra AI đứng ở đâu trong việc marketing, vì đặt sai chỗ là lý do hay gặp nhất khiến người mới thất vọng.",
       },
       {
         type: "feynman",
@@ -170,12 +170,12 @@ export const AI_MARKETING_LESSONS: Lesson[] = [
       { type: "heading", text: "Vì sao bài của AI thường nhạt" },
       {
         type: "paragraph",
-        text: "AI viết cho người đọc mà bạn mô tả. Không mô tả gì, nó viết cho một người trung bình không có thật - và câu chữ trơn tru nhưng không nói với ai cả. Thêm ba câu về khách hàng thật vào câu lệnh thường thay đổi kết quả nhiều hơn mọi mẹo viết câu lệnh cộng lại.",
+        text: "Câu chữ trơn tru mà không nói với ai thì người đọc lướt qua. Thêm ba câu về khách thật - họ là ai, lo gì, bạn giúp gì - thường đổi kết quả nhiều hơn mọi mẹo viết câu lệnh cộng lại.",
       },
       {
         type: "callout",
         label: "Con số là vùng nguy hiểm",
-        text: "AI hay điền những con số nghe hợp lý: \"10.000 khách tin dùng\", \"giảm 50% thời gian\". Nó không biết số thật của bạn. Mọi con số và lời hứa phải qua tay bạn trước khi đăng.",
+        text: "AI hay tự điền những con số nghe hợp lý, dù nó không biết số thật của bạn. Phần soát bản nháp ngay dưới đây cho bạn tự bắt vài chỗ như vậy.",
       },
       {
         type: "closing",

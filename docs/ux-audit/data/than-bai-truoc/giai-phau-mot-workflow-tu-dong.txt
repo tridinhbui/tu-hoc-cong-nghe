@@ -1,0 +1,24 @@
+{"H":8873,"screens":10.5,"words":1255,"aside":748}
+559 Bài đọc +10 XP Dễ Chặng 27, Bài 1: Giải phẫu một workflow - 
+6591 VÌ SAO BÀI NÀY QUAN TRỌNG Người đi làm mất hàng giờ mỗi tuần
+  290 VÌ SAO BÀI NÀY QUAN TRỌNG Người đi làm mất hàng giờ mỗi tuần
+  521 BẮT ĐẦU BẰNG MỘT CÂU HỎI Mỗi khi có đơn mới trong Google For
+  4718 Tự động hoá nghe như việc của kỹ sư. Thực ra phần lớn việc l
+    216 Tự động hoá nghe như việc của kỹ sư. Thực ra phần lớn việc l
+    84 Vấn đề: 3 phút mỗi đơn, nhân lên cả tháng
+    189 Một cửa hàng nhận 30 đơn mỗi ngày qua biểu mẫu. Mỗi đơn mất 
+    56 Bốn mảnh ghép
+    778 Từ vựng chung của mọi công cụ tự động hoá n8n, Zapier, Make,
+    56 Công cụ
+    284 n8n là công cụ chính của chặng này: có bản cloud và bản tự c
+    605 Dừng & Kiểm tra ĐIỂM GIỮA BÀI Bước gửi email cần tên khách. 
+    56 Dựng thế nào: từ giấy tới công cụ
+    369 Viết quy trình làm tay hiện tại, mỗi bước một dòng. Khoanh s
+    236 RỦI RO: TỰ ĐỘNG HOÁ CẢ CÁI SAI Workflow làm đúng những gì bạ
+    1207 BÀI TẬP · PYTHON · Không bắt buộc Viết workflow: kích hoạt, 
+    222 Ba loại mảnh, một dòng dữ liệu chảy qua - đó là toàn bộ bộ k
+  392 SƠ ĐỒ TRỰC QUAN 01 Trình kích hoạt: có đơn mới 02 Điều kiện:
+  360 VÍ DỤ THỰC TẾ · TÌNH HUỐNG: CỬA HÀNG ONLINE 3 NGƯỜI Chủ cửa 
+  175 Học sâu hơn Giải thích kiểu lớp 5 · Thực hành thêm · Sơ đồ ·
+73 LÀM KIỂM TRA NHANH · 0/4 CÂU
+431 Góp ý bài học Bài học này thế nào? Đánh giá giúp chúng mình 

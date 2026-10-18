@@ -637,6 +637,15 @@ renderers in `components/lesson-blocks/`, loaded lazily from `LessonSections.tsx
    `start`, `expr`, `mission` and every number are read from the Vietnamese
    block; a translated array of the wrong length falls back to Vietnamese
    whole (`lib/lesson-translations.js`).
+6. **A practice block's position is a database key.** `recordExercisePass(lesson,
+   blockIndex)` stores passes of `exercise | sim | aiLab | scenario | machine` by
+   their index in the merged `sections`, and skill evidence is keyed
+   `lessonId:blockIndex` too. Deleting or inserting a block *before* one moves it,
+   and every learner's existing pass silently points at a different block - no
+   test or audit fails. When shortening a lesson, replace a long block with a
+   short one instead of deleting it, so the count before each practice block
+   stays the same (`DEEP-UX-USABILITY-AUDIT.md`, F-8, third pass, did this for
+   nine lessons).
 
 ## Writing lessons in bulk (lib/ai-work-lessons/)
 

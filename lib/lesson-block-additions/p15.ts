@@ -348,6 +348,17 @@ print("Tổng giờ chép tay mỗi tuần:", tong)
 
   "kiem-chung-dau-ra-ai-bia": [
     {
+      type: "flow",
+      title: "Từ một khẳng định tới nguồn nằm ngoài AI",
+      steps: [
+        { label: "Gạch chân những gì kiểm được", detail: "Mọi số liệu, tên văn bản, trích dẫn và đường dẫn trong bản nháp. Câu 'đây là điểm rất quan trọng' không kiểm được thì bỏ qua." },
+        { label: "Xếp vào đúng kiểu", detail: "Số liệu thì tính lại bằng Excel. Văn bản pháp lý thì tra cổng chính thức. Trích dẫn thì mở bài gốc. Nội bộ thì so với sổ sách." },
+        { label: "Đi tới nguồn nằm ngoài AI", detail: "Mở trang, văn bản hoặc tệp nội bộ do chính bạn tìm. Hỏi lại AI hay bắt nó tự đánh dấu [CHẮC] đều không thay được bước này." },
+        { label: "Tìm đúng câu hoặc đúng số", detail: "Ctrl+F câu trích hoặc con số. Đường dẫn mở được mới chỉ chứng minh trang có thật, chưa chứng minh trang nói điều AI viết." },
+        { label: "Giữ, sửa hoặc xoá", detail: "Khớp thì giữ. Lệch thì sửa theo nguồn. Không tìm thấy thì xoá hoặc ghi [CHƯA CÓ NGUỒN] và không gửi đi như sự thật." },
+      ],
+    },
+    {
       type: "scenario",
       title: "Thư trả lời khách có ba căn cứ pháp lý",
       start: "dau",
@@ -396,17 +407,6 @@ print("Tổng giờ chép tay mỗi tuần:", tong)
           ending: "good",
         },
       },
-    },
-    {
-      type: "flow",
-      title: "Từ một khẳng định tới nguồn nằm ngoài AI",
-      steps: [
-        { label: "Gạch chân những gì kiểm được", detail: "Mọi số liệu, tên văn bản, trích dẫn và đường dẫn trong bản nháp. Câu 'đây là điểm rất quan trọng' không kiểm được thì bỏ qua." },
-        { label: "Xếp vào đúng kiểu", detail: "Số liệu thì tính lại bằng Excel. Văn bản pháp lý thì tra cổng chính thức. Trích dẫn thì mở bài gốc. Nội bộ thì so với sổ sách." },
-        { label: "Đi tới nguồn nằm ngoài AI", detail: "Mở trang, văn bản hoặc tệp nội bộ do chính bạn tìm. Hỏi lại AI hay bắt nó tự đánh dấu [CHẮC] đều không thay được bước này." },
-        { label: "Tìm đúng câu hoặc đúng số", detail: "Ctrl+F câu trích hoặc con số. Đường dẫn mở được mới chỉ chứng minh trang có thật, chưa chứng minh trang nói điều AI viết." },
-        { label: "Giữ, sửa hoặc xoá", detail: "Khớp thì giữ. Lệch thì sửa theo nguồn. Không tìm thấy thì xoá hoặc ghi [CHƯA CÓ NGUỒN] và không gửi đi như sự thật." },
-      ],
     },
   ],
 
