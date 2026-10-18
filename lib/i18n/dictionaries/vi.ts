@@ -392,6 +392,7 @@ export const vi = {
       statLearners: "người học",
       statLessons: "bài học",
       statCompleted: "lượt hoàn thành",
+      statLive: "Trực tiếp",
       marquee: [
         "học 10-15 phút mỗi ngày",
         "quiz chấm thật",
@@ -932,6 +933,10 @@ export const vi = {
     perk2Body: "Lưu bài học, XP, streak và thống kê học tập.",
     perk3Title: "Đi từng chặng",
     perk3Body: "Không bị ngợp vì đã có lộ trình rõ ràng.",
+    leaderboardTitle: "Bảng xếp hạng tuần này",
+    leaderboardSub: "XP · 7 ngày",
+    leaderboardXp: "{xp} XP",
+    leaderboardCta: "Học một bài hôm nay để có tên ở đây.",
 
     trackPickTitle: "Chọn lộ trình rồi vào học ngay",
     trackPickBody: "Bạn có thể đổi hướng học sau trong phần cài đặt.",
