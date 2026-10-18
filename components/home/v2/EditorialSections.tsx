@@ -46,7 +46,7 @@ export function EditorialNav() {
 
 /* ───────────────────────── 04 · CỘNG ĐỒNG ───────────────────────── */
 
-export function EditorialCommunity() {
+export function EditorialCommunity({ n = 4 }: { n?: number }) {
   const { t } = useI18n();
   const v = t.home.v2;
   const [queryDone, setQueryDone] = useState(false);
@@ -57,7 +57,7 @@ export function EditorialCommunity() {
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-12 lg:gap-8 lg:px-8 lg:py-20">
         {/* Chữ bên PHẢI trên desktop - section duy nhất đặt minh hoạ trước chữ. */}
         <Reveal className="min-w-0 lg:order-2 lg:col-span-4 lg:col-start-9">
-          <SheetHead n={4} kicker={v.communityKicker} title={t.home.social.title} loading={v.loadCommunity} />
+          <SheetHead n={n} kicker={v.communityKicker} title={t.home.social.title} loading={v.loadCommunity} />
           <p className="mt-5 text-[15px] leading-7 opacity-80">{t.home.social.sub}</p>
           <ActivityPanel />
         </Reveal>
@@ -88,7 +88,7 @@ export function EditorialCommunity() {
 
 /* ───────────────────────── 05 · GAME KINGDOM ───────────────────────── */
 
-export function EditorialKingdom() {
+export function EditorialKingdom({ n = 5 }: { n?: number }) {
   const { t } = useI18n();
   const v = t.home.v2;
   return (
@@ -102,7 +102,7 @@ export function EditorialKingdom() {
       </div>
       <div className="relative mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
         <div className="grid gap-6 lg:grid-cols-12">
-          <SheetHead n={5} dark kicker={t.home.kingdom.eyebrow} title={t.home.kingdom.title} loading={v.loadKingdom} className="lg:col-span-7" />
+          <SheetHead n={n} dark kicker={t.home.kingdom.eyebrow} title={t.home.kingdom.title} loading={v.loadKingdom} className="lg:col-span-7" />
           <Reveal as="p" delay={250} className="self-end text-[15px] leading-7 text-[#eeebe3]/70 lg:col-span-4 lg:col-start-9">{t.home.kingdom.sub}</Reveal>
         </div>
         <Reveal y={30} className="relative mt-10 border-2 border-[#eeebe3] p-2 sm:p-3">
@@ -136,7 +136,7 @@ const METHOD_STATE = [
   { ret: 96, due: 7, xp: XP_PER_LESSON, pts: "0,6 30,24 34,10 70,30 74,8 110,20 114,6 200,12" },
 ];
 
-export function EditorialMethod() {
+export function EditorialMethod({ n = 2 }: { n?: number }) {
   const { t } = useI18n();
   const v = t.home.v2;
   const steps = t.dataTables.scrollytelling.panels.panel1.items;
@@ -171,7 +171,7 @@ export function EditorialMethod() {
     <section data-dbg="section#method" className={`border-b-2 ${RULE} ${PAPER} ${INK}`}>
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-12 lg:gap-8 lg:px-8 lg:py-20">
         <Reveal className="min-w-0 lg:col-span-4">
-          <SheetHead n={2} kicker={v.methodKicker} title={v.methodTitle} loading={v.loadMethod} />
+          <SheetHead n={n} kicker={v.methodKicker} title={v.methodTitle} loading={v.loadMethod} />
           <p className="mt-5 text-[15px] leading-7 opacity-80">{v.methodSub}</p>
           <div className="mt-8 flex flex-wrap gap-0">
             <button

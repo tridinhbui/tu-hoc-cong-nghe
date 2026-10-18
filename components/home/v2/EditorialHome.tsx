@@ -190,7 +190,7 @@ export function EditorialMarquee({ items, reverse = false }: { items?: string[];
   );
   return (
     <div className={`overflow-hidden border-b-2 ${RULE} ${BAND} py-4`}>
-      <div className={`thcn-marquee flex w-max ${reverse ? "[animation-direction:reverse]" : ""}`}>
+      <div className={`thcn-marquee flex w-max hover:[animation-play-state:paused] ${reverse ? "[animation-direction:reverse]" : ""}`}>
         {row}
         <div aria-hidden className="flex">
           {row}
@@ -214,7 +214,7 @@ const WORLDS = [
  * lệnh mở thế giới đó; ba cột kia co lại thành gáy sách với tên dựng đứng.
  * Trên màn hẹp chúng xếp chồng và cột chọn mở ra theo chiều dọc.
  */
-export function EditorialWorlds() {
+export function EditorialWorlds({ n = 2 }: { n?: number }) {
   const { t } = useI18n();
   const v = t.home.v2;
   const [active, setActive] = useState(0);
@@ -223,7 +223,7 @@ export function EditorialWorlds() {
     <section data-dbg="section#worlds" className={`border-b-2 ${RULE} ${PAPER} ${INK}`}>
       <div className="mx-auto max-w-7xl px-4 pt-12 sm:px-6 lg:px-8 lg:pt-16">
         <div className="grid items-end gap-4 lg:grid-cols-12">
-          <SheetHead n={2} kicker={v.worldsKicker} title={v.worldsTitle} loading={v.loadWorlds} size="xl" className="lg:col-span-9" />
+          <SheetHead n={n} kicker={v.worldsKicker} title={v.worldsTitle} loading={v.loadWorlds} size="xl" className="lg:col-span-9" />
           <Reveal as="p" delay={300} className="font-mono text-[11px] opacity-60 lg:col-span-3 lg:text-right">→ {v.worldsHint}</Reveal>
         </div>
       </div>
