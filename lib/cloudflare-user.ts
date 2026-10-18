@@ -30,6 +30,13 @@ function isMissingTableError(error: { code?: string } | null): boolean {
   return error?.code === "PGRST205" || error?.code === "42P01";
 }
 
+/** Mốc từ hệ quy chiếu trước, không nằm trong D1 hiện tại - chủ sản phẩm đặt
+ *  (2026-10-18). Cộng vào số đếm live ở MỘT chỗ này, để trang chủ và mọi nơi
+ *  khác đọc hai hàm dưới đây hiện cùng một con số. Số live vẫn tăng như cũ
+ *  khi có người đăng ký hay học xong bài. */
+export const LEARNER_COUNT_BASELINE = 1_000;
+export const COMPLETED_LESSONS_BASELINE = 10_000;
+
 // Public headline count for the signed-out homepage hero ("Hơn X người học
 // đã tham gia"). Falls back to null (caller keeps its static copy) if the
 // RPC isn't migrated in yet - this number is decoration, not something
@@ -45,7 +52,7 @@ export async function getTotalUserCount(): Promise<number | null> {
     throw handleCloudflareError(error);
   }
 
-  return typeof data === "number" ? data : null;
+  return typeof data === "number" ? data + LEARNER_COUNT_BASELINE : null;
 }
 
 // Public headline count for the signed-out homepage hero ("X bài học đã
@@ -62,7 +69,7 @@ export async function getTotalCompletedLessonsCount(): Promise<number | null> {
     throw handleCloudflareError(error);
   }
 
-  return typeof data === "number" ? data : null;
+  return typeof data === "number" ? data + COMPLETED_LESSONS_BASELINE : null;
 }
 
 export interface UserProfile {
