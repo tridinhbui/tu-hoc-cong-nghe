@@ -6,9 +6,22 @@ import { getTotalUserCount, getTotalCompletedLessonsCount } from "@/lib/cloudfla
 import { roundedLessonCount } from "@/lib/track-totals";
 import { animateCountTo } from "@/lib/animate-count";
 import { LEARNING_FLOWS } from "@/lib/learning-flows";
-import { EditorialHero } from "@/components/home/v2/EditorialHome";
+import { EditorialHero, EditorialMarquee, EditorialWorlds } from "@/components/home/v2/EditorialHome";
 import { EditorialNeeds } from "@/components/home/v2/EditorialNeeds";
-import { EditorialNav, EditorialFooter } from "@/components/home/v2/EditorialSections";
+import {
+  EditorialNav,
+  EditorialFooter,
+  EditorialMethod,
+  EditorialCommunity,
+  EditorialKingdom,
+} from "@/components/home/v2/EditorialSections";
+import {
+  ScrollProgress,
+  EditorialJourney,
+  EditorialPromises,
+  EditorialFaq,
+  EditorialFinalCta,
+} from "@/components/home/v2/EditorialMore";
 import { useI18n } from "@/lib/i18n/context";
 import {
   dismissHomeBanner,
@@ -110,6 +123,7 @@ export default function HomePage() {
     <div
       className="relative min-h-screen overflow-x-clip bg-[#eeebe3] text-[#0d0e11] dark:bg-[#0c0d10] dark:text-[#eeebe3]"
     >
+      <ScrollProgress />
       <div className="paper-grain pointer-events-none absolute inset-0 z-0" />
 
       <div className="relative z-10">
@@ -166,13 +180,23 @@ export default function HomePage() {
           completed={displayedCompletedCount}
           previewHref={FIRST_LESSON_HREF}
         />
+        <EditorialMarquee />
         <EditorialNeeds />
-        {/* Trang chủ chỉ còn ba việc: bạn làm được gì (EditorialNeeds), một bài
-            trông thế nào (LessonPreview trong hero), bấm đâu để bắt đầu. Tờ
-            "Phương pháp" (debugger giả), "Hệ sinh thái" và "Báo cáo" (số liệu
-            thị trường Malaysia, ManpowerGroup) đã rời trang: chúng thuyết phục
-            nhà đầu tư, không giúp người học quyết định thử một bài. Component
-            còn nguyên trong components/home/v2 để đặt lại ở trang riêng. */}
+        {/* Thứ tự đọc: bạn làm được gì (Needs) -> bốn thế giới -> đi thế nào
+            (lộ trình) -> vì sao nhớ lâu (Method) -> được gì (cam kết) -> người
+            thật đang học (cộng đồng) -> phần thưởng (Kingdom) -> giải đáp ->
+            bấm đâu để bắt đầu. Số tờ chạy 1-7 theo đúng thứ tự này.
+            Tờ "Báo cáo" (số liệu thị trường Malaysia, ManpowerGroup) vẫn ở
+            ngoài trang: nó thuyết phục nhà đầu tư, không giúp ai thử một bài.
+            Tờ THCN_OS trùng ý với Method nên cũng chưa đặt lại. */}
+        <EditorialWorlds n={1} />
+        <EditorialJourney n={2} />
+        <EditorialMethod n={3} />
+        <EditorialPromises n={4} />
+        <EditorialCommunity n={5} />
+        <EditorialKingdom n={6} />
+        <EditorialFaq n={7} />
+        <EditorialFinalCta previewHref={FIRST_LESSON_HREF} />
         <EditorialFooter />
       </div>
     </div>
