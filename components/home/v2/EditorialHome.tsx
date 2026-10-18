@@ -143,29 +143,42 @@ export function EditorialHero({
               </a>
             </div>
             <p className="mt-3 pl-1 text-[13px] font-semibold text-accent-strong">{v.annotation}</p>
-          </div>
 
-          <div className="flex flex-col gap-4 lg:col-span-6 lg:col-start-7">
-            <LessonPreview />
-            {/* Ba con số thật, xếp như bảng thông số cuối bản vẽ.
+            {/* Ba con số sống, ngay dưới nút chính ở cột trái - chỗ trống mà
+                cột này để lại cạnh khung "Một bài học", và là chỗ mắt rơi
+                xuống sau khi đọc nút. Nhãn "Trực tiếp" + chấm xanh lá nói rõ
+                đây là số đang chạy, không phải con số in sẵn.
                 Ô nào đang là 0 thì không hiện: các con số chỉ được ghi đè khi
                 truy vấn trả về số khác 0, nên 0 ở đây nghĩa là "chưa tải
                 được", không phải "chưa ai học" - nhưng người mới đọc "NGƯỜI
                 HỌC 0+" theo nghĩa thứ hai và rời trang. */}
             {stats.length > 0 && (
-            <dl className={`grid border-2 ${RULE}`} style={{ gridTemplateColumns: `repeat(${stats.length}, minmax(0, 1fr))` }}>
-              {stats.map(([label, value], i) => (
-                <div key={label} className={`min-w-0 p-3 sm:p-4 ${i > 0 ? `border-l ${RULE}` : ""}`}>
-                  <dt>
-                    <Mono className="opacity-60">{label}</Mono>
-                  </dt>
-                  <dd className="mt-2 truncate font-mono text-xl font-bold tabular-nums sm:text-3xl">
-                    <LiveNumber value={value} />
-                  </dd>
-                </div>
-              ))}
-            </dl>
+              <div className={`mt-8 max-w-xl border-2 ${RULE} bg-white/50 dark:bg-white/[0.04]`}>
+                <p className={`flex items-center gap-2 border-b ${RULE} px-3 py-2 sm:px-4`}>
+                  <span className="relative inline-flex h-2 w-2">
+                    <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 motion-safe:animate-ping" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+                  </span>
+                  <Mono className="font-bold text-emerald-700 dark:text-emerald-400">{v.statLive}</Mono>
+                </p>
+                <dl className="grid" style={{ gridTemplateColumns: `repeat(${stats.length}, minmax(0, 1fr))` }}>
+                  {stats.map(([label, value], i) => (
+                    <div key={label} className={`flex min-w-0 flex-col justify-between gap-2 p-3 sm:p-4 ${i > 0 ? `border-l ${RULE}` : ""}`}>
+                      <dt>
+                        <Mono className="opacity-60">{label}</Mono>
+                      </dt>
+                      <dd className="font-mono text-lg font-bold tabular-nums sm:text-2xl">
+                        <LiveNumber value={value} />
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
             )}
+          </div>
+
+          <div className="flex flex-col gap-4 lg:col-span-6 lg:col-start-7">
+            <LessonPreview />
           </div>
         </div>
       </div>

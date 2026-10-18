@@ -3,6 +3,7 @@
 import { MIN_PASSWORD_LENGTH } from "@/lib/auth/password-policy";
 import React, { Suspense, useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import LoginLeaderboard from "@/components/LoginLeaderboard";
 import { useRouter, useSearchParams } from "next/navigation";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { translateAuthErrorCode } from "@/lib/auth-error-messages";
@@ -291,6 +292,8 @@ function LoginForm() {
               </div>
             ))}
           </dl>
+
+          <LoginLeaderboard />
         </div>
 
         {/* ── Form ── */}

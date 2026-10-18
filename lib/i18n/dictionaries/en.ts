@@ -351,6 +351,7 @@ export const en: Dictionary = {
       statLearners: "learners",
       statLessons: "lessons",
       statCompleted: "completions",
+      statLive: "Live",
       marquee: [
         "10-15 minutes a day",
         "quizzes graded for real",
@@ -869,6 +870,10 @@ export const en: Dictionary = {
     perk2Body: "Lessons, XP, streaks and study statistics are all saved.",
     perk3Title: "One stage at a time",
     perk3Body: "No feeling overwhelmed - the track is already laid out.",
+    leaderboardTitle: "This week's leaderboard",
+    leaderboardSub: "XP · 7 days",
+    leaderboardXp: "{xp} XP",
+    leaderboardCta: "Finish a lesson today to get your name here.",
 
     trackPickTitle: "Choose a track and start straight away",
     trackPickBody: "You can change direction later in settings.",

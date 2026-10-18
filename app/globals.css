@@ -876,6 +876,12 @@ html [data-sonner-toaster][data-sonner-theme='dark'] {
 }
 @keyframes thcn-rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 .thcn-rise { animation: thcn-rise 0.35s ease-out both; }
+/* Số liệu sống (components/LiveNumber.tsx): loé xanh lá một nhịp mỗi khi con số đổi. */
+@keyframes thcn-live-flash {
+  0% { background-color: rgb(16 185 129 / 0.35); color: rgb(4 120 87); }
+  100% { background-color: transparent; }
+}
+.thcn-live-flash { animation: thcn-live-flash 1.4s ease-out both; }
 @keyframes thcn-draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
 .thcn-draw { stroke-dasharray: 1; animation: thcn-draw 2.4s ease-out both; }
 /* Con dấu đóng xuống: phóng to, nghiêng thêm, rồi dập. */
@@ -902,7 +908,7 @@ html [data-sonner-toaster][data-sonner-theme='dark'] {
   font: 600 10px/1.6 var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase;
 }
 @media (prefers-reduced-motion: reduce) {
-  .thcn-caret, .thcn-rise, .thcn-draw, .thcn-stamp, .thcn-glitch:hover { animation: none; }
+  .thcn-caret, .thcn-rise, .thcn-draw, .thcn-stamp, .thcn-glitch:hover, .thcn-live-flash { animation: none; }
 }
 
 /* Phản hồi đáp án ở /kiem-tra (quizOption trong components/ui/system.tsx):
