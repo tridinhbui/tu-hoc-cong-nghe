@@ -36,6 +36,7 @@ const AiLabBlock = dynamic(() => import("@/components/lesson-blocks/AiLabBlock")
 const ScenarioBlock = dynamic(() => import("@/components/lesson-blocks/ScenarioBlock"), { ssr: false, loading: blockPlaceholder });
 const ChartBlock = dynamic(() => import("@/components/lesson-blocks/ChartBlock"), { ssr: false, loading: blockPlaceholder });
 const FlowBlock = dynamic(() => import("@/components/lesson-blocks/FlowBlock"), { ssr: false, loading: blockPlaceholder });
+const MachineBlock = dynamic(() => import("@/components/lesson-blocks/MachineBlock"), { ssr: false, loading: blockPlaceholder });
 
 function renderFormattedText(text: string, seenTerms: Set<string>): React.ReactNode {
   // Split on double or single line breaks for clean paragraph spacing
@@ -251,6 +252,8 @@ export default function LessonSections({
         return <AiLabBlock key={i} {...block} onPass={lessonId ? () => void recordExercisePass(lessonId, i) : undefined} />;
       case "scenario":
         return <ScenarioBlock key={i} {...block} onPass={lessonId ? () => void recordExercisePass(lessonId, i) : undefined} />;
+      case "machine":
+        return <MachineBlock key={i} {...block} onPass={lessonId ? () => void recordExercisePass(lessonId, i) : undefined} />;
       case "chart":
         return <ChartBlock key={i} {...block} />;
       case "flow":

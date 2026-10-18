@@ -83,6 +83,7 @@ import { T02_ADDITIONS } from "./t02";
 import { T03_ADDITIONS } from "./t03";
 import { T04_ADDITIONS } from "./t04";
 import { T05_ADDITIONS } from "./t05";
+import { T06_ADDITIONS } from "./t06";
 
 /**
  * Khối THÊM vào bài đã có (KE-HOACH-1500-BAI.md: bài nào cũng có thực hành và
@@ -200,6 +201,7 @@ const SIM_FILES: Record<string, Record<string, LessonSectionBlock[]>> = {
   t03: T03_ADDITIONS,
   t04: T04_ADDITIONS,
   t05: T05_ADDITIONS,
+  t06: T06_ADDITIONS,
 };
 
 export const LESSON_BLOCK_ADDITIONS: Record<string, LessonSectionBlock[]> = (() => {
