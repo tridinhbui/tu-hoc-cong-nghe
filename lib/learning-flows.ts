@@ -303,11 +303,11 @@ LEARNING_FLOWS.push(
   {
     id: "vibecode",
     emoji: "💬",
-    // Bài nền có đủ cho hỏi - đọc - sửa - giữ - đưa lên mạng, nhưng chưa có bài
-    // "làm ra trang đầu tiên từ một câu mô tả" nên chưa ghi "Đủ bài".
+    // Đủ bài: 10 bài Chặng 67 (dự án quán cà phê, mỗi bài một bài tập chạy
+    // được) cộng các bài nền về lỗi, Git và đưa lên mạng ở chặng 58-59.
     // Không gắn công cụ nào: bài dạy thao tác (mô tả, đọc, sửa, giữ bản cũ),
     // công cụ đổi nhanh hơn bài.
-    status: "partial",
+    status: "ready",
     firstWinSlug: "ai-trong-cong-viec-lap-trinh-bat-dau-tu-dau",
     steps: [
       {
@@ -316,6 +316,7 @@ LEARNING_FLOWS.push(
           "giao-viec-cho-ai-nhu-giao-viec-cho-tho",
           "mot-luot-mot-viec-chia-du-an-thanh-buoc-kiem-duoc",
           "noi-ro-dieu-khong-duoc-doi-khi-giao-viec-cho-ai",
+          "viet-ca-thu-truoc-khi-nho-ai-lam-tinh-nang",
           "viet-yeu-cau-cho-ai-prompt",
         ],
       },
@@ -323,14 +324,15 @@ LEARNING_FLOWS.push(
         id: "read",
         lessonSlugs: [
           "nghiem-thu-truoc-khi-nhan-chay-thu-va-doc-bao-cao-cua-ai",
-          "thong-bao-loi-do-tren-man-hinh-doc-tu-dau",
-          "xin-ai-giai-thich-loi-truoc-roi-moi-xin-cach-sua",
-          "doc-code-nguoi-khac-va-nhan-xet-co-ich",
+          "doc-ma-ai-viet-tung-buoc-va-noi-lai-bang-loi-cua-minh",
+          "ba-kieu-loi-ai-hay-tao-ra-sai-o-moc-sai-thu-tu-ham-khong-co-that",
+          "doc-git-diff-ai-doi-gi-o-tep-nao",
         ],
       },
       {
         id: "fix",
         lessonSlugs: [
+          "chay-bo-thu-doc-bao-loi-va-sua-tung-cho-mot",
           "dan-thong-bao-loi-cho-ai-can-kem-nhung-gi",
           "hoi-ai-cho-nhieu-gia-thuyet-va-cach-thu-tung-cai",
           "sua-mot-cho-mot-lan-vi-sao-khong-nen-doi-nam-thu",
@@ -344,6 +346,7 @@ LEARNING_FLOWS.push(
       {
         id: "ship",
         lessonSlugs: [
+          "nghiem-thu-va-ban-giao-kiem-ca-quy-trinh-truoc-khi-dua-cho-khach",
           "mat-khau-va-khoa-bi-mat-la-gi-vi-sao-khong-dan-vao-ma",
           "du-an-nho-dua-mot-trang-tinh-len-mang-thu-nghiem",
         ],

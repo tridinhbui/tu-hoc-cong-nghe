@@ -59,7 +59,7 @@ export const ENGINEER_CRAFT_LESSONS: Lesson[] = [
           "Vì tài liệu dài hơn mức cần thiết nên người đọc bỏ dở giữa chừng"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn thứ ba nghe gần đúng và nó quá mạnh - người đọc CÓ quan tâm tới lập luận, nhưng chỉ sau khi biết kết luận. Không có đích thì họ không biết mỗi đoạn đang phục vụ cái gì."
+        "explanation": "Lựa chọn “Vì người đọc không…” nghe gần đúng và nó quá mạnh - người đọc CÓ quan tâm tới lập luận, nhưng chỉ sau khi biết kết luận. Không có đích thì họ không biết mỗi đoạn đang phục vụ cái gì."
       },
       {
         "question": "Giới hạn một trang phục vụ ai?",
@@ -81,7 +81,7 @@ export const ENGINEER_CRAFT_LESSONS: Lesson[] = [
           "Vì các quy trình rà soát thiết kế thường yêu cầu phần này"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn thứ hai là lợi ích thực dụng và nó đúng. Vế khó làm giả là vế mạnh hơn: ai cũng viết được câu chúng tôi đã cân nhắc kỹ, nhưng nêu ba phương án cụ thể kèm lý do bỏ từng cái thì phải thật sự đã cân nhắc."
+        "explanation": "Lựa chọn “Vì người đọc thường…” là lợi ích thực dụng và nó đúng. Vế khó làm giả là vế mạnh hơn: ai cũng viết được câu chúng tôi đã cân nhắc kỹ, nhưng nêu ba phương án cụ thể kèm lý do bỏ từng cái thì phải thật sự đã cân nhắc."
       },
       {
         "question": "Vì sao tài liệu cần nêu điều kiện chứng minh mình sai?",
@@ -92,7 +92,7 @@ export const ENGINEER_CRAFT_LESSONS: Lesson[] = [
           "Vì nó là yêu cầu bắt buộc trong các mẫu tài liệu thiết kế chuẩn"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn thứ ba đúng và nó là lợi ích SAU khi được duyệt. Cái này là lợi ích TRƯỚC: không có nó, người đọc chỉ còn cách tin hoặc không tin, và mặc định của tổ chức là giữ nguyên hiện trạng."
+        "explanation": "Lựa chọn “Vì nó giúp đội…” đúng và nó là lợi ích SAU khi được duyệt. Cái này là lợi ích TRƯỚC: không có nó, người đọc chỉ còn cách tin hoặc không tin, và mặc định của tổ chức là giữ nguyên hiện trạng."
       },
       {
         "question": "Phần nào thường nên bị cắt đầu tiên khi tài liệu quá dài?",
@@ -245,7 +245,7 @@ export const ENGINEER_CRAFT_LESSONS: Lesson[] = [
           "Ghi lại câu hỏi vào biên bản để theo dõi trong lần họp sau"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn cuối cũng tạo ra một việc và nó là việc của người khác. Nói rõ bạn sẽ kiểm gì thì vừa cho thấy bạn biết cách trả lời, vừa cho người hỏi cơ hội chỉnh lại phép kiểm ngay tại chỗ."
+        "explanation": "Lựa chọn “Ghi lại câu hỏi…” cũng tạo ra một việc và nó là việc của người khác. Nói rõ bạn sẽ kiểm gì thì vừa cho thấy bạn biết cách trả lời, vừa cho người hỏi cơ hội chỉnh lại phép kiểm ngay tại chỗ."
       },
       {
         "question": "Cách chuẩn bị hiệu quả nhất trước buổi bảo vệ là gì?",
@@ -278,7 +278,7 @@ export const ENGINEER_CRAFT_LESSONS: Lesson[] = [
           "Chấp nhận quyết định và đồng thời ghi lại ý kiến bảo lưu của chính mình vào biên bản"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn cuối là hình thức và nó không tạo ra việc gì. Nêu điều kiện thì biến một bất đồng thành một phép kiểm có thời hạn - và nếu bạn đúng, nó sẽ tự chứng minh mà không cần ai phải nhận sai."
+        "explanation": "Lựa chọn “Chấp nhận quyết định…” là hình thức và nó không tạo ra việc gì. Nêu điều kiện thì biến một bất đồng thành một phép kiểm có thời hạn - và nếu bạn đúng, nó sẽ tự chứng minh mà không cần ai phải nhận sai."
       }
     ],
     "keyTakeaways": [

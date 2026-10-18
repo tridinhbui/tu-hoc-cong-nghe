@@ -4249,7 +4249,7 @@ const BASE_LESSONS: Lesson[] = [
           "Đọc dữ liệu vào, kiểm tra dữ liệu, tính toán, và xuất kết quả ra ngoài"
         ],
         "correct": 0,
-        "explanation": "Bốn nhóm này lặp lại ở mọi ngôn ngữ bạn sẽ học sau này, chỉ khác cú pháp. Lựa chọn thứ tư là khuôn hình của một chương trình cụ thể, hẹp hơn nhiều - nó nằm gọn trong nhóm thứ hai của bốn nhóm trên."
+        "explanation": "Bốn nhóm này lặp lại ở mọi ngôn ngữ bạn sẽ học sau này, chỉ khác cú pháp. Lựa chọn “Đọc dữ liệu vào…” là khuôn hình của một chương trình cụ thể, hẹp hơn nhiều - nó nằm gọn trong nhóm thứ hai của bốn nhóm trên."
       },
       {
         "question": "Điểm chung giữa lỗi lệch một đơn vị và lỗi ở giá trị đúng bằng ngưỡng là gì?",
@@ -27408,7 +27408,7 @@ const BASE_LESSONS: Lesson[] = [
           "Phân bổ đều tải sang các khoảng thời gian ít bận hơn"
         ],
         "correct": 0,
-        "explanation": "Hai hành vi hữu ích ở lựa chọn thứ hai và thứ ba đều phải được lập trình vào chứ không tự có. Một hàng đợi mặc định chỉ làm đúng một việc là nhận thêm."
+        "explanation": "Hai hành vi hữu ích ở lựa chọn “Tự động loại bỏ…” và “Làm chậm tốc độ…” đều phải được lập trình vào chứ không tự có. Một hàng đợi mặc định chỉ làm đúng một việc là nhận thêm."
       },
       {
         "question": "Vì sao từ chối sớm tốt hơn phục vụ chậm cho tất cả?",
@@ -28585,7 +28585,7 @@ const BASE_LESSONS: Lesson[] = [
           "Có bao nhiêu sự cố, mỗi sự cố kéo dài bao lâu, và bao nhiêu người bị ảnh hưởng"
         ],
         "correct": 0,
-        "explanation": "Ba câu này lần lượt tương ứng với tính sẵn sàng, tính đúng đắn và độ trễ. Lựa chọn cuối mô tả cách ĐO các sự cố đã xảy ra, còn ba câu trên định nghĩa thứ đang được đo."
+        "explanation": "Ba câu này lần lượt tương ứng với tính sẵn sàng, tính đúng đắn và độ trễ. Lựa chọn “Có bao nhiêu sự…” mô tả cách ĐO các sự cố đã xảy ra, còn ba câu trên định nghĩa thứ đang được đo."
       },
       {
         "question": "Vì sao câu trả lời có đúng không lại hay bị bỏ sót?",
@@ -29353,7 +29353,7 @@ const BASE_LESSONS: Lesson[] = [
           "Vì việc viết hướng dẫn buộc người tạo cảnh báo suy nghĩ kỹ hơn về nó"
         ],
         "correct": 0,
-        "explanation": "Một cảnh báo chỉ nói tỷ lệ lỗi cao thì người trực phải tự tìm hiểu từ đầu, trong lúc đang buồn ngủ và đang chịu áp lực. Lựa chọn cuối cũng đúng và là lợi ích phụ thật, nhưng lý do chính nằm ở phía người nhận."
+        "explanation": "Một cảnh báo chỉ nói tỷ lệ lỗi cao thì người trực phải tự tìm hiểu từ đầu, trong lúc đang buồn ngủ và đang chịu áp lực. Lựa chọn “Vì việc viết hướng…” cũng đúng và là lợi ích phụ thật, nhưng lý do chính nằm ở phía người nhận."
       },
       {
         "question": "Điều gì xảy ra khi có quá nhiều cảnh báo không cần hành động?",
@@ -29768,7 +29768,7 @@ const BASE_LESSONS: Lesson[] = [
           "Vì quy định vận hành yêu cầu ghi nhận mọi sự cố bất kể mức độ nghiêm trọng"
         ],
         "correct": 0,
-        "explanation": "Sửa một nguyên nhân lúc nó mới gây ra năm phút gián đoạn rẻ hơn nhiều so với lúc nó gây ra ba tiếng. Lựa chọn thứ hai cũng đúng và là lợi ích phụ thật, nhưng lý do chính là giá trị dự báo của sự cố nhỏ."
+        "explanation": "Sửa một nguyên nhân lúc nó mới gây ra năm phút gián đoạn rẻ hơn nhiều so với lúc nó gây ra ba tiếng. Lựa chọn “Vì viết nhiều biên…” cũng đúng và là lợi ích phụ thật, nhưng lý do chính là giá trị dự báo của sự cố nhỏ."
       }
     ],
     "keyTakeaways": [
@@ -30097,7 +30097,7 @@ const BASE_LESSONS: Lesson[] = [
           "Vì các hệ thống theo dõi ghi nhận lỗi rõ hơn so với các yêu cầu bị chậm"
         ],
         "correct": 0,
-        "explanation": "Khi quá tải, để mọi yêu cầu cùng chậm nghĩa là không ai được phục vụ mà tài nguyên vẫn bị tiêu hết. Lựa chọn thứ hai cũng là cơ chế thật và nó hỗ trợ cho lý do chính, nhưng phép so sánh về số người được phục vụ mới là lập luận quyết định."
+        "explanation": "Khi quá tải, để mọi yêu cầu cùng chậm nghĩa là không ai được phục vụ mà tài nguyên vẫn bị tiêu hết. Lựa chọn “Vì việc từ chối…” cũng là cơ chế thật và nó hỗ trợ cho lý do chính, nhưng phép so sánh về số người được phục vụ mới là lập luận quyết định."
       },
       {
         "question": "Cầu dao ngắt mạch giải quyết vấn đề gì mà thử lại không giải quyết được?",
@@ -30130,7 +30130,7 @@ const BASE_LESSONS: Lesson[] = [
           "Nó là biện pháp tạm thời còn tự khôi phục là giải pháp lâu dài cho vấn đề"
         ],
         "correct": 0,
-        "explanation": "Hai chiến lược khác nhau cho hai tình huống: một cái cố đưa mọi thứ về bình thường, một cái chấp nhận trạng thái kém hơn nhưng còn dùng được. Cả hai đều tự động, nên lựa chọn thứ ba mô tả sai."
+        "explanation": "Hai chiến lược khác nhau cho hai tình huống: một cái cố đưa mọi thứ về bình thường, một cái chấp nhận trạng thái kém hơn nhưng còn dùng được. Cả hai đều tự động, nên lựa chọn “Nó cần người quyết…” mô tả sai."
       },
       {
         "question": "Vì sao cơ chế tự khôi phục cũng cần được kiểm thử?",
@@ -30646,7 +30646,7 @@ const BASE_LESSONS: Lesson[] = [
           "Vì các thay đổi nhỏ ít khả năng chứa lỗi hơn so với thay đổi lớn"
         ],
         "correct": 0,
-        "explanation": "Đây là cùng lập luận với chặng triển khai. Lựa chọn thứ hai cũng đúng về mặt tương quan nhưng nó đảo nhân quả: quy trình tự động tốt là điều kiện để phát hành thường xuyên, không phải hệ quả của nó."
+        "explanation": "Đây là cùng lập luận với chặng triển khai. Lựa chọn “Vì đội phát hành…” cũng đúng về mặt tương quan nhưng nó đảo nhân quả: quy trình tự động tốt là điều kiện để phát hành thường xuyên, không phải hệ quả của nó."
       },
       {
         "question": "Vì sao phải đo cả bốn con số thay vì chọn ra vài cái?",
@@ -30668,7 +30668,7 @@ const BASE_LESSONS: Lesson[] = [
           "Tổng thời gian của tất cả các bước trong quy trình phát triển một tính năng"
         ],
         "correct": 0,
-        "explanation": "Nó đo phần quy trình kỹ thuật, không đo phần lập kế hoạch sản phẩm. Lựa chọn thứ hai là một con số khác cũng đáng đo nhưng nó trộn lẫn hai thứ mà đội có mức kiểm soát rất khác nhau."
+        "explanation": "Nó đo phần quy trình kỹ thuật, không đo phần lập kế hoạch sản phẩm. Lựa chọn “Từ lúc yêu cầu…” là một con số khác cũng đáng đo nhưng nó trộn lẫn hai thứ mà đội có mức kiểm soát rất khác nhau."
       },
       {
         "question": "Vì sao không nên dùng bốn con số này để so sánh giữa các đội?",
@@ -31045,7 +31045,7 @@ const BASE_LESSONS: Lesson[] = [
           "Vì các cơ chế tự động mở rộng chỉ kịp phản ứng khi tải tăng từ từ"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn thứ hai và thứ tư cũng đúng và là lợi ích thật, nhưng thời gian phản ứng mới là điều quyết định - nó biến một sự cố thành một cảnh báo mà bạn còn kịp xử lý."
+        "explanation": "Lựa chọn “Vì hệ thống chậm…” và “Vì các cơ chế…” cũng đúng và là lợi ích thật, nhưng thời gian phản ứng mới là điều quyết định - nó biến một sự cố thành một cảnh báo mà bạn còn kịp xử lý."
       },
       {
         "question": "Vì sao kiểm thử tải phải dùng dữ liệu có hình dạng thật?",
@@ -31392,7 +31392,7 @@ const BASE_LESSONS: Lesson[] = [
           "Vì các lỗi ở tầng dưới thường được khuếch đại khi lan lên các tầng trên"
         ],
         "correct": 0,
-        "explanation": "Đây là xác suất của một sự kiện giao: cả bốn cùng hoạt động. Lựa chọn thứ hai mô tả đúng giả định độc lập mà phép nhân dựa vào, nhưng nó không giải thích được vì sao là phép nhân."
+        "explanation": "Đây là xác suất của một sự kiện giao: cả bốn cùng hoạt động. Lựa chọn “Vì các dịch vụ…” mô tả đúng giả định độc lập mà phép nhân dựa vào, nhưng nó không giải thích được vì sao là phép nhân."
       },
       {
         "question": "Cách nào đưa một phụ thuộc ra khỏi phép nhân?",
@@ -31595,7 +31595,7 @@ const BASE_LESSONS: Lesson[] = [
           "Vì việc quay lại các thay đổi gần đây là biện pháp khắc phục nhanh nhất"
         ],
         "correct": 0,
-        "explanation": "Không có hướng thì bạn đọc rất nhiều dòng nhật ký mà không biết tìm gì. Lựa chọn cuối mô tả một lợi ích thật khác - quay lại nhanh - nhưng nó là hệ quả của việc đã xác định được thay đổi, không phải lý do câu hỏi này hiệu quả."
+        "explanation": "Không có hướng thì bạn đọc rất nhiều dòng nhật ký mà không biết tìm gì. Lựa chọn “Vì việc quay lại…” mô tả một lợi ích thật khác - quay lại nhanh - nhưng nó là hệ quả của việc đã xác định được thay đổi, không phải lý do câu hỏi này hiệu quả."
       },
       {
         "question": "Vì sao giảm số lần thay đổi KHÔNG phải cách giảm sự cố?",
@@ -31617,7 +31617,7 @@ const BASE_LESSONS: Lesson[] = [
           "Yêu cầu nhiều người rà soát hơn cho mỗi bản thay đổi trước khi được gộp"
         ],
         "correct": 0,
-        "explanation": "Kiểm thử và rà soát đều giảm xác suất lỗi lọt ra, nhưng chúng không giúp gì khi lỗi đã lọt. Ba biện pháp trong lựa chọn đầu giảm cả xác suất lẫn hậu quả, và phần hậu quả mới là phần quyết định độ dài của sự cố."
+        "explanation": "Kiểm thử và rà soát đều giảm xác suất lỗi lọt ra, nhưng chúng không giúp gì khi lỗi đã lọt. Ba biện pháp trong lựa chọn “Làm cho việc thay…” giảm cả xác suất lẫn hậu quả, và phần hậu quả mới là phần quyết định độ dài của sự cố."
       }
     ],
     "keyTakeaways": [
@@ -31954,7 +31954,7 @@ const BASE_LESSONS: Lesson[] = [
           "Xem dấu vết của các yêu cầu chậm để biết chúng mất thời gian ở chặng nào"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn cuối là bước hợp lý ngay sau đó, nhưng câu hỏi về thay đổi rẻ hơn nhiều và thường trả lời luôn được. Mở nhật ký ngay thì bạn đọc rất nhiều dòng mà chưa có hướng."
+        "explanation": "Lựa chọn “Xem dấu vết của…” là bước hợp lý ngay sau đó, nhưng câu hỏi về thay đổi rẻ hơn nhiều và thường trả lời luôn được. Mở nhật ký ngay thì bạn đọc rất nhiều dòng mà chưa có hướng."
       },
       {
         "question": "Bạn phát hiện một cảnh báo đã bị tắt từ tháng trước vì nó hay kêu. Đó là vấn đề gì?",
@@ -32364,7 +32364,7 @@ const BASE_LESSONS: Lesson[] = [
           "Vì thông tin trạng thái giúp đội hỗ trợ trả lời câu hỏi của khách hàng nhanh hơn"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn thứ ba là hệ quả trực tiếp của lựa chọn đầu và nó tạo ra bản ghi trùng. Cách chữa gốc là làm cho trạng thái nhìn thấy được, chứ không phải chặn nút gửi lại."
+        "explanation": "Lựa chọn “Vì người dùng sẽ…” là hệ quả trực tiếp của lựa chọn “Vì nếu không, họ…” và nó tạo ra bản ghi trùng. Cách chữa gốc là làm cho trạng thái nhìn thấy được, chứ không phải chặn nút gửi lại."
       },
       {
         "question": "Vì sao không nên chuyển mọi thứ sang chạy nền?",
@@ -32516,7 +32516,7 @@ const BASE_LESSONS: Lesson[] = [
           "Vì việc xoá ngay làm tăng số lần ghi vào ổ đĩa nên ảnh hưởng tới hiệu năng"
         ],
         "correct": 0,
-        "explanation": "Đây là bảo đảm quan trọng nhất mà hàng đợi cung cấp. Lựa chọn thứ ba mô tả mô hình xuất bản và đăng ký, một mô hình khác sẽ được nói ở bài sau."
+        "explanation": "Đây là bảo đảm quan trọng nhất mà hàng đợi cung cấp. Lựa chọn “Vì rất nhiều người…” mô tả mô hình xuất bản và đăng ký, một mô hình khác sẽ được nói ở bài sau."
       },
       {
         "question": "Xác nhận ngay khi nhận tin nhắn dẫn tới hệ quả gì?",
@@ -32527,7 +32527,7 @@ const BASE_LESSONS: Lesson[] = [
           "Thứ tự xử lý bị đảo lộn khi có nhiều người tiêu thụ cùng nhận tin nhắn"
         ],
         "correct": 0,
-        "explanation": "Hai cách xác nhận cho hai kiểu hỏng đối lập, và không có lựa chọn thứ ba: hoặc bạn chấp nhận có thể mất việc, hoặc chấp nhận có thể làm hai lần. Phần lớn hệ thống chọn cái thứ hai."
+        "explanation": "Hai cách xác nhận cho hai kiểu hỏng đối lập, và không có cách thứ ba: hoặc bạn chấp nhận có thể mất việc, hoặc chấp nhận có thể làm hai lần. Phần lớn hệ thống chọn cái thứ hai."
       },
       {
         "question": "Vì sao thời gian chờ xác nhận cần được đặt đúng?",
@@ -32715,7 +32715,7 @@ const BASE_LESSONS: Lesson[] = [
           "Người gửi hoàn toàn không cần chờ người nhận xử lý xong nên rốt cuộc phản hồi nhanh hơn"
         ],
         "correct": 0,
-        "explanation": "Đây là toàn bộ lý do mô hình này tồn tại. Lựa chọn thứ hai mô tả hàng đợi chứ không phải xuất bản - trong xuất bản thì mọi người nghe đều nhận bản sao của cùng sự kiện, không chia nhau."
+        "explanation": "Đây là toàn bộ lý do mô hình này tồn tại. Lựa chọn “Nhiều người tiêu thụ…” mô tả hàng đợi chứ không phải xuất bản - trong xuất bản thì mọi người nghe đều nhận bản sao của cùng sự kiện, không chia nhau."
       },
       {
         "question": "Cái giá của việc không ai biết ai đang nghe là gì?",
@@ -32726,7 +32726,7 @@ const BASE_LESSONS: Lesson[] = [
           "Khó gỡ lỗi vì không biết một sự kiện đã đi qua những dịch vụ nào"
         ],
         "correct": 0,
-        "explanation": "Đây là mặt trái trực tiếp của lợi ích: cùng một sự tách rời khiến bạn thêm người nghe dễ dàng cũng khiến bạn không biết ai bị ảnh hưởng khi đổi. Lựa chọn cuối cũng là vấn đề thật nhưng nó giải được bằng dấu vết."
+        "explanation": "Đây là mặt trái trực tiếp của lợi ích: cùng một sự tách rời khiến bạn thêm người nghe dễ dàng cũng khiến bạn không biết ai bị ảnh hưởng khi đổi. Lựa chọn “Khó gỡ lỗi vì…” cũng là vấn đề thật nhưng nó giải được bằng dấu vết."
       },
       {
         "question": "Sự kiện nên chứa gì?",
@@ -32918,7 +32918,7 @@ const BASE_LESSONS: Lesson[] = [
           "Khi thứ tự tin nhắn quan trọng hơn việc đảm bảo mọi tin nhắn đều tới nơi"
         ],
         "correct": 0,
-        "explanation": "Với số liệu đo lường thì mất một mẫu trong hàng nghìn không đổi kết luận nào, và bạn tiết kiệm được toàn bộ phần mã chống trùng. Lựa chọn thứ ba nghe hợp lý nhưng việc tạo lại thường tốn hơn nhiều so với chống trùng."
+        "explanation": "Với số liệu đo lường thì mất một mẫu trong hàng nghìn không đổi kết luận nào, và bạn tiết kiệm được toàn bộ phần mã chống trùng. Lựa chọn “Khi các tin nhắn…” nghe hợp lý nhưng việc tạo lại thường tốn hơn nhiều so với chống trùng."
       },
       {
         "question": "Điều gì làm cho bảo đảm của hàng đợi trở nên vô nghĩa?",
@@ -33120,7 +33120,7 @@ const BASE_LESSONS: Lesson[] = [
           "Yêu cầu nhà sản xuất đánh số thứ tự và gửi lại nếu phát hiện thiếu số nào"
         ],
         "correct": 0,
-        "explanation": "Đây là cách rẻ nhất và cũng chịu được cả việc nhận trùng. Lựa chọn thứ hai có dùng được nhưng nó thêm độ trễ cho mọi tin nhắn để xử lý một trường hợp thiểu số."
+        "explanation": "Đây là cách rẻ nhất và cũng chịu được cả việc nhận trùng. Lựa chọn “Đợi một khoảng thời…” có dùng được nhưng nó thêm độ trễ cho mọi tin nhắn để xử lý một trường hợp thiểu số."
       },
       {
         "question": "Vì sao giả định thứ tự mà không nói ra lại nguy hiểm?",
@@ -33308,7 +33308,7 @@ const BASE_LESSONS: Lesson[] = [
           "Theo tỷ lệ giữa số tin nhắn vào và số tin nhắn ra ở ngay trong mỗi khoảng thời gian"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn cuối gần đúng và nó chính là tốc độ tăng nói theo cách khác, nhưng nó thiếu vế tuổi - vế trả lời được câu người dùng đang chờ bao lâu. Số lượng tuyệt đối thì đổi ý nghĩa mỗi khi tốc độ xử lý đổi."
+        "explanation": "Lựa chọn “Theo tỷ lệ giữa…” gần đúng và nó chính là tốc độ tăng nói theo cách khác, nhưng nó thiếu vế tuổi - vế trả lời được câu người dùng đang chờ bao lâu. Số lượng tuyệt đối thì đổi ý nghĩa mỗi khi tốc độ xử lý đổi."
       }
     ],
     "keyTakeaways": [
@@ -33652,7 +33652,7 @@ const BASE_LESSONS: Lesson[] = [
           "Khi hệ thống có yêu cầu cao về thông lượng nên cần giảm kích thước tin nhắn"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn thứ ba nghe hợp lý nhất và nó ngược: chính vì bản ghi hay đổi mà bạn CẦN dữ liệu của thời điểm sự kiện xảy ra, không phải trạng thái mới nhất. Kích thước là lý do kỹ thuật duy nhất thật sự."
+        "explanation": "Lựa chọn “Khi bản ghi gốc…” nghe hợp lý nhất và nó ngược: chính vì bản ghi hay đổi mà bạn CẦN dữ liệu của thời điểm sự kiện xảy ra, không phải trạng thái mới nhất. Kích thước là lý do kỹ thuật duy nhất thật sự."
       },
       {
         "question": "Rủi ro của việc đưa quá nhiều dữ liệu vào sự kiện là gì?",
@@ -33674,7 +33674,7 @@ const BASE_LESSONS: Lesson[] = [
           "Vì các công cụ theo dõi cần phiên bản để có thể phân loại sự kiện chính xác hơn"
         ],
         "correct": 0,
-        "explanation": "Đây là điểm nối với chặng API: sự kiện là một hợp đồng, và hợp đồng cần phiên bản. Lựa chọn thứ hai mô tả số phiên bản của BẢN GHI, một thứ khác cũng hữu ích nhưng phục vụ mục đích khác."
+        "explanation": "Đây là điểm nối với chặng API: sự kiện là một hợp đồng, và hợp đồng cần phiên bản. Lựa chọn “Vì thật sự cần…” mô tả số phiên bản của BẢN GHI, một thứ khác cũng hữu ích nhưng phục vụ mục đích khác."
       }
     ],
     "keyTakeaways": [
@@ -33833,7 +33833,7 @@ const BASE_LESSONS: Lesson[] = [
           "Khi cần đảm bảo công việc không bị mất trong mọi tình huống lỗi"
         ],
         "correct": 0,
-        "explanation": "Hai điều kiện này đều là giới hạn thật của bảng công việc. Lựa chọn cuối thì ngược: bảng công việc trong cơ sở dữ liệu có bảo đảm về mất mát TỐT HƠN, vì nó nằm trong cùng giao dịch với dữ liệu nghiệp vụ."
+        "explanation": "Hai điều kiện này đều là giới hạn thật của bảng công việc. Lựa chọn “Khi cần đảm bảo…” thì ngược: bảng công việc trong cơ sở dữ liệu có bảo đảm về mất mát TỐT HƠN, vì nó nằm trong cùng giao dịch với dữ liệu nghiệp vụ."
       },
       {
         "question": "Vì sao gọi trực tiếp kèm thử lại thường đủ cho hệ thống nhỏ?",
@@ -33855,7 +33855,7 @@ const BASE_LESSONS: Lesson[] = [
           "Thời gian phản hồi của các yêu cầu người dùng bắt đầu tăng lên đáng kể"
         ],
         "correct": 0,
-        "explanation": "Hai dấu hiệu này tương ứng với hai lợi ích chính của hàng đợi: nhiều người nghe và hấp thụ đỉnh tải. Lựa chọn thứ ba là dấu hiệu ngược - khó theo dõi là cái giá của hàng đợi chứ không phải lý do thêm nó."
+        "explanation": "Hai dấu hiệu này tương ứng với hai lợi ích chính của hàng đợi: nhiều người nghe và hấp thụ đỉnh tải. Lựa chọn “Đội bắt đầu gặp…” là dấu hiệu ngược - khó theo dõi là cái giá của hàng đợi chứ không phải lý do thêm nó."
       }
     ],
     "keyTakeaways": [
@@ -34003,7 +34003,7 @@ const BASE_LESSONS: Lesson[] = [
           "Việc nào có mức ưu tiên cao nhất, việc nào chờ lâu nhất, và việc nào thất bại nhiều nhất"
         ],
         "correct": 0,
-        "explanation": "Ba câu này nhìn từ phía MỘT VIỆC CỤ THỂ, tức là từ phía người dùng đang hỏi về đơn hàng của họ. Lựa chọn thứ hai là các chỉ số tổng hợp - cần thiết, nhưng chúng không trả lời được câu hỏi về một trường hợp."
+        "explanation": "Ba câu này nhìn từ phía MỘT VIỆC CỤ THỂ, tức là từ phía người dùng đang hỏi về đơn hàng của họ. Lựa chọn “Có bao nhiêu việc…” là các chỉ số tổng hợp - cần thiết, nhưng chúng không trả lời được câu hỏi về một trường hợp."
       },
       {
         "question": "Vì sao bảng theo dõi hàng đợi xanh không có nghĩa là mọi việc đều ổn?",
@@ -34558,7 +34558,7 @@ const BASE_LESSONS: Lesson[] = [
           "Dùng giao dịch phân tán để đồng bộ giữa cơ sở dữ liệu và hệ thống hàng đợi"
         ],
         "correct": 0,
-        "explanation": "Điểm mấu chốt là hai thao tác cùng nằm trong một giao dịch của MỘT hệ thống, nên tính nguyên tử được đảm bảo mà không cần giao dịch phân tán. Lựa chọn cuối cũng giải được vấn đề nhưng nó tốn kém hơn nhiều và ít hệ thống hỗ trợ."
+        "explanation": "Điểm mấu chốt là hai thao tác cùng nằm trong một giao dịch của MỘT hệ thống, nên tính nguyên tử được đảm bảo mà không cần giao dịch phân tán. Lựa chọn “Dùng giao dịch phân…” cũng giải được vấn đề nhưng nó tốn kém hơn nhiều và ít hệ thống hỗ trợ."
       },
       {
         "question": "Mẫu này đổi vấn đề gì lấy vấn đề gì?",
@@ -34756,7 +34756,7 @@ const BASE_LESSONS: Lesson[] = [
           "Vì hệ thống cần đảm bảo hành động ngược luôn thành công trong mọi trường hợp"
         ],
         "correct": 0,
-        "explanation": "Đây là điều dễ quên nhất khi dựng mẫu này: người ta làm cho các bước tiến bất biến rồi bỏ qua các bước lùi. Lựa chọn thứ hai mô tả đúng hậu quả nhưng nó là hệ quả chứ không phải lý do."
+        "explanation": "Đây là điều dễ quên nhất khi dựng mẫu này: người ta làm cho các bước tiến bất biến rồi bỏ qua các bước lùi. Lựa chọn “Vì nếu chạy hai…” mô tả đúng hậu quả nhưng nó là hệ quả chứ không phải lý do."
       },
       {
         "question": "Điều gì xảy ra nếu chính hành động ngược thất bại?",
@@ -35099,7 +35099,7 @@ const BASE_LESSONS: Lesson[] = [
           "Vì các tin nhắn ưu tiên thấp có thể không bao giờ được xử lý tới"
         ],
         "correct": 0,
-        "explanation": "Mười người tiêu thụ đang bận với mười việc chậm thì tin nhắn ưu tiên cao vẫn phải chờ họ xong. Lựa chọn cuối cũng là vấn đề thật của ưu tiên nhưng nó khác - đó là chuyện đói tài nguyên, không phải chuyện cách ly."
+        "explanation": "Mười người tiêu thụ đang bận với mười việc chậm thì tin nhắn ưu tiên cao vẫn phải chờ họ xong. Lựa chọn “Vì các tin nhắn…” cũng là vấn đề thật của ưu tiên nhưng nó khác - đó là chuyện đói tài nguyên, không phải chuyện cách ly."
       },
       {
         "question": "Cách cách ly rẻ nhất là gì?",
@@ -35475,7 +35475,7 @@ const BASE_LESSONS: Lesson[] = [
           "Không biết được bản ghi nào đã thay đổi nên phải quét lại toàn bộ dữ liệu"
         ],
         "correct": 0,
-        "explanation": "Đây là lý do nó không thay được sự kiện cho những việc cần phản hồi ngay. Lựa chọn thứ hai là vấn đề thật khi khoảng chạy quá thưa, nhưng nó giải được bằng cách chạy dày hơn - còn độ trễ thì cố hữu."
+        "explanation": "Đây là lý do nó không thay được sự kiện cho những việc cần phản hồi ngay. Lựa chọn “Không xử lý được…” là vấn đề thật khi khoảng chạy quá thưa, nhưng nó giải được bằng cách chạy dày hơn - còn độ trễ thì cố hữu."
       },
       {
         "question": "Vì sao nhiều hệ thống nên có cả hai cơ chế?",
@@ -35486,7 +35486,7 @@ const BASE_LESSONS: Lesson[] = [
           "Vì công việc chạy theo lịch giúp giảm bớt tải cho hệ thống hàng đợi vào những giờ cao điểm nhất"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn thứ ba nghe gần đúng nhưng nó mô tả dự phòng chung, còn ở đây vai trò cụ thể hơn: công việc theo lịch tìm những bản ghi lẽ ra đã được xử lý mà chưa, tức là nó phát hiện chứ không chỉ thay thế."
+        "explanation": "Lựa chọn “Vì có hai đường…” nghe gần đúng nhưng nó mô tả dự phòng chung, còn ở đây vai trò cụ thể hơn: công việc theo lịch tìm những bản ghi lẽ ra đã được xử lý mà chưa, tức là nó phát hiện chứ không chỉ thay thế."
       },
       {
         "question": "Công việc theo lịch nên viết theo nguyên tắc nào?",
@@ -35497,7 +35497,7 @@ const BASE_LESSONS: Lesson[] = [
           "Ghi lại thời điểm chạy cuối cùng để lần sau biết bắt đầu từ đâu"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn thứ hai và thứ tư là cùng một ý và chúng hữu ích, nhưng chúng không thay được tính bất biến: một lượt chạy bị dừng giữa chừng sẽ để lại mốc thời gian sai, và lượt sau chạy chồng lên phần đã xử lý."
+        "explanation": "Lựa chọn “Chỉ xử lý phần…” và “Ghi lại thời điểm…” là cùng một ý và chúng hữu ích, nhưng chúng không thay được tính bất biến: một lượt chạy bị dừng giữa chừng sẽ để lại mốc thời gian sai, và lượt sau chạy chồng lên phần đã xử lý."
       }
     ],
     "keyTakeaways": [
@@ -35663,7 +35663,7 @@ const BASE_LESSONS: Lesson[] = [
           "Vì người dùng cần biết chính xác bước nào trong hệ thống đang được thực hiện"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn cuối là phiên bản quá đà của ý đúng: người dùng không cần biết kiến trúc bên trong, họ chỉ cần biết đang xử lý hay đã xong. Nhưng nếu không có cả điều tối thiểu đó thì bạn không trả lời được câu đơn của tôi đâu rồi."
+        "explanation": "Lựa chọn “Vì người dùng cần…” là phiên bản quá đà của ý đúng: người dùng không cần biết kiến trúc bên trong, họ chỉ cần biết đang xử lý hay đã xong. Nhưng nếu không có cả điều tối thiểu đó thì bạn không trả lời được câu đơn của tôi đâu rồi."
       },
       {
         "question": "Vì sao vẫn cần đối chiếu hằng đêm dù luồng đã có đủ mọi cơ chế?",
@@ -35838,7 +35838,7 @@ const BASE_LESSONS: Lesson[] = [
           "Giao dịch chỉ không đủ khi luồng xử lý đi qua nhiều cơ sở dữ liệu khác nhau"
         ],
         "correct": 0,
-        "explanation": "Đây là chỗ nhầm phổ biến nhất của chặng và nó dẫn tới việc bỏ qua toàn bộ phần bất biến. Lựa chọn cuối gần đúng nhưng nó gợi ý rằng với một cơ sở dữ liệu thì giao dịch là đủ, và điều đó sai."
+        "explanation": "Đây là chỗ nhầm phổ biến nhất của chặng và nó dẫn tới việc bỏ qua toàn bộ phần bất biến. Lựa chọn “Giao dịch chỉ không…” gần đúng nhưng nó gợi ý rằng với một cơ sở dữ liệu thì giao dịch là đủ, và điều đó sai."
       },
       {
         "question": "Vì sao nói tồn đọng phải đọc bằng xu hướng?",
@@ -48259,7 +48259,7 @@ const BASE_LESSONS: Lesson[] = [
           "Vì nó bỏ qua những đỉnh có quá nhiều cạnh nối tới, nhằm giảm số phép tính phải thực hiện"
         ],
         "correct": 0,
-        "explanation": "Và đây là trường hợp tham lam ĐÚNG, có chứng minh - nhưng chứng minh đó cần điều kiện trọng số không âm. Lựa chọn thứ hai mô tả một thuật toán tham lam khác, dùng cho cây khung nhỏ nhất chứ không phải đường đi ngắn nhất."
+        "explanation": "Và đây là trường hợp tham lam ĐÚNG, có chứng minh - nhưng chứng minh đó cần điều kiện trọng số không âm. Lựa chọn “Vì nó chỉ đi…” mô tả một thuật toán tham lam khác, dùng cho cây khung nhỏ nhất chứ không phải đường đi ngắn nhất."
       },
       {
         "question": "Điều kiện bắt buộc của thuật toán này là gì?",
@@ -52147,7 +52147,7 @@ const BASE_LESSONS: Lesson[] = [
           "Khi một dịch vụ chậm, hệ thống tự động giảm số lượt gọi tới dịch vụ đó xuống"
         ],
         "correct": 0,
-        "explanation": "Điều kiện để làm được là bạn đã phân loại trước tính năng nào thiết yếu và cái nào bổ trợ. Lựa chọn thứ ba mô tả một thứ khác hẳn và nguy hiểm: nuốt lỗi rồi chạy tiếp như không có gì, khiến dữ liệu sai đi sâu vào hệ thống."
+        "explanation": "Điều kiện để làm được là bạn đã phân loại trước tính năng nào thiết yếu và cái nào bổ trợ. Lựa chọn “Khi phát hiện lỗi…” mô tả một thứ khác hẳn và nguy hiểm: nuốt lỗi rồi chạy tiếp như không có gì, khiến dữ liệu sai đi sâu vào hệ thống."
       },
       {
         "question": "Vì sao một dịch vụ ngoài CHẬM lại nguy hiểm hơn một dịch vụ hỏng hẳn?",
@@ -55740,7 +55740,7 @@ const BASE_LESSONS: Lesson[] = [
           "Vì nền tảng triển khai xử lý các gói thay đổi nhỏ nhanh hơn nên thời gian gián đoạn ít hơn hẳn"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn thứ hai đúng về mặt xác suất nhưng nó không phải lý do chính, vì tổng số lỗi trong cùng lượng mã thì không đổi dù bạn chia thành mấy lần. Cái đổi là THỜI GIAN TÌM RA nguyên nhân, và đó mới là thứ quyết định độ dài của sự cố."
+        "explanation": "Lựa chọn “Vì thay đổi nhỏ ít…” đúng về mặt xác suất nhưng nó không phải lý do chính, vì tổng số lỗi trong cùng lượng mã thì không đổi dù bạn chia thành mấy lần. Cái đổi là THỜI GIAN TÌM RA nguyên nhân, và đó mới là thứ quyết định độ dài của sự cố."
       },
       {
         "question": "Vì sao di trú cơ sở dữ liệu phải tách khỏi việc phát hành mã?",
@@ -58393,7 +58393,7 @@ const BASE_LESSONS: Lesson[] = [
           "1,8 tỷ ở tháng đầu, các tháng sau bằng không"
         ],
         "correct": 0,
-        "explanation": "1,8 tỷ chia 36 tháng ra 50 triệu. Phương án cuối chính là cách dòng tiền ghi nhận khoản này - đúng cho câu hỏi tiền ra khi nào, sai cho câu hỏi chi phí thuộc kỳ nào."
+        "explanation": "1,8 tỷ chia 36 tháng ra 50 triệu. Phương án “1,8 tỷ ở tháng…” chính là cách dòng tiền ghi nhận khoản này - đúng cho câu hỏi tiền ra khi nào, sai cho câu hỏi chi phí thuộc kỳ nào."
       },
       {
         "question": "Vì sao phần phân bổ phải được cộng lại khi tính tiền mặt thật sự cần trong kỳ?",
@@ -59100,7 +59100,7 @@ const BASE_LESSONS: Lesson[] = [
           "Không thử chạy thử trên loại máy khác để đo chính xác mức chênh lệch hiệu năng"
         ],
         "correct": 0,
-        "explanation": "Phương án cuối là hành động còn thiếu, nhưng nguyên nhân của việc không làm nó là sai lầm ở phương án đầu. Chậm ba mươi phần trăm chỉ là bất lợi khi so với loại nhanh; so với việc không chạy gì trong sáu tuần thì nó là toàn bộ phần việc làm được."
+        "explanation": "Phương án “Không thử chạy thử…” là hành động còn thiếu, nhưng nguyên nhân của việc không làm nó là sai lầm ở phương án “So sánh với thứ…”. Chậm ba mươi phần trăm chỉ là bất lợi khi so với loại nhanh; so với việc không chạy gì trong sáu tuần thì nó là toàn bộ phần việc làm được."
       },
       {
         "question": "Việc nào cho kết quả nhanh nhất trong một đợt khan hiếm?",
@@ -59111,7 +59111,7 @@ const BASE_LESSONS: Lesson[] = [
           "Chia nhỏ công việc để chạy được trên nhiều máy cấu hình thấp hơn cùng lúc"
         ],
         "correct": 0,
-        "explanation": "Phương án cuối cũng nằm trong tầm tay nhưng nó cần thay đổi cách công việc được viết. Tăng mức sử dụng thì chỉ cần xếp hàng công việc lại, và trong hầu hết đội thì mức sử dụng thật đang dưới một nửa."
+        "explanation": "Phương án “Chia nhỏ công việc…” cũng nằm trong tầm tay nhưng nó cần thay đổi cách công việc được viết. Tăng mức sử dụng thì chỉ cần xếp hàng công việc lại, và trong hầu hết đội thì mức sử dụng thật đang dưới một nửa."
       },
       {
         "question": "Phân biệt tài nguyên co giãn với tài nguyên bị chặn vật lý để làm gì?",
@@ -61663,7 +61663,7 @@ const BASE_LESSONS: Lesson[] = [
           "Số ngày trung bình mà đội thật sự cần để có thể hoàn thành một hạng mục điển hình"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn thứ tư mô tả thời gian XỬ LÝ, một con số khác hẳn và thường nhỏ hơn nhiều. Phần lớn thời gian một hạng mục nằm trong đống việc là thời gian CHỜ, không phải thời gian làm."
+        "explanation": "Lựa chọn “Số ngày trung bình…” mô tả thời gian XỬ LÝ, một con số khác hẳn và thường nhỏ hơn nhiều. Phần lớn thời gian một hạng mục nằm trong đống việc là thời gian CHỜ, không phải thời gian làm."
       },
       {
         "question": "Vì sao tuổi của hạng mục cũ nhất lại quan trọng?",
@@ -61696,7 +61696,7 @@ const BASE_LESSONS: Lesson[] = [
           "Vì giữ chúng làm số liệu tồn đọng trông tệ hơn thực tế của đội"
         ],
         "correct": 0,
-        "explanation": "Đóng nó chỉ là ghi nhận một quyết định đã được đưa ra bằng hành động suốt mười tám tháng. Lựa chọn cuối là lý do tệ nhất và nó khá phổ biến - đóng để làm đẹp số liệu thì bạn mất luôn thông tin về chênh lệch vào-ra."
+        "explanation": "Đóng nó chỉ là ghi nhận một quyết định đã được đưa ra bằng hành động suốt mười tám tháng. Lựa chọn “Vì giữ chúng làm…” là lý do tệ nhất và nó khá phổ biến - đóng để làm đẹp số liệu thì bạn mất luôn thông tin về chênh lệch vào-ra."
       },
       {
         "question": "Cách chữa nào áp dụng khi tốc độ vào vượt tốc độ ra kéo dài?",
@@ -63854,7 +63854,7 @@ const BASE_LESSONS: Lesson[] = [
           "Một bản đánh giá cho thấy nhiều đội đang giải cùng một vấn đề theo những cách khác nhau"
         ],
         "correct": 0,
-        "explanation": "Phương án cuối gần đúng nhưng vẫn thiếu một nửa: biết nhiều đội có cùng vấn đề không đảm bảo họ sẽ chấp nhận cùng một giải pháp. Ba lần dùng thật thì vừa xác nhận nhu cầu vừa uốn hình dạng giải pháp cho đúng."
+        "explanation": "Phương án “Một bản đánh giá…” gần đúng nhưng vẫn thiếu một nửa: biết nhiều đội có cùng vấn đề không đảm bảo họ sẽ chấp nhận cùng một giải pháp. Ba lần dùng thật thì vừa xác nhận nhu cầu vừa uốn hình dạng giải pháp cho đúng."
       },
       {
         "question": "Vì sao 'cho phép thoát ra dễ dàng' lại làm nhiều đội vào hơn?",
@@ -64012,7 +64012,7 @@ const BASE_LESSONS: Lesson[] = [
           "Phải có cơ chế cho phép một phần tiếp tục chạy ở mức suy giảm khi phần khác ngừng"
         ],
         "correct": 0,
-        "explanation": "Phương án cuối là một cách hiện thực hoá điều kiện ấy chứ không phải bản thân điều kiện. Nếu các phần vẫn hỏng cùng lúc vì một phụ thuộc chung thì cơ chế suy giảm cũng không cứu được, vì không còn phần nào đứng."
+        "explanation": "Phương án “Phải có cơ chế…” là một cách hiện thực hoá điều kiện ấy chứ không phải bản thân điều kiện. Nếu các phần vẫn hỏng cùng lúc vì một phụ thuộc chung thì cơ chế suy giảm cũng không cứu được, vì không còn phần nào đứng."
       },
       {
         "question": "Nguồn phụ thuộc chung nào ít được tính nhất?",
@@ -64656,7 +64656,7 @@ const BASE_LESSONS: Lesson[] = [
           "Vì nó có thể được cấu hình sai nên hoạt động không ổn định"
         ],
         "correct": 0,
-        "explanation": "Vế thứ hai là vế quyết định: không nằm trong danh sách nghĩa là không nằm trong lượt quét lỗ hổng, không nằm trong lịch vá, và không ai nhìn cảnh báo của nó. Lựa chọn thứ ba là một rủi ro thật đi kèm."
+        "explanation": "Vế thứ hai là vế quyết định: không nằm trong danh sách nghĩa là không nằm trong lượt quét lỗ hổng, không nằm trong lịch vá, và không ai nhìn cảnh báo của nó. Lựa chọn “Vì dữ liệu thử…” là một rủi ro thật đi kèm."
       },
       {
         "question": "Điều gì nên đi kèm mỗi mục trong danh sách kiểm kê?",
@@ -64678,7 +64678,7 @@ const BASE_LESSONS: Lesson[] = [
           "Vì việc xoay vòng giúp phát hiện những nơi đang dùng khoá mà không ai biết"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn cuối là một tác dụng phụ rất hữu ích của việc xoay vòng. Lý do chính thì về thời gian phơi nhiễm: một khoá bị lộ ba năm trước vẫn đang dùng được nếu nó chưa bao giờ được đổi."
+        "explanation": "Lựa chọn “Vì việc xoay vòng…” là một tác dụng phụ rất hữu ích của việc xoay vòng. Lý do chính thì về thời gian phơi nhiễm: một khoá bị lộ ba năm trước vẫn đang dùng được nếu nó chưa bao giờ được đổi."
       }
     ],
     "keyTakeaways": [
@@ -66394,7 +66394,7 @@ const BASE_LESSONS: Lesson[] = [
           "Vì mỗi lập trình viên có thể cấu hình các quy tắc phù hợp với phong cách của mình"
         ],
         "correct": 0,
-        "explanation": "Vòng phản hồi ngắn là nguyên tắc chung của mọi thứ trong chặng này. Lựa chọn cuối là phản ví dụ đáng chú ý: cấu hình khác nhau giữa các máy phá vỡ chính tính nhất quán mà công cụ sinh ra để tạo."
+        "explanation": "Vòng phản hồi ngắn là nguyên tắc chung của mọi thứ trong chặng này. Lựa chọn “Vì mỗi lập trình…” là phản ví dụ đáng chú ý: cấu hình khác nhau giữa các máy phá vỡ chính tính nhất quán mà công cụ sinh ra để tạo."
       },
       {
         "question": "Nên xử lý thế nào với đội đang có nhiều mã cũ vi phạm quy ước mới?",
@@ -66746,7 +66746,7 @@ const BASE_LESSONS: Lesson[] = [
           "Vì hệ thống mới đã được xây dựng trên một nền tảng công nghệ hiện đại hơn hẳn"
         ],
         "correct": 0,
-        "explanation": "Đây là cùng nguyên tắc với phát hành thay đổi nhỏ ở chặng triển khai: rủi ro nằm ở kích thước thay đổi và tốc độ hồi phục. Lựa chọn thứ ba thì ngược lại - đội PHẢI bảo trì hai hệ thống cùng lúc, và đó là cái giá của khuôn hình này."
+        "explanation": "Đây là cùng nguyên tắc với phát hành thay đổi nhỏ ở chặng triển khai: rủi ro nằm ở kích thước thay đổi và tốc độ hồi phục. Lựa chọn “Vì đội không phải…” thì ngược lại - đội PHẢI bảo trì hai hệ thống cùng lúc, và đó là cái giá của khuôn hình này."
       },
       {
         "question": "Cái giá của khuôn hình này là gì?",
@@ -68656,7 +68656,7 @@ const BASE_LESSONS: Lesson[] = [
           "Thời hạn còn lại của hợp đồng hiện tại với nhà cung cấp đó"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn thứ ba là một đầu vào của con số này và nó không tính được thành đơn vị so sánh. Thời gian chuyển đi thì nói thẳng: bạn có bao nhiêu tháng để đàm phán trước khi phải chấp nhận."
+        "explanation": "Lựa chọn “Số lượng dịch vụ…” là một đầu vào của con số này và nó không tính được thành đơn vị so sánh. Thời gian chuyển đi thì nói thẳng: bạn có bao nhiêu tháng để đàm phán trước khi phải chấp nhận."
       },
       {
         "question": "Vì sao ước lượng thời gian chuyển đổi cần được làm lại định kỳ?",
@@ -68678,7 +68678,7 @@ const BASE_LESSONS: Lesson[] = [
           "Vì phải trả thêm cho các lớp trung gian giúp trừu tượng hoá nhà cung cấp"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn thứ hai là một cách làm cực đoan và hiếm khi cần. Cái giá thật thì hằng ngày: dịch vụ quản lý sẵn của nhà cung cấp thường tiện hơn và tổng chi phí thấp hơn tự dựng, nên tránh nó là chấp nhận trả nhiều hơn ngay bây giờ."
+        "explanation": "Lựa chọn “Vì phải duy trì…” là một cách làm cực đoan và hiếm khi cần. Cái giá thật thì hằng ngày: dịch vụ quản lý sẵn của nhà cung cấp thường tiện hơn và tổng chi phí thấp hơn tự dựng, nên tránh nó là chấp nhận trả nhiều hơn ngay bây giờ."
       },
       {
         "question": "Cách tiếp cận cân bằng với vấn đề này là gì?",
@@ -69195,7 +69195,7 @@ const BASE_LESSONS: Lesson[] = [
           "Vì các bên liên quan quan tâm tới mốc thời gian hơn là con số kỹ thuật"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn thứ ba mô tả đúng nội dung của vế đó nhưng không nói vì sao nó quan trọng hơn. Giá trị nằm ở chỗ nó biến một con số thành một hạn - và hạn thì tạo ra hành động, còn con số thì không."
+        "explanation": "Lựa chọn “Vì nó phản ánh…” mô tả đúng nội dung của vế đó nhưng không nói vì sao nó quan trọng hơn. Giá trị nằm ở chỗ nó biến một con số thành một hạn - và hạn thì tạo ra hành động, còn con số thì không."
       },
       {
         "question": "Tài nguyên nào quyết định trần của hệ thống?",
@@ -69574,7 +69574,7 @@ const BASE_LESSONS: Lesson[] = [
           "Vì khoảng cách một tuần đủ dài để mức dao động ngẫu nhiên bị triệt tiêu"
         ],
         "correct": 0,
-        "explanation": "So thứ hai với chủ nhật thì bạn đo ngày trong tuần chứ không đo hệ thống. Lựa chọn thứ hai là một lý do thật để cẩn thận với dữ liệu hôm qua nhưng nó không liên quan tới việc chọn mốc so sánh."
+        "explanation": "So thứ hai với chủ nhật thì bạn đo ngày trong tuần chứ không đo hệ thống. Lựa chọn “Vì dữ liệu của…” là một lý do thật để cẩn thận với dữ liệu hôm qua nhưng nó không liên quan tới việc chọn mốc so sánh."
       },
       {
         "question": "Vì sao trục bị cắt lại dễ gây hiểu nhầm?",
@@ -69585,7 +69585,7 @@ const BASE_LESSONS: Lesson[] = [
           "Vì việc cắt trục thường được làm để che giấu một xu hướng bất lợi"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn cuối gán ý đồ, và trong thực tế cắt trục thường là cách trình bày hợp lý cho chỉ số độ sẵn sàng - từ 0 tới 100 thì mọi thứ thành một đường phẳng. Vấn đề nằm ở người đọc, không ở người vẽ."
+        "explanation": "Lựa chọn “Vì việc cắt trục…” gán ý đồ, và trong thực tế cắt trục thường là cách trình bày hợp lý cho chỉ số độ sẵn sàng - từ 0 tới 100 thì mọi thứ thành một đường phẳng. Vấn đề nằm ở người đọc, không ở người vẽ."
       },
       {
         "question": "Vì sao hồi quy về trung bình hay bị đọc nhầm thành hiệu quả của một thay đổi?",
@@ -69740,7 +69740,7 @@ const BASE_LESSONS: Lesson[] = [
           "Vì tốc độ tăng trưởng của từng tài nguyên trong hệ thống không giống nhau"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn cuối là một thành phần của phép tính này. Yếu tố quyết định thì là thời gian chuẩn bị: cùng một tài nguyên, thuê theo nhu cầu và phải đặt mua sẽ cho hai ngưỡng cách nhau rất xa."
+        "explanation": "Lựa chọn “Vì tốc độ tăng…” là một thành phần của phép tính này. Yếu tố quyết định thì là thời gian chuẩn bị: cùng một tài nguyên, thuê theo nhu cầu và phải đặt mua sẽ cho hai ngưỡng cách nhau rất xa."
       },
       {
         "question": "Ngưỡng can thiệp khác cảnh báo sự cố ở chỗ nào?",
@@ -69773,7 +69773,7 @@ const BASE_LESSONS: Lesson[] = [
           "Nó không gửi thông báo tới đúng người chịu trách nhiệm về tài nguyên"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn thứ hai là một nguyên nhân dẫn tới tình trạng này. Bản thân tình trạng thì tệ hơn cả việc không có ngưỡng: bạn vừa mất công đặt nó vừa tạo ra một tín hiệu mà cả đội đã học cách bỏ qua."
+        "explanation": "Lựa chọn “Nó đã được đặt…” là một nguyên nhân dẫn tới tình trạng này. Bản thân tình trạng thì tệ hơn cả việc không có ngưỡng: bạn vừa mất công đặt nó vừa tạo ra một tín hiệu mà cả đội đã học cách bỏ qua."
       },
       {
         "question": "Nên làm gì khi một ngưỡng bị vượt?",
@@ -69784,7 +69784,7 @@ const BASE_LESSONS: Lesson[] = [
           "Kiểm tra xem có thành phần nào đang tiêu tốn tài nguyên bất thường không"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn thứ tư là việc nên làm và nó là điều tra, không phải quyết định. Điểm mấu chốt là phải có MỘT trong ba kết cục, và dời ngưỡng cũng là kết cục hợp lệ miễn là có lý do được ghi lại."
+        "explanation": "Lựa chọn “Kiểm tra xem có…” là việc nên làm và nó là điều tra, không phải quyết định. Điểm mấu chốt là phải có MỘT trong ba kết cục, và dời ngưỡng cũng là kết cục hợp lệ miễn là có lý do được ghi lại."
       }
     ],
     "keyTakeaways": [
@@ -70112,7 +70112,7 @@ const BASE_LESSONS: Lesson[] = [
           "Vì cần thu thập dữ liệu về các trường hợp vượt để điều chỉnh hạn mức"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn thứ hai đúng và nhẹ hơn. Vế thứ hai của lựa chọn đầu mới là phần nguy hiểm: người ta chia nhỏ thao tác, mượn tài khoản khác, hoặc tắt kiểm tra - và không cách nào trong ba cách đó để lại dấu vết."
+        "explanation": "Lựa chọn “Vì có tất cả…” đúng và nhẹ hơn. Vế thứ hai của lựa chọn “Vì chặn cứng sẽ…” mới là phần nguy hiểm: người ta chia nhỏ thao tác, mượn tài khoản khác, hoặc tắt kiểm tra - và không cách nào trong ba cách đó để lại dấu vết."
       },
       {
         "question": "Vì sao cần hạn mức theo khoảng thời gian chứ không chỉ theo từng lần?",
@@ -70123,7 +70123,7 @@ const BASE_LESSONS: Lesson[] = [
           "Vì các hệ thống theo dõi thường tổng hợp số liệu theo khoảng thời gian"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn thứ hai mô tả hậu quả, còn đây là cơ chế. Một hạn mức chỉ theo từng lần có thể bị vô hiệu hoàn toàn bằng một vòng lặp, và điều đó không đòi hỏi kỹ năng gì đặc biệt."
+        "explanation": "Lựa chọn “Vì tổng thiệt hại…” mô tả hậu quả, còn đây là cơ chế. Một hạn mức chỉ theo từng lần có thể bị vô hiệu hoàn toàn bằng một vòng lặp, và điều đó không đòi hỏi kỹ năng gì đặc biệt."
       },
       {
         "question": "Đường vượt hạn mức khẩn cấp cần có điều kiện gì?",
@@ -70145,7 +70145,7 @@ const BASE_LESSONS: Lesson[] = [
           "Số lượng thao tác bị chặn tăng lên theo quy mô sử dụng hệ thống"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn thứ hai cũng đáng xem lại nhưng nó có thể chỉ nghĩa là hạn mức được đặt rộng rãi một cách hợp lý. Đường khẩn cấp bị dùng trong việc thường ngày thì rõ ràng hơn: nó nghĩa là trần đang nằm dưới mức công việc bình thường cần."
+        "explanation": "Lựa chọn “Nó chưa bao giờ…” cũng đáng xem lại nhưng nó có thể chỉ nghĩa là hạn mức được đặt rộng rãi một cách hợp lý. Đường khẩn cấp bị dùng trong việc thường ngày thì rõ ràng hơn: nó nghĩa là trần đang nằm dưới mức công việc bình thường cần."
       }
     ],
     "keyTakeaways": [
@@ -70618,7 +70618,7 @@ const BASE_LESSONS: Lesson[] = [
           "Vì các báo cáo tốt trong ngành đều có phần này theo thông lệ"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn thứ ba đúng và nó là hệ quả SAU khi quyết định. Cái này là vấn đề ngay lúc đọc: mọi báo cáo đều dẫn bằng chứng ủng hộ kết luận của nó, nên bằng chứng ủng hộ không phân biệt được hai loại báo cáo."
+        "explanation": "Lựa chọn “Vì nó khiến người…” đúng và nó là hệ quả SAU khi quyết định. Cái này là vấn đề ngay lúc đọc: mọi báo cáo đều dẫn bằng chứng ủng hộ kết luận của nó, nên bằng chứng ủng hộ không phân biệt được hai loại báo cáo."
       },
       {
         "question": "Câu hỏi nào mạnh nhất khi đánh giá một báo cáo?",
@@ -70793,7 +70793,7 @@ const BASE_LESSONS: Lesson[] = [
           "Vì người yêu cầu có xu hướng xin dư để tránh phải xin lại lần nữa"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn cuối cũng xảy ra và nó giả định người xin biết mình đang xin dư. Thực tế thường đơn giản hơn: họ chỉ biết gọi tên vai trò, và không ai từng nói với họ rằng có lựa chọn hẹp hơn."
+        "explanation": "Lựa chọn “Vì người yêu cầu có…” cũng xảy ra và nó giả định người xin biết mình đang xin dư. Thực tế thường đơn giản hơn: họ chỉ biết gọi tên vai trò, và không ai từng nói với họ rằng có lựa chọn hẹp hơn."
       },
       {
         "question": "Vì sao mặc định phải là quyền CÓ HẠN?",
@@ -70837,7 +70837,7 @@ const BASE_LESSONS: Lesson[] = [
           "Mức độ rủi ro được đánh giá cho quyền đó theo thang của tổ chức"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn thứ hai thường được ghi tự động và nó không giúp gì cho việc rà soát. Ba thứ trong lựa chọn đầu là thứ duy nhất cho phép người rà soát sáu tháng sau đánh giá được mà không phải đi hỏi lại."
+        "explanation": "Lựa chọn “Thời điểm cấp và…” thường được ghi tự động và nó không giúp gì cho việc rà soát. Ba thứ trong lựa chọn “Việc cụ thể, thời…” là thứ duy nhất cho phép người rà soát sáu tháng sau đánh giá được mà không phải đi hỏi lại."
       }
     ],
     "keyTakeaways": [
@@ -72450,7 +72450,7 @@ const BASE_LESSONS: Lesson[] = [
           "Các dịch vụ phải chạy trên cùng một loại hạ tầng để dung lượng chuyển đổi được cho nhau"
         ],
         "correct": 0,
-        "explanation": "Phương án cuối là điều kiện kỹ thuật để gom chung khả thi. Điều kiện đầu là điều kiện để nó có ích: nếu mọi đỉnh trùng nhau thì kho chung phải bằng tổng các đỉnh riêng, và không tiết kiệm được gì."
+        "explanation": "Phương án “Các dịch vụ phải chạy…” là điều kiện kỹ thuật để gom chung khả thi. Điều kiện đầu là điều kiện để nó có ích: nếu mọi đỉnh trùng nhau thì kho chung phải bằng tổng các đỉnh riêng, và không tiết kiệm được gì."
       },
       {
         "question": "Nguyên nhân nào làm các đỉnh trùng nhau và dễ sửa nhất?",
@@ -72472,7 +72472,7 @@ const BASE_LESSONS: Lesson[] = [
           "Xem lại lịch sử các lần kho dự phòng chung bị cạn để tìm ra mẫu hình lặp lại"
         ],
         "correct": 0,
-        "explanation": "Phương án cuối cũng dùng dữ liệu nhưng nó chờ vấn đề xảy ra trước. Vẽ theo giờ thì trả lời được ngay hôm nay, mất một buổi, và nó cũng chỉ luôn ra dịch vụ nào nên bị tách khỏi kho chung."
+        "explanation": "Phương án “Xem lại lịch sử…” cũng dùng dữ liệu nhưng nó chờ vấn đề xảy ra trước. Vẽ theo giờ thì trả lời được ngay hôm nay, mất một buổi, và nó cũng chỉ luôn ra dịch vụ nào nên bị tách khỏi kho chung."
       },
       {
         "question": "Vì sao thứ tự ưu tiên khi kho chung cạn phải viết trước?",
@@ -72785,7 +72785,7 @@ const BASE_LESSONS: Lesson[] = [
           "Vì các tiêu chuẩn bảo mật khuyến nghị giảm thiểu lượng dữ liệu lưu giữ"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn thứ hai là một quyền riêng và nó không phụ thuộc vào thời hạn. Nhiều đội chỉ đọc vế giữ tối thiểu và bỏ qua vế xoá tối đa - nên họ tuân thủ một nửa quy định và vi phạm nửa còn lại."
+        "explanation": "Lựa chọn “Vì người dùng có…” là một quyền riêng và nó không phụ thuộc vào thời hạn. Nhiều đội chỉ đọc vế giữ tối thiểu và bỏ qua vế xoá tối đa - nên họ tuân thủ một nửa quy định và vi phạm nửa còn lại."
       },
       {
         "question": "Điều gì làm một chính sách lưu trữ trở nên có thật?",
@@ -72807,7 +72807,7 @@ const BASE_LESSONS: Lesson[] = [
           "Xin ý kiến bộ phận pháp lý trước khi quyết định giữ lâu hơn mức yêu cầu"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn thứ ba là cách triển khai tốt và nó là bước sau. Ghi lý do là bước trước và nó rẻ hơn nhiều: không có nó, người rà soát ba năm sau chỉ thấy một chính sách vượt mức quy định mà không biết vì sao, và họ sẽ cắt nó về mức sàn."
+        "explanation": "Lựa chọn “Giữ lâu hơn hẳn…” là cách triển khai tốt và nó là bước sau. Ghi lý do là bước trước và nó rẻ hơn nhiều: không có nó, người rà soát ba năm sau chỉ thấy một chính sách vượt mức quy định mà không biết vì sao, và họ sẽ cắt nó về mức sàn."
       }
     ],
     "keyTakeaways": [
@@ -73168,7 +73168,7 @@ const BASE_LESSONS: Lesson[] = [
           "Bạn ước lượng thời gian dựa vào con số mà người khác đã nêu ra trước đó"
         ],
         "correct": 0,
-        "explanation": "Ba lựa chọn kia đều là hệ quả của cùng một cơ chế, nhưng lựa chọn đầu mô tả chính cơ chế đó. Điểm nguy hiểm là cái neo hoạt động ngay cả khi bạn biết nó tồn tại - biết mình đang bị neo không gỡ được neo."
+        "explanation": "Ba lựa chọn kia đều là hệ quả của cùng một cơ chế, nhưng lựa chọn “Cách làm đầu tiên…” mô tả chính cơ chế đó. Điểm nguy hiểm là cái neo hoạt động ngay cả khi bạn biết nó tồn tại - biết mình đang bị neo không gỡ được neo."
       },
       {
         "question": "Vì sao nên nghĩ ra ba cách giải trước khi bắt đầu viết?",
@@ -74389,7 +74389,7 @@ const BASE_LESSONS: Lesson[] = [
           "Vì hành vi quá khứ hoàn toàn có thể đối chiếu đã được với chính dữ liệu sử dụng của hệ thống"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn cuối là một lợi ích phụ rất hữu ích. Điểm cốt lõi là hai loại thông tin khác nhau về bản chất: người ta dự đoán hành vi tương lai của chính mình rất kém, kể cả khi hoàn toàn thành thật."
+        "explanation": "Lựa chọn “Vì hành vi quá khứ hoàn…” là một lợi ích phụ rất hữu ích. Điểm cốt lõi là hai loại thông tin khác nhau về bản chất: người ta dự đoán hành vi tương lai của chính mình rất kém, kể cả khi hoàn toàn thành thật."
       },
       {
         "question": "Vì sao người được hỏi hay trả lời theo hướng làm hài lòng?",
@@ -74433,7 +74433,7 @@ const BASE_LESSONS: Lesson[] = [
           "Vì người dùng không hài lòng thường đã rời đi nên không còn để phỏng vấn"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn cuối cũng là một dạng của cùng vấn đề. Cái này rộng hơn và ngược đời hơn: nhóm bạn nghe được nhiều nhất là nhóm ít giống người dùng trung bình nhất, theo đúng cả hai chiều yêu và ghét."
+        "explanation": "Lựa chọn “Vì người dùng không…” cũng là một dạng của cùng vấn đề. Cái này rộng hơn và ngược đời hơn: nhóm bạn nghe được nhiều nhất là nhóm ít giống người dùng trung bình nhất, theo đúng cả hai chiều yêu và ghét."
       }
     ],
     "keyTakeaways": [
@@ -74584,7 +74584,7 @@ const BASE_LESSONS: Lesson[] = [
           "Khi hệ thống có yêu cầu cao về độ chính xác của các con số báo cáo"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn thứ ba là nơi người ta hay tưởng cần ghi ngay và thường không cần: một bảng thống kê cho người dùng xem chậm năm phút thì không ai nhận ra. Điều quyết định là có QUYẾT ĐỊNH nào dựa trên giá trị đó không."
+        "explanation": "Lựa chọn “Khi dữ liệu cần…” là nơi người ta hay tưởng cần ghi ngay và thường không cần: một bảng thống kê cho người dùng xem chậm năm phút thì không ai nhận ra. Điều quyết định là có QUYẾT ĐỊNH nào dựa trên giá trị đó không."
       },
       {
         "question": "Rủi ro của việc dùng cả hai đường cho cùng một loại dữ liệu là gì?",
@@ -74606,7 +74606,7 @@ const BASE_LESSONS: Lesson[] = [
           "Tự động đối chiếu hai bảng theo lịch và cảnh báo khi có chênh lệch"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn thứ ba là cách giải triệt để và nó tốn hàng tháng. Dòng ghi chú kia mất năm phút và giải quyết được phần lớn trường hợp, vì phần lớn chênh lệch là chênh lệch về thời điểm chứ không về cách tính."
+        "explanation": "Lựa chọn “Dùng chung một nguồn…” là cách giải triệt để và nó tốn hàng tháng. Dòng ghi chú kia mất năm phút và giải quyết được phần lớn trường hợp, vì phần lớn chênh lệch là chênh lệch về thời điểm chứ không về cách tính."
       }
     ],
     "keyTakeaways": [
@@ -74763,7 +74763,7 @@ const BASE_LESSONS: Lesson[] = [
           "Vì kết quả thử nghiệm sẽ giúp ước tínhxác hơn nguồn lực cần thiết"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn thứ ba đúng và nó là lý do chiến thuật. Lý do thật thì mạnh hơn: khi hai bên bất đồng về một dự đoán, không ai thắng bằng lập luận - chỉ có phép đo mới kết thúc được cuộc tranh luận đó."
+        "explanation": "Lựa chọn “Vì chi phí thấp…” đúng và nó là lý do chiến thuật. Lý do thật thì mạnh hơn: khi hai bên bất đồng về một dự đoán, không ai thắng bằng lập luận - chỉ có phép đo mới kết thúc được cuộc tranh luận đó."
       },
       {
         "question": "Sai lầm phổ biến nhất khi viết đề xuất kỹ thuật là gì?",
@@ -74917,7 +74917,7 @@ const BASE_LESSONS: Lesson[] = [
           "Vì việc chia theo thời gian phản ánh đúng cách quy tắc sẽ được dùng sau này"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn cuối là cách nói khác của cùng ý và nó nhẹ hơn. Nói thẳng thì đây là gian lận với chính mình: các điểm dữ liệu gần nhau về thời gian tương quan với nhau, nên một điểm trong phần kiểm có thể tiết lộ điểm liền kề trong phần huấn luyện."
+        "explanation": "Lựa chọn “Vì việc chia theo…” là cách nói khác của cùng ý và nó nhẹ hơn. Nói thẳng thì đây là gian lận với chính mình: các điểm dữ liệu gần nhau về thời gian tương quan với nhau, nên một điểm trong phần kiểm có thể tiết lộ điểm liền kề trong phần huấn luyện."
       },
       {
         "question": "Vì sao mỗi lần chỉnh lại quy tắc là một lần tiêu bớt phần kiểm?",
@@ -74950,7 +74950,7 @@ const BASE_LESSONS: Lesson[] = [
           "Vì nó ít phụ thuộc vào chất lượng của dữ liệu đầu vào hơn"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn thứ hai là lợi ích vận hành thật và nó khác về bản chất. Cái này nói về thống kê: mỗi tham số thêm vào là một chỗ để quy tắc học thuộc nhiễu thay vì học quy luật."
+        "explanation": "Lựa chọn “Vì nó dễ hiểu…” là lợi ích vận hành thật và nó khác về bản chất. Cái này nói về thống kê: mỗi tham số thêm vào là một chỗ để quy tắc học thuộc nhiễu thay vì học quy luật."
       }
     ],
     "keyTakeaways": [
@@ -75085,7 +75085,7 @@ const BASE_LESSONS: Lesson[] = [
           "Vì phần mã ở ranh giới khá thường xuyên tương đối ít được thay đổi nên ít ai chú ý tới"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn thứ tư mô tả ngược thực tế: phần mã này thường bị thay đổi từ NHIỀU phía chứ không ít. Chính điều đó làm nó tích tụ các thay đổi nhỏ không nhất quán, và sau hai năm không ai đủ hiểu để đổi nó an toàn."
+        "explanation": "Lựa chọn “Vì phần mã ở…” mô tả ngược thực tế: phần mã này thường bị thay đổi từ NHIỀU phía chứ không ít. Chính điều đó làm nó tích tụ các thay đổi nhỏ không nhất quán, và sau hai năm không ai đủ hiểu để đổi nó an toàn."
       },
       {
         "question": "Cách xác lập quyền sở hữu nào đáng tin nhất?",
@@ -75096,7 +75096,7 @@ const BASE_LESSONS: Lesson[] = [
           "Phân công theo sơ đồ tổ chức và cập nhật khi tổ chức thay đổi"
         ],
         "correct": 0,
-        "explanation": "Vế thứ hai làm cho việc ghi trở nên nghiêm túc: một cái tên trong tệp cấu hình mà không nối với lịch trực thì chỉ là một dòng chữ. Lựa chọn thứ ba là cách xác lập bằng thói quen, và nó lỗi thời ngay khi có người đổi việc."
+        "explanation": "Vế thứ hai làm cho việc ghi trở nên nghiêm túc: một cái tên trong tệp cấu hình mà không nối với lịch trực thì chỉ là một dòng chữ. Lựa chọn “Xác định theo đội…” là cách xác lập bằng thói quen, và nó lỗi thời ngay khi có người đổi việc."
       },
       {
         "question": "Đội sở hữu nên từ chối một thay đổi khi nào?",
@@ -75118,7 +75118,7 @@ const BASE_LESSONS: Lesson[] = [
           "Giữ nguyên và bổ sung tài liệu để mọi người hiểu nó rõ hơn"
         ],
         "correct": 0,
-        "explanation": "Vế KÈM THỜI GIAN là phần quyết định: giao suông một phần mã đã tích tụ hai năm nợ thì đội nhận sẽ chịu toàn bộ chi phí của những quyết định họ không tham gia. Lựa chọn thứ ba là chính tình trạng hiện tại nói theo cách khác."
+        "explanation": "Vế KÈM THỜI GIAN là phần quyết định: giao suông một phần mã đã tích tụ hai năm nợ thì đội nhận sẽ chịu toàn bộ chi phí của những quyết định họ không tham gia. Lựa chọn “Để mọi đội cùng…” là chính tình trạng hiện tại nói theo cách khác."
       }
     ],
     "keyTakeaways": [
@@ -75253,7 +75253,7 @@ const BASE_LESSONS: Lesson[] = [
           "Nó buộc đội phải cân nhắc nhiều khía cạnh trước khi ra quyết định"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn thứ hai mô tả cách dùng và nó vẫn cần ai đó nhìn và phản ứng. Cặp chỉ số thì chặn ngay từ đầu: cách làm chỉ tiêu chính tăng bằng thủ thuật cũng chính là cách làm chỉ số đối trọng xấu đi."
+        "explanation": "Lựa chọn “Nó cho phép phát…” mô tả cách dùng và nó vẫn cần ai đó nhìn và phản ứng. Cặp chỉ số thì chặn ngay từ đầu: cách làm chỉ tiêu chính tăng bằng thủ thuật cũng chính là cách làm chỉ số đối trọng xấu đi."
       },
       {
         "question": "Điều kiện nào làm chỉ số đối trọng có tác dụng?",
@@ -75275,7 +75275,7 @@ const BASE_LESSONS: Lesson[] = [
           "Vì việc thay người làm mất kinh nghiệm tích luỹ của đội về sản phẩm"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn thứ ba gần đúng và nó nói chung chung về quy trình. Cái này cụ thể hơn: cấu trúc khuyến khích là thứ quyết định, và nó không đổi khi người đổi."
+        "explanation": "Lựa chọn “Vì vấn đề nằm…” gần đúng và nó nói chung chung về quy trình. Cái này cụ thể hơn: cấu trúc khuyến khích là thứ quyết định, và nó không đổi khi người đổi."
       },
       {
         "question": "Kỹ sư trong đội có thể làm gì khi thấy chỉ tiêu đang xung đột với người dùng?",
@@ -75844,7 +75844,7 @@ const BASE_LESSONS: Lesson[] = [
           "Không đặt mặc định nào và buộc người dùng phải tự chọn một cách chủ động"
         ],
         "correct": 0,
-        "explanation": "Buộc chọn nghe công bằng nhất và nó chỉ chuyển vấn đề sang chỗ khác: người dùng bị chặn ở một câu hỏi họ chưa đủ thông tin để trả lời, và họ chọn bừa. Nguyên tắc ở phương án đầu giữ được cả hai: người không quan tâm nhận được lựa chọn đúng, người quan tâm vẫn đổi được."
+        "explanation": "Buộc chọn nghe công bằng nhất và nó chỉ chuyển vấn đề sang chỗ khác: người dùng bị chặn ở một câu hỏi họ chưa đủ thông tin để trả lời, và họ chọn bừa. Nguyên tắc ở phương án “Đặt mặc định là thứ…” giữ được cả hai: người không quan tâm nhận được lựa chọn đúng, người quan tâm vẫn đổi được."
       },
       {
         "question": "Vì sao thu tiền theo chu kỳ với gia hạn tự động lại nằm ở vùng xám?",
@@ -76301,7 +76301,7 @@ const BASE_LESSONS: Lesson[] = [
           "Dữ liệu nguồn, vì từ đó có thể tính lại mọi kết quả phái sinh"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn thứ tư đúng một nửa và bỏ mất vế quan trọng: có dữ liệu nguồn mà không có mã dựng lại chạy được thì bạn vẫn không tính lại được. Nhiều đội sao lưu kỹ bảng kết quả và không ai kiểm lượt tính lại còn chạy không."
+        "explanation": "Lựa chọn “Dữ liệu nguồn, vì…” đúng một nửa và bỏ mất vế quan trọng: có dữ liệu nguồn mà không có mã dựng lại chạy được thì bạn vẫn không tính lại được. Nhiều đội sao lưu kỹ bảng kết quả và không ai kiểm lượt tính lại còn chạy không."
       },
       {
         "question": "Vì sao bảo vệ mọi thứ ở mức cao nhất lại phản tác dụng?",
@@ -76334,7 +76334,7 @@ const BASE_LESSONS: Lesson[] = [
           "Vì cần thông báo cho từng nhóm người dùng về thời điểm dịch vụ trở lại"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn thứ hai là ràng buộc kỹ thuật thật và nó chỉ quyết định một phần thứ tự. Phần còn lại là quyết định ưu tiên, và nó không nên được đưa ra lúc mọi người đang chịu áp lực."
+        "explanation": "Lựa chọn “Vì một số dữ…” là ràng buộc kỹ thuật thật và nó chỉ quyết định một phần thứ tự. Phần còn lại là quyết định ưu tiên, và nó không nên được đưa ra lúc mọi người đang chịu áp lực."
       }
     ],
     "keyTakeaways": [
@@ -76481,7 +76481,7 @@ const BASE_LESSONS: Lesson[] = [
           "Chấp nhận kết quả của mô hình vì nó vẫnxác hơn phán đoán của người"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn cuối đúng ở mức tổng thể và sai ở vùng này: mô hình chính xác hơn người TRUNG BÌNH, nhưng quanh ngưỡng thì nó gần như đang tung đồng xu. Chuyển sang người xem cũng rẻ vì nhóm đó thường nhỏ."
+        "explanation": "Lựa chọn “Chấp nhận kết quả…” đúng ở mức tổng thể và sai ở vùng này: mô hình chính xác hơn người TRUNG BÌNH, nhưng quanh ngưỡng thì nó gần như đang tung đồng xu. Chuyển sang người xem cũng rẻ vì nhóm đó thường nhỏ."
       },
       {
         "question": "Vì sao mô hình học từ dữ liệu quá khứ có thể lặp lại thiên lệch?",
@@ -76503,7 +76503,7 @@ const BASE_LESSONS: Lesson[] = [
           "Vì cần chứng minh mô hình không dùng các biến bị cấm theo quy định"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn cuối là một phần của yêu cầu này ở phạm vi hẹp hơn. Vế gỡ lỗi là vế thực dụng nhất: không giải thích được thì khi có khiếu nại, bạn không có cách nào phân biệt một quyết định đúng với một lỗi."
+        "explanation": "Lựa chọn “Vì cần chứng minh…” là một phần của yêu cầu này ở phạm vi hẹp hơn. Vế gỡ lỗi là vế thực dụng nhất: không giải thích được thì khi có khiếu nại, bạn không có cách nào phân biệt một quyết định đúng với một lỗi."
       },
       {
         "question": "Chỉ số nào cần theo dõi sau khi mô hình chạy thật?",
@@ -76646,7 +76646,7 @@ const BASE_LESSONS: Lesson[] = [
           "Vì mỗi dịch vụ cần một đội riêng bất kể quy mô của nó lớn hay nhỏ"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn cuối là một cách hiểu quá mạnh - nhiều dịch vụ nhỏ có thể chung một đội. Bốn khoản kia thì không gộp được: mỗi dịch vụ vẫn cần đường phát hành riêng và bảng theo dõi riêng của nó."
+        "explanation": "Lựa chọn “Vì mỗi dịch vụ…” là một cách hiểu quá mạnh - nhiều dịch vụ nhỏ có thể chung một đội. Bốn khoản kia thì không gộp được: mỗi dịch vụ vẫn cần đường phát hành riêng và bảng theo dõi riêng của nó."
       },
       {
         "question": "Điểm hoà vốn của một quyết định tách dịch vụ là gì?",
@@ -76657,7 +76657,7 @@ const BASE_LESSONS: Lesson[] = [
           "Quy mô đội mà tại đó việc phối hợp trong một khối chung trở nên quá tốn"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn cuối mô tả một trong các lợi ích và không phải phép so sánh đầy đủ. Điểm hoà vốn đòi cả hai vế, và vế chi phí thì gần như không bao giờ được viết ra trong cuộc họp quyết định."
+        "explanation": "Lựa chọn “Quy mô đội mà…” mô tả một trong các lợi ích và không phải phép so sánh đầy đủ. Điểm hoà vốn đòi cả hai vế, và vế chi phí thì gần như không bao giờ được viết ra trong cuộc họp quyết định."
       },
       {
         "question": "Vì sao tổng chi phí cố định tăng tuyến tính theo số dịch vụ?",
@@ -76668,7 +76668,7 @@ const BASE_LESSONS: Lesson[] = [
           "Vì số lượng phụ thuộc giữa các dịch vụ tăng lên khi có thêm dịch vụ mới"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn thứ hai mô tả một loại chi phí khác cũng có thật và nó tăng nhanh hơn tuyến tính. Bốn khoản cố định thì cộng dồn đơn giản, và chính vì đơn giản nên nó dễ bị bỏ qua trong ước lượng."
+        "explanation": "Lựa chọn “Vì chi phí phối…” mô tả một loại chi phí khác cũng có thật và nó tăng nhanh hơn tuyến tính. Bốn khoản cố định thì cộng dồn đơn giản, và chính vì đơn giản nên nó dễ bị bỏ qua trong ước lượng."
       },
       {
         "question": "Cách nào giảm chi phí cố định trên mỗi dịch vụ?",
@@ -76679,7 +76679,7 @@ const BASE_LESSONS: Lesson[] = [
           "Giảm mức độ theo dõi và trực cho những dịch vụ ít quan trọng hơn"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn thứ hai là giải pháp đúng khi đã quá đà và nó tốn kém. Chuẩn hoá thì hạ chi phí cố định cho mọi dịch vụ hiện tại lẫn tương lai, và đó là lý do nó đáng làm trước khi tách dịch vụ thứ năm."
+        "explanation": "Lựa chọn “Gộp các dịch vụ…” là giải pháp đúng khi đã quá đà và nó tốn kém. Chuẩn hoá thì hạ chi phí cố định cho mọi dịch vụ hiện tại lẫn tương lai, và đó là lý do nó đáng làm trước khi tách dịch vụ thứ năm."
       },
       {
         "question": "Vì sao chi phí này hay bị bỏ qua lúc quyết định?",
@@ -76690,7 +76690,7 @@ const BASE_LESSONS: Lesson[] = [
           "Vì người quyết định thường không phải người sẽ vận hành dịch vụ đó"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn cuối là một yếu tố góp phần rất thật. Nhưng lý do gốc là hình thức của chi phí: một khoản chi có hoá đơn thì vào bảng tính, còn nửa ngày mỗi tháng của một kỹ sư thì không vào đâu cả."
+        "explanation": "Lựa chọn “Vì người quyết định…” là một yếu tố góp phần rất thật. Nhưng lý do gốc là hình thức của chi phí: một khoản chi có hoá đơn thì vào bảng tính, còn nửa ngày mỗi tháng của một kỹ sư thì không vào đâu cả."
       }
     ],
     "keyTakeaways": [
@@ -77018,7 +77018,7 @@ const BASE_LESSONS: Lesson[] = [
           "Vì các mốc đã công bố thường được ghi vào hợp đồng với khách hàng lớn"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn thứ hai mô tả thiệt hại trực tiếp và nó là thiệt hại một lần. Mất niềm tin thì lan sang mọi thông báo sau đó - lần tới người ta sẽ không chuẩn bị theo mốc bạn đưa ra, và lúc đó thông báo thành vô dụng."
+        "explanation": "Lựa chọn “Vì người dùng sẽ…” mô tả thiệt hại trực tiếp và nó là thiệt hại một lần. Mất niềm tin thì lan sang mọi thông báo sau đó - lần tới người ta sẽ không chuẩn bị theo mốc bạn đưa ra, và lúc đó thông báo thành vô dụng."
       },
       {
         "question": "Với thay đổi phá vỡ tương thích, thời gian báo trước nên tính theo gì?",
@@ -77040,7 +77040,7 @@ const BASE_LESSONS: Lesson[] = [
           "Vì thông báo kỹ thuật cần được lưu lại để tra cứu lịch sử thay đổi"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn thứ ba gần đúng và nhẹ hơn: vấn đề không phải là hai nhóm người khác nhau mà là cùng một người sẽ học cách bỏ qua kênh đó, vì phần lớn nội dung trong đó không cần hành động gì."
+        "explanation": "Lựa chọn “Vì đối tượng người…” gần đúng và nhẹ hơn: vấn đề không phải là hai nhóm người khác nhau mà là cùng một người sẽ học cách bỏ qua kênh đó, vì phần lớn nội dung trong đó không cần hành động gì."
       },
       {
         "question": "Sau khi thay đổi đã triển khai xong, việc nào còn lại?",
@@ -77392,7 +77392,7 @@ const BASE_LESSONS: Lesson[] = [
           "Vì AI đã được huấn luyện trên rất nhiều mã nguồn mở nên nó quen với mọi khuôn mẫu"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn thứ ba nghe hợp lý nhưng sai ở chỗ quan trọng: hiểu sai một đoạn mã dẫn tới sửa sai đoạn mã đó, và hậu quả xuất hiện ở bước sau. An toàn đến từ khả năng đối chiếu, không đến từ việc thao tác này không ghi gì."
+        "explanation": "Lựa chọn “Vì việc đọc mã…” nghe hợp lý nhưng sai ở chỗ quan trọng: hiểu sai một đoạn mã dẫn tới sửa sai đoạn mã đó, và hậu quả xuất hiện ở bước sau. An toàn đến từ khả năng đối chiếu, không đến từ việc thao tác này không ghi gì."
       },
       {
         "question": "Vì sao không nên bắt đầu bằng việc học các mẫu câu lệnh?",
@@ -77785,7 +77785,7 @@ const BASE_LESSONS: Lesson[] = [
           "Vì các mô hình được huấn luyện chủ yếu trên các cặp đầu vào và đầu ra tương tự"
         ],
         "correct": 0,
-        "explanation": "Ngày tháng là ví dụ rõ nhất: mô tả bằng lời thế nào cũng còn chỗ mơ hồ, còn một dòng ví dụ thì đóng lại hết. Mô hình không ghi nhớ ví dụ của bạn giữa các cuộc trò chuyện, nên lựa chọn thứ hai mô tả sai cơ chế."
+        "explanation": "Ngày tháng là ví dụ rõ nhất: mô tả bằng lời thế nào cũng còn chỗ mơ hồ, còn một dòng ví dụ thì đóng lại hết. Mô hình không ghi nhớ ví dụ của bạn giữa các cuộc trò chuyện, nên lựa chọn “Vì mô hình học…” mô tả sai cơ chế."
       },
       {
         "question": "Khi câu trả lời đầu tiên không đúng ý, cách sửa nào hiệu quả hơn?",
@@ -78211,7 +78211,7 @@ const BASE_LESSONS: Lesson[] = [
           "Vì bạn sẽ mất dần niềm tin vào công cụ và không dùng nó cho cả những việc vốn phù hợp"
         ],
         "correct": 0,
-        "explanation": "Đây là điểm dễ bị đánh giá thấp nhất về việc đọc mã. Lựa chọn thứ ba cũng là rủi ro thật và nó chính là lý do bài về lưu vết ở cuối chặng tồn tại, nhưng hậu quả trực tiếp nhất là bước sửa."
+        "explanation": "Đây là điểm dễ bị đánh giá thấp nhất về việc đọc mã. Lựa chọn “Vì lời giải thích…” cũng là rủi ro thật và nó chính là lý do bài về lưu vết ở cuối chặng tồn tại, nhưng hậu quả trực tiếp nhất là bước sửa."
       }
     ],
     "keyTakeaways": [
@@ -78562,7 +78562,7 @@ const BASE_LESSONS: Lesson[] = [
           "Vì nó đã học từ rất nhiều mã nguồn nên biết được các lỗi phổ biến nhất"
         ],
         "correct": 0,
-        "explanation": "Đây chính là cơ chế của điểm mù ở chặng rà soát code, và AI đóng đúng vai người thứ hai. Lựa chọn cuối cũng đúng nhưng nó giải thích vì sao AI bắt được lỗi nói chung, không giải thích vì sao nó bắt được lỗi mà CHÍNH BẠN không thấy."
+        "explanation": "Đây chính là cơ chế của điểm mù ở chặng rà soát code, và AI đóng đúng vai người thứ hai. Lựa chọn “Vì nó đã học…” cũng đúng nhưng nó giải thích vì sao AI bắt được lỗi nói chung, không giải thích vì sao nó bắt được lỗi mà CHÍNH BẠN không thấy."
       },
       {
         "question": "Vì sao không nên để AI là lượt rà soát cuối cùng?",
@@ -78951,7 +78951,7 @@ const BASE_LESSONS: Lesson[] = [
           "Vì bản sửa có thể ảnh hưởng tới các phần khác của hệ thống mà nó không nhìn thấy"
         ],
         "correct": 0,
-        "explanation": "Kiểu hỏng này tệ hơn không sửa gì: lỗi quay lại sau vài tuần dưới một hình dạng khác, và lúc đó không ai nhớ tới bản sửa cũ. Lựa chọn cuối cũng là rủi ro thật nhưng nó lộ ra sớm hơn nhiều."
+        "explanation": "Kiểu hỏng này tệ hơn không sửa gì: lỗi quay lại sau vài tuần dưới một hình dạng khác, và lúc đó không ai nhớ tới bản sửa cũ. Lựa chọn “Vì bản sửa có thể ảnh…” cũng là rủi ro thật nhưng nó lộ ra sớm hơn nhiều."
       },
       {
         "question": "Thông tin nào quan trọng nhất cần đưa vào khi mô tả lỗi?",
@@ -79105,7 +79105,7 @@ const BASE_LESSONS: Lesson[] = [
           "Vì người đọc tài liệu thường đã hiểu mã làm gì và chỉ cần biết thêm lý do"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn thứ ba cũng đúng và là một lý do thật, nhưng lý do đầu mạnh hơn: thông tin về lý do không tồn tại ở bất cứ đâu khác. Khi người biết nó rời dự án thì nó biến mất hoàn toàn."
+        "explanation": "Lựa chọn “Vì phần cái gì nhanh…” cũng đúng và là một lý do thật, nhưng lý do đầu mạnh hơn: thông tin về lý do không tồn tại ở bất cứ đâu khác. Khi người biết nó rời dự án thì nó biến mất hoàn toàn."
       },
       {
         "question": "Cách chia việc nào hợp lý khi viết tài liệu?",
@@ -80079,7 +80079,7 @@ const BASE_LESSONS: Lesson[] = [
           "Vì việc duy trì quá nhiều câu lệnh tốn thời gian hơn lợi ích chúng mang lại"
         ],
         "correct": 0,
-        "explanation": "Ngưỡng chết của một thư viện rất cụ thể: khi tìm lâu hơn viết lại. Lựa chọn thứ hai cũng đúng nhưng cách xử lý cho nó là cập nhật chứ không phải xoá."
+        "explanation": "Ngưỡng chết của một thư viện rất cụ thể: khi tìm lâu hơn viết lại. Lựa chọn “Vì các câu lệnh…” cũng đúng nhưng cách xử lý cho nó là cập nhật chứ không phải xoá."
       },
       {
         "question": "Vì sao đội nên chia sẻ khối ràng buộc chung?",
@@ -80291,7 +80291,7 @@ const BASE_LESSONS: Lesson[] = [
           "Vì bản ghi giúp bạn quay lại nhanh hơn nhiều khi phải tạm dừng công việc giữa chừng"
         ],
         "correct": 0,
-        "explanation": "Hai vế cộng lại làm việc này đáng làm ngay chứ không phải để sau. Lựa chọn thứ hai cũng đúng và nó chính là cơ chế ở bài về điểm mù, nhưng nó là lợi ích phụ ở đây."
+        "explanation": "Hai vế cộng lại làm việc này đáng làm ngay chứ không phải để sau. Lựa chọn “Vì viết ra giúp…” cũng đúng và nó chính là cơ chế ở bài về điểm mù, nhưng nó là lợi ích phụ ở đây."
       }
     ],
     "keyTakeaways": [
@@ -80463,7 +80463,7 @@ const BASE_LESSONS: Lesson[] = [
           "Một danh sách các điều kiện cần có để vấn đề đó thật sự xảy ra trong thực tế"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn cuối gần đúng nhưng nó dừng lại ở mô tả điều kiện chứ chưa nói cách tạo ra điều kiện đó. Chữ DỨT KHOÁT là mấu chốt: một cách chứng minh cho ra kết quả còn phải diễn giải thì chưa phải cách chứng minh."
+        "explanation": "Lựa chọn “Một danh sách các…” gần đúng nhưng nó dừng lại ở mô tả điều kiện chứ chưa nói cách tạo ra điều kiện đó. Chữ DỨT KHOÁT là mấu chốt: một cách chứng minh cho ra kết quả còn phải diễn giải thì chưa phải cách chứng minh."
       },
       {
         "question": "Vì sao bước này quan trọng với cả những nghi ngờ hoá ra là giả?",
@@ -81231,7 +81231,7 @@ const BASE_LESSONS: Lesson[] = [
           "Vì các quy định cho phép áp dụng mức xác minh khác nhau theo nhóm"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn thứ ba mô tả đúng cách làm và không nói vì sao nó tốt hơn. Điểm mấu chốt là ai trả giá: người chỉ muốn xem thì không phải qua bước nào, còn người muốn làm thao tác lớn thì chấp nhận thêm bước vì họ đã có động cơ rõ ràng."
+        "explanation": "Lựa chọn “Vì nó cho phép…” mô tả đúng cách làm và không nói vì sao nó tốt hơn. Điểm mấu chốt là ai trả giá: người chỉ muốn xem thì không phải qua bước nào, còn người muốn làm thao tác lớn thì chấp nhận thêm bước vì họ đã có động cơ rõ ràng."
       },
       {
         "question": "Chỉ số nào còn thiếu ở phần lớn hệ thống xác minh?",
@@ -81602,7 +81602,7 @@ const BASE_LESSONS: Lesson[] = [
           "Mẫu văn bản trả lời cho người dùng trong từng khả năng kết luận"
         ],
         "correct": 0,
-        "explanation": "Ba thứ kia đều hữu ích và đều giả định rằng bằng chứng cuối cùng sẽ đủ. Vế thứ hai của lựa chọn đầu mới là phần thật sự khó: mọi tình huống khó đều có một nhánh mà không có câu trả lời chắc chắn, và ai quyết ở nhánh đó phải được nói rõ."
+        "explanation": "Ba thứ kia đều hữu ích và đều giả định rằng bằng chứng cuối cùng sẽ đủ. Vế thứ hai của lựa chọn “Bằng chứng nào là…” mới là phần thật sự khó: mọi tình huống khó đều có một nhánh mà không có câu trả lời chắc chắn, và ai quyết ở nhánh đó phải được nói rõ."
       }
     ],
     "keyTakeaways": [
@@ -82038,7 +82038,7 @@ const BASE_LESSONS: Lesson[] = [
           "Giảm tần suất lỗi bằng cách tăng cường kiểm tra dữ liệu đầu vào"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn thứ hai là một phần của cùng ý và nó chưa đủ: lưu kết quả trung gian giúp bạn không tính lại từ bước một, nhưng nếu công việc không chia được thì bạn vẫn phải chạy lại toàn bộ bước đó."
+        "explanation": "Lựa chọn “Lưu kết quả trung…” là một phần của cùng ý và nó chưa đủ: lưu kết quả trung gian giúp bạn không tính lại từ bước một, nhưng nếu công việc không chia được thì bạn vẫn phải chạy lại toàn bộ bước đó."
       },
       {
         "question": "Vì sao phân bố dữ liệu lệch lại gây khó ở quy mô lớn?",
@@ -82192,7 +82192,7 @@ const BASE_LESSONS: Lesson[] = [
           "Việc các đội sản phẩm mất dần khả năng tự làm những việc đó"
         ],
         "correct": 0,
-        "explanation": "Hai lựa chọn cuối là hậu quả thật và đến sau. Thời gian chờ là chi phí trực tiếp và nó bị bỏ khỏi mọi bảng tính vì cùng lý do với chi phí phối hợp: nó trả bằng thời gian của người khác, và thời gian không có hoá đơn."
+        "explanation": "Hai lựa chọn “Sự phụ thuộc…” và “Việc các đội…” là hậu quả thật và đến sau. Thời gian chờ là chi phí trực tiếp và nó bị bỏ khỏi mọi bảng tính vì cùng lý do với chi phí phối hợp: nó trả bằng thời gian của người khác, và thời gian không có hoá đơn."
       },
       {
         "question": "Lựa chọn thứ ba giữa đội chung và mỗi đội tự làm là gì?",
@@ -82364,7 +82364,7 @@ const BASE_LESSONS: Lesson[] = [
           "Vì các hệ thống phân tán về bản chất không thể đạt nhất quán tuyệt đối"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn thứ tư là một phát biểu lý thuyết đúng và nó rộng hơn mức cần. Bốn nguồn cụ thể thì cho bạn một danh sách kiểm được: với mỗi nguồn, hỏi cơ chế hiện tại xử lý nó thế nào."
+        "explanation": "Lựa chọn “Vì các hệ thống…” là một phát biểu lý thuyết đúng và nó rộng hơn mức cần. Bốn nguồn cụ thể thì cho bạn một danh sách kiểm được: với mỗi nguồn, hỏi cơ chế hiện tại xử lý nó thế nào."
       },
       {
         "question": "Vì sao cơ chế kéo lại phải bất biến khi lặp lại?",
@@ -82564,7 +82564,7 @@ const BASE_LESSONS: Lesson[] = [
           "Vì nhà cung cấp hạ tầng thường tính phí khác nhau ở hai bên điểm gãy"
         ],
         "correct": 0,
-        "explanation": "Trước điểm gãy bạn có thời gian phản ứng; sau nó thì không. Lựa chọn thứ hai là một cách dùng thông tin này và nó đặt ngưỡng sai chỗ - ngưỡng phải nằm TRƯỚC điểm gãy một khoảng đủ để kịp hành động."
+        "explanation": "Trước điểm gãy bạn có thời gian phản ứng; sau nó thì không. Lựa chọn “Vì cần đặt ngưỡng…” là một cách dùng thông tin này và nó đặt ngưỡng sai chỗ - ngưỡng phải nằm TRƯỚC điểm gãy một khoảng đủ để kịp hành động."
       },
       {
         "question": "Cách nào tìm được điểm gãy của một hệ thống?",
@@ -82575,7 +82575,7 @@ const BASE_LESSONS: Lesson[] = [
           "So sánh với các hệ thống tương tự đã được đo đạc và công bố kết quả"
         ],
         "correct": 0,
-        "explanation": "Lựa chọn thứ ba là nguồn thông tin rẻ nhất và nó chỉ cho biết hệ thống đã chịu được tới đâu, không cho biết nó gãy ở đâu. Điểm gãy chỉ tìm được bằng cách đi tới nó có chủ đích."
+        "explanation": "Lựa chọn “Quan sát dữ liệu…” là nguồn thông tin rẻ nhất và nó chỉ cho biết hệ thống đã chịu được tới đâu, không cho biết nó gãy ở đâu. Điểm gãy chỉ tìm được bằng cách đi tới nó có chủ đích."
       }
     ],
     "keyTakeaways": [

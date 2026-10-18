@@ -181,7 +181,7 @@
         "Comparing against what they did not have instead of against what they did",
         "Not running a trial on the other machine type to measure the performance gap accurately"
       ],
-      "explanation": "The last option is the missing action, and the reason it was not taken is the error in the first. Thirty percent slower is only a disadvantage compared with the fast type; compared with running nothing for six weeks it is all the work that got done."
+      "explanation": "Not running a trial on the other machine type is the missing action, and the reason it was not taken is the error of underestimating the shortage. Thirty percent slower is only a disadvantage compared with the fast type; compared with running nothing for six weeks it is all the work that got done."
     },
     {
       "question": "Which action produces results fastest during a shortage?",

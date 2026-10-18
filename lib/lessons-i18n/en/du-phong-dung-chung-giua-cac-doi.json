@@ -176,7 +176,7 @@
         "The pool must be large enough to hold the peak of the largest single service in the group",
         "The services must run on the same kind of infrastructure so capacity can move between them"
       ],
-      "explanation": "The last option is the technical condition for pooling to be possible at all. The first is the condition for it to be useful: if every peak coincides then the pool has to equal the sum of the individual peaks, and nothing is saved."
+      "explanation": "The same-infrastructure option is the technical condition for pooling to be possible at all. Independent peaks are the condition for it to be useful: if every peak coincides then the pool has to equal the sum of the individual peaks, and nothing is saved."
     },
     {
       "question": "Which cause of coinciding peaks is easiest to fix?",
@@ -196,7 +196,7 @@
         "Plot each service's usage by hour and see whether the peaks land together",
         "Review the history of times the shared pool ran dry and look for a repeating pattern"
       ],
-      "explanation": "The last option also uses data but waits for the problem to occur first. Plotting by hour answers it today, takes an afternoon, and also names which service should be pulled out of the pool."
+      "explanation": "Reviewing the history of the pool running dry also uses data but waits for the problem to occur first. Plotting by hour answers it today, takes an afternoon, and also names which service should be pulled out of the pool."
     },
     {
       "question": "Why must the priority order for a dry pool be written in advance?",

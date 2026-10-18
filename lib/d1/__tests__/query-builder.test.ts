@@ -132,6 +132,18 @@ describe.skipIf(!hasLocalData)("chạy trên dữ liệu thật trong D1 local",
     expect(data).toBeNull();
   });
 
+  it("single() không có hàng nào mang mã PGRST116 để callers coi là bình thường", async () => {
+    const { data, error } = await c().from("user_profiles").select("*").eq("id", "khong-ton-tai").single();
+    expect(data).toBeNull();
+    expect(error).toBeInstanceOf(D1QueryError);
+    expect((error as D1QueryError).code).toBe("PGRST116");
+  });
+
+  it("single() nhiều hàng KHÔNG mang mã bình thường - đó là dữ liệu hỏng", async () => {
+    const { error } = await c().from("user_progress").select("*").single();
+    expect((error as D1QueryError).code).toBeUndefined();
+  });
+
   it("single() báo lỗi khi có nhiều hơn một hàng", async () => {
     const { error } = await c().from("user_progress").select("*").single();
     expect(error).toBeInstanceOf(D1QueryError);

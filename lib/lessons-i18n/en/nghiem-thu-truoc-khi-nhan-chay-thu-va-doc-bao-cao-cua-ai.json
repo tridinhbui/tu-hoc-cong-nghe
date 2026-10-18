@@ -1,0 +1,320 @@
+{
+  "slug": "nghiem-thu-truoc-khi-nhan-chay-thu-va-doc-bao-cao-cua-ai",
+  "title": "Stage 67, Lesson 4: Check the work before you accept it - run it and read the AI's report",
+  "subtitle": "\"Done\" is a claim. Running it is the evidence.",
+  "whyItMatters": "AI often says \"fixed, everything works\" in a very confident voice, even when it never ran the code. If you accept work on the strength of the report, the bug only shows up when a real user hits it. Trying a few real cases yourself is the shortest step that turns a claim into evidence.",
+  "openingQuestion": "The AI replies: \"I've fixed the bug, everything now works normally.\" What is the first thing you should do?",
+  "openingOptions": [
+    "Believe it, since the AI said it works",
+    "Run a few real cases yourself, and only then accept the fix",
+    "Ask the AI to repeat once more that it is certain it fixed this bug",
+    "Ask the AI whether it is absolutely confident in the fix it just gave you"
+  ],
+  "explanation": "The AI's report is a claim, not a test result: it may have run nothing and still sound very sure. Only by running a few real cases yourself do you get evidence. Asking it to repeat itself or to rate its confidence just produces more confident-sounding sentences without adding a single fact.",
+  "diagram": [
+    {
+      "label": "Receive the AI's work and its report"
+    },
+    {
+      "label": "Run it yourself: a normal case, an edge case and a wrong input"
+    },
+    {
+      "label": "Compare the results with what you expected"
+    },
+    {
+      "label": "Match: accept it. Mismatch: report back to the AI with the real results"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Illustrative scenario",
+    "description": "Illustrative scenario: the AI says it fixed the discount calculation. You try a normal order and it is right, then you try an order worth exactly the minimum for the discount and the price is still wrong. Just one extra edge case exposed the bug before a real customer bought anything."
+  },
+  "quiz": [
+    {
+      "question": "Why shouldn't you rely only on the AI saying \"fixed\"?",
+      "options": [
+        "Because everything an AI says is wrong",
+        "Because the AI's report is always cut short before it reaches you",
+        "Because the AI deliberately lies so that users stop asking it questions",
+        "It is a claim, and the AI may not have run anything"
+      ],
+      "explanation": "An AI can sound very sure about something it never checked. That doesn't mean every sentence is wrong or that it lies on purpose; words simply aren't a substitute for evidence. Reports being cut short is not the reason either."
+    },
+    {
+      "question": "Which cases should you try when checking a fix?",
+      "options": [
+        "One normal case, one at the edge of the limit and one wrong input",
+        "Only the exact case the AI used as the example in its report",
+        "The same easiest case ten times in a row, just to be sure",
+        "None, as long as the code looks tidy, is easy to read and has comments"
+      ],
+      "explanation": "The normal case checks the basics, the edge is where bugs like to hide, and the wrong input checks how it behaves when someone types nonsense. Trying only the AI's example tests what it already picked. Repeating one easy case adds no information. Tidy code does not prove correct code."
+    },
+    {
+      "question": "You test it and the result is not what you expected. What is the best way to report it to the AI?",
+      "options": [
+        "Say there is still a bug and ask it to try fixing it once more",
+        "Say what you entered, what you expected and what you actually got",
+        "Rewrite the whole original request in a much sterner tone of voice",
+        "Delete the conversation and start again with a different description"
+      ],
+      "explanation": "Three facts - what you entered, what you expected, what you got - give the AI exactly what it needs to find the bug. \"Still broken\" without saying where forces it to guess. A sterner tone adds no information, and starting over throws away the context you already have."
+    },
+    {
+      "question": "When you check the work, how should you treat the AI's report?",
+      "options": [
+        "Like a stamped result slip from an official inspector",
+        "Like an advertisement, so skip it without reading anything",
+        "Like a tradesman's word: useful, but verified by running it",
+        "Like a binding rule, so follow every suggestion inside it"
+      ],
+      "explanation": "A tradesman's word is useful information - it tells you what they think they did - but you still check it. Treating it as a stamped slip is trusting too much; ignoring it completely wastes information; following every suggestion gives up your own judgement."
+    },
+    {
+      "question": "Which way of checking is fastest and still useful?",
+      "options": [
+        "Read every line of code carefully even though you don't understand what it does",
+        "Ask the AI to explain its fix again and then trust the explanation",
+        "Wait for customers to use it and fix whatever they complain about",
+        "Try three real cases in a few minutes and write down the results"
+      ],
+      "explanation": "Three real cases run in minutes give direct evidence. Reading every line without understanding it costs time and yields little. Waiting for complaints shifts the cost of the bug onto users. The AI's explanation is still words, not a result from running it."
+    }
+  ],
+  "keyTakeaways": [
+    "The AI's \"done\" is a claim, not evidence.",
+    "Check by running three kinds of case: normal, edge and wrong.",
+    "If the result differs, report what you entered, what you expected and what you got.",
+    "Test before real use; this is when a bug is cheapest to find.",
+    "Write down the cases you tried so you can reuse them after every fix."
+  ],
+  "practicePrompt": {
+    "question": "The AI says it fixed the shipping fee bug. Which set of three test cases is the most complete?",
+    "options": [
+      "A normal order, an order exactly at the free-shipping threshold, an order with a negative number",
+      "Three normal orders whose values are all only slightly different from each other",
+      "One normal order, then the very same order tried two more times",
+      "The order the AI mentioned in its report and two orders with random values"
+    ],
+    "explanation": "A normal order checks the basics, an order exactly at the free-shipping threshold is the edge where bugs hide, and a negative number checks how it handles wrong input. Three near-identical orders or one repeated order add no information; using the AI's own example just tests what it was already sure about."
+  },
+  "summary": {
+    "keyIdea": "Turn the AI's claim into evidence by running it yourself.",
+    "formula": "Check = 1 normal case + 1 edge case + 1 wrong case.",
+    "commonMistake": "Accepting a fix just because the AI sounded sure it was done.",
+    "action": "Write three test cases for your product and re-run them after every AI fix."
+  },
+  "application": {
+    "title": "Do it now in 15 minutes",
+    "message": "Pick one feature in your product. Write three test cases: one normal, one at the edge of the limit, one wrong input. Run them, write the results on paper and keep them to reuse after every AI fix.",
+    "secondary": "If you can't think of an edge case, ask the AI: \"Which value is most likely to break this feature?\" and then try those values yourself."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "The AI says \"it's done\" in a very sure voice. But sure is not proof. This lesson teaches a three-minute habit that turns a report into something you have seen with your own eyes."
+    },
+    {
+      "type": "feynman",
+      "title": "Checking work is simpler than you think",
+      "intro": "A plumber says \"all done\" and you still turn on the tap before you pay. It's the same with AI: turn on the tap first, pay afterwards.",
+      "columns": [
+        "Step",
+        "Checking a house",
+        "Checking the AI's work"
+      ],
+      "rows": [
+        [
+          "Hear the report",
+          "The plumber says the tap is replaced",
+          "The AI says it fixed the bug"
+        ],
+        [
+          "Basic test",
+          "Turn on the tap, water runs normally",
+          "Run one normal case"
+        ],
+        [
+          "Test the weak spot",
+          "Turn it fully open and see if the joint leaks",
+          "Try a value right at the limit"
+        ],
+        [
+          "Test misuse",
+          "Turn it the wrong way and see if it breaks",
+          "Enter a wrong value and see if the error message is clear"
+        ]
+      ],
+      "oneLiner": "The report tells you what the AI thinks; running it tells you the truth."
+    },
+    {
+      "type": "heading",
+      "text": "Three cases are enough to start"
+    },
+    {
+      "type": "list",
+      "items": [
+        "Normal case: the most ordinary thing a user will do.",
+        "Edge case: a value right at a limit, like an order exactly equal to the free-shipping threshold.",
+        "Wrong case: leave it empty, type letters in a number box, enter a negative number."
+      ]
+    },
+    {
+      "type": "flow",
+      "title": "From report to evidence",
+      "steps": [
+        {
+          "label": "The AI says it's fixed",
+          "detail": "Write down what it says it changed."
+        },
+        {
+          "label": "You run three cases",
+          "detail": "Normal, edge, wrong - it takes a few minutes."
+        },
+        {
+          "label": "Compare with what you expected",
+          "detail": "Note each result: right or off."
+        },
+        {
+          "label": "If off, report back",
+          "detail": "With: what you entered, what you expected, what you got."
+        }
+      ]
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Accept on its word",
+        "text": "Fast, but the bug only shows up when a real customer hits it, when fixing it is costly and hurts trust."
+      },
+      "right": {
+        "label": "Check by running it",
+        "text": "Costs a few minutes, but the bug shows up while only you can see it and fixing it is still cheap."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "A confident voice does not measure correctness",
+      "text": "The AI says \"I'm sure I fixed it\" in the same voice whether or not it ran anything. Only you running it can tell."
+    },
+    {
+      "type": "aiLab",
+      "title": "Report a wrong result back to the AI",
+      "task": "You tried an order of exactly the free-shipping threshold (500,000 VND) and the fee is still charged. Choose how to report it.",
+      "parts": [
+        {
+          "label": "What you entered",
+          "options": [
+            {
+              "text": "I tried a few orders and still see a bug.",
+              "feedback": "It names no order: the AI has nothing to reproduce the bug with."
+            },
+            {
+              "text": "An order with a total of exactly 500,000 VND.",
+              "feedback": "A concrete value lets the AI reproduce exactly that bug."
+            }
+          ]
+        },
+        {
+          "label": "What you expected",
+          "options": [
+            {
+              "text": "The shipping fee should be 0, because orders of 500,000 VND or more ship free.",
+              "feedback": "The AI knows the right rule to compare against."
+            },
+            {
+              "text": "It should work as usual.",
+              "feedback": "\"As usual\" is vague: the AI doesn't know what correct looks like."
+            }
+          ]
+        },
+        {
+          "label": "What you actually got",
+          "options": [
+            {
+              "text": "It seems wrong.",
+              "feedback": "There is no number: the AI can't tell where it is wrong."
+            },
+            {
+              "text": "The shipping fee still shows 30,000 VND.",
+              "feedback": "A concrete number shows the bug is in the comparison threshold."
+            }
+          ]
+        }
+      ],
+      "responses": [
+        {
+          "text": "The bug is in the comparison: the code uses \"greater than 500,000\" instead of \"greater than or equal to\". I changed one line; an order of exactly 500,000 VND will now have a fee of 0.\nTry again with 500,000 and 499,999 VND to be sure.\n(Enough facts to find the bug at the threshold.)"
+        },
+        {
+          "text": "It may be how the fee is calculated at the free-shipping threshold. Please tell me the exact result you got and the result you expected.\n(The AI has to ask because two of the three facts are missing.)"
+        },
+        {
+          "text": "I will re-check the whole shipping fee calculation and the free-shipping conditions to make sure everything works well.\n(Vague because there are no concrete facts.)"
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Running project: the Alley coffee shop - step 4/10",
+      "text": "Step 4: check the delivery fee function with test orders instead of trusting the report."
+    },
+    {
+      "type": "exercise",
+      "title": "Project step 4: check the delivery fee function with four test orders",
+      "task": "The AI says it fixed this: orders of 500000 VND or more get free delivery, otherwise the fee is 30000 VND. The program below runs four test orders and prints the results. Run it, compare with what you expect, then fix the phiGiao function: an order of exactly 500000 must be free, and a negative total must print \"invalid total\". You don't need to rewrite it from scratch, only change two spots in the function.",
+      "starter": "// phiGiao = \"delivery fee\", tong = \"total\", donThu = \"test orders\"\nfunction phiGiao(tong) {\n  if (tong > 500000) return 0;\n  return 30000;\n}\n\nconst donThu = [200000, 500000, 800000, -1000];\nfor (const tong of donThu) {\n  console.log(tong + \" -> \" + phiGiao(tong));\n}",
+      "solution": "// phiGiao = \"delivery fee\", tong = \"total\", donThu = \"test orders\"\nfunction phiGiao(tong) {\n  if (tong < 0) return \"invalid total\";\n  if (tong >= 500000) return 0;\n  return 30000;\n}\n\nconst donThu = [200000, 500000, 800000, -1000];\nfor (const tong of donThu) {\n  console.log(tong + \" -> \" + phiGiao(tong));\n}",
+      "expectedOutput": "200000 -> 30000\n500000 -> 0\n800000 -> 0\n-1000 -> invalid total",
+      "hints": [
+        "Run it before fixing: what does the line for the 500000 order print, and what did you expect?",
+        "The > sign means strictly greater than; the >= sign means greater than or equal to.",
+        "Add a line at the top of the function: if tong is less than 0, return the text \"invalid total\"."
+      ]
+    },
+    {
+      "type": "scenario",
+      "title": "Before handing the page to customers",
+      "nodes": {
+        "s1": {
+          "text": "The AI says it fixed the shipping fee bug and wishes you well. The first customer will order this afternoon.",
+          "choices": [
+            {
+              "label": "Try three orders: a normal one, one exactly at the free-shipping threshold, one with a negative number"
+            },
+            {
+              "label": "Trust the report and publish the page right away to make it in time for the afternoon"
+            }
+          ]
+        },
+        "bad_trust": {
+          "text": "A customer orders exactly the free-shipping amount and is still charged a fee. They complain publicly and you have to refund them."
+        },
+        "s2": {
+          "text": "The normal order is right, the negative order is rejected, but the order at exactly the free-shipping threshold is still charged 30,000 VND.",
+          "choices": [
+            {
+              "label": "Tell the AI: entered 500,000, expected a fee of 0, got 30,000; then re-run all three orders"
+            },
+            {
+              "label": "Say vaguely \"there's still a bug\" and wait for the AI to find it itself"
+            }
+          ]
+        },
+        "bad_vague": {
+          "text": "The AI checks things that have nothing to do with it and reports that all is fine. You waste two more rounds and the bug is still there."
+        },
+        "good": {
+          "text": "The AI points to the comparison sign and fixes one line. All three orders are right. The page launches on time with no incident."
+        }
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "A report is not evidence; running three cases is.",
+        "Next lesson: write the test cases before asking the AI to build a new feature, so you know what \"done\" means."
+      ]
+    }
+  ]
+}

@@ -4,7 +4,7 @@ import { getResumeLesson } from "@/lib/resume-learning";
 import { getCompletedLessons, getTotalTimeSpentMinutes } from "@/lib/cloudflare-progress";
 import { createServerCloudflareClient } from "@/lib/cloudflare-server";
 import { getLessonsMeta, getLessonById } from "@/lib/lessons-loader";
-import { isLessonIdInTrack, isLessonInRange, TRACK_PERSONAL, TRACK_PROFESSIONAL } from "@/lib/track-stages";
+import { isLessonIdInTrack, isLessonInRange, lessonBelongsToTrack, TRACK_PERSONAL, TRACK_PROFESSIONAL } from "@/lib/track-stages";
 import { stageTopicFor, TOPIC_ADVICE, type StageTopicId, type TopicAdviceId } from "@/lib/stage-topics";
 import { getLessonRecallDay } from "@/lib/lesson-labels";
 import { RECALL_SCHEDULE, type RecallItem } from "@/lib/recall-schedule";
@@ -132,7 +132,13 @@ export async function getDashboardGreetingAction(userId: string, track: "persona
   // Track-scoped completion, for the "Chặng X · Y% track" progress bar on
   // the resume card - completedLessons above spans every track, so it has
   // to be filtered down to just this one before it means anything as a %.
-  const trackLessonIds = allLessons.filter((l) => isLessonIdInTrack(l.id, track)).map((l) => l.id);
+  // Same rule and same scope as DashboardClient.trackCounts: visible lessons only,
+  // and a lesson whose explicit `track` names another track (bonus included) is
+  // not counted. isLessonIdInTrack alone is range-only, which put 1,032 here
+  // against 1,030 on the dashboard for the personal track (424 vs 415 professional).
+  const trackLessonIds = allLessons
+    .filter((l) => l.isVisible !== false && lessonBelongsToTrack(l, track))
+    .map((l) => l.id);
   const completedInTrack = trackLessonIds.filter((id) => completedLessons.includes(id)).length;
   const trackProgressPercent = trackLessonIds.length > 0 ? Math.round((completedInTrack / trackLessonIds.length) * 100) : 0;
 

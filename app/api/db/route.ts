@@ -23,7 +23,9 @@ export async function POST(req: Request) {
     const result = await (builder as unknown as { run(): Promise<{ data: unknown; error: Error | null; count?: number | null }> }).run();
     return Response.json({
       data: result.data,
-      error: result.error ? { message: result.error.message } : null,
+      // `code` đi cùng: PGRST116 (single() không có hàng) là "bình thường" với 22 chỗ gọi ở
+      // trình duyệt, và chúng chỉ nhận ra nó nếu mã sống sót qua dây.
+      error: result.error ? { message: result.error.message, code: (result.error as { code?: string }).code } : null,
       count: result.count ?? null,
     });
   } catch (err) {

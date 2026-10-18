@@ -1,0 +1,301 @@
+{
+  "slug": "nghiem-thu-va-ban-giao-kiem-ca-quy-trinh-truoc-khi-dua-cho-khach",
+  "title": "Stage 67, Lesson 10: Acceptance and handover: test the whole workflow before it goes to the customer",
+  "subtitle": "Each part being right is not enough: bugs often hide where the parts are joined together.",
+  "whyItMatters": "You have each function working, but customers do not use single functions: they place one order and go through the whole chain. Many bugs only show up when the parts are joined, such as using the number from an earlier step in a later one. Accepting the whole workflow and having a checklist before handover is the last step that lets you give the customer something you have truly checked.",
+  "openingQuestion": "The three functions tongTien, apGiamGia and phiGiao each pass their own tests. Joined into one order, a 520,000 VND order with a discount code gets the wrong delivery fee. Why?",
+  "openingOptions": [
+    "The phiGiao function is written wrong and must be rewritten, even though its own tests still pass",
+    "Each function is right alone, but the join passes the pre-discount amount into the fee",
+    "The GIAM10 code takes the wrong percentage, so the fee is off too",
+    "The quantity of 20 cups is so large that the program adds the total up wrongly during the sum step"
+  ],
+  "explanation": "Each function does its own job correctly when it is given the right number. The bug is in the join: the shop's rule is that the delivery fee is based on the amount after the discount, but datHang passes the amount before the discount into phiGiao. A 520,000 VND order before the discount ships free, whereas after the discount it is 468,000 VND and must pay a 30,000 VND delivery fee. Each function's own tests never see this bug, because nobody joins the functions together to test them.",
+  "diagram": [
+    {
+      "label": "Each function passes its own tests"
+    },
+    {
+      "label": "Join them into the order workflow"
+    },
+    {
+      "label": "Run the five-case acceptance table on the whole workflow"
+    },
+    {
+      "label": "Hand over only when all pass and the checklist is complete"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Illustrative scenario",
+    "description": "Illustrative scenario: someone finishes three functions, each passing its own tests, and sends them to a shop to try. Small orders are fine. For a large order with a discount code, the delivery fee is worked out from the undiscounted price, so every such order is off by 30,000 VND. With a five-case acceptance table run on the whole workflow, this bug would have shown up on the very first run."
+  },
+  "quiz": [
+    {
+      "question": "Why must you accept the whole workflow, not only each function?",
+      "options": [
+        "Each function may be checked only once in the whole project",
+        "Bugs often sit where parts that are each correct get joined",
+        "A single function always fails its tests until it has been joined with the others",
+        "Accepting the whole workflow can replace writing test cases for every single function"
+      ],
+      "explanation": "A function that is right for its own input can still be handed the wrong number at a later step, and you only see it when the whole chain runs. A single function can pass its tests, and there is no limit of one check. Accepting the whole workflow adds to the per-function tests rather than replacing them."
+    },
+    {
+      "question": "Which kinds of cases should the five-case acceptance table contain?",
+      "options": [
+        "Every possible combination of items, codes and phones",
+        "Only the wrong-input cases, because normal cases surely worked at the time of writing",
+        "Normal, edge and wrong-input cases, including a case that joins several features",
+        "Each function's normal case, leaving out the wrong inputs since customers rarely hit them"
+      ],
+      "explanation": "Normal, edge and wrong-input cases cover the places where bugs usually sit, and a case that joins several features (a large order with a discount code) tests the join itself. Trying every combination is impossible. Dropping the normal or wrong-input cases leaves a whole group of bugs uncovered: wrong-input cases, such as a bad phone number or an empty cart, are something customers do every day."
+    },
+    {
+      "question": "Before handover, where should secret keys such as passwords and access codes live?",
+      "options": [
+        "Inside the code file, so that the program can find them as easily as possible",
+        "In a note at the top of the file, so the whole team can see them",
+        "In a screenshot sent along to the customer for them to look at",
+        "Outside the source code, stored separately and never pasted into a request to the AI"
+      ],
+      "explanation": "A key left in the code travels with the code to anyone who receives it, even when you paste the code to an AI or give it to a customer. So keys must live outside the code, in a separate place. A note at the top of a file and a screenshot are also places where other people can see them."
+    },
+    {
+      "question": "Which item belongs on the checklist before handover?",
+      "options": [
+        "A way to go back to the old version if the new one has a problem",
+        "The AI's word that all the code runs correctly",
+        "The source code has been made very short and pleasant to look at",
+        "The customer has read every single line of the code before accepting it"
+      ],
+      "explanation": "Any new version can run into trouble, so you need a ready way back to the version that works. The AI's confirmation is not evidence, short and pretty code does not make the product more correct, and customers use the product rather than read its code."
+    },
+    {
+      "question": "The AI changed just one line in datHang. How should you accept it?",
+      "options": [
+        "Run only the fixed case, since one line cannot affect another",
+        "Run the whole acceptance table again, not only the case you just fixed",
+        "Skip it: the old version passed and the change is tiny",
+        "Re-read the changed line; if it looks fine, accept it"
+      ],
+      "explanation": "One changed line in a joining function can affect many cases, so only running the whole table shows everything. Believing that one line cannot break anything else is exactly how bugs slip through. The earlier version passing does not prove the later one passes, and a line that reads reasonably is not the same as a line you watched work."
+    }
+  ],
+  "keyTakeaways": [
+    "Parts that are right on their own can still be wrong when joined, so acceptance must run on the whole workflow.",
+    "The acceptance table has normal, edge and wrong-input cases, plus at least one case joining several features.",
+    "Handover checklist: three kinds of cases run, changes reviewed, secret keys outside the code, a way back to the old version.",
+    "Even a one-line change means re-running the whole acceptance table.",
+    "The whole stage: clear delegation, splitting into steps, setting boundaries, acceptance, reading code, finding bugs, reading diffs, test suites, handover."
+  ],
+  "practicePrompt": {
+    "question": "Before handing over to the customer, what should you keep so you can go back if the new version has a bug?",
+    "options": [
+      "A copy of the version that works well, clearly named",
+      "Screenshots of the nicest results as proof that it once worked well",
+      "The AI's promise to fix the problem quickly if the customer reports one",
+      "The names of the old functions written on paper to type back in when needed"
+    ],
+    "explanation": "A copy of the working version lets you go back within minutes. A screenshot cannot run, the AI's promise cannot be checked, and retyping old functions from their names does not recover the code."
+  },
+  "summary": {
+    "keyIdea": "Accept the whole workflow with a five-case table, then hand over with a way back to the old version.",
+    "formula": "Ready to hand over = passes the whole acceptance table + a complete handover checklist.",
+    "commonMistake": "Believing that if each function passes its own tests, joining them is certain to be correct.",
+    "action": "Write a five-case table for your product, including one case that joins several features, and run it before handing over."
+  },
+  "application": {
+    "title": "Do it now in 15 minutes",
+    "message": "Pick a small product you have built. Write a five-case acceptance table: a normal case, an edge case, a wrong-input case and two cases that join several features. Run the whole table, fix one thing if a case fails, then run the whole table again and compare against the handover checklist.",
+    "secondary": "Keep a copy of the working version before every change, even a small one."
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "You have four functions and each one passes its own tests. But customers do not use four functions; a customer places one order and goes through the whole chain. This last lesson teaches you to check the whole chain before handover, and to look back at everything you learned in this stage."
+    },
+    {
+      "type": "feynman",
+      "title": "Acceptance is simpler than you think",
+      "intro": "A builder finishes each part of a house, but the owner only accepts it after walking through, turning on the taps, switching on the lights and closing the doors.",
+      "columns": [
+        "What to do",
+        "With a house",
+        "With software"
+      ],
+      "rows": [
+        [
+          "Check each part",
+          "Pressure-test the pipes, load-test the wiring",
+          "Each function passes its own tests"
+        ],
+        [
+          "Check the joins",
+          "Turn on a tap and see if water reaches the sink",
+          "Run the whole ordering workflow with one real order"
+        ],
+        [
+          "Try bad situations",
+          "Cut the power and see if the breaker trips",
+          "Wrong phone number, empty cart, a very large order"
+        ],
+        [
+          "Keep a way back",
+          "Keep the old plans to fix things later",
+          "Keep the old version to go back to if the new one fails"
+        ]
+      ],
+      "oneLiner": "Each part being right is not enough; you must walk the whole path to know the joins are right."
+    },
+    {
+      "type": "flow",
+      "title": "From three correct functions to a workflow ready to hand over",
+      "steps": [
+        {
+          "label": "Join the functions",
+          "detail": "datHang calls the order check, the total, the discount and the delivery fee."
+        },
+        {
+          "label": "Build the acceptance table",
+          "detail": "Five test orders: normal, large without code, large with code, wrong phone number, empty cart."
+        },
+        {
+          "label": "Run the whole table",
+          "detail": "Each ✗ line tells you which order failed."
+        },
+        {
+          "label": "Fix one thing at a time",
+          "detail": "Fix one thing, re-run the whole table, as in the last lesson."
+        },
+        {
+          "label": "Check the handover list",
+          "detail": "Only when every item is ticked do you give it to the customer."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Why bugs sit where the parts join"
+    },
+    {
+      "type": "paragraph",
+      "text": "The shop's rule is that the delivery fee is based on the amount after the discount. The phiGiao function takes a number and returns a fee; it is right for every number you give it. But if the join passes the amount before the discount, the fee is still wrong, even though no function is wrong. That is why only running a whole order reveals it."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Checking each function only",
+        "text": "Each function passes all of its own cases and you feel safe. But nobody tests a large order with a discount code going through the whole chain, so the bug in the join reaches the customer."
+      },
+      "right": {
+        "label": "Checking the whole workflow",
+        "text": "The five-order table runs through all of datHang. The large order with a discount code shows the wrong delivery fee at once, and you fix exactly one spot before handover."
+      }
+    },
+    {
+      "type": "heading",
+      "text": "The checklist before handover"
+    },
+    {
+      "type": "list",
+      "items": [
+        "The three kinds of cases have been run: normal, edge and wrong input, including a case that joins several features.",
+        "You reviewed the final changes (the diff) and every changed line is within the scope you set.",
+        "Secret keys are not in the code and have never been pasted into a request to the AI.",
+        "There is a way back to the old version if the new one runs into trouble."
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "A \"done\" report is not evidence",
+      "text": "What was true of every lesson in this stage is still true in the last one: you trust only the results you ran yourself and saw, not a report."
+    },
+    {
+      "type": "aiLab",
+      "mode": "spotError",
+      "title": "Inspect the AI's handover report",
+      "task": "The AI sends a report before handover. Click the lines that do not meet the handover standard, then submit.",
+      "segments": [
+        {
+          "text": "Ran the whole five-order acceptance table on datHang: 5/5 passed."
+        },
+        {
+          "text": "The access key is placed directly in the code file for easy deployment.",
+          "error": "Fails: secret keys must live outside the code, or they travel with the code to everyone who receives it."
+        },
+        {
+          "text": "The empty-cart case was not run because it almost never happens.",
+          "error": "Fails: wrong-input cases are one of the three required kinds, and customers do hit them."
+        },
+        {
+          "text": "The version that works well has been saved, to go back to when needed."
+        },
+        {
+          "text": "The list of changes against the previous version is just one line in datHang."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Running project: the Alley coffee shop - step 10/10",
+      "text": "Last step: join the four features into datHang, run the five-order acceptance table, find the order that fails and fix exactly one spot in datHang. When all five orders pass, the workflow is ready to hand to the customer."
+    },
+    {
+      "type": "exercise",
+      "title": "Project step 10: accept the whole ordering workflow before handing it to the customer",
+      "task": "Last step: datHang joins four features into one ordering workflow. The acceptance table has five test orders: normal, large without code, large with code, wrong phone number and empty cart. The delivery fee rule: it is based on the amount AFTER the discount. Run the acceptance table, find the order that fails, fix exactly one spot in datHang, then re-run until the workflow is ready to hand to the customer.",
+      "starter": "// tongTien = \"total amount\", gio = \"cart\", apGiamGia = \"apply discount\", phiGiao = \"delivery fee\",\n// kiemTraDon = \"check order\", datHang = \"place order\", sauGiam = \"after discount\", dat = \"passed\"\nconst MENU = { \"ca-phe-den\": 25000, \"ca-phe-sua\": 29000, \"tra-dao\": 34500, \"banh-mi\": 20000 };\n\nfunction tongTien(gio) {\n  let tong = 0;\n  for (const dong of gio) tong += MENU[dong.mon] * dong.soLuong;\n  return tong;\n}\n\nfunction apGiamGia(tong, ma) {\n  if (ma === \"GIAM10\" && tong >= 100000) return tong - tong / 10;\n  return tong;\n}\n\nfunction phiGiao(tong) {\n  if (tong < 0) return \"invalid total\";\n  if (tong >= 500000) return 0;\n  return 30000;\n}\n\nfunction kiemTraDon(don) {\n  if (don.ten.trim() === \"\") return \"missing name\";\n  if (!/^0\\d{9}$/.test(don.sdt)) return \"invalid phone number\";\n  if (don.gio < 7 || don.gio > 21) return \"outside order hours\";\n  return \"ok\";\n}\n\nfunction datHang(don, gio, ma) {\n  const kq = kiemTraDon(don);\n  if (kq !== \"ok\") return \"rejected: \" + kq;\n  if (gio.length === 0) return \"rejected: empty cart\";\n  const tong = tongTien(gio);\n  const sauGiam = apGiamGia(tong, ma);\n  const phi = phiGiao(tong);\n  return sauGiam + phi;\n}\n\nconst ai = { ten: \"An\", sdt: \"0901234567\", gio: 9 };\nconst donLon = [{ mon: \"ca-phe-den\", soLuong: 20 }, { mon: \"banh-mi\", soLuong: 1 }];\nconst bang = [\n  [\"normal order\", datHang(ai, [{ mon: \"ca-phe-sua\", soLuong: 1 }], \"\"), 59000],\n  [\"large order, no code\", datHang(ai, donLon, \"\"), 520000],\n  [\"large order, with code GIAM10\", datHang(ai, donLon, \"GIAM10\"), 498000],\n  [\"wrong phone number\", datHang({ ten: \"An\", sdt: \"12345\", gio: 9 }, donLon, \"\"), \"rejected: invalid phone number\"],\n  [\"empty cart\", datHang(ai, [], \"\"), \"rejected: empty cart\"],\n];\nlet dat = 0;\nfor (const [ten, that, mong] of bang) {\n  if (that === mong) dat++;\n  else console.log(\"✗ \" + ten + \": got \" + that + \", expected \" + mong);\n}\nconsole.log(\"Passed \" + dat + \"/\" + bang.length);\nconsole.log(\"Ready to hand over to the customer: \" + (dat === bang.length ? \"yes\" : \"not yet\"));",
+      "solution": "// tongTien = \"total amount\", gio = \"cart\", apGiamGia = \"apply discount\", phiGiao = \"delivery fee\",\n// kiemTraDon = \"check order\", datHang = \"place order\", sauGiam = \"after discount\", dat = \"passed\"\nconst MENU = { \"ca-phe-den\": 25000, \"ca-phe-sua\": 29000, \"tra-dao\": 34500, \"banh-mi\": 20000 };\n\nfunction tongTien(gio) {\n  let tong = 0;\n  for (const dong of gio) tong += MENU[dong.mon] * dong.soLuong;\n  return tong;\n}\n\nfunction apGiamGia(tong, ma) {\n  if (ma === \"GIAM10\" && tong >= 100000) return tong - tong / 10;\n  return tong;\n}\n\nfunction phiGiao(tong) {\n  if (tong < 0) return \"invalid total\";\n  if (tong >= 500000) return 0;\n  return 30000;\n}\n\nfunction kiemTraDon(don) {\n  if (don.ten.trim() === \"\") return \"missing name\";\n  if (!/^0\\d{9}$/.test(don.sdt)) return \"invalid phone number\";\n  if (don.gio < 7 || don.gio > 21) return \"outside order hours\";\n  return \"ok\";\n}\n\nfunction datHang(don, gio, ma) {\n  const kq = kiemTraDon(don);\n  if (kq !== \"ok\") return \"rejected: \" + kq;\n  if (gio.length === 0) return \"rejected: empty cart\";\n  const tong = tongTien(gio);\n  const sauGiam = apGiamGia(tong, ma);\n  const phi = phiGiao(sauGiam);\n  return sauGiam + phi;\n}\n\nconst ai = { ten: \"An\", sdt: \"0901234567\", gio: 9 };\nconst donLon = [{ mon: \"ca-phe-den\", soLuong: 20 }, { mon: \"banh-mi\", soLuong: 1 }];\nconst bang = [\n  [\"normal order\", datHang(ai, [{ mon: \"ca-phe-sua\", soLuong: 1 }], \"\"), 59000],\n  [\"large order, no code\", datHang(ai, donLon, \"\"), 520000],\n  [\"large order, with code GIAM10\", datHang(ai, donLon, \"GIAM10\"), 498000],\n  [\"wrong phone number\", datHang({ ten: \"An\", sdt: \"12345\", gio: 9 }, donLon, \"\"), \"rejected: invalid phone number\"],\n  [\"empty cart\", datHang(ai, [], \"\"), \"rejected: empty cart\"],\n];\nlet dat = 0;\nfor (const [ten, that, mong] of bang) {\n  if (that === mong) dat++;\n  else console.log(\"✗ \" + ten + \": got \" + that + \", expected \" + mong);\n}\nconsole.log(\"Passed \" + dat + \"/\" + bang.length);\nconsole.log(\"Ready to hand over to the customer: \" + (dat === bang.length ? \"yes\" : \"not yet\"));",
+      "expectedOutput": "Passed 5/5\nReady to hand over to the customer: yes",
+      "hints": [
+        "Run it first: only one ✗ line. See how much it got and how much it expected, then compare with the delivery fee rule.",
+        "A large order with a code drops below 500000, so it must pay the 30000 delivery fee.",
+        "Which amount is the phiGiao function being called with? The rule says the amount after the discount."
+      ]
+    },
+    {
+      "type": "scenario",
+      "title": "Before handing over to the shop",
+      "nodes": {
+        "s1": {
+          "text": "The four functions are done and the AI reports \"joined and works fine\". The shop expects the product tomorrow morning.",
+          "choices": [
+            {
+              "label": "Run the five-order acceptance table on the whole datHang before handing over"
+            },
+            {
+              "label": "Send it to the shop right away, since the AI said it works fine"
+            }
+          ]
+        },
+        "bad_trust": {
+          "text": "The next morning the shop reports that a large order with a discount code gets the wrong delivery fee. You have to fix it while the shop is open."
+        },
+        "s2": {
+          "text": "The table shows one ✗ line: the large order with a discount code has the wrong delivery fee. You fix exactly one spot in datHang. What is the next step?",
+          "choices": [
+            {
+              "label": "Re-run the whole five-order table, then go through the handover checklist"
+            },
+            {
+              "label": "Re-run only the order you just fixed, then send it out"
+            }
+          ]
+        },
+        "bad_partial": {
+          "text": "The order you fixed passes, but the change makes the empty-cart order return the wrong result. You only find out when the shop calls."
+        },
+        "good": {
+          "text": "All five orders pass, the secret keys are outside the code and the old version is saved. You hand over to the shop with a clear checklist instead of hope."
+        }
+      }
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "You have been through the whole stage: clear delegation, steps, boundaries, acceptance, reading code, finding bugs, reading diffs, test suites and handover.",
+        "Next: learn to keep old versions and put your product online in the journey about keeping old versions and going online."
+      ]
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import { createServerCloudflareClient } from "@/lib/cloudflare-server";
 import { getLessonsMeta } from "@/lib/lessons-loader";
-import { isLessonIdInTrack } from "@/lib/track-stages";
+import { isLessonInRange, lessonBelongsToTrack, TRACK_PERSONAL, TRACK_PROFESSIONAL } from "@/lib/track-stages";
 import { stageTopicFor, type StageTopicId } from "@/lib/stage-topics";
 import { paceFromParts, type Pace } from "@/lib/learning-pace";
 import LearningPathClient from "@/components/LearningPathClient";
@@ -59,14 +59,14 @@ export default async function LearningPathPage() {
 
   const visible = lessonsMeta.filter((l) => l.isVisible !== false);
   const counts = {
-    personal: visible.filter((l) => isLessonIdInTrack(l.id, "personal")).length,
-    professional: visible.filter((l) => isLessonIdInTrack(l.id, "professional")).length,
+    personal: visible.filter((l) => lessonBelongsToTrack(l, "personal")).length,
+    professional: visible.filter((l) => lessonBelongsToTrack(l, "professional")).length,
   };
 
   const completedIds = new Set((progressRows ?? []).map((r) => r.lesson_id as number));
   const done = {
-    personal: visible.filter((l) => isLessonIdInTrack(l.id, "personal") && completedIds.has(l.id)).length,
-    professional: visible.filter((l) => isLessonIdInTrack(l.id, "professional") && completedIds.has(l.id)).length,
+    personal: visible.filter((l) => lessonBelongsToTrack(l, "personal") && completedIds.has(l.id)).length,
+    professional: visible.filter((l) => lessonBelongsToTrack(l, "professional") && completedIds.has(l.id)).length,
   };
 
   /** Chủ đề yếu -> bài CHƯA HỌC đầu tiên của chủ đề đó.
@@ -88,13 +88,29 @@ export default async function LearningPathPage() {
     const map: Partial<Record<StageTopicId, { slug: string; title: string }>> = {};
     for (const lesson of visible) {
       if (completedIds.has(lesson.id)) continue;
-      if (!isLessonIdInTrack(lesson.id, track)) continue;
+      if (!lessonBelongsToTrack(lesson, track)) continue;
       const topic = stageTopicFor(lesson.id, track);
       if (map[topic]) continue;
       map[topic] = { slug: lesson.slug, title: lesson.title };
     }
     topicEntry[track] = map;
   }
+
+  /** Các mốc của từng hướng: số bài mỗi chặng, đếm bằng cùng luật với `counts`
+   *  để người đọc không thấy tổng các chặng lệch tổng hướng. Thứ tự và số chặng
+   *  là của TRACK_*.stages; tên chặng do client tra từ điển theo vị trí. */
+  const milestones = Object.fromEntries(
+    (["personal", "professional"] as const).map((track) => {
+      const stages = (track === "personal" ? TRACK_PERSONAL : TRACK_PROFESSIONAL).stages;
+      return [
+        track,
+        stages.map((stage) => {
+          const lessons = visible.filter((l) => lessonBelongsToTrack(l, track) && isLessonInRange(l.id, stage));
+          return { total: lessons.length, done: lessons.filter((l) => completedIds.has(l.id)).length };
+        }),
+      ];
+    }),
+  ) as Record<Track, { total: number; done: number }[]>;
 
   /** "18 bài · ~2 giờ" trên thẻ chọn mục tiêu: đếm từ meta bài thật, cùng
    *  phép tính /hoc-theo-nhu-cau dùng, để hai trang không ghi hai con số. */
@@ -121,6 +137,7 @@ export default async function LearningPathPage() {
       savedTrack={savedTrack}
       savedPace={savedPace}
       flowEffort={flowEffort}
+      milestones={milestones}
     />
   );
 }

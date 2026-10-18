@@ -1,4 +1,5 @@
 import type { Lesson } from "../lesson-types";
+import { VIBECODE_PROJECT_EXERCISE } from "./s67-project";
 
 // Chặng 67, bài 1-4: "Giao việc cho AI". Hành trình /hoc-theo-nhu-cau/vibecode.
 // Không gắn công cụ nào: dạy thao tác (nói rõ muốn gì, chia bước, đặt ranh giới,
@@ -10,7 +11,7 @@ export const S67_A_LESSONS: Lesson[] = [
     slug: "giao-viec-cho-ai-nhu-giao-viec-cho-tho",
     title: "Chặng 67, Bài 1: Giao việc cho AI như giao việc cho thợ - nói muốn gì và để làm gì",
     subtitle: "Cùng một AI, hai câu yêu cầu khác nhau cho hai kết quả khác hẳn.",
-    duration: "8 phút",
+    duration: "16 phút",
     difficulty: "Dễ",
     emoji: "🧰",
     track: "personal",
@@ -50,7 +51,7 @@ export const S67_A_LESSONS: Lesson[] = [
         ],
         correct: 2,
         explanation:
-          "Câu thứ ba nói ba điều AI cần: trang để làm gì (giới thiệu quán), ai xem và bằng gì (khách, điện thoại), và cần có gì (giờ mở cửa, nút gọi). Hai câu đầu dùng từ khen chung chung hoặc thuật ngữ mà vẫn không nói được mục đích. Câu cuối \"càng nhiều tính năng càng tốt\" khiến AI nhồi những thứ bạn không cần.",
+          "Yêu cầu nói rõ khách xem bằng điện thoại, cần giờ mở cửa và nút gọi cho AI đúng ba điều nó cần: trang để làm gì (giới thiệu quán), ai xem và bằng gì (khách, điện thoại), và cần có gì (giờ mở cửa, nút gọi). Những yêu cầu dùng từ khen chung chung hoặc thuật ngữ vẫn không nói được mục đích. Yêu cầu \"càng nhiều tính năng càng tốt\" khiến AI nhồi những thứ bạn không cần.",
       },
       {
         question: "Vì sao nên nói trang web dùng để làm gì?",
@@ -98,7 +99,7 @@ export const S67_A_LESSONS: Lesson[] = [
         ],
         correct: 2,
         explanation:
-          "Câu thứ ba nói ai dùng (cá nhân), dùng thế nào (nhập tay mỗi tối) và cần kết quả gì (tổng theo tuần): AI biết ngay nên làm gì và bỏ gì. Các câu còn lại là lời khen mong muốn hoặc hứa hẹn chung chung, không thêm một dữ kiện nào để AI quyết định.",
+          "Câu bổ sung nói ai dùng (cá nhân), dùng thế nào (nhập tay mỗi tối) và cần kết quả gì (tổng theo tuần): AI biết ngay nên làm gì và bỏ gì. Những câu chỉ khen hay hứa hẹn chung chung không thêm một dữ kiện nào để AI quyết định.",
       },
     ],
     keyTakeaways: [
@@ -238,6 +239,12 @@ export const S67_A_LESSONS: Lesson[] = [
         ],
       },
       {
+        type: "callout",
+        label: "Dự án xuyên suốt: quán cà phê Hẻm - bước 1/10",
+        text: "Cả chặng này, bạn xây phần mềm đặt món cho một quán cà phê nhỏ. Mỗi bài thêm một bước và có một bài tập chạy được; tiến độ được lưu khi bài tập đạt. Bước 1 là bản giao việc cho AI.",
+      },
+      VIBECODE_PROJECT_EXERCISE[2740],
+      {
         type: "scenario",
         title: "Bản đầu tiên không đúng ý",
         start: "s1",
@@ -273,7 +280,7 @@ export const S67_A_LESSONS: Lesson[] = [
     slug: "mot-luot-mot-viec-chia-du-an-thanh-buoc-kiem-duoc",
     title: "Chặng 67, Bài 2: Một lượt một việc - chia dự án thành những bước kiểm tra được",
     subtitle: "Xin cả dự án trong một câu thì lỗi nằm khắp nơi; xin từng bước thì lỗi có địa chỉ.",
-    duration: "8 phút",
+    duration: "15 phút",
     difficulty: "Dễ",
     emoji: "🪜",
     track: "personal",
@@ -481,6 +488,12 @@ export const S67_A_LESSONS: Lesson[] = [
         ],
       },
       {
+        type: "callout",
+        label: "Dự án xuyên suốt: quán cà phê Hẻm - bước 2/10",
+        text: "Bước 2: hàm tính tổng tiền giỏ hàng, một việc nhỏ chạy thử được.",
+      },
+      VIBECODE_PROJECT_EXERCISE[2741],
+      {
         type: "scenario",
         title: "Bước hai bị lỗi",
         start: "s1",
@@ -516,7 +529,7 @@ export const S67_A_LESSONS: Lesson[] = [
     slug: "noi-ro-dieu-khong-duoc-doi-khi-giao-viec-cho-ai",
     title: "Chặng 67, Bài 3: Nói rõ điều không được đổi - giữ phần đang chạy tốt khi nhờ AI sửa",
     subtitle: "AI sửa một chỗ rất dễ làm đổi luôn chỗ khác nếu bạn không dặn.",
-    duration: "8 phút",
+    duration: "18 phút",
     difficulty: "Dễ",
     emoji: "🚧",
     track: "personal",
@@ -624,7 +637,7 @@ export const S67_A_LESSONS: Lesson[] = [
       ],
       correct: 0,
       explanation:
-        "Câu đầu nêu chỗ cần sửa, chỗ giữ nguyên và yêu cầu liệt kê thay đổi. Ba câu còn lại mở rộng phạm vi: giao quyền quyết định, tối ưu tiện thể hoặc viết lại cả trang, mỗi cái đều đe doạ bảng giá đang đúng.",
+        "Câu nhờ nêu chỗ cần sửa, chỗ giữ nguyên và yêu cầu liệt kê thay đổi là câu đặt ranh giới tốt. Các câu khác mở rộng phạm vi: giao quyền quyết định, tối ưu tiện thể hoặc viết lại cả trang, mỗi cái đều đe doạ bảng giá đang đúng.",
     },
     summary: {
       keyIdea: "Dặn chỗ cần sửa và chỗ giữ nguyên, rồi đối chiếu danh sách thay đổi.",
@@ -744,6 +757,12 @@ export const S67_A_LESSONS: Lesson[] = [
         ],
       },
       {
+        type: "callout",
+        label: "Dự án xuyên suốt: quán cà phê Hẻm - bước 3/10",
+        text: "Bước 3: thêm mã giảm giá mà không đổi hàm tính tiền đã chạy tốt.",
+      },
+      VIBECODE_PROJECT_EXERCISE[2742],
+      {
         type: "scenario",
         title: "Bản sửa có vẻ ổn nhưng khác đi",
         start: "s1",
@@ -779,7 +798,7 @@ export const S67_A_LESSONS: Lesson[] = [
     slug: "nghiem-thu-truoc-khi-nhan-chay-thu-va-doc-bao-cao-cua-ai",
     title: "Chặng 67, Bài 4: Nghiệm thu trước khi nhận - chạy thử và đọc lời báo cáo của AI",
     subtitle: "\"Đã xong\" là một lời khẳng định. Chạy thử mới là bằng chứng.",
-    duration: "8 phút",
+    duration: "15 phút",
     difficulty: "Dễ",
     emoji: "✅",
     track: "personal",
@@ -994,39 +1013,11 @@ export const S67_A_LESSONS: Lesson[] = [
         ],
       },
       {
-        type: "exercise",
-        language: "javascript",
-        title: "Nghiệm thu bản sửa phí vận chuyển bằng bốn đơn thử",
-        task: "AI báo đã sửa xong: đơn từ 500000 đồng trở lên được miễn phí vận chuyển, còn lại tính 30000 đồng. Chương trình dưới đây chạy bốn đơn thử và in kết quả. Bạn chạy nó, đối chiếu với điều mong đợi, rồi sửa hàm phiVanChuyen: đơn đúng 500000 phải miễn phí, và tổng tiền âm phải in ra \"tổng tiền không hợp lệ\". Bạn không cần viết lại từ đầu, chỉ sửa hai chỗ trong hàm.",
-        starter: `function phiVanChuyen(tong) {
-  if (tong > 500000) return 0;
-  return 30000;
-}
-
-const donThu = [200000, 500000, 800000, -1000];
-for (const tong of donThu) {
-  console.log(tong + " -> " + phiVanChuyen(tong));
-}`,
-        solution: `function phiVanChuyen(tong) {
-  if (tong < 0) return "tổng tiền không hợp lệ";
-  if (tong >= 500000) return 0;
-  return 30000;
-}
-
-const donThu = [200000, 500000, 800000, -1000];
-for (const tong of donThu) {
-  console.log(tong + " -> " + phiVanChuyen(tong));
-}`,
-        expectedOutput: `200000 -> 30000
-500000 -> 0
-800000 -> 0
--1000 -> tổng tiền không hợp lệ`,
-        hints: [
-          "Chạy trước khi sửa: dòng của đơn 500000 đang in ra gì, và bạn mong đợi gì?",
-          "Dấu > nghĩa là lớn hơn hẳn; dấu >= nghĩa là lớn hơn hoặc bằng.",
-          "Thêm một dòng đầu hàm: nếu tong nhỏ hơn 0 thì trả về chữ \"tổng tiền không hợp lệ\".",
-        ],
+        type: "callout",
+        label: "Dự án xuyên suốt: quán cà phê Hẻm - bước 4/10",
+        text: "Bước 4: nghiệm thu hàm phí giao hàng bằng các đơn thử thay vì tin lời báo cáo.",
       },
+      VIBECODE_PROJECT_EXERCISE[2743],
       {
         type: "scenario",
         title: "Trước khi đưa trang cho khách",
@@ -1064,7 +1055,7 @@ for (const tong of donThu) {
         type: "closing",
         lines: [
           "Lời báo cáo chưa phải bằng chứng; chạy thử ba trường hợp mới là bằng chứng.",
-          "Tiếp theo trong chặng: đọc thứ AI viết để hiểu nó làm gì, ngay cả khi bạn không tự viết.",
+          "Bài sau: viết ca thử trước khi nhờ AI làm tính năng mới, để biết thế nào là xong.",
         ],
       },
     ],

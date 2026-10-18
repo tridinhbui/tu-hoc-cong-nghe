@@ -1,0 +1,250 @@
+{
+  "slug": "ba-kieu-loi-ai-hay-tao-ra-sai-o-moc-sai-thu-tu-ham-khong-co-that",
+  "title": "Stage 67, Lesson 7: Three kinds of mistakes AI makes - off-by-one boundaries, wrong order, functions that don't exist",
+  "subtitle": "AI-written code looks tidy and is reported as done, but the mistakes tend to fall in exactly three places.",
+  "whyItMatters": "You don't need to know how to write code to catch mistakes in code the AI wrote. Most of them are one of three familiar kinds: off by exactly one boundary, steps done in the wrong order, or a call to a function that nobody ever wrote. Once you know these three and have the shop's rules in hand, you can read line by line and check, instead of trusting the AI's confident tone.",
+  "openingQuestion": "Shop rule: orders are accepted from 7:00 to 21:00, both times included. The AI says it has checked everything, yet an order placed at exactly 7:00 is rejected. Which kind of mistake is this?",
+  "openingOptions": [
+    "Boundary mistake: the wrong comparison sign drops the edge hour",
+    "Wrong order: the checking steps run in a muddled sequence",
+    "Function that doesn't exist: the AI made up a function name and used it",
+    "The machine runs slowly, so orders at the start of the day get missed"
+  ],
+  "explanation": "An order at exactly 7:00 must be accepted, so being rejected means the condition wrongly threw out the boundary value. This is the familiar off-by-one mistake: the AI wrote 'less than or equal to 7' instead of 'less than 7'. Changing the order of checks that don't depend on each other gives the same result. A function that doesn't exist fails loudly when the code runs, not only at 7:00. And machine speed doesn't decide which orders are rejected, because the same hour always gives the same result.",
+  "diagram": [
+    {
+      "label": "Take the shop's rules: boundaries, order, functions allowed"
+    },
+    {
+      "label": "Read the code line by line and ask: which rule does this line follow?"
+    },
+    {
+      "label": "Check three spots: is a boundary off, is the order right, is the function real?"
+    },
+    {
+      "label": "For any line you doubt, ask the AI or test exactly that case"
+    }
+  ],
+  "realWorldExample": {
+    "company": "Illustrative scenario",
+    "description": "Illustrative scenario: the shop owner asks an AI to put together the order handling. The AI says it is done and explains fluently. She puts the shop's rules next to the code, reads line by line, and spots three odd things: 7:00 is rejected, the delivery fee is calculated before the discount, and a function with a very sensible name that isn't in any documentation. All three are fixed in ten minutes, because she knew where to look."
+  },
+  "quiz": [
+    {
+      "question": "Which AI condition would wrongly reject an order placed at exactly 7:00?",
+      "options": [
+        "Reject when the hour is below 7 (using <), which is what the rule says",
+        "Reject when the hour is later than 21 (using >), which only touches the end",
+        "Reject when the hour is 7 or less (using <=)",
+        "Reject when the hour is below 7 or above 21 (using < and >), exactly the rule"
+      ],
+      "explanation": "The '<=' sign puts 7 into the rejected group, even though the rule allows 7:00. The '<' sign only rejects hours before 7, so it matches the rule. The condition about hours after 21 only concerns the closing boundary and never touches 7:00. Writing it as 'below 7 or above 21' is simply the rule written correctly, so it does not reject 7:00."
+    },
+    {
+      "question": "What is a 'wrong order' mistake in the AI's order-handling function?",
+      "options": [
+        "Writing the functions in alphabetical order instead of the order in which the shop's steps happen",
+        "Calculating the total twice in a row, so the result comes out doubled",
+        "Naming the functions out of alphabetical order inside the file",
+        "Working out the delivery fee on the pre-discount amount instead of the post-discount one"
+      ],
+      "explanation": "The rule says the delivery fee is based on the amount after the discount, but the AI calls the fee function before the discount. Each function can be right on its own, and putting them together in the wrong order still gives the wrong amount. Arranging names alphabetically does not affect the result. Calculating twice is a different mistake, not an ordering one."
+    },
+    {
+      "question": "What sign suggests that Math.roundTo might be a function the AI made up?",
+      "options": [
+        "The name appears in no documentation or project",
+        "It takes two values inside the brackets, so the syntax must be wrong",
+        "The name is written in English, so the machine surely cannot understand it",
+        "The name is longer than the other function names in the same piece of code"
+      ],
+      "explanation": "The only reliable check is to look up whether the function exists: in the official documentation or among the functions the project already has. English names and long names are normal, since many real functions have both. The number of values inside the brackets says nothing about whether a function is real."
+    },
+    {
+      "question": "Why does the AI still sound confident when it calls a function that doesn't exist?",
+      "options": [
+        "It deliberately tries to fool the user, because a quick confident answer is easier for it",
+        "It strings together the most plausible words without checking the function exists",
+        "It always runs the code on your own machine before giving its answer",
+        "It only makes things up when the request contains hard or foreign words"
+      ],
+      "explanation": "The AI produces the answer that looks most plausible, and a name like Math.roundTo sounds very plausible. A confident tone does not reflect that it checked anything. It is not trying to deceive, it usually does not run code on your machine, and making things up does not depend on how hard the words in your request are."
+    },
+    {
+      "question": "What is the most effective way to check AI code against the shop's rules?",
+      "options": [
+        "Skim it once, and accept it without checking if it looks reasonable",
+        "Trust the lines for which the AI wrote the longest explanation",
+        "Put the rules next to the code and ask of each line whether it follows a rule",
+        "Look only at the first and last lines because mistakes tend to sit there"
+      ],
+      "explanation": "Boundary, order and invented-function mistakes all show up when each line is compared with one specific rule. Skimming only gives a feeling that it looks reasonable. A long explanation does not guarantee correct code. Mistakes can be on any line, not just the first or the last."
+    }
+  ],
+  "keyTakeaways": [
+    "Three familiar kinds of mistake: off at the boundary, wrong order, calling a function that doesn't exist.",
+    "The AI sounds confident because it writes plausible text, not because it checked.",
+    "Boundary values (exactly 7:00, exactly 21:00) are where comparison-sign mistakes show up most.",
+    "If a function name looks unfamiliar, look it up to see whether it exists before trusting it.",
+    "Put the rules next to the code and ask of each line: which rule does this follow?"
+  ],
+  "practicePrompt": {
+    "question": "Rule: orders of 10 items or more get a discount. The AI wrote 'if the number of items is greater than 10, discount'. An order of exactly 10 items gets no discount. What kind of mistake is this?",
+    "options": [
+      "Boundary mistake: exactly 10 items is left out of the discount group",
+      "Wrong order: the discount step runs before counting the items",
+      "Function that doesn't exist: the AI used a counting function it invented itself",
+      "No mistake, because 10 is a round number and this boundary can be ignored"
+    ],
+    "explanation": "'10 or more' includes 10, while 'greater than 10' does not, so an order of exactly 10 items is left out. That is a boundary mistake. No step runs ahead of another here, and there is no unfamiliar function. A round number is no reason to ignore a boundary, because numbers like that are often exactly the ones a rule uses as its boundary."
+  },
+  "summary": {
+    "keyIdea": "AI mistakes tend to fall in three places: an off-by-one boundary, wrong order, a function that doesn't exist.",
+    "formula": "Business rules + each line of code = check them pair by pair, especially at boundary values.",
+    "commonMistake": "Seeing tidy code and a fluent explanation and accepting it without checking it against the rules.",
+    "action": "Next time the AI writes code, write down your three rules and mark which rule each line of code matches."
+  },
+  "application": {
+    "title": "Do it now in 10 minutes",
+    "message": "Take a piece of code or a formula an AI once wrote for you. Write down three rules for the job, then read each line and ask: is a boundary off, is the order right, is this function or command real? Note any line you are not sure about.",
+    "secondary": "For any line you're unsure about, ask the AI: 'What does this line do, and which documentation is this function in?'"
+  },
+  "sections": [
+    {
+      "type": "lead",
+      "text": "In the last lesson you practised reading AI-written code. This lesson gives you three places to look first, because AI mistakes are not scattered at random: they tend to fall into exactly three kinds. Once you know them, you can catch mistakes even if you have never written code."
+    },
+    {
+      "type": "feynman",
+      "title": "The three kinds of mistake are simpler than you think",
+      "intro": "Picture a new employee writing up orders from a rulebook. Even a good one can slip in three very ordinary ways, and the AI slips in exactly the same ways.",
+      "columns": [
+        "Kind of mistake",
+        "Everyday example",
+        "In AI-written code"
+      ],
+      "rows": [
+        [
+          "Off at the boundary",
+          "The rule says 'from age 18' but only people over 18 are accepted",
+          "Uses <= instead of <, wrongly rejecting exactly 7:00"
+        ],
+        [
+          "Wrong order",
+          "Working out tax before subtracting the promotion",
+          "Calculating the delivery fee before the discount"
+        ],
+        [
+          "Function that doesn't exist",
+          "Filling in an order form the company has never had",
+          "Calling Math.roundTo, a function that does not exist"
+        ],
+        [
+          "Why it is hard to see",
+          "The writer is so confident that nobody doubts them",
+          "The AI writes tidily and reports it as done"
+        ]
+      ],
+      "oneLiner": "AI mistakes tend to sit at a boundary, in the order, or in a name that doesn't exist."
+    },
+    {
+      "type": "flow",
+      "title": "How to inspect code using the rules",
+      "steps": [
+        {
+          "label": "Write down the shop's rules",
+          "detail": "Hours 7 to 21 with both ends included, delivery fee calculated after the discount."
+        },
+        {
+          "label": "Read the code line by line",
+          "detail": "Which rule does each line match? A line that matches no rule deserves attention."
+        },
+        {
+          "label": "Check the three spots",
+          "detail": "Is a boundary off, is the order right, is the function name real?"
+        },
+        {
+          "label": "Note the doubtful lines",
+          "detail": "Mark only lines you have a reason to doubt; don't flag lines that merely look strange."
+        },
+        {
+          "label": "Test exactly that case",
+          "detail": "Use an edge case such as exactly 7:00 to find out whether your doubt is justified."
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Why the AI is wrong but still sounds sure"
+    },
+    {
+      "type": "paragraph",
+      "text": "The AI writes the lines that sound most plausible, like someone finishing a half-said sentence. The signs <= and < look alike, and the name Math.roundTo sounds perfectly natural. It does not stop to look up whether a function exists, and it does not notice that it just missed a boundary by one. A confident tone is only how it writes, not proof."
+    },
+    {
+      "type": "comparison",
+      "left": {
+        "label": "Trust it because the code looks fine",
+        "text": "Skim it, see that it is tidy, listen to the fluent explanation, and accept. The 7:00 mistake only shows up when the first customer orders at exactly 7:00."
+      },
+      "right": {
+        "label": "Check it against the rules",
+        "text": "Put the rules next to the code and ask about each line. You can see right away where a comparison sign drops the boundary value, where the order is swapped, and where a function name is unfamiliar."
+      }
+    },
+    {
+      "type": "callout",
+      "label": "Boundary values are where mistakes hide",
+      "text": "For every rule with a number, test exactly that number and the values on either side: 6, 7 and 8 o'clock; 20, 21 and 22 o'clock. An off-by-one mistake only shows at the boundary."
+    },
+    {
+      "type": "aiLab",
+      "title": "Inspect the AI's report on the order handling",
+      "task": "Shop rules: orders are accepted from 7:00 to 21:00 with both times included; the delivery fee is calculated on the amount after the discount; only real functions may be used. Click the sentences in the report that sound sure but are wrong, then submit.",
+      "segments": [
+        {
+          "text": "I checked that the order has a name and a phone number before calculating the amount."
+        },
+        {
+          "text": "An order placed before 7:00 or at exactly 7:00 will be rejected as outside opening hours.",
+          "error": "Boundary mistake: the rule accepts 7:00 too, so only orders before 7:00 should be rejected."
+        },
+        {
+          "text": "The delivery fee is calculated after the discount code is subtracted from the total."
+        },
+        {
+          "text": "Finally I round the result with the function Math.roundTo(number, 1000) to keep it tidy.",
+          "error": "Function that doesn't exist: there is no Math.roundTo function, and the AI talks about it as if it were a familiar one."
+        },
+        {
+          "text": "I ran three test cases, a normal one, an edge one and a wrong one, so the result can be trusted."
+        }
+      ]
+    },
+    {
+      "type": "callout",
+      "label": "Running project: the Alley coffee shop - step 7/10",
+      "text": "Step 7: the AI puts the functions together into xuLyDon, the function that handles one order. You inspect it line by line and point out the three faulty lines. Change nothing, just point to exactly where the mistakes are."
+    },
+    {
+      "type": "exercise",
+      "title": "Project step 7: inspect the AI's xuLyDon and point out the faulty lines",
+      "task": "The AI puts the finished functions together into xuLyDon: check the order, calculate the total, apply the discount, add the delivery fee. The shop's rules: the delivery fee is based on the amount AFTER the discount; orders are accepted from 7 to 21 (both 7 and 21 are allowed); and only real functions may be used. The AI's version has three faulty lines. Read line by line and put the numbers of the lines you suspect into the array dongLoi. The program tells you how many you found correctly and whether you flagged any healthy lines by mistake.",
+      "starter": "// maAI = \"AI code\", dongLoi = \"faulty lines\", don = \"order\", gio = \"hour\"\nconst maAI = [\n  \"function xuLyDon(don, gio, ma) {\",\n  \"  const tong = tongTien(gio);\",\n  \"  const phi = phiGiao(tong);\",\n  \"  const sauGiam = apGiamGia(tong, ma);\",\n  \"  const tamTinh = sauGiam + phi;\",\n  \"  if (don.gio <= 7 || don.gio > 21) return 'outside opening hours';\",\n  \"  return Math.roundTo(tamTinh, 1000);\",\n  \"}\",\n];\nmaAI.forEach((dong, i) => console.log((i + 1) + \"| \" + dong));\n\n// Write the numbers of the lines you think have a mistake, for example [2, 5].\nconst dongLoi = [];\n\n// ---- Scoring part, no need to read or change ----\nconst thatSu = { 3: \"calculates the delivery fee before the discount\", 6: \"wrongly rejects 7:00, because <= is used instead of <\", 7: \"Math.roundTo does not exist\" };\nlet dung = 0;\nlet nham = 0;\nfor (const n of new Set(dongLoi)) {\n  if (thatSu[n]) dung++;\n  else nham++;\n}\nconsole.log(\"Found \" + dung + \"/3 mistakes, wrongly flagged \" + nham + \" healthy lines.\");\nfor (const n of [...new Set(dongLoi)].sort((a, b) => a - b)) {\n  if (thatSu[n]) console.log(\"Line \" + n + \": \" + thatSu[n]);\n}",
+      "solution": "// maAI = \"AI code\", dongLoi = \"faulty lines\", don = \"order\", gio = \"hour\"\nconst maAI = [\n  \"function xuLyDon(don, gio, ma) {\",\n  \"  const tong = tongTien(gio);\",\n  \"  const phi = phiGiao(tong);\",\n  \"  const sauGiam = apGiamGia(tong, ma);\",\n  \"  const tamTinh = sauGiam + phi;\",\n  \"  if (don.gio <= 7 || don.gio > 21) return 'outside opening hours';\",\n  \"  return Math.roundTo(tamTinh, 1000);\",\n  \"}\",\n];\nmaAI.forEach((dong, i) => console.log((i + 1) + \"| \" + dong));\n\nconst dongLoi = [3, 6, 7];\n\nconst thatSu = { 3: \"calculates the delivery fee before the discount\", 6: \"wrongly rejects 7:00, because <= is used instead of <\", 7: \"Math.roundTo does not exist\" };\nlet dung = 0;\nlet nham = 0;\nfor (const n of new Set(dongLoi)) {\n  if (thatSu[n]) dung++;\n  else nham++;\n}\nconsole.log(\"Found \" + dung + \"/3 mistakes, wrongly flagged \" + nham + \" healthy lines.\");\nfor (const n of [...new Set(dongLoi)].sort((a, b) => a - b)) {\n  if (thatSu[n]) console.log(\"Line \" + n + \": \" + thatSu[n]);\n}",
+      "expectedOutput": "1| function xuLyDon(don, gio, ma) {\n2|   const tong = tongTien(gio);\n3|   const phi = phiGiao(tong);\n4|   const sauGiam = apGiamGia(tong, ma);\n5|   const tamTinh = sauGiam + phi;\n6|   if (don.gio <= 7 || don.gio > 21) return 'outside opening hours';\n7|   return Math.roundTo(tamTinh, 1000);\n8| }\nFound 3/3 mistakes, wrongly flagged 0 healthy lines.\nLine 3: calculates the delivery fee before the discount\nLine 6: wrongly rejects 7:00, because <= is used instead of <\nLine 7: Math.roundTo does not exist",
+      "hints": [
+        "Three kinds of mistake are common in AI-written code: off at the boundary (<= instead of <), steps in the wrong order, and calling a function that doesn't exist.",
+        "Compare each line with the shop's rules in the task: which line does its steps in the right order, and which uses an unfamiliar function?",
+        "Don't flag lines you are not sure about: each healthy line flagged by mistake is counted in the \"wrongly flagged\" part."
+      ]
+    },
+    {
+      "type": "closing",
+      "lines": [
+        "Three common kinds of mistake: off-by-one boundary, wrong order, function that doesn't exist.",
+        "Next lesson: reading git diff, the comparison that shows what the AI changed and in which file."
+      ]
+    }
+  ]
+}
