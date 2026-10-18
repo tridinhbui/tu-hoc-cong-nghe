@@ -52,6 +52,17 @@ export const lessonAdminVi = {
     reviewLoopPromptPart1: "Nếu bạn chỉ nhớ 1 điều từ bài này, hãy nhớ rằng:",
     reviewLoopCta: "Ôn lại trong 1 phút trước khi chuyển bài",
     keyTakeawaysTitle: "Ghi nhớ nhanh",
+    // Mục gập cuối bài (F-8, lib/lesson-block-budget.ts). Phụ đề liệt kê đúng
+    // những gì bên trong bài này, ghép từ các nhãn dưới bằng " · ".
+    deepDiveTitle: "Học sâu hơn",
+    deepDiveHint: "Không bắt buộc để hoàn thành bài",
+    deepDiveOpen: "Mở",
+    deepDiveClose: "Thu gọn",
+    deepDiveEli5: "Giải thích kiểu lớp 5",
+    deepDivePractice: "Thực hành thêm",
+    deepDiveVisual: "Sơ đồ",
+    deepDiveRecall: "Đổ não 60 giây và tóm tắt",
+    deepDiveTips: "Mẹo của Cơ Cơ",
   },
   adminFunnel: {
     title: "Phễu bài học · 30 ngày",
@@ -116,6 +127,15 @@ export const lessonAdminEn: typeof lessonAdminVi = {
     reviewLoopPromptPart1: "If you only remember one thing from this lesson, remember:",
     reviewLoopCta: "Review for 1 minute before moving on",
     keyTakeawaysTitle: "Quick recap",
+    deepDiveTitle: "Go deeper",
+    deepDiveHint: "Not needed to complete the lesson",
+    deepDiveOpen: "Open",
+    deepDiveClose: "Collapse",
+    deepDiveEli5: "Explained like you're ten",
+    deepDivePractice: "More practice",
+    deepDiveVisual: "Diagram",
+    deepDiveRecall: "60-second brain dump and recap",
+    deepDiveTips: "Quick tips",
   },
   adminFunnel: {
     title: "Lesson funnel · 30 days",

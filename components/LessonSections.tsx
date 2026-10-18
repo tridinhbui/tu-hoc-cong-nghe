@@ -85,6 +85,10 @@ interface LessonSectionsProps {
   /** Id bài - để lưu bài tập viết mã đã qua theo (bài, vị trí khối). Không có
    *  thì bài tập vẫn chạy và chấm được, chỉ không lưu. */
   lessonId?: number;
+  /** Chỉ dựng những khối có chỉ số ở đây (mặc định: tất cả). Chỉ số là chỉ số
+   *  gốc trong `sections`, nên id tiêu đề và khoá bài tập không đổi khi một
+   *  phần bài được dựng ở chỗ khác (mục "Học sâu hơn", lib/lesson-block-budget). */
+  indices?: readonly number[];
 }
 
 export default function LessonSections({
@@ -92,7 +96,9 @@ export default function LessonSections({
   checkpoint,
   checkpointAfterIndex = -1,
   lessonId,
+  indices,
 }: LessonSectionsProps) {
+  const include = indices ? new Set(indices) : null;
   const { t } = useI18n();
   // Shared across the whole lesson body so a term already highlighted once
   // (e.g. "dòng tiền" in an early paragraph) doesn't get re-wrapped every
@@ -103,21 +109,21 @@ export default function LessonSections({
     switch (block.type) {
       case "lead":
         return (
-          <div key={i} className="max-w-[68ch] text-xl leading-8 text-ink-heading">
+          <div key={i} className="max-w-[68ch] text-lg leading-8 text-ink-heading sm:text-xl">
             {renderFormattedText(block.text, seenTerms)}
           </div>
         );
 
       case "heading":
         return (
-          <h2 key={i} id={`heading-${i}`} className="scroll-mt-24 border-t border-line-strong pt-8 text-2xl font-black leading-tight tracking-tight text-ink-max">
+          <h2 key={i} id={`heading-${i}`} className="scroll-mt-24 border-t border-line-strong pt-6 text-xl font-black sm:pt-8 sm:text-2xl leading-tight tracking-tight text-ink-max">
             {block.text}
           </h2>
         );
 
       case "paragraph":
         return (
-          <div key={i} className="max-w-[68ch] text-lg leading-8">
+          <div key={i} className="max-w-[68ch] text-base leading-7 sm:text-lg sm:leading-8">
             {renderFormattedText(block.text, seenTerms)}
           </div>
         );
@@ -126,8 +132,8 @@ export default function LessonSections({
         return (
           <ul key={i} className="my-4 max-w-[68ch] space-y-3 pl-1">
             {block.items.map((item, j) => (
-              <li key={j} className="flex items-start gap-3 text-lg leading-8 text-ink-body">
-                <span aria-hidden className="mt-[0.8rem] h-1.5 w-1.5 flex-shrink-0 rounded-[1px] bg-stone-950 dark:bg-stone-200" />
+              <li key={j} className="flex items-start gap-3 text-base leading-7 text-ink-body sm:text-lg sm:leading-8">
+                <span aria-hidden className="mt-[0.7rem] h-1.5 sm:mt-[0.8rem] w-1.5 flex-shrink-0 rounded-[1px] bg-stone-950 dark:bg-stone-200" />
                 <div className="flex-1">{renderFormattedText(item, seenTerms)}</div>
               </li>
             ))}
@@ -265,9 +271,11 @@ export default function LessonSections({
   };
 
   return (
-    <div className="space-y-8 text-lg leading-8 text-ink-body">
+    <div className="space-y-6 text-base leading-7 text-ink-body sm:space-y-8 sm:text-lg sm:leading-8">
       {sections.map((block, i) => {
-        const rendered = renderBlock(block, i);
+        // Khối bị dời đi vẫn giữ chỗ cho câu giữa bài: câu đó là một vế của
+        // điều kiện hoàn thành, nên không bao giờ được theo khối vào mục gập.
+        const rendered = include && !include.has(i) ? null : renderBlock(block, i);
         if (checkpoint && i === checkpointAfterIndex) {
           return (
             <React.Fragment key={i}>

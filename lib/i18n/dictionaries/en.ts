@@ -597,6 +597,11 @@ export const en: Dictionary = {
     doneTitle: "Complete",
     doneTitleLow: "Done - review the ones you missed",
     doneScore: "{score}/{total} correct",
+    doneTitleQuizOnly: "Quiz done",
+    incompleteTitle: "Lesson not counted as done yet",
+    incompleteBody: "The quiz is done. Finish what's below so the lesson counts as complete and you get the XP:",
+    goToMidpoint: "Go to the mid-lesson question",
+    goToReading: "Keep reading where you stopped",
     firstAttemptScore: "Recorded: {score}/{total} (first attempt)",
     firstAttemptNote:
       "The figure above is where you ended up after retries. The score saved to your profile is your first attempt, so the readiness percentages on Career reflect what you actually knew.",

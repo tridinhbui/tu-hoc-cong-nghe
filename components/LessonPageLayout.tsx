@@ -75,6 +75,9 @@ interface Props {
   lesson: LessonMeta;
   quiz: QuizQuestion[];
   children: React.ReactNode;
+  /** Trang tự đặt thẻ mẹo Cơ Cơ ở chỗ khác (LessonPageClient đặt nó trong mục
+   *  "Học sâu hơn"); khi đó khung bài không dựng nó ở đầu bài nữa. */
+  stageTipsInBody?: boolean;
 }
 
 /* i18n-ignore-start: ký hiệu cùng một chuỗi ở mọi ngôn ngữ.
@@ -111,7 +114,7 @@ const CANONICAL_LESSON_IDS_BY_SLUG: Record<string, number> = {
   "wealth-management": 1031,
 };
 
-export default function LessonPageLayout({ lesson, quiz, children }: Props) {
+export default function LessonPageLayout({ lesson, quiz, children, stageTipsInBody = false }: Props) {
   const { t } = useI18n();
   const persistedLessonId = lesson.slug ? CANONICAL_LESSON_IDS_BY_SLUG[lesson.slug] ?? lesson.id : lesson.id;
 
@@ -633,6 +636,24 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
     }
   }
 
+  // Hai nút của thẻ "bài chưa tính là xong" (F-9). Câu giữa bài không bao giờ
+  // nằm trong mục gập "Học sâu hơn" (LessonPageClient), nên id luôn có trên trang.
+  //
+  // Nhảy thẳng, không cuộn mượt: đường đi từ cột quiz tới câu giữa bài dài
+  // nhiều màn hình, và cuộn mượt bị trình duyệt huỷ giữa chừng mỗi khi bố cục
+  // phía trên đổi trong lúc trượt (đo được: dừng cách đích ~1.000-2.500px).
+  function scrollToMidpoint() {
+    document.getElementById("lesson-midpoint")?.scrollIntoView({ block: "start" });
+  }
+
+  // Về đúng chỗ xa nhất đã đọc tới, theo cùng phép đo mà tiêu chí "đọc hết"
+  // dùng (phần trăm cuộn của cả trang) - không nhảy thẳng xuống cuối, vì như
+  // thế là tick hộ ô "đã đọc".
+  function scrollToReadPoint() {
+    const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
+    window.scrollTo({ top: Math.max(0, (totalScroll * maxReachedRef.current) / 100 - 80) });
+  }
+
   // Returns whether the completion (user_progress row - the ONLY thing the
   // dashboard reads to show a lesson as "Xong") was successfully persisted.
   // Callers use this to reset the fired-guard and retry on failure instead
@@ -860,7 +881,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
               onCreated={(h) => setHighlights((prev) => [...prev, h])}
             />
 
-            <article ref={articleRef} className="min-w-0 flex-1 space-y-10 pb-20 lg:pb-0">
+            <article ref={articleRef} className="min-w-0 flex-1 space-y-8 pb-20 sm:space-y-10 lg:pb-0">
               {/* Đầu bài: một cửa sổ soạn thảo, đúng khuôn HeroEditor ở trang
                   giới thiệu - tab tệp, thân bài, thanh trạng thái. Các tab
                   quiz.ts / notes.md là liên kết thật tới cột bên phải. */}
@@ -987,9 +1008,11 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                   vào nội dung mới. */}
               {recallItems.length > 0 && <RecallCard items={recallItems} />}
 
-              <div data-tour="lesson-tai-tai">
-                <StageTipsBanner lessonId={persistedLessonId} lessonTitle={lesson.title} />
-              </div>
+              {!stageTipsInBody && (
+                <div data-tour="lesson-tai-tai">
+                  <StageTipsBanner lessonId={persistedLessonId} lessonTitle={lesson.title} />
+                </div>
+              )}
 
               {/* Video bài giảng: chỉ hiện khi bài có video. Bản không-có-video từng là
                   một thẻ chỉ chứa đường tìm kiếm YouTube, nằm ngay trên chữ đầu
@@ -1017,7 +1040,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                   explicit Tailwind text-sm/lg/xl classes each hand-written
                   lesson sets on its own child elements. */}
               <div
-                className={`space-y-8 text-lg leading-8 text-ink-body ${readingMode === "sepia" ? "reading-sepia" : ""}`}
+                className={`space-y-6 text-base leading-7 text-ink-body sm:space-y-8 sm:text-lg sm:leading-8 ${readingMode === "sepia" ? "reading-sepia" : ""}`}
                 style={{ zoom: fontScale }}
               >
                 <LessonCompletionContext.Provider value={{ registerMidpoint, markMidpointDone }}>
@@ -1277,7 +1300,7 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                       <StatusDot tone={score === quiz.length ? "brand" : "muted"} />
                       <span className={label}>{t.lessonLayout.quickCheck}</span>
                     </div>
-                    <h3 className="mt-2 text-xl font-black tracking-tight text-ink-max">{score * 2 >= quiz.length ? t.lessonLayout.doneTitle : t.lessonLayout.doneTitleLow}</h3>
+                    <h3 className="mt-2 text-xl font-black tracking-tight text-ink-max">{score * 2 < quiz.length ? t.lessonLayout.doneTitleLow : allCriteriaMet ? t.lessonLayout.doneTitle : t.lessonLayout.doneTitleQuizOnly}</h3>
                     <p className={`mt-1 text-sm font-semibold ${score === quiz.length ? "text-accent-strong" : "text-ink-soft"}`}>
                       {format(t.lessonLayout.doneScore, { score, total: quiz.length })}
                     </p>
@@ -1293,6 +1316,45 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                       </p>
                     )}
                   </div>
+
+                  {/* Quiz xong mà bài chưa xong (F-9). Điều kiện hoàn thành có
+                      ba vế, và hai vế kia nằm ở thân bài - trên mobile là cách
+                      cột quiz hàng chục màn hình. Trước đây chỉ có một toast
+                      thoáng qua nói điều này, nên 10/10 lượt đo kết thúc với
+                      bài chưa xong và hôm sau "Học tiếp" quay về bài cũ. Thẻ
+                      gọi tên đúng vế còn thiếu và có nút đưa tới đó; điều kiện
+                      thì giữ nguyên (`allCriteriaMet` ở trên). */}
+                  {/* Không cho khách: với họ không có gì được lưu hay cộng XP,
+                      và lời mời đăng ký bên dưới mới là việc chính. */}
+                  {!allCriteriaMet && authState !== "guest" && (
+                    <div className="space-y-3 border-l-2 border-brand-600 pl-4 dark:border-brand-400">
+                      <p className="text-sm font-black text-ink-max">{t.lessonLayout.incompleteTitle}</p>
+                      <p className="text-sm leading-6 text-ink-soft">{t.lessonLayout.incompleteBody}</p>
+                      <ul className="space-y-1.5">
+                        {!midpointCriterionMet && (
+                          <li className="flex items-start gap-2.5 text-sm font-semibold text-ink-body">
+                            <span aria-hidden className="mt-0.5 h-4 w-4 flex-shrink-0 rounded-xs border border-line-firm" />
+                            {t.lessonLayout.checkMidpoint}
+                          </li>
+                        )}
+                        {!scrolledFully && (
+                          <li className="flex items-start gap-2.5 text-sm font-semibold text-ink-body">
+                            <span aria-hidden className="mt-0.5 h-4 w-4 flex-shrink-0 rounded-xs border border-line-firm" />
+                            {t.lessonLayout.checkReadAll}
+                          </li>
+                        )}
+                      </ul>
+                      {!midpointCriterionMet ? (
+                        <button type="button" onClick={scrollToMidpoint} className={`${btnPrimary} w-full`}>
+                          {t.lessonLayout.goToMidpoint}
+                        </button>
+                      ) : (
+                        <button type="button" onClick={scrollToReadPoint} className={`${btnPrimary} w-full`}>
+                          {t.lessonLayout.goToReading}
+                        </button>
+                      )}
+                    </div>
+                  )}
 
                   <div className="flex flex-wrap gap-1.5">
                     {results.map((ok, i) => (
@@ -1346,8 +1408,10 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                         <Link href="/dashboard" className={btnSecondary}>
                           {t.lessonLayout.dashboard}
                         </Link>
+                        {/* Chưa xong bài thì nút chính là nút đưa tới vế còn
+                            thiếu ở trên; "Bài tiếp" lùi xuống nút phụ. */}
                         {lesson.nextSlug ? (
-                          <Link href={`/bai-hoc/${lesson.nextSlug}`} className={btnPrimary}>
+                          <Link href={`/bai-hoc/${lesson.nextSlug}`} className={allCriteriaMet ? btnPrimary : btnSecondary}>
                             {t.lessonLayout.nextLesson}
                           </Link>
                         ) : (
@@ -1356,11 +1420,14 @@ export default function LessonPageLayout({ lesson, quiz, children }: Props) {
                           </span>
                         )}
                       </div>
-                      <ShareCompletionButton
-                        lessonSlug={slug}
-                        lessonTitle={lesson.title}
-                        className="inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-sm py-2.5 text-sm font-bold text-white transition-opacity hover:opacity-90"
-                      />
+                      {/* Chia sẻ "đã hoàn thành" chỉ khi bài thật sự đã xong. */}
+                      {allCriteriaMet && (
+                        <ShareCompletionButton
+                          lessonSlug={slug}
+                          lessonTitle={lesson.title}
+                          className="inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-sm py-2.5 text-sm font-bold text-white transition-opacity hover:opacity-90"
+                        />
+                      )}
                     </>
                   )}
                   <button

@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Lightbulb } from "lucide-react";
+import { ChevronDown, Lightbulb } from "lucide-react";
 import type { Lesson, LocalizedLesson } from "@/lib/lesson-types";
 import LessonPageLayout from "@/components/LessonPageLayout";
 import LessonTranslationBadge from "@/components/LessonTranslationBadge";
@@ -12,6 +12,8 @@ import InteractiveWidget, { hasInteractiveWidget } from "@/components/Interactiv
 import MidpointInteractive from "@/components/MidpointInteractive";
 import FreeRecallCard from "@/components/FreeRecallCard";
 import LessonSections from "@/components/LessonSections";
+import StageTipsBanner from "@/components/StageTipsBanner";
+import { planLessonBlocks } from "@/lib/lesson-block-budget";
 import LessonVideoPlayer from "@/components/LessonVideoPlayer";
 import { highlightGlossaryTerms } from "@/components/GlossaryTerm";
 import { LessonApplicationCard, LessonQuestionCard, LessonSummaryCard, ReviewLoopCard } from "@/components/LessonLearningBlocks";
@@ -106,9 +108,16 @@ function metaphorOf(lesson: Props["lesson"], metaphors: Record<MetaphorId, strin
 
 export default function LessonPageClient({ lesson, nextLesson, flowLabel }: Props) {
   const { t } = useI18n();
-  // Mở sẵn: người chưa biết gì cần bản giải thích dễ nhất TRƯỚC, không phải sau khi
-  // tự tìm ra một nút "Dùng ELI5". Ai không cần thì tắt một lần.
-  const [feynmanMode, setFeynmanMode] = useState(true);
+  // Thẻ "giải thích kiểu lớp 5" từng mở sẵn ở đầu mọi bài, với lý do người
+  // chưa biết gì cần bản dễ nhất TRƯỚC. Đo trên trang thật thì nó là một trong
+  // ~7 khối tương tác chen trước câu mở đầu (F-8), nên giờ nó ở đầu mục
+  // "Học sâu hơn" - vẫn một chạm là tới, không còn công tắc bật/tắt riêng.
+  //
+  // Gắn theo slug: đi sang bài kế không unmount component, nên trạng thái mở
+  // của bài trước không được theo sang bài sau.
+  const [deep, setDeep] = useState<{ slug?: string; open: boolean }>({ open: false });
+  const deepMounted = deep.slug === lesson.slug;
+  const deepOpen = deepMounted && deep.open;
   // Staged reveal for the "Cơ Cơ giải thích" card, like a chatbot response:
   // the metaphor line types itself out first, then the takeaways/mistake
   // warning fade in - instead of the whole card appearing at once.
@@ -181,9 +190,79 @@ export default function LessonPageClient({ lesson, nextLesson, flowLabel }: Prop
     inlineCheckpointIndex >= 0 &&
     Boolean(lesson.sections && lesson.sections.length > 0);
 
+  const blockPlan = planLessonBlocks(lesson.sections ?? []);
+
+  // Hai khối có thể đứng ở mạch chính hoặc trong "Học sâu hơn" tuỳ bài - dựng
+  // một lần, đặt một trong hai chỗ.
+  const diagramBlock = (
+    <>
+      {/* 3. Diagram block */}
+      {lesson.diagram && lesson.diagram.length > 0 && (
+        <div className="space-y-4">
+          <div className={blockLabel}>
+            {t.lessonPage.diagramTitle}
+          </div>
+          <div className="flex flex-col items-center rounded-md bg-surface px-4 py-5">
+            {lesson.diagram.map((node: { label: string; arrow?: boolean }, i: number) => (
+              <React.Fragment key={i}>
+                <div className="flex w-full max-w-sm items-baseline gap-3 rounded-sm border border-line-strong bg-white px-4 py-3 text-sm font-semibold text-ink-max dark:bg-stone-900">
+                  <Sys className="text-ink-muted">{String(i + 1).padStart(2, "0")}</Sys>
+                  <span className="flex-1">{node.label}</span>
+                </div>
+                {node.arrow && i < lesson.diagram.length - 1 && (
+                  <div aria-hidden className="my-1 h-4 w-px bg-stone-400 dark:bg-stone-600" />
+                )}
+              </React.Fragment>
+            ))}
+          </div>
+        </div>
+      )}
+  </>
+  );
+  const practicePromptBlock = (
+    <>
+      {/* 5.5. Câu luyện tập - chỉ khi bài THẬT SỰ có một câu.
+          Hàm dựng thay thế cũ bịa ra một câu cho 97 bài không có, và câu nó
+          bịa vi phạm đúng luật 4 của AGENTS.md: phương án "Vì chỉ cần đọc là
+          đủ, không cần áp dụng" và "Vì không liên quan đến đời sống hàng ngày"
+          là khoảng trống, loại được ngay từ cái nhìn đầu tiên, nên câu bốn
+          phương án thành câu hai phương án.
+
+          Nó KHÔNG ghi điểm đi đâu cả - LessonQuestionCard không đụng tới
+          avg_quiz_score - nên đây là chuyện lãng phí thời gian người học, chứ
+          không phải chuyện làm sai các con số. Vẫn phải gỡ. */}
+      {lesson.practicePrompt && (
+        <LessonQuestionCard
+          title={t.lessonPage.practicePromptTitle}
+          question={lesson.practicePrompt.question}
+          options={lesson.practicePrompt.options}
+          correct={lesson.practicePrompt.correct}
+          explanation={lesson.practicePrompt.explanation}
+        />
+      )}
+  </>
+  );
+
+  // Phụ đề của "Học sâu hơn": nói đúng những gì có bên trong bài này.
+  const sectionTypes = blockPlan.deep.map((i) => lesson.sections![i].type);
+  const deepHasPractice =
+    sectionTypes.some((ty) => ty !== "feynman" && ty !== "chart" && ty !== "flow") ||
+    (blockPlan.hasMainPractice && Boolean(lesson.practicePrompt)) ||
+    hasInteractiveWidget(lesson.interactiveType);
+  const deepHasVisual =
+    sectionTypes.some((ty) => ty === "feynman" || ty === "chart" || ty === "flow") ||
+    (blockPlan.hasMainVisual && Boolean(lesson.diagram?.length));
+  const deepHasRecall = Boolean(lesson.summary || lesson.application || lesson.keyTakeaways?.length);
+  const deepLabels = [
+    t.lessonPage.deepDiveEli5,
+    deepHasPractice && t.lessonPage.deepDivePractice,
+    deepHasVisual && t.lessonPage.deepDiveVisual,
+    deepHasRecall && t.lessonPage.deepDiveRecall,
+  ].filter((x): x is string => Boolean(x));
+
   return (
     <div className="relative">
-      <LessonPageLayout lesson={meta} quiz={sidebarQuiz}>
+      <LessonPageLayout lesson={meta} quiz={sidebarQuiz} stageTipsInBody>
       <LessonTranslationBadge translated={"translated" in lesson ? lesson.translated : undefined} />
 
       {/* 0. Why this lesson matters - one or two sentences up front on what
@@ -201,93 +280,6 @@ export default function LessonPageClient({ lesson, nextLesson, flowLabel }: Prop
             {lesson.whyItMatters}
           </p>
         </div>
-      )}
-
-      {/* Feynman ELI5 Mode Toggle */}
-      <div className={`${panel} flex items-center justify-between gap-4 p-4`}>
-        <div className="min-w-0 flex-1">
-          <h4 className="text-sm font-black tracking-tight text-ink-max">
-            {t.lessonPage.feynmanTitle}
-          </h4>
-          <p className="mt-1 text-xs leading-5 text-ink-soft">
-            {t.lessonPage.feynmanSubtitle}
-          </p>
-        </div>
-        <button
-          onClick={() => {
-            setFeynmanMode(!feynmanMode);
-            setMetaphorTyped(false);
-          }}
-          aria-pressed={feynmanMode}
-          className={`shrink-0 cursor-pointer rounded-sm border px-3 py-2 text-xs font-bold transition-colors ${
-            feynmanMode
-              ? "border-brand-600 bg-brand-50 text-brand-800 dark:border-brand-400 dark:bg-brand-950/40 dark:text-brand-200"
-              : "border-line-strong text-ink-muted hover:border-line-firm hover:text-ink"
-          }`}
-        >
-          {feynmanMode ? t.lessonPage.feynmanOn : t.lessonPage.feynmanOff}
-        </button>
-      </div>
-
-      {feynmanMode && (
-        <motion.div
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          className={`${panel} space-y-4 p-5`}
-        >
-          <div className="flex items-center gap-3 border-b border-line-strong pb-3">
-            <span className="flex h-8 w-8 items-center justify-center rounded-sm bg-surface text-ink-muted">
-              <Lightbulb aria-hidden className="h-4 w-4" strokeWidth={1.75} />
-            </span>
-            <div>
-              <h5 className="text-sm font-black tracking-tight text-ink-max">{t.lessonPage.feynmanCardTitle}</h5>
-              <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">{t.lessonPage.feynmanCardSubtitle}</p>
-            </div>
-          </div>
-          <div className="max-w-[68ch] space-y-3 text-sm leading-7 text-ink-body">
-            {/* Câu dẫn hứa "một phép so sánh", nên nó chỉ đứng đó khi có. */}
-            {metaphor && (
-              <p>
-                {t.lessonPage.feynmanIntroPart1} <strong>&quot;{lesson.title}&quot;</strong> {t.lessonPage.feynmanIntroPart2}
-              </p>
-            )}
-            {metaphor && (
-              <div className="rounded-sm bg-surface p-3.5 font-semibold text-ink-max">
-                {!metaphor.ownSentence && <>{t.lessonPage.feynmanMetaphorLeadIn} </>}
-                <TypingText text={metaphor.text} onDone={() => setMetaphorTyped(true)} />
-              </div>
-            )}
-            {(metaphorTyped || !metaphor) && (
-              <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} className="space-y-3">
-                <p className="font-bold text-ink-max">{t.lessonPage.feynmanTakeawaysTitle}</p>
-                <ul className="list-disc pl-4 space-y-1.5 text-ink-body">
-                  {(lesson.keyTakeaways ?? []).slice(0, 3).map((takeaway: string, idx: number) => {
-                    /* "Ý chính - giải thích" thì in đậm vế đầu. Ý không có
-                       dấu gạch thì in nguyên câu: bản cũ in `vế đầu: cả câu`,
-                       tức cùng một câu hai lần liền nhau. */
-                    const [head, ...rest] = takeaway.split(" - ");
-                    return (
-                      <li key={idx}>
-                        {rest.length > 0 ? (
-                          <>
-                            <strong>{head}</strong>: {rest.join(" - ")}
-                          </>
-                        ) : (
-                          takeaway
-                        )}
-                      </li>
-                    );
-                  })}
-                </ul>
-                {lesson.summary?.commonMistake && (
-                  <p className="border-l-2 border-red-500 pl-3 text-sm font-semibold text-danger">
-                    {t.lessonPage.feynmanMistakePrefix} {lesson.summary.commonMistake}
-                  </p>
-                )}
-              </motion.div>
-            )}
-          </div>
-        </motion.div>
       )}
 
       {/* Video Player - if available */}
@@ -312,6 +304,7 @@ export default function LessonPageClient({ lesson, nextLesson, flowLabel }: Prop
           checkpoint={hasInlineCheckpoint ? checkpointNode : undefined}
           checkpointAfterIndex={inlineCheckpointIndex}
           lessonId={lesson.id}
+          indices={blockPlan.main}
         />
       ) : (
         lesson.explanation && (
@@ -332,42 +325,9 @@ export default function LessonPageClient({ lesson, nextLesson, flowLabel }: Prop
           inline at the halfway mark above. */}
       {!hasInlineCheckpoint && checkpointNode}
 
-      {/* 3. Diagram block */}
-      {lesson.diagram && lesson.diagram.length > 0 && (
-        <div className="space-y-4">
-          <div className={blockLabel}>
-            {t.lessonPage.diagramTitle}
-          </div>
-          <div className="flex flex-col items-center rounded-md bg-surface px-4 py-5">
-            {lesson.diagram.map((node: { label: string; arrow?: boolean }, i: number) => (
-              <React.Fragment key={i}>
-                <div className="flex w-full max-w-sm items-baseline gap-3 rounded-sm border border-line-strong bg-white px-4 py-3 text-sm font-semibold text-ink-max dark:bg-stone-900">
-                  <Sys className="text-ink-muted">{String(i + 1).padStart(2, "0")}</Sys>
-                  <span className="flex-1">{node.label}</span>
-                </div>
-                {node.arrow && i < lesson.diagram.length - 1 && (
-                  <div aria-hidden className="my-1 h-4 w-px bg-stone-400 dark:bg-stone-600" />
-                )}
-              </React.Fragment>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* 4. Interactive Simulation block
-          Điều kiện là "có widget cho loại này", không phải "có khai loại".
-          Trước đây nó chỉ kiểm tra trường có giá trị rồi ép kiểu, nên 150 bài
-          khai chart/process/risk/budget - bốn loại chưa có widget - vẫn dựng
-          tiêu đề mục và bỏ trống bên dưới. Cast `as` là thứ giấu đi đúng sự
-          không khớp đó khỏi TypeScript. */}
-      {hasInteractiveWidget(lesson.interactiveType) && (
-        <div className="space-y-3">
-          <div className={blockLabel}>
-            {t.lessonPage.interactiveTitle}
-          </div>
-          <InteractiveWidget type={lesson.interactiveType} />
-        </div>
-      )}
+      {/* 3. Sơ đồ tĩnh - ở mạch chính chỉ khi thân bài không có chart/flow
+          nào; có rồi thì nó là bản lặp của khối đó và vào "Học sâu hơn". */}
+      {!blockPlan.hasMainVisual && diagramBlock}
 
       {/* 4.5. Visual summary image (optional hand-crafted infographic recap) */}
       {lesson.summaryImage && (
@@ -399,88 +359,191 @@ export default function LessonPageClient({ lesson, nextLesson, flowLabel }: Prop
         </div>
       )}
 
-      {/* 5.5. Câu luyện tập - chỉ khi bài THẬT SỰ có một câu.
-          Hàm dựng thay thế cũ bịa ra một câu cho 97 bài không có, và câu nó
-          bịa vi phạm đúng luật 4 của AGENTS.md: phương án "Vì chỉ cần đọc là
-          đủ, không cần áp dụng" và "Vì không liên quan đến đời sống hàng ngày"
-          là khoảng trống, loại được ngay từ cái nhìn đầu tiên, nên câu bốn
-          phương án thành câu hai phương án.
+      {/* 5.5. Câu luyện tập ở mạch chính chỉ khi thân bài không có khối thực
+          hành nào; có rồi thì nó là câu thêm và vào "Học sâu hơn". */}
+      {!blockPlan.hasMainPractice && practicePromptBlock}
 
-          Nó KHÔNG ghi điểm đi đâu cả - LessonQuestionCard không đụng tới
-          avg_quiz_score - nên đây là chuyện lãng phí thời gian người học, chứ
-          không phải chuyện làm sai các con số. Vẫn phải gỡ. */}
-      {lesson.practicePrompt && (
-        <LessonQuestionCard
-          title={t.lessonPage.practicePromptTitle}
-          question={lesson.practicePrompt.question}
-          options={lesson.practicePrompt.options}
-          correct={lesson.practicePrompt.correct}
-          explanation={lesson.practicePrompt.explanation}
-        />
+      {/* 7. "Học sâu hơn" - mọi khối phụ của bài, gập sẵn (F-8,
+          lib/lesson-block-budget.ts). Không khối nào bị xoá: bài vẫn đủ khối
+          thực hành + khối hình cho các gate nội dung, chỉ là người học đi mạch
+          chính trước - câu mở đầu, thân bài với MỘT khối thực hành chính và
+          MỘT khối hình, câu giữa bài, ví dụ, rồi quiz. Câu giữa bài không bao
+          giờ vào đây vì nó là một vế của điều kiện hoàn thành.
+
+          Dựng lười: chưa mở lần nào thì không mount, nên thẻ Feynman và mẹo
+          Cơ Cơ không tự gõ chữ ở chỗ không ai thấy; mở rồi thì chỉ ẩn khi thu
+          gọn, để bài tập đang làm dở không mất trạng thái. */}
+      {deepLabels.length > 0 && (
+        <section className={`${panel} overflow-hidden`}>
+          <button
+            type="button"
+            onClick={() => setDeep({ slug: lesson.slug, open: !deepOpen })}
+            aria-expanded={deepOpen}
+            aria-controls="lesson-deep-dive"
+            className="flex w-full cursor-pointer items-center justify-between gap-4 px-4 py-4 text-left transition-colors hover:bg-surface-raised sm:px-5"
+          >
+            <span className="min-w-0">
+              <span className="block text-lg font-black tracking-tight text-ink-max">{t.lessonPage.deepDiveTitle}</span>
+              <span className="mt-1 block text-sm leading-6 text-ink-body">{deepLabels.join(" · ")}</span>
+              <span className="mt-0.5 block text-xs text-ink-muted">{t.lessonPage.deepDiveHint}</span>
+            </span>
+            <span className="flex shrink-0 items-center gap-1.5 text-xs font-bold text-ink-muted">
+              {deepOpen ? t.lessonPage.deepDiveClose : t.lessonPage.deepDiveOpen}
+              <ChevronDown aria-hidden className={`h-4 w-4 transition-transform ${deepOpen ? "rotate-180" : ""}`} />
+            </span>
+          </button>
+          {deepMounted && (
+            <div id="lesson-deep-dive" hidden={!deepOpen} className="space-y-8 border-t border-line-strong p-4 sm:p-6">
+              <motion.div
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                className={`${panel} space-y-4 p-5`}
+              >
+                <div className="flex items-center gap-3 border-b border-line-strong pb-3">
+                  <span className="flex h-8 w-8 items-center justify-center rounded-sm bg-surface text-ink-muted">
+                    <Lightbulb aria-hidden className="h-4 w-4" strokeWidth={1.75} />
+                  </span>
+                  <div>
+                    <h5 className="text-sm font-black tracking-tight text-ink-max">{t.lessonPage.feynmanCardTitle}</h5>
+                    <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-muted">{t.lessonPage.feynmanCardSubtitle}</p>
+                  </div>
+                </div>
+                <div className="max-w-[68ch] space-y-3 text-sm leading-7 text-ink-body">
+                  {/* Câu dẫn hứa "một phép so sánh", nên nó chỉ đứng đó khi có. */}
+                  {metaphor && (
+                    <p>
+                      {t.lessonPage.feynmanIntroPart1} <strong>&quot;{lesson.title}&quot;</strong> {t.lessonPage.feynmanIntroPart2}
+                    </p>
+                  )}
+                  {metaphor && (
+                    <div className="rounded-sm bg-surface p-3.5 font-semibold text-ink-max">
+                      {!metaphor.ownSentence && <>{t.lessonPage.feynmanMetaphorLeadIn} </>}
+                      <TypingText text={metaphor.text} onDone={() => setMetaphorTyped(true)} />
+                    </div>
+                  )}
+                  {(metaphorTyped || !metaphor) && (
+                    <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} className="space-y-3">
+                      <p className="font-bold text-ink-max">{t.lessonPage.feynmanTakeawaysTitle}</p>
+                      <ul className="list-disc pl-4 space-y-1.5 text-ink-body">
+                        {(lesson.keyTakeaways ?? []).slice(0, 3).map((takeaway: string, idx: number) => {
+                          /* "Ý chính - giải thích" thì in đậm vế đầu. Ý không có
+                             dấu gạch thì in nguyên câu: bản cũ in `vế đầu: cả câu`,
+                             tức cùng một câu hai lần liền nhau. */
+                          const [head, ...rest] = takeaway.split(" - ");
+                          return (
+                            <li key={idx}>
+                              {rest.length > 0 ? (
+                                <>
+                                  <strong>{head}</strong>: {rest.join(" - ")}
+                                </>
+                              ) : (
+                                takeaway
+                              )}
+                            </li>
+                          );
+                        })}
+                      </ul>
+                      {lesson.summary?.commonMistake && (
+                        <p className="border-l-2 border-red-500 pl-3 text-sm font-semibold text-danger">
+                          {t.lessonPage.feynmanMistakePrefix} {lesson.summary.commonMistake}
+                        </p>
+                      )}
+                    </motion.div>
+                  )}
+                </div>
+              </motion.div>
+
+              {blockPlan.deep.length > 0 && lesson.sections && (
+                <LessonSections sections={lesson.sections} lessonId={lesson.id} indices={blockPlan.deep} />
+              )}
+
+              {blockPlan.hasMainVisual && diagramBlock}
+
+              {/* 4. Interactive Simulation block
+                  Điều kiện là "có widget cho loại này", không phải "có khai loại".
+                  Trước đây nó chỉ kiểm tra trường có giá trị rồi ép kiểu, nên 150 bài
+                  khai chart/process/risk/budget - bốn loại chưa có widget - vẫn dựng
+                  tiêu đề mục và bỏ trống bên dưới. Cast `as` là thứ giấu đi đúng sự
+                  không khớp đó khỏi TypeScript. */}
+              {hasInteractiveWidget(lesson.interactiveType) && (
+                <div className="space-y-3">
+                  <div className={blockLabel}>
+                    {t.lessonPage.interactiveTitle}
+                  </div>
+                  <InteractiveWidget type={lesson.interactiveType} />
+                </div>
+              )}
+
+              {blockPlan.hasMainPractice && practicePromptBlock}
+
+              <StageTipsBanner lessonId={lesson.id} lessonTitle={lesson.title} />
+
+              {/* 5.75 - 6. Everything that summarises the lesson, gated behind the
+                  60-second free-recall exercise. The gate has to start here rather
+                  than immediately above "Ghi nhớ nhanh": the summary card, the
+                  application card and the review-loop card all restate the lesson's
+                  key idea, so leaving them outside would hand the learner the
+                  answers before asking them to recall anything. */}
+              <FreeRecallCard
+                lessonId={lesson.id}
+                lessonSlug={lesson.slug}
+                takeaways={lesson.keyTakeaways ?? []}
+              >
+              {/* 5.75 - 5.95. Tóm tắt, áp dụng, và vòng ôn lại.
+                  Cả ba CHỈ dựng khi bài thật sự có nội dung cho chúng.
+
+                  Trước đây có hai hàm dựng thay thế, và thứ chúng sinh ra là chữ rỗng:
+                  keyIdea là "Bài này giúp bạn hiểu rõ hơn về <tên bài>", còn
+                  commonMistake và action thì giống hệt nhau ở mọi bài. Hậu quả không
+                  phải một tấm thẻ xấu mà là một tấm thẻ NÓI DỐI: nó trông y hệt tấm
+                  thẻ của 689 bài có tóm tắt thật, chiếm cùng chỗ, mang cùng tiêu đề,
+                  và không chứa một chữ nào về bài đang đọc. Vì có hàm thay thế nên
+                  không ai thấy - 26 bài đã ở tình trạng đó.
+
+                  Không có thẻ thì tốt hơn một cái thẻ rỗng: chỗ trống nhìn thấy được,
+                  còn chữ rỗng thì không. Bài nào thiếu sẽ hiện trong npm run
+                  audit:lessons. */}
+              {lesson.summary && <LessonSummaryCard summary={lesson.summary} />}
+
+              {lesson.application && (
+                <LessonApplicationCard
+                  title={lesson.application.title}
+                  message={lesson.application.message}
+                  secondary={lesson.application.secondary}
+                />
+              )}
+
+              {lesson.summary?.keyIdea && (
+                <ReviewLoopCard
+                  prompt={`${t.lessonPage.reviewLoopPromptPart1} ${lesson.summary.keyIdea}.`}
+                  cta={t.lessonPage.reviewLoopCta}
+                />
+              )}
+
+              {/* 6. Key Takeaways block */}
+              {lesson.keyTakeaways && lesson.keyTakeaways.length > 0 && (
+                <div className={`${panel} overflow-hidden`}>
+                  <div className="border-b border-line-strong px-4 py-3 sm:px-5">
+                    <p className="text-lg font-black tracking-tight text-ink-max">{t.lessonPage.keyTakeawaysTitle}</p>
+                  </div>
+                  <ol className="divide-y divide-line">
+                    {lesson.keyTakeaways.map((takeaway: string, i: number) => (
+                      <li key={i} className="flex items-baseline gap-4 px-4 py-4 sm:px-5">
+                        <Sys className="flex-shrink-0 text-ink-muted">{String(i + 1).padStart(2, "0")}</Sys>
+                        <p className="max-w-[68ch] text-base leading-7 text-ink-body">{takeaway}</p>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+              )}
+              {/* 6.5. Đường sang căn phòng 3D dạy đúng điều này, nếu bài có một
+                  căn. Sau phần ghi nhớ chứ không phải đầu bài: ở đầu bài nó rủ người
+                  ta bỏ dở, ở đây nó là bước tiếp theo của người vừa tóm tắt xong. */}
+              </FreeRecallCard>
+            </div>
+          )}
+        </section>
       )}
-
-      {/* 5.75 - 6. Everything that summarises the lesson, gated behind the
-          60-second free-recall exercise. The gate has to start here rather
-          than immediately above "Ghi nhớ nhanh": the summary card, the
-          application card and the review-loop card all restate the lesson's
-          key idea, so leaving them outside would hand the learner the
-          answers before asking them to recall anything. */}
-      <FreeRecallCard
-        lessonId={lesson.id}
-        lessonSlug={lesson.slug}
-        takeaways={lesson.keyTakeaways ?? []}
-      >
-      {/* 5.75 - 5.95. Tóm tắt, áp dụng, và vòng ôn lại.
-          Cả ba CHỈ dựng khi bài thật sự có nội dung cho chúng.
-
-          Trước đây có hai hàm dựng thay thế, và thứ chúng sinh ra là chữ rỗng:
-          keyIdea là "Bài này giúp bạn hiểu rõ hơn về <tên bài>", còn
-          commonMistake và action thì giống hệt nhau ở mọi bài. Hậu quả không
-          phải một tấm thẻ xấu mà là một tấm thẻ NÓI DỐI: nó trông y hệt tấm
-          thẻ của 689 bài có tóm tắt thật, chiếm cùng chỗ, mang cùng tiêu đề,
-          và không chứa một chữ nào về bài đang đọc. Vì có hàm thay thế nên
-          không ai thấy - 26 bài đã ở tình trạng đó.
-
-          Không có thẻ thì tốt hơn một cái thẻ rỗng: chỗ trống nhìn thấy được,
-          còn chữ rỗng thì không. Bài nào thiếu sẽ hiện trong npm run
-          audit:lessons. */}
-      {lesson.summary && <LessonSummaryCard summary={lesson.summary} />}
-
-      {lesson.application && (
-        <LessonApplicationCard
-          title={lesson.application.title}
-          message={lesson.application.message}
-          secondary={lesson.application.secondary}
-        />
-      )}
-
-      {lesson.summary?.keyIdea && (
-        <ReviewLoopCard
-          prompt={`${t.lessonPage.reviewLoopPromptPart1} ${lesson.summary.keyIdea}.`}
-          cta={t.lessonPage.reviewLoopCta}
-        />
-      )}
-
-      {/* 6. Key Takeaways block */}
-      {lesson.keyTakeaways && lesson.keyTakeaways.length > 0 && (
-        <div className={`${panel} overflow-hidden`}>
-          <div className="border-b border-line-strong px-4 py-3 sm:px-5">
-            <p className="text-lg font-black tracking-tight text-ink-max">{t.lessonPage.keyTakeawaysTitle}</p>
-          </div>
-          <ol className="divide-y divide-line">
-            {lesson.keyTakeaways.map((takeaway: string, i: number) => (
-              <li key={i} className="flex items-baseline gap-4 px-4 py-4 sm:px-5">
-                <Sys className="flex-shrink-0 text-ink-muted">{String(i + 1).padStart(2, "0")}</Sys>
-                <p className="max-w-[68ch] text-base leading-7 text-ink-body">{takeaway}</p>
-              </li>
-            ))}
-          </ol>
-        </div>
-      )}
-      {/* 6.5. Đường sang căn phòng 3D dạy đúng điều này, nếu bài có một
-          căn. Sau phần ghi nhớ chứ không phải đầu bài: ở đầu bài nó rủ người
-          ta bỏ dở, ở đây nó là bước tiếp theo của người vừa tóm tắt xong. */}
-      </FreeRecallCard>
     </LessonPageLayout>
     </div>
   );
