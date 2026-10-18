@@ -1,0 +1,17 @@
+{"H":5579,"screens":6.6,"words":882,"aside":652}
+317 Dễ · 11 phút đọc · 4 câu quiz Chặng 23, Bài 1: Vòng lặp của 
+4139 VÌ SAO BÀI NÀY QUAN TRỌNG Mọi agent, từ trợ lý đặt lịch tới 
+  227 VÌ SAO BÀI NÀY QUAN TRỌNG Mọi agent, từ trợ lý đặt lịch tới 
+  449 BẮT ĐẦU BẰNG MỘT CÂU HỎI Bạn hỏi agent: "Ngày mai Đà Lạt có 
+  2736 Chatbot trả lời một lần rồi dừng; agent tự gọi công cụ và lặ
+    180 Chatbot trả lời một lần rồi dừng; agent tự gọi công cụ và lặ
+    56 Chạy thử một vòng bằng tay
+    279 Vòng 1 - Quan sát: yêu cầu. Suy luận: cần thời tiết. Hành độ
+    126 Ba vòng, hai công cụ, một điều kiện dừng - chạy tay một lần 
+    173 LUÔN CÓ GIỚI HẠN SỐ BƯỚC Agent kẹt sẽ lặp mãi và tốn tiền mỗ
+    1032 BÀI TẬP · PYTHON · Không bắt buộc Đặt số bước tối đa cho age
+    502 Dừng & Kiểm tra ĐIỂM GIỮA BÀI Vì sao agent cần một điều kiện
+    190 Agent không phải phép màu - nó là một vòng lặp có kỷ luật. B
+  414 SƠ ĐỒ TRỰC QUAN 01 Quan sát: yêu cầu và kết quả mới nhất 02 
+  54 VÍ DỤ THỰC TẾ · TRỢ LÝ LẬP TRÌNH TRONG TRÌNH SOẠN MÃ
+  123 Học sâu hơn Giải thích kiểu lớp 5 · Thực hành thêm · Sơ đồ ·

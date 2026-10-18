@@ -33,7 +33,7 @@ export default function OpeningQuestionBlock({
         {question}
       </p>
 
-      <div className="space-y-2.5">
+      <div className="space-y-2 sm:space-y-2.5">
         {options.map((opt, i) => {
           let btnCls = "border-line-strong bg-white dark:bg-stone-900 text-ink-heading hover:border-line-firm font-medium";
           if (submitted) {
@@ -49,7 +49,7 @@ export default function OpeningQuestionBlock({
               key={i}
               disabled={submitted}
               onClick={() => setSelected(i)}
-              className={`w-full text-left px-4 py-3.5 rounded-sm border text-sm transition-colors flex items-center gap-3 cursor-pointer ${btnCls}`}
+              className={`w-full text-left px-3 py-2.5 sm:px-4 sm:py-3.5 rounded-sm border text-sm transition-colors flex items-center gap-3 cursor-pointer ${btnCls}`}
             >
               <span className={`w-6 h-6 rounded-xs font-mono text-xs font-medium flex items-center justify-center border shrink-0 ${
                 selected === i ? "border-current" : "text-ink-muted border-line-strong"
