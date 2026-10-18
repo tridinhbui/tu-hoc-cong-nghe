@@ -8,7 +8,8 @@ vi.mock("next/navigation", () => ({ useRouter: () => ({ push: vi.fn(), refresh: 
 // Cảnh 3D cần WebGL; ở đây chỉ cần biết nó được gọi.
 vi.mock("@/components/InterviewerStage", () => ({ default: () => <div data-testid="interviewer-stage" /> }));
 vi.mock("@/lib/current-user", () => ({ getCurrentUserId: async () => null }));
-vi.mock("@/lib/quiz-mistakes", () => ({ recordQuizMistake: async () => {} }));
+const recordQuizMistake = vi.fn(async () => {});
+vi.mock("@/lib/quiz-mistakes", () => ({ recordQuizMistake }));
 
 const { default: TechnicalInterviewPage } = await import("@/app/(app)/phong-van-ky-thuat/page");
 
@@ -83,6 +84,9 @@ describe("technical interview simulator", () => {
     fireEvent.click(screen.getByRole("button", { name: /A2/ }));
     fireEvent.click(screen.getByRole("button", { name: t.interview.lockAnswer }));
     expect(screen.getByText("Phương án A sai ở đâu, và C xử lý điều đó thế nào?")).toBeTruthy();
+    // Khách (getCurrentUserId → null): RPC ghi câu sai cần người gọi và trả
+    // 403 cho khách, nên không được gọi nó.
+    expect(recordQuizMistake).not.toHaveBeenCalled();
 
     fireEvent.click(screen.getByRole("button", { name: new RegExp(t.interview.seeResult) }));
     await screen.findByText(R.resultTitle);
