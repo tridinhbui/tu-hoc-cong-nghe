@@ -7,6 +7,7 @@ import { roundedLessonCount } from "@/lib/track-totals";
 import { animateCountTo } from "@/lib/animate-count";
 import { LEARNING_FLOWS } from "@/lib/learning-flows";
 import { EditorialHero, EditorialMarquee, EditorialWorlds } from "@/components/home/v2/EditorialHome";
+import EditorialVoices from "@/components/home/v2/EditorialVoices";
 import { EditorialNeeds } from "@/components/home/v2/EditorialNeeds";
 import {
   EditorialNav,
@@ -184,6 +185,7 @@ export default function HomePage() {
         {/* Bảng xếp hạng live đứng ngay sau hero làm tờ số 1: người mới thấy
             người thật đang học trước khi đọc bất cứ lời hứa nào. */}
         <EditorialCommunity n={1} />
+        <EditorialVoices />
         <EditorialNeeds />
         {/* Thứ tự đọc: người thật đang học (cộng đồng) -> bạn làm được gì
             (Needs) -> bốn thế giới -> đi thế nào (lộ trình) -> vì sao nhớ lâu

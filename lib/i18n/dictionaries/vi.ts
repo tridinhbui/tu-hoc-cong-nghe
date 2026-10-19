@@ -475,6 +475,7 @@ export const vi = {
       journeyKicker: "Lộ trình",
       journeyTitle: "Từ số 0 tới làm được việc, trong bốn bước.",
       journeySub: "Không có bài kiểm tra đầu vào, không có thuật ngữ nào phải thuộc trước. Bạn đi tới đâu, hệ thống nhớ tới đó.",
+      voicesLabel: "Người học nói bằng con số thật",
       chatLabel: "Cơ Cơ trả lời nhanh",
       chatOnline: "Trực tuyến",
       chatTyping: "Cơ Cơ đang gõ",

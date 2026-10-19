@@ -434,6 +434,7 @@ export const en: Dictionary = {
       journeyKicker: "The path",
       journeyTitle: "From zero to getting things done, in four steps.",
       journeySub: "No entrance test and no jargon to memorise first. Wherever you stop, the system remembers.",
+      voicesLabel: "Learners, in real numbers",
       chatLabel: "Ask Coco",
       chatOnline: "Online",
       chatTyping: "Coco is typing",
