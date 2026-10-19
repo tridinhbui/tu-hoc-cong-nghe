@@ -13,7 +13,6 @@ import {
   MEDIAN_LESSON_MINUTES,
   finishDate,
   readPace,
-  weeksFor,
   writePace,
   type Pace,
 } from "@/lib/learning-pace";
@@ -22,9 +21,6 @@ import type { StageTopicId } from "@/lib/stage-topics";
 import { btnPrimary, textLink } from "@/components/ui/system";
 
 type Track = "personal" | "professional";
-
-/** Số mốc hiện ra trước; phần còn lại gộp thành một dòng "và N chặng nữa". */
-const MILESTONES_SHOWN = 4;
 
 /** Trung vị `totalMinutes` của cả kho, đo lúc viết trang này (n=722, khoảng
  *  4-11). Một con số đo được giữ được lòng tin; "nhẹ nhàng thôi" thì không.
@@ -140,7 +136,6 @@ export default function LearningPathClient({
 
   const total = counts[track];
   const remaining = Math.max(0, total - done[track]);
-  const weeks = weeksFor(remaining, pace.perDay, pace.daysPerWeek);
   const nextLesson = greeting?.nextLesson ?? null;
   const gaps = greeting?.topicGapSummary ?? [];
   // Mốc "hôm nay" lấy SAU KHI mount, không phải lúc dựng.
@@ -157,232 +152,236 @@ export default function LearningPathClient({
 
   const stageCopy = t.revampDashboard.stages[track] ?? [];
   const stageList = milestones?.[track] ?? [];
-  const shownStages = stageList.slice(0, MILESTONES_SHOWN);
-  const pct = total > 0 ? Math.round((done[track] / total) * 100) : 0;
+    const pct = total > 0 ? Math.round((done[track] / total) * 100) : 0;
+
+  // Chặng đang học = chặng đầu tiên chưa xong; hiện nó và hai chặng kế tiếp.
+  const currentIdx = Math.max(0, stageList.findIndex((s) => s.done < s.total));
+  const upcoming = stageList.slice(currentIdx, currentIdx + 3).map((s, k) => ({ ...s, i: currentIdx + k }));
+  const stageName = (i: number) => stageCopy[i]?.headline ?? t.trackStages[track]?.stages[i]?.name ?? "";
+  const started = done[track] > 0;
+  const trackName = track === "personal" ? p.trackPersonalName : p.trackProfessionalName;
+
+  const stageRow = (stage: { total: number; done: number }, i: number, current: boolean) => (
+    <li key={i} className="flex items-baseline gap-3 py-2.5">
+      <span className={`w-14 shrink-0 font-mono text-xs font-bold uppercase tabular-nums ${current ? "text-accent" : "text-ink-muted"}`}>
+        {format(t.dashboard.stageLabel, { n: i + 1 })}
+      </span>
+      <span className={`min-w-0 flex-1 leading-snug ${current ? "font-black text-ink-max" : "font-bold text-ink-body"}`}>{stageName(i)}</span>
+      <span className="shrink-0 text-xs font-bold tabular-nums text-ink-muted">
+        {format(p.milestoneLessons, { done: stage.done, total: stage.total })}
+      </span>
+    </li>
+  );
 
   return (
-    // pb-28 chứ không pb-8: ConnectMenu là một nút tròn `fixed bottom-6` cao
-    // 56px, mount toàn app từ app/layout.tsx. Nội dung chạy sát đáy thì khối
-    // cuối nằm dưới nó.
+    // pb-28: ConnectMenu là nút tròn `fixed bottom-6` cao 56px, mount toàn app.
     //
-    // Một cột hẹp, bốn bước đánh số theo đúng câu hỏi trong đầu người mới:
-    // làm gì -> đi đường nào -> dọc đường có những mốc gì -> bài đầu tiên.
-    // Phần giải thích (cách học một bài, ba nỗi lo) gập lại ở cuối: ai cần thì
-    // mở, ai không cần thì không phải cuộn qua.
-    <div className="mx-auto max-w-3xl px-4 pt-5 pb-28 sm:px-6">
-      <header>
-        <Link href="/dashboard" className={textLink}>
+    // Một mục tiêu chính: hero có đúng MỘT nút "Tiếp tục học". Desktop chia hai
+    // cột (hero + lộ trình | thiết lập); mobile một cột, hero lên đầu nên nút
+    // học luôn nằm trong màn hình đầu tiên. Số tổng (tổng bài, tổng tuần) bỏ
+    // khỏi màn hình chính - chúng làm nản hơn là giúp.
+    <div className="mx-auto max-w-5xl px-4 pt-5 pb-28 sm:px-6">
+      <header className="flex items-center justify-between gap-3">
+        <h1 className="text-2xl font-black leading-tight tracking-tight text-ink-max sm:text-3xl">{p.title}</h1>
+        <Link href="/dashboard" className={`${textLink} shrink-0 text-sm`}>
           <ArrowLeft className="h-4 w-4" />
           {p.backToDashboard}
         </Link>
-        <h1 className="mt-4 text-3xl font-black leading-[1.1] tracking-tight text-ink-max sm:text-4xl">{p.title}</h1>
-        <p className="mt-2 max-w-[56ch] text-base leading-7 text-ink-soft">{p.intro}</p>
       </header>
 
-      <Step n={1} title={p.tocGoal}>
-        <LearningGoalCard id="goal" effort={flowEffort} mission />
-      </Step>
-
-      <Step n={2} title={p.stepPickTitle} hint={p.stepPickHint} id="pick">
-        <div className="grid gap-3 sm:grid-cols-2">
-          {(["personal", "professional"] as const).map((id) => {
-            const picked = track === id;
-            const left = Math.max(0, counts[id] - done[id]);
-            return (
-              <button
-                key={id}
-                type="button"
-                onClick={() => pickTrack(id)}
-                aria-pressed={picked}
-                className={`group cursor-pointer rounded-sm p-4 text-left transition-colors duration-200 ${
-                  picked
-                    ? "border border-brand-600 bg-brand-50 ring-1 ring-brand-600 dark:border-brand-400 dark:bg-brand-950/40 dark:ring-brand-400"
-                    : "border border-line-strong hover:border-brand-400 dark:border-stone-800 dark:hover:border-stone-700"
-                }`}
-              >
-                <span className="flex items-start justify-between gap-2">
-                  <span className={`text-base font-black tracking-tight ${picked ? "text-brand-950 dark:text-brand-50" : "text-ink-heading"}`}>
-                    {id === "personal" ? p.trackPersonalName : p.trackProfessionalName}
-                  </span>
-                  {picked && <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-accent" aria-hidden />}
-                </span>
-                <span className="mt-1.5 block text-sm leading-6 text-ink-soft">
-                  {id === "personal" ? p.trackPersonalFor : p.trackProfessionalFor}
-                </span>
-                {/* Thẻ ĐANG CHỌN đếm số bài còn lại, thẻ kia đếm tổng: câu hỏi ở
-                    thẻ kia là "hướng này to cỡ nào", không phải "tôi còn bao
-                    nhiêu" - người đọc chưa học bài nào của nó. */}
-                <span className="mt-3 block text-xs font-bold tabular-nums text-ink-muted">
-                  {picked ? format(p.trackLessonsLeft, { count: left }) : format(p.trackLessons, { count: counts[id] })}
-                  {" · "}
-                  {format(p.trackTime, {
-                    weeks: weeksFor(picked ? left : counts[id], pace.perDay, pace.daysPerWeek),
-                  })}
-                </span>
-              </button>
-            );
-          })}
-        </div>
-        {track === "professional" && (
-          <p className="mt-3 max-w-[68ch] border-l-2 border-stone-300 pl-4 text-sm leading-6 text-ink-body dark:border-stone-700">
-            {p.proNote}
-          </p>
-        )}
-
-        {/* Nhịp học: cùng bước với hướng đi vì cả hai cùng trả lời "bao giờ thì
-            xong", và con số ước lượng nằm ngay dưới hai bộ chọn. */}
-        <div id="pace" className="mt-6 scroll-mt-6">
-          <h3 className="text-sm font-black text-ink-heading">{p.stepPaceTitle}</h3>
-          <div className="mt-3 flex flex-wrap gap-x-6 gap-y-3">
-            <Field label={p.paceLessonsPerDay}>
-              {([1, 2] as const).map((n) => (
-                <Pill key={n} active={pace.perDay === n} onClick={() => savePace({ ...pace, perDay: n })}>
-                  {n === 1 ? p.paceOne : p.paceTwo}
-                </Pill>
-              ))}
-            </Field>
-            <Field label={p.paceDaysPerWeek}>
-              {[3, 4, 5, 6, 7].map((d) => (
-                <Pill key={d} active={pace.daysPerWeek === d} onClick={() => savePace({ ...pace, daysPerWeek: d })}>
-                  {format(p.paceDays, { days: d })}
-                </Pill>
-              ))}
-            </Field>
-          </div>
-          <p className="mt-4 text-sm font-bold tabular-nums text-ink-heading">
-            {format(p.paceEstimate, { count: remaining, weeks })}
-            {/* Ngày cụ thể cạnh con số tuần: "khoảng 28 tuần" đòi người đọc tự
-                mở lịch ra cộng. Đi qua intlLocale, không viết cứng "vi-VN". */}
-            {finishAt && (
-              <span className="font-normal text-ink-muted">
-                {" "}
-                {format(p.paceFinishBy, {
-                  date: finishAt.toLocaleDateString(intlLocale(locale), { month: "long", year: "numeric" }),
-                })}
-              </span>
-            )}
-          </p>
-          <p className="mt-0.5 text-sm text-ink-muted">
-            {format(p.paceMinutes, { minutes: pace.perDay * MEDIAN_LESSON_MINUTES })}
-          </p>
-          {/* Trạng thái ghi: viên nhịp đổi màu ngay khi bấm, và màu ấy chỉ nói
-              "đang chọn" chứ không nói "đã lưu". */}
-          {saveState !== "idle" && (
-            <p role="status" className={`mt-2 text-xs font-bold ${saveState === "saved" ? "text-accent-strong" : "text-alert-strong"}`}>
-              {saveState === "saved" ? p.paceSaved : p.paceSaveFailed}
+      <div className="mt-5 grid gap-x-10 gap-y-8 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)]">
+        <div className="space-y-8">
+          <section id="first" aria-label={p.stepFirstTitle} className="scroll-mt-6 rounded-sm border border-brand-600 bg-brand-50 p-5 sm:p-6 dark:border-brand-400 dark:bg-brand-950/40">
+            <p className="text-xs font-bold uppercase tracking-[0.08em] text-ink-muted">{p.currentJourney}</p>
+            <p className="mt-1 text-lg font-black leading-snug tracking-tight text-ink-max">
+              {trackName}
+              {upcoming[0] && <span className="font-bold text-ink-soft"> · {stageName(upcoming[0].i)}</span>}
             </p>
-          )}
-          <div className="mt-2">
-            <Disclosure question={p.paceWarnTitle} answer={p.paceWarnBody} />
-          </div>
-        </div>
-      </Step>
-
-      {shownStages.length > 0 && (
-        <Step n={3} title={p.stepMilestonesTitle} id="milestones">
-          <ol className="divide-y divide-line-strong border-y border-line-strong">
-            {shownStages.map((stage, i) => {
-              const copy = stageCopy[i];
-              return (
-                <li key={i} className="flex gap-4 py-3.5">
-                  <span className="w-16 shrink-0 pt-0.5 font-mono text-xs font-bold uppercase tabular-nums text-ink-muted">
-                    {format(t.dashboard.stageLabel, { n: i + 1 })}
-                  </span>
-                  <span className="min-w-0 flex-1">
-                    <span className="block font-bold leading-snug text-ink-max">{copy?.headline ?? t.trackStages[track]?.stages[i]?.name}</span>
-                    {copy?.outcome && <span className="mt-0.5 hidden text-sm sm:block leading-6 text-ink-soft">{copy.outcome}</span>}
-                  </span>
-                  <span className="shrink-0 pt-0.5 text-xs font-bold tabular-nums text-ink-muted">
-                    {format(p.milestoneLessons, { done: stage.done, total: stage.total })}
-                  </span>
-                </li>
-              );
-            })}
-          </ol>
-          {stageList.length > shownStages.length && (
-            <p className="mt-2 text-sm text-ink-muted">{format(p.milestonesMore, { count: stageList.length - shownStages.length })}</p>
-          )}
-        </Step>
-      )}
-
-      <Step n={shownStages.length > 0 ? 4 : 3} title={p.stepFirstTitle} hint={p.heroMinutes} id="first">
-        <div className="rounded-sm border border-brand-600 bg-brand-50 p-5 dark:border-brand-400 dark:bg-brand-950/40">
-          {loading ? (
-            <p className="text-sm text-ink-muted">{p.heroLoading}</p>
-          ) : !nextLesson ? (
-            <p className="text-sm leading-6 text-ink-soft">{p.heroNoLesson}</p>
-          ) : (
-            <>
-              <p className="text-xs font-bold uppercase tracking-[0.08em] text-ink-muted">
-                {p.heroTodayLabel}
-              </p>
-              <p className="mt-1.5 text-xl font-black leading-snug tracking-tight text-ink-max">
-                {getLessonShortTitle({ title: nextLesson.title })}
-              </p>
-              <Link href={`/bai-hoc/${nextLesson.slug}`} className={`${btnPrimary} mt-4`}>
-                {p.heroOpen} <ArrowRight className="h-4 w-4" />
-              </Link>
-            </>
-          )}
-        </div>
-        {/* Cùng chỗ với "bài đầu tiên" cho người đã học: tiến độ hướng này, và
-            chủ đề yếu nếu có - mỗi viên dẫn tới bài CHƯA HỌC đầu tiên của chủ
-            đề đó. Không có dữ liệu thì không in gì (không còn khối riêng). */}
-        {!loading && nextLesson && (
-          <div className="mt-4">
-            <p className="text-sm font-bold tabular-nums text-ink-heading">{format(p.adjustProgress, { done: done[track], total })}</p>
             <div
               role="progressbar"
               aria-valuemin={0}
               aria-valuemax={total}
               aria-valuenow={done[track]}
               aria-label={format(p.progressAria, { done: done[track], total })}
-              className="mt-1.5 h-1 w-full overflow-hidden bg-surface-sunken"
+              className="mt-3 h-1.5 w-full overflow-hidden bg-white/70 dark:bg-white/10"
             >
               <div className="h-full bg-cyan-500 motion-safe:transition-[width] motion-safe:duration-700 dark:bg-cyan-400" style={{ width: `${pct}%` }} />
             </div>
-            {gaps.length > 0 && (
-              <div className="mt-4">
-                <p className="text-sm font-bold text-ink-heading">{p.adjustWeakest}</p>
-                <div className="mt-2 flex flex-wrap gap-1.5">
-                  {gaps.map((g: { topicId: StageTopicId; count: number }) => {
-                    const entry = topicEntry[track]?.[g.topicId];
-                    const chip =
-                      "rounded-sm border border-red-300 bg-white px-2.5 py-1 text-xs font-bold text-red-700 dark:border-red-900 dark:bg-stone-900 dark:text-red-300";
-                    return entry ? (
-                      <Link
-                        key={g.topicId}
-                        href={`/bai-hoc/${entry.slug}`}
-                        title={`${p.adjustWeakestOpen}: ${entry.title}`}
-                        className={`${chip} inline-flex items-center gap-1 transition-colors hover:border-red-600 dark:hover:border-red-400`}
-                      >
-                        {t.topics[g.topicId]}
-                        <ArrowRight className="h-3 w-3" />
-                      </Link>
-                    ) : (
-                      <span key={g.topicId} className={chip}>
-                        {t.topics[g.topicId]}
-                      </span>
-                    );
-                  })}
+            <p className="mt-1.5 text-xs font-bold tabular-nums text-ink-muted">{pct}%</p>
+
+            <div className="mt-5 border-t border-brand-200/70 pt-5 dark:border-white/10">
+              {loading ? (
+                <p className="text-sm text-ink-muted">{p.heroLoading}</p>
+              ) : !nextLesson ? (
+                <p className="text-sm leading-6 text-ink-soft">{p.heroNoLesson}</p>
+              ) : (
+                <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                  <div className="min-w-0">
+                    <p className="text-xs font-bold uppercase tracking-[0.08em] text-ink-muted">{p.nextLessonLabel}</p>
+                    <p className="mt-1 text-xl font-black leading-snug tracking-tight text-ink-max">
+                      {getLessonShortTitle({ title: nextLesson.title })}
+                    </p>
+                    <p className="mt-1 text-sm text-ink-muted">{p.heroMinutes}</p>
+                  </div>
+                  <Link href={`/bai-hoc/${nextLesson.slug}`} className={`${btnPrimary} shrink-0 justify-center`}>
+                    {started ? p.continueLearning : p.startLearning} <ArrowRight className="h-4 w-4" />
+                  </Link>
                 </div>
+              )}
+            </div>
+            {!loading && nextLesson && gaps.length > 0 && (
+              <div className="mt-4 flex flex-wrap items-center gap-1.5">
+                <span className="mr-1 text-xs font-bold text-ink-muted">{p.adjustWeakest}:</span>
+                {gaps.map((g: { topicId: StageTopicId; count: number }) => {
+                  const entry = topicEntry[track]?.[g.topicId];
+                  const chip =
+                    "rounded-sm border border-red-300 bg-white px-2 py-0.5 text-xs font-bold text-red-700 dark:border-red-900 dark:bg-stone-900 dark:text-red-300";
+                  return entry ? (
+                    <Link
+                      key={g.topicId}
+                      href={`/bai-hoc/${entry.slug}`}
+                      title={`${p.adjustWeakestOpen}: ${entry.title}`}
+                      className={`${chip} inline-flex items-center gap-1 transition-colors hover:border-red-600 dark:hover:border-red-400`}
+                    >
+                      {t.topics[g.topicId]}
+                      <ArrowRight className="h-3 w-3" />
+                    </Link>
+                  ) : (
+                    <span key={g.topicId} className={chip}>
+                      {t.topics[g.topicId]}
+                    </span>
+                  );
+                })}
               </div>
             )}
-          </div>
-        )}
-        <Link href="/lo-trinh/huong-dan" className={`mt-4 ${textLink}`}>
-          {p.guideTitle} <ArrowRight className="h-3.5 w-3.5" />
-        </Link>
-      </Step>
+          </section>
 
-      {/* Phần giải thích: gập lại. `details` của trình duyệt - không cần JS, và
-          nội dung vẫn nằm trong HTML nên trình đọc màn hình và tìm kiếm thấy. */}
+          {upcoming.length > 0 && (
+            <section id="milestones" className="scroll-mt-6">
+              <h2 className="text-base font-black tracking-tight text-ink-max">{p.stepMilestonesTitle}</h2>
+              <ol className="mt-2 divide-y divide-line-strong">
+                {upcoming.map((s, k) => stageRow(s, s.i, k === 0))}
+              </ol>
+              {stageList.length > upcoming.length && (
+                <details className="group mt-1">
+                  <summary className="flex cursor-pointer list-none items-center gap-1.5 py-2 text-sm font-bold text-accent-strong marker:content-none">
+                    <span className="group-open:hidden">{p.viewAllRoadmap}</span>
+                    <span className="hidden group-open:inline">{p.hideRoadmap}</span>
+                    <ChevronDown className="h-4 w-4 transition-transform group-open:rotate-180" aria-hidden />
+                  </summary>
+                  <ol className="divide-y divide-line-strong border-t border-line-strong">
+                    {stageList.map((s, i) => stageRow(s, i, i === currentIdx))}
+                  </ol>
+                </details>
+              )}
+            </section>
+          )}
+        </div>
+
+        <aside id="pick" className="scroll-mt-6 space-y-6 lg:border-l lg:border-line-strong lg:pl-8">
+          <div>
+            <h2 className="text-base font-black tracking-tight text-ink-max">{p.stepPickTitle}</h2>
+            <div className="mt-3 grid grid-cols-2 gap-2">
+              {(["personal", "professional"] as const).map((id) => {
+                const picked = track === id;
+                return (
+                  <button
+                    key={id}
+                    type="button"
+                    onClick={() => pickTrack(id)}
+                    aria-pressed={picked}
+                    className={`cursor-pointer rounded-sm p-3 text-left transition-colors duration-200 ${
+                      picked
+                        ? "border border-brand-600 bg-brand-50 ring-1 ring-brand-600 dark:border-brand-400 dark:bg-brand-950/40 dark:ring-brand-400"
+                        : "border border-line-strong hover:border-brand-400 dark:border-stone-800 dark:hover:border-stone-700"
+                    }`}
+                  >
+                    <span className="flex items-start justify-between gap-1">
+                      <span className={`text-sm font-black leading-snug tracking-tight ${picked ? "text-brand-950 dark:text-brand-50" : "text-ink-heading"}`}>
+                        {id === "personal" ? p.trackPersonalName : p.trackProfessionalName}
+                      </span>
+                      {picked && <CheckCircle2 className="h-4 w-4 shrink-0 text-accent" aria-hidden />}
+                    </span>
+                    <span className="mt-1 block text-xs leading-5 text-ink-soft">
+                      {id === "personal" ? p.trackPersonalShort : p.trackProfessionalShort}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+            {track === "professional" && (
+              <p className="mt-3 border-l-2 border-stone-300 pl-3 text-xs leading-5 text-ink-body dark:border-stone-700">{p.proNote}</p>
+            )}
+          </div>
+
+          {/* Nhịp học nằm trong phần thiết lập, gập lại: đa số người chỉ cần
+              mặc định. Dòng tóm tắt vẫn thấy khi đóng. */}
+          <details id="pace" className="group scroll-mt-6 border-t border-line-strong pt-4">
+            <summary className="flex cursor-pointer list-none items-center justify-between gap-3 marker:content-none">
+              <span>
+                <span className="block text-base font-black tracking-tight text-ink-max">{p.stepPaceTitle}</span>
+                <span className="mt-0.5 block text-sm tabular-nums text-ink-soft">
+                  {format(p.summaryPace, { perDay: pace.perDay, days: pace.daysPerWeek })}
+                  {finishAt && (
+                    <>
+                      {" · "}
+                      {format(p.paceFinishBy, {
+                        date: finishAt.toLocaleDateString(intlLocale(locale), { month: "long", year: "numeric" }),
+                      })}
+                    </>
+                  )}
+                </span>
+              </span>
+              <ChevronDown className="h-4 w-4 shrink-0 text-ink-muted transition-transform group-open:rotate-180" aria-hidden />
+            </summary>
+            <div className="mt-4 space-y-3">
+              <Field label={p.paceLessonsPerDay}>
+                {([1, 2] as const).map((n) => (
+                  <Pill key={n} active={pace.perDay === n} onClick={() => savePace({ ...pace, perDay: n })}>
+                    {n === 1 ? p.paceOne : p.paceTwo}
+                  </Pill>
+                ))}
+              </Field>
+              <Field label={p.paceDaysPerWeek}>
+                {[3, 4, 5, 6, 7].map((d) => (
+                  <Pill key={d} active={pace.daysPerWeek === d} onClick={() => savePace({ ...pace, daysPerWeek: d })}>
+                    {format(p.paceDays, { days: d })}
+                  </Pill>
+                ))}
+              </Field>
+              <p className="text-sm text-ink-muted">{format(p.paceMinutes, { minutes: pace.perDay * MEDIAN_LESSON_MINUTES })}</p>
+              {saveState !== "idle" && (
+                <p role="status" className={`text-xs font-bold ${saveState === "saved" ? "text-accent-strong" : "text-alert-strong"}`}>
+                  {saveState === "saved" ? p.paceSaved : p.paceSaveFailed}
+                </p>
+              )}
+              <Disclosure question={p.paceWarnTitle} answer={p.paceWarnBody} />
+            </div>
+          </details>
+
+          <details id="goal" className="group scroll-mt-6 border-t border-line-strong pt-4">
+            <summary className="flex cursor-pointer list-none items-center justify-between gap-3 marker:content-none">
+              <span className="text-base font-black tracking-tight text-ink-max">{p.goalTitle}</span>
+              <ChevronDown className="h-4 w-4 shrink-0 text-ink-muted transition-transform group-open:rotate-180" aria-hidden />
+            </summary>
+            <div className="mt-4">
+              <LearningGoalCard effort={flowEffort} mission />
+            </div>
+          </details>
+
+          <Link href="/lo-trinh/huong-dan" className={`${textLink} border-t border-line-strong pt-4 text-sm`}>
+            {p.guideTitle} <ArrowRight className="h-3.5 w-3.5" />
+          </Link>
+        </aside>
+      </div>
+
+      {/* Phần giải thích: gập lại, nội dung vẫn nằm trong HTML. */}
       <details className="group mt-10 border-t border-line-strong pt-4">
         <summary className="flex cursor-pointer list-none items-center justify-between gap-3 text-sm font-bold text-ink-heading marker:content-none">
           {p.moreTitle}
           <ChevronDown className="h-4 w-4 text-ink-muted transition-transform group-open:rotate-180" aria-hidden />
         </summary>
-        <div className="mt-5 space-y-8">
+        <div className="mt-5 grid gap-8 md:grid-cols-2">
           <div id="how" className="scroll-mt-6">
             <h3 className="text-sm font-black text-ink-heading">{p.stepHowTitle}</h3>
             <ol className="mt-3 space-y-3">
@@ -401,48 +400,23 @@ export default function LearningPathClient({
               ))}
             </ol>
           </div>
-          <div id="worry" className="scroll-mt-6">
-            <h3 className="text-sm font-black text-ink-heading">{p.stepWorryTitle}</h3>
-            <div className="mt-2 space-y-1">
-              <Disclosure question={p.worrySkipQ} answer={p.worrySkipA} />
-              <Disclosure question={p.worrySlowQ} answer={p.worrySlowA} />
-              <Disclosure question={p.worryWrongQ} answer={p.worryWrongA} />
+          <div className="space-y-8">
+            <div id="worry" className="scroll-mt-6">
+              <h3 className="text-sm font-black text-ink-heading">{p.stepWorryTitle}</h3>
+              <div className="mt-2 space-y-1">
+                <Disclosure question={p.worrySkipQ} answer={p.worrySkipA} />
+                <Disclosure question={p.worrySlowQ} answer={p.worrySlowA} />
+                <Disclosure question={p.worryWrongQ} answer={p.worryWrongA} />
+              </div>
             </div>
-          </div>
-          <div id="check" className="scroll-mt-6">
-            <h3 className="text-sm font-black text-ink-heading">{p.stepCheckTitle}</h3>
-            <p className="mt-2 max-w-[68ch] text-sm leading-6 text-ink-soft">{p.stepCheckBody}</p>
+            <div id="check" className="scroll-mt-6">
+              <h3 className="text-sm font-black text-ink-heading">{p.stepCheckTitle}</h3>
+              <p className="mt-2 max-w-[68ch] text-sm leading-6 text-ink-soft">{p.stepCheckBody}</p>
+            </div>
           </div>
         </div>
       </details>
     </div>
-  );
-}
-
-/** Một bước của trang: số mono + tiêu đề lớn, ngăn bằng đường kẻ trên và
- *  khoảng trắng - không bọc khung, để thứ bậc đến từ chữ chứ không từ viền. */
-function Step({
-  n,
-  title,
-  hint,
-  id,
-  children,
-}: {
-  n: number;
-  title: string;
-  hint?: string;
-  id?: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <section id={id} className="mt-10 scroll-mt-6 border-t border-line-strong pt-6 first-of-type:mt-8">
-      <h2 className="flex items-baseline gap-3 text-xl font-black tracking-tight text-ink-max sm:text-2xl">
-        <span className="font-mono text-sm font-bold tabular-nums text-accent">{String(n).padStart(2, "0")}</span>
-        {title}
-      </h2>
-      {hint && <p className="mt-1.5 max-w-[60ch] text-sm leading-6 text-ink-soft">{hint}</p>}
-      <div className="mt-4">{children}</div>
-    </section>
   );
 }
 
