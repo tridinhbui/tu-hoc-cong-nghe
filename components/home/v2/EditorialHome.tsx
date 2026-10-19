@@ -97,15 +97,15 @@ export function EditorialHero({
       {!reduce && <Crosshair pos={pos} />}
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-8 pb-10 pt-8 lg:grid-cols-12 lg:pb-14 lg:pt-10">
+        <div className="grid gap-8 pb-10 pt-8 lg:grid-cols-12 lg:gap-y-5 lg:pb-6 lg:pt-4">
           <h1 className="relative lg:col-span-12">
-            <span className="block text-[16vw] font-black uppercase leading-[0.95] tracking-[-0.045em] lg:text-[11rem]">
+            <span className="block text-[16vw] font-black uppercase leading-[0.95] tracking-[-0.045em] lg:text-[min(11rem,12vh)]">
               {v.heroLine1}
             </span>
-            <span className="-ml-[0.04em] block whitespace-nowrap text-[16vw] font-black uppercase leading-[0.95] tracking-[-0.045em] text-accent lg:text-[11rem]">
+            <span className="-ml-[0.04em] block whitespace-nowrap text-[16vw] font-black uppercase leading-[0.95] tracking-[-0.045em] text-accent lg:text-[min(11rem,12vh)]">
               {v.heroLine2}
             </span>
-            <span className="mt-2 block text-[9vw] font-light italic leading-none tracking-tight lg:ml-[40%] lg:text-[5.5rem]">
+            <span className="mt-2 block text-[9vw] font-light italic leading-none tracking-tight lg:ml-[40%] lg:text-[min(5.5rem,6vh)]">
               {v.heroLine3}
             </span>
           </h1>
@@ -153,7 +153,7 @@ export function EditorialHero({
                 được", không phải "chưa ai học" - nhưng người mới đọc "NGƯỜI
                 HỌC 0+" theo nghĩa thứ hai và rời trang. */}
             {stats.length > 0 && (
-              <div className={`mt-8 max-w-xl border-2 ${RULE} bg-white/50 dark:bg-white/[0.04]`}>
+              <div className={`mt-8 max-w-xl border-2 lg:mt-5 ${RULE} bg-white/50 dark:bg-white/[0.04]`}>
                 <p className={`flex items-center gap-2 border-b ${RULE} px-3 py-2 sm:px-4`}>
                   <span className="relative inline-flex h-2 w-2">
                     <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 motion-safe:animate-ping" />
