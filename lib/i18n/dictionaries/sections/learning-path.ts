@@ -15,6 +15,15 @@
  *  và 12 bài), và lib/__tests__/learning-path-claims.test.ts neo chúng lại. */
 export const learningPathVi = {
   learningPath: {
+    currentJourney: "Hành trình hiện tại",
+    nextLessonLabel: "Bài tiếp theo",
+    continueLearning: "Tiếp tục học",
+    startLearning: "Bắt đầu học",
+    viewAllRoadmap: "Xem toàn bộ lộ trình",
+    hideRoadmap: "Thu gọn lộ trình",
+    goalTitle: "Mục tiêu học",
+    trackPersonalShort: "Xây sản phẩm của riêng bạn",
+    trackProfessionalShort: "Đi làm nghề công nghệ",
     backToDashboard: "Về Dashboard",
     title: "Bắt đầu từ đâu",
     subtitle: "Trang này trả lời ba câu: học gì, mỗi ngày bao lâu, và hôm nay làm gì.",
@@ -131,6 +140,15 @@ export const learningPathVi = {
 
 export const learningPathEn: typeof learningPathVi = {
   learningPath: {
+    currentJourney: "Current journey",
+    nextLessonLabel: "Next lesson",
+    continueLearning: "Continue learning",
+    startLearning: "Start learning",
+    viewAllRoadmap: "See the full roadmap",
+    hideRoadmap: "Collapse roadmap",
+    goalTitle: "Learning goal",
+    trackPersonalShort: "Build your own product",
+    trackProfessionalShort: "Work in tech",
     backToDashboard: "Back to dashboard",
     title: "Where to start",
     subtitle: "This page answers three things: what to learn, how long a day, and what to do today.",

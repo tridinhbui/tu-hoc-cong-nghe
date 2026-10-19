@@ -32,6 +32,9 @@ import {
   OverviewTopBar,
   PracticeModeGrid,
   ProgressSideCard,
+  JourneyCard,
+  HeroLevelStrip,
+  type JourneyStage,
   SectionHeading,
   TrophyPromoCard,
   softCard,
@@ -1215,8 +1218,6 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
               : null;
             const objIdx = objStage ? track.stages.indexOf(objStage) : -1;
             const objLessons = objStage ? lessonsByStageLabel.get(objStage.label) ?? [] : [];
-            const objDone = objLessons.filter((l) => completed.includes(l.id)).length;
-            const objCopy = objIdx >= 0 ? t.revampDashboard.stages[activeTrack]?.[objIdx] : undefined;
             const anyDone = completed.length > 0;
 
             // Dải cấp: "gần" là cấp đã qua gần nhất, cấp đang đứng và hai cấp
@@ -1242,81 +1243,198 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
             const pathPct = trackCounts[activeTrack].total > 0
               ? Math.round((trackCounts[activeTrack].done / trackCounts[activeTrack].total) * 100)
               : 0;
-            const curLvl = LEVELS.find((l) => l.level === currentUserLevel) ?? LEVELS[0];
+
+            // Hành trình ngắn: chỉ các chặng của nhánh đang học (cùng tập với nhãn chặng).
+            const journeyStages: JourneyStage[] = [];
+            let journeyCurrent = -1;
+            track.stages.forEach((st, i) => {
+              if (!stageDisplayLabels.has(st.label)) return;
+              const ls = lessonsByStageLabel.get(st.label) ?? [];
+              if (st === objStage) journeyCurrent = journeyStages.length;
+              journeyStages.push({
+                key: st.label,
+                label: stageDisplayLabels.get(st.label) ?? st.label,
+                name: t.revampDashboard.stages[activeTrack]?.[i]?.headline ?? t.trackStages[activeTrack]?.stages[i]?.name ?? st.name,
+                done: ls.filter((l) => completed.includes(l.id)).length,
+                total: ls.length,
+              });
+            });
 
             return (
               <div className="mx-auto flex h-full min-h-0 w-full max-w-[1240px] flex-col gap-3">
-              {/* Bố cục theo trang Luyện phỏng vấn: thanh đầu trang, banner có
-                  minh hoạ và Cơ Cơ, các khu đánh số 01-04, và cột phải là thẻ
-                  "Tiến độ của bạn" cùng thẻ cúp. Mọi khối cũ vẫn còn - chỉ đổi
-                  chỗ và đổi mặt nền. */}
-              <OverviewTopBar xpPerLesson={XP_PER_LESSON} />
-              <div className="grid min-h-0 flex-1 grid-cols-1 content-start gap-4 overflow-y-auto pb-28 [scrollbar-width:thin] lg:pb-0 lg:grid-cols-[minmax(0,1fr)_300px] lg:grid-rows-[minmax(0,1fr)] lg:overflow-hidden xl:grid-cols-[minmax(0,1fr)_340px]">
-                {/* ── Cột chính: 01 Học tiếp, 02 Luyện tập, 03 Cấp độ, 04 Lộ trình ── */}
-                <div className="flex min-w-0 flex-col gap-4 lg:h-full lg:min-h-0">
-                  {/* Hỏi lại việc "Làm ngay" của bài hôm qua TRƯỚC khi mời học
-                      bài mới - xem components/YesterdayTaskCard.tsx. Tự ẩn
-                      khi không có việc nào trong cửa sổ 6-72 giờ. */}
-                  <div className="lg:max-h-[22dvh] lg:overflow-y-auto"><YesterdayTaskCard /></div>
-                  <section className="space-y-3">
-                  <SectionHeading title={t.revampDashboard.sectionContinue} />
-                  <div data-tour="resume-learning">
-                    <ResumeLearningButton
-                      showCoCo={false}
-                      activeTrack={activeTrack}
-                      userId={user?.id}
-                      compact={isCompactCard || shortViewport}
+              <OverviewTopBar />
+              {/* Một trọng tâm: Học tiếp (kèm cấp và XP) + Hành trình ngắn bên cạnh;
+                  lối tắt luyện tập một hàng; rồi lộ trình và thành tích. Cấp/XP chỉ
+                  nói một lần, ở chân thẻ Học tiếp. */}
+              <div className="grid min-h-0 flex-1 grid-cols-1 content-start gap-4 overflow-y-auto pb-28 [scrollbar-width:thin] lg:grid-cols-12 lg:gap-5 lg:pb-6">
+                <div className="empty:hidden lg:col-span-12"><YesterdayTaskCard /></div>
+                <section className="min-w-0 lg:col-span-8" data-tour="resume-learning">
+                  <ResumeLearningButton
+                    showCoCo={false}
+                    activeTrack={activeTrack}
+                    userId={user?.id}
+                    compact={isCompactCard || shortViewport}
+                    quiet
+                    hero
+                    footnote={
+                      <HeroLevelStrip
+                        level={currentUserLevel}
+                        name={t.levelTitles[currentUserLevel] ?? LEVELS[currentUserLevel - 1]?.name ?? ""}
+                        progressPct={nextLvl ? levelProgress : 100}
+                        nextLine={nextLvl
+                          ? format(t.revampDashboard.heroLevelNext, { xp: xpLeft, name: t.levelTitles[nextLvl.level] ?? nextLvl.name })
+                          : t.dashboard.maxLevelLine}
+                      />
+                    }
+                  />
+                </section>
+                <div className="min-w-0 lg:col-span-4">
+                  <JourneyCard stages={journeyStages} currentIndex={Math.max(0, journeyCurrent)} pathPct={pathPct} />
+                </div>
+                <div className="lg:col-span-12">
+                  <PracticeModeGrid lessonsDone={trackCounts.personal.done + trackCounts.professional.done} />
+                </div>
+                <div className="grid min-w-0 gap-5 lg:col-span-12 lg:grid-cols-12">
+                {/* ── Cột phải: thành tích và phần phụ ── */}
+                <aside className="flex min-w-0 flex-col gap-4 lg:col-span-4 lg:col-start-9 lg:row-start-1">
+                  {/* Chế độ Đầy đủ: ba tab giữ cột phụ vừa một màn hình; mỗi
+                      tab tự cuộn khi dài. Chế độ Gọn chỉ có tab Tiến độ. */}
+                  {isFullPreset && (
+                    <div role="tablist" className="sticky top-0 z-10 grid shrink-0 grid-cols-3 gap-1 rounded-2xl bg-white/90 p-1 shadow-sm ring-1 ring-brand-100 backdrop-blur dark:bg-stone-900/90 dark:ring-white/10">
+                      {([
+                        { id: "progress" as const, label: t.revampDashboard.sideTabProgress, on: "bg-brand-600 text-white" },
+                        { id: "rewards" as const, label: t.revampDashboard.sideTabRewards, on: "bg-amber-500 text-white" },
+                        { id: "arena" as const, label: t.revampDashboard.sideTabArena, on: "bg-rose-500 text-white" },
+                      ]).map((tab) => (
+                        <button
+                          key={tab.id}
+                          type="button"
+                          role="tab"
+                          aria-selected={sideTab === tab.id}
+                          onClick={() => setSideTab(tab.id)}
+                          className={`cursor-pointer rounded-xl px-2 py-1.5 text-xs font-bold transition-colors ${sideTab === tab.id ? `${tab.on} shadow-sm` : "text-ink-muted hover:bg-brand-50 dark:hover:bg-white/5"}`}
+                        >
+                          {tab.label}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+
+                  {(!isFullPreset || sideTab === "progress") && (
+                    <>
+                      <ProgressSideCard
+                        streakSlot={<DashboardStreakWidget userId={user.id} quiet />}
+                        lessonsDone={trackCounts[activeTrack].done}
+                        lessonsTotal={trackCounts[activeTrack].total}
+                        avgQuizScore={anyDone ? avgQuizScore : null}
+                      />
+                      {showOptional && <DailyNewsQuizWidget userId={user.id} compact quiet />}
+
+                      <div className="space-y-5 px-1">
+                        <PracticalSkillPanel compact collapsible />
+                        <div data-tour="user-stats" className="min-w-0">
+                          <UserStats
+                            xp={userXp}
+                            lessonsCompleted={totalDone}
+                            totalLessons={totalLessons}
+                            avgQuizScore={avgQuizScore}
+                            userId={user?.id}
+                            sidebar={true}
+                            embedded={true}
+                            compact={isCompactCard}
+                            hideIdentity
+                            quiet
+                          />
+                        </div>
+                        <div>
+                          <button
+                            type="button"
+                            onClick={toggleRanking}
+                            aria-expanded={rankingOpen}
+                            className="flex w-full cursor-pointer items-center justify-between gap-2 py-1 text-xs font-semibold text-ink-faint transition-colors hover:text-ink-body"
+                          >
+                            <span>{t.revampDashboard.rankingLabel}</span>
+                            <ChevronDown className={`h-3.5 w-3.5 transition-transform ${rankingOpen ? "rotate-180" : ""}`} aria-hidden />
+                          </button>
+                          {rankingOpen && (
+                            <div className="mt-3 rounded-2xl bg-surface p-4 dark:bg-stone-900">
+                              <DashboardLeaderboardCard userId={user.id} bare />
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </>
+                  )}
+
+                  {isFullPreset && sideTab === "rewards" && (
+                    <div className="space-y-4">
+                      <TrophyPromoCard />
+                      <CombinedRewardsWidget userId={user.id} defaultExpanded={false} compact />
+                      <DailyMotivationWidget userId={user.id} quiet />
+                    </div>
+                  )}
+
+                  {isFullPreset && sideTab === "arena" && (
+                    <div className="space-y-4">
+                      <DashboardArenaCard onOpenBoss={() => setShowBossBattle(true)} onOpenPvp={() => setShowPvpModal(true)} />
+                      <CommunityLearningNow lessonsMeta={lessonsMeta} />
+                      <CommunityStreakWidget />
+                    </div>
+                  )}
+
+                  <div className="mt-auto space-y-4 px-1">
+                    {!isFullPreset && <DailyMotivationWidget userId={user.id} quiet />}
+                    <div className="flex items-center gap-2.5">
+                      <span className="text-xs text-ink-faint">{t.dashboard.presetLabel}</span>
+                      <div role="group" aria-label={t.dashboard.presetLabel} className="inline-flex rounded-full bg-surface-raised p-0.5 dark:bg-stone-900">
+                        {([
+                          { id: "gon" as const, label: t.dashboard.presetCompact, hint: t.dashboard.presetCompactHint },
+                          { id: "day-du" as const, label: t.dashboard.presetFull, hint: t.dashboard.presetFullHint },
+                        ]).map((opt) => (
+                          <button
+                            key={opt.id}
+                            type="button"
+                            onClick={() => choosePreset(opt.id)}
+                            aria-pressed={preset === opt.id}
+                            title={opt.hint}
+                            className={`cursor-pointer rounded-full px-3 py-1 text-xs font-semibold transition-colors ${
+                              preset === opt.id ? "bg-white text-ink-heading shadow-sm dark:bg-stone-800 dark:text-stone-100" : "text-ink-faint hover:text-ink-body"
+                            }`}
+                          >
+                            {opt.label}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </aside>
+                <div className="flex min-w-0 flex-col gap-5 lg:col-span-8 lg:col-start-1 lg:row-start-1">
+                  <section className="space-y-5 lg:min-h-0 lg:overflow-y-auto lg:pr-1 [scrollbar-width:thin]">
+                    <SectionHeading
                       quiet
-                      hero
-                      footnote={
-                        <span className="block truncate" title={objCopy?.outcome}>
-                        {objStage ? (
-                          <>
-                            {format(t.revampDashboard.objectiveStage, {
-                              stage: stageDisplayLabels.get(objStage.label) ?? objStage.label,
-                              tag: objCopy?.tag ?? "",
-                            })}
-                            {" · "}
-                            <span className="font-mono tabular-nums">
-                              {format(t.revampDashboard.objectiveProgress, { done: objDone, total: objLessons.length })}
-                            </span>
-                            {" · "}
-                            {objCopy?.headline ?? t.trackStages[activeTrack]?.stages[objIdx]?.name ?? objStage.name}
-                          </>
-                        ) : anyDone ? (
-                          t.revampDashboard.objectiveAllDone
-                        ) : (
-                          t.revampDashboard.objectiveNone
-                        )}
-                        </span>
+                      title={t.revampDashboard.roadmapTitle}
+                      action={
+                      <Link
+                        href="/lo-trinh"
+                        className="group inline-flex items-center gap-1.5 rounded-full bg-brand-50 px-3.5 py-1.5 text-sm font-bold text-brand-700 transition-colors hover:bg-brand-100 dark:bg-white/5 dark:text-brand-300 dark:hover:bg-white/10"
+                      >
+                        <Route className="h-4 w-4" aria-hidden />
+                        {t.revampDashboard.roadmapOpen}
+                        <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden />
+                      </Link>
                       }
                     />
-                  </div>
+                    <div className="space-y-8 px-1">
+                      <DashboardRecommendations />
+                    </div>
                   </section>
-
-                  <section className="space-y-3">
-                    <SectionHeading quiet title={t.revampDashboard.practiceTitle} />
-                    <PracticeModeGrid lessonsDone={trackCounts.personal.done + trackCounts.professional.done} />
-                  </section>
-
-                  <div className="grid min-h-0 gap-4 lg:flex-1 lg:grid-cols-2 lg:grid-rows-[minmax(0,1fr)]">
                   <section className="space-y-3 lg:min-h-0 lg:overflow-y-auto lg:pr-1 [scrollbar-width:thin]">
-                  <SectionHeading quiet title={t.revampDashboard.sectionLevel} />
+                  {levelsOpen && <SectionHeading quiet title={t.revampDashboard.sectionLevel} />}
                   {/* ── Tiến độ: cấp, XP, chuỗi ngày trong một mặt nền.
                       Dải cấp đầy đủ và danh sách người ở từng cấp chỉ mở khi
                       bấm "Xem các cấp". */}
-                  <div className={`${softCard} ${levelsOpen ? "p-5 sm:p-6" : "p-4"}`}>
-                    {!levelsOpen ? (
-                      <p className="text-sm leading-6 text-ink-body dark:text-stone-300">
-                        <span className="font-black text-ink-max dark:text-stone-100">
-                          LV{String(currentUserLevel).padStart(2, "0")} · {t.levelTitles[currentUserLevel] ?? LEVELS[currentUserLevel - 1]?.name}
-                        </span>
-                        {" · "}
-                        {nextLvl
-                          ? format(t.dashboard.nextUnlockLine, { level: String(nextLvl.level).padStart(2, "0"), name: t.levelTitles[nextLvl.level] ?? nextLvl.name, xp: xpLeft })
-                          : t.dashboard.maxLevelLine}
-                      </p>
-                    ) : (
+                  <div className={levelsOpen ? `${softCard} p-5 sm:p-6` : ""}>
+                    {!levelsOpen ? null : (
                     <div className="flex flex-wrap items-center justify-between gap-x-8 gap-y-5">
                       <div className="flex min-w-0 items-center gap-5">
                         <div className="relative shrink-0">
@@ -1370,7 +1488,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                       type="button"
                       onClick={() => setLevelsOpen((v) => !v)}
                       aria-expanded={levelsOpen}
-                      className={`${levelsOpen ? "mt-4" : "mt-2"} inline-flex cursor-pointer items-center gap-1 text-xs font-semibold text-brand-700 transition-colors hover:text-brand-900 dark:text-brand-300 dark:hover:text-brand-200`}
+                      className={`${levelsOpen ? "mt-4" : ""} inline-flex cursor-pointer items-center gap-1 text-xs font-semibold text-brand-700 transition-colors hover:text-brand-900 dark:text-brand-300 dark:hover:text-brand-200`}
                     >
                       {levelsOpen ? t.revampDashboard.hideDetails : t.revampDashboard.showLevels}
                       <ChevronDown className={`h-3.5 w-3.5 transition-transform ${levelsOpen ? "rotate-180" : ""}`} aria-hidden />
@@ -1548,146 +1666,8 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                     )}
                   </div>
                   </section>
-
-                  {/* ── Lộ trình: mục tiêu đã chọn và gợi ý học tiếp, một khu. */}
-                  <section className="space-y-5 lg:min-h-0 lg:overflow-y-auto lg:pr-1 [scrollbar-width:thin]">
-                    <SectionHeading
-                      quiet
-                      title={t.revampDashboard.roadmapTitle}
-                      action={
-                      <Link
-                        href="/lo-trinh"
-                        className="group inline-flex items-center gap-1.5 rounded-full bg-brand-50 px-3.5 py-1.5 text-sm font-bold text-brand-700 transition-colors hover:bg-brand-100 dark:bg-white/5 dark:text-brand-300 dark:hover:bg-white/10"
-                      >
-                        <Route className="h-4 w-4" aria-hidden />
-                        {t.revampDashboard.roadmapOpen}
-                        <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden />
-                      </Link>
-                      }
-                    />
-                    <div className="space-y-8 px-1">
-                      <DashboardRecommendations />
-                    </div>
-                  </section>
-                  </div>
                 </div>
-
-                {/* ── Cột phải: nhẹ, cho việc luyện tập và thông tin phụ ── */}
-                <aside className="flex min-w-0 flex-col gap-4 lg:h-full lg:min-h-0 lg:overflow-y-auto lg:pr-1 [scrollbar-width:thin]">
-                  {/* Chế độ Đầy đủ: ba tab giữ cột phụ vừa một màn hình; mỗi
-                      tab tự cuộn khi dài. Chế độ Gọn chỉ có tab Tiến độ. */}
-                  {isFullPreset && (
-                    <div role="tablist" className="sticky top-0 z-10 grid shrink-0 grid-cols-3 gap-1 rounded-2xl bg-white/90 p-1 shadow-sm ring-1 ring-brand-100 backdrop-blur dark:bg-stone-900/90 dark:ring-white/10">
-                      {([
-                        { id: "progress" as const, label: t.revampDashboard.sideTabProgress, on: "bg-brand-600 text-white" },
-                        { id: "rewards" as const, label: t.revampDashboard.sideTabRewards, on: "bg-amber-500 text-white" },
-                        { id: "arena" as const, label: t.revampDashboard.sideTabArena, on: "bg-rose-500 text-white" },
-                      ]).map((tab) => (
-                        <button
-                          key={tab.id}
-                          type="button"
-                          role="tab"
-                          aria-selected={sideTab === tab.id}
-                          onClick={() => setSideTab(tab.id)}
-                          className={`cursor-pointer rounded-xl px-2 py-1.5 text-xs font-bold transition-colors ${sideTab === tab.id ? `${tab.on} shadow-sm` : "text-ink-muted hover:bg-brand-50 dark:hover:bg-white/5"}`}
-                        >
-                          {tab.label}
-                        </button>
-                      ))}
-                    </div>
-                  )}
-
-                  {(!isFullPreset || sideTab === "progress") && (
-                    <>
-                      <ProgressSideCard
-                        level={currentUserLevel}
-                        xpInLevel={nextLvl ? userXp - curLvl.minXp : userXp}
-                        xpForLevel={nextLvl ? nextLvl.minXp - curLvl.minXp : null}
-                        streakSlot={<DashboardStreakWidget userId={user.id} quiet />}
-                        lessonsDone={trackCounts[activeTrack].done}
-                        lessonsTotal={trackCounts[activeTrack].total}
-                        avgQuizScore={anyDone ? avgQuizScore : null}
-                      />
-                      {showOptional && <DailyNewsQuizWidget userId={user.id} compact quiet />}
-
-                      <div className="space-y-5 px-1">
-                        <PracticalSkillPanel compact collapsible />
-                        <div data-tour="user-stats" className="min-w-0">
-                          <UserStats
-                            xp={userXp}
-                            lessonsCompleted={totalDone}
-                            totalLessons={totalLessons}
-                            avgQuizScore={avgQuizScore}
-                            userId={user?.id}
-                            sidebar={true}
-                            embedded={true}
-                            compact={isCompactCard}
-                            hideIdentity
-                            quiet
-                          />
-                        </div>
-                        <div>
-                          <button
-                            type="button"
-                            onClick={toggleRanking}
-                            aria-expanded={rankingOpen}
-                            className="flex w-full cursor-pointer items-center justify-between gap-2 py-1 text-xs font-semibold text-ink-faint transition-colors hover:text-ink-body"
-                          >
-                            <span>{t.revampDashboard.rankingLabel}</span>
-                            <ChevronDown className={`h-3.5 w-3.5 transition-transform ${rankingOpen ? "rotate-180" : ""}`} aria-hidden />
-                          </button>
-                          {rankingOpen && (
-                            <div className="mt-3 rounded-2xl bg-surface p-4 dark:bg-stone-900">
-                              <DashboardLeaderboardCard userId={user.id} bare />
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                    </>
-                  )}
-
-                  {isFullPreset && sideTab === "rewards" && (
-                    <div className="space-y-4">
-                      <TrophyPromoCard />
-                      <CombinedRewardsWidget userId={user.id} defaultExpanded={false} compact />
-                      <DailyMotivationWidget userId={user.id} quiet />
-                    </div>
-                  )}
-
-                  {isFullPreset && sideTab === "arena" && (
-                    <div className="space-y-4">
-                      <DashboardArenaCard onOpenBoss={() => setShowBossBattle(true)} onOpenPvp={() => setShowPvpModal(true)} />
-                      <CommunityLearningNow lessonsMeta={lessonsMeta} />
-                      <CommunityStreakWidget />
-                    </div>
-                  )}
-
-                  <div className="mt-auto space-y-4 px-1">
-                    {!isFullPreset && <DailyMotivationWidget userId={user.id} quiet />}
-                    <div className="flex items-center gap-2.5">
-                      <span className="text-xs text-ink-faint">{t.dashboard.presetLabel}</span>
-                      <div role="group" aria-label={t.dashboard.presetLabel} className="inline-flex rounded-full bg-surface-raised p-0.5 dark:bg-stone-900">
-                        {([
-                          { id: "gon" as const, label: t.dashboard.presetCompact, hint: t.dashboard.presetCompactHint },
-                          { id: "day-du" as const, label: t.dashboard.presetFull, hint: t.dashboard.presetFullHint },
-                        ]).map((opt) => (
-                          <button
-                            key={opt.id}
-                            type="button"
-                            onClick={() => choosePreset(opt.id)}
-                            aria-pressed={preset === opt.id}
-                            title={opt.hint}
-                            className={`cursor-pointer rounded-full px-3 py-1 text-xs font-semibold transition-colors ${
-                              preset === opt.id ? "bg-white text-ink-heading shadow-sm dark:bg-stone-800 dark:text-stone-100" : "text-ink-faint hover:text-ink-body"
-                            }`}
-                          >
-                            {opt.label}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </aside>
+                </div>
               </div>
               </div>
             );
