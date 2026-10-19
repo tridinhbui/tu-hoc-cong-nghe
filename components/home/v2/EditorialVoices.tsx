@@ -18,9 +18,9 @@ const ACCENT: Record<Metric, string> = { xp: "border-t-brand-500", streak: "bord
 
 function Face({ name, url }: { name: string; url?: string | null }) {
   return isValidAvatar(url) ? (
-    <Image src={url!} alt="" width={36} height={36} className="h-9 w-9 shrink-0 rounded-full object-cover" />
+    <Image src={url!} alt="" width={48} height={48} className="h-11 w-11 shrink-0 rounded-full object-cover ring-2 ring-white dark:ring-white/10" />
   ) : (
-    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-600 text-sm font-black text-white">
+    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand-600 text-base font-black text-white">
       {name.trim().charAt(0).toUpperCase() || "?"}
     </span>
   );
