@@ -181,19 +181,21 @@ export default function HomePage() {
           previewHref={FIRST_LESSON_HREF}
         />
         <EditorialMarquee />
+        {/* Bảng xếp hạng live đứng ngay sau hero làm tờ số 1: người mới thấy
+            người thật đang học trước khi đọc bất cứ lời hứa nào. */}
+        <EditorialCommunity n={1} />
         <EditorialNeeds />
-        {/* Thứ tự đọc: bạn làm được gì (Needs) -> bốn thế giới -> đi thế nào
-            (lộ trình) -> vì sao nhớ lâu (Method) -> được gì (cam kết) -> người
-            thật đang học (cộng đồng) -> phần thưởng (Kingdom) -> giải đáp ->
-            bấm đâu để bắt đầu. Số tờ chạy 1-7 theo đúng thứ tự này.
+        {/* Thứ tự đọc: người thật đang học (cộng đồng) -> bạn làm được gì
+            (Needs) -> bốn thế giới -> đi thế nào (lộ trình) -> vì sao nhớ lâu
+            (Method) -> được gì (cam kết) -> phần thưởng (Kingdom) -> giải đáp
+            -> bấm đâu để bắt đầu. Số tờ chạy 1-7 theo đúng thứ tự này.
             Tờ "Báo cáo" (số liệu thị trường Malaysia, ManpowerGroup) vẫn ở
             ngoài trang: nó thuyết phục nhà đầu tư, không giúp ai thử một bài.
             Tờ THCN_OS trùng ý với Method nên cũng chưa đặt lại. */}
-        <EditorialWorlds n={1} />
-        <EditorialJourney n={2} />
-        <EditorialMethod n={3} />
-        <EditorialPromises n={4} />
-        <EditorialCommunity n={5} />
+        <EditorialWorlds n={2} />
+        <EditorialJourney n={3} />
+        <EditorialMethod n={4} />
+        <EditorialPromises n={5} />
         <EditorialKingdom n={6} />
         <EditorialFaq n={7} />
         <EditorialFinalCta previewHref={FIRST_LESSON_HREF} />
