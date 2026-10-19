@@ -1,5 +1,6 @@
 "use client";
 
+import LandingChat from "@/components/home/v2/LandingChat";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, Plus } from "lucide-react";
@@ -132,6 +133,7 @@ export function EditorialJourney({ n }: { n: number }) {
         <Reveal className="min-w-0 lg:sticky lg:top-24 lg:col-span-5 lg:self-start">
           <SheetHead n={n} kicker={v.journeyKicker} title={v.journeyTitle} loading={v.loadJourney} />
           <p className="mt-5 max-w-md text-[15px] leading-7 opacity-80">{v.journeySub}</p>
+          <LandingChat className="mt-6 max-w-md" question={v.chatJourneyQ} answer={v.chatJourneyA} />
         </Reveal>
 
         <ol ref={spineRef} className="relative min-w-0 lg:col-span-7">
@@ -212,6 +214,7 @@ export function EditorialFaq({ n }: { n: number }) {
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-12 lg:gap-8 lg:px-8 lg:py-20">
         <Reveal className="min-w-0 lg:col-span-4">
           <SheetHead n={n} kicker={v.faqKicker} title={v.faqTitle} loading={v.loadFaq} />
+          <LandingChat className="mt-6" question={v.chatFaqQ} answer={v.chatFaqA} />
           <p className="mt-6 text-[14px] font-semibold opacity-70">{v.faqStillAsking}</p>
           <a
             href="https://www.facebook.com/groups/4402614233328401"

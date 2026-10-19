@@ -1,5 +1,6 @@
 "use client";
 
+import LandingChat from "@/components/home/v2/LandingChat";
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
@@ -173,6 +174,7 @@ export function EditorialMethod({ n = 2 }: { n?: number }) {
         <Reveal className="min-w-0 lg:col-span-4">
           <SheetHead n={n} kicker={v.methodKicker} title={v.methodTitle} loading={v.loadMethod} />
           <p className="mt-5 text-[15px] leading-7 opacity-80">{v.methodSub}</p>
+          <LandingChat className="mt-6" question={v.chatMethodQ} answer={v.chatMethodA} />
           <div className="mt-8 flex flex-wrap gap-0">
             <button
               type="button"
