@@ -144,7 +144,7 @@ export function PracticeModeGrid({ lessonsDone = Infinity }: { lessonsDone?: num
           href={href}
           className="group inline-flex items-center gap-2 rounded-full bg-brand-50 px-3.5 py-2 text-sm font-bold text-brand-800 transition-colors hover:bg-brand-100 dark:bg-white/5 dark:text-brand-200 dark:hover:bg-white/10"
         >
-          <Icon className="h-4 w-4 text-brand-600 dark:text-brand-300" strokeWidth={2.2} aria-hidden />
+          <Icon className="h-4 w-4 text-accent" strokeWidth={2.2} aria-hidden />
           {label}
         </Link>
       ))}
@@ -206,7 +206,7 @@ export function JourneyCard({ stages, currentIndex, pathPct }: { stages: Journey
     <section className={`${softCard} flex flex-col p-5`}>
       <div className="flex items-center justify-between gap-2">
         <h2 className="text-xs font-bold uppercase tracking-[0.1em] text-ink-muted">{r.journeyTitle}</h2>
-        <span className="font-mono text-xs font-bold tabular-nums text-brand-700 dark:text-brand-300">{pathPct}%</span>
+        <span className="font-mono text-xs font-bold tabular-nums text-accent-strong">{pathPct}%</span>
       </div>
       <ol className="mt-4 flex-1">
         {window.map((st, i) => {

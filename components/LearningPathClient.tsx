@@ -207,7 +207,9 @@ export default function LearningPathClient({
             >
               <div className="h-full bg-cyan-500 motion-safe:transition-[width] motion-safe:duration-700 dark:bg-cyan-400" style={{ width: `${pct}%` }} />
             </div>
-            <p className="mt-1.5 text-xs font-bold tabular-nums text-ink-muted">{pct}%</p>
+            <p className="mt-1.5 text-xs font-bold tabular-nums text-ink-muted">
+              {pct}% · {p.heroMinutes}
+            </p>
 
             <div className="mt-5 border-t border-brand-200/70 pt-5 dark:border-white/10">
               {loading ? (
@@ -221,7 +223,6 @@ export default function LearningPathClient({
                     <p className="mt-1 text-xl font-black leading-snug tracking-tight text-ink-max">
                       {getLessonShortTitle({ title: nextLesson.title })}
                     </p>
-                    <p className="mt-1 text-sm text-ink-muted">{p.heroMinutes}</p>
                   </div>
                   <Link href={`/bai-hoc/${nextLesson.slug}`} className={`${btnPrimary} shrink-0 justify-center`}>
                     {started ? p.continueLearning : p.startLearning} <ArrowRight className="h-4 w-4" />

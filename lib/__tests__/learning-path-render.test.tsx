@@ -71,46 +71,37 @@ describe("trang /lo-trinh dựng ra chữ gì", () => {
     expect(minutes).toBeLessThan(howTo);
   });
 
-  it("đi theo thứ tự mục tiêu -> hướng đi -> bài đầu tiên -> phần giải thích", async () => {
+  it("đi theo thứ tự bài đầu tiên -> thiết lập -> phần giải thích", async () => {
     const html = await markup("vi");
-    // Render tĩnh thì effect chưa chạy, nên khối bài đầu tiên ở trạng thái ĐANG
-    // ĐỌC tiến độ. Điều đáng canh là VỊ TRÍ của khối: sau bước chọn hướng, và
-    // trước mọi phần giải thích (đã gập vào `details`).
-    const pick = html.indexOf('id="pick"');
+    // Hero ("first") là khối đầu tiên để nút học luôn trong màn hình đầu; cột
+    // thiết lập ("pick") theo sau, phần giải thích (gập trong `details`) cuối.
     const first = html.indexOf('id="first"');
+    const pick = html.indexOf('id="pick"');
     const howTo = html.indexOf('id="how"');
-    expect(pick).toBeGreaterThan(-1);
-    expect(first).toBeGreaterThan(pick);
-    expect(howTo).toBeGreaterThan(first);
+    expect(first).toBeGreaterThan(-1);
+    expect(pick).toBeGreaterThan(first);
+    expect(howTo).toBeGreaterThan(pick);
   });
 
-  it("hiện số bài thật của từng hướng, không phải số viết cứng", async () => {
-    const html = await markup("vi");
-    // Hướng ĐANG CHỌN đếm số CÒN LẠI (135 − 12), hướng kia đếm tổng.
-    expect(html).toContain("còn 123 bài");
-    expect(html).toContain("472 bài");
-  });
-
-  it("thẻ đang chọn không bao giờ ghi cùng lúc hai con số cho một hướng", async () => {
-    // Lỗi cũ: cả hai thẻ đều in tổng, nên thẻ đang chọn ghi "135 bài · khoảng
-    // 27 tuần" ngay trên ô ước lượng ghi "Còn 123 bài ... khoảng 25 tuần".
-    const html = await markup("vi");
-    expect(html).toContain("Còn 123 bài");
+  it("không đưa số tổng gây nản lên màn hình chính", async () => {
+    // Chỉ chữ nhìn thấy: aria-label của thanh tiến độ vẫn nói tổng cho trình đọc màn hình.
+    const html = (await markup("vi")).replace(/<[^>]*>/g, " ");
+    expect(html).not.toContain("472 bài");
     expect(html).not.toContain("135 bài");
+    expect(html).not.toMatch(/khoảng \d+ tuần/);
+    expect(html).not.toContain("Còn 123 bài");
   });
 
   it("lựa chọn lưu trên server thắng, không phải mặc định personal", async () => {
     const html = await markup("vi", { savedTrack: "professional" });
-    // Thẻ hướng chuyên ngành là thẻ đang chọn, nên nó đếm số còn lại (472 − 0).
-    expect(html).toContain("còn 472 bài");
-    // Và ghi chú riêng của hướng chuyên ngành phải hiện ngay từ lần dựng đầu.
+    // Hướng chuyên ngành đang chọn: ghi chú riêng của nó hiện ngay từ lần dựng đầu.
+    expect(html).toContain("Chọn hướng nghề thì cứ đi 20 bài đầu");
     expect(html).toContain("Nghề công nghệ");
   });
 
   it("nhịp lưu trên server dựng ra ngay, không chờ effect", async () => {
     const html = await markup("vi", { savedPace: { perDay: 2, daysPerWeek: 3 } });
-    // 123 bài còn lại, 2 bài/ngày, 3 ngày/tuần = 6 bài/tuần -> 21 tuần.
-    expect(html).toContain("21 tuần");
+    expect(html).toContain("2 bài/ngày · 3 ngày/tuần");
     // 2 bài x trung vị một bài. Lấy từ hằng số chứ không ghi cứng: con số này
     // đã đổi từ 5 lên 8 khi kho thêm 740 bài dài hơn, và test này đỏ theo.
     expect(html).toContain(`${2 * MEDIAN_LESSON_MINUTES} phút`);
