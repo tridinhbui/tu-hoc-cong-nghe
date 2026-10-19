@@ -6,8 +6,8 @@ import {
   ArrowRight,
   BookOpenCheck,
   BriefcaseBusiness,
+  Check,
   ChevronRight,
-  Crown,
   Flame,
   Gamepad2,
   GraduationCap,
@@ -61,18 +61,11 @@ export function SectionHeading({ n, title, hint, action, quiet = false }: { n?: 
   );
 }
 
-/** Thanh đầu trang: tên trang bên trái, viên thưởng XP bên phải. */
-export function OverviewTopBar({ xpPerLesson }: { xpPerLesson: number }) {
+/** Thanh đầu trang: chỉ tên trang. Viên thưởng XP/bài đã bỏ - con số đó nằm ở thẻ Học tiếp. */
+export function OverviewTopBar() {
   const { t } = useI18n();
-  const r = t.revampDashboard;
   return (
-    <div className="flex items-center justify-between gap-4">
-      <h1 className="text-xl font-black tracking-tight text-ink-max sm:text-2xl">{r.pageTitle}</h1>
-      <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-amber-400 to-orange-500 px-3 py-1.5 text-xs font-bold text-white shadow-md shadow-amber-500/30 ">
-        <Crown className="h-3.5 w-3.5" aria-hidden />
-        {format(r.rewardPill, { xp: xpPerLesson })}
-      </span>
-    </div>
+    <h1 className="text-xl font-black tracking-tight text-ink-max sm:text-2xl">{t.revampDashboard.pageTitle}</h1>
   );
 }
 
@@ -127,53 +120,45 @@ export function DashboardHeroBanner({
   );
 }
 
-type PracticeMode = { href: string; label: string; sub: string; icon: LucideIcon; tile: string };
+type PracticeMode = { href: string; label: string; icon: LucideIcon };
 
-/** Lưới thẻ luyện tập - mỗi chế độ một ô biểu tượng mang màu riêng. */
+/** Lối tắt luyện tập: một hàng chip nhỏ, không mô tả, không tranh với Học tiếp. */
 export function PracticeModeGrid({ lessonsDone = Infinity }: { lessonsDone?: number }) {
   const { t } = useI18n();
   const r = t.revampDashboard;
   const modes: PracticeMode[] = [
-    { href: "/kiem-tra", label: t.nav.quiz, sub: r.practiceQuizSub, icon: GraduationCap, tile: "bg-gradient-to-br from-brand-500 to-brand-700 text-white shadow-md shadow-brand-600/30" },
-    { href: "/phong-van-ky-thuat", label: t.nav.technicalInterview, sub: r.practiceInterviewSub, icon: BriefcaseBusiness, tile: "bg-gradient-to-br from-sky-400 to-sky-600 text-white shadow-md shadow-sky-500/30" },
-    { href: "/cong-cu", label: t.nav.toolSimulators, sub: r.practiceToolsSub, icon: TerminalSquare, tile: "bg-gradient-to-br from-emerald-400 to-emerald-600 text-white shadow-md shadow-emerald-500/30" },
-    { href: "/thi-vuot-chang", label: t.nav.stageSkipExam, sub: r.practiceStageSkipSub, icon: Trophy, tile: "bg-gradient-to-br from-amber-400 to-orange-500 text-white shadow-md shadow-amber-500/30" },
-    { href: "/game", label: t.dataRest.appNavbar.gameKingdomLabel, sub: r.practiceGameSub, icon: Gamepad2, tile: "bg-gradient-to-br from-rose-400 to-rose-600 text-white shadow-md shadow-rose-500/30" },
+    { href: "/kiem-tra", label: t.nav.quiz, icon: GraduationCap },
+    { href: "/phong-van-ky-thuat", label: t.nav.technicalInterview, icon: BriefcaseBusiness },
+    { href: "/cong-cu", label: t.nav.toolSimulators, icon: TerminalSquare },
+    { href: "/thi-vuot-chang", label: t.nav.stageSkipExam, icon: Trophy },
+    { href: "/game", label: t.dataRest.appNavbar.gameKingdomLabel, icon: Gamepad2 },
   ];
   // Game Kingdom hiện sau bài thứ ba - cùng ngưỡng với thanh bên (AppNavbar).
   const shown = lessonsDone >= 3 ? modes : modes.filter((m) => m.href !== "/game");
   return (
-    <div className={`grid grid-cols-2 gap-3 ${shown.length === 5 ? "sm:grid-cols-3 lg:grid-cols-5" : "sm:grid-cols-4"}`}>
-      {shown.map(({ href, label, sub, icon: Icon, tile }) => (
+    <nav aria-label={r.shortcutsTitle} className="flex flex-wrap items-center gap-2">
+      <span className="mr-1 text-xs font-bold uppercase tracking-[0.1em] text-ink-muted">{r.shortcutsTitle}</span>
+      {shown.map(({ href, label, icon: Icon }) => (
         <Link
           key={href}
           href={href}
-          className={`${softCard} group flex flex-col items-center px-3 pb-3.5 pt-4 text-center lg:max-xl:px-1 lg:[@media(max-height:1199px)]:pb-2.5 lg:[@media(max-height:1199px)]:pt-3 transition-[box-shadow,transform] hover:-translate-y-1 hover:shadow-[0_14px_28px_-12px_rgba(41,97,184,0.45)] hover:ring-brand-300 dark:hover:ring-brand-700`}
+          className="group inline-flex items-center gap-2 rounded-full bg-brand-50 px-3.5 py-2 text-sm font-bold text-brand-800 transition-colors hover:bg-brand-100 dark:bg-white/5 dark:text-brand-200 dark:hover:bg-white/10"
         >
-          <span className={`flex h-12 w-12 items-center justify-center rounded-2xl transition-transform group-hover:scale-105 lg:[@media(max-height:1199px)]:h-9 lg:[@media(max-height:1199px)]:w-9 ${tile}`}>
-            <Icon className="h-6 w-6" strokeWidth={2.2} aria-hidden />
-          </span>
-          <span className="mt-2.5 text-sm font-black leading-tight text-ink-max lg:max-xl:text-[11px] lg:[@media(max-height:1199px)]:mt-1.5">{label}</span>
-          <span className="mt-1 text-[11.5px] leading-snug text-ink-muted lg:[@media(max-height:1199px)]:hidden">{sub}</span>
+          <Icon className="h-4 w-4 text-brand-600 dark:text-brand-300" strokeWidth={2.2} aria-hidden />
+          {label}
         </Link>
       ))}
-    </div>
+    </nav>
   );
 }
 
-/** Cột phải: cấp, XP và ba số liệu đánh số. */
+/** Cột phải: chuỗi ngày, bài đã học, điểm quiz. Cấp và XP đã nằm ở thẻ Học tiếp nên không lặp ở đây. */
 export function ProgressSideCard({
-  level,
-  xpInLevel,
-  xpForLevel,
   streakSlot,
   lessonsDone,
   lessonsTotal,
   avgQuizScore,
 }: {
-  level: number;
-  xpInLevel: number;
-  xpForLevel: number | null;
   streakSlot: ReactNode;
   lessonsDone: number;
   lessonsTotal: number;
@@ -181,41 +166,20 @@ export function ProgressSideCard({
 }) {
   const { t } = useI18n();
   const r = t.revampDashboard;
-  const pct = xpForLevel ? Math.min(100, Math.round((xpInLevel / xpForLevel) * 100)) : 100;
   const rows: { icon: LucideIcon; tone: string; chip: string; label: string; value: ReactNode }[] = [
     { icon: Flame, tone: "text-orange-500", chip: "bg-orange-100 dark:bg-orange-500/15", label: r.sideStreak, value: streakSlot },
     { icon: BookOpenCheck, tone: "text-brand-600", chip: "bg-brand-100 dark:bg-brand-500/15", label: r.sideLessons, value: <span className="font-mono tabular-nums">{lessonsDone}/{lessonsTotal}</span> },
-    { icon: Target, tone: "text-rose-500", chip: "bg-rose-100 dark:bg-rose-500/15", label: r.sideQuiz, value: <span className="font-mono tabular-nums">{avgQuizScore === null ? "--" : `${avgQuizScore}%`}</span> },
+    { icon: Target, tone: "text-brand-600", chip: "bg-brand-100 dark:bg-brand-500/15", label: r.sideQuiz, value: <span className="font-mono tabular-nums">{avgQuizScore === null ? "--" : `${avgQuizScore}%`}</span> },
   ];
   return (
-    <section className={`${softCard} relative overflow-hidden p-5`}>
-      <div aria-hidden className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-rose-500 via-amber-400 to-brand-600" />
+    <section className={`${softCard} p-5`}>
       <Link href="/profile" className="group flex items-center justify-between gap-2">
-        <h2 className="flex items-center gap-2 text-base font-black tracking-tight text-ink-max">
-          <Target className="h-5 w-5 text-rose-500" aria-hidden />
-          {r.progressTitle}
-        </h2>
+        <h2 className="text-xs font-bold uppercase tracking-[0.1em] text-ink-muted">{r.achievementsTitle}</h2>
         <ChevronRight className="h-4 w-4 text-ink-faint transition-transform group-hover:translate-x-0.5" aria-hidden />
       </Link>
-
-      <div className="mt-4 flex items-center gap-4">
-        <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 font-mono text-base font-black text-white shadow-md shadow-brand-600/30">
-          {format(r.sideLevel, { level })}
-        </span>
-        <div className="min-w-0 flex-1">
-          <p className="font-mono text-sm font-bold tabular-nums text-warn">
-            {xpForLevel ? format(r.sideXp, { xp: xpInLevel, next: xpForLevel }) : format(r.heroXp, { xp: xpInLevel })}
-          </p>
-          <div className="mt-2 h-2.5 overflow-hidden rounded-full bg-amber-100 dark:bg-white/10">
-            <div className="h-full rounded-full bg-gradient-to-r from-amber-400 via-orange-400 to-rose-500" style={{ width: `${Math.max(3, pct)}%` }} />
-          </div>
-        </div>
-      </div>
-
-      <ol className="mt-4 divide-y divide-line-soft">
-        {rows.map(({ icon: Icon, tone, chip, label, value }, i) => (
+      <ul className="mt-2 divide-y divide-line-soft">
+        {rows.map(({ icon: Icon, tone, chip, label, value }) => (
           <li key={label} className="flex items-center gap-3 py-2.5">
-            <span className="w-5 font-mono text-[11px] tabular-nums text-ink-faint">{String(i + 1).padStart(2, "0")}</span>
             <span className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg ${chip}`}>
               <Icon className={`h-4 w-4 ${tone}`} aria-hidden />
             </span>
@@ -223,8 +187,91 @@ export function ProgressSideCard({
             <span className="text-sm font-bold text-ink-max">{value}</span>
           </li>
         ))}
-      </ol>
+      </ul>
     </section>
+  );
+}
+
+export type JourneyStage = { key: string; label: string; name: string; done: number; total: number };
+
+/** Hành trình ngắn: chặng vừa xong, chặng hiện tại (có tiến độ) và mốc kế tiếp. */
+export function JourneyCard({ stages, currentIndex, pathPct }: { stages: JourneyStage[]; currentIndex: number; pathPct: number }) {
+  const { t } = useI18n();
+  const r = t.revampDashboard;
+  const cur = Math.min(Math.max(currentIndex, 0), Math.max(stages.length - 1, 0));
+  const window = stages.slice(Math.max(0, cur - 1), cur + 2);
+  const current = stages[cur];
+  const left = current ? Math.max(0, current.total - current.done) : 0;
+  return (
+    <section className={`${softCard} flex flex-col p-5`}>
+      <div className="flex items-center justify-between gap-2">
+        <h2 className="text-xs font-bold uppercase tracking-[0.1em] text-ink-muted">{r.journeyTitle}</h2>
+        <span className="font-mono text-xs font-bold tabular-nums text-brand-700 dark:text-brand-300">{pathPct}%</span>
+      </div>
+      <ol className="mt-4 flex-1">
+        {window.map((st, i) => {
+          const idx = stages.indexOf(st);
+          const isCur = idx === cur;
+          const isDone = idx < cur;
+          const pct = st.total > 0 ? Math.round((st.done / st.total) * 100) : 0;
+          return (
+            <li key={st.key} className="relative flex gap-3 pb-4 last:pb-0">
+              {i < window.length - 1 && <span aria-hidden className={`absolute left-[13px] top-7 bottom-0 w-0.5 ${isDone ? "bg-brand-500" : "bg-brand-100 dark:bg-white/10"}`} />}
+              <span
+                className={`relative z-10 flex h-7 w-7 shrink-0 items-center justify-center rounded-full font-mono text-[11px] font-black ${
+                  isDone ? "bg-brand-500 text-white" : isCur ? "bg-brand-600 text-white ring-4 ring-brand-100 dark:ring-brand-500/20" : "bg-white text-ink-faint ring-2 ring-brand-100 dark:bg-stone-900 dark:ring-white/10"
+                }`}
+              >
+                {isDone ? <Check className="h-3.5 w-3.5" aria-hidden /> : idx + 1}
+              </span>
+              <div className="min-w-0 flex-1">
+                <p className={`text-[11px] font-bold uppercase tracking-[0.08em] ${isCur ? "text-accent-strong" : "text-ink-faint"}`}>
+                  {isCur ? r.journeyNow : isDone ? st.label : r.journeyNext}
+                </p>
+                <p className={`truncate font-black leading-snug ${isCur ? "text-base text-ink-max" : "text-sm text-ink-soft"}`}>{st.name}</p>
+                {isCur && (
+                  <>
+                    <div className="mt-2 h-2 overflow-hidden rounded-full bg-brand-100 dark:bg-white/10">
+                      <div className="h-full rounded-full bg-brand-500 motion-safe:transition-[width] motion-safe:duration-700" style={{ width: `${Math.max(3, pct)}%` }} />
+                    </div>
+                    <p className="mt-1.5 text-xs text-ink-muted">
+                      <span className="font-mono tabular-nums">{format(r.journeyLessons, { done: st.done, total: st.total })}</span>
+                      {" · "}
+                      {cur < stages.length - 1 ? format(r.journeyLeft, { n: left }) : r.journeyLast}
+                    </p>
+                  </>
+                )}
+              </div>
+            </li>
+          );
+        })}
+      </ol>
+      <Link href="/lo-trinh" className="group mt-4 inline-flex items-center gap-1 self-start text-sm font-bold text-brand-700 hover:text-brand-900 dark:text-brand-300">
+        {r.roadmapOpen}
+        <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden />
+      </Link>
+    </section>
+  );
+}
+
+/** Dải cấp + XP gắn ở chân thẻ Học tiếp. Không tương tác (thẻ cha là một <Link>). */
+export function HeroLevelStrip({ level, name, progressPct, nextLine }: { level: number; name: string; progressPct: number; nextLine: string }) {
+  const { t } = useI18n();
+  return (
+    <div className="flex items-center gap-3">
+      <span className="flex h-9 shrink-0 items-center justify-center rounded-lg bg-brand-600 px-2.5 font-mono text-xs font-black text-white">
+        {format(t.revampDashboard.sideLevel, { level })}
+      </span>
+      <div className="min-w-0 flex-1">
+        <div className="flex items-baseline justify-between gap-3">
+          <span className="truncate text-sm font-black text-ink-max">{name}</span>
+          <span className="shrink-0 text-xs font-semibold text-ink-muted">{nextLine}</span>
+        </div>
+        <div className="mt-1.5 h-2 overflow-hidden rounded-full bg-brand-100 dark:bg-white/10">
+          <div className="h-full rounded-full bg-gradient-to-r from-brand-600 to-cyan-400 motion-safe:transition-[width] motion-safe:duration-700" style={{ width: `${Math.max(3, progressPct)}%` }} />
+        </div>
+      </div>
+    </div>
   );
 }
 
