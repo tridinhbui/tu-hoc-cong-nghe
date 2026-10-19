@@ -154,6 +154,7 @@ export default function Leaderboard({ userId, compact = false }: { userId?: stri
         code={APP_SYS.leaderboard}
         eyebrow={t.leaderboard[activeTab.labelKey]}
         title={t.leaderboard.titleCompact}
+        live
         size={compact ? "sm" : "md"}
       />
 

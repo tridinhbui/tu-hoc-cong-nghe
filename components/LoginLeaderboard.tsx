@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { Crown } from "lucide-react";
 import { getXpLeaderboardSince, type LeaderboardRow } from "@/lib/cloudflare-user";
-import { LiveDot } from "@/components/LiveNumber";
+import LiveBadge from "@/components/ui/LiveBadge";
 import { useI18n } from "@/lib/i18n/context";
 import { format, intlLocale } from "@/lib/i18n";
 
@@ -57,8 +57,8 @@ export default function LoginLeaderboard() {
     <section className="mt-7 max-w-xl border-2 border-line-strong bg-white/60 dark:bg-white/[0.04]">
       <header className="flex items-center justify-between gap-3 border-b border-line-strong px-4 py-2.5">
         <h2 className="flex items-center gap-2.5 text-[13px] font-black uppercase tracking-wide">
-          <LiveDot />
           {l.leaderboardTitle}
+          <LiveBadge />
         </h2>
         <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-ink-muted">{l.leaderboardSub}</span>
       </header>

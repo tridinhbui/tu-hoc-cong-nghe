@@ -10,6 +10,7 @@ import { isValidAvatar } from "@/lib/avatar-utils";
 import { useI18n } from "@/lib/i18n/context";
 import { format, intlLocale } from "@/lib/i18n";
 import { Sys, StatusDot, btnPrimary, tabClass } from "@/components/ui/system";
+import LiveBadge from "@/components/ui/LiveBadge";
 
 type MetricFilter = "xp" | "streak" | "lessons";
 
@@ -154,7 +155,10 @@ export default function PublicLeaderboardPreview() {
               đứng trên nền mực thay cho vàng/bạc/đồng tô gradient. */}
           <div className="rounded-sm border border-line-strong bg-page p-2.5 sm:p-3 dark:border-stone-700 dark:bg-stone-950">
             <div className="mb-2 flex items-baseline justify-between gap-3">
-              <p className="eyebrow text-ink-muted">{t.leaderboardPreview.podiumBadge}</p>
+              <span className="flex items-center gap-2">
+                <LiveBadge />
+                <p className="eyebrow text-ink-muted">{t.leaderboardPreview.podiumBadge}</p>
+              </span>
               <p className="truncate text-xs font-bold text-ink">
                 {metric === "xp" && t.leaderboardPreview.podiumTitleXp}
                 {metric === "streak" && t.leaderboardPreview.podiumTitleStreak}

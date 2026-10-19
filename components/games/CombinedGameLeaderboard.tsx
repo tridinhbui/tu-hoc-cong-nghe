@@ -10,6 +10,7 @@ import { useI18n } from "@/lib/i18n/context";
 import { panel } from "@/components/ui/system";
 import { localizeCombinedGameTitle } from "@/lib/games-i18n";
 import { format } from "@/lib/i18n";
+import LiveBadge from "@/components/ui/LiveBadge";
 
 // Sums each player's best-per-game XP across every mini-game (see
 // getCombinedGameXp/get_combined_game_leaderboard) so playing a variety of
@@ -51,9 +52,10 @@ export default function CombinedGameLeaderboard() {
 
   return (
     <div>
-      <p className="mb-3 text-xs text-ink-soft">
-        {cl.subtitle}
-      </p>
+      <div className="mb-3 flex items-center justify-between gap-2">
+        <p className="text-xs text-ink-soft">{cl.subtitle}</p>
+        <LiveBadge />
+      </div>
       <div className={`${panel} divide-y divide-stone-200 dark:divide-stone-800`}>
       {rows.map((row, i) => {
         const rank = i + 1;

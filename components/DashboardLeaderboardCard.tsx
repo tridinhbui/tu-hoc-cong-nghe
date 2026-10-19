@@ -13,6 +13,7 @@ import {
   type LeaderboardMetric,
   type LeaderboardRow,
 } from "@/lib/cloudflare-user";
+import LiveBadge from "@/components/ui/LiveBadge";
 import Avatar from "@/components/Avatar";
 import RankBadge from "@/components/games/RankBadge";
 import MyRankRow from "@/components/leaderboard/MyRankRow";
@@ -38,6 +39,8 @@ const PERIODS: { id: Period; label: keyof Dictionary["rankWidget"]; days: number
 ];
 
 const TOP_N = 5;
+/** Bảng tự làm mới mỗi chừng này mili-giây khi tab đang hiện: nhãn LIVE phải nói thật. */
+const REFRESH_MS = 30_000;
 
 /* i18n-ignore-start: định danh hệ thống, không phải chữ hiển thị */
 const SYS_TITLE = "THCN://COMMUNITY/LEADERBOARD";
@@ -64,6 +67,7 @@ export default function DashboardLeaderboardCard({ userId, bare = false }: { use
   const [rows, setRows] = useState<LeaderboardRow[] | null>(null);
   const [mine, setMine] = useState<Mine>(null);
   const [loadedKey, setLoadedKey] = useState<string | null>(null);
+  const [tick, setTick] = useState(0);
   const key = metric === "xp" ? `xp:${period}` : metric;
 
   useEffect(() => {
@@ -94,7 +98,14 @@ export default function DashboardLeaderboardCard({ userId, bare = false }: { use
     return () => {
       cancelled = true;
     };
-  }, [metric, period, userId, key]);
+  }, [metric, period, userId, key, tick]);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      if (document.visibilityState === "visible") setTick((n) => n + 1);
+    }, REFRESH_MS);
+    return () => clearInterval(id);
+  }, []);
 
   const u = t.leaderboard.units;
   const format = (v: number) => {
@@ -117,13 +128,12 @@ export default function DashboardLeaderboardCard({ userId, bare = false }: { use
 
   const body = (
     <section>
-      {!bare && (
-        <header>
-          <h2 className="text-sm font-bold tracking-tight text-ink-body">{t.rankWidget.title}</h2>
-        </header>
-      )}
+      <header className="flex items-center justify-between gap-2">
+        {!bare ? <h2 className="text-sm font-bold tracking-tight text-ink-body">{t.rankWidget.title}</h2> : <span />}
+        <LiveBadge />
+      </header>
 
-      <div className={`${bare ? "" : "mt-3 "}flex gap-5 overflow-x-auto border-b border-line scrollbar-none`} role="tablist">
+      <div className={`mt-3 flex gap-5 overflow-x-auto border-b border-line scrollbar-none`} role="tablist">
         {METRICS.map((m) => (
           <button
             key={m.id}

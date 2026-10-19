@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import LiveBadge from "@/components/ui/LiveBadge";
 
 /*
  * HỆ THIẾT KẾ CHUNG - lấy từ trang chủ biên tập (components/home/v2/kit.tsx)
@@ -79,6 +80,7 @@ export function SectionHead({
   dark = false,
   size = "md",
   className = "",
+  live = false,
 }: {
   code?: string;
   eyebrow?: string;
@@ -87,6 +89,8 @@ export function SectionHead({
   dark?: boolean;
   size?: "sm" | "md" | "lg";
   className?: string;
+  /** Gắn huy hiệu LIVE cạnh tiêu đề (bảng xếp hạng). */
+  live?: boolean;
 }) {
   const titleSize =
     size === "lg"
@@ -112,7 +116,10 @@ export function SectionHead({
           dark ? "text-white" : "text-ink-max"
         }`}
       >
-        {title}
+        <span className={live ? "inline-flex flex-wrap items-center gap-x-3 gap-y-1" : undefined}>
+          {title}
+          {live && <LiveBadge />}
+        </span>
       </h2>
       {sub && (
         <p className={`mt-2 max-w-2xl text-sm leading-6 ${dark ? "text-stone-300" : "text-ink-soft"}`}>{sub}</p>

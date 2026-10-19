@@ -147,7 +147,7 @@ export default function LeaderboardSection({ userId }: LeaderboardSectionProps) 
 
   return (
     <section className="rounded-md border border-line-strong bg-white p-4 sm:p-5 dark:border-stone-700 dark:bg-stone-900">
-      <SectionHead code={APP_SYS.rankings} title={t.leaderboardSection.title} sub={t.leaderboardSection.subtitle} size="sm" />
+      <SectionHead code={APP_SYS.rankings} title={t.leaderboardSection.title} live sub={t.leaderboardSection.subtitle} size="sm" />
 
       {/* Tab chữ, cuộn ngang khi hẹp - không cần nút mũi tên tròn nổi. */}
       <div role="tablist" className="mt-4 flex gap-4 overflow-x-auto border-b border-line scrollbar-none">

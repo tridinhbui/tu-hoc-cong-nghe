@@ -5,6 +5,7 @@ import { getGameLeaderboard, type AnyGameType, type GameLeaderboardRow } from "@
 import { useI18n } from "@/lib/i18n/context";
 import RankBadge from "@/components/games/RankBadge";
 import { Frame } from "@/components/ui/system";
+import LiveBadge from "@/components/ui/LiveBadge";
 
 /* i18n-ignore-start: định danh hệ thống, không phải chữ hiển thị. */
 const leaderboardPath = (gameType: string) => `leaderboard/${gameType}`;
@@ -55,7 +56,10 @@ export default function ModeLeaderboard({
 
   return (
     <Frame title={leaderboardPath(gameType)} bodyClassName="p-4">
-      <h4 className="mb-3 text-sm font-black text-ink-max">{title}</h4>
+      <div className="mb-3 flex items-center justify-between gap-2">
+        <h4 className="text-sm font-black text-ink-max">{title}</h4>
+        <LiveBadge />
+      </div>
 
       {loading ? (
         <p className="text-xs font-semibold text-ink-faint">{t.games.modeLeaderboard.loading}</p>

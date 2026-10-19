@@ -52,7 +52,7 @@ export default function FeedLeaderboardCard() {
 
   return (
     <section className={`${panel} p-4`}>
-      <SectionHead code={APP_SYS.feedRank} title={t.feed.rankTitle} sub={t.feed.rankSub} size="sm" />
+      <SectionHead code={APP_SYS.feedRank} title={t.feed.rankTitle} live sub={t.feed.rankSub} size="sm" />
 
       {/* Hạng bằng SỐ trong rãnh mono; ba hạng đầu giữ chấm RankBadge nhỏ.
           Hàng không bấm được, như bản trước - đây là thẻ dẫn sang bảng đầy đủ. */}

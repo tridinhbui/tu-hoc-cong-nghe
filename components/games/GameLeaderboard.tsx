@@ -8,6 +8,7 @@ import { isValidAvatar } from "@/lib/avatar-utils";
 import { useI18n } from "@/lib/i18n/context";
 import { panel } from "@/components/ui/system";
 import { localizeGameTitle } from "@/lib/games-i18n";
+import LiveBadge from "@/components/ui/LiveBadge";
 
 export default function GameLeaderboard({ gameType }: { gameType: GameType }) {
   const { t, locale } = useI18n();
@@ -48,6 +49,8 @@ export default function GameLeaderboard({ gameType }: { gameType: GameType }) {
   }
 
   return (
+    <div>
+    <div className="mb-2 flex justify-end"><LiveBadge /></div>
     <div className={`${panel} divide-y divide-stone-200 dark:divide-stone-800`}>
       {rows.map((row, i) => {
         const rank = i + 1;
@@ -79,6 +82,7 @@ export default function GameLeaderboard({ gameType }: { gameType: GameType }) {
           </div>
         );
       })}
+    </div>
     </div>
   );
 }
