@@ -854,8 +854,8 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
             <div className="mt-3 flex items-center justify-between gap-6">
               <div className="min-w-0 max-w-2xl">
                 <div className="flex items-center gap-2">
-                  <Sys className="hidden text-brand-600 dark:text-brand-400 sm:inline">{APP_SYS.feed}</Sys>
-                  <span className="eyebrow text-brand-700 dark:text-brand-400">{t.feed.eyebrow}</span>
+                  <Sys className="hidden text-accent sm:inline">{APP_SYS.feed}</Sys>
+                  <span className="eyebrow text-accent-strong">{t.feed.eyebrow}</span>
                 </div>
                 <h1 className="mt-1.5 text-2xl sm:text-3xl font-black leading-tight tracking-tight text-brand-900 dark:text-white">
                   {t.feed.title}
