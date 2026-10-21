@@ -19,6 +19,8 @@ import {
 import { format, intlLocale } from "@/lib/i18n";
 import type { StageTopicId } from "@/lib/stage-topics";
 import { btnPrimary, textLink } from "@/components/ui/system";
+import StageScene from "@/components/workshop/StageScene";
+import { DestinationStrip, StageBuildRow, pickDestinations, type WorkshopStage } from "@/components/workshop/WorkshopBlocks";
 
 type Track = "personal" | "professional";
 
@@ -159,6 +161,20 @@ export default function LearningPathClient({
   const upcoming = stageList.slice(currentIdx, currentIdx + 3).map((s, k) => ({ ...s, i: currentIdx + k }));
   const stageName = (i: number) => stageCopy[i]?.headline ?? t.trackStages[track]?.stages[i]?.name ?? "";
   const started = done[track] > 0;
+
+  // Cùng hình dạng chặng với "Xưởng của bạn" ở /dashboard. Trang này không có
+  // cờ `available` của từng chặng nên không vẽ trạng thái khoá - chỉ những gì
+  // số bài đã xong nói được.
+  const workshop: WorkshopStage[] = stageList.map((s, i) => ({
+    key: String(i),
+    n: i + 1,
+    tag: stageCopy[i]?.tag ?? "",
+    headline: stageName(i),
+    outcome: stageCopy[i]?.outcome ?? "",
+    done: s.done,
+    total: s.total,
+    status: s.total > 0 && s.done === s.total ? "mastered" : i === currentIdx ? "active" : s.done > 0 ? "started" : "notStarted",
+  }));
   const trackName = track === "personal" ? p.trackPersonalName : p.trackProfessionalName;
 
   const stageRow = (stage: { total: number; done: number }, i: number, current: boolean) => (
@@ -191,7 +207,9 @@ export default function LearningPathClient({
 
       <div className="mt-5 grid gap-x-10 gap-y-8 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)]">
         <div className="space-y-8">
-          <section id="first" aria-label={p.stepFirstTitle} className="scroll-mt-6 rounded-sm border border-brand-600 bg-brand-50 p-5 sm:p-6 dark:border-brand-400 dark:bg-brand-950/40">
+          <section id="first" aria-label={p.stepFirstTitle} className="relative scroll-mt-6 overflow-hidden rounded-3xl bg-gradient-to-br from-brand-50 via-white to-sky-50 p-5 shadow-card ring-1 ring-accent-line sm:p-6 dark:from-brand-950/60 dark:via-stone-900 dark:to-stone-900 dark:ring-white/5">
+            <StageScene tag={upcoming[0] ? stageCopy[upcoming[0].i]?.tag : null} className="pointer-events-none absolute right-3 top-3 hidden h-[110px] w-[176px] sm:block" />
+            <div className="relative sm:pr-[190px]">
             <p className="text-xs font-bold uppercase tracking-[0.08em] text-ink-muted">{p.currentJourney}</p>
             <p className="mt-1 text-lg font-black leading-snug tracking-tight text-ink-max">
               {trackName}
@@ -210,6 +228,7 @@ export default function LearningPathClient({
             <p className="mt-1.5 text-xs font-bold tabular-nums text-ink-muted">
               {pct}% · {p.heroMinutes}
             </p>
+            </div>
 
             <div className="mt-5 border-t border-brand-200/70 pt-5 dark:border-white/10">
               {loading ? (
@@ -257,11 +276,13 @@ export default function LearningPathClient({
             )}
           </section>
 
+          <DestinationStrip title={p.destinationTitle} stages={pickDestinations(workshop, currentIdx)} />
+
           {upcoming.length > 0 && (
             <section id="milestones" className="scroll-mt-6">
               <h2 className="text-base font-black tracking-tight text-ink-max">{p.stepMilestonesTitle}</h2>
-              <ol className="mt-2 divide-y divide-line-strong">
-                {upcoming.map((s, k) => stageRow(s, s.i, k === 0))}
+              <ol className="mt-3 space-y-2">
+                {upcoming.map((s) => workshop[s.i] && <StageBuildRow key={s.i} stage={workshop[s.i]} />)}
               </ol>
               {stageList.length > upcoming.length && (
                 <details className="group mt-1">
@@ -306,6 +327,19 @@ export default function LearningPathClient({
                     <span className="mt-1 block text-xs leading-5 text-ink-soft">
                       {id === "personal" ? p.trackPersonalShort : p.trackProfessionalShort}
                     </span>
+                    {(() => {
+                      // Hai thứ làm ra tiêu biểu của tuyến - ở giữa đường, không phải chặng đầu.
+                      const makes = pickDestinations(
+                        (t.revampDashboard.stages[id] ?? []).map((c, i) => ({ key: String(i), n: i + 1, tag: c.tag, headline: c.headline, outcome: c.outcome, done: 0, total: 0, status: "notStarted" as const })),
+                        2,
+                        2,
+                      );
+                      return makes.length === 2 ? (
+                        <span className="mt-2 block text-[11px] font-semibold leading-4 text-accent-strong">
+                          {format(p.trackMakes, { a: makes[0].headline, b: makes[1].headline })}
+                        </span>
+                      ) : null;
+                    })()}
                   </button>
                 );
               })}

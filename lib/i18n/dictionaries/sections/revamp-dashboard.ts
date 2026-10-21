@@ -129,6 +129,18 @@ export const revampDashboardVi = {
     // thích: bài đã xong giờ tô cyan, nên câu chữ phải gọi đúng màu đang thấy.
     autoColour: "xanh ngọc",
 
+    // ── Dashboard "Xưởng của bạn" (Digital Workshop): banner chặng đang dựng
+    // và lưới những thứ mỗi chặng làm ra - components/workshop/.
+    workshopEyebrow: "Xưởng của bạn",
+    workshopBuilding: "Đang dựng",
+    workshopStart: "Bắt đầu dựng",
+    workshopStage: "Chặng {n} · {tag}",
+    workshopAllDone: "Bạn đã dựng xong mọi chặng của tuyến này",
+    buildTitle: "Những thứ bạn sẽ làm ra",
+    buildHint: "Mỗi chặng xong là một thứ chạy được trong tay bạn.",
+    buildMore: "+{count} chặng nữa",
+    tileJustUnlocked: "Vừa mở",
+
     stages: {
       personal: [
         { tag: "TERMINAL", headline: "Làm chủ chiếc máy bạn đang dùng", outcome: "Đi lại bằng dòng lệnh · tạo, chép, xoá tệp · đọc và sửa quyền truy cập · tự động hoá sao lưu" },
@@ -348,6 +360,16 @@ export const revampDashboardEn: typeof revampDashboardVi = {
     focusJumpToStage: "Show this stage",
     focusCta: "Continue",
     autoColour: "teal",
+
+    workshopEyebrow: "Your workshop",
+    workshopBuilding: "Now building",
+    workshopStart: "Start building",
+    workshopStage: "Stage {n} · {tag}",
+    workshopAllDone: "You have built every stage of this track",
+    buildTitle: "What you will build",
+    buildHint: "Every finished stage is something that runs, in your hands.",
+    buildMore: "+{count} more stages",
+    tileJustUnlocked: "Just unlocked",
 
     stages: {
       personal: [

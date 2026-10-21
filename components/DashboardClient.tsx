@@ -32,13 +32,11 @@ import {
   OverviewTopBar,
   PracticeModeGrid,
   ProgressSideCard,
-  JourneyCard,
-  HeroLevelStrip,
-  type JourneyStage,
   SectionHeading,
   TrophyPromoCard,
   softCard,
 } from "@/components/dashboard-overview/OverviewBlocks";
+import { WorkshopHero, StageBuildGrid, type WorkshopStage } from "@/components/workshop/WorkshopBlocks";
 import StreakReminderManager from "@/components/StreakReminderManager";
 import AnnouncementBanner from "@/components/AnnouncementBanner";
 import DashboardTour from "@/components/DashboardTour";
@@ -1240,25 +1238,38 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
             );
 
             const heroLesson = currentLessonId !== null ? lessonById.get(currentLessonId) : undefined;
-            const pathPct = trackCounts[activeTrack].total > 0
-              ? Math.round((trackCounts[activeTrack].done / trackCounts[activeTrack].total) * 100)
-              : 0;
 
-            // Hành trình ngắn: chỉ các chặng của nhánh đang học (cùng tập với nhãn chặng).
-            const journeyStages: JourneyStage[] = [];
-            let journeyCurrent = -1;
+            // Xưởng: các chặng của nhánh đang học (cùng tập với nhãn chặng), mỗi
+            // chặng kèm thứ nó làm ra. Năm trạng thái tính y như cây kỹ năng ở
+            // /hoc-bai bên dưới, để hai trang không nói khác nhau về một chặng.
+            const workshopStages: WorkshopStage[] = [];
+            let workshopCurrent = -1;
             track.stages.forEach((st, i) => {
               if (!stageDisplayLabels.has(st.label)) return;
               const ls = lessonsByStageLabel.get(st.label) ?? [];
-              if (st === objStage) journeyCurrent = journeyStages.length;
-              journeyStages.push({
+              const done = ls.filter((l) => completed.includes(l.id)).length;
+              const copy = t.revampDashboard.stages[activeTrack]?.[i];
+              if (st === objStage) workshopCurrent = workshopStages.length;
+              workshopStages.push({
                 key: st.label,
-                label: stageDisplayLabels.get(st.label) ?? st.label,
-                name: t.revampDashboard.stages[activeTrack]?.[i]?.headline ?? t.trackStages[activeTrack]?.stages[i]?.name ?? st.name,
-                done: ls.filter((l) => completed.includes(l.id)).length,
+                n: i + 1,
+                tag: copy?.tag ?? "",
+                headline: copy?.headline ?? t.trackStages[activeTrack]?.stages[i]?.name ?? st.name,
+                outcome: copy?.outcome ?? "",
+                done,
                 total: ls.length,
+                status: !st.available
+                  ? "locked"
+                  : ls.length > 0 && done === ls.length
+                    ? "mastered"
+                    : st === objStage
+                      ? "active"
+                      : done > 0
+                        ? "started"
+                        : "notStarted",
               });
             });
+            const workshopNow = workshopCurrent >= 0 ? workshopStages[workshopCurrent] : null;
 
             return (
               <div className="mx-auto flex h-full min-h-0 w-full max-w-[1240px] flex-col gap-3">
@@ -1268,35 +1279,27 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                   nói một lần, ở chân thẻ Học tiếp. */}
               <div className="grid min-h-0 flex-1 grid-cols-1 content-start gap-4 overflow-y-auto pb-28 [scrollbar-width:thin] lg:grid-cols-12 lg:gap-5 lg:pb-6">
                 <div className="empty:hidden lg:col-span-12"><YesterdayTaskCard /></div>
-                <section className="min-w-0 lg:col-span-8" data-tour="resume-learning">
-                  <ResumeLearningButton
-                    showCoCo={false}
-                    activeTrack={activeTrack}
-                    userId={user?.id}
-                    compact={isCompactCard || shortViewport}
-                    quiet
-                    hero
-                    footnote={
-                      <HeroLevelStrip
-                        level={currentUserLevel}
-                        name={t.levelTitles[currentUserLevel] ?? LEVELS[currentUserLevel - 1]?.name ?? ""}
-                        progressPct={nextLvl ? levelProgress : 100}
-                        nextLine={nextLvl
-                          ? format(t.revampDashboard.heroLevelNext, { xp: xpLeft, name: t.levelTitles[nextLvl.level] ?? nextLvl.name })
-                          : t.dashboard.maxLevelLine}
-                      />
-                    }
-                  />
+                {/* Xưởng: chặng đang dựng là tâm điểm của trang, thẻ Học tiếp
+                    nằm trong nó - bài kế tiếp là bước kế của thứ đang dựng. Cấp
+                    và XP nói ở thẻ Cấp độ bên dưới, không lặp ở đây. */}
+                <section className="min-w-0 lg:col-span-12" data-tour="resume-learning">
+                  <WorkshopHero stage={workshopNow} isLast={workshopCurrent === workshopStages.length - 1}>
+                    <ResumeLearningButton
+                      showCoCo={false}
+                      activeTrack={activeTrack}
+                      userId={user?.id}
+                      compact={isCompactCard || shortViewport}
+                      quiet
+                      hero
+                    />
+                  </WorkshopHero>
                 </section>
-                <div className="min-w-0 lg:col-span-4">
-                  <JourneyCard stages={journeyStages} currentIndex={Math.max(0, journeyCurrent)} pathPct={pathPct} />
-                </div>
                 <div className="lg:col-span-12">
                   <PracticeModeGrid lessonsDone={trackCounts.personal.done + trackCounts.professional.done} />
                 </div>
                 <div className="grid min-w-0 gap-5 lg:col-span-12 lg:grid-cols-12">
                 {/* ── Cột phải: thành tích và phần phụ ── */}
-                <aside className="flex min-w-0 flex-col gap-4 lg:col-span-4 lg:col-start-9 lg:row-start-1">
+                <aside className="order-last flex min-w-0 flex-col gap-4 lg:order-none lg:col-span-4 lg:col-start-9 lg:row-start-1 lg:self-start">
                   {/* Chế độ Đầy đủ: ba tab giữ cột phụ vừa một màn hình; mỗi
                       tab tự cuộn khi dài. Chế độ Gọn chỉ có tab Tiến độ. */}
                   {isFullPreset && (
@@ -1411,8 +1414,8 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                 <div className="flex min-w-0 flex-col gap-5 lg:col-span-8 lg:col-start-1 lg:row-start-1">
                   <section className="space-y-5 lg:min-h-0 lg:overflow-y-auto lg:pr-1 [scrollbar-width:thin]">
                     <SectionHeading
-                      quiet
-                      title={t.revampDashboard.roadmapTitle}
+                      title={t.revampDashboard.buildTitle}
+                      hint={t.revampDashboard.buildHint}
                       action={
                       <Link
                         href="/lo-trinh"
@@ -1424,18 +1427,19 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                       </Link>
                       }
                     />
-                    <div className="space-y-8 px-1">
+                    <StageBuildGrid stages={workshopStages} currentIndex={Math.max(0, workshopCurrent)} scope={activeTrack} />
+                    <div className="px-1">
                       <DashboardRecommendations />
                     </div>
                   </section>
                   <section className="space-y-3 lg:min-h-0 lg:overflow-y-auto lg:pr-1 [scrollbar-width:thin]">
-                  {levelsOpen && <SectionHeading quiet title={t.revampDashboard.sectionLevel} />}
-                  {/* ── Tiến độ: cấp, XP, chuỗi ngày trong một mặt nền.
-                      Dải cấp đầy đủ và danh sách người ở từng cấp chỉ mở khi
-                      bấm "Xem các cấp". */}
-                  <div className={levelsOpen ? `${softCard} p-5 sm:p-6` : ""}>
-                    {!levelsOpen ? null : (
-                    <div className="flex flex-wrap items-center justify-between gap-x-8 gap-y-5">
+                  {/* ── Cấp độ: luôn hiện ở dạng gọn - cấp, XP vàng, mở khoá kế
+                      tiếp. Phần thưởng phải nhìn thấy được chứ không nằm sau một
+                      nút. Dải cấp đầy đủ và danh sách người ở từng cấp vẫn chỉ
+                      mở khi bấm "Xem các cấp". */}
+                  <div className={`${softCard} relative overflow-hidden p-5 sm:p-6`}>
+                    <div aria-hidden className="pointer-events-none absolute -right-10 -top-14 h-40 w-40 rounded-full bg-amber-200/40 blur-3xl dark:bg-amber-500/10" />
+                    <div className="relative flex flex-wrap items-center justify-between gap-x-8 gap-y-5">
                       <div className="flex min-w-0 items-center gap-5">
                         <div className="relative shrink-0">
                           <div className="h-[72px] w-[72px] overflow-hidden rounded-2xl ring-2 ring-white shadow-[0_8px_20px_-12px_rgba(41,97,184,0.7)] dark:ring-brand-900">
@@ -1448,7 +1452,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                             />
                           </div>
                           {/* Huy hiệu cấp đè góc ảnh: dấu thành tích, không phải nút. */}
-                          <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-brand-600 px-2 py-0.5 font-mono text-[10px] font-black tabular-nums text-white shadow ring-2 ring-white dark:ring-stone-900">
+                          <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-amber-500 px-2 py-0.5 font-mono text-[10px] font-black tabular-nums text-white shadow ring-2 ring-white dark:ring-stone-900">
                             LV{String(currentUserLevel).padStart(2, "0")}
                           </span>
                         </div>
@@ -1465,8 +1469,8 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                               {format(t.revampDashboard.totalXp, { xp: userXp })}
                             </span>
                           </div>
-                          <div className="mt-3 h-2.5 w-full max-w-[380px] overflow-hidden rounded-full bg-brand-100 dark:bg-white/10">
-                            <div className="h-full rounded-full bg-gradient-to-r from-brand-600 to-cyan-400 motion-safe:transition-[width] motion-safe:duration-700" style={{ width: `${nextLvl ? Math.max(3, levelProgress) : 100}%` }} />
+                          <div className="mt-3 h-2.5 w-full max-w-[380px] overflow-hidden rounded-full bg-amber-100 dark:bg-white/10">
+                            <div className="h-full rounded-full bg-gradient-to-r from-amber-400 to-amber-500 motion-safe:transition-[width] motion-safe:duration-700" style={{ width: `${nextLvl ? Math.max(3, levelProgress) : 100}%` }} />
                           </div>
                           <p className="mt-2 text-xs font-semibold text-ink-body dark:text-stone-300">
                             {nextLvl
@@ -1482,13 +1486,12 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                         </div>
                       </div>
                     </div>
-                    )}
 
                     <button
                       type="button"
                       onClick={() => setLevelsOpen((v) => !v)}
                       aria-expanded={levelsOpen}
-                      className={`${levelsOpen ? "mt-4" : ""} inline-flex cursor-pointer items-center gap-1 text-xs font-semibold text-brand-700 transition-colors hover:text-brand-900 dark:text-brand-300 dark:hover:text-brand-200`}
+                      className={`relative mt-4 inline-flex cursor-pointer items-center gap-1 text-xs font-semibold text-brand-700 transition-colors hover:text-brand-900 dark:text-brand-300 dark:hover:text-brand-200`}
                     >
                       {levelsOpen ? t.revampDashboard.hideDetails : t.revampDashboard.showLevels}
                       <ChevronDown className={`h-3.5 w-3.5 transition-transform ${levelsOpen ? "rotate-180" : ""}`} aria-hidden />
