@@ -1450,6 +1450,7 @@ export const en: Dictionary = {
     post: "Post",
 
     backToDashboard: "Back to dashboard",
+    doingLabel: "Up to something?",
     eyebrow: "The technology learning network",
     title: "Community feed",
     subtitle:
@@ -1467,6 +1468,7 @@ export const en: Dictionary = {
     // đọc như "bài của bạn đâu rồi". Trường hợp thứ hai cần một lời mời viết.
     feedEmptyNoPosts: "Nobody has shared anything yet. Want to write the first one?",
     feedEmptyWrite: "Write the first post",
+    feedEmptyChallenge: "Or take on this week's challenge",
 
     streak: "Streak",
     edited: "· edited",

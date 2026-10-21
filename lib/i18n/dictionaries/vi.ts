@@ -1528,6 +1528,8 @@ export const vi = {
 
     // Header
     backToDashboard: "Về Dashboard",
+    // Hàng chip ở dải đầu trang: mở ô soạn bài điền sẵn một câu prompt1-4.
+    doingLabel: "Đang làm gì?",
     eyebrow: "Mạng xã hội học công nghệ",
     title: "Bảng tin Feed",
     subtitle:
@@ -1546,6 +1548,7 @@ export const vi = {
     // đọc như "bài của bạn đâu rồi". Trường hợp thứ hai cần một lời mời viết.
     feedEmptyNoPosts: "Chưa ai chia sẻ gì hôm nay. Bạn viết dòng đầu tiên nhé?",
     feedEmptyWrite: "Viết bài đầu tiên",
+    feedEmptyChallenge: "Hoặc thử sức với thử thách tuần này",
 
     // Post card
     streak: "Streak",

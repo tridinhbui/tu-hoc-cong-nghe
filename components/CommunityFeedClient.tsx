@@ -8,6 +8,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { toast } from "sonner";
 import {
   ArrowLeft,
+  ArrowRight,
   Award,
   Bookmark,
   Flame,
@@ -78,6 +79,52 @@ const btnSmGhost =
   "inline-flex items-center gap-1.5 rounded-control px-2.5 py-1.5 text-xs font-semibold text-ink-soft transition-colors hover:bg-accent-wash hover:text-accent-strong disabled:cursor-not-allowed disabled:opacity-50";
 const asideHead = "flex items-center justify-between gap-3 border-b border-line-soft pb-2.5";
 const asideTitle = "text-sm font-black tracking-tight text-ink-max";
+/** Chip câu mở đầu ("Đang làm gì?"), dùng ở dải đầu trang và ở trạng thái rỗng. */
+const promptChip =
+  "shrink-0 cursor-pointer whitespace-nowrap rounded-full bg-surface px-3 py-1.5 text-xs font-semibold text-brand-800 shadow-xs ring-1 ring-brand-200/70 transition-colors hover:bg-brand-600 hover:text-white hover:ring-brand-600 dark:text-brand-100 dark:ring-white/10 dark:hover:bg-brand-500";
+
+// Hai minh hoạ SVG vẽ tay: mọi nét đi qua lớp Tailwind nên tự đổi màu theo
+// chế độ sáng/tối, và chỉ dùng tông brand như banner của /dashboard.
+
+/** Ba bong bóng trò chuyện nối nhau - điểm nhấn nhỏ bên phải dải đầu trang. */
+function FeedHeaderArt() {
+  return (
+    <svg viewBox="0 0 132 88" className="hidden h-20 w-32 shrink-0 sm:block" aria-hidden="true">
+      <path d="M38 40 C 58 22, 74 22, 92 36" className="fill-none stroke-brand-300 dark:stroke-brand-700" strokeWidth="1.5" strokeDasharray="3 4" />
+      <path d="M46 62 C 64 74, 80 72, 96 58" className="fill-none stroke-brand-300 dark:stroke-brand-700" strokeWidth="1.5" strokeDasharray="3 4" />
+      <rect x="4" y="30" width="44" height="30" rx="10" className="fill-surface stroke-brand-200 dark:stroke-brand-700" strokeWidth="1.5" />
+      <path d="M14 60 l0 8 l9 -8" className="fill-surface stroke-brand-200 dark:stroke-brand-700" strokeWidth="1.5" strokeLinejoin="round" />
+      <rect x="12" y="39" width="26" height="3.5" rx="1.75" className="fill-brand-300 dark:fill-brand-600" />
+      <rect x="12" y="47" width="17" height="3.5" rx="1.75" className="fill-brand-200 dark:fill-brand-700" />
+      <rect x="80" y="8" width="48" height="32" rx="10" className="fill-brand-600 dark:fill-brand-500" />
+      <path d="M118 40 l0 8 l-9 -8" className="fill-brand-600 dark:fill-brand-500" />
+      <circle cx="94" cy="24" r="3" className="fill-white" />
+      <circle cx="104" cy="24" r="3" className="fill-white/80" />
+      <circle cx="114" cy="24" r="3" className="fill-white/60" />
+      <rect x="84" y="50" width="40" height="28" rx="9" className="fill-brand-100 stroke-brand-200 dark:fill-brand-900 dark:stroke-brand-700" strokeWidth="1.5" />
+      <path d="M96 64 l5 5 l10 -11" className="fill-none stroke-brand-600 dark:stroke-brand-300" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+/** Bàn làm việc trống với một bong bóng đang chờ chữ - cho trạng thái rỗng. */
+function FeedEmptyArt() {
+  return (
+    <svg viewBox="0 0 160 96" className="h-24 w-40" aria-hidden="true">
+      <ellipse cx="80" cy="88" rx="62" ry="5" className="fill-brand-100 dark:fill-white/5" />
+      <rect x="34" y="34" width="72" height="48" rx="8" className="fill-surface stroke-brand-200 dark:stroke-brand-700" strokeWidth="1.5" />
+      <rect x="34" y="34" width="72" height="11" rx="8" className="fill-brand-50 dark:fill-brand-900" />
+      <circle cx="42" cy="39.5" r="1.8" className="fill-brand-300 dark:fill-brand-600" />
+      <circle cx="48" cy="39.5" r="1.8" className="fill-brand-200 dark:fill-brand-700" />
+      <rect x="42" y="53" width="40" height="4" rx="2" className="fill-brand-200 dark:fill-brand-700" />
+      <rect x="42" y="62" width="28" height="4" rx="2" className="fill-brand-100 dark:fill-brand-800" />
+      <rect x="42" y="71" width="2" height="7" className="fill-brand-500 dark:fill-brand-300" />
+      <rect x="96" y="8" width="52" height="30" rx="10" className="fill-brand-600 dark:fill-brand-500" />
+      <path d="M106 38 l-4 9 l12 -9" className="fill-brand-600 dark:fill-brand-500" />
+      <path d="M112 23 h20 M122 13 v20" className="stroke-white" strokeWidth="3" strokeLinecap="round" />
+    </svg>
+  );
+}
 
 function FeedSkeleton() {
   // Khối tĩnh, không nhấp nháy: khung chờ là chỗ trống nhạt, không phải một
@@ -780,51 +827,66 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
   // nền chứ không từ viền xám (2026-09-30). Trước đây là nền trắng phẳng, thẻ
   // và nền cùng một mặt phẳng.
   const shellClass = embedded ? "" : "min-h-screen bg-page";
+  const feedPrompts = [t.feed.prompt1, t.feed.prompt2, t.feed.prompt3, t.feed.prompt4];
+  // Cùng quy tắc với gợi ý ở cột phải: không ghi đè thứ người học đang viết dở.
+  const openComposerWith = (idea: string) => {
+    setContent((prev) => (prev ? prev : idea));
+    setIsComposeModalOpen(true);
+  };
 
   return (
     <div className={shellClass}>
       {!embedded && (
-        // Dải mực của hệ chung (app/globals.css), không phải một trang bìa
-        // riêng. Trước đây chỗ này là ảnh skyline ở opacity 70% phủ HAI lớp
-        // gradient chồng nhau, viền dưới, và ba tấm thẻ số bo 2xl mang ba màu
-        // nhấn khác nhau kèm shadow-xl - tức mọi thứ trang chủ cố ý không làm.
-        <div className="band band-ink band-divider text-white">
-          {/* Ảnh giữ lại nhưng hạ xuống mức HOA VĂN NỀN: nó mang bản sắc Sài
-              Gòn, thứ đáng giữ, nhưng ở 70% nó là ảnh bìa và nuốt mất chữ. */}
-          <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
-            <Image
-              src="/saigon-skyline.jpg"
-              alt=""
-              fill
-              priority
-              quality={90}
-              sizes="100vw"
-              className="object-cover opacity-[0.13]"
-            />
-          </div>
-
-          <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-9 sm:py-12">
+        // Dải băng mềm, cùng giọng với banner đầu /dashboard (2026-10-20).
+        // Trước đây là `band band-ink` tối cao ~300px chỉ chở tiêu đề: nó đẩy
+        // bài viết xuống dưới nếp gấp và lệch tông với dashboard xanh nhạt.
+        // Giờ dải gọn, có hình minh hoạ nhỏ, và ô soạn bài nằm ngay dưới nó.
+        <div className="relative overflow-hidden border-b border-brand-200/70 bg-gradient-to-br from-brand-100 via-brand-50 to-brand-100 dark:border-white/5 dark:from-brand-950 dark:via-brand-900/40 dark:to-brand-950">
+          <div className="pointer-events-none absolute -right-16 -top-24 h-64 w-64 rounded-full bg-brand-200/50 dark:bg-brand-500/10" aria-hidden="true" />
+          <div className="relative max-w-6xl mx-auto px-4 sm:px-6 pt-4 pb-5 sm:pb-6">
             <Link
               href="/dashboard"
-              className="inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-brand-200 transition-colors hover:text-white"
+              className="inline-flex w-fit items-center gap-1.5 text-xs font-semibold text-brand-700 transition-colors hover:text-brand-900 dark:text-brand-300 dark:hover:text-brand-100"
             >
-              <ArrowLeft className="w-4 h-4" aria-hidden /> {t.feed.backToDashboard}
+              <ArrowLeft className="w-3.5 h-3.5" aria-hidden /> {t.feed.backToDashboard}
             </Link>
 
-            <div className="mt-7 max-w-2xl">
-              {/* Mã định vị + nhãn mắt trên một đường kẻ 1px, như đầu section
-                  của trang chủ trên dải mực. */}
-              <div className="flex items-center justify-between gap-4 border-b border-white/15 pb-2">
-                <Sys className="text-brand-200">{APP_SYS.feed}</Sys>
-                <span className="eyebrow text-right text-brand-100">{t.feed.eyebrow}</span>
+            <div className="mt-3 flex items-center justify-between gap-6">
+              <div className="min-w-0 max-w-2xl">
+                <div className="flex items-center gap-2">
+                  <Sys className="hidden text-brand-600 dark:text-brand-400 sm:inline">{APP_SYS.feed}</Sys>
+                  <span className="eyebrow text-brand-700 dark:text-brand-400">{t.feed.eyebrow}</span>
+                </div>
+                <h1 className="mt-1.5 text-2xl sm:text-3xl font-black leading-tight tracking-tight text-brand-900 dark:text-white">
+                  {t.feed.title}
+                </h1>
+                <p className="mt-1.5 max-w-xl text-sm leading-relaxed text-brand-800/80 dark:text-brand-100/80">
+                  {t.feed.subtitle}
+                </p>
               </div>
-              <h1 className="mt-4 text-3xl sm:text-4xl lg:text-[2.75rem] font-black leading-[1.08] tracking-tight text-white">
-                {t.feed.title}
-              </h1>
-              <p className="mt-3 max-w-xl text-[15px] leading-relaxed text-brand-100">
-                {t.feed.subtitle}
-              </p>
+              <FeedHeaderArt />
             </div>
+
+            {user && (
+              // "Đang làm gì?" - bốn câu mở đầu sẵn có (prompt1-4), bấm là mở
+              // ô soạn bài đã điền sẵn. Hàng cuộn ngang bên trong chính nó trên
+              // điện thoại, nên trang không bao giờ cuộn ngang.
+              <div className="mt-4 flex items-center gap-2 sm:items-start">
+                <span className="shrink-0 sm:py-1.5 text-xs font-bold text-brand-900 dark:text-brand-200">{t.feed.doingLabel}</span>
+                <div className="-my-1 flex min-w-0 gap-1.5 overflow-x-auto py-1 [scrollbar-width:none] sm:flex-wrap sm:overflow-visible">
+                  {feedPrompts.map((idea) => (
+                    <button
+                      key={idea}
+                      type="button"
+                      onClick={() => openComposerWith(idea)}
+                      className={promptChip}
+                    >
+                      {idea}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       )}
@@ -1048,21 +1110,34 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
         {loading ? (
           <FeedSkeleton />
         ) : visiblePosts.length === 0 ? (
-          <div className={`${panel} flex flex-col items-center px-6 py-12 text-center`}>
-            <IconTile className="mb-3 h-11 w-11">
-              <MessageCircle className="h-5 w-5" />
-            </IconTile>
-            <p className="text-sm text-ink-muted">
+          <div className={`${panel} flex flex-col items-center px-6 py-10 text-center`}>
+            <FeedEmptyArt />
+            <p className="mt-4 max-w-sm text-sm text-ink-muted">
               {t.feed.feedEmptyNoPosts}
             </p>
+            {user && (
+              <div className="mt-4 flex max-w-md flex-wrap justify-center gap-1.5">
+                {feedPrompts.map((idea) => (
+                  <button key={idea} type="button" onClick={() => openComposerWith(idea)} className={promptChip}>
+                    {idea}
+                  </button>
+                ))}
+              </div>
+            )}
             {/* Không còn ô tìm kiếm nên dòng rỗng CHỈ có thể vì chưa ai đăng bài. */}
             <button
               type="button"
               onClick={() => setIsComposeModalOpen(true)}
-              className={`mt-4 ${btnSecondary} cursor-pointer`}
+              className={`mt-5 ${btnSecondary} cursor-pointer`}
             >
               {t.feed.feedEmptyWrite}
             </button>
+            {/* Chỉ là đường dẫn: thử thách tuần đã chuyển vào khu RPG (/game),
+                tab "weekly-challenge" của dashboard không còn nút nào mở. */}
+            <Link href="/game?building=weekly-challenge" className={`mt-3 ${textLink}`}>
+              {t.feed.feedEmptyChallenge}
+              <ArrowRight className="h-3.5 w-3.5" aria-hidden />
+            </Link>
           </div>
         ) : (
           // Mỗi bài là một thẻ trắng nổi trên canvas băng bằng bóng mảnh, thay
@@ -1578,12 +1653,7 @@ export default function CommunityFeedClient({ embedded = false }: { embedded?: b
                 <Bookmark className="h-4 w-4 text-accent" aria-hidden />
               </div>
               <div className="mt-3 grid gap-1.5">
-                {[
-                  t.feed.prompt1,
-                  t.feed.prompt2,
-                  t.feed.prompt3,
-                  t.feed.prompt4,
-                ].map((idea) => (
+                {feedPrompts.map((idea) => (
                   <button
                     key={idea}
                     type="button"
