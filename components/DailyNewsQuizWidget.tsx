@@ -2,14 +2,16 @@
 
 import { useState, useEffect, useMemo, useSyncExternalStore } from "react";
 import { toast } from "sonner";
-import { Newspaper, Calculator, BookOpen, Scale, BarChart3, CheckCircle2, XCircle, Award, Flame, ChevronDown, Maximize2, X, ArrowRight, Send, Check } from "lucide-react";
+import { Newspaper, Calculator, BookOpen, Scale, BarChart3, CheckCircle2, XCircle, Award, Flame, ChevronDown, Maximize2, X, ArrowRight, Send, Check, Zap } from "lucide-react";
 import CoCoFeedback from "@/components/CoCoFeedback";
 import { QUEST_XP_REWARDS } from "@/lib/quest-rewards";
 import { claimQuestReward } from "@/lib/cloudflare-quests";
 import { shuffleOptionOrder } from "@/lib/shuffle-options";
 import { useI18n } from "@/lib/i18n/context";
 import { format, intlLocale } from "@/lib/i18n";
-import { StatusDot, Sys, btnPrimary, panel } from "@/components/ui/system";
+import { StatusDot, Sys, btnPrimary, panel, quizKey, quizOption, type QuizOptionState } from "@/components/ui/system";
+import { getUserStreak } from "@/lib/cloudflare-streak";
+import { useQuizKeys } from "@/lib/use-quiz-keys";
 
 interface DailyNewsQuizWidgetProps {
   userId: string;
@@ -22,6 +24,9 @@ interface DailyNewsQuizWidgetProps {
    *  nhạt - để thẻ Học tiếp là thứ duy nhất nổi. Chỉ dashboard bật; /hoc-bai
    *  và /kiem-tra giữ nguyên. */
   quiet?: boolean;
+  /** Chỉ biến thể signal: bước 3 của vòng "trả lời → nhận XP → luyện phần
+   *  yếu". Trang /kiem-tra truyền hàm đưa người học sang TRAINING LAB. */
+  onTrain?: () => void;
 }
 
 const subscribeNoop = () => () => {};
@@ -91,7 +96,42 @@ const KIND_STYLES: Record<QuizKind, { Icon: typeof Newspaper; tint: string; badg
   },
 };
 
-export default function DailyNewsQuizWidget({ userId, compact = false, variant = "card", quiet = false }: DailyNewsQuizWidgetProps) {
+/** Nguồn ngẫu nhiên tất định gieo từ nội dung câu hỏi (FNV-1a → mulberry32).
+ *
+ *  Xáo bằng Math.random làm server và trình duyệt ra hai thứ tự khác nhau:
+ *  React báo lệch hydrate và dựng lại cả cây (kéo theo ngày ở đầu Daily Signal
+ *  trắng trơn), và `_opt` lưu trong localStorage là một CHỈ SỐ - tải lại trang
+ *  là thứ tự đổi, nên phương án "bạn đã chọn" được tô lên một câu khác. Gieo
+ *  theo nội dung thì mỗi câu luôn một thứ tự, còn vị trí đáp án đúng vẫn rải
+ *  đều giữa các câu - đủ để bỏ mẹo "cứ chọn A". */
+function seededRandom(text: string): () => number {
+  let h = 2166136261;
+  for (let i = 0; i < text.length; i++) {
+    h ^= text.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  let a = h >>> 0;
+  return () => {
+    a = (a + 0x6d2b79f5) | 0;
+    let x = Math.imul(a ^ (a >>> 15), 1 | a);
+    x = (x + Math.imul(x ^ (x >>> 7), 61 | x)) ^ x;
+    return ((x ^ (x >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+/** Bảy ngày gần nhất theo đúng khoá localStorage mà handleSubmit ghi (ngày
+ *  ISO/UTC, cũ → mới). Không bịa: ngày nào không có khoá là chưa làm. */
+function readSignalWeek(userId: string): ("correct" | "incorrect" | null)[] {
+  if (typeof window === "undefined") return new Array(7).fill(null);
+  const now = Date.now();
+  return Array.from({ length: 7 }, (_, i) => {
+    const key = new Date(now - (6 - i) * 86_400_000).toISOString().split("T")[0];
+    const v = window.localStorage.getItem(`news_quiz_answered_${userId}_${key}`);
+    return v === "correct" || v === "incorrect" ? v : null;
+  });
+}
+
+export default function DailyNewsQuizWidget({ userId, compact = false, variant = "card", quiet = false, onTrain }: DailyNewsQuizWidgetProps) {
   const { t, locale } = useI18n();
   const isSignal = variant === "signal";
   // Ngày chỉ tính sau khi gắn: giờ phía server có thể khác trình duyệt.
@@ -113,16 +153,16 @@ export default function DailyNewsQuizWidget({ userId, compact = false, variant =
    *  lại chỉ số bằng tay. Sửa tay thì đúng cho 26 câu hôm nay và sai lại ngay
    *  khi ai đó viết câu thứ 27.
    *
-   *  Xáo một lần cho mỗi lượt tải (useMemo theo `t`), không xáo lại mỗi lần
-   *  render: xáo lại giữa chừng sẽ đổi chỗ phương án ngay dưới con trỏ người
-   *  học đang định bấm. */
+   *  Xáo tất định theo nội dung câu (seededRandom ở trên), không xáo lại mỗi
+   *  lần render: xáo lại giữa chừng sẽ đổi chỗ phương án ngay dưới con trỏ
+   *  người học đang định bấm. */
   const NEWS_QUIZZES: NewsQuiz[] = useMemo(
     // `kind` từ từ điển là string, nên gõ sai một dạng sẽ lọt qua tsc. Quy về
     // "news" khi không nhận ra, để câu vẫn hiện đủ thay vì mất biểu tượng và
     // nhãn dạng.
     () =>
       t.newsQuiz.quizzes.map((q) => {
-        const shuffled = shuffleOptionOrder(q.options, q.correctIndex);
+        const shuffled = shuffleOptionOrder(q.options, q.correctIndex, seededRandom(q.question));
         // Kho câu hỏi công nghệ viết theo khuôn cũ `newsTitle`/`newsBody` và
         // chưa có `kind`: mọi câu là một mẩu tin, nên quy về dạng "news".
         const kind = (q as { kind?: string }).kind;
@@ -164,6 +204,11 @@ export default function DailyNewsQuizWidget({ userId, compact = false, variant =
   });
   const [selectedOpt, setSelectedOpt] = useState<number | null>(null);
   const [isAnswered, setIsAnswered] = useState<boolean>(false);
+  /** Trả lời NGAY TRONG lượt xem này (khác với khôi phục từ localStorage):
+   *  chỉ khi đó mới chạy nhịp nảy/lắc và hiệu ứng XP. */
+  const [justAnswered, setJustAnswered] = useState(false);
+  const [streakDays, setStreakDays] = useState<number | null>(null);
+  const [week, setWeek] = useState<("correct" | "incorrect" | null)[]>(() => new Array(7).fill(null));
   const [isCorrect, setIsCorrect] = useState<boolean>(false);
   // On the dashboard sidebar this is now treated as a "today in tech"
   // block rather than an optional challenge, so it starts open by default.
@@ -247,12 +292,32 @@ export default function DailyNewsQuizWidget({ userId, compact = false, variant =
     }
   }, [localAnsweredKey, NEWS_QUIZZES]);
 
+  // Chuỗi ngày học thật (user_streaks) và dải 7 ngày của Daily Signal - chỉ
+  // biến thể signal hiện chúng.
+  useEffect(() => {
+    if (!isSignal) return;
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- đọc localStorage sau khi gắn; server không có nó
+    setWeek(readSignalWeek(userId));
+  }, [isSignal, userId, isAnswered]);
+
+  useEffect(() => {
+    if (!isSignal || !userId || userId === "guest") return;
+    let alive = true;
+    void getUserStreak(userId)
+      .then((st) => alive && setStreakDays(st?.current_streak ?? 0))
+      .catch(() => {});
+    return () => {
+      alive = false;
+    };
+  }, [isSignal, userId]);
+
   const handleSubmit = async () => {
     if (selectedOpt === null || !quiz) return;
 
     const correct = selectedOpt === quiz.correctIndex;
     setIsCorrect(correct);
     setIsAnswered(true);
+    setJustAnswered(true);
 
     /* TỰ GẬP SAU KHI TRẢ LỜI - nhưng CÓ ĐỘ TRỄ, không gập ngay.
      *
@@ -331,6 +396,7 @@ export default function DailyNewsQuizWidget({ userId, compact = false, variant =
 
   function submitPractice() {
     if (practiceSelectedOpt === null || !practiceQuiz) return;
+    setJustAnswered(true);
     const correct = practiceSelectedOpt === practiceQuiz.correctIndex;
     setPracticeCorrect(correct);
     setPracticeAnswered(true);
@@ -338,6 +404,16 @@ export default function DailyNewsQuizWidget({ userId, compact = false, variant =
     if (correct) setPracticeStreak((s) => s + 1);
     else setPracticeStreak(0);
   }
+
+  // 1-4 chọn, Enter gửi - cùng hook với phiên luyện, chỉ ở /kiem-tra. Gọi
+  // trước mọi `return` để thứ tự hook không đổi.
+  const keysAnswered = practiceMode ? practiceAnswered : isAnswered;
+  useQuizKeys({
+    optionCount: (practiceMode ? practiceQuiz : quiz)?.options.length ?? 0,
+    enabled: isSignal && !keysAnswered,
+    onPick: (i) => (practiceMode ? setPracticeSelectedOpt(i) : setSelectedOpt(i)),
+    onEnter: () => void (practiceMode ? submitPractice() : handleSubmit()),
+  });
 
   if (!quiz) return null;
 
@@ -415,7 +491,14 @@ export default function DailyNewsQuizWidget({ userId, compact = false, variant =
     const soft = quiet && !big;
     return (
     <div className={big ? "space-y-5" : isSignal || soft ? "mt-4 space-y-4" : "mt-4 space-y-4 pt-3.5 border-t border-line relative z-10"}>
-      {/* Tag / Category Badge */}
+      {/* Tag / Category Badge. Ở biến thể signal, nhãn dạng câu đã nằm trong
+          đầu nhiệm vụ; chỉ giữ dòng "tình huống mô phỏng" - đó là lời nói thật
+          về nguồn, không phải nhãn trang trí. */}
+      {isSignal && !big && !practiceMode ? (
+        activeQuiz.kind === "news" && (
+          <p className="-mt-1 text-[11px] font-medium leading-snug text-ink-muted">{t.newsQuiz.simulatedNotice}</p>
+        )
+      ) : (
       <div className="flex items-center gap-2">
         <span className={`eyebrow inline-flex items-center gap-1.5 px-2 py-0.5 rounded-sm border ${kindStyle.badge}`}>
           <KindIcon className="w-3 h-3" aria-hidden />
@@ -427,6 +510,7 @@ export default function DailyNewsQuizWidget({ userId, compact = false, variant =
           </span>
         )}
       </div>
+      )}
 
       {/* Prompt Title & Sub-question */}
       <div className="space-y-1">
@@ -437,17 +521,44 @@ export default function DailyNewsQuizWidget({ userId, compact = false, variant =
             {activeQuiz.promptTitle}
           </p>
         )}
-        <p className={`font-bold text-ink-body leading-relaxed ${big ? "text-sm" : "text-xs sm:text-[13px]"}`}>
+        <p className={`font-bold leading-relaxed ${isSignal ? "text-ink-max" : "text-ink-body"} ${big ? "text-sm" : isSignal ? "text-sm" : "text-xs sm:text-[13px]"}`}>
           {activeQuiz.question}
         </p>
       </div>
 
       {/* Question Options */}
-      <div className="space-y-2.5">
+      <div className={isSignal ? "space-y-2" : "space-y-2.5"}>
         {activeQuiz.options.map((opt, idx) => {
           const isSelected = activeSelectedOpt === idx;
           const showSuccess = activeIsAnswered && idx === activeQuiz.correctIndex;
           const showFailure = activeIsAnswered && isSelected && !activeIsCorrect;
+
+          if (isSignal) {
+            const state: QuizOptionState = showSuccess
+              ? "correct"
+              : showFailure
+              ? "wrong"
+              : activeIsAnswered
+              ? "dim"
+              : isSelected
+              ? "selected"
+              : "idle";
+            return (
+              <button
+                key={idx}
+                type="button"
+                disabled={activeIsAnswered}
+                aria-pressed={isSelected}
+                onClick={() => (practiceMode ? setPracticeSelectedOpt(idx) : setSelectedOpt(idx))}
+                className={`${quizOption(state, justAnswered)} flex items-center gap-3 ${big ? "px-4 py-3 text-sm" : "px-3 py-2.5 text-[13px]"} leading-snug`}
+              >
+                <span className={quizKey(state)}>
+                  {state === "correct" ? <Check className="h-4 w-4" aria-hidden /> : state === "wrong" ? <X className="h-4 w-4" aria-hidden /> : letterOf(idx)}
+                </span>
+                <span className={`flex-1 ${state === "selected" || state === "correct" ? "font-bold" : "font-medium"}`}>{opt}</span>
+              </button>
+            );
+          }
 
           return (
             /* `focus:outline-none` KHÔNG kèm gì thay thế đã gỡ khỏi cả sáu chỗ
@@ -517,12 +628,18 @@ export default function DailyNewsQuizWidget({ userId, compact = false, variant =
         <button
           onClick={practiceMode ? submitPractice : handleSubmit}
           disabled={activeSelectedOpt === null}
+          title={isSignal ? t.revampQuiz.signalKeysHint : undefined}
           className={soft
             ? "inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-control border border-brand-600 px-4 py-2 text-sm font-bold text-brand-700 transition-colors hover:bg-brand-50 disabled:cursor-not-allowed disabled:border-line disabled:text-ink-faint disabled:hover:bg-transparent dark:border-brand-400 dark:text-brand-300 dark:hover:bg-white/5 dark:disabled:border-white/10"
             : `${btnPrimary} w-full cursor-pointer ${big ? "py-3" : ""} ${isSignal ? "disabled:!bg-surface-raised disabled:!text-ink-faint disabled:!opacity-100" : ""}`}
         >
           <Send className="w-4 h-4" aria-hidden />
           <span>{t.newsQuiz.submitAnswer}</span>
+          {isSignal && !practiceMode && (
+            <span className="ml-1 rounded-md bg-white/15 px-1.5 py-0.5 font-mono text-[11px] font-bold tabular-nums group-disabled:bg-transparent">
+              {format(t.revampQuiz.signalXp, { xp: dailyXp })}
+            </span>
+          )}
         </button>
       ) : isSignal ? (
         renderSignalFeedback(big)
@@ -619,71 +736,163 @@ export default function DailyNewsQuizWidget({ userId, compact = false, variant =
 
   if (isSignal) {
     const answeredToday = isAnswered;
+    const weekDone = week.filter(Boolean).length;
+    // Ba bước của vòng hằng ngày. Màu theo luật chung: xanh = đang làm, cyan =
+    // xong, hổ phách = XP, xám = chưa tới.
+    const steps: { label: string; tone: "active" | "done" | "xp" | "missed" | "idle" }[] = [
+      { label: t.revampQuiz.signalStepAnswer, tone: answeredToday ? "done" : "active" },
+      {
+        label: answeredToday && !isCorrect ? t.revampQuiz.noXpThisQuestion : format(t.revampQuiz.signalXp, { xp: dailyXp }),
+        tone: answeredToday ? (isCorrect ? "xp" : "missed") : "idle",
+      },
+      { label: t.revampQuiz.signalStepTrain, tone: answeredToday ? "active" : "idle" },
+    ];
+    const barTone = {
+      active: "bg-brand-600 dark:bg-brand-500",
+      done: "bg-cyan-600 dark:bg-cyan-400",
+      xp: "bg-amber-500 dark:bg-amber-400",
+      missed: "bg-stone-300 dark:bg-stone-600",
+      idle: "bg-brand-200/70 dark:bg-brand-900",
+    } as const;
+    const labelTone = {
+      active: "text-accent-strong",
+      done: "text-cyan-700 dark:text-cyan-400",
+      xp: "text-warn-strong",
+      missed: "text-ink-muted",
+      idle: "text-ink-muted",
+    } as const;
     return (
       <>
         <section className="flex h-full flex-col">
-          <div className="flex items-center justify-between gap-3">
-            <Sys className="text-accent-strong">
-              {format(t.revampQuiz.signalHeading, { date: mounted ? signalDate(locale) : "" })}
-            </Sys>
-            <div className="flex items-center gap-2">
-              {answeredToday ? (
-                <span className="inline-flex items-center gap-1.5 text-xs font-bold text-cyan-700 dark:text-cyan-400">
-                  <CheckCircle2 className="h-3.5 w-3.5" aria-hidden />
-                  {t.revampQuiz.signalDone}
+          {/* ĐẦU NHIỆM VỤ: nền xanh rất nhạt, không viền. Một dòng định danh +
+              phần thưởng, thanh ba bước, rồi dải 7 ngày + chuỗi ngày học. */}
+          <div className="rounded-card bg-accent-soft px-3.5 py-3 sm:px-4">
+            <div className="flex items-center justify-between gap-3">
+              <div className="flex min-w-0 items-center gap-2.5">
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-control bg-brand-600 text-white dark:bg-brand-500">
+                  <Zap className="h-4 w-4" aria-hidden />
                 </span>
-              ) : (
-                <span className="inline-flex items-center gap-1.5 text-xs font-bold text-ink-body">
-                  <StatusDot />
-                  {t.revampQuiz.signalPending}
+                <div className="min-w-0">
+                  <Sys className="block text-accent-strong">
+                    {format(t.revampQuiz.signalHeading, { date: mounted ? signalDate(locale) : "" })}
+                  </Sys>
+                  <p className="text-[13px] font-bold leading-tight text-ink-max">
+                    {answeredToday ? (
+                      <span className="inline-flex items-center gap-1 text-cyan-700 dark:text-cyan-400">
+                        <CheckCircle2 className="h-3.5 w-3.5" aria-hidden />
+                        {t.revampQuiz.signalDone}
+                      </span>
+                    ) : (
+                      <>
+                        {t.revampQuiz.signalCount}
+                        <span className="font-medium text-ink-muted"> · {t.revampQuiz.signalTime}</span>
+                      </>
+                    )}
+                  </p>
+                </div>
+              </div>
+              <div className="flex shrink-0 items-center gap-1">
+                <span
+                  key={answeredToday ? "earned" : "offer"}
+                  className={`inline-flex items-center gap-1 rounded-control px-2 py-1 font-mono text-sm font-bold tabular-nums ${
+                    answeredToday && !isCorrect
+                      ? "bg-surface/70 text-ink-muted line-through decoration-1"
+                      : "bg-amber-100 text-amber-800 dark:bg-amber-950/60 dark:text-amber-300"
+                  } ${justAnswered && isCorrect && !practiceMode ? "thcn-xp" : ""}`}
+                >
+                  {answeredToday && isCorrect && <Check className="h-3.5 w-3.5" aria-hidden />}
+                  {format(t.revampQuiz.signalXp, { xp: dailyXp })}
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setExpanded(true)}
+                  title={t.revampQuiz.signalExpand}
+                  aria-label={t.revampQuiz.signalExpand}
+                  className="rounded-control p-1.5 text-accent-strong/70 transition-colors hover:bg-surface hover:text-accent-strong cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600"
+                >
+                  <Maximize2 className="h-3.5 w-3.5" />
+                </button>
+              </div>
+            </div>
+
+            <ol className="mt-3 grid grid-cols-3 gap-1.5">
+              {steps.map((st, i) => (
+                <li key={i} className="min-w-0">
+                  <span className={`block h-1.5 rounded-full transition-colors duration-300 ${barTone[st.tone]}`} aria-hidden />
+                  <span className={`mt-1 block truncate font-mono text-[10.5px] font-bold uppercase tracking-[0.04em] ${labelTone[st.tone]}`}>
+                    <span className="hidden sm:inline">{i + 1} · </span>
+                    {st.label}
+                  </span>
+                </li>
+              ))}
+            </ol>
+
+            <div className="mt-2.5 flex items-center justify-between gap-3">
+              <div className="flex items-center gap-1" role="img" aria-label={format(t.revampQuiz.signalWeekAria, { done: weekDone })}>
+                {week.map((d, i) => (
+                  <span
+                    key={i}
+                    className={`h-2.5 w-2.5 rounded-[3px] ${
+                      d === "correct"
+                        ? "bg-cyan-600 dark:bg-cyan-400"
+                        : d === "incorrect"
+                        ? "bg-cyan-300 dark:bg-cyan-800"
+                        : i === 6
+                        ? "bg-surface ring-1 ring-inset ring-brand-500"
+                        : "bg-brand-200/70 dark:bg-brand-900"
+                    }`}
+                  />
+                ))}
+                <span className="ml-1 font-mono text-[11px] font-bold tabular-nums text-ink-body">{weekDone}/7</span>
+              </div>
+              {streakDays !== null && streakDays > 0 && (
+                <span className="inline-flex items-center gap-1 text-xs font-bold text-warn-strong">
+                  <Flame className="h-3.5 w-3.5" aria-hidden />
+                  {format(t.revampQuiz.signalStreak, { n: streakDays })}
                 </span>
               )}
-              <button
-                type="button"
-                onClick={() => setExpanded(true)}
-                title={t.revampQuiz.signalExpand}
-                aria-label={t.revampQuiz.signalExpand}
-                className="p-1.5 text-ink-muted transition-colors hover:bg-surface-raised hover:text-ink cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600"
-              >
-                <Maximize2 className="h-3.5 w-3.5" />
-              </button>
             </div>
           </div>
 
-          <h2 className="mt-2 text-lg sm:text-xl font-black leading-snug tracking-tight text-ink-max">
+          <h2 className="mt-4 text-lg sm:text-xl font-black leading-snug tracking-tight text-ink-max">
             {activeQuiz.promptTitle}
           </h2>
-          <p className="mt-1.5 flex flex-wrap items-center gap-x-2 font-mono text-xs tabular-nums text-ink-muted">
-            <span>{t.revampQuiz.signalCount}</span>
-            <span aria-hidden className="h-1 w-1 bg-stone-400 dark:bg-stone-600" />
-            <span className="font-bold text-warn-strong">{format(t.revampQuiz.signalXp, { xp: dailyXp })}</span>
-            <span aria-hidden className="h-1 w-1 bg-stone-400 dark:bg-stone-600" />
-            <span>{t.revampQuiz.signalTime}</span>
-          </p>
 
           {renderQuiz(false)}
 
           {answeredToday && !practiceMode && (
-            <p className="mt-3 flex flex-wrap items-center gap-x-2 text-xs font-bold">
-              {isCorrect ? (
-                <span className="font-mono tabular-nums text-warn-strong">
-                  {format(t.revampQuiz.signalXpEarned, { xp: dailyXp })}
-                </span>
-              ) : (
-                <span className="font-mono tabular-nums text-ink-faint">{t.revampQuiz.signalXpMissed}</span>
+            <div className="mt-4 flex flex-wrap items-center justify-between gap-x-3 gap-y-2">
+              <p className="flex flex-wrap items-center gap-x-2 text-xs font-bold">
+                {isCorrect ? (
+                  <span className="font-mono tabular-nums text-warn-strong">
+                    {format(t.revampQuiz.signalXpEarned, { xp: dailyXp })}
+                  </span>
+                ) : (
+                  <span className="font-mono tabular-nums text-ink-muted">{t.revampQuiz.signalXpMissed}</span>
+                )}
+                <span className="font-medium text-ink-muted">{t.revampQuiz.signalNextHint}</span>
+              </p>
+              {onTrain && (
+                <button
+                  type="button"
+                  onClick={onTrain}
+                  className="group inline-flex items-center gap-1.5 rounded-control bg-accent-soft px-3 py-2 text-xs font-black text-accent-strong transition-colors hover:bg-brand-100 dark:hover:bg-brand-900 cursor-pointer"
+                >
+                  {t.revampQuiz.signalTrainCta}
+                  <ArrowRight className="h-3.5 w-3.5 transition-transform motion-safe:group-hover:translate-x-0.5" aria-hidden />
+                </button>
               )}
-              <span className="font-medium text-ink-muted">{t.revampQuiz.signalNextHint}</span>
-            </p>
+            </div>
           )}
 
           {!practiceMode && (
             <button
               type="button"
               onClick={startPractice}
-              className="group mt-auto flex w-full items-center justify-between gap-3 border-t border-line-soft pt-3 text-left text-xs font-bold text-ink-muted transition-colors hover:text-accent-strong cursor-pointer"
+              className="group mt-auto flex w-full items-center justify-between gap-3 pt-4 text-left text-xs font-bold text-ink-body transition-colors hover:text-accent-strong cursor-pointer"
             >
               <span>{t.dashCards.practiceUnlimited}</span>
-              <ArrowRight className="h-3.5 w-3.5 shrink-0 text-ink-faint transition-[color,transform] group-hover:text-accent-strong motion-safe:group-hover:translate-x-0.5" />
+              <ArrowRight className="h-3.5 w-3.5 shrink-0 text-ink-muted transition-[color,transform] group-hover:text-accent-strong motion-safe:group-hover:translate-x-0.5" />
             </button>
           )}
         </section>

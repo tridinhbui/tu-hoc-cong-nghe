@@ -33,7 +33,8 @@ describe("/kiem-tra", () => {
   it("renders the daily signal header with the real XP and the training lab", () => {
     renderPage();
     expect(screen.getByText(/DAILY SIGNAL · \d{2}\.\d{2}\.\d{2}/)).toBeTruthy();
-    expect(screen.getByText(`+${QUEST_XP_REWARDS.daily_news_quiz} XP`)).toBeTruthy();
+    // XP thật hiện ở huy hiệu đầu thẻ và ở bước "Nhận XP" - đủ một chỗ là được.
+    expect(screen.getAllByText(`+${QUEST_XP_REWARDS.daily_news_quiz} XP`).length).toBeGreaterThan(0);
     expect(screen.getByText("TRAINING LAB")).toBeTruthy();
 
     const hard = screen.getByRole("radio", { name: "Khó" });

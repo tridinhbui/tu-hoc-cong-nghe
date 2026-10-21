@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useState, useCallback, useMemo } from "react";
+import { useEffect, useState, useCallback, useMemo, useRef } from "react";
 import Link from "next/link";
-import { ArrowRight, Check, CheckCircle2, ChevronLeft, RotateCcw, Trophy, X } from "lucide-react";
+import { ArrowRight, Check, CheckCircle2, ChevronLeft, Cpu, FlaskConical, Layers, Play, RotateCcw, Shuffle, SignalHigh, SignalLow, SignalMedium, Trophy, X } from "lucide-react";
 import { submitQuizSession, computeQuizXp, QUIZ_XP_PER_CORRECT, type QuizTrack, type QuizDifficulty, type QuizAnswerSubmission } from "@/lib/cloudflare-quiz-sessions";
 import { recalculateUserStats } from "@/lib/cloudflare-user";
 import CoCoQuizSuggestion from "@/components/CoCoQuizSuggestion";
@@ -13,7 +13,7 @@ import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 import { useQuizKeys } from "@/lib/use-quiz-keys";
 import { getCurrentUserId } from "@/lib/current-user";
-import { Sys, StatusDot, btnPrimary, btnSecondary, textLink } from "@/components/ui/system";
+import { Sys, StatusDot, btnPrimary, btnSecondary, textLink, quizKey, quizOption, type QuizOptionState } from "@/components/ui/system";
 
 /** Mã định vị mono ở đầu trang: chính đường dẫn của route, không phải nhãn dịch. */
 const ROUTE_CODE = "THCN://APP/KIEM-TRA";
@@ -33,6 +33,9 @@ interface ChallengeQuestion {
 // at render time, because module scope has no useI18n() to call.
 const TRACK_IDS: QuizTrack[] = ["personal", "professional"];
 const DIFFICULTY_IDS: QuizDifficulty[] = ["tat-ca", "de", "trung-binh", "kho"];
+/** Biểu tượng mỗi mảng / mỗi nấc độ khó - nhận ra bằng hình trước khi đọc chữ. */
+const TRACK_ICON = { personal: Cpu, professional: Layers } as const;
+const DIFFICULTY_ICON = { "tat-ca": Shuffle, de: SignalLow, "trung-binh": SignalMedium, kho: SignalHigh } as const;
 
 const PASS_RATIO = 0.6;
 
@@ -54,6 +57,17 @@ export default function KiemTraPage() {
   const [recording, setRecording] = useState(false);
 
   const [isNewsAnswered, setIsNewsAnswered] = useState(false);
+  /** Nút chạy phiên, để bước 3 của Daily Signal ("luyện phần yếu") gọi tới:
+   *  cuộn tới, lấy tiêu điểm, vòng xanh loang hai nhịp. */
+  const launchRef = useRef<HTMLButtonElement>(null);
+  const [launchCue, setLaunchCue] = useState(0);
+  function cueTrainingLab() {
+    const el = launchRef.current;
+    if (!el) return;
+    el.scrollIntoView({ behavior: "smooth", block: "center" });
+    el.focus({ preventScroll: true });
+    setLaunchCue((n) => n + 1);
+  }
 
   useEffect(() => {
     void getCurrentUserId().then(setUserId);
@@ -230,21 +244,32 @@ export default function KiemTraPage() {
 
       <div className="flex-1 min-h-0 overflow-y-auto max-w-6xl mx-auto w-full px-4 sm:px-6 py-3 sm:py-4">
         {stage === "setup" && (
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-x-10 lg:gap-y-6 items-stretch">
-            {/* TRÁI: DAILY SIGNAL - thử thách công nghệ của hôm nay. */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-x-8 lg:gap-y-5 items-stretch">
+            {/* TRÁI: DAILY SIGNAL - việc chính của hôm nay. */}
             <div className="lg:col-span-6 h-full flex flex-col">
-              <div className="h-full flex flex-col">
-                <DailyNewsQuizWidget userId={userId || "guest"} variant="signal" />
-              </div>
+              <DailyNewsQuizWidget userId={userId || "guest"} variant="signal" onTrain={cueTrainingLab} />
             </div>
 
-            {/* PHẢI: TRAINING LAB - chọn mảng + độ khó rồi chạy một phiên. */}
-            <div className="lg:col-span-6 h-full flex flex-col">
-              <div className="h-full flex flex-col gap-5 border-t border-line-soft pt-6 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-10">
-                <div>
-                  <Sys className="text-accent-strong">{t.revampQuiz.labName}</Sys>
-                  <CoCoSays lines={t.coco.kiemTra} size={40} className="mt-2" />
+            {/* PHẢI: TRAINING LAB - bàn điều khiển riêng: một mặt nền xám nhạt,
+                không viền; chọn mảng + độ khó rồi chạy một phiên. Đứng sau
+                Daily Signal về thứ bậc, nhưng mọi thứ trong nó đều bấm được.
+                Dính ở đầu vùng cuộn: đọc lời giải bên trái xong, nút chạy
+                phiên vẫn ngay trong tầm mắt. */}
+            <div className="lg:col-span-6 lg:self-start lg:sticky lg:top-0">
+              <div id="training-lab" className="flex flex-col gap-4 rounded-card bg-surface-raised p-4 sm:p-5">
+                <div className="flex items-center justify-between gap-3">
+                  <div className="flex items-center gap-2.5">
+                    <span className="flex h-8 w-8 items-center justify-center rounded-control bg-surface-invert text-ink-invert">
+                      <FlaskConical className="h-4 w-4" aria-hidden />
+                    </span>
+                    <Sys className="text-ink-max font-bold">{t.revampQuiz.labName}</Sys>
+                  </div>
+                  <span className="rounded-control bg-amber-100 px-2 py-1 font-mono text-xs font-bold tabular-nums text-amber-800 dark:bg-amber-950/60 dark:text-amber-300">
+                    {format(t.revampQuiz.labRewardXp, { xp: xpPerQuestion })}
+                  </span>
                 </div>
+
+                <CoCoSays lines={t.coco.kiemTra} size={34} />
 
                 {userId && (
                   <CoCoQuizSuggestion
@@ -257,14 +282,15 @@ export default function KiemTraPage() {
                   />
                 )}
 
-                {/* Mảng kiến thức: hai ô cạnh nhau, ô đang chọn có viền xanh
-                    dày và dấu tích - quét bằng mắt là biết, không phải đọc. */}
+                {/* Mảng kiến thức: ô đang chọn nổi lên thành mặt trắng có vòng
+                    xanh, biểu tượng tô đặc; ô kia chìm vào nền bàn điều khiển. */}
                 <div>
-                  <Sys className="text-ink-muted">{t.revampQuiz.labAreaLabel}</Sys>
+                  <Sys className="text-ink-body">{t.revampQuiz.labAreaLabel}</Sys>
                   <div className="mt-1.5 grid grid-cols-1 sm:grid-cols-2 gap-2" role="radiogroup" aria-label={t.revampQuiz.labAreaLabel}>
-                    {TRACK_IDS.map((id, i) => {
+                    {TRACK_IDS.map((id) => {
                       const desc = id === "personal" ? t.quizPage.trackPersonalDesc : t.quizPage.trackProfessionalDesc;
                       const on = track === id;
+                      const Icon = TRACK_ICON[id];
                       return (
                         <button
                           key={id}
@@ -272,34 +298,41 @@ export default function KiemTraPage() {
                           role="radio"
                           onClick={() => setTrack(id)}
                           aria-checked={on}
-                          className={`relative text-left px-3 py-2.5 transition-colors cursor-pointer ${
-                            on
-                              ? "border-2 border-accent bg-accent-soft"
-                              : "border-2 border-transparent bg-surface-raised/60 opacity-80 hover:bg-surface-raised hover:opacity-100"
+                          className={`group flex items-start gap-2.5 rounded-control px-3 py-2.5 text-left transition-[background-color,box-shadow,transform] duration-150 cursor-pointer active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 ${
+                            on ? "bg-surface ring-2 ring-accent" : "hover:bg-surface/70"
                           }`}
                         >
-                          <div className="flex items-center justify-between gap-2">
-                            <Sys className={on ? "text-accent-strong" : "text-ink-faint"}>{letter(i)}</Sys>
-                            {on && <Check className="h-3.5 w-3.5 text-accent-strong" aria-hidden />}
-                          </div>
-                          <p className={`mt-1 text-sm font-black leading-tight ${on ? "text-ink-max" : "text-ink-soft"}`}>{trackLabel(id)}</p>
-                          <p className={`mt-0.5 text-[11px] leading-snug ${on ? "text-ink-body" : "text-ink-faint"}`}>{desc}</p>
+                          <span
+                            className={`mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-md transition-colors ${
+                              on ? "bg-brand-600 text-white dark:bg-brand-500" : "bg-surface-sunken text-ink-muted group-hover:text-accent-strong"
+                            }`}
+                          >
+                            <Icon className="h-3.5 w-3.5" aria-hidden />
+                          </span>
+                          <span className="min-w-0 flex-1">
+                            <span className="flex items-center justify-between gap-2">
+                              <span className={`text-sm font-black leading-tight ${on ? "text-ink-max" : "text-ink-body"}`}>{trackLabel(id)}</span>
+                              {on && <Check className="h-3.5 w-3.5 shrink-0 text-accent-strong" aria-hidden />}
+                            </span>
+                            <span className={`mt-0.5 block text-[11.5px] leading-snug ${on ? "text-ink-body" : "text-ink-muted"}`}>{desc}</span>
+                          </span>
                         </button>
                       );
                     })}
                   </div>
                 </div>
 
-                {/* Độ khó: một thanh bốn nấc liền nhau, nấc đang chọn tô đặc. */}
+                {/* Độ khó: thanh bốn nấc, nấc đang chọn tô đặc xanh. */}
                 <div>
-                  <Sys className="text-ink-muted">{t.revampQuiz.labDifficultyLabel}</Sys>
+                  <Sys className="text-ink-body">{t.revampQuiz.labDifficultyLabel}</Sys>
                   <div
-                    className="mt-1.5 grid grid-cols-4 gap-1 rounded-sm bg-surface-raised/60 p-1"
+                    className="mt-1.5 grid grid-cols-4 gap-1 rounded-control bg-surface-sunken/70 p-1"
                     role="radiogroup"
                     aria-label={t.revampQuiz.labDifficultyLabel}
                   >
-                    {DIFFICULTY_IDS.map((id, i) => {
+                    {DIFFICULTY_IDS.map((id) => {
                       const on = difficulty === id;
+                      const Icon = DIFFICULTY_ICON[id];
                       return (
                         <button
                           key={id}
@@ -307,12 +340,13 @@ export default function KiemTraPage() {
                           role="radio"
                           onClick={() => setDifficulty(id)}
                           aria-checked={on}
-                          className={`rounded-xs py-1.5 text-xs font-bold transition-colors cursor-pointer ${
+                          className={`inline-flex items-center justify-center gap-1.5 rounded-md py-2 text-xs font-bold transition-colors cursor-pointer active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 ${
                             on
-                              ? "bg-surface text-accent-strong font-black ring-2 ring-inset ring-accent"
-                              : "text-ink-muted hover:bg-surface-raised hover:text-ink"
+                              ? "bg-brand-600 text-white dark:bg-brand-500"
+                              : "text-ink-body hover:bg-surface hover:text-accent-strong"
                           }`}
                         >
+                          <Icon className="hidden h-3.5 w-3.5 sm:block" aria-hidden />
                           {difficultyLabel(id)}
                         </button>
                       );
@@ -320,23 +354,26 @@ export default function KiemTraPage() {
                   </div>
                 </div>
 
-                {/* Cấu hình phiên đọc lại thành một dòng, cùng phần thưởng. */}
-                <div className="mt-auto space-y-3">
-                  <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1 border-t border-line pt-3">
-                    <p className="min-w-0 text-xs text-ink-muted">
-                      <Sys className="mr-2 text-ink-faint">{t.revampQuiz.labSpecLabel}</Sys>
-                      <span className="font-bold text-ink-max">{trackLabel(track)}</span>
-                      <span aria-hidden className="mx-1.5 inline-block h-1 w-1 translate-y-[-2px] bg-stone-400 dark:bg-stone-600" />
-                      <span className="font-bold text-ink-max">{difficultyLabel(difficulty)}</span>
-                    </p>
-                    <p className="font-mono text-xs tabular-nums">
-                      <span className="font-bold text-warn-strong">{format(t.revampQuiz.labRewardXp, { xp: xpPerQuestion })}</span>
-                      <span className="text-ink-muted"> {format(t.revampQuiz.labPassRule, { pct: Math.round(PASS_RATIO * 100) })}</span>
-                    </p>
-                  </div>
-                  <button type="button" onClick={() => startSelectedQuiz(track, difficulty)} className={`${btnPrimary} w-full cursor-pointer`}>
-                    <span>{t.revampQuiz.labStart}</span>
-                    <ArrowRight className="w-4 h-4" />
+                {/* Chạy phiên: nút lớn mang theo cấu hình vừa chọn, như lệnh
+                    khởi chạy - người học đọc lại lựa chọn ngay trên nút bấm. */}
+                <div className="pt-1">
+                  <button
+                    key={launchCue}
+                    ref={launchRef}
+                    type="button"
+                    onClick={() => startSelectedQuiz(track, difficulty)}
+                    className={`group flex w-full items-center gap-3 rounded-card bg-brand-600 px-4 py-3 text-left text-white transition-[background-color,transform] duration-150 hover:bg-brand-700 active:scale-[0.99] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 focus-visible:ring-offset-surface-raised dark:bg-brand-500 dark:hover:bg-brand-400 ${launchCue ? "thcn-ping" : ""}`}
+                  >
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-control bg-white/15 transition-colors group-hover:bg-white/25">
+                      <Play className="h-4 w-4 fill-current" aria-hidden />
+                    </span>
+                    <span className="min-w-0 flex-1">
+                      <span className="block text-[13px] font-black uppercase tracking-wide">{t.revampQuiz.labStart}</span>
+                      <span className="block truncate text-xs font-medium text-white/80">
+                        {trackLabel(track)} · {difficultyLabel(difficulty)} · {format(t.revampQuiz.labPassRule, { pct: Math.round(PASS_RATIO * 100) })}
+                      </span>
+                    </span>
+                    <ArrowRight className="h-4 w-4 shrink-0 transition-transform motion-safe:group-hover:translate-x-1" aria-hidden />
                   </button>
                 </div>
               </div>
@@ -364,7 +401,19 @@ export default function KiemTraPage() {
 
         {stage !== "setup" && (
           <div className="max-w-2xl mx-auto">
-            {stage === "loading" && <p className="text-center text-ink-muted py-16">{t.quizPage.loadingQuestions}</p>}
+            {stage === "loading" && (
+              <div className="py-16 space-y-3" role="status">
+                <p className="flex items-center justify-center gap-2 text-sm font-bold text-accent-strong">
+                  <FlaskConical className="h-4 w-4 motion-safe:animate-pulse" aria-hidden />
+                  {t.quizPage.loadingQuestions}
+                </p>
+                <div className="mx-auto flex max-w-xs gap-1" aria-hidden>
+                  {[0, 1, 2, 3, 4].map((i) => (
+                    <span key={i} className="h-1.5 flex-1 rounded-full bg-accent-soft motion-safe:animate-pulse" style={{ animationDelay: `${i * 120}ms` }} />
+                  ))}
+                </div>
+              </div>
+            )}
 
             {stage === "error" && (
               <div className="text-center py-16 space-y-4">
@@ -417,7 +466,7 @@ export default function KiemTraPage() {
                     : i === activeQ
                       ? "bg-brand-600 dark:bg-brand-500"
                       : "bg-surface-sunken";
-                  return <span key={i} className={`h-1.5 flex-1 transition-colors ${cls}`} />;
+                  return <span key={i} className={`h-1.5 flex-1 rounded-full transition-colors duration-300 ${cls}`} />;
                 })}
               </div>
 
@@ -425,7 +474,7 @@ export default function KiemTraPage() {
                 <span className="font-bold tabular-nums text-ink-max">
                   {format(t.quizPage.questionCounter, { current: activeQ + 1, total: questions.length })}
                 </span>
-                <span className="truncate max-w-[60%] text-ink-faint">{q.lessonTitle}</span>
+                <span className="truncate max-w-[60%] text-ink-muted">{q.lessonTitle}</span>
               </div>
             </div>
 
@@ -435,33 +484,28 @@ export default function KiemTraPage() {
               {q.options.map((opt, oi) => {
                 const isSelected = selected === oi;
                 const isCorrectOpt = oi === q.correct;
-                let cls = "border-transparent bg-surface-raised/60 text-ink-body hover:bg-surface-raised hover:text-ink";
-                let gutter = "text-ink-faint";
-                if (submitted) {
-                  if (isCorrectOpt) {
-                    cls = "border-cyan-600 bg-cyan-50 text-ink-max font-semibold dark:border-cyan-400 dark:bg-cyan-950/40";
-                    gutter = "text-cyan-700 dark:text-cyan-400";
-                  } else if (isSelected) {
-                    cls = "border-red-600 bg-red-50 text-red-800 font-semibold dark:border-red-400 dark:bg-red-950/40 dark:text-red-200";
-                    gutter = "text-danger";
-                  } else cls = "border-transparent bg-surface-raised/40 text-ink-faint";
-                } else if (isSelected) {
-                  cls = "border-accent bg-accent-soft text-ink-max font-semibold";
-                  gutter = "text-accent-strong";
-                }
+                const state: QuizOptionState = submitted
+                  ? isCorrectOpt
+                    ? "correct"
+                    : isSelected
+                      ? "wrong"
+                      : "dim"
+                  : isSelected
+                    ? "selected"
+                    : "idle";
                 return (
                   <button
                     key={oi}
+                    type="button"
                     disabled={submitted}
+                    aria-pressed={isSelected}
                     onClick={() => choose(oi)}
-                    className={`grid w-full grid-cols-[1.5rem_minmax(0,1fr)_1rem] items-baseline text-left px-3 py-2.5 rounded-sm border-2 transition-colors cursor-pointer text-sm leading-6 select-text ${cls}`}
+                    className={`${quizOption(state)} flex items-center gap-3 px-3 py-2.5 text-sm leading-6 select-text`}
                   >
-                    <Sys className={gutter}>{letter(oi)}</Sys>
-                    <span>{opt}</span>
-                    <span className="self-center">
-                      {submitted && isCorrectOpt && <Check className="h-4 w-4 text-cyan-700 dark:text-cyan-400" aria-hidden />}
-                      {submitted && isSelected && !isCorrectOpt && <X className="h-4 w-4 text-danger" aria-hidden />}
+                    <span className={quizKey(state)}>
+                      {state === "correct" ? <Check className="h-4 w-4" aria-hidden /> : state === "wrong" ? <X className="h-4 w-4" aria-hidden /> : letter(oi)}
                     </span>
+                    <span className={`flex-1 ${state === "selected" || state === "correct" ? "font-semibold" : ""}`}>{opt}</span>
                   </button>
                 );
               })}
