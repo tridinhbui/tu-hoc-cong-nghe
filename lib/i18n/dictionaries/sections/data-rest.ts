@@ -14,7 +14,7 @@ export const dataRestVi = {
       // "Học bài" / "Học theo nghề" have no existing dictionary key
       // (t.nav only covers the entries that already went through labelKey).
       hocBai: "Học bài",
-      loTrinh: "Bắt đầu từ đâu",
+      loTrinh: "Lộ trình học",
       hocTheoNghe: "Học theo nghề",
       // Parity exemptions: proper noun / symbol, identical in both languages.
       gameKingdomLabel: "Game Kingdom",
@@ -160,7 +160,7 @@ export const dataRestEn: typeof dataRestVi = {
     appNavbar: {
       library: "Library",
       hocBai: "Lessons",
-      loTrinh: "Where to start",
+      loTrinh: "Learning paths",
       hocTheoNghe: "Learn by career",
       gameKingdomLabel: "Game Kingdom",
       cmdKHint: "⌘K",

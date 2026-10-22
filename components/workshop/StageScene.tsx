@@ -225,9 +225,10 @@ const SCENES: Record<StageSceneId, () => ReactNode> = {
 };
 
 /** Cảnh xưởng của một chặng, tra theo `tag`. `muted`: chặng chưa mở - xám và
- *  nhạt, để màu chỉ dành cho thứ đang làm và đã làm. */
-export default function StageScene({ tag, className = "", muted = false }: { tag?: string | null; className?: string; muted?: boolean }) {
-  const Scene = SCENES[stageSceneFor(tag)];
+ *  nhạt, để màu chỉ dành cho thứ đang làm và đã làm. `scene` chọn thẳng một
+ *  cảnh khi thứ cần vẽ không phải một chặng (vd. lối học theo nhu cầu). */
+export default function StageScene({ tag, scene, className = "", muted = false }: { tag?: string | null; scene?: StageSceneId; className?: string; muted?: boolean }) {
+  const Scene = SCENES[scene ?? stageSceneFor(tag)];
   return (
     <svg viewBox="0 0 240 150" className={`${className} ${muted ? "opacity-45 grayscale" : ""}`} aria-hidden>
       <Scene />

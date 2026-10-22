@@ -49,6 +49,7 @@ export default function LearningPathClient({
   savedPace,
   flowEffort,
   milestones,
+  lockedTrack,
 }: {
   counts: Record<Track, number>;
   done: Record<Track, number>;
@@ -61,6 +62,10 @@ export default function LearningPathClient({
   /** Các chặng của từng hướng theo thứ tự, kèm số bài (đếm ở server bằng cùng
    *  luật với `counts`, nên tổng các chặng khớp tổng hướng). */
   milestones?: Record<Track, { total: number; done: number }[]>;
+  /** Trang chi tiết của một lối (/lo-trinh/bat-dau-tu-dau, /lo-trinh/theo-nghe):
+   *  hướng đã được chọn ở trang chọn lối, nên ô chọn hướng và khối mục tiêu
+   *  (đã có trang riêng) ẩn đi, và vào trang là ghi lựa chọn đó. */
+  lockedTrack?: Track;
 }) {
   const { t, locale } = useI18n();
   const p = t.learningPath;
@@ -69,7 +74,7 @@ export default function LearningPathClient({
   // Dựng bằng "personal" rồi để một effect sửa lại sau khi hydrate nghĩa là ai
   // đã chọn chuyên ngành vẫn thấy lộ trình cá nhân sáng lên trong một nhịp - và
   // trên kết nối chậm thì nhịp ấy đủ dài để bấm nhầm.
-  const [track, setTrack] = useState<Track>(savedTrack ?? "personal");
+  const [track, setTrack] = useState<Track>(lockedTrack ?? savedTrack ?? "personal");
   const [pace, setPace] = useState<Pace>(savedPace ?? DEFAULT_PACE);
   const [greeting, setGreeting] = useState<Awaited<ReturnType<typeof getDashboardGreetingAction>> | null>(null);
   const [loading, setLoading] = useState(true);
@@ -81,13 +86,13 @@ export default function LearningPathClient({
     // localStorage chỉ còn là đường DỰ PHÒNG, cho tài khoản có lựa chọn từ
     // trước khi hai cột kia tồn tại. Server thắng khi cả hai cùng có: nó là thứ
     // theo được người dùng sang máy khác.
-    if (savedTrack === null) {
+    if (savedTrack === null && !lockedTrack) {
       const local = window.localStorage.getItem("activeTrack");
       if (local === "professional" || local === "personal") setTrack(local);
     }
     if (savedPace === null) setPace(readPace());
     setToday(new Date());
-  }, [savedTrack, savedPace]);
+  }, [savedTrack, savedPace, lockedTrack]);
 
   /** Ghi lên server, và nói thật kết quả.
    *
@@ -129,6 +134,13 @@ export default function LearningPathClient({
     }
     persist({ track: next });
   };
+
+  // Vào trang chi tiết của một lối = chọn lối đó. Ghi một lần, chỉ khi khác
+  // lựa chọn đã lưu, để dashboard mở đúng hướng người học vừa chọn.
+  useEffect(() => {
+    if (lockedTrack && savedTrack !== lockedTrack) pickTrack(lockedTrack);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lockedTrack]);
 
   const savePace = (next: Pace) => {
     setPace(next);
@@ -198,10 +210,12 @@ export default function LearningPathClient({
     // khỏi màn hình chính - chúng làm nản hơn là giúp.
     <div className="mx-auto max-w-5xl px-4 pt-5 pb-28 sm:px-6">
       <header className="flex items-center justify-between gap-3">
-        <h1 className="text-2xl font-black leading-tight tracking-tight text-ink-max sm:text-3xl">{p.title}</h1>
-        <Link href="/dashboard" className={`${textLink} shrink-0 text-sm`}>
+        <h1 className="text-2xl font-black leading-tight tracking-tight text-ink-max sm:text-3xl">
+          {lockedTrack === "personal" ? p.startTitle : lockedTrack === "professional" ? p.careerTitle : p.title}
+        </h1>
+        <Link href={lockedTrack ? "/lo-trinh" : "/dashboard"} className={`${textLink} shrink-0 text-sm`}>
           <ArrowLeft className="h-4 w-4" />
-          {p.backToDashboard}
+          {lockedTrack ? p.backToPaths : p.backToDashboard}
         </Link>
       </header>
 
@@ -301,7 +315,11 @@ export default function LearningPathClient({
         </div>
 
         <aside id="pick" className="scroll-mt-6 space-y-6 lg:border-l lg:border-line-strong lg:pl-8">
-          <div>
+          {lockedTrack === "professional" && (
+            <p className="border-l-2 border-stone-300 pl-3 text-xs leading-5 text-ink-body dark:border-stone-700">{p.proNote}</p>
+          )}
+          {/* Trang chi tiết của một lối: hướng đã chọn ở /lo-trinh, không hỏi lại. */}
+          <div className={lockedTrack ? "hidden" : undefined}>
             <h2 className="text-base font-black tracking-tight text-ink-max">{p.stepPickTitle}</h2>
             <div className="mt-3 grid grid-cols-2 gap-2">
               {(["personal", "professional"] as const).map((id) => {
@@ -394,6 +412,7 @@ export default function LearningPathClient({
             </div>
           </details>
 
+          {!lockedTrack && (
           <details id="goal" className="group scroll-mt-6 border-t border-line-strong pt-4">
             <summary className="flex cursor-pointer list-none items-center justify-between gap-3 marker:content-none">
               <span className="text-base font-black tracking-tight text-ink-max">{p.goalTitle}</span>
@@ -403,6 +422,7 @@ export default function LearningPathClient({
               <LearningGoalCard effort={flowEffort} mission />
             </div>
           </details>
+          )}
 
           <Link href="/lo-trinh/huong-dan" className={`${textLink} border-t border-line-strong pt-4 text-sm`}>
             {p.guideTitle} <ArrowRight className="h-3.5 w-3.5" />

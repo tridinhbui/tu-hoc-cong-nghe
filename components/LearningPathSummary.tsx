@@ -120,7 +120,7 @@ export default function LearningPathSummary({
               </p>
 
               <Link
-                href="/lo-trinh"
+                href={track === "professional" ? "/lo-trinh/theo-nghe" : "/lo-trinh/bat-dau-tu-dau"}
                 className="mt-2.5 inline-block text-xs font-bold text-accent-strong underline-offset-4 hover:underline"
               >
                 {p.summaryFull}

@@ -122,7 +122,7 @@ const NAV_SECTIONS: NavSection[] = [
   {
     titleKey: "sectionLearn",
     links: [
-      // "Bắt đầu từ đâu" đứng đầu nhóm: người mới mở app
+      // "Lộ trình học" đứng đầu nhóm: người mới mở app
       // cần câu trả lời đó trước danh sách bài.
       //
       // "Học theo nhu cầu" từng là một dòng riêng ngay dưới Học bài, và đó là

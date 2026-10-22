@@ -109,7 +109,7 @@ export default async function LearningFlowPage({ params }: { params: Promise<{ f
         {/* Về đúng nơi người đọc chọn hành trình: /lo-trinh nếu đã đăng nhập
             (/hoc-theo-nhu-cau chuyển họ về đó), danh sách công khai nếu là khách. */}
         <Link
-          href={signedIn ? "/lo-trinh" : "/hoc-theo-nhu-cau"}
+          href={signedIn ? "/lo-trinh/theo-nhu-cau" : "/hoc-theo-nhu-cau"}
           className="mb-6 inline-flex items-center gap-1.5 text-sm font-bold text-ink-muted transition-colors hover:text-ink-max"
         >
           <ArrowLeft className="h-4 w-4" />

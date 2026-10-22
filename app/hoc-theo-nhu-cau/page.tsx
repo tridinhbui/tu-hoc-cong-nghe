@@ -34,12 +34,12 @@ async function isSignedIn() {
 }
 
 export default async function LearningFlowsPage() {
-  // Người đã đăng nhập có đúng câu hỏi này ở đầu /lo-trinh ("Bắt đầu từ đâu"),
-  // kèm tiến độ của họ và nhịp học. Hai trang cùng hỏi "bạn muốn làm gì?" là
+  // Người đã đăng nhập có đúng câu hỏi này ở /lo-trinh/theo-nhu-cau - một
+  // trong ba lối của trang chọn lộ trình. Hai trang cùng hỏi "bạn muốn làm gì?" là
   // hai chỗ phải đoán nên vào chỗ nào, nên họ được đưa thẳng về đó. Trang này
   // còn lại cho khách: /lo-trinh cần đăng nhập, còn trang chủ công khai cần một
   // chỗ để người chưa đăng ký xem mỗi hành trình gồm những gì.
-  if (await isSignedIn()) redirect("/lo-trinh");
+  if (await isSignedIn()) redirect("/lo-trinh/theo-nhu-cau");
 
   const locale = await getServerLocale();
   const t = getDictionary(locale).learningFlows;

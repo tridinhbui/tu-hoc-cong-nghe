@@ -1,0 +1,134 @@
+import "server-only";
+import { redirect } from "next/navigation";
+import { createServerCloudflareClient } from "@/lib/cloudflare-server";
+import { getLessonsMeta } from "@/lib/lessons-loader";
+import { isLessonInRange, lessonBelongsToTrack, TRACK_PERSONAL, TRACK_PROFESSIONAL } from "@/lib/track-stages";
+import { stageTopicFor, type StageTopicId } from "@/lib/stage-topics";
+import { paceFromParts, type Pace } from "@/lib/learning-pace";
+import { LEARNING_FLOWS } from "@/lib/learning-flows";
+import { flowStats } from "@/components/learning-flows/shared";
+import type { FlowEffort } from "@/components/learning-flows/LearningGoalCard";
+
+type Track = "personal" | "professional";
+
+/**
+ * Dữ liệu chung của cụm /lo-trinh: trang chọn lối (/lo-trinh) và ba trang
+ * chi tiết (bat-dau-tu-dau, theo-nghe, theo-nhu-cau) đọc cùng một nguồn.
+ *
+ * Lộ trình học - chỗ người mới đến TRƯỚC khi học bài nào.
+ *
+ * Trước trang này, việc chọn lộ trình chỉ nằm ở hai thẻ track trên dashboard,
+ * không kèm một chữ hướng dẫn nào: người mới mở app ra thấy 722 bài chia hai
+ * track và không có gì nói nên bắt đầu từ đâu, mỗi ngày bao nhiêu, hay bao giờ
+ * thì được đi tiếp.
+ *
+ * KHÔNG làm thành tab dashboard. DASHBOARD_TABS còn vài giá trị tàn dư từ lần
+ * dải tab bị gỡ (c3f7ec9) - lưu được vào localStorage mà không nút nào chọn
+ * lại - nên thêm một cái nữa là tạo thêm đúng loại bẫy đó. Một route riêng cộng
+ * một mục navbar là khuôn /nghe-nghiep-hoc đã dùng: mọi lối học song song nằm
+ * ở navbar, dashboard chỉ giữ hai track đánh số theo ngày.
+ *
+ * Số bài mỗi track đếm tại đây chứ không viết cứng: hai con số đó xuất hiện
+ * trong hướng dẫn ("khoảng bao lâu thì xong"), và một hằng số viết cứng sẽ lệch
+ * ngay lần thêm bài tiếp theo mà không có gì báo.
+ *
+ * HAI LỰA CHỌN CỦA TRANG ĐỌC TỪ SERVER, không từ localStorage. Chúng từng chỉ
+ * sống trong trình duyệt, nên đổi máy là mất - xem
+ * cloudflare/migrations/20260912_learning_path_prefs.sql. Client vẫn ghi
+ * localStorage song song, vì dashboard đọc `activeTrack` từ đó.
+ */
+export async function loadLearningPath() {
+  const cloudflare = await createServerCloudflareClient();
+  const {
+    data: { user },
+  } = await cloudflare.auth.getUser();
+
+  if (!user) {
+    redirect("/login");
+  }
+
+  const [lessonsMeta, { data: progressRows }, { data: profile }] = await Promise.all([
+    getLessonsMeta(),
+    cloudflare.from("user_progress").select("lesson_id").eq("user_id", user.id).eq("completed", true),
+    cloudflare
+      .from("user_profiles")
+      .select("learning_track, learning_pace_per_day, learning_pace_days_per_week")
+      .eq("id", user.id)
+      .maybeSingle(),
+  ]);
+
+  const visible = lessonsMeta.filter((l) => l.isVisible !== false);
+  const counts = {
+    personal: visible.filter((l) => lessonBelongsToTrack(l, "personal")).length,
+    professional: visible.filter((l) => lessonBelongsToTrack(l, "professional")).length,
+  };
+
+  const completedIds = new Set((progressRows ?? []).map((r) => r.lesson_id as number));
+  const done = {
+    personal: visible.filter((l) => lessonBelongsToTrack(l, "personal") && completedIds.has(l.id)).length,
+    professional: visible.filter((l) => lessonBelongsToTrack(l, "professional") && completedIds.has(l.id)).length,
+  };
+
+  /** Chủ đề yếu -> bài CHƯA HỌC đầu tiên của chủ đề đó.
+   *
+   *  Khối "chủ đề yếu nhất" trước đây là mấy viên chữ đỏ không bấm được: nó nêu
+   *  đúng vấn đề rồi dừng ở đó, và người đọc không có đường nào đi tiếp ngoài
+   *  việc tự đi tìm. Đây là chỗ tệ nhất để làm vậy, vì nó là phần duy nhất trên
+   *  trang nói về điểm yếu của riêng họ.
+   *
+   *  Tính ở server, cho CẢ HAI hướng: hướng đang chọn nằm ở client (localStorage
+   *  hoặc cột vừa đọc), và chờ biết hướng rồi mới đi lấy sẽ thành một vòng gọi
+   *  nữa cho một bảng tra 25 mục.
+   *
+   *  Bài đầu tiên chưa học, không phải bài "dễ nhất" hay "liên quan nhất": thứ
+   *  tự trong track đã là thứ tự sư phạm, và một phép chọn thông minh hơn ở đây
+   *  sẽ mâu thuẫn với chính thứ tự mà mọi phần khác của app đang đi theo. */
+  const topicEntry = {} as Record<Track, Partial<Record<StageTopicId, { slug: string; title: string }>>>;
+  for (const track of ["personal", "professional"] as const) {
+    const map: Partial<Record<StageTopicId, { slug: string; title: string }>> = {};
+    for (const lesson of visible) {
+      if (completedIds.has(lesson.id)) continue;
+      if (!lessonBelongsToTrack(lesson, track)) continue;
+      const topic = stageTopicFor(lesson.id, track);
+      if (map[topic]) continue;
+      map[topic] = { slug: lesson.slug, title: lesson.title };
+    }
+    topicEntry[track] = map;
+  }
+
+  /** Các mốc của từng hướng: số bài mỗi chặng, đếm bằng cùng luật với `counts`
+   *  để người đọc không thấy tổng các chặng lệch tổng hướng. Thứ tự và số chặng
+   *  là của TRACK_*.stages; tên chặng do client tra từ điển theo vị trí. */
+  const milestones = Object.fromEntries(
+    (["personal", "professional"] as const).map((track) => {
+      const stages = (track === "personal" ? TRACK_PERSONAL : TRACK_PROFESSIONAL).stages;
+      return [
+        track,
+        stages.map((stage) => {
+          const lessons = visible.filter((l) => lessonBelongsToTrack(l, track) && isLessonInRange(l.id, stage));
+          return { total: lessons.length, done: lessons.filter((l) => completedIds.has(l.id)).length };
+        }),
+      ];
+    }),
+  ) as Record<Track, { total: number; done: number }[]>;
+
+  /** "18 bài · ~2 giờ" trên thẻ chọn mục tiêu: đếm từ meta bài thật, cùng
+   *  phép tính /hoc-theo-nhu-cau dùng, để hai trang không ghi hai con số. */
+  const bySlug = new Map(lessonsMeta.map((m) => [m.slug, m]));
+  const flowEffort: FlowEffort = Object.fromEntries(
+    LEARNING_FLOWS.map((f) => [f.id, flowStats(f, bySlug)]),
+  );
+
+  const savedTrack: Track | null =
+    profile?.learning_track === "personal" || profile?.learning_track === "professional"
+      ? profile.learning_track
+      : null;
+  const savedPace: Pace | null = paceFromParts(
+    profile?.learning_pace_per_day,
+    profile?.learning_pace_days_per_week,
+  );
+
+  return { userId: user.id, counts, done, topicEntry, savedTrack, savedPace, flowEffort, milestones };
+}
+
+export type LearningPathData = Awaited<ReturnType<typeof loadLearningPath>>;
