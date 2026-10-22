@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { getTotalCompletedLessonsCount } from "@/lib/cloudflare-user";
 import { useI18n } from "@/lib/i18n/context";
 import { intlLocale } from "@/lib/i18n";
-import { StatusDot } from "@/components/ui/system";
 
 // Topic titles are copy, slugs/icons/colors are structure - so these are
 // built from `t` rather than kept as a static module-scope array. See
@@ -79,26 +78,25 @@ export default function DashboardRecommendations() {
   if (liveCompletedCount === null) return null;
 
   return (
-    // MỘT khung, không phải hai. Bản trước là một thẻ trắng bọc một thẻ xanh
-    // viền gradient - hai lớp bo góc lồng nhau cho đúng một con số, và cái
-    // khung trong tự nó đã trông như một thông báo cần xử lý.
-    //
-    // Bố cục dọc thay cho hàng ngang: con số là thứ duy nhất đáng nhìn ở đây,
-    // và đặt nó cạnh ba dòng chữ thì nó phải nhỏ lại vừa chiều cao của chúng.
-    // Xếp dọc, nó được cỡ chữ của một tiêu đề, còn nhãn và câu giải thích lùi
-    // xuống làm chú thích - đúng thứ tự đọc mà khối này muốn.
-    //
-    // Lượt làm nhẹ dashboard: con số này là thông tin nền, không phải việc cần
-    // làm, nên nó xuống thành một dòng không khung. Câu giải thích lùi vào
-    // `title` - vẫn đọc được khi trỏ vào, không chiếm một đoạn riêng.
-    <section className="flex w-full items-baseline gap-2 px-1 text-ink-faint" title={t.recommendations.liveSubtitle}>
-      <span className="self-center"><StatusDot tone="muted" /></span>
-      <span className="font-mono text-sm font-medium tabular-nums text-ink-muted">
-        {liveCompletedCount.toLocaleString(intlLocale(locale))}
+    // Thẻ riêng, con số to: đây là thứ duy nhất trên dashboard cho thấy người
+    // khác cũng đang học NGAY LÚC NÀY. Bản trước hạ nó xuống một dòng chữ mờ
+    // cuối cột và nó biến mất giữa các hàng phụ (yêu cầu 2026-10-21: "cho con
+    // số live trực tiếp rõ hơn"). Vẫn một khung, không lồng thẻ.
+    <section className="flex items-center gap-3 rounded-2xl bg-white px-4 py-3 shadow-[0_1px_2px_rgba(16,24,40,0.04),0_8px_24px_-12px_rgba(41,97,184,0.18)] ring-1 ring-brand-100/70 dark:bg-stone-900 dark:ring-white/5">
+      <span className="relative flex h-2.5 w-2.5 shrink-0" aria-hidden>
+        <span className="absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-70 motion-safe:animate-ping" />
+        <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-brand-500" />
       </span>
-      <span className="min-w-0 truncate text-xs">
-        {t.recommendations.lessonsUnit} · {t.recommendations.liveTitle}
-      </span>
+      <div className="min-w-0 flex-1">
+        <p className="text-[11px] font-bold uppercase tracking-[0.1em] text-ink-muted">{t.recommendations.liveTitle}</p>
+        <p className="mt-0.5 flex items-baseline gap-1.5">
+          <span className="font-mono text-2xl font-black tabular-nums tracking-tight text-ink-max">
+            {liveCompletedCount.toLocaleString(intlLocale(locale))}
+          </span>
+          <span className="text-sm font-semibold text-ink-soft">{t.recommendations.lessonsUnit}</span>
+        </p>
+        <p className="truncate text-xs text-ink-muted">{t.recommendations.liveSubtitle}</p>
+      </div>
     </section>
   );
 }

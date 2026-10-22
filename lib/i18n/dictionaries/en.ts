@@ -2176,11 +2176,6 @@ export const en: Dictionary = {
 
     learningPathCardSub: "Where to start, how much a day, and when you finish",
 
-    presetLabel: "Layout",
-    presetCompact: "Compact",
-    presetFull: "Everything",
-    presetCompactHint: "Today's studying only",
-    presetFullHint: "Also show rewards, community and challenges",
     streakFeedTitle: "Streaks today",
     streakFeedSub: "Other learners keeping the rhythm",
     streakFeedDays: "{days} days",

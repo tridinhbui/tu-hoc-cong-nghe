@@ -14,7 +14,6 @@ import { getCommunityLearningNow, getLessonLearnerCounts, type CommunityLearner 
 import { stripStageLessonPrefix } from "@/lib/lesson-stage-prefix";
 import { useResizableSidebar, SIDEBAR_MIN_WIDTH, SIDEBAR_MAX_WIDTH } from "@/lib/use-resizable-sidebar";
 import { useProgress } from "@/lib/client-hooks";
-import { DEFAULT_PRESET, getStoredPreset, storePreset, type DashboardPreset } from "@/lib/dashboard-preset";
 import { mergeCompletedLessons } from "@/lib/progress";
 import { getIllustrativeCount } from "@/lib/illustrative-stats";
 import { getCompletedLessons } from "@/lib/cloudflare-progress";
@@ -272,40 +271,18 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
   const isLessonsView = view === "lessons";
   // Cột phải của /hoc-bai kéo đổi bề rộng được - xem lib/use-resizable-sidebar.ts.
   const sidebar = useResizableSidebar();
-  // Mức dày đặc của trang tổng quan - xem lib/dashboard-preset.ts.
-  //
-  // Khởi tạo bằng DEFAULT_PRESET rồi mới đọc localStorage trong effect, thay
-  // vì đọc ngay lúc dựng state: trang này được kết xuất trên máy chủ trước,
-  // nơi không có localStorage, nên đọc lúc dựng sẽ cho hai kết quả khác nhau
-  // giữa máy chủ và trình duyệt và React sẽ báo lệch hydrate. Cái giá là ai
-  // chọn "đầy đủ" sẽ thấy bản gọn trong một khung hình đầu; chấp nhận được vì
-  // các widget bị ẩn đều tự tải dữ liệu bất đồng bộ và vốn đã hiện sau.
-  const [preset, setPreset] = useState<DashboardPreset>(DEFAULT_PRESET);
-  const isFullPreset = preset === "day-du";
-  // Preset CHỈ áp cho trang tổng quan. /hoc-bai có bộ widget khác hẳn (trợ
-  // giúp ôn tập cạnh danh sách bài) và không có nút chuyển, nên ở đó mọi thứ
-  // hiện như cũ - nếu không, một tuỳ chọn đặt ở màn hình này sẽ lặng lẽ giấu
-  // widget ở màn hình kia mà không có gì bật lại được.
-  const showOptional = isLessonsView || isFullPreset;
-  // Bản GỌN của chính các thẻ, khác `showOptional` vốn chỉ quyết định widget
-  // nào có mặt. Ở đây là thẻ vẫn có mặt nhưng thu lại.
-  //
-  // `isLessonsView ||` chứ không phải `&&`: /hoc-bai không có nút chuyển, nên
-  // nó giữ nguyên bản gọn như trước. Nếu để preset chi phối cả trang đó thì
-  // một lựa chọn đặt ở màn hình này sẽ lặng lẽ nới rộng màn hình kia - cùng
-  // cái bẫy mà chú thích của `showOptional` ngay trên đã tránh.
+  // Trang tổng quan có đúng một mức: cột phải chia ba tab (Tiến độ / Thưởng /
+  // Đấu trường). Nút "Gọn / Đầy đủ" đã gỡ (2026-10-21, theo yêu cầu): một tuỳ
+  // chọn hiển thị nằm cuối cột chỉ thêm một hàng chữ nhạt cho người học phải
+  // đọc qua, và bản "Gọn" giấu đi đúng những thứ cột này sinh ra để chứa.
+  // /hoc-bai không có tab, nên ở đó mọi thứ như cũ.
+  const isFullPreset = !isLessonsView;
+  // Hai cờ còn lại từ thời có nút chuyển, giữ tên để các nhánh bên dưới đọc
+  // như cũ: trang tổng quan hiện đủ widget, /hoc-bai giữ bản thẻ gọn.
+  const showOptional = true;
+  const isCompactCard = isLessonsView;
   const shortViewport = useShortViewport();
-  const isCompactCard = isLessonsView || !isFullPreset;
 
-  useEffect(() => {
-    const stored = getStoredPreset();
-    if (stored) setPreset(stored);
-  }, []);
-
-  const choosePreset = useCallback((next: DashboardPreset) => {
-    setPreset(next);
-    storePreset(next);
-  }, []);
   const { locale, t } = useI18n();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -1558,8 +1535,8 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                     )}
                   </div>
                   </section>
-                  {/* Chế độ Đầy đủ: ba tab giữ cột phụ vừa một màn hình; mỗi
-                      tab tự cuộn khi dài. Chế độ Gọn chỉ có tab Tiến độ. */}
+                  <DashboardRecommendations />
+                  {/* Ba tab giữ cột phụ gọn: mỗi tab một nhóm việc. */}
                   {isFullPreset && (
                     <div role="tablist" className="sticky top-0 z-10 grid shrink-0 grid-cols-3 gap-1 rounded-2xl bg-white/90 p-1 shadow-sm ring-1 ring-brand-100 backdrop-blur dark:bg-stone-900/90 dark:ring-white/10">
                       {([
@@ -1589,10 +1566,12 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                         lessonsTotal={trackCounts[activeTrack].total}
                         avgQuizScore={anyDone ? avgQuizScore : null}
                       />
-                      {showOptional && <DailyNewsQuizWidget userId={user.id} compact quiet />}
-
-                      <div className="space-y-5 px-1">
-                        <PracticalSkillPanel compact collapsible />
+                      {/* Mấy hàng phụ (thử thách hôm nay, năng lực thực hành, thi
+                          thăng cấp, xếp hạng) gom vào MỘT thẻ có vạch chia, thay
+                          vì trôi rời rạc bằng chữ nhạt trên nền trang. */}
+                      <div className={`${softCard} divide-y divide-line-soft px-4 [&>*]:py-3`}>
+                        {showOptional && <div><DailyNewsQuizWidget userId={user.id} compact quiet /></div>}
+                        <div><PracticalSkillPanel compact collapsible /></div>
                         <div data-tour="user-stats" className="min-w-0">
                           <UserStats
                             xp={userXp}
@@ -1612,7 +1591,7 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                             type="button"
                             onClick={toggleRanking}
                             aria-expanded={rankingOpen}
-                            className="flex w-full cursor-pointer items-center justify-between gap-2 py-1 text-xs font-semibold text-ink-faint transition-colors hover:text-ink-body"
+                            className="flex w-full cursor-pointer items-center justify-between gap-2 py-0.5 text-sm font-bold text-ink-body transition-colors hover:text-ink-max"
                           >
                             <span>{t.revampDashboard.rankingLabel}</span>
                             <ChevronDown className={`h-3.5 w-3.5 transition-transform ${rankingOpen ? "rotate-180" : ""}`} aria-hidden />
@@ -1643,34 +1622,6 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                     </div>
                   )}
 
-                  <div className="mt-auto space-y-4 px-1">
-                    {!isFullPreset && <DailyMotivationWidget userId={user.id} quiet />}
-                    <div className="flex items-center gap-2.5">
-                      <span className="text-xs text-ink-faint">{t.dashboard.presetLabel}</span>
-                      <div role="group" aria-label={t.dashboard.presetLabel} className="inline-flex rounded-full bg-surface-raised p-0.5 dark:bg-stone-900">
-                        {([
-                          { id: "gon" as const, label: t.dashboard.presetCompact, hint: t.dashboard.presetCompactHint },
-                          { id: "day-du" as const, label: t.dashboard.presetFull, hint: t.dashboard.presetFullHint },
-                        ]).map((opt) => (
-                          <button
-                            key={opt.id}
-                            type="button"
-                            onClick={() => choosePreset(opt.id)}
-                            aria-pressed={preset === opt.id}
-                            title={opt.hint}
-                            className={`cursor-pointer rounded-full px-3 py-1 text-xs font-semibold transition-colors ${
-                              preset === opt.id ? "bg-white text-ink-heading shadow-sm dark:bg-stone-800 dark:text-stone-100" : "text-ink-faint hover:text-ink-body"
-                            }`}
-                          >
-                            {opt.label}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="px-1">
-                    <DashboardRecommendations />
-                  </div>
                 </aside>
               </div>
               </div>

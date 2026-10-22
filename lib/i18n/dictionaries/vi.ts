@@ -2324,11 +2324,6 @@ export const vi = {
 
     learningPathCardSub: "Bắt đầu từ đâu, mỗi ngày bao nhiêu bài, bao giờ thì xong",
 
-    presetLabel: "Bảng nhìn",
-    presetCompact: "Gọn",
-    presetFull: "Đầy đủ",
-    presetCompactHint: "Chỉ giữ việc học hôm nay",
-    presetFullHint: "Hiện thêm thưởng, cộng đồng và thử thách",
     streakFeedTitle: "Chuỗi ngày học hôm nay",
     streakFeedSub: "Người khác cũng đang giữ nhịp",
     streakFeedDays: "{days} ngày",
