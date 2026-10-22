@@ -1274,15 +1274,18 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
             return (
               <div className="mx-auto flex h-full min-h-0 w-full max-w-[1240px] flex-col gap-3">
               <OverviewTopBar />
-              {/* Một trọng tâm: Học tiếp (kèm cấp và XP) + Hành trình ngắn bên cạnh;
-                  lối tắt luyện tập một hàng; rồi lộ trình và thành tích. Cấp/XP chỉ
-                  nói một lần, ở chân thẻ Học tiếp. */}
-              <div className="grid min-h-0 flex-1 grid-cols-1 content-start gap-4 overflow-y-auto pb-28 [scrollbar-width:thin] lg:grid-cols-12 lg:gap-5 lg:pb-6">
-                <div className="empty:hidden lg:col-span-12"><YesterdayTaskCard /></div>
+              {/* Hai cột trong một màn hình: bên trái thứ đang dựng và dải chặng,
+                  bên phải cấp độ và thành tích. Cấp/XP chỉ nói một lần, ở thẻ
+                  Cấp độ đầu cột phải. */}
+              <div className="grid min-h-0 flex-1 grid-cols-1 content-start gap-4 overflow-y-auto pb-28 [scrollbar-width:thin] lg:grid-cols-12 lg:grid-rows-[minmax(0,1fr)] lg:content-stretch lg:gap-5 lg:overflow-hidden lg:pb-0">
+                {/* Cột chính: chặng đang dựng (kèm Học tiếp), luyện nhanh, dải chặng.
+                    Từ lg trở lên cả trang vừa một màn hình; mỗi cột chỉ tự cuộn khi màn
+                    hình quá thấp để chứa nó. */}
+                <div className="flex min-w-0 flex-col gap-4 lg:col-span-8 lg:min-h-0 lg:overflow-y-auto lg:overflow-x-hidden lg:pb-4 lg:pr-1 [scrollbar-width:thin]">
                 {/* Xưởng: chặng đang dựng là tâm điểm của trang, thẻ Học tiếp
                     nằm trong nó - bài kế tiếp là bước kế của thứ đang dựng. Cấp
                     và XP nói ở thẻ Cấp độ bên dưới, không lặp ở đây. */}
-                <section className="min-w-0 lg:col-span-12" data-tour="resume-learning">
+                <section className="min-w-0" data-tour="resume-learning">
                   <WorkshopHero stage={workshopNow} isLast={workshopCurrent === workshopStages.length - 1}>
                     <ResumeLearningButton
                       showCoCo={false}
@@ -1294,131 +1297,16 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                     />
                   </WorkshopHero>
                 </section>
-                <div className="lg:col-span-12">
+                <div>
                   <PracticeModeGrid lessonsDone={trackCounts.personal.done + trackCounts.professional.done} />
                 </div>
-                <div className="grid min-w-0 gap-5 lg:col-span-12 lg:grid-cols-12">
-                {/* ── Cột phải: thành tích và phần phụ ── */}
-                <aside className="order-last flex min-w-0 flex-col gap-4 lg:order-none lg:col-span-4 lg:col-start-9 lg:row-start-1 lg:self-start">
-                  {/* Chế độ Đầy đủ: ba tab giữ cột phụ vừa một màn hình; mỗi
-                      tab tự cuộn khi dài. Chế độ Gọn chỉ có tab Tiến độ. */}
-                  {isFullPreset && (
-                    <div role="tablist" className="sticky top-0 z-10 grid shrink-0 grid-cols-3 gap-1 rounded-2xl bg-white/90 p-1 shadow-sm ring-1 ring-brand-100 backdrop-blur dark:bg-stone-900/90 dark:ring-white/10">
-                      {([
-                        { id: "progress" as const, label: t.revampDashboard.sideTabProgress, on: "bg-brand-600 text-white" },
-                        { id: "rewards" as const, label: t.revampDashboard.sideTabRewards, on: "bg-amber-500 text-white" },
-                        { id: "arena" as const, label: t.revampDashboard.sideTabArena, on: "bg-rose-500 text-white" },
-                      ]).map((tab) => (
-                        <button
-                          key={tab.id}
-                          type="button"
-                          role="tab"
-                          aria-selected={sideTab === tab.id}
-                          onClick={() => setSideTab(tab.id)}
-                          className={`cursor-pointer rounded-xl px-2 py-1.5 text-xs font-bold transition-colors ${sideTab === tab.id ? `${tab.on} shadow-sm` : "text-ink-muted hover:bg-brand-50 dark:hover:bg-white/5"}`}
-                        >
-                          {tab.label}
-                        </button>
-                      ))}
-                    </div>
-                  )}
-
-                  {(!isFullPreset || sideTab === "progress") && (
-                    <>
-                      <ProgressSideCard
-                        streakSlot={<DashboardStreakWidget userId={user.id} quiet />}
-                        lessonsDone={trackCounts[activeTrack].done}
-                        lessonsTotal={trackCounts[activeTrack].total}
-                        avgQuizScore={anyDone ? avgQuizScore : null}
-                      />
-                      {showOptional && <DailyNewsQuizWidget userId={user.id} compact quiet />}
-
-                      <div className="space-y-5 px-1">
-                        <PracticalSkillPanel compact collapsible />
-                        <div data-tour="user-stats" className="min-w-0">
-                          <UserStats
-                            xp={userXp}
-                            lessonsCompleted={totalDone}
-                            totalLessons={totalLessons}
-                            avgQuizScore={avgQuizScore}
-                            userId={user?.id}
-                            sidebar={true}
-                            embedded={true}
-                            compact={isCompactCard}
-                            hideIdentity
-                            quiet
-                          />
-                        </div>
-                        <div>
-                          <button
-                            type="button"
-                            onClick={toggleRanking}
-                            aria-expanded={rankingOpen}
-                            className="flex w-full cursor-pointer items-center justify-between gap-2 py-1 text-xs font-semibold text-ink-faint transition-colors hover:text-ink-body"
-                          >
-                            <span>{t.revampDashboard.rankingLabel}</span>
-                            <ChevronDown className={`h-3.5 w-3.5 transition-transform ${rankingOpen ? "rotate-180" : ""}`} aria-hidden />
-                          </button>
-                          {rankingOpen && (
-                            <div className="mt-3 rounded-2xl bg-surface p-4 dark:bg-stone-900">
-                              <DashboardLeaderboardCard userId={user.id} bare />
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                    </>
-                  )}
-
-                  {isFullPreset && sideTab === "rewards" && (
-                    <div className="space-y-4">
-                      <TrophyPromoCard />
-                      <CombinedRewardsWidget userId={user.id} defaultExpanded={false} compact />
-                      <DailyMotivationWidget userId={user.id} quiet />
-                    </div>
-                  )}
-
-                  {isFullPreset && sideTab === "arena" && (
-                    <div className="space-y-4">
-                      <DashboardArenaCard onOpenBoss={() => setShowBossBattle(true)} onOpenPvp={() => setShowPvpModal(true)} />
-                      <CommunityLearningNow lessonsMeta={lessonsMeta} />
-                      <CommunityStreakWidget />
-                    </div>
-                  )}
-
-                  <div className="mt-auto space-y-4 px-1">
-                    {!isFullPreset && <DailyMotivationWidget userId={user.id} quiet />}
-                    <div className="flex items-center gap-2.5">
-                      <span className="text-xs text-ink-faint">{t.dashboard.presetLabel}</span>
-                      <div role="group" aria-label={t.dashboard.presetLabel} className="inline-flex rounded-full bg-surface-raised p-0.5 dark:bg-stone-900">
-                        {([
-                          { id: "gon" as const, label: t.dashboard.presetCompact, hint: t.dashboard.presetCompactHint },
-                          { id: "day-du" as const, label: t.dashboard.presetFull, hint: t.dashboard.presetFullHint },
-                        ]).map((opt) => (
-                          <button
-                            key={opt.id}
-                            type="button"
-                            onClick={() => choosePreset(opt.id)}
-                            aria-pressed={preset === opt.id}
-                            title={opt.hint}
-                            className={`cursor-pointer rounded-full px-3 py-1 text-xs font-semibold transition-colors ${
-                              preset === opt.id ? "bg-white text-ink-heading shadow-sm dark:bg-stone-800 dark:text-stone-100" : "text-ink-faint hover:text-ink-body"
-                            }`}
-                          >
-                            {opt.label}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </aside>
-                <div className="flex min-w-0 flex-col gap-5 lg:col-span-8 lg:col-start-1 lg:row-start-1">
-                  <section className="space-y-5 lg:min-h-0 lg:overflow-y-auto lg:pr-1 [scrollbar-width:thin]">
+                  <section className="min-w-0 space-y-3">
                     <SectionHeading
                       title={t.revampDashboard.buildTitle}
                       hint={t.revampDashboard.buildHint}
                       action={
                       <Link
-                        href="/lo-trinh"
+                        href={activeTrack === "professional" ? "/lo-trinh/theo-nghe" : "/lo-trinh/bat-dau-tu-dau"}
                         className="group inline-flex items-center gap-1.5 rounded-full bg-brand-50 px-3.5 py-1.5 text-sm font-bold text-brand-700 transition-colors hover:bg-brand-100 dark:bg-white/5 dark:text-brand-300 dark:hover:bg-white/10"
                       >
                         <Route className="h-4 w-4" aria-hidden />
@@ -1428,26 +1316,27 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                       }
                     />
                     <StageBuildGrid stages={workshopStages} currentIndex={Math.max(0, workshopCurrent)} scope={activeTrack} />
-                    <div className="px-1">
-                      <DashboardRecommendations />
-                    </div>
                   </section>
-                  <section className="space-y-3 lg:min-h-0 lg:overflow-y-auto lg:pr-1 [scrollbar-width:thin]">
+                </div>
+                {/* ── Cột phải: cấp độ, thành tích và phần phụ ── */}
+                <aside className="flex min-w-0 flex-col gap-4 lg:col-span-4 lg:min-h-0 lg:overflow-y-auto lg:pb-4 lg:pr-1 [scrollbar-width:thin]">
+                  <div className="empty:hidden"><YesterdayTaskCard /></div>
+                  <section className="shrink-0">
                   {/* ── Cấp độ: luôn hiện ở dạng gọn - cấp, XP vàng, mở khoá kế
                       tiếp. Phần thưởng phải nhìn thấy được chứ không nằm sau một
                       nút. Dải cấp đầy đủ và danh sách người ở từng cấp vẫn chỉ
                       mở khi bấm "Xem các cấp". */}
-                  <div className={`${softCard} relative overflow-hidden p-5 sm:p-6`}>
+                  <div className={`${softCard} relative overflow-hidden p-4`}>
                     <div aria-hidden className="pointer-events-none absolute -right-10 -top-14 h-40 w-40 rounded-full bg-amber-200/40 blur-3xl dark:bg-amber-500/10" />
                     <div className="relative flex flex-wrap items-center justify-between gap-x-8 gap-y-5">
                       <div className="flex min-w-0 items-center gap-5">
                         <div className="relative shrink-0">
-                          <div className="h-[72px] w-[72px] overflow-hidden rounded-2xl ring-2 ring-white shadow-[0_8px_20px_-12px_rgba(41,97,184,0.7)] dark:ring-brand-900">
+                          <div className="h-14 w-14 overflow-hidden rounded-2xl ring-2 ring-white shadow-[0_8px_20px_-12px_rgba(41,97,184,0.7)] dark:ring-brand-900">
                             <Image
                               src={`/levels/level${currentUserLevel}.jpg`}
                               alt={t.levelTitles[currentUserLevel] ?? ""}
-                              width={72}
-                              height={72}
+                              width={56}
+                              height={56}
                               className="h-full w-full scale-[1.08] object-cover"
                             />
                           </div>
@@ -1669,8 +1558,120 @@ export default function DashboardClient({ lessonsMeta, view = "overview" }: { le
                     )}
                   </div>
                   </section>
-                </div>
-                </div>
+                  {/* Chế độ Đầy đủ: ba tab giữ cột phụ vừa một màn hình; mỗi
+                      tab tự cuộn khi dài. Chế độ Gọn chỉ có tab Tiến độ. */}
+                  {isFullPreset && (
+                    <div role="tablist" className="sticky top-0 z-10 grid shrink-0 grid-cols-3 gap-1 rounded-2xl bg-white/90 p-1 shadow-sm ring-1 ring-brand-100 backdrop-blur dark:bg-stone-900/90 dark:ring-white/10">
+                      {([
+                        { id: "progress" as const, label: t.revampDashboard.sideTabProgress, on: "bg-brand-600 text-white" },
+                        { id: "rewards" as const, label: t.revampDashboard.sideTabRewards, on: "bg-amber-500 text-white" },
+                        { id: "arena" as const, label: t.revampDashboard.sideTabArena, on: "bg-rose-500 text-white" },
+                      ]).map((tab) => (
+                        <button
+                          key={tab.id}
+                          type="button"
+                          role="tab"
+                          aria-selected={sideTab === tab.id}
+                          onClick={() => setSideTab(tab.id)}
+                          className={`cursor-pointer rounded-xl px-2 py-1.5 text-xs font-bold transition-colors ${sideTab === tab.id ? `${tab.on} shadow-sm` : "text-ink-muted hover:bg-brand-50 dark:hover:bg-white/5"}`}
+                        >
+                          {tab.label}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+
+                  {(!isFullPreset || sideTab === "progress") && (
+                    <>
+                      <ProgressSideCard
+                        streakSlot={<DashboardStreakWidget userId={user.id} quiet />}
+                        lessonsDone={trackCounts[activeTrack].done}
+                        lessonsTotal={trackCounts[activeTrack].total}
+                        avgQuizScore={anyDone ? avgQuizScore : null}
+                      />
+                      {showOptional && <DailyNewsQuizWidget userId={user.id} compact quiet />}
+
+                      <div className="space-y-5 px-1">
+                        <PracticalSkillPanel compact collapsible />
+                        <div data-tour="user-stats" className="min-w-0">
+                          <UserStats
+                            xp={userXp}
+                            lessonsCompleted={totalDone}
+                            totalLessons={totalLessons}
+                            avgQuizScore={avgQuizScore}
+                            userId={user?.id}
+                            sidebar={true}
+                            embedded={true}
+                            compact={isCompactCard}
+                            hideIdentity
+                            quiet
+                          />
+                        </div>
+                        <div>
+                          <button
+                            type="button"
+                            onClick={toggleRanking}
+                            aria-expanded={rankingOpen}
+                            className="flex w-full cursor-pointer items-center justify-between gap-2 py-1 text-xs font-semibold text-ink-faint transition-colors hover:text-ink-body"
+                          >
+                            <span>{t.revampDashboard.rankingLabel}</span>
+                            <ChevronDown className={`h-3.5 w-3.5 transition-transform ${rankingOpen ? "rotate-180" : ""}`} aria-hidden />
+                          </button>
+                          {rankingOpen && (
+                            <div className="mt-3 rounded-2xl bg-surface p-4 dark:bg-stone-900">
+                              <DashboardLeaderboardCard userId={user.id} bare />
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </>
+                  )}
+
+                  {isFullPreset && sideTab === "rewards" && (
+                    <div className="space-y-4">
+                      <TrophyPromoCard />
+                      <CombinedRewardsWidget userId={user.id} defaultExpanded={false} compact />
+                      <DailyMotivationWidget userId={user.id} quiet />
+                    </div>
+                  )}
+
+                  {isFullPreset && sideTab === "arena" && (
+                    <div className="space-y-4">
+                      <DashboardArenaCard onOpenBoss={() => setShowBossBattle(true)} onOpenPvp={() => setShowPvpModal(true)} />
+                      <CommunityLearningNow lessonsMeta={lessonsMeta} />
+                      <CommunityStreakWidget />
+                    </div>
+                  )}
+
+                  <div className="mt-auto space-y-4 px-1">
+                    {!isFullPreset && <DailyMotivationWidget userId={user.id} quiet />}
+                    <div className="flex items-center gap-2.5">
+                      <span className="text-xs text-ink-faint">{t.dashboard.presetLabel}</span>
+                      <div role="group" aria-label={t.dashboard.presetLabel} className="inline-flex rounded-full bg-surface-raised p-0.5 dark:bg-stone-900">
+                        {([
+                          { id: "gon" as const, label: t.dashboard.presetCompact, hint: t.dashboard.presetCompactHint },
+                          { id: "day-du" as const, label: t.dashboard.presetFull, hint: t.dashboard.presetFullHint },
+                        ]).map((opt) => (
+                          <button
+                            key={opt.id}
+                            type="button"
+                            onClick={() => choosePreset(opt.id)}
+                            aria-pressed={preset === opt.id}
+                            title={opt.hint}
+                            className={`cursor-pointer rounded-full px-3 py-1 text-xs font-semibold transition-colors ${
+                              preset === opt.id ? "bg-white text-ink-heading shadow-sm dark:bg-stone-800 dark:text-stone-100" : "text-ink-faint hover:text-ink-body"
+                            }`}
+                          >
+                            {opt.label}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="px-1">
+                    <DashboardRecommendations />
+                  </div>
+                </aside>
               </div>
               </div>
             );

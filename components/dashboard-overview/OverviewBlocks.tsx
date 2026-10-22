@@ -82,13 +82,13 @@ export function PracticeModeGrid({ lessonsDone = Infinity }: { lessonsDone?: num
   // Game Kingdom hiện sau bài thứ ba - cùng ngưỡng với thanh bên (AppNavbar).
   const shown = lessonsDone >= 3 ? modes : modes.filter((m) => m.href !== "/game");
   return (
-    <nav aria-label={r.shortcutsTitle} className="flex flex-wrap items-center gap-2">
-      <span className="mr-1 text-xs font-bold uppercase tracking-[0.1em] text-ink-muted">{r.shortcutsTitle}</span>
+    <nav aria-label={r.shortcutsTitle} className="-mx-1 flex items-center gap-2 overflow-x-auto px-1 pb-0.5 no-scrollbar">
+      <span className="mr-1 shrink-0 text-xs font-bold uppercase tracking-[0.1em] text-ink-muted">{r.shortcutsTitle}</span>
       {shown.map(({ href, label, icon: Icon }) => (
         <Link
           key={href}
           href={href}
-          className="group inline-flex items-center gap-2 rounded-full bg-brand-50 px-3.5 py-2 text-sm font-bold text-brand-800 transition-colors hover:bg-brand-100 dark:bg-white/5 dark:text-brand-200 dark:hover:bg-white/10"
+          className="group inline-flex shrink-0 items-center gap-2 whitespace-nowrap rounded-full bg-brand-50 px-3.5 py-2 text-sm font-bold text-brand-800 transition-colors hover:bg-brand-100 dark:bg-white/5 dark:text-brand-200 dark:hover:bg-white/10"
         >
           <Icon className="h-4 w-4 text-accent" strokeWidth={2.2} aria-hidden />
           {label}

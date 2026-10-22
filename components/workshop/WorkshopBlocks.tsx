@@ -1,8 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { ArrowRight, Check, Lock } from "lucide-react";
+import { Check, ChevronLeft, ChevronRight, Lock } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 import { format } from "@/lib/i18n";
 import { Reveal } from "@/components/ui/motion";
@@ -56,10 +55,10 @@ export function WorkshopHero({ stage, isLast, children }: { stage: WorkshopStage
               </>
             )}
           </p>
-          <p className="mt-3 text-sm font-semibold text-ink-muted lg:[@media(max-height:1199px)]:mt-2">
+          <p className="mt-3 text-sm font-semibold text-ink-muted lg:[@media(max-height:1199px)]:mt-2 lg:[@media(max-height:860px)]:hidden">
             {stage ? (stage.done > 0 ? r.workshopBuilding : r.workshopStart) : ""}
           </p>
-          <h2 className="mt-0.5 text-2xl font-black leading-tight tracking-tight text-ink-max sm:text-[32px] lg:[@media(max-height:1199px)]:text-[26px]">
+          <h2 className="mt-0.5 text-2xl font-black leading-tight tracking-tight text-ink-max sm:text-[32px] lg:[@media(max-height:1199px)]:text-[26px] lg:[@media(max-height:860px)]:mt-2 lg:[@media(max-height:860px)]:text-[22px]">
             {stage ? stage.headline : r.workshopAllDone}
           </h2>
           {stage && (
@@ -126,7 +125,7 @@ export function StageBuildTile({ stage, justUnlocked = false }: { stage: Worksho
         // thứ người ta học cách lờ đi.
         <span aria-hidden className="pointer-events-none absolute -inset-1 rounded-[20px] ring-4 ring-cyan-300/70 motion-safe:animate-[ping_1.4s_ease-out_2] dark:ring-cyan-400/40" />
       )}
-      <div className={`relative flex aspect-[16/9] items-center justify-center overflow-hidden rounded-xl ${stage.status === "active" ? "bg-brand-50 dark:bg-brand-950/50" : "bg-surface-raised dark:bg-stone-950"}`}>
+      <div className={`relative flex aspect-[2/1] items-center justify-center overflow-hidden rounded-xl ${stage.status === "active" ? "bg-brand-50 dark:bg-brand-950/50" : "bg-surface-raised dark:bg-stone-950"}`}>
         <StageScene tag={stage.tag} muted={stage.status === "locked"} className={`h-full w-full p-1 ${stage.status === "notStarted" ? "opacity-70" : ""}`} />
         <span className={`absolute left-2 top-2 inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-black uppercase tracking-[0.08em] ${tone.badge}`}>
           {stage.status === "mastered" && <Check className="h-3 w-3" strokeWidth={3} aria-hidden />}
@@ -138,7 +137,7 @@ export function StageBuildTile({ stage, justUnlocked = false }: { stage: Worksho
         {format(r.workshopStage, { n: stage.n, tag: stage.tag })}
       </p>
       <h3 className={`mt-0.5 line-clamp-2 font-black leading-snug ${dim ? "text-ink-soft" : "text-ink-max"} text-[15px]`}>{stage.headline}</h3>
-      <p className="mt-1 line-clamp-2 flex-1 text-xs leading-relaxed text-ink-muted">{outcomeItems(stage.outcome, 2).join(" · ")}</p>
+      <p className="mt-1 line-clamp-2 flex-1 text-xs leading-relaxed text-ink-muted lg:[@media(max-height:860px)]:line-clamp-1">{outcomeItems(stage.outcome, 2).join(" · ")}</p>
       <div className="mt-3 flex items-center gap-2">
         <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-surface-raised dark:bg-white/10">
           <div className={`h-full rounded-full ${tone.bar} motion-safe:transition-[width] motion-safe:duration-700`} style={{ width: `${stage.done > 0 ? Math.max(4, pct) : 0}%` }} />
@@ -149,31 +148,66 @@ export function StageBuildTile({ stage, justUnlocked = false }: { stage: Worksho
   );
 }
 
-/** Lưới chặng quanh chặng đang học: một chặng trước, chặng hiện tại, rồi những chặng kế. */
-export function StageBuildGrid({ stages, currentIndex, scope, max = 6 }: { stages: WorkshopStage[]; currentIndex: number; scope: string; max?: number }) {
+/** Dải chặng một hàng, trượt ngang: mọi chặng của tuyến, mở ra ở chặng ngay
+ *  trước chặng đang học. Một hàng thay vì lưới để cả trang tổng quan vừa một
+ *  màn hình; phần còn lại của lộ trình nằm ngay bên phải, kéo hoặc bấm mũi tên. */
+export function StageBuildGrid({ stages, currentIndex, scope }: { stages: WorkshopStage[]; currentIndex: number; scope: string }) {
   const { t } = useI18n();
-  const r = t.revampDashboard;
   const activeKey = stages.find((st) => st.status === "active")?.key ?? null;
   const justUnlocked = useJustUnlocked(scope, activeKey);
+  const railRef = useRef<HTMLOListElement>(null);
   const cur = Math.min(Math.max(currentIndex, 0), Math.max(stages.length - 1, 0));
-  let start = Math.max(0, cur - 1);
-  start = Math.max(0, Math.min(start, stages.length - max));
-  const shown = stages.slice(start, start + max);
-  const rest = stages.length - (start + shown.length);
+  const [edges, setEdges] = useState({ start: true, end: false });
+
+  const syncEdges = () => {
+    const el = railRef.current;
+    if (!el) return;
+    setEdges({ start: el.scrollLeft <= 4, end: el.scrollLeft + el.clientWidth >= el.scrollWidth - 4 });
+  };
+
+  // Mở dải ở chặng trước chặng đang học. Đặt `scrollLeft` thẳng thay vì
+  // scrollIntoView: cái sau cuộn cả cột dọc theo, kéo trang khỏi banner.
+  useEffect(() => {
+    const el = railRef.current;
+    const item = el?.children[Math.max(0, cur - 1)] as HTMLElement | undefined;
+    if (el && item) el.scrollLeft = item.offsetLeft - el.offsetLeft;
+    syncEdges();
+  }, [cur, stages.length]);
+
+  const page = (dir: 1 | -1) => {
+    const el = railRef.current;
+    if (el) el.scrollBy({ left: dir * el.clientWidth * 0.8, behavior: "smooth" });
+  };
+  const arrow = "absolute top-1/2 z-10 hidden h-9 w-9 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full bg-white text-ink-body shadow-card ring-1 ring-brand-100 transition-colors hover:bg-brand-50 sm:flex dark:bg-stone-800 dark:ring-white/10 dark:hover:bg-stone-700";
+
   return (
-    <div>
-      <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
-        {shown.map((st, i) => (
-          <Reveal key={st.key} delay={i * 60}>
-            <StageBuildTile stage={st} justUnlocked={st.key === justUnlocked} />
-          </Reveal>
+    <div className="relative">
+      {!edges.start && (
+        <button type="button" onClick={() => page(-1)} aria-label={t.dashboard.scrollLeft} className={`${arrow} left-1`}>
+          <ChevronLeft className="h-4 w-4" aria-hidden />
+        </button>
+      )}
+      <ol
+        ref={railRef}
+        onScroll={syncEdges}
+        className="flex snap-x snap-mandatory gap-3 overflow-x-auto overscroll-x-contain pb-1 no-scrollbar"
+      >
+        {stages.map((st, i) => (
+          <li key={st.key} className="w-[220px] shrink-0 snap-start sm:w-[232px]">
+            {i >= cur - 1 && i < cur + 5 ? (
+              <Reveal delay={(i - Math.max(0, cur - 1)) * 60} className="h-full">
+                <StageBuildTile stage={st} justUnlocked={st.key === justUnlocked} />
+              </Reveal>
+            ) : (
+              <StageBuildTile stage={st} />
+            )}
+          </li>
         ))}
-      </div>
-      {rest > 0 && (
-        <Link href="/lo-trinh" className="group mt-3 inline-flex items-center gap-1 text-sm font-bold text-brand-700 hover:text-brand-900 dark:text-brand-300">
-          {format(r.buildMore, { count: rest })}
-          <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden />
-        </Link>
+      </ol>
+      {!edges.end && (
+        <button type="button" onClick={() => page(1)} aria-label={t.dashboard.scrollRight} className={`${arrow} right-1`}>
+          <ChevronRight className="h-4 w-4" aria-hidden />
+        </button>
       )}
     </div>
   );

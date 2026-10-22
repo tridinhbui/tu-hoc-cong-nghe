@@ -138,7 +138,6 @@ export const revampDashboardVi = {
     workshopAllDone: "Bạn đã dựng xong mọi chặng của tuyến này",
     buildTitle: "Những thứ bạn sẽ làm ra",
     buildHint: "Mỗi chặng xong là một thứ chạy được trong tay bạn.",
-    buildMore: "+{count} chặng nữa",
     tileJustUnlocked: "Vừa mở",
 
     stages: {
@@ -368,7 +367,6 @@ export const revampDashboardEn: typeof revampDashboardVi = {
     workshopAllDone: "You have built every stage of this track",
     buildTitle: "What you will build",
     buildHint: "Every finished stage is something that runs, in your hands.",
-    buildMore: "+{count} more stages",
     tileJustUnlocked: "Just unlocked",
 
     stages: {
